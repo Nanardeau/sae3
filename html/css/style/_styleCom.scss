@@ -25,3 +25,38 @@ h3{
 h4{
     @include m.text($PetTitle);
 }
+
+/*###############################
+#            HEADER             #
+###############################*/
+
+header{
+    display: inline-flex;
+    background: {
+        color: $colP;
+    }
+    height: 80px;
+    width: 100%;
+    align-items: center;
+
+    .logo_alizon_front{
+        width: 118px;
+        height: auto;
+        padding-left: 80px;
+        left: 0;
+    }
+
+    nav{
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        a{
+            padding-right: 80px;
+            color: $blanc;
+            text-decoration: none;
+        }
+        svg{
+            padding-right: 10px;
+        }
+    }
+}

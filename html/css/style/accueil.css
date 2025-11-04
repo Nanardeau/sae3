@@ -57,4 +57,8 @@ header nav a {
 }
 header nav svg {
   padding-right: 10px;
-}/*# sourceMappingURL=catalogue.css.map */
+}
+
+body {
+  margin: 0;
+}/*# sourceMappingURL=accueil.css.map */
