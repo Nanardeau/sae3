@@ -1,0 +1,15 @@
+@use '../../tools/vback.scss' as *;
+
+header{
+    background-color: vback.$colP;
+    .logo_alizon_back{
+        width: 118px;
+        height: auto;
+        margin: 15px 0 15px 30px;
+    }
+
+    h1{
+        color: white;
+        font-family: $Poltitle , sans-serif;
+    }
+}
