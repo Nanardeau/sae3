@@ -71,8 +71,13 @@ p, label, input {
   font-family: "Mulish";
 }
 
+header {
+  justify-self: center;
+  margin: 1em 0;
+}
+
 form {
-  border: solid #A1A1A1 0.01em;
+  border: #A1A1A1 solid 0.01em;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -81,9 +86,11 @@ form {
   padding: 2%;
 }
 form input {
+  border: solid 1px;
   border-radius: 10px;
   height: 3em;
   margin: 10px 0;
+  padding: 10px;
 }
 form .btn, form #file-upload-button {
   background-color: #064082;

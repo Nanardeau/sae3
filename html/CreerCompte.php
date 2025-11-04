@@ -12,8 +12,9 @@ if($_POST){
     <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <header></header>
+    <header><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></header>
     <main>
+        
         <form action="enreg.php" method="post">
         <h2>Création de compte</h2>
         <label for="pseudo">Identifiant *</label>
