@@ -1,3 +1,23 @@
 @use "./styleCom" as *;
+@use "../tools/vFront" as *;
 @use "../components/carte";
 
+.separateur {
+    background-color: $eleOrange;
+    width: auto;
+    height: 10px;
+    border-radius: $radius;
+
+}
+h1{
+    margin: {
+        top: $pad;
+        left: $pad;
+    }
+}
+h2 {
+    margin: {
+        top: $pad;
+        left: #{$pad * 2};
+    }
+}

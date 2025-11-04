@@ -8,8 +8,10 @@
 <body>
     <header></header>
     <main>
-        <h1>Toute les catégories<h1>
-            <h2>Catégorie <?php //Choisir la catégorie  ?></h2> 
+        <h1>Toutes les catégories</h1>
+        <div class="separateur"></div>
+        
+        <h2>Catégorie <?php //Choisir la catégorie  ?></h2>
     </main>
     <footer></footer>
 </body>
