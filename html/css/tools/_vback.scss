@@ -1,4 +1,4 @@
-
+@use "../components/fonts" as *;
 // Variables de couleurs.  
 $blanc : blanc;
 $noir: noir;
@@ -10,7 +10,7 @@ $inverse : #FF4444;
 
 // Variables de texte 
 $radius : 1em; 
-$Poltitle : "Baloo 2";
+$Poltitle : "Baloo";
 $Poltext : "Mulish";
 $txtSize : 14px;
 $TrGdTitle : 40px;  //Pour les H1  

@@ -69,4 +69,25 @@ h4 {
 
 p, label, input {
   font-family: "Mulish";
-}/*# sourceMappingURL=catalogue.css.map */
+}
+
+form {
+  border: solid #A1A1A1 0.01em;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  justify-self: center;
+  padding: 2%;
+}
+form input {
+  border-radius: 10px;
+  height: 3em;
+  margin: 10px 0;
+}
+form .btn, form #file-upload-button {
+  background-color: #064082;
+}
+form .btnSec {
+  background-color: #6CA6E9;
+}/*# sourceMappingURL=creerCompteFront.css.map */
