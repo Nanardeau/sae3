@@ -1,4 +1,4 @@
-
+@use "./fonts";
 // Variables de couleurs.  
 $blanc : blanc;
 $noir: noir;
@@ -7,10 +7,13 @@ $colS : #D1ECF8;
 $eleOrange : #FCB66B;
 $eleBleu : #6CA6E9;
 $inverse : #FF4444;
+$mobile : "screen and (min-width : 428px)";
+
+$tablette: "screen and (max-width:1440px)";
 
 // Variables de texte 
  
-$Poltitle : "Baloo 2";
+$Poltitle : "Baloo";
 $Poltext : "Mulish";
 $txtSize : 14px;
 $TrGdTitle : 40px;  //Pour les H1  

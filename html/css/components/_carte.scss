@@ -1,4 +1,37 @@
 @use "../tools/vFront" as *;
+@use "sass:math";
+$wCard:280px;
+$hCard: 380px;
 .card{
-    background-color: $colP;
+    margin: 0 $marg;
+    color : $noir;
+    width: auto;
+    height: auto;
+    max-width: $wCard;
+    min-height: $hCard;
+    border-radius: math.div($radius,2)  ;
+    padding : $pad;
+    position:relative;
+    figcaption{
+        img{
+        width: 100%;
+        background-color: white;
+        max-height: 180px;
+        height: auto;
+        border-radius: math.div($radius,2)  ;
+        }
+        caption{
+            margin-top : 100px;
+        }
+        
+    }
+    .prix{
+        position: absolute;
+        bottom: $marg;
+        left : $marg;
+        font: {
+            style: italic; 
+        }
+    }
+    
 }

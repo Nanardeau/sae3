@@ -23,6 +23,18 @@ h2 {
 }
 .card{
     @extend .card;
-    color:white;
+    background-color: $colS;
+    @media #{$tablette}{
+        background-color: $colP;
+    }
+    @media #{$mobile}{
+        color:green;
+    }
+}
 
+article{
+    width: max-content;
+    display: flex;
+    flex-direction: row;
+    
 }
