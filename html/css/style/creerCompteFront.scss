@@ -19,9 +19,20 @@ form{
     
     .btn, #file-upload-button{
         background-color: $colP;
+        color:white;
     }
     .btnSec{
         background-color: $eleBleu;
+    }
+
+}
+
+aside{
+    display:flex;
+    flex-direction:row;
+    justify-self:center;
+    img{
+        margin: 0 10px;
     }
 }
 

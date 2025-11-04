@@ -87,7 +87,17 @@ form input {
 }
 form .btn, form #file-upload-button {
   background-color: #064082;
+  color: white;
 }
 form .btnSec {
   background-color: #6CA6E9;
+}
+
+aside {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+}
+aside img {
+  margin: 0 10px;
 }/*# sourceMappingURL=creerCompteFront.css.map */

@@ -49,6 +49,16 @@ if($_POST){
         <input type="password" name="confMdp"/>
         <input class="btn" type="submit" value="Créer un compte"/>
         </form>   
+        <aside>
+            <img src="../../img/line_1.svg"/>
+            <p>Déjà un compte ?</p>
+            <img src="../../img/line_1.svg"/>
+            <nav>
+                <a href="Connexion.php" class="btn">Se connecter</a>
+                <a href="Catalogue.php" class="btnJaune">Retour</a>
+            <nav>
+        </aside>
+
     </main>
     <footer></footer>
 </body>
