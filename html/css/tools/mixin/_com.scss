@@ -8,3 +8,8 @@
     }
 }
    
+@mixin bouton($couleur : $colP){
+    background-color: $couleur;
+    color:$blanc; 
+    border-radius:$radius;
+}

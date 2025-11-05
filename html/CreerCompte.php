@@ -12,43 +12,44 @@ if($_POST){
     <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <header><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></header>
+    <header><a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a></header>
     <main>
-        
         <form action="enreg.php" method="post">
-        <h2>Création de compte</h2>
-        <label for="pseudo">Identifiant *</label>
-        <input type="text" name="pseudo"/> 
-        <label for="nom">Nom *</label>
-        <input type="text" name="nom"/>
-        <label for="prenom">Prénom *</label>
-        <input type="text" name="prenom"/>
-        <label for="pdp">Photo de profil</label>
-        <input type="file" name="photo"/>
-        <label for="mail">Adresse e-mail *</label>
-        <input type="text" name="mail"/>
-        <label for="confMail">Confirmer adresse mail *</label>
-        <input type="text" name="confMail"/>
-        <label for="numTel">Numéro de téléphone</label>
-        <input type="text" name="numTel"/>
-        <label for="dateNaiss">Date de naissance *</label>
-        <input type="date" name="dateNaiss" class="btnSec"/>
-        <h3>Adresse</h3>
-        <label for="numRue">Numéro</label>
-        <input type="text" name="numRue"/>
-        <label for="nomRue">Nom de la rue, voie</label>
-        <input type="text" name="nomRue"/>
-        <label for="codePostal">Code postal</label>
-        <input type="text" name="codePostal"/>
-        <label for="ville">Ville</label>
-        <input type="text" name="ville"/>
-        <label for="comp">Complément</label>
-        <input type="text" name="comp"/>
-        <label for="mdp">Mot de passe *</label>
-        <input type="password" name="mdp"/>
-        <label for="confMdp">Confirmer mot de passe *</label>
-        <input type="password" name="confMdp"/>
-        <input class="btn" type="submit" value="Créer un compte"/>
+            <h2>Création de compte</h2>
+            <label for="pseudo">Identifiant *</label>
+            <input type="text" name="pseudo" placeholder="Identifiant..."/> 
+            <label for="nom">Nom *</label>
+            <input type="text" name="nom" placeholder="Nom..."/>
+            <label for="prenom">Prénom *</label>
+            <input type="text" name="prenom" placeholder="Prénom..."/>
+            <label for="pdp">Photo de profil</label>
+            <input type="file" name="photo" id="photo"/>
+            <label for="mail">Adresse e-mail *</label>
+            <input type="text" name="mail" placeholder="E-mail..."/>
+            <label for="confMail">Confirmer adresse mail *</label>
+            <input type="text" name="confMail"/>
+            <label for="numTel">Numéro de téléphone</label>
+            <input type="text" name="numTel"/>
+            <label for="dateNaiss">Date de naissance *</label>
+            <input type="date" name="dateNaiss" class="btnSec"/>
+            <h3>Adresse</h3>
+            <label for="numRue">Numéro</label>
+            <input type="text" name="numRue" placeholder="1, 2A, 3Bis etc."/>
+            <label for="nomRue">Nom de la rue, voie</label>
+            <input type="text" name="nomRue" placeholder="Ex : Rue des lilas"/>
+            <label for="codePostal">Code postal</label>
+            <input type="text" name="codePostal"/>
+            <label for="ville">Ville</label>
+            <input type="text" name="ville"/>
+            <label for="numApp">Numéro d'appartement</label>
+            <input type="text" name="numApt"/>
+            <label for="comp">Complément</label>
+            <input type="text" name="comp" placeholder="Numéro de bâtiment, d'escalier etc."/>
+            <label for="mdp">Mot de passe *</label>
+            <input type="password" name="mdp" placeholder="Mot de passe..."/>
+            <label for="confMdp">Confirmer mot de passe *</label>
+            <input type="password" name="confMdp"/>
+            <input class="btn" type="submit" value="Créer un compte"/>
         </form>   
         <aside>
             <img src="../../img/line_1.svg"/>

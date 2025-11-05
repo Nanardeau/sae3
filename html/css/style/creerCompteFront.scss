@@ -1,12 +1,13 @@
 @use './styleCom' as *;
 @use '../tools/vFront' as *;
+@use "../tools/mixin/com" as *;
 header{
     justify-self:center;
     margin :1em 0;
 }
 form{
     border:#A1A1A1 solid 0.01em;
-    border-radius:20px;
+    border-radius:$radius;
     display:flex;
     flex-direction:column;
     width:30%;
@@ -15,16 +16,20 @@ form{
 
     input{
         border:solid 1px;
-        border-radius:10px;
+        border-radius:$radius;
         height:3em;
         margin:10px 0;
         padding:10px;
-      
+        &::file-selector-button{
+            @include bouton;
+        }
+        &#photo{
+            border:none;
+        }
     }
-    
-    .btn, #file-upload-button{
-        background-color: $colP;
-        color:white;
+
+    .btn{
+        @include bouton;
     }
     .btnSec{
         background-color: $eleBleu;

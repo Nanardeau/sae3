@@ -78,7 +78,7 @@ header {
 
 form {
   border: #A1A1A1 solid 0.01em;
-  border-radius: 20px;
+  border-radius: 1em;
   display: flex;
   flex-direction: column;
   width: 30%;
@@ -87,14 +87,23 @@ form {
 }
 form input {
   border: solid 1px;
-  border-radius: 10px;
+  border-radius: 1em;
   height: 3em;
   margin: 10px 0;
   padding: 10px;
 }
-form .btn, form #file-upload-button {
+form input::file-selector-button {
   background-color: #064082;
   color: white;
+  border-radius: 1em;
+}
+form input#photo {
+  border: none;
+}
+form .btn {
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
 }
 form .btnSec {
   background-color: #6CA6E9;
