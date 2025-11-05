@@ -5,6 +5,9 @@ header{
     justify-self:center;
     margin :1em 0;
 }
+body{
+    padding-bottom:2em;
+}
 form{
     border:#A1A1A1 solid 0.01em;
     border-radius:$radius;
@@ -23,13 +26,14 @@ form{
         &::file-selector-button{
             @include bouton;
         }
-        &#photo{
+        &#photoCli{
             border:none;
         }
     }
 
     .btn{
         @include bouton;
+        height:5em;
     }
     .btnSec{
         background-color: $eleBleu;
@@ -39,10 +43,56 @@ form{
 
 aside{
     display:flex;
-    flex-direction:row;
+    flex-direction: column;
     justify-self:center;
-    img{
-        margin: 0 10px;
+    figure{
+        display:flex;
+        img{
+            margin: 0 10px;
+        }
+    }
+
+    .btn{
+        @include bouton;
+        padding:1em;
+        width:80%;
+        margin-bottom:1em;
+    }
+    .btnJaune{
+        @include bouton;
+        background-color:$eleOrange; 
+        color:black;
+        width:50%;
+        height:2em;
+    }
+
+    nav{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
     }
 }
+form div{
+    display:flex;
+    justify-content: space-between;
+    
+    
+}
+.labelInput{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width:auto;
+}
 
+#nomCli{
+    width:100%;
+}
+
+#nomRueCli{
+    width:100%;
+}
+#numRueCli{
+    width:fit-content;
+
+}

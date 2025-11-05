@@ -18,7 +18,7 @@
 }
 @font-face {
   font-family: "Mulish";
-  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
+  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -36,7 +36,7 @@
 }
 @font-face {
   font-family: "Mulish";
-  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
+  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
 }
@@ -71,9 +71,17 @@ p, label, input {
   font-family: "Mulish";
 }
 
+label {
+  font-weight: bold;
+}
+
 header {
   justify-self: center;
   margin: 1em 0;
+}
+
+body {
+  padding-bottom: 2em;
 }
 
 form {
@@ -93,17 +101,26 @@ form input {
   padding: 10px;
 }
 form input::file-selector-button {
+  font-family: "Mulish";
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
   background-color: #064082;
   color: white;
   border-radius: 1em;
 }
-form input#photo {
+form input#photoCli {
   border: none;
 }
 form .btn {
+  font-family: "Mulish";
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  height: 5em;
 }
 form .btnSec {
   background-color: #6CA6E9;
@@ -111,9 +128,67 @@ form .btnSec {
 
 aside {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-self: center;
 }
-aside img {
+aside figure {
+  display: flex;
+}
+aside figure img {
   margin: 0 10px;
+}
+aside .btn {
+  font-family: "Mulish";
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  padding: 1em;
+  width: 80%;
+  margin-bottom: 1em;
+}
+aside .btnJaune {
+  font-family: "Mulish";
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  background-color: #FCB66B;
+  color: black;
+  width: 50%;
+  height: 2em;
+}
+aside nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: auto;
+}
+
+#nomCli {
+  width: 100%;
+}
+
+#nomRueCli {
+  width: 100%;
+}
+
+#numRueCli {
+  width: -moz-fit-content;
+  width: fit-content;
 }/*# sourceMappingURL=creerCompteFront.css.map */
