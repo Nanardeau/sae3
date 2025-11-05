@@ -1,6 +1,22 @@
 <?php
-if($_POST){
-    echo "c envoyé";
+require_once __DIR__ . '/env.php';
+
+loadEnv(__DIR__ . '/.env');
+
+$host = getenv('PGHOST');
+$port = getenv('PGPORT');
+$dbname = getenv('PGDATABASE');
+$user = getenv('PGUSER');
+$password = getenv('PGPASSWORD');
+
+try {
+    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
+    $pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+    echo "Connecté à PostgreSQL ($dbname)";
+} catch (PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
 }
 ?>
 <html lang="fr">
@@ -10,15 +26,17 @@ if($_POST){
     <title>Créer compte</title>
     <link href="./css/style/creerCompteFront.css" rel="stylesheet" type="text/css">
     <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
+    <link href="./bootstrap-5.3.8-dist/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">
 </head>
 <body>
+    
     <header><a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a></header>
     <main>
         <form action="enreg.php" method="post">
             <h2>Création de compte</h2>
             <label for="pseudo">Identifiant *</label>
-            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="\w{2,20}" required/> 
-            <span>L'identifiant doit faire au moins 2 caractères</span>
+            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._]{2,20}" required/> 
+            <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
             <div id="nomPrenomCli">
                 <div class="labelInput">
                     <label for="nom">Nom *</label>
@@ -32,7 +50,7 @@ if($_POST){
             <label for="pdp">Photo de profil</label>
             <input type="file" name="photo" id="photoCli"/>
             <label for="mail">Adresse e-mail *</label>
-            <input type="text" name="mail" placeholder="E-mail..." id="mailCli"/>
+            <input type="text" name="mail" placeholder="E-mail..." id="mailCli" pattern="/[A-Za-z0-9._-]+@[A-Za-z0-9._].[A-Za-z]/gm"/>
             <label for="confMail">Confirmer adresse mail *</label>
             <input type="text" name="confMail" id="confMailCli"/>
             <label for="numTel">Numéro de téléphone</label>
@@ -40,24 +58,26 @@ if($_POST){
             <label for="dateNaiss">Date de naissance *</label>
             <input type="date" name="dateNaiss" class="btnSec" id="dateNaiss"/>
             <h3>Adresse</h3> <!-- essayer de faire display grid pour adresse !-->
-            <div class="numNomRue">
-                <div class="labelInput">
-                    <label for="numRue">Numéro</label>
-                    <input type="text" name="numRue" placeholder="1, 2A, 3Bis etc." id="numRueCli"/>
+            <div class="container">
+                <div class="numNomRue">
+                    <div class="labelInput">
+                        <label for="numRue">Numéro</label>
+                        <input type="text" name="numRue" placeholder="1, 2A, 3Bis etc." id="numRueCli"/>
+                    </div>
+                    <div class="labelInput">
+                        <label for="nomRue">Nom de la rue, voie</label>
+                        <input type="text" name="nomRue" placeholder="Ex : Rue des lilas" id="nomRueCli"/>
+                    </div>
                 </div>
-                <div class="labelInput">
-                    <label for="nomRue">Nom de la rue, voie</label>
-                    <input type="text" name="nomRue" placeholder="Ex : Rue des lilas" id="nomRueCli"/>
-                </div>
-            </div>
-            <div class="CpVille">
-                <div class="labelInput">
-                    <label for="codePostal">Code postal</label>
-                    <input type="text" name="codePostal" id="codePostalCli"/>
-                </div>
-                <div class="labelInput">
-                    <label for="ville">Ville</label>
-                    <input type="text" name="ville" id="villeCli"/>
+                <div class="CpVille">
+                    <div class="labelInput">
+                        <label for="codePostal">Code postal</label>
+                        <input type="text" name="codePostal" id="codePostalCli" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$"/>
+                    </div>
+                    <div class="labelInput">
+                        <label for="ville">Ville</label>
+                        <input type="text" name="ville" id="villeCli"/>
+                    </div>
                 </div>
             </div>
             <label for="numApp">Numéro d'appartement</label>
@@ -84,5 +104,21 @@ if($_POST){
 
     </main>
     <footer></footer>
+
+    <script>
+        let mail = document.getElementById("mailCli");
+        let formatImage = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;
+        mail.addEventListener("focusout", verifFormat);
+
+        function verifFormat(evt){
+            if(evt.type == "focusout"){
+                console.log("ça va");
+                if(formatImage.test(mail.value) == false){
+                    alert("pas fou");
+                }
+
+            }
+        }
+    </script>
 </body>
 </html>
