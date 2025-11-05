@@ -1,6 +1,7 @@
 @use "./styleCom" as *;
 @use "../tools/vFront" as *;
 @use "../components/carte";
+@import url("bootstrap/scss/utilities/api");
 
 .separateur {
     background-color: $eleOrange;
@@ -22,18 +23,15 @@ h2 {
     }
 }
 .card{
-    @extend .card;
     background-color: $colS;
-    @media #{$tablette}{
-        background-color: $colP;
-    }
-    @media #{$mobile}{
-        color:green;
-    }
+    flex: 0 0 auto;
+    
+    
 }
 
 article{
-    width: max-content;
+    overflow-x: scroll;
+    min-width: 100%;
     display: flex;
     flex-direction: row;
     

@@ -1,3 +1,4 @@
+@import url("bootstrap/scss/utilities/api");
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
@@ -48,10 +49,10 @@
   font-display: swap;
 }
 body {
-  font-family: "Mulish";
+  font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
-  background-color: blanc;
-  color: noir;
+  background-color: white;
+  color: black;
   padding: 20px;
 }
 
@@ -81,30 +82,63 @@ h4 {
 
 .card {
   margin: 0 20px;
-  color: noir;
+  color: black;
   width: auto;
   height: auto;
   max-width: 280px;
   min-height: 380px;
   border-radius: 0.5em;
   padding: 20px;
-  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
 }
-.card figcaption img {
+.card figure {
+  grid-area: 1/1/2/3;
+  margin: 0;
+}
+.card figure img {
   width: 100%;
   background-color: white;
   max-height: 180px;
   height: auto;
   border-radius: 0.5em;
 }
-.card figcaption caption {
-  margin-top: 100px;
+.card figure figcaption {
+  margin-top: 10px;
 }
 .card .prix {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-style: italic;
+  grid-area: 2/1/3/2;
+  align-content: flex-end;
+  margin: 0;
+}
+.card div {
+  grid-area: 2/2/3/3;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: end;
+  float: right;
+  height: auto;
+}
+.card div input {
+  font-family: "Mulish";
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  max-width: 7.5rem;
+  height: 1.5rem;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background-color: #FCB66B;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+}
+.card div input :active {
+  background-color: blue;
 }
 
 .separateur {
@@ -126,21 +160,12 @@ h2 {
 
 .card {
   background-color: #D1ECF8;
-}
-@media screen and (max-width:1440px) {
-  .card {
-    background-color: #064082;
-  }
-}
-@media screen and (min-width : 428px) {
-  .card {
-    color: green;
-  }
+  flex: 0 0 auto;
 }
 
 article {
-  width: -moz-max-content;
-  width: max-content;
+  overflow-x: scroll;
+  min-width: 100%;
   display: flex;
   flex-direction: row;
 }/*# sourceMappingURL=catalogue.css.map */

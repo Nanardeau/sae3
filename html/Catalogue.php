@@ -23,16 +23,21 @@
 
         ?>
             <div class="card">
-                <figcaption>
+                <figure>
                     <img src="./img/img_test.jpg"></img>
-                    <caption>libelProduit</caption>
-                </figcaption>
-                <p class="prix">test</p>
+                    <figcaption>libelProduit</figcaption>
+                </figure>
+                <p class="prix">00.00€</p>
+                <div>
+                    <input type="button" value="Ajouter au panier"></input>
+                    <input type="button" value="Détails"></input>
+                </div>
+                
             </div>
         <?php
             }
         ?>
-        <article>
+        </article>
 
 
     </main>
