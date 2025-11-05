@@ -41,7 +41,7 @@
   font-style: normal;
 }
 body {
-  font-family: "Baloo", "Mulish", sans-serif;
+  font-family: "Mulish", "Baloo", sans-serif;
   font-size: 14px;
   background-color: white;
   color: black;
@@ -102,6 +102,7 @@ form input {
 }
 form input::file-selector-button {
   font-family: "Mulish";
+  font-weight: bold;
   text-align: center;
   text-size: 20px;
   text-decoration: none;
@@ -114,6 +115,7 @@ form input#photoCli {
 }
 form .btn {
   font-family: "Mulish";
+  font-weight: bold;
   text-align: center;
   text-size: 20px;
   text-decoration: none;
@@ -139,6 +141,7 @@ aside figure img {
 }
 aside .btn {
   font-family: "Mulish";
+  font-weight: bold;
   text-align: center;
   text-size: 20px;
   text-decoration: none;
@@ -151,6 +154,7 @@ aside .btn {
 }
 aside .btnJaune {
   font-family: "Mulish";
+  font-weight: bold;
   text-align: center;
   text-size: 20px;
   text-decoration: none;
@@ -158,6 +162,7 @@ aside .btnJaune {
   color: white;
   border-radius: 1em;
   background-color: #FCB66B;
+  padding-top: 1em;
   color: black;
   width: 50%;
   height: 2em;

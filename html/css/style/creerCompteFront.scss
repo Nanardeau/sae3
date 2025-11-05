@@ -60,7 +60,8 @@ aside{
     }
     .btnJaune{
         @include bouton;
-        background-color:$eleOrange; 
+        background-color:$eleOrange;
+        padding-top:1em; 
         color:black;
         width:50%;
         height:2em;

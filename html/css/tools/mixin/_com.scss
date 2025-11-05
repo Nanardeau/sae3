@@ -10,6 +10,7 @@
    
 @mixin bouton($couleur : $colP){
     font-family:$Poltext;
+    font-weight:bold;
     text-align:center;
     text-size:$PetTitle;
     text-decoration: none;
