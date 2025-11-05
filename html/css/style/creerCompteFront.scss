@@ -16,7 +16,10 @@ form{
     width:30%;
     justify-self:center;
     padding:2%;
-
+    span{
+        display:none;
+        color:#6e6e6e;
+    }
     input{
         border:solid 1px;
         border-radius:$radius;
@@ -29,6 +32,13 @@ form{
         &#photoCli{
             border:none;
         }
+        &:user-invalid{
+            border-color:red;
+            &~span{
+                display:block;
+            }
+        }
+
     }
 
     .btn{

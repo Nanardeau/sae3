@@ -93,6 +93,10 @@ form {
   justify-self: center;
   padding: 2%;
 }
+form span {
+  display: none;
+  color: #6e6e6e;
+}
 form input {
   border: solid 1px;
   border-radius: 1em;
@@ -109,9 +113,16 @@ form input::file-selector-button {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  cursor: pointer;
 }
 form input#photoCli {
   border: none;
+}
+form input:user-invalid {
+  border-color: red;
+}
+form input:user-invalid ~ span {
+  display: block;
 }
 form .btn {
   font-family: "Mulish";
@@ -122,6 +133,7 @@ form .btn {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  cursor: pointer;
   height: 5em;
 }
 form .btnSec {
@@ -148,6 +160,7 @@ aside .btn {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  cursor: pointer;
   padding: 1em;
   width: 80%;
   margin-bottom: 1em;
@@ -161,6 +174,7 @@ aside .btnJaune {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  cursor: pointer;
   background-color: #FCB66B;
   padding-top: 1em;
   color: black;

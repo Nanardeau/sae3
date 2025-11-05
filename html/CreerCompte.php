@@ -17,7 +17,8 @@ if($_POST){
         <form action="enreg.php" method="post">
             <h2>Création de compte</h2>
             <label for="pseudo">Identifiant *</label>
-            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant"/> 
+            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="\w{2,20}" required/> 
+            <span>L'identifiant doit faire au moins 2 caractères</span>
             <div id="nomPrenomCli">
                 <div class="labelInput">
                     <label for="nom">Nom *</label>
