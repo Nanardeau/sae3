@@ -33,20 +33,26 @@
         <!--<input type="button" name="button" value="Se connecter">
         <input type="button" name="button" value="Mon Panier">-->
     </header>
-
-    <section id="anonnces_produits">
-        <div class="annonce_produit">
-            <img src="" alt="Image voir les nou²veautés">
-            <a class="boutton" href="">Voir les nouveautés</a>
-        </div>
-        <div class="annonce_produit">
-            <img src="" alt="Image voir les articles en vedettes">
-            <a class="boutton" href="">Voir les articles en vedettes</a>
-        </div>
-        <div class="annonce_produit annonce_produit_large">
-            <img src="" alt="Image voir les evenement en cours">
-            <a class="boutton" href="">Evenement en cours</a>
-        </div>
-    </section>
+    <main>
+        <section class="anonnces_produits">
+            <div class="annonce_produit">
+                <img src="" alt="Image voir les nou²veautés">
+                <a class="boutton" href="">Voir les nouveautés</a>
+            </div>
+            <div class="annonce_produit">
+                <img src="" alt="Image voir les articles en vedettes">
+                <a class="boutton" href="">Voir les articles en vedettes</a>
+            </div>
+            <div class="annonce_produit annonce_produit_large">
+                <img src="" alt="Image voir les evenement en cours">
+                <a class="boutton" href="">Evenement en cours</a>
+            </div>
+            <div class="separateur"></div>
+        </section>
+    
+        <section id="Promotion">
+            <h1>Promotions</h1>
+        </section>
+    </main>
 </body>
 </html>
