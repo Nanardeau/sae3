@@ -1,5 +1,58 @@
 @use "./styleCom" as *;
+@use "../tools/vFront" as *;
 
 body{
     margin: 0;  
 }
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.annonce_produit {
+  background-color: $colS;
+  border-radius: $radius;
+  width: 40%;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background-color: rgb(217, 217, 217);
+    margin-bottom: 1rem;
+  }
+}
+
+.boutton {
+  background-color: $colP;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+}
+
+
+/* Bloc large (événement) */
+.annonce_produit_large {
+  width: 60%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    height: 250px;
+  }
+}
+
+
+
