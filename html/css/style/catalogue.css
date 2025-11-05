@@ -23,28 +23,35 @@
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: medium;
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: medium;
+  font-weight: bold;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
-  font-weight: bold;
+  font-weight: bolder;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bold;
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
