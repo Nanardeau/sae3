@@ -119,10 +119,10 @@ form input::file-selector-button {
 form input#photoCli {
   border: none;
 }
-form input:user-invalid {
+form input:user-invalid, form input.invalid {
   border-color: red;
 }
-form input:user-invalid ~ span {
+form input:user-invalid ~ span, form input.invalid ~ span {
   display: block;
 }
 form .bouton {

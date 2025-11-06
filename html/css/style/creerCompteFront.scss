@@ -33,7 +33,7 @@ form{
         &#photoCli{
             border:none;
         }
-        &:user-invalid{
+        &:user-invalid, &.invalid{
             border-color:red;
             &~span{
                 display:block;

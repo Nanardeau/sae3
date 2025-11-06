@@ -50,7 +50,8 @@ try {
             <label for="pdp">Photo de profil</label>
             <input type="file" name="photo" id="photoCli"/>
             <label for="mail">Adresse e-mail *</label>
-            <input type="text" name="mail" placeholder="E-mail..." id="mailCli" pattern="/[A-Za-z0-9._-]+@[A-Za-z0-9._].[A-Za-z]/gm"/>
+            <input type="text" name="mail" placeholder="E-mail..." id="mailCli" />
+            <span>Le mail doit être de la forme "abc@def.gh"</span>
             <label for="confMail">Confirmer adresse mail *</label>
             <input type="text" name="confMail" id="confMailCli"/>
             <label for="numTel">Numéro de téléphone</label>
@@ -112,9 +113,11 @@ try {
 
         function verifFormat(evt){
             if(evt.type == "focusout"){
-                console.log("ça va");
                 if(formatImage.test(mail.value) == false){
-                    alert("pas fou");
+                    mail.classList.add("invalid");
+                }
+                else{
+                    mail.classList.remove("invalid");
                 }
 
             }
