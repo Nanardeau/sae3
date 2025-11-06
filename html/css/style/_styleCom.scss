@@ -3,13 +3,14 @@
 
 body{
     font: {
-        family: $Poltext;
+        family: $Poltext,$Poltitle,"sans-serif";
         size: $txtSize;
     }
     background: {
         color: $blanc;
     }
     color : $noir;
+    padding: $pad;
 }
 
 h1{

@@ -1,0 +1,75 @@
+@use "../tools/vFront" as *;
+@use "sass:math";
+$wCard:280px;
+$hCard: 380px;
+.card{
+    margin: 0 $marg;
+    color : $noir;
+    width: auto;
+    height: auto;
+    max-width: $wCard;
+    min-height: $hCard;
+    border-radius: math.div($radius,2);
+    padding : $pad;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    
+    gap:$marg;
+    figure{
+        grid-area: 1/1/2/3;
+        
+        margin:0;
+        img{
+            width: 100%;
+            background-color: white;
+            max-height: 180px;
+            height: auto;
+            border-radius: math.div($radius,2);
+        }
+        figcaption{
+            margin-top : 10px;
+        }
+        
+    }
+
+    .prix{
+        grid-area: 2/1/3/2;
+        align-content: flex-end;
+        margin:0;
+        
+    }
+    div{
+        grid-area: 2/2/3/3;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: end;
+        float: right;
+        height: auto;
+        
+        input{
+            font-family: $Poltext;
+            width: 100%;
+            height: 100%;
+            margin-top : $marg;
+            max-width: 7.5rem;
+            height: 1.5rem;
+            text-align: center;
+            color : $noir;
+            font-weight: bold;
+            text-align: center;
+            
+            background-color: $eleOrange;
+            border:none;
+            border-radius: $radius;
+            cursor:pointer;
+            
+        
+            
+        }
+
+    }
+    
+
+    
+}
