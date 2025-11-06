@@ -43,14 +43,18 @@ $bdd->query('set schema \'alizon\'');
         <?php
         $catCurr = null;
         $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); //Nom de la catégorie  
+        
         foreach ($listCat as $libcat) {
 
             $catCurr = $libcat['libcat'];
         ?>
             <div class="separateur"></div>
+        <div class="titre-cat">
             <h2>
                 <?php echo $catCurr; ?>
             </h2>
+            <div class="separateur2"></div>
+        </div>
             <?php
             $listArt = $bdd->query('SELECT codeProduit FROM Categoriser where libelleCat =\'' . $catCurr . '\'');
             ?><article><?php

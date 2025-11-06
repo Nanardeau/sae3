@@ -1,21 +1,25 @@
 @use "../tools/vFront" as *;
 @use "sass:math";
-$wCard:280px;
-$hCard: 380px;
+$wCard:240px;
+$hCard: 340px;
+$hCard-mob: 260px;
+
 .card{
     margin: 0 $marg;
     color : $noir;
     width: auto;
     height: auto;
     max-width: $wCard;
-    min-height: $hCard;
+    max-height: $hCard;
     border-radius: math.div($radius,2);
     padding : $pad;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    
     gap:$marg;
+    @media #{$mobile} {
+        max-height: $hCard-mob;
+    }
     figure{
         grid-area: 1/1/2/3;
         
@@ -29,6 +33,7 @@ $hCard: 380px;
         }
         figcaption{
             margin-top : 10px;
+            
         }
         
     }
@@ -48,22 +53,25 @@ $hCard: 380px;
         height: auto;
         
         input{
+            display :block;
             font-family: $Poltext;
             width: 100%;
             height: 100%;
             margin-top : $marg;
-            max-width: 7.5rem;
-            height: 1.5rem;
+            max-width: 8rem;
+            height: 2rem;
             text-align: center;
             color : $noir;
             font-weight: bold;
             text-align: center;
-            
             background-color: $eleOrange;
             border:none;
             border-radius: $radius;
             cursor:pointer;
-            
+            @media #{$mobile}{
+                display:none;
+                
+            }
         
             
         }
