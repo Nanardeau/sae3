@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
@@ -9,6 +9,7 @@ $port = getenv('PGPORT');
 $dbname = getenv('PGDATABASE');
 $user = getenv('PGUSER');
 $password = getenv('PGPASSWORD');
+
 
 // Connexion à PostgreSQL
 
@@ -21,7 +22,7 @@ try {
 } catch (PDOException $e) {
     print "❌ Erreur de connexion : " . $e->getMessage();
 }
-
+$bdd->query('set schema \'alizon\'');
 ?>
 
 <html lang="fr">
@@ -37,33 +38,50 @@ try {
     <header></header>
     <main>
         <h1>Toutes les catégories</h1>
-        <div class="separateur"></div>
 
-        <h2>
-            <?php $bdd->query('SELECT libCat FROM SousCat')//Choisir la catégorie  
-                        ?>
-        </h2>
-        <article>
-        <?php 
-        for($i = 0; $i < 10;$i++){
 
-        ?>
-            <div class="card">
-                <figure>
-                    <img src="./img/img_test.jpg"></img>
-                    <figcaption>libelProduit</figcaption>
-                </figure>
-                <p class="prix">00.00€</p>
-                <div>
-                    <input type="button" value="Ajouter au panier"></input>
-                    <input type="button" value="Détails"></input>
-                </div>
-                
-            </div>
         <?php
-            }
+        $catCurr = null;
+        $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); //Nom de la catégorie  
+        foreach ($listCat as $libcat) {
+
+            $catCurr = $libcat['libcat'];
         ?>
-        </article>
+        <div class="separateur"></div>
+            <h2>
+                <?php echo $catCurr; ?>
+            </h2>
+            <?php
+            $listNumArt = $bdd->query('SELECT DISTINCT codeProduit FROM Categoriser where libelleCat ='. $catCurr);
+            $listArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC,urlPhoto FROM Produit where codeProduit =');
+            foreach($listArt as $article){
+                $img = $article['libelleprod'];
+                $libArt = $article['urlphoto'];
+                $prix = $article['prixTTC'];
+            
+            ?>
+            <article>
+                <div class="card">
+                    <figure>
+                        <img src="<?php echo $img?>"/>
+                        <figcaption><?php echo $libArt?></figcaption>
+                    </figure>
+                    <p class="prix"><?php $prix?>€</p>
+                    <div>
+                        <input type="button" value="Ajouter au panier"></input>
+                        <input type="button" value="Détails"></input>
+                    </div>
+
+                </div>
+            </article>
+            <?php
+        } ?>
+        <?php
+        } ?>
+
+
+
+
 
 
     </main>
