@@ -7,6 +7,9 @@ header{
 }
 body{
     padding-bottom:2em;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 form{
     border:#A1A1A1 solid 0.01em;
@@ -14,9 +17,9 @@ form{
     display:flex;
     flex-direction:column;
     flex-wrap:wrap;
-    width:40%;
-    justify-self:center;
-    padding:2%;
+    width:50em;
+    align-self:center;
+    padding:2em;
     span{
         display:none;
         color:#6e6e6e;
@@ -39,7 +42,6 @@ form{
                 display:block;
             }
         }
-
     }
 
     .bouton{
@@ -55,11 +57,15 @@ form{
 aside{
     display:flex;
     flex-direction: column;
-    justify-self:center;
+    
     figure{
         display:flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items:center; 
         img{
             margin: 0 10px;
+            height:1px;
         }
     }
 

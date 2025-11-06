@@ -1,22 +1,7 @@
 <?php
-require_once __DIR__ . '/env.php';
 
-loadEnv(__DIR__ . '/.env');
-
-$host = getenv('PGHOST');
-$port = getenv('PGPORT');
-$dbname = getenv('PGDATABASE');
-$user = getenv('PGUSER');
-$password = getenv('PGPASSWORD');
-
-try {
-    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
-    $pdo = new PDO($dsn, $user, $password, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]);
-    echo "Connecté à PostgreSQL ($dbname)";
-} catch (PDOException $e) {
-    echo "Erreur de connexion : " . $e->getMessage();
+if($_GET["error"]){
+    echo "erreur " . $_GET["error"];     
 }
 ?>
 <html lang="fr">
@@ -55,7 +40,8 @@ try {
             <label for="confMail">Confirmer adresse mail *</label>
             <input type="text" name="confMail" id="confMailCli"/>
             <label for="numTel">Numéro de téléphone</label>
-            <input type="text" name="numTel" id="numTelCli"/>
+            <input type="text" name="numTel" id="numTelCli" pattern="[0-9]{10}"/>
+            <span>Le numéro doit être dans le format suivant : 0102030405</span>
             <label for="dateNaiss">Date de naissance *</label>
             <input type="date" name="dateNaiss" class="boutonSec" id="dateNaiss"/>
             <h3>Adresse</h3> <!-- essayer de faire display grid pour adresse !-->

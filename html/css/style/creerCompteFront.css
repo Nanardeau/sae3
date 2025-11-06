@@ -82,6 +82,9 @@ header {
 
 body {
   padding-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 form {
@@ -90,9 +93,9 @@ form {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 40%;
-  justify-self: center;
-  padding: 2%;
+  width: 50em;
+  align-self: center;
+  padding: 2em;
 }
 form span {
   display: none;
@@ -144,13 +147,16 @@ form .btnSec {
 aside {
   display: flex;
   flex-direction: column;
-  justify-self: center;
 }
 aside figure {
   display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
 }
 aside figure img {
   margin: 0 10px;
+  height: 1px;
 }
 aside .bouton {
   font-family: "Mulish";

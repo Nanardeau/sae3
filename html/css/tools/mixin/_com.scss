@@ -9,11 +9,16 @@
 }
    
 @mixin bouton($couleur : $colP){
-    font-family:$Poltext;
-    font-weight:bold;
-    text-align:center;
-    text-size:$PetTitle;
-    text-decoration: none;
+    font: {
+        family:$Poltext;
+        weight:bold;
+    }
+    text: {
+        align:center;
+        size:$PetTitle;
+        decoration:none;
+    }
+
     background-color:$couleur;
     color:$blanc; 
     border-radius:$radius;
