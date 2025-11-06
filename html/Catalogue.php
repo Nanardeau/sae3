@@ -11,14 +11,15 @@ $user = getenv('PGUSER');
 $password = getenv('PGPASSWORD');
 
 // Connexion à PostgreSQL
+
 try {
     $ip = 'pgsql:host=' . $host . ';port=' . $port . ';dbname=' . $dbname . ';';
     $bdd = new PDO($ip, $user, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
-    echo "✅ Connecté à PostgreSQL ($dbname)";
+    print "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
-    echo "❌ Erreur de connexion : " . $e->getMessage();
+    print "❌ Erreur de connexion : " . $e->getMessage();
 }
 
 ?>
@@ -39,7 +40,7 @@ try {
         <div class="separateur"></div>
 
         <h2>
-            Catégorie <?php //Choisir la catégorie  
+            <?php $bdd->query('SELECT libCat FROM SousCat')//Choisir la catégorie  
                         ?>
         </h2>
         <article>
