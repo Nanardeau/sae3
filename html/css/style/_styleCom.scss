@@ -62,3 +62,82 @@ header{
         }
     }
 }
+
+/*###############################
+#            FOOTER             #
+###############################*/
+
+.footer {
+    background-color: #f9f9fb;
+    border-top: 4px solid $eleOrange; // Violet de ta maquette
+    color: #333;
+    font-family: $Poltext;
+    padding-top: 1rem;
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.5rem 2rem;
+        padding-top: 0;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+
+        .footer-section {
+            h3 {
+                font-size: $MoyTitle;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            p, li, a {
+                font-size: $txtSize;
+                color: #444;
+                text-decoration: none;
+
+            }
+
+            p{
+                margin: {
+                    bottom: 0.3rem;
+                    top:0;
+                }
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+            li {
+                margin-bottom: 0.3rem;
+            }
+            }
+
+        }
+
+        .footer-map {
+            text-align: center;
+
+            img {
+                max-width: 100%;
+                height: auto;
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .footer-bottom {
+        background-color: $colS;
+        text-align: center;
+        padding: 0.5rem;
+        font-size: $txtSize;
+        color: #333;
+        border-top: 1px solid #ccc;
+    }
+
+    .footer-logo{
+        align-self: center;
+    }
+}

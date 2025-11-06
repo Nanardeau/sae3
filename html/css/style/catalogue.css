@@ -59,4 +59,66 @@ header nav a {
 }
 header nav svg {
   padding-right: 10px;
+}
+
+/*###############################
+#            FOOTER             #
+###############################*/
+.footer {
+  background-color: #f9f9fb;
+  border-top: 4px solid #FCB66B;
+  color: #333;
+  font-family: "Mulish";
+  padding-top: 1rem;
+}
+.footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  padding-top: 0;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.footer .footer-content .footer-section h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.footer .footer-content .footer-section p, .footer .footer-content .footer-section li, .footer .footer-content .footer-section a {
+  font-size: 14px;
+  color: #444;
+  text-decoration: none;
+}
+.footer .footer-content .footer-section p {
+  margin-bottom: 0.3rem;
+  margin-top: 0;
+}
+.footer .footer-content .footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer .footer-content .footer-section ul li {
+  margin-bottom: 0.3rem;
+}
+.footer .footer-content .footer-map {
+  text-align: center;
+}
+.footer .footer-content .footer-map img {
+  max-width: 100%;
+  height: auto;
+  opacity: 0.8;
+}
+.footer .footer-bottom {
+  background-color: #D1ECF8;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 14px;
+  color: #333;
+  border-top: 1px solid #ccc;
+}
+.footer .footer-logo {
+  align-self: center;
 }/*# sourceMappingURL=catalogue.css.map */
