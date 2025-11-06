@@ -144,9 +144,6 @@ h4 {
   border-radius: 1em;
   cursor: pointer;
 }
-.card div input :active {
-  background-color: blue;
-}
 
 .separateur {
   background-color: #FCB66B;
@@ -175,4 +172,5 @@ article {
   min-width: 100%;
   display: flex;
   flex-direction: row;
+  margin-bottom: 20px;
 }/*# sourceMappingURL=catalogue.css.map */

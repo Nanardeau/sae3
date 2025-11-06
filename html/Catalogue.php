@@ -18,9 +18,9 @@ try {
     $bdd = new PDO($ip, $user, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
-    print "✅ Connecté à PostgreSQL ($dbname)";
+    // "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
-    print "❌ Erreur de connexion : " . $e->getMessage();
+    // "❌ Erreur de connexion : " . $e->getMessage();
 }
 $bdd->query('set schema \'alizon\'');
 ?>
@@ -35,7 +35,7 @@ $bdd->query('set schema \'alizon\'');
 </head>
 
 <body>
-    <header></header>
+    
     <main>
         <h1>Toutes les catégories</h1>
 
@@ -47,35 +47,42 @@ $bdd->query('set schema \'alizon\'');
 
             $catCurr = $libcat['libcat'];
         ?>
-        <div class="separateur"></div>
+            <div class="separateur"></div>
             <h2>
                 <?php echo $catCurr; ?>
             </h2>
             <?php
-            $listNumArt = $bdd->query('SELECT DISTINCT codeProduit FROM Categoriser where libelleCat ='. $catCurr);
-            $listArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC,urlPhoto FROM Produit where codeProduit =');
-            foreach($listArt as $article){
-                $img = $article['libelleprod'];
-                $libArt = $article['urlphoto'];
-                $prix = $article['prixTTC'];
-            
-            ?>
-            <article>
-                <div class="card">
-                    <figure>
-                        <img src="<?php echo $img?>"/>
-                        <figcaption><?php echo $libArt?></figcaption>
-                    </figure>
-                    <p class="prix"><?php $prix?>€</p>
-                    <div>
-                        <input type="button" value="Ajouter au panier"></input>
-                        <input type="button" value="Détails"></input>
-                    </div>
+            $listArt = $bdd->query('SELECT codeProduit FROM Categoriser where libelleCat =\'' . $catCurr . '\'');
+            ?><article><?php
+            foreach ($listArt as $article) {
 
-                </div>
-            </article>
+                $infoArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC, urlPhoto FROM Produit where codeProduit =\'' . $article['codeproduit'] . '\'');
+
+                foreach ($infoArt as $article) {
+                    //print_r($article);
+                    $img = $article['urlphoto'];
+                    $libArt = $article['libelleprod'];
+                    $prix = $article['prixttc'];
+                    $prix = round($prix,2); // Arrondir à 2 chiffre après la virgule 
+            ?>
+                    
+                        <div class="card">
+                            <figure>
+                                <img src="<?php echo $img ?>" />
+                                <figcaption><?php echo $libArt ?></figcaption>
+                            </figure>
+                            <p class="prix"><?php echo $prix ?> €</p>
+                            <div>
+                                <input type="button" value="Ajouter au panier"></input>
+                                <input type="button" value="Détails"></input>
+                            </div>
+
+                        </div>
+                    
             <?php
-        } ?>
+                }
+            } ?>
+            </article>
         <?php
         } ?>
 
@@ -85,7 +92,7 @@ $bdd->query('set schema \'alizon\'');
 
 
     </main>
-    <footer></footer>
+    
 </body>
 
 </html>

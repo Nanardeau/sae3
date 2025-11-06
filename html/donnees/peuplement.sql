@@ -9,7 +9,23 @@ INSERT INTO Photo(urlPhoto) VALUES
 ('/img/fraises.jpg'),
 ('/img/the.jpg'),
 ('/img/lait.jpg'),
-('/img/fromage.jpg');
+('/img/fromage.jpg'),
+('/img/cafe.jpg'),
+('/img/tshirt.jpg'),
+('/img/pantalon.jpg'),
+('/img/veste.jpg'),
+('/img/mocassins.jpg'),
+('/img/chapeau.jpg'),
+('/img/lampe.jpg'),
+('/img/gourde.jpg'),
+('/img/coussin.jpg'),
+('/img/tasse.jpg'),
+('/img/sac.jpg'),
+('/img/montre.jpg'),
+('/img/parfum.jpg'),
+('/img/collier.jpg'),
+('/img/lunettes.jpg'),
+('/img/stylo.jpg');
 
 INSERT INTO Client(pseudo, dateCreation, nom, prenom, email, mdp, numTel) VALUES
 ('Zigor','2025-09-25','Mulish','Isigor','isizou@gmail.com','bababou0','0605040608'),
@@ -31,30 +47,28 @@ VALUES
 ('Thé noir', 'Qualité supérieure, fabrique de Carhaix', 5.60, 'réduite', NULL, NULL, NULL, 150, 15, '/img/the.jpg', 6),
 ('Lait', '1L demi-écrémé', 1.50, 'réduite', NULL, NULL, NULL, 100, 10, '/img/lait.jpg', 7),
 ('Fromage', 'Camembert AOP', 3.80, 'réduite', NULL, NULL, NULL, 60, 10, '/img/fromage.jpg', 8),
-('Café', 'Moulu 250g', 4.90, 'réduite', NULL, NULL, NULL, 80, 10, NULL, NULL),
+('Café', 'Moulu 250g', 4.90, 'réduite', NULL, NULL, NULL, 80, 10, '/img/cafe.jpg', 5),
 
 -- Vêtements
-('T-shirt Armor lux', 'Coton blanc M', 15.00, 'super-réduite', NULL, NULL, NULL, 50, 10, NULL, NULL),
-('Jean à motif', 'denim 42', 45.00, 'super-réduite', NULL, NULL, NULL, 40, 5, NULL, NULL),
-('Veste papillon', 'Noire homme L', 70.00, 'super-réduite', NULL, NULL, NULL, 25, 5, NULL, NULL),
-('Derbies', 'Cuir marron 40', 90.00, 'super-réduite', NULL, NULL, NULL, 35, 5, NULL, NULL),
-('Casquette Cobrec', 'Bleue ajustable', 12.00, 'super-réduite', NULL, NULL, NULL, 60, 5, NULL, NULL),
+('T-shirt Armor lux', 'Coton blanc M', 15.00, 'super-réduite', NULL, NULL, NULL, 50, 10, '/img/tshirt.jpg', 6),
+('Jean à motif', 'denim 42', 45.00, 'super-réduite', NULL, NULL, NULL, 40, 5, '/img/pantalon.jpg', 7),
+('Veste papillon', 'Noire homme L', 70.00, 'super-réduite', NULL, NULL, NULL, 25, 5, '/img/veste.jpg', 8),
+('Derbies', 'Cuir marron 40', 90.00, 'super-réduite', NULL, NULL, NULL, 35, 5, '/img/mocassins.jpg', 5),
+('Casquette Cobrec', 'Bleue ajustable', 12.00, 'super-réduite', NULL, NULL, NULL, 60, 5, '/img/chapeau.jpg', 6),
 
 -- Objets divers
-('Lampe rouge', 'De chevet LED', 25.00, 'super-réduite', 0.35, 0.20, 0.20, 30, 4, NULL, NULL),
-('Gourde', 'Inox 1L', 18.00, 'super-réduite', 0.25, 0.08, 0.08, 45, 5, NULL, NULL),
-('Coussin brodé', 'Velours bleu', 22.00, 'super-réduite', 0.15, 0.40, 0.40, 40, 5, NULL, NULL),
-('Tasse Bretagne', 'Céramique blanche', 8.00, 'super-réduite', 0.10, 0.08, 0.08, 80, 8, NULL, NULL),
-('Sac à dos', 'Noir imperméable', 35.00, 'super-réduite', 0.45, 0.30, 0.20, 20, 3, NULL, NULL),
+('Lampe rouge', 'De chevet LED', 25.00, 'super-réduite', 0.35, 0.20, 0.20, 30, 4, '/img/lampe.jpg', 7),
+('Gourde', 'Inox 1L', 18.00, 'super-réduite', 0.25, 0.08, 0.08, 45, 5, '/img/gourde.jpg', 8),
+('Coussin brodé', 'Velours bleu', 22.00, 'super-réduite', 0.15, 0.40, 0.40, 40, 5, '/img/coussin.jpg', 5),
+('Tasse Bretagne', 'Céramique blanche', 8.00, 'super-réduite', 0.10, 0.08, 0.08, 80, 8, '/img/tasse.jpg', 6),
+('Sac à dos', 'Noir imperméable', 35.00, 'super-réduite', 0.45, 0.30, 0.20, 20, 3, '/img/sac.jpg', 7),
 
 -- Produits de luxe
-('Montre LeDu', 'Acier argenté', 150.00, 'normale', NULL, NULL, NULL, 10, 2, NULL, NULL),
-('Bleu de Chanel', 'Eau de toilette 100ml', 75.00, 'normale', NULL, NULL, NULL, 15, 2, NULL, NULL),
-('Collier', 'Or plaqué', 120.00, 'normale', NULL, NULL, NULL, 8, 1, NULL, NULL),
-('Lunettes Sandrine', 'Soleil noires', 60.00, 'normale', NULL, NULL, NULL, 25, 3, NULL, NULL),
-('Stylo à bille', 'thème Océan, haut de gamme', 40.00, 'normale', NULL, NULL, NULL, 30, 3, NULL, NULL);
-
-
+('Montre LeDu', 'Acier argenté', 150.00, 'normale', NULL, NULL, NULL, 10, 2, '/img/montre.jpg', 8),
+('Bleu de Chanel', 'Eau de toilette 100ml', 75.00, 'normale', NULL, NULL, NULL, 15, 2, '/img/parfum.jpg', 5),
+('Collier', 'Or plaqué', 120.00, 'normale', NULL, NULL, NULL, 8, 1, '/img/collier.jpg', 6),
+('Lunettes Sandrine', 'Soleil noires', 60.00, 'normale', NULL, NULL, NULL, 25, 3, '/img/lunettes.jpg', 7),
+('Stylo à bille', 'thème Océan, haut de gamme', 40.00, 'normale', NULL, NULL, NULL, 30, 3, '/img/stylo.jpg', 8);
 
 
 INSERT INTO Adresse(num,codePostal, nomVille, nomRue) VALUES
@@ -111,4 +125,28 @@ INSERT INTO SousCat(libCat,libSousCat) VALUES
 ('Intérieur', 'Décoration'),
 ('Intérieur', 'Cuisine'),
 ('Papeterie', 'Stylo');
-SELECT * FROM Produit;
+
+INSERT INTO Categoriser(codeProduit, libelleCat) VALUES
+(1,'Alimentaire'),
+(2, 'Alimentaire'),
+(3, 'Alimentaire'),
+(4, 'Alimentaire'),
+(5, 'Alimentaire'),
+(6, 'Vêtements'),
+(7, 'Vêtements'),
+(8, 'Vêtements'),
+(9, 'Vêtements'),
+(10, 'Vêtements'),
+(11, 'Intérieur'),
+(12, 'Intérieur'),
+(13, 'Intérieur'),
+(14, 'Intérieur'),
+(15, 'Intérieur'),
+(16, 'Vêtements'),
+(17, 'Beauté'),
+(18, 'Vêtements'),
+(19, 'Vêtements'),
+(20, 'Papeterie');
+
+SELECT * FROM Categoriser;
+SELECT * FROM Categoriser where libelleCat = Alimentaire;
