@@ -3,6 +3,9 @@
 @use "../components/carte";
 @import url("bootstrap/scss/utilities/api");
 
+a {
+    text-decoration: none;
+}
 .titre-cat{
     display: flex;
     flex-direction: row;
