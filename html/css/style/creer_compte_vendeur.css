@@ -20,7 +20,7 @@ body main {
 body main div {
   padding-left: 40px;
   padding-bottom: 65px;
-  width: 510px;
+  width: 480px;
   padding-top: 0;
 }
 body main div h2, body main div h3 {
@@ -38,11 +38,31 @@ body main div input {
   height: 40px;
   font-size: 16px;
 }
-body main div input > input {
-  padding-left: 10px;
+body main .nomPrenom {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+body main .labelInput {
+  padding-left: 0;
+  padding-bottom: 0;
 }
 body main :nth-child(3) h3 {
   padding-top: 5.5em;
+}
+body main .dimension {
+  width: 430px;
+}
+body main .dimension_petit {
+  width: 190px;
+}
+body main .num_adresse {
+  width: 150px;
+  margin-right: 20px;
+}
+body main .rue_adresse {
+  width: 250px;
 }
 body footer {
   text-align: center;

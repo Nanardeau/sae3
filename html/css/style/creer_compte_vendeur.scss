@@ -20,10 +20,11 @@ body{
         border: black 2px solid;
         border-radius: 16px;
         display: flex;
+
         div {
             padding-left: 40px;
             padding-bottom: 65px;
-            width: 510px;
+            width: 480px;
             padding-top:0;
             h2, h3 {
                 text-align: center;
@@ -43,15 +44,33 @@ body{
                 font-size: 16px;
             }
         }
+        .nomPrenom{
+            display:flex;
+            flex-direction: row;
+            padding-left:0;
+            padding-bottom: 0;
+        }
+        .labelInput{
+            padding-left:0;
+            padding-bottom: 0;
+        }
         :nth-child(3) h3{
             padding-top:5.5em;
         }
-        .nomprenom {
-            padding: 0;
-            margin: 0;
+        .dimension {
+            width: 430px;
         }
-        
-        
+        .dimension_petit{
+            width: 190px;
+        }
+        .num_adresse{
+            width: 150px;
+            margin-right: 20px;
+        }
+
+        .rue_adresse{
+            width: 250px;
+        }
     }
     footer{
         text-align: center;

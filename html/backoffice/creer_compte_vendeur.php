@@ -22,42 +22,43 @@
             <h5>
                 Identifiant* :
             </h5>
-            <input type="text" name="identifiant" id="identifiant" required>
-            <div class="nomprenom">
-                <div class="col">
+            <input type="text" name="identifiant" id="identifiant" class="dimension" required>
+            <div class="nomPrenom">
+                    <div class="labelInput">
                     <h5>
                         Nom* :
                     </h5>
-                    <input type="text" name="nom" id="nom" required>
-                </div>
-                <div class="col">
+                    
+                    <input type="text" name="nom" id="nom"  class="dimension_petit" required>
+                    </div>
+                    <div class="labelInput">
                     <h5>
                         Prenom* :
                     </h5>
-                    <input type="text" name="prenom" id="prenom" required>
+                    <input type="text" name="prenom" id="prenom"  class="dimension_petit" required>
+                    </div>
                 </div>
-            </div>
             
             <h5>
                 Adresse e-mail* :
             </h5>
-            <input type="text" name="email" id="email" required>
+            <input type="text" name="email" id="email" class="dimension" required>
             <h5>
                 Confirmer adresse e-mail* :
             </h5>
-            <input type="text" name="email_conf" id="email_conf" required>
+            <input type="text" name="email_conf" id="email_conf" class="dimension" required>
             <h5>
                 Numéro de téléphone* :
             </h5>
-            <input type="text" name="num_tel" id="num_tel" required>
+            <input type="text" name="num_tel" id="num_tel" class="dimension_petit" required>
             <h5>
                 mot de passe* :
             </h5>
-            <input type="text" name="mdp" id="mdp" required>
+            <input type="text" name="mdp" id="mdp" class="dimension" required>
             <h5>
                 Confirmer mot de passe* :
             </h5>
-            <input type="text" name="mdp_conf" id="mdp_conf" required>
+            <input type="text" name="mdp_conf" id="mdp_conf" class="dimension" required>
         </div>
         <hr>
         <div>
@@ -67,20 +68,20 @@
             <h5>
                 Numéro de SIREN* :
             </h5>
-            <input type="text" name="num_siren" id="num_siren" required>
+            <input type="text" name="num_siren" id="num_siren" class="dimension" required>
             <h5>
                 Raison sociale* :
             </h5>
-            <input type="text" name="raison_soc" id="raison_soc" required>
+            <input type="text" name="raison_soc" id="raison_soc" class="dimension" required>
             <h5>
                 ligne d'adresse 1* :
             </h5>
-            <input type="text" name="num_adresse1" id="num_adresse1" placeholder="Numéro de l'adresse" required>
-            <input type="text"name="rue_adresse1" id="rue_adresse1" placeholder="Rue" required>
+            <input type="text" name="num_adresse1" id="num_adresse1" placeholder="Numéro de l'adresse" class="num_adresse" required>
+            <input type="text"name="rue_adresse1" id="rue_adresse1" placeholder="Rue" class="rue_adresse" required>
             <h5>
                 ligne d'adresse 2 :
             </h5>
-            <input type="text" name="adresse2" id="adresse2" placeholder="Apt, suite, unité, nom de l’entreprise (facultatif)">
+            <input type="text" name="adresse2" id="adresse2" placeholder="Apt, suite, unité, nom de l’entreprise (facultatif)" class="dimension">
             <h5>
                 Code postal* :
             </h5>
@@ -88,7 +89,7 @@
             <h5>
                 Ville* :
             </h5>
-            <input type="text" name="ville" id="ville" required>
+            <input type="text" name="ville" id="ville" class="dimension" required>
         </div>
     </main>
     <footer>
