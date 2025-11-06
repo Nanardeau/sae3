@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style/creer_compte_vendeur.css" >
     <title>Creer Compte Vendeur</title>
 </head>
 <body>
     <header>
-        <img src="" alt="">
+        <img src="../img/logoAlizonBack.svg" alt="Alizon">
         <h1>Back Office</h1>
     </header>
     <main>
@@ -15,42 +16,48 @@
             <h2>
                 Création de compte
             </h2>
-            
             <h3>
                 Profil Responsable
             </h3>
             <h5>
                 Identifiant* :
             </h5>
-            <input type="text" name="identifiant" id="identifiant">
-            <h5>
-                Nom* :
-            </h5>
-            <input type="text" name="nom" id="nom">
-            <h5>
-                Prenom* :
-            </h5>
-            <input type="text" name="prenom" id="prenom">
+            <input type="text" name="identifiant" id="identifiant" required>
+            <div class="nomprenom">
+                <div class="col">
+                    <h5>
+                        Nom* :
+                    </h5>
+                    <input type="text" name="nom" id="nom" required>
+                </div>
+                <div class="col">
+                    <h5>
+                        Prenom* :
+                    </h5>
+                    <input type="text" name="prenom" id="prenom" required>
+                </div>
+            </div>
+            
             <h5>
                 Adresse e-mail* :
             </h5>
-            <input type="text" name="email" id="email">
+            <input type="text" name="email" id="email" required>
             <h5>
                 Confirmer adresse e-mail* :
             </h5>
-            <input type="text" name="email_conf" id="email_conf">
+            <input type="text" name="email_conf" id="email_conf" required>
             <h5>
                 Numéro de téléphone* :
             </h5>
-            <input type="text" name="num_tel" id="num_tel">
+            <input type="text" name="num_tel" id="num_tel" required>
             <h5>
                 mot de passe* :
             </h5>
-            <input type="text" name="mdp" id="mdp">
+            <input type="text" name="mdp" id="mdp" required>
             <h5>
                 Confirmer mot de passe* :
             </h5>
-            <input type="text" name="mdp_conf" id="mdp_conf">
+            <input type="text" name="mdp_conf" id="mdp_conf" required>
         </div>
         <hr>
         <div>
@@ -60,27 +67,28 @@
             <h5>
                 Numéro de SIREN* :
             </h5>
-            <input type="text" name="num_siren" id="num_siren">
+            <input type="text" name="num_siren" id="num_siren" required>
             <h5>
                 Raison sociale* :
             </h5>
-            <input type="text" name="raison_soc" id="raison_soc">
+            <input type="text" name="raison_soc" id="raison_soc" required>
             <h5>
                 ligne d'adresse 1* :
             </h5>
-            <input type="text" name="adresse1" id="adresse1" value="Adresse">
+            <input type="text" name="num_adresse1" id="num_adresse1" placeholder="Numéro de l'adresse" required>
+            <input type="text"name="rue_adresse1" id="rue_adresse1" placeholder="Rue" required>
             <h5>
                 ligne d'adresse 2 :
             </h5>
-            <input type="text" name="adresse2" id="adresse2" value="Apt, suite, unité, nom de l’entreprise (facultatif)">
+            <input type="text" name="adresse2" id="adresse2" placeholder="Apt, suite, unité, nom de l’entreprise (facultatif)">
             <h5>
                 Code postal* :
             </h5>
-            <input type="text" name="code_post" id="code_post" >
+            <input type="text" name="code_post" id="code_post" required>
             <h5>
                 Ville* :
             </h5>
-            <input type="text" name="ville" id="ville">
+            <input type="text" name="ville" id="ville" required>
         </div>
     </main>
     <footer>
