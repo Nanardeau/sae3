@@ -13,7 +13,8 @@ form{
     border-radius:$radius;
     display:flex;
     flex-direction:column;
-    width:35%;
+    flex-wrap:wrap;
+    width:40%;
     justify-self:center;
     padding:2%;
     span{
@@ -41,7 +42,7 @@ form{
 
     }
 
-    .btn{
+    .bouton{
         @include bouton;
         height:5em;
     }
@@ -62,7 +63,7 @@ aside{
         }
     }
 
-    .btn{
+    .bouton{
         @include bouton;
         padding:1em;
         width:80%;
@@ -83,27 +84,14 @@ aside{
         align-items:center;
     }
 }
-form div{
-    display:flex;
-    justify-content: space-between;
-    
-    
-}
+
 .labelInput{
     display:flex;
     flex-direction: column;
-    justify-content: flex-start;
-    width:auto;
 }
 
 #nomCli{
     width:100%;
 }
 
-#nomRueCli{
-    width:100%;
-}
-#numRueCli{
-    width:fit-content;
 
-}

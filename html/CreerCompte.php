@@ -56,25 +56,25 @@ try {
             <label for="numTel">Numéro de téléphone</label>
             <input type="text" name="numTel" id="numTelCli"/>
             <label for="dateNaiss">Date de naissance *</label>
-            <input type="date" name="dateNaiss" class="btnSec" id="dateNaiss"/>
+            <input type="date" name="dateNaiss" class="boutonSec" id="dateNaiss"/>
             <h3>Adresse</h3> <!-- essayer de faire display grid pour adresse !-->
-            <div class="container">
-                <div class="numNomRue">
-                    <div class="labelInput">
+            <div class="container-fluid p-0">
+                <div class="row ">
+                    <div class="col-3 labelInput">
                         <label for="numRue">Numéro</label>
                         <input type="text" name="numRue" placeholder="1, 2A, 3Bis etc." id="numRueCli"/>
                     </div>
-                    <div class="labelInput">
+                    <div class="col-9 labelInput">
                         <label for="nomRue">Nom de la rue, voie</label>
                         <input type="text" name="nomRue" placeholder="Ex : Rue des lilas" id="nomRueCli"/>
                     </div>
                 </div>
-                <div class="CpVille">
-                    <div class="labelInput">
+                <div class="row ">
+                    <div class="col-4 labelInput">
                         <label for="codePostal">Code postal</label>
                         <input type="text" name="codePostal" id="codePostalCli" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$"/>
                     </div>
-                    <div class="labelInput">
+                    <div class="col-8 labelInput">
                         <label for="ville">Ville</label>
                         <input type="text" name="ville" id="villeCli"/>
                     </div>
@@ -88,7 +88,7 @@ try {
             <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli"/>
             <label for="confMdp">Confirmer mot de passe *</label>
             <input type="password" name="confMdp" id="confMdpCli"/>
-            <input class="btn" type="submit" value="Créer un compte"/>
+            <input class="bouton" type="submit" value="Créer un compte"/>
         </form>   
         <aside>
             <figure>
@@ -97,7 +97,7 @@ try {
                 <img src="../../img/line_1.svg"/>
             </figure>
             <nav>
-                <a href="Connexion.php" class="btn">Se connecter</a>
+                <a href="Connexion.php" class="bouton">Se connecter</a>
                 <a href="Catalogue.php" class="btnJaune">Retour</a>
             <nav>
         </aside>

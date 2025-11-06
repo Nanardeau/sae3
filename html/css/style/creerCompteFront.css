@@ -89,7 +89,8 @@ form {
   border-radius: 1em;
   display: flex;
   flex-direction: column;
-  width: 35%;
+  flex-wrap: wrap;
+  width: 40%;
   justify-self: center;
   padding: 2%;
 }
@@ -124,7 +125,7 @@ form input:user-invalid {
 form input:user-invalid ~ span {
   display: block;
 }
-form .btn {
+form .bouton {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
@@ -151,7 +152,7 @@ aside figure {
 aside figure img {
   margin: 0 10px;
 }
-aside .btn {
+aside .bouton {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
@@ -187,27 +188,11 @@ aside nav {
   align-items: center;
 }
 
-form div {
-  display: flex;
-  justify-content: space-between;
-}
-
 .labelInput {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  width: auto;
 }
 
 #nomCli {
   width: 100%;
-}
-
-#nomRueCli {
-  width: 100%;
-}
-
-#numRueCli {
-  width: -moz-fit-content;
-  width: fit-content;
 }/*# sourceMappingURL=creerCompteFront.css.map */
