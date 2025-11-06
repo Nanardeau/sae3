@@ -41,6 +41,9 @@ header {
   width: 100%;
   align-items: center;
 }
+header .mobile-only {
+  display: none;
+}
 header .logo_alizon_front {
   width: 118px;
   height: auto;
@@ -59,6 +62,26 @@ header nav a {
 }
 header nav svg {
   padding-right: 10px;
+}
+@media screen and (max-width: 428px) {
+  header .logo_alizon_front {
+    padding-left: 30px;
+    width: 100px;
+  }
+  header nav a {
+    padding-right: 10px;
+    font-size: 12px;
+  }
+  header .tab-only {
+    display: none;
+  }
+  header .mobile-only {
+    display: block;
+    padding-left: 20px;
+  }
+  header nav svg {
+    padding-right: 30px;
+  }
 }
 
 /*###############################
@@ -121,6 +144,43 @@ header nav svg {
 }
 .footer .footer-logo {
   align-self: center;
+}
+.footer .logo-mobile-only-footer {
+  display: none;
+}
+.footer .mobile-only {
+  display: none;
+}
+@media screen and (max-width: 428px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer .footer-content {
+    grid-template-columns: 50% 50%;
+    text-align: left;
+  }
+  .footer .footer-content h3 {
+    font-size: 13px;
+  }
+  .footer .footer-content .footer-logo {
+    display: none;
+  }
+  .footer .footer-bottom {
+    font-size: 10px;
+  }
+  .footer .logo-mobile-only-footer {
+    display: block;
+    align-self: center;
+  }
+  .footer .mobile-only {
+    display: none;
+  }
+  .footer .other-account {
+    align-self: center;
+    text-align: center;
+    margin-top: 10px;
+  }
 }
 
 @font-face {

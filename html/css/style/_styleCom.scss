@@ -31,6 +31,10 @@ h4{
 ###############################*/
 
 header{
+    .mobile-only{
+        display: none;
+    }
+
     z-index: 1000;
     position: fixed;
     display: inline-flex;
@@ -61,6 +65,30 @@ header{
             padding-right: 10px;
         }
     }
+
+    @media screen and (max-width: 428px) {
+        .logo_alizon_front{
+            padding-left: 30px;
+            width: 100px;
+        }
+        nav a{
+            padding-right: 10px;
+            font-size: 12px;
+        }
+
+        .tab-only{
+            display: none;
+        }
+
+        .mobile-only{
+            display: block;
+            padding-left: 20px;
+        }
+
+        nav svg{
+            padding-right: 30px;
+        }
+    }
 }
 
 /*###############################
@@ -69,7 +97,7 @@ header{
 
 .footer {
     background-color: #f9f9fb;
-    border-top: 4px solid $eleOrange; // Violet de ta maquette
+    border-top: 4px solid $eleOrange; 
     color: #333;
     font-family: $Poltext;
     padding-top: 1rem;
@@ -139,5 +167,50 @@ header{
 
     .footer-logo{
         align-self: center;
+    }
+
+    .logo-mobile-only-footer{
+        display: none;
+    }
+
+    .mobile-only{
+        display: none;
+    }
+
+    @media screen and (max-width: 428px) {
+        display: flex;
+        flex-direction: column;
+
+        .footer-content {
+            grid-template-columns: 50% 50%;
+            text-align: left;
+
+            h3{
+                font-size: 13px;
+            }
+
+            .footer-logo{
+                display: none;
+            }
+        }
+
+        .footer-bottom{
+            font-size: 10px;
+        }
+
+        .logo-mobile-only-footer{
+            display: block;
+            align-self: center;
+        }
+
+        .mobile-only{
+            display: none;
+        }
+
+        .other-account{
+            align-self: center;
+            text-align: center;
+            margin-top: 10px;
+        }
     }
 }
