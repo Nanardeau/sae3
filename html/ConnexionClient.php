@@ -19,11 +19,11 @@ try {
     $bdd = new PDO($ip, $user, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
-    // "✅ Connecté à PostgreSQL ($dbname)";
+    echo "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
-    // "❌ Erreur de connexion : " . $e->getMessage();
+    echo "❌ Erreur de connexion : " . $e->getMessage();
 }
-$bdd->query('set schema \'alizon\'');
+//$bdd->query('set schema \'alizon\'');
 
 
 
