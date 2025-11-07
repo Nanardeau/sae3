@@ -1,4 +1,4 @@
-set schema 'alizon';
+ set schema 'alizon';
 INSERT INTO TVA(nomTVA,tauxTVA) 
 VALUES
 ('réduite',5.5),
@@ -148,5 +148,19 @@ INSERT INTO Categoriser(codeProduit, libelleCat) VALUES
 (19, 'Vêtements'),
 (20, 'Papeterie');
 
-SELECT * FROM Categoriser;
-SELECT * FROM Categoriser where libelleCat = Alimentaire;
+
+insert into Panier(codeCompte,dateCreaP) VALUES
+(3,null);
+
+insert into ProdUnitPanier(idPanier,codeProduit,qteProd) VALUES
+(1,1,2),
+(1,2,2),
+(1,4,1)
+--select SUM(prixttctotal) FROM ProdUnitPanier INTO Panier.prixTTCtotal;
+select * from ProdUnitPanier where idPanier = 1;
+select * from Panier where codecompte = 3;
+SELECT ALL count(*) from ProdUnitPanier where idPanier = 1;
+
+
+--SELECT * FROM Categoriser;
+--SELECT * FROM Categoriser where libelleCat = 'Alimentaire';
