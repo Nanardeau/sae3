@@ -1,4 +1,5 @@
 @use '../../tools/vback.scss' as *;
+@use '../../components/fonts.scss' as *;
 
 header{
     background-color: vback.$colP;
