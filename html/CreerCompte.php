@@ -13,11 +13,11 @@ if($_GET["error"]){
     <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
     <link href="./bootstrap-5.3.8-dist/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">
 </head>
-<body>
-    
-    <header><a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a></header>
+<body>   
     <main>
-        <form action="enreg.php" method="post">
+        <a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
+
+        <form action="enreg.php" method="post" enctype="multipart/form-data">
             <h2>Création de compte</h2>
             <label for="pseudo">Identifiant *</label>
             <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._]{2,20}" required/> 
@@ -90,7 +90,7 @@ if($_GET["error"]){
         </aside>
 
     </main>
-    <footer></footer>
+    <?php include('./includes/footer.php');?>
 
     <script>
         let mail = document.getElementById("mailCli");

@@ -84,6 +84,15 @@
             ":codeCompte" => $codeCompte,
             ":idAdresse" => $idAdresse,
         ));
+        print_r($_FILES);
+        if($_FILES["photo"]){
+            
+            $nomPhoto = $_FILES["photo"]["name"];
+
+            move_uploaded_file($_FILES["photo"]["tmp_name"], "./img/photosProfil/".$nomPhoto);
+        }
 
         echo $codeCompte . " " . $idAdresse;
+
+
     }
