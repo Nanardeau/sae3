@@ -3,15 +3,19 @@
 
 body{
     font: {
-        family: $Poltext;
+        family: $Poltext,$Poltitle,"sans-serif";
         size: $txtSize;
     }
     background: {
         color: $blanc;
     }
     color : $noir;
+    margin: 0;
 }
-
+main{
+    
+    padding-top: 80px;
+}
 h1{
    @include m.text($TrGdTitle);
     
@@ -25,7 +29,6 @@ h3{
 h4{
     @include m.text($PetTitle);
 }
-
 /*###############################
 #            HEADER             #
 ###############################*/

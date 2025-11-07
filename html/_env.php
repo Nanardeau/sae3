@@ -1,6 +1,11 @@
 <?php
 function loadEnv($path) {
-    if (!file_exists($path)) return;
+    if (!file_exists($path)) {
+        // Pas de fichier env
+        echo "Fichier .env non trouvé à $path<br>";
+        return;
+    }
+        
 
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
@@ -9,3 +14,4 @@ function loadEnv($path) {
         putenv(trim($name) . '=' . trim($value));
     }
 }
+?>

@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Lancer simulateur iPhone 14 Plus",
+      "type": "shell",
+      "command": "xcrun simctl boot 'SAE3-Tel' && open -a Simulator",
+      "problemMatcher": []
+    }
+  ]
+}
