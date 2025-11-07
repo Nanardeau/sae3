@@ -304,10 +304,6 @@ body {
   margin: 0;
 }
 
-main {
-  padding-top: 80px;
-}
-
 .anonnces_produits {
   position: relative;
   display: flex;
@@ -316,6 +312,7 @@ main {
   align-items: center;
   gap: 2rem;
   padding: 2rem;
+  padding-top: 100px;
 }
 
 .annonce_produit {
@@ -366,4 +363,22 @@ main {
 
 .aff_prod {
   margin-left: 30px;
+}
+
+.nav-cat {
+  width: 100%;
+  background-color: #6CA6E9;
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+}
+.nav-cat a {
+  align-self: center;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #6CA6E9;
+  padding: 15px;
+  padding-right: 30px;
 }/*# sourceMappingURL=accueil.css.map */

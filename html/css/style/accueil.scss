@@ -6,9 +6,9 @@ body{
     margin: 0;  
 }
 
-main{
-    padding-top: 80px;
-}
+// main{
+//     padding-top: 80px;
+// }
 
 .anonnces_produits {
     position: relative;
@@ -18,6 +18,7 @@ main{
     align-items: center;
     gap: 2rem;
     padding: 2rem;
+    padding-top: 100px;
 }
 
 .annonce_produit {
@@ -73,6 +74,29 @@ main{
 
 .aff_prod{
     margin-left: 30px;
+}
+
+
+.nav-cat{
+    width: 100%;
+    background-color: $eleBleu;
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+
+    a{
+        align-self: center;
+        color: $noir;
+        font: {
+            weight: bold;
+        }
+        text-decoration: none;
+        background-color: $eleBleu;
+        padding: 15px;
+        padding-right: 30px;
+        
+    }
 }
 
 

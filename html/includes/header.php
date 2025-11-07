@@ -31,4 +31,4 @@
         
         <!--<input type="button" name="button" value="Se connecter">
         <input type="button" name="button" value="Mon Panier">-->
-    </header>
+</header>
