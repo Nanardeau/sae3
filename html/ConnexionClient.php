@@ -1,3 +1,4 @@
+
 <?php
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
@@ -34,12 +35,14 @@ if($_POST){
         $rep= $req->fetch();
         if($rep['id']=!false){
             //connexion
+            header("location: accueil.php");
         }else{
             $error_msg="Identifiant ou mot de passe incorrect.";
         }
     }
 }else{
-?>
+?> 
+
 
 <html lang="fr">
 <head>
@@ -83,7 +86,7 @@ if($_POST){
     <footer></footer>
 </body>
 </html>
+
 <?php
 }
 ?>
-
