@@ -35,7 +35,7 @@ $bdd->query('set schema \'alizon\'');
 </head>
 
 <body>
-
+    <?php include 'includes/header.php';?>
     <main>
         <h1>Toutes les catégories</h1>
 
@@ -104,6 +104,7 @@ $bdd->query('set schema \'alizon\'');
 
 
     </main>
+    <?php include 'includes/footer.php';?>
 
 </body>
 
