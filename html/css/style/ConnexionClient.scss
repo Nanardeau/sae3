@@ -1,0 +1,69 @@
+@use '../tools/vFront' as *;
+@use '../style/styleCom' as *;
+@use '../tools/mixin/com' as *;
+
+header{
+    justify-self:center;
+    margin :1em 0;
+}
+
+body{
+    padding-bottom: 2em;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form{
+    border:#A1A1A1 solid 0.01em;
+    border-radius:$radius;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    width:100%;
+    justify-self:center;
+    padding:2%;
+    input{
+    border:solid 1px;
+    border-radius:$radius;
+    height:3em;
+    margin:10px 0;
+    padding:10px;
+}
+}
+
+
+
+aside{
+    display:flex;
+    flex-direction: column;
+    justify-self:center;
+    figure{
+        display:flex;
+        img{
+            margin: 0 10px;
+            width: 100px;
+        }
+    }
+
+    .bouton{
+        @include bouton;
+        padding:1em;
+        width:80%;
+        margin-bottom:1em;
+    }
+    .btnJaune{
+        @include bouton;
+        background-color:$eleOrange;
+        padding-top:1em; 
+        color:black;
+        width:50%;
+        height:2em;
+    }
+
+    nav{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+    }
+}
