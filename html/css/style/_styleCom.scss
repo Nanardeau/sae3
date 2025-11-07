@@ -14,7 +14,12 @@ body{
 }
 main{
     
-    padding-top: 80px;
+    padding: {
+        top: 80px;
+        bottom: $pad;
+        right:$pad;
+        left :$pad;
+    } 
 }
 h1{
    @include m.text($TrGdTitle);
