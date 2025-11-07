@@ -304,14 +304,41 @@ header nav svg {
 }
 
 header {
+  display: flex;
+  flex-direction: row;
   background-color: #CD4B22;
 }
 header .logo_alizon_back {
   width: 118px;
   height: auto;
-  margin: 15px 0 15px 30px;
+  margin: 1em 2em 1em 2em;
 }
 header h1 {
   color: white;
   font-family: "Baloo", sans-serif;
+  font-size: 2em;
+  margin: 0 22em 0 0;
+}
+header a {
+  display: flex;
+  outline: none;
+  text-decoration: none;
+}
+header a h2 {
+  color: white;
+  font-family: "Baloo", sans-serif;
+  font-size: 1.5em;
+  margin: 0 2em 0 0;
+}
+header a .ajout {
+  margin: 0 0.5em 0 2em;
+  width: auto;
+  height: auto;
+  flex-direction: row;
+}
+header a .user {
+  width: 2em;
+  height: auto;
+  margin: 0 0.5em 0 2em;
+  flex-direction: row;
 }/*# sourceMappingURL=backend.css.map */
