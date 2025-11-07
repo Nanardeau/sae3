@@ -4,6 +4,7 @@
 
 
 body{
+    
     padding: 150px;
     margin : auto;
     width: 1140px;
@@ -14,6 +15,7 @@ body{
         align-items: center;
         h1 {
             margin-left: 20px;
+            font-family: $Poltitle;
         }
     }
     main {
@@ -83,6 +85,9 @@ body{
             color: $blanc;
             font-size: 24px;
             font-weight: bold;
+        }
+        button:hover {
+            border: $noir 4px solid;
         }
     }
 

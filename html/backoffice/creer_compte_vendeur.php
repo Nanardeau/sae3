@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,9 @@
         <h1>Back Office</h1>
     </header>
     <main>
+        <form action="creer_compte_vendeur.php" method="post">
         <div>
+            
             <h2>
                 Création de compte
             </h2>
@@ -54,11 +56,11 @@
             <h5>
                 mot de passe* :
             </h5>
-            <input type="text" name="mdp" id="mdp" class="dimension" required>
+            <input type="password" name="mdp" id="mdp" class="dimension" required>
             <h5>
                 Confirmer mot de passe* :
             </h5>
-            <input type="text" name="mdp_conf" id="mdp_conf" class="dimension" required>
+            <input type="password" name="mdp_conf" id="mdp_conf" class="dimension" required>
         </div>
         <hr>
         <div>
@@ -90,10 +92,81 @@
                 Ville* :
             </h5>
             <input type="text" name="ville" id="ville" class="dimension" required>
+            <input type="submit">Créer le compte</input>
         </div>
+        </form>
     </main>
     <footer>
-        <button type="submit">Créer le compte</button>
+        
     </footer>
+    <?php
+        require_once('../env.php');
+        
+        
+        // Charger le fichier .env
+        loadEnv('../.env');
+
+        // Récupérer les variables
+        $host = getenv('PGHOST');
+        $port = getenv('PGPORT');
+        $dbname = getenv('PGDATABASE');
+        $user = getenv('PGUSER');
+        $password = getenv('PGPASSWORD');
+
+        // Connexion à PostgreSQL
+        try {
+            $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
+            $pdo = new PDO($dsn, $user, $password, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]);
+            echo "✅ Connecté à PostgreSQL ($dbname)";
+        } catch (PDOException $e) {
+            echo "❌ Erreur de connexion : " . $e->getMessage();
+        }   
+        
+        //initialisation des variables
+        $identifiant= $_POST["identifiant"];
+        $nom= $_POST["nom"];
+        $prenom= $_POST["prenom"];
+        $email= $_POST["email"];
+        $email_conf= $_POST["email_conf"];
+        $num_tel= $_POST["num_tel"];
+        $mdp= $_POST["mdp"];
+        $mdp_conf= $_POST["mdp_conf"];
+        $num_siren= $_POST["num_siren"];
+        $raison_soc= $_POST["raison_soc"];
+        $num_adresse1= $_POST["num_adresse1"];
+        $rue_adresse1= $_POST["rue_adresse1"];
+        $adresse2= $_POST["adresse2"];
+        $code_post= $_POST["code_post"];
+        $ville= $_POST["ville"];
+
+        //insertion d'une adresse dans la base de données
+        $stmt = $pdo->prepare("INSERT INTO alizon.Adresse(num, nomRue, codePostal, nomVille) VALUES (:num, :nomRue, :codePostal, :nomVille)");
+        $stmt->execute(array(
+            ":num" => $num_adresse1,
+            ":nomRue" => $rue_adresse1,
+            ":codePostal" => $code_post,
+            ":nomVille" => $ville
+        ));
+
+        //Prise de l'id de l'adresse créée
+        $res = $pdo->query("SELECT idAdresse FROM alizon.Adresse ORDER BY idAdresse DESC LIMIT 1")->fetch();
+        $idAdresse = $res["idAdresse"];
+
+        //insertion d'un vendeur dans la base de données
+        $stmt = $pdo->prepare('INSERT INTO alizon.Vendeur(SIREN, email, identifiant, raisonSociale, idAdresseSiege, mdp) VALUES (:siren, :mail, :id, :raisonsoc, :idAdresseSiege, :mdp)');
+        $stmt->execute(array(
+            ":siren" => $num_siren,
+            ":id" => $identifiant,
+            ":raisonsoc" => $raison_soc,
+            ":idAdresseSiege" => $idAdresse, //insertion de l'id associé au vendeur
+            ":mail" => $email,
+            ":mdp" => $mdp
+        ));
+
+        
+
+    ?>
 </body>
 </html>

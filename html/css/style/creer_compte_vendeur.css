@@ -11,6 +11,7 @@ body header {
 }
 body header h1 {
   margin-left: 20px;
+  font-family: "Baloo 2";
 }
 body main {
   border: black 2px solid;
@@ -76,4 +77,7 @@ body footer button {
   color: white;
   font-size: 24px;
   font-weight: bold;
+}
+body footer button:hover {
+  border: black 4px solid;
 }/*# sourceMappingURL=creer_compte_vendeur.css.map */
