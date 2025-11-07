@@ -74,7 +74,7 @@ if($_GET["error"]){
             <label for="mdp">Mot de passe *</label>
             <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli"/>
             <label for="confMdp">Confirmer mot de passe *</label>
-            <input type="password" name="confMdp" id="confMdpCli"/>
+            <input type="password" name="confMdp" id="confMdpCli" required/>
             <input class="bouton" type="submit" value="Créer un compte"/>
         </form>   
         <aside>
