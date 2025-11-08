@@ -270,15 +270,22 @@ form {
   flex-direction: column;
   flex-wrap: wrap;
   width: 50em;
+  margin-top: 1em;
   align-self: center;
   padding: 2em;
 }
 @media screen and (max-width: 428px) {
   form {
     width: 90%;
+    padding: 1em;
+    align-items: center;
   }
   form input {
     width: 80%;
+  }
+  form label {
+    align-self: flex-start;
+    font-size: 0.8em;
   }
 }
 form span {
@@ -305,6 +312,7 @@ form input::file-selector-button {
 }
 form input#photoCli {
   border: none;
+  font-size: 0.8em;
 }
 form input:user-invalid, form input.invalid {
   border-color: red;
@@ -312,8 +320,24 @@ form input:user-invalid, form input.invalid {
 form input:user-invalid + span, form input.invalid + span {
   display: block;
 }
+@media screen and (max-width : 428px) {
+  form input {
+    width: 100%;
+  }
+  form input::-moz-placeholder {
+    font-size: 0.9em;
+  }
+  form input::placeholder {
+    font-size: 0.9em;
+  }
+}
 form .bouton {
   height: 6em;
+}
+@media screen and (max-width : 428px) {
+  form .bouton {
+    height: 4em;
+  }
 }
 form .btnSec {
   background-color: #6CA6E9;
@@ -350,6 +374,12 @@ aside figure {
 aside figure img {
   margin: 0 10px;
   height: 1px;
+}
+@media screen and (max-width : 428px) {
+  aside figure img {
+    width: 20%;
+    height: 20px;
+  }
 }
 aside .bouton {
   font-family: "Mulish";
@@ -389,6 +419,12 @@ aside nav {
 .labelInput {
   display: flex;
   flex-direction: column;
+}
+@media screen and (max-width : 428px) {
+  .labelInput {
+    display: block;
+    width: 100%;
+  }
 }
 
 #nomCli {
