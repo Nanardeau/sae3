@@ -3,6 +3,7 @@
 @use "../components/carte";
 
 
+
 .vide{
     padding: $pad;
     display:flex;
@@ -31,4 +32,89 @@ input{
             border:none;
             border-radius: $radius;
             cursor:pointer;
+}
+
+$cardW : 720px;
+$cardH : 260px;
+
+article{
+    
+    overflow: scroll;
+    min-height: 100%;
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    flex: 0 auto;
+    
+}
+.articlePanier{
+    display: grid;
+    grid-template-columns: 2fr repeat(2, 1fr);
+    grid-template-rows: 0.5fr 1fr;
+    background-color: $colS;
+    padding :$pad;
+    margin : $marg;
+    border-radius: $radius;
+    min-width: $cardW;
+    min-height: $cardH;
+    div:first-child{
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    article{
+        grid-area: 1 / 3 / 2 / 4;
+        padding: $pad;
+        
+    }
+    h3,p{
+        margin: 0;
+    }
+    .prix{
+
+        margin-top :10px;
+    }
+    
+    
+    img{
+        grid-area: 2 / 1 / 3 / 2;
+        
+        border-radius: $radius;
+        max-width: 50%;
+    }
+    .compteur{
+        
+        display: flex;
+        flex-direction: row;
+        input{
+            margin:0;
+            padding: 5px;
+            background-color: $blanc;
+            border: 2px solid $noir;
+            min-width: 20%;
+
+            &:first-child{
+                border-radius: $radius 0 0 $radius;
+            }
+            &:last-child{
+                border-radius: 0 $radius $radius 0;
+            }
+            
+        }
+        p{  
+
+                padding: 5px $pad;
+                background-color: $blanc;
+                align-content: center;
+                border-top: 2px solid $noir;
+                border-bottom:2px solid $noir;    
+            }
+    }
+}
+.recap{
+    background-color: $colS;
+    align-content: center;
+    float: right;
+    border-radius: $radius;
+    padding : $pad;
+    margin-top : $marg;
+    
 }

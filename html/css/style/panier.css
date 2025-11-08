@@ -352,4 +352,76 @@ input {
   border: none;
   border-radius: 1em;
   cursor: pointer;
+}
+
+article {
+  overflow: scroll;
+  min-height: 100%;
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  flex: 0 auto;
+}
+
+.articlePanier {
+  display: grid;
+  grid-template-columns: 2fr repeat(2, 1fr);
+  grid-template-rows: 0.5fr 1fr;
+  background-color: #D1ECF8;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 1em;
+  min-width: 720px;
+  min-height: 260px;
+}
+.articlePanier div:first-child {
+  grid-area: 1/1/2/2;
+}
+.articlePanier article {
+  grid-area: 1/3/2/4;
+  padding: 20px;
+}
+.articlePanier h3, .articlePanier p {
+  margin: 0;
+}
+.articlePanier .prix {
+  margin-top: 10px;
+}
+.articlePanier img {
+  grid-area: 2/1/3/2;
+  border-radius: 1em;
+  max-width: 50%;
+}
+.articlePanier .compteur {
+  display: flex;
+  flex-direction: row;
+}
+.articlePanier .compteur input {
+  margin: 0;
+  padding: 5px;
+  background-color: white;
+  border: 2px solid black;
+  min-width: 20%;
+}
+.articlePanier .compteur input:first-child {
+  border-radius: 1em 0 0 1em;
+}
+.articlePanier .compteur input:last-child {
+  border-radius: 0 1em 1em 0;
+}
+.articlePanier .compteur p {
+  padding: 5px 20px;
+  background-color: white;
+  align-content: center;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.recap {
+  background-color: #D1ECF8;
+  align-content: center;
+  float: right;
+  border-radius: 1em;
+  padding: 20px;
+  margin-top: 20px;
 }/*# sourceMappingURL=panier.css.map */

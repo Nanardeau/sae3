@@ -33,6 +33,7 @@ $bdd->query('set schema \'alizon\'');
     , initial-scale=1.0">
     <title>Alizon</title>
     <link href="./css/style/panier.css" rel="stylesheet" type="text/css">
+    <script src="js/Panier.js"></script>
 </head>
 
 <body>
@@ -51,34 +52,79 @@ $bdd->query('set schema \'alizon\'');
         $stmP = $bdd->prepare('SELECT * from Panier where codeCompte = \''.$idUser.'\'');
         $stmP->execute();
         $ifPanierTemp = $stmP->fetch();
-
-        // Récupération du nombre de produit dans le panier
-        $stmNb = $bdd->query('SELECT ALL count(*) from ProdUnitPanier where idPanier = 1');
-        $nbProdPanier = $stmNb->fetch();
-
         //print_r($nbProdPanier);
-        if($ifPanierTemp == null){
-            ?>
+        if($ifPanierTemp == null){?>
+
             <!--version panier vide-->
             <div class="vide">
                 <h1> Votre panier est vide </h1>
                 <a href="index.html">Revenir à l'acceuil<a>
             </div>
+
         <?php
         }
         else{
+            //Nombre d'élément dans le panier
+            $stmNb = $bdd->query('SELECT ALL count(*) from ProdUnitPanier where idPanier = 1');
+            $nbProdPanier = $stmNb->fetch();
+        
             $infoPanier['idpanier'] = $ifPanierTemp["idpanier"];
             $infoPanier['prixTTC'] = $ifPanierTemp["prixttctotal"];
             $infoPanier['prixHT'] = $ifPanierTemp["prixhttotal"];
             $infoPanier['nbProd'] = $nbProdPanier['count'];
-            
-        }
-        ?>
+              // Récupération de la liste des produits dans le panier
+            $stmProd = $bdd->query('SELECT ALL codeProduit,qteprod,prixTTCtotal from ProdUnitPanier where idPanier = 1');
+            $ListeProdPanier = $stmProd->fetchAll();
+            ?>
+
         <h2>Votre Panier (<?php echo $infoPanier['nbProd'] ?> articles)</h2>
-        <div>
-
+    <div class="recap">
+            <h4>Récapitulatif ( <?php echo $infoPanier['nbProd']?> articles) </h4>
+            <p>Prix HT : <?php echo $infoPanier["prixHT"]?></p>
+            <p style="font-weight : bold">Prix TTC : <?php echo $infoPanier["prixTTC"]?></p>
+            <input type="button" value="Commander"/>
         </div>
-        <input type="button" value="Vider Panier"></input>
+        <article>
+        <?php
+        foreach($ListeProdPanier as $liste){
+            $stmInfoProd = $bdd->query('SELECT libelleProd,urlphoto,codecomptevendeur from Produit where codeProduit = '.$liste["codeproduit"]);
+            $infoProd = $stmInfoProd->fetch();
+            //print_r($infoProd);
+            $codeVendeur = $infoProd["codecomptevendeur"];
+            
+            $stmInfoVend = $bdd->query('SELECT nom from Vendeur where codecompte = '. $codeVendeur);
+            $infoVendeur = $stmInfoVend->fetch();
+            //print_r($infoVendeur);
+
+            $nomProd = $infoProd["libelleprod"];
+            $urlImg = $infoProd["urlphoto"];
+            $vendeur = $infoVendeur["nom"];
+            $qteProd = $liste["qteprod"];
+            $qteProd = round($qteProd);
+            $prixTTC = $liste["prixttctotal"];
+        ?>
+        
+        <div class="articlePanier">
+            <div>
+                <h3><?php echo $nomProd?></h3>
+                <p> Vendu par <strong><?php echo $vendeur?></strong></p>
+            </div>
+            <img src="<?php echo $urlImg?> " alt="Image produit"/>
+            <article>
+            <div class="compteur">
+                <input type="button" value="-" id="moinsArt" onclick="modifierQte()">
+                <p id="nbArt"><?php echo $qteProd?></p>
+                <input type="button" value="+" id="plusArt">
+            </div>
+            <p class="prix"><?php echo $prixTTC?> €</p>
+            </article>
+        </div>
+        
+        <?php }?>
+        </article>
+        
+        <input type="button" value="Vider Panier" style="grid-area: 2 / 1 / 3 / 2;"></input>
+        
         
 
         
@@ -86,7 +132,8 @@ $bdd->query('set schema \'alizon\'');
 
 
 
-
+        
+        <?php }?>
     </main>
     <?php include 'includes/footer.php' ?>
 </body>
