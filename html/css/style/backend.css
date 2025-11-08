@@ -341,4 +341,47 @@ header a .user {
   height: auto;
   margin: 0 0.5em 0 2em;
   flex-direction: row;
+}
+
+main {
+  margin-left: 3em;
+}
+main h1 {
+  font-family: "Baloo", sans-serif;
+  font-size: 2em;
+  color: #FFD6C2;
+}
+main p {
+  font-family: "Mulish", sans-serif;
+  font-size: 1.2em;
+  color: black;
+}
+
+.btnAcceuil {
+  display: flex;
+  flex-direction: row;
+}
+.btnAcceuil a {
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  width: 15em;
+  height: 1.5em;
+  display: flex;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: "Mulish", sans-serif;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #FCB66B;
+  color: black;
+  border-radius: 0.5em;
+  text-decoration: none;
+  margin-bottom: 1em;
+}
+.btnAcceuil a:hover {
+  background-color: rgb(250.9867549669, 157.3443708609, 57.0132450331);
+}
+.btnAcceuil a:last-child {
+  margin-left: 22em;
 }/*# sourceMappingURL=backend.css.map */

@@ -46,3 +46,46 @@ header{
     }
     
 }
+main{
+    margin-left : 3em;
+    h1{
+        font-family: $Poltitle , sans-serif;
+        font-size: 2em;
+        color: $colS;
+    }
+    p{
+        font-family: $Poltext , sans-serif;
+        font-size: 1.2em;
+        color: $noir;
+    }
+
+}
+.btnAcceuil{        
+    display: flex;
+    flex-direction: row;   
+        a {
+            padding: 0.5em 1em;
+            margin: 1em 0;
+            width: 15em;
+            height: 1.5em;
+            display: flex;
+            font-weight: bold;
+            font-size: 24px;
+            font-family: $Poltext, sans-serif;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: $eleOrange;
+            color: $noir;
+            border-radius: $radius;
+            text-decoration: none;
+            margin-bottom: 1em;
+            &:hover {
+                background-color: darken($eleOrange, 10%);
+            }
+            &:last-child{
+                margin-left: 22em;
+            }
+    }
+    
+}

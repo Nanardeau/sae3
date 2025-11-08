@@ -8,8 +8,13 @@
 <body>
     <?php include '../includes/backoffice/header.php'; ?>
     <main>
-        <h1>Bienvenue dans le BackOffice d'Alizon</h1>
-        <p>Utilisez le menu de navigation pour gérer les produits, les catégories et les commandes.</p>
+        <div class="btnAcceuil">
+            <a href="ajouterproduit.php">Ajouter un produit</a>
+            <a href="cataloguevendeur.php">Consulter la liste des produits</a>
+        </div>
     </main>
+    <aside>
+        
+    </aside>
 </body>
 </html>
