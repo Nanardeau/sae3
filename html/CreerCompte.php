@@ -25,25 +25,27 @@ if($_GET["error"]){
             <div id="nomPrenomCli">
                 <div class="labelInput">
                     <label for="nom">Nom *</label>
-                    <input type="text" name="nom" placeholder="Nom..." id="nomCli"/>
+                    <input type="text" name="nom" placeholder="Nom..." id="nomCli" required/>
                 </div>
                 <div class="labelInput">
                     <label for="prenom">Prénom *</label>
-                    <input type="text" name="prenom" placeholder="Prénom..." id="prenomCli"/>
+                    <input type="text" name="prenom" placeholder="Prénom..." id="prenomCli" required/>
                 </div>
             </div>
             <label for="pdp">Photo de profil</label>
             <input type="file" name="photo" id="photoCli"/>
             <label for="mail">Adresse e-mail *</label>
-            <input type="text" name="mail" placeholder="E-mail..." id="mailCli" />
+            <input type="text" name="mail" placeholder="E-mail..." id="mailCli" required/>
             <span>Le mail doit être de la forme "abc@def.gh"</span>
             <label for="confMail">Confirmer adresse mail *</label>
             <input type="text" name="confMail" id="confMailCli"/>
+            <span>Les deux adresses e-mail doivent être identiques</span>
             <label for="numTel">Numéro de téléphone</label>
             <input type="text" name="numTel" id="numTelCli" pattern="[0-9]{10}"/>
             <span>Le numéro doit être dans le format suivant : 0102030405</span>
             <label for="dateNaiss">Date de naissance *</label>
-            <input type="date" name="dateNaiss" class="boutonSec" id="dateNaiss"/>
+            <input type="date" name="dateNaiss" class="boutonSec" id="dateNaiss" onChange="verifDate(event)" required/>
+            <span>La date de naissance doit être antérieure à la date du jour</span>
             <h3>Adresse</h3> <!-- essayer de faire display grid pour adresse !-->
             <div class="container-fluid p-0">
                 <div class="row ">
@@ -72,9 +74,11 @@ if($_GET["error"]){
             <label for="comp">Complément</label>
             <input type="text" name="comp" placeholder="Numéro de bâtiment, d'escalier etc." id="compAdrCli"/>
             <label for="mdp">Mot de passe *</label>
-            <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli"/>
+            <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required />
+            <span>Le mot de passe doit faire entre 2 et 20 caractères</span>
             <label for="confMdp">Confirmer mot de passe *</label>
             <input type="password" name="confMdp" id="confMdpCli" required/>
+            <span>Les deux mots de passe doivent être identiques</span>
             <input class="bouton" type="submit" value="Créer un compte"/>
         </form>   
         <aside>
@@ -84,7 +88,7 @@ if($_GET["error"]){
                 <img src="../../img/line_1.svg"/>
             </figure>
             <nav>
-                <a href="Connexion.php" class="bouton">Se connecter</a>
+                <a href="ConnexionClient.php" class="bouton">Se connecter</a>
                 <a href="Catalogue.php" class="btnJaune">Retour</a>
             <nav>
         </aside>
@@ -94,10 +98,15 @@ if($_GET["error"]){
 
     <script>
         let mail = document.getElementById("mailCli");
+        let confMail = document.getElementById("confMailCli");
+        let mdp = document.getElementById("mdpCli");
+        let confMdp = document.getElementById("confMdpCli");
         let formatImage = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;
         mail.addEventListener("focusout", verifFormat);
-
+        confMail.addEventListener("focusout", verifFormat);
+        confMdp.addEventListener("focusout", verifFormat);
         function verifFormat(evt){
+
             if(evt.type == "focusout"){
                 if(formatImage.test(mail.value) == false){
                     mail.classList.add("invalid");
@@ -105,9 +114,37 @@ if($_GET["error"]){
                 else{
                     mail.classList.remove("invalid");
                 }
+                if(mail.value != confMail.value){
+                    confMail.classList.add("invalid");
+                }
+                else{
+                    confMail.classList.remove("invalid");
+                }
+                if(mdp.value != confMdp.value){
+
+                    confMdp.classList.add("invalid");
+                }
+                else{
+                    confMdp.classList.remove("invalid");
+                }
 
             }
         }
+
+        function verifDate(evt){
+            let elemDate = document.getElementById("dateNaiss");
+            let date = document.getElementById("dateNaiss").value;
+            date = Date.parse(date);
+            let mtn = Date.now();
+            if(date > mtn){
+                elemDate.classList.add("invalid");
+            }
+            else{
+                elemDate.classList.remove("invalid");
+            }
+        }
+
+
     </script>
 </body>
 </html>

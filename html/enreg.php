@@ -25,13 +25,8 @@
     $mdp = $_POST['mdp'];
     $confMdp = $_POST['confMdp'];
     $dateNaissance = $_POST['dateNaiss'];
-    if($mail != $confMail){
-        header('location:CreerCompte.php?error=mail');
-    }
-    else if($mdp != $confMdp){
-        header('location:CreerCompte.php?error=mdp');
-    }
-    else if($dateNaissance > date("Y-m-d H:i:s")){
+
+    if($dateNaissance > date("Y-m-d H:i:s")){
         header('location:CreerCompte.php?error=date');
     }
     else{
@@ -85,14 +80,22 @@
             ":codeCompte" => $codeCompte,
             ":idAdresse" => $idAdresse,
         ));
+
         print_r($_FILES);
         if($_FILES["photo"]){
             
             $nomPhoto = $_FILES["photo"]["name"];
+            $chemin = "./img/photosProfil/".$nomPhoto;
 
-            move_uploaded_file($_FILES["photo"]["tmp_name"], "./img/photosProfil/".$nomPhoto);
+            move_uploaded_file($_FILES["photo"]["tmp_name"], $chemin);
+
         }
 
+        $stmt = $bdd->prepare("INSERT INTO alizon.Profil(urlPhoto, codeClient) VALUES(:photo, :client)");
+        $stmt->execute(array(
+            ":photo" => $chemin,
+            ":client" => $codeCompte
+        ));
         echo $codeCompte . " " . $idAdresse;
         header('location:Accueil');
 

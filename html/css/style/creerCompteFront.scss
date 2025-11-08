@@ -1,6 +1,7 @@
 @use './styleCom' as *;
 @use '../tools/vFront' as *;
 @use "../tools/mixin/com" as *;
+@use 'sass:color';
 header{
     justify-self:center;
     margin :1em 0;
@@ -18,6 +19,12 @@ form{
     flex-direction:column;
     flex-wrap:wrap;
     width:50em;
+    @media screen and (max-width:428px){
+        width:90%;
+        input{
+            width:80%;
+        }
+    }
     align-self:center;
     padding:2em;
     span{
@@ -38,22 +45,30 @@ form{
         }
         &:user-invalid, &.invalid{
             border-color:red;
-            &~span{
+            &+span{
                 display:block;
             }
         }
     }
-
     .bouton{
-        @include bouton;
-        height:5em;
+        height:6em;
     }
+
+
     .btnSec{
         background-color: $eleBleu;
     }
 
 }
-
+.bouton{
+    @include bouton;
+    &:hover{
+        background-color : color.change($colP, $lightness: 20%);
+    }
+    &:active{
+        background-color : color.change($colP, $lightness: 10%);
+    }
+}
 aside{
     display:flex;
     flex-direction: column;
@@ -74,14 +89,15 @@ aside{
         padding:1em;
         width:80%;
         margin-bottom:1em;
+
     }
     .btnJaune{
         @include bouton;
         background-color:$eleOrange;
-        padding-top:1em; 
         color:black;
         width:50%;
-        height:2em;
+        padding:1em;
+        
     }
 
     nav{

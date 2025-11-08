@@ -49,7 +49,7 @@
 }
 @font-face {
   font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -273,6 +273,14 @@ form {
   align-self: center;
   padding: 2em;
 }
+@media screen and (max-width: 428px) {
+  form {
+    width: 90%;
+  }
+  form input {
+    width: 80%;
+  }
+}
 form span {
   display: none;
   color: #6e6e6e;
@@ -301,10 +309,17 @@ form input#photoCli {
 form input:user-invalid, form input.invalid {
   border-color: red;
 }
-form input:user-invalid ~ span, form input.invalid ~ span {
+form input:user-invalid + span, form input.invalid + span {
   display: block;
 }
 form .bouton {
+  height: 6em;
+}
+form .btnSec {
+  background-color: #6CA6E9;
+}
+
+.bouton {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
@@ -314,10 +329,12 @@ form .bouton {
   color: white;
   border-radius: 1em;
   cursor: pointer;
-  height: 5em;
 }
-form .btnSec {
-  background-color: #6CA6E9;
+.bouton:hover {
+  background-color: rgb(4.5, 48, 97.5);
+}
+.bouton:active {
+  background-color: rgb(2.25, 24, 48.75);
 }
 
 aside {
@@ -359,10 +376,9 @@ aside .btnJaune {
   border-radius: 1em;
   cursor: pointer;
   background-color: #FCB66B;
-  padding-top: 1em;
   color: black;
   width: 50%;
-  height: 2em;
+  padding: 1em;
 }
 aside nav {
   display: flex;
