@@ -381,7 +381,90 @@ main p {
 }
 .btnAcceuil a:hover {
   background-color: rgb(250.9867549669, 157.3443708609, 57.0132450331);
+  cursor: pointer;
 }
 .btnAcceuil a:last-child {
   margin-left: 22em;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4em;
+  background-color: #FFD6C2;
+  width: 30em;
+  height: 60em;
+  border-radius: 24px;
+}
+aside div {
+  display: flex;
+  flex-direction: row;
+}
+aside h1 {
+  padding-top: 1em;
+  font-family: "Baloo", sans-serif;
+  font-size: 2em;
+  color: black;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.reduction {
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+  background-color: white;
+  border-radius: 24px;
+  width: 11.75em;
+  height: 11.75em;
+  margin-left: 1.25em;
+  text-decoration: none;
+}
+.reduction svg {
+  z-index: 2;
+}
+.reduction img {
+  z-index: 1;
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 5.95em;
+  height: 5.95em;
+}
+.reduction .nomArticle {
+  padding-left: 10px;
+  font-family: "Mulish", sans-serif;
+  font-size: 1em;
+  color: black;
+  text-align: left;
+}
+.reduction .prixBase {
+  font-family: "Mulish", sans-serif;
+  font-size: 0.75em;
+  padding-left: 10px;
+  color: black;
+  text-decoration: line-through;
+  text-decoration-color: black;
+  text-decoration-thickness: 2px;
+}
+.reduction div {
+  display: flex;
+  flex-direction: row;
+}
+.reduction div .prixReduc {
+  font-family: "Mulish", sans-serif;
+  font-size: 1.25em;
+  padding-left: 1em;
+  color: black;
+  font-weight: bold;
+}
+.reduction div .pourcentReduc {
+  font-family: "Mulish", sans-serif;
+  font-size: 1em;
+  padding-left: 1em;
+  color: #FF4444;
+}
+.reduction div svg {
+  margin-left: 1em;
+  width: 1.5em;
+  height: auto;
 }/*# sourceMappingURL=backend.css.map */

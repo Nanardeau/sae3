@@ -1,6 +1,7 @@
 @use '../tools/vback.scss' as *;
 @use '../components/fonts.css' as *;
 @use '../style/styleCom.scss' as *;
+@use 'sass:color';
 
 header{
     display: flex;
@@ -81,11 +82,95 @@ main{
             text-decoration: none;
             margin-bottom: 1em;
             &:hover {
-                background-color: darken($eleOrange, 10%);
+                background-color: color.adjust($eleOrange, $lightness: -10%);
+                cursor: pointer;
             }
             &:last-child{
                 margin-left: 22em;
             }
     }
     
+}
+
+aside{
+    display: flex;
+    flex-direction: column;
+    div{
+        display: flex;
+        flex-direction: row;
+    }
+    margin-left : 4em;
+    background-color: $colS;
+    width: 30em;
+    height: 60em;
+    border-radius: 24px;
+    h1{
+        padding-top: 1em;
+        font-family: $Poltitle , sans-serif;
+        font-size: 2em;
+        color: $noir;
+        text-align: center;
+        margin-top: 1em;
+    }
+}
+
+.reduction{
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    background-color: $blanc;
+    border-radius: 24px;
+    width: 11.75em;
+    height: 11.75em;
+    margin-left: 1.25em;
+    text-decoration: none;
+    svg{
+            z-index: 2;
+    }
+    img{
+        z-index: 1;
+        margin-top: 10px;
+        margin-left: 10px;
+        width: 5.95em;
+        height: 5.95em;
+    }
+    .nomArticle{
+        padding-left: 10px;
+        font-family: $Poltext , sans-serif;
+        font-size: 1em;
+        color: $noir;
+        text-align: left;
+    }
+    .prixBase{
+        font-family: $Poltext , sans-serif;
+        font-size: 0.75em;
+        padding-left: 10px;
+        color: $noir;
+        text-decoration: line-through;
+        text-decoration-color: $noir;
+        text-decoration-thickness: 2px;
+    }
+    
+    div{
+        display: flex;
+        flex-direction: row;
+        .prixReduc{
+            font-family: $Poltext , sans-serif;
+            font-size: 1.25em;
+            padding-left: 1em;
+            color: $noir;
+            font-weight: bold;
+        }
+        .pourcentReduc{
+            font-family: $Poltext , sans-serif;
+            font-size: 1em;
+            padding-left: 1em;
+            color: $inverse;
+        }
+        svg{
+            margin-left: 1em;
+            width: 1.5em;
+            height: auto;
+        }
+    }
 }
