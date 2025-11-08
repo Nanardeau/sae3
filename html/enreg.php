@@ -44,53 +44,77 @@
 
     $complement = $_POST["comp"] ? $_POST["comp"] : NULL;
     
-    $stmt = $bdd->prepare("INSERT INTO alizon.Client(pseudo, dateCreation, nom, prenom, email, mdp, numTel) VALUES (:pseudo, :dateCreation, :nom, :prenom, :email, :mdp, :numTel)");
-    $stmt->execute(array(
-        ":pseudo" => $pseudo,
-        ":dateCreation" => date("Y-m-d H:i:s"),
-        ":nom" => $nom,
-        ":prenom" => $prenom,
-        ":email" => $mail,
-        ":mdp" => $mdp,
-        ":numTel" => $numtel
-    ));
+    $res = $bdd->query("SELECT * FROM alizon.Client WHERE pseudo = '".$pseudo."'");
+    $resMail = $bdd->query("SELECT * FROM alizon.Client WHERE email = '".$mail."'");
+    if($res){
+        header('location:CreerCompte.php?erreur=pseudo');
+    }
+    else if($res2){
+        header('location:CreerCompte.php?erreur=mail');
+    }
+    else{
+        $stmt = $bdd->prepare("INSERT INTO alizon.Client(pseudo, dateCreation, nom, prenom, email, mdp, numTel) VALUES (:pseudo, :dateCreation, :nom, :prenom, :email, :mdp, :numTel)");
+        $stmt->execute(array(
+            ":pseudo" => $pseudo,
+            ":dateCreation" => date("Y-m-d H:i:s"),
+            ":nom" => $nom,
+            ":prenom" => $prenom,
+            ":email" => $mail,
+            ":mdp" => $mdp,
+            ":numTel" => $numtel
+        ));
+        
+        if($numRue != NULL && $codePostal != NULL && $ville != NULL){
+            $stmt = $bdd->prepare("INSERT INTO alizon.Adresse(num,codePostal, nomVille, nomRue, complementAdresse, numAppart) VALUES(:num, :codePostal, :nomVille, :nomRue, :complement, :numAppart)");
+            $stmt->execute(array(
+                ":num" => $numRue,
+                ":codePostal" => $codePostal,
+                ":nomVille" => $ville,
+                ":nomRue" => $nomRue,
+                ":complement" => $complement,
+                ":numAppart" => $numApt
+            ));
+        }
+
+            
     
+        $res = ($bdd->query("SELECT codeCompte FROM alizon.Client WHERE pseudo = '".$pseudo."'")->fetch());
+        $codeCompte = $res["codecompte"];
+        $res = ($bdd->query("SELECT idAdresse FROM alizon.Adresse ORDER BY idAdresse DESC LIMIT 1")->fetch());
+        $idAdresse = $res["idadresse"];
 
-    $stmt = $bdd->prepare("INSERT INTO alizon.Adresse(num,codePostal, nomVille, nomRue, complementAdresse, numAppart) VALUES(:num, :codePostal, :nomVille, :nomRue, :complement, :numAppart)");
-    $stmt->execute(array(
-        ":num" => $numRue,
-        ":codePostal" => $codePostal,
-        ":nomVille" => $ville,
-        ":nomRue" => $nomRue,
-        ":complement" => $complement,
-        ":numAppart" => $numApt
-    ));
-        
-    //POUR RECUP CODE COMPTE : FAIRE VUE SUR CLIENT ET RECUPERER D'ICI
-    $res = ($bdd->query("SELECT codeCompte FROM alizon.Client WHERE pseudo = '".$pseudo."'")->fetch());
-    $codeCompte = $res["codecompte"];
-    $res = ($bdd->query("SELECT idAdresse FROM alizon.Adresse ORDER BY idAdresse DESC LIMIT 1")->fetch());
-    $idAdresse = $res["idadresse"];
+        $stmt = $bdd->prepare("INSERT INTO alizon.AdrFactCli(codeCompte, idAdresse) VALUES (:codeCompte, :idAdresse)");
+        $stmt->execute(array(
+            ":codeCompte" => $codeCompte,
+            ":idAdresse" => $idAdresse,
+        ));
 
-    $stmt = $bdd->prepare("INSERT INTO alizon.AdrFactCli(codeCompte, idAdresse) VALUES (:codeCompte, :idAdresse)");
-    $stmt->execute(array(
-        ":codeCompte" => $codeCompte,
-        ":idAdresse" => $idAdresse,
-    ));
+        print_r($_FILES);
+        if($_FILES["photo"]){
+            
+            $nomPhoto = $_FILES["photo"]["name"];
+            $extension = $_FILES["photo"]["type"];
+            $extension = substr($extension, strlen("image/"), (strlen($extension) - strlen("image/")));
+            $chemin = "./img/photosProfil/".time().".".$extension;
 
-    print_r($_FILES);
-    if($_FILES["photo"]){
-        
-        $nomPhoto = $_FILES["photo"]["name"];
-        $chemin = "./img/photosProfil/".$nomPhoto;
+            move_uploaded_file($_FILES["photo"]["tmp_name"], $chemin);
+            $stmt = $bdd->query("INSERT INTO alizon.Photo VALUES (:urlPhoto)");
+            $stmt->execute(array(
+                ":urlPhoto" => $chemin
+            ));
 
-        move_uploaded_file($_FILES["photo"]["tmp_name"], $chemin);
+        }
+        else{
+            $chemin = "./img/photosProfil/photoBase.jpg";
+        }
+
+        $stmt = $bdd->prepare("INSERT INTO alizon.Profil(urlPhoto, codeClient) VALUES(:photo, :client)");
+        $stmt->execute(array(
+            ":photo" => $chemin,
+            ":client" => $codeCompte
+        ));
 
     }
 
-    $stmt = $bdd->prepare("INSERT INTO alizon.Profil(urlPhoto, codeClient) VALUES(:photo, :client)");
-    $stmt->execute(array(
-        ":photo" => $chemin,
-        ":client" => $codeCompte
-    ));
-    echo $codeCompte . " " . $idAdresse;
+
+

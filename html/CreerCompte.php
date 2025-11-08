@@ -1,8 +1,10 @@
-<?php
-
-if($_GET["error"]){
-    echo "erreur " . $_GET["error"];     
-}
+<?php 
+    if($_GET["erreur"]){
+        $erreur = $_GET["erreur"];
+    }
+    else{
+        $erreur = NULL;
+    }
 ?>
 <html lang="fr">
 <head>
@@ -20,6 +22,11 @@ if($_GET["error"]){
         <form action="enreg.php" method="post" enctype="multipart/form-data">
             <h2>Création de compte</h2>
             <label for="pseudo">Identifiant *</label>
+            <?php 
+            if($erreur == "pseudo"){
+                echo "<p style=\"color:red\">Pseudonyme déjà utilisé</p>";
+            }
+            ?>
             <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._]{2,20}" required/> 
             <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
             <div id="nomPrenomCli">
@@ -33,8 +40,11 @@ if($_GET["error"]){
                 </div>
             </div>
             <label for="pdp">Photo de profil</label>
-            <input type="file" name="photo" id="photoCli"/>
+            <input type="file" name="photo" id="photoCli" accept="image/*"/>
             <label for="mail">Adresse e-mail *</label>
+            <?php if($erreur == "mail"){
+                echo "<p>Adresse e-mail déjà utilisée</p>";   
+            }?>
             <input type="text" name="mail" placeholder="E-mail..." id="mailCli" required/>
             <span>Le mail doit être de la forme "abc@def.gh"</span>
             <label for="confMail">Confirmer adresse mail *</label>
