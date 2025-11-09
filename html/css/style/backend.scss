@@ -95,82 +95,146 @@ main{
 aside{
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    padding: 1.25em;
+    gap: 1.25em;
+    box-sizing: border-box;
+
+
     div{
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: repeat(2, 11.75em);
+        gap: 1.25em;
+        justify-content: start;
+        align-items: start;
     }
+
     margin-left : 4em;
     background-color: $colS;
     width: 30em;
-    height: 60em;
+    height: 50em;
     border-radius: 24px;
+
+
+
     h1{
-        padding-top: 1em;
         font-family: $Poltitle , sans-serif;
         font-size: 2em;
         color: $noir;
         text-align: center;
         margin-top: 1em;
     }
+    
 }
 
-.reduction{
+.reduction {
+    color: inherit;
     display: flex;
     flex-direction: column;
-    align-items: space-around;
+    align-items: left; 
     background-color: $blanc;
     border-radius: 24px;
     width: 11.75em;
     height: 11.75em;
     margin-left: 1.25em;
     text-decoration: none;
-    svg{
-            z-index: 2;
+    position: relative;
+    padding-top: 0.75em;
+    box-sizing: border-box;
+
+    > svg {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        z-index: 2;
     }
-    img{
+
+    img {
+        position: static; 
         z-index: 1;
-        margin-top: 10px;
+        width: 5.5em;
+        height: 5.5em;
+        border-color: $noir;
+        border-radius: 24px;
+        border: 2px solid;
         margin-left: 10px;
-        width: 5.95em;
-        height: 5.95em;
     }
-    .nomArticle{
+
+    p {
+        margin: 0;
+    }
+
+    .nomArticle {
         padding-left: 10px;
         font-family: $Poltext , sans-serif;
         font-size: 1em;
         color: $noir;
         text-align: left;
+        margin-top: 0.25em; 
     }
-    .prixBase{
+
+    .prixBase {
+        padding-left: 10px;
         font-family: $Poltext , sans-serif;
         font-size: 0.75em;
-        padding-left: 10px;
         color: $noir;
         text-decoration: line-through;
         text-decoration-color: $noir;
         text-decoration-thickness: 2px;
+        text-align: left;
     }
-    
-    div{
+
+    div {
         display: flex;
         flex-direction: row;
-        .prixReduc{
+        align-items: center; 
+        width: 100%; 
+        justify-content: flex-start;
+        gap: 0.25em; 
+        position: relative; 
+
+        .prixReduc {
             font-family: $Poltext , sans-serif;
             font-size: 1.25em;
-            padding-left: 1em;
+            padding-left: 10px;
+            margin-right: 0.25em;
             color: $noir;
             font-weight: bold;
         }
-        .pourcentReduc{
+
+        .pourcentReduc {
             font-family: $Poltext , sans-serif;
             font-size: 1em;
-            padding-left: 1em;
+            padding-right: 20px;
             color: $inverse;
         }
-        svg{
-            margin-left: 1em;
-            width: 1.5em;
-            height: auto;
+        .btnModifReduc {
+            display: flex;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            svg {
+                width: 30px;
+                height: 100%;
+            }
+            &:hover {
+                svg circle {
+                    fill: color.adjust($eleBleu, $lightness: -10%);
+                }
+            }
         }
+    }
+}
+
+.lesAvis{
+    background-color: $colS;
+    width: 48.20em;
+    h1{
+        font-family: $Poltitle , sans-serif;
+        font-size: 2em;
+        color: $noir;
+        text-align: center;
+        margin-top: 1em;
     }
 }
