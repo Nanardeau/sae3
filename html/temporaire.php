@@ -35,7 +35,8 @@ if($_POST){
         $rep= $req->fetch();
         if($rep['id']=!false){
             //connexion
-            header("location: accueil.php");
+            echo("C'EST BON");
+            //header("location: accueil.php");
         }else{
             $error_msg="Identifiant ou mot de passe incorrect.";
         }
