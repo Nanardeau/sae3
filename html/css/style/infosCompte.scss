@@ -1,0 +1,29 @@
+@use './styleCom' as *;
+@use '../tools/vFront' as *;
+@use "../tools/mixin/com" as *;
+@import "./creerCompteFront.scss";
+
+form{
+    input{
+        &[disabled]{
+            background-color : #ececec;
+            color:black;
+        }
+        
+    }
+    >h2{
+        align-self:center;
+    }
+    >img{
+        width:fit-content;
+        align-self:center;
+        border-radius:10em;
+    }
+    .bouton{
+        height:4em;
+        width:70%;
+        align-self:center;
+        margin: 1em 0;
+
+    }
+}

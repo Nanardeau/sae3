@@ -2,6 +2,7 @@
 @use '../tools/vFront' as *;
 @use "../tools/mixin/com" as *;
 @use 'sass:color';
+
 header{
     justify-self:center;
     margin :1em 0;
@@ -58,10 +59,7 @@ form{
                 display:block;
             }
         }
-        &[disabled]{
-            background-color : #ececec;
-            color:black;
-        }
+
         @media screen and ($mobile){
             width:100%;
             &::placeholder{

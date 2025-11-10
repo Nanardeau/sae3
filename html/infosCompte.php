@@ -25,7 +25,10 @@
     $compte = $bdd->query("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
     
     $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-    print_r($adresse);
+    
+    $photo = $bdd->query("SELECT profil.urlPhoto  FROM alizon.Photo photo INNER JOIN alizon.Profil profil ON photo.urlPhoto = profil.urlPhoto WHERE profil.codeClient = '".$codeCompte."'")->fetch();
+        print_r($photo["urlphoto"]);
+        print_r($adresse);
  
 ?>
 <html lang="fr">
@@ -33,7 +36,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon compte</title>
-    <link href="./css/style/creerCompteFront.css" rel="stylesheet" type="text/css">
+    <link href="./css/style/infosCompte.css" rel="stylesheet" type="text/css">
     <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
     <link href="./bootstrap-5.3.8-dist/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">
 </head>
@@ -41,8 +44,9 @@
     <main>
         <a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
 
-        <form action="enreg.php" method="post" enctype="multipart/form-data">
+        <form action="modifCompteCli.php" method="post" enctype="multipart/form-data">
             <h2>Mon compte</h2>
+            <img src="<?php echo $photo["urlphoto"]?>" alt="photoProfil" title="photoProfil"/>
             <label for="pseudo">Identifiant</label>
 
             <input type="text" name="pseudo" id="identifiant" pattern="[A-Za-z._]{2,20}" value="<?php echo $compte["pseudo"]?>" required disabled/> 
@@ -100,19 +104,11 @@
             <input type="password" name="mdp" id="mdpCli" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required disabled/>
             <span>Le mot de passe doit faire entre 2 et 20 caractères</span>
             <span>Les deux mots de passe doivent être identiques</span>
-            <input class="bouton" type="submit" value="Créer un compte" disabled/>
+            <button class="bouton" onClick="modifierInfos">Modifier informations</button>
+            <button class="bouton" onClick="bloquerCompte">Bloquer compte</button>
+            
         </form>   
-        <aside>
-            <figure>
-                <img src="../../img/line_1.svg"/>
-                <p>Déjà un compte ?</p>
-                <img src="../../img/line_1.svg"/>
-            </figure>
-            <nav>
-                <a href="ConnexionClient.php" class="bouton">Se connecter</a>
-                <a href="Catalogue.php" class="btnJaune">Retour</a>
-            <nav>
-        </aside>
+
 
     </main>
     <?php include('./includes/footer.php');?>
