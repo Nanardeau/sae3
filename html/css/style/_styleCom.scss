@@ -1,13 +1,14 @@
 @use "../tools/vFront" as *;
 @use "../tools/mixin/com" as m;
 
+
 body{
     font: {
         family: $Poltext,$Poltitle,"sans-serif";
         size: $txtSize;
     }
     background: {
-        color: $blanc;
+        color: white;
     }
     color : $noir;
     margin: 0;
@@ -23,7 +24,6 @@ main{
 }
 h1{
    @include m.text($TrGdTitle);
-    
 }
 h2{
     @include m.text($GdTitle);
@@ -33,6 +33,12 @@ h3{
 }
 h4{
     @include m.text($PetTitle);
+}
+p, label, input{
+    font-family:$Poltext;
+}
+label{
+    font-weight:bold;
 }
 /*###############################
 #            HEADER             #

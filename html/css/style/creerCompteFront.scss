@@ -1,0 +1,147 @@
+@use './styleCom' as *;
+@use '../tools/vFront' as *;
+@use "../tools/mixin/com" as *;
+@use 'sass:color';
+header{
+    justify-self:center;
+    margin :1em 0;
+}
+main{
+    padding-bottom:2em;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+form{
+    border:#A1A1A1 solid 0.01em;
+    border-radius:$radiusInput;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    width:50em;
+    margin-top:1em;
+    align-self:center;
+    padding:2em;
+    @media screen and (max-width:428px){
+        width:90%;
+        padding:1em;
+        align-items:center;
+        input{
+            width:80%;
+        }
+        label{
+            align-self:flex-start;
+            font-size:0.8em;
+        }
+    }
+    span{
+        display:none;
+        color:#6e6e6e;
+    }
+    input{
+        border:solid 1px;
+        border-radius:$radius;
+        height:3em;
+        margin:10px 0;
+        padding:10px;
+        &::file-selector-button{
+            @include bouton;
+        }
+        &#photoCli{
+            border:none;
+            font-size:0.8em;
+            
+        }
+        &:user-invalid, &.invalid{
+            border-color:red;
+            &+span{
+                display:block;
+            }
+        }
+        @media screen and ($mobile){
+            width:100%;
+            &::placeholder{
+                font-size:0.9em;
+            }
+            
+        }
+    }
+    .bouton{
+        height:5em;
+        font-size:$MoyTitle;
+        @media screen and ($mobile){
+            height:4em;
+        }
+    }
+
+
+    .btnSec{
+        background-color: $eleBleu;
+    }
+
+}
+.bouton{
+    @include bouton;
+    &:hover{
+        background-color : color.change($colP, $lightness: 20%);
+    }
+    &:active{
+        background-color : color.change($colP, $lightness: 10%);
+    }
+}
+aside{
+    display:flex;
+    flex-direction: column;
+    
+    figure{
+        display:flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items:center; 
+        img{
+            margin: 0 10px;
+            height:1px;
+            @media screen and ($mobile){
+                width:20%;
+                height:20px;  
+            }
+        }
+    }
+
+    .bouton{
+        @include bouton;
+        padding:1em;
+        width:80%;
+        margin-bottom:1em;
+
+    }
+    .btnJaune{
+        @include bouton;
+        background-color:$eleOrange;
+        color:black;
+        width:50%;
+        padding:1em;
+        
+    }
+
+    nav{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+    }
+}
+
+.labelInput{
+    display:flex;
+    flex-direction: column;
+    @media screen and ($mobile) {
+        display:block;
+        width:100%;
+    }
+}
+
+#nomCli{
+    width:100%;
+}
+
+

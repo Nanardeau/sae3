@@ -2,9 +2,25 @@
 
 @mixin text($taille){
     font: {
-         family: $Poltitle;
+        family: $Poltitle;
         size: $taille;
-        weight : bold;
+        //weight : bold;
     }
 }
    
+@mixin bouton($couleur : $colP){
+    font: {
+        family:$Poltext;
+        weight:bold;
+    }
+    text: {
+        align:center;
+        size:$PetTitle;
+        decoration:none;
+    }
+
+    background-color:$couleur;
+    color:$blanc; 
+    border-radius:$radius;
+    cursor:pointer;
+}
