@@ -53,10 +53,11 @@
         header('location:CreerCompte.php?erreur=mail');
     }
     else{
-        $stmt = $bdd->prepare("INSERT INTO alizon.Client(pseudo, dateCreation, nom, prenom, email, mdp, numTel) VALUES (:pseudo, :dateCreation, :nom, :prenom, :email, :mdp, :numTel)");
+        $stmt = $bdd->prepare("INSERT INTO alizon.Client(pseudo, dateCreation, dateNaissance, nom, prenom, email, mdp, numTel) VALUES (:pseudo, :dateCreation, :dateNaissance, :nom, :prenom, :email, :mdp, :numTel)");
         $stmt->execute(array(
             ":pseudo" => $pseudo,
             ":dateCreation" => date("Y-m-d H:i:s"),
+            ":dateNaissance" => $dateNaissance,
             ":nom" => $nom,
             ":prenom" => $prenom,
             ":email" => $mail,

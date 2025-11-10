@@ -320,6 +320,10 @@ form input:user-invalid, form input.invalid {
 form input:user-invalid + span, form input.invalid + span {
   display: block;
 }
+form input[disabled] {
+  background-color: #ececec;
+  color: black;
+}
 @media screen and (max-width : 428px) {
   form input {
     width: 100%;
