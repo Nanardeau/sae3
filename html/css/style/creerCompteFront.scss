@@ -14,7 +14,7 @@ main{
 }
 form{
     border:#A1A1A1 solid 0.01em;
-    border-radius:$radius;
+    border-radius:$radiusInput;
     display:flex;
     flex-direction:column;
     flex-wrap:wrap;
@@ -67,7 +67,8 @@ form{
         }
     }
     .bouton{
-        height:6em;
+        height:5em;
+        font-size:$MoyTitle;
         @media screen and ($mobile){
             height:4em;
         }

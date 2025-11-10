@@ -265,7 +265,7 @@ main {
 
 form {
   border: #A1A1A1 solid 0.01em;
-  border-radius: 1em;
+  border-radius: 2px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -332,7 +332,8 @@ form input:user-invalid + span, form input.invalid + span {
   }
 }
 form .bouton {
-  height: 6em;
+  height: 5em;
+  font-size: 24px;
 }
 @media screen and (max-width : 428px) {
   form .bouton {
