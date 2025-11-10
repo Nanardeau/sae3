@@ -148,5 +148,5 @@ INSERT INTO Categoriser(codeProduit, libelleCat) VALUES
 (19, 'Vêtements'),
 (20, 'Papeterie');
 
-SELECT * FROM Categoriser;
-SELECT * FROM Categoriser where libelleCat = Alimentaire;
+--SELECT * FROM Categoriser;
+--SELECT * FROM Categoriser where libelleCat = Alimentaire;
