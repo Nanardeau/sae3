@@ -113,7 +113,8 @@
             ":photo" => $chemin,
             ":client" => $codeCompte
         ));
-
+        $_SESSION["connecte"] = 1;
+        $_SESSION["codeCompte"] = $codeCompte;
     }
 
 
