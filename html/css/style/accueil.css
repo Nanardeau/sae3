@@ -244,6 +244,80 @@ header nav svg {
   }
 }
 
+/*###############################
+#        Menu Categorie         #
+################################*/
+.nav-cat {
+  width: 100%;
+  background-color: #6CA6E9;
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.nav-cat svg, .nav-cat a {
+  align-self: center;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: #6CA6E9;
+  padding: 15px;
+  padding-right: 30px;
+  cursor: pointer;
+}
+
+.overlayMenuCat {
+  z-index: 999;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 500px;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlayContentCat {
+  position: absolute;
+  background: #6CA6E9;
+  padding: 2rem;
+  padding-left: 1rem;
+  text-align: left;
+  max-width: 400px;
+  min-width: 200px;
+  height: 550px;
+  top: 100px;
+  left: 0;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.overlayContentCat ul {
+  padding-inline-start: 1rem;
+}
+.overlayContentCat ul li {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+.overlayContentCat ul li a {
+  text-decoration: underline;
+  font-family: "Mulish";
+  font-size: 24px;
+  font-weight: 600;
+  color: black;
+}
+.overlayContentCat ul ul > li > a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: normal;
+}
+.overlayContentCat ul ul > li {
+  margin-left: 1rem;
+}
+
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
@@ -363,75 +437,4 @@ body {
 
 .aff_prod {
   margin-left: 30px;
-}
-
-.nav-cat {
-  width: 100%;
-  background-color: #6CA6E9;
-  position: fixed;
-  z-index: 1000;
-  display: flex;
-  flex-direction: row;
-}
-.nav-cat svg, .nav-cat a {
-  align-self: center;
-  color: black;
-  font-size: 24px;
-  font-weight: bold;
-  text-decoration: none;
-  background-color: #6CA6E9;
-  padding: 15px;
-  padding-right: 30px;
-  cursor: pointer;
-}
-
-.overlayMenuCat {
-  z-index: 999;
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  justify-content: center;
-  align-items: center;
-}
-
-.overlayContentCat {
-  position: fixed;
-  background: #6CA6E9;
-  padding: 2rem;
-  padding-left: 1rem;
-  text-align: left;
-  max-width: 400px;
-  min-width: 200px;
-  height: 100%;
-  top: 100px;
-  left: 0;
-}
-.overlayContentCat ul {
-  padding-inline-start: 1rem;
-}
-.overlayContentCat ul li {
-  list-style: none;
-  margin-bottom: 1rem;
-}
-.overlayContentCat ul li a {
-  text-decoration: underline;
-  font-family: "Mulish";
-  font-size: 24px;
-  font-weight: 600;
-  color: black;
-}
-.overlayContentCat ul ul > li > a {
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: normal;
-}
-.overlayContentCat ul ul > li {
-  margin-left: 1rem;
-}
-
-.tab-only {
-  display: none;
 }/*# sourceMappingURL=accueil.css.map */

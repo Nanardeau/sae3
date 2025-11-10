@@ -1,10 +1,15 @@
 function openOverlay() {
-      document.getElementById("overlayMenuCat").style.display = "flex";
+  const overlay = document.getElementById("overlayMenuCat");
+  overlay.style.display = "block";
+  document.body.style.overflow = "hidden"; // bloque le scroll de la page
 }
 
 function closeOverlay() {
-    document.getElementById("overlayMenuCat").style.display = "none";
+  const overlay = document.getElementById("overlayMenuCat");
+  overlay.style.display = "none";
+  document.body.style.overflow = ""; // réactive le scroll
 }
+
 
 window.onclick = function(event) {
   const overlay = document.getElementById("overlayMenuCat");
