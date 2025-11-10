@@ -265,7 +265,7 @@ main {
 
 form {
   border: #A1A1A1 solid 0.01em;
-  border-radius: 2px;
+  border-radius: 1em;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
