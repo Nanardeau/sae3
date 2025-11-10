@@ -23,24 +23,25 @@ try {
 } catch (PDOException $e) {
     echo "❌ Erreur de connexion : " . $e->getMessage();
 }
-//$bdd->query('set schema \'alizon\'');
+$bdd->query('set schema \'alizon\'');
 
-
+$error_msg = "";
 
 if($_POST){
-    $id= $_POST["pseudo"];
+    $id = $_POST["pseudo"];
     $mdp = $_POST["mdp"];
-    if($id=!"" && $mdp=!""){
-        $req= $bdd->query ("SELECT * FROM Client WHERE pseudo ='$pseudo' AND mdp= '$mdp'");
-        $rep= $req->fetch();
-        if($rep['id']=!false){
-            //connexion
-            header("location: accueil.php");
-        }else{
-            $error_msg="Identifiant ou mot de passe incorrect.";
-        }
+
+    $req= $bdd->query ("SELECT * FROM Client WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
+    $rep= $req->fetch();
+    if($rep!=null){
+        //connexion
+        header("location: accueil.php");
+    }else{
+        $error_msg="Identifiant ou mot de passe incorrect.";
+        
     }
-}else{
+    
+}
 ?> 
 
 
@@ -58,11 +59,11 @@ if($_POST){
         <form action="ConnexionClient.php" method="post">
             <h2>Connexion</h2>
             <label for="pseudo">Identifiant</label>
-            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant"/>
+            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" required/>
             <label for="mdp">Mot de passe</label>
-            <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli"/>
+            <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli" required/>
             <?php 
-                if($error_msg){
+                if($error_msg != ""){
             ?>
                     <p> <?php echo($error_msg); ?> </p>
             <?php
@@ -86,7 +87,3 @@ if($_POST){
     <footer></footer>
 </body>
 </html>
-
-<?php
-}
-?>
