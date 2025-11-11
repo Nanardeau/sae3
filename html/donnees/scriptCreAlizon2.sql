@@ -297,7 +297,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_panier_finTTC
-AFTER INSERT OR UPDATE ON ProdUnitPanier
+AFTER INSERT OR UPDATE OR DELETE ON ProdUnitPanier
 FOR EACH ROW
 EXECUTE FUNCTION PanierFinalTestTTC();
 
@@ -310,7 +310,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_panier_finHT
-AFTER INSERT OR UPDATE ON ProdUnitPanier
+AFTER INSERT OR UPDATE OR DELETE ON ProdUnitPanier
 FOR EACH ROW
 EXECUTE FUNCTION PanierFinalTestHT();
 --PrixHTPanier = Somme(PrixHT * qtProd)--

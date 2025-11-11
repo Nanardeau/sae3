@@ -132,7 +132,7 @@ $bdd->query('set schema \'alizon\'');
         <?php }?>
         </article>
         
-        <input type="button" value="Vider Panier" style="grid-area: 2 / 1 / 3 / 2;"></input>
+        <input type="button" value="Vider Panier" class="btn-vider" data-idpanier="<?php echo $infoPanier['idpanier']?>"/>
         
     
         

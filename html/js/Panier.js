@@ -1,22 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.articlePanier').forEach(Competeur => {
-    const compteur = Competeur.querySelector('.compteur');
+  
+  const vider = document.querySelector('.btn-vider');
+  document.querySelectorAll('.articlePanier').forEach(Compteur => {
+    const compteur = Compteur.querySelector('.compteur');
     if (!compteur) return;
     const moins = compteur.querySelector('.btn-moins');
     const plus = compteur.querySelector('.btn-plus');
     const supp = compteur.querySelector('.btn-supp');
-    const idPanier = Competeur.dataset.idpanier;
-    const idProd = Competeur.dataset.codeprod;
+    
+    let idPanier = Compteur.dataset.idpanier;
+    let idProd = Compteur.dataset.codeprod;
 
     if (moins) moins.addEventListener('click', () => modifierQte('moins', idPanier, idProd));
     if (plus) plus.addEventListener('click', () => modifierQte('plus', idPanier, idProd));
-    if(supp) supp.addEventListener('click', ()=> suppArticle('supp',idPanier,idProd));
+    if (supp) supp.addEventListener('click', ()=> supprimer('supp', idPanier, idProd));
+    
   });
+  let idPanier = vider.dataset.idpanier;
+  if (vider) vider.addEventListener('click',() => supprimerPanier('vider',idPanier));
 });
 
 async function modifierQte(action, idPanier, idProd) {
     if (!idPanier || !idProd) {
-    console.error('idPanier or idProd missing');
+    console.error('Erreur : idPanier ou idProd non séléctionner');
     return;
   }
 
@@ -46,6 +52,43 @@ async function modifierQte(action, idPanier, idProd) {
   }
 }
 
-async function suppArticle(action, idPanier, idProd,){
+async function supprimer(action, idPanier, idProd){
+    if (!idPanier || !idProd) {
+    console.error('Erreur : idPanier ou idProd non séléctionner');
+    return;
+  }
+  console.log('test');
+  if(action === "supp"){
+    if(confirm("Voulez vous supprimer l'article de votre panier") == true){
+      try{
+      const result = await fetch(
+        `http://localhost:3000/supprimer/${idPanier}/${idProd}`,{
+          method: "PUT"
+        }
+        
+      );
+    }catch(err){
+      console.error("Erreur lors de la suppression :", err);
+    }
+    location.reload();
+    }
 
+  }
+}
+async function supprimerPanier(action,idPanier) {
+  if(action === "vider"){
+    var choix =  confirm("Voulez vous supprimer votre panier");
+    if(choix == true){
+      try{
+          const result = await fetch(
+          `http://localhost:3000/supprimerPanier/${idPanier}`,
+          { method: "PUT"}
+      );
+      }catch(err){
+        console.error("Erreur lors de la suppression :", err);
+      }
+      location.reload();
+    }
+  }
+  
 }
