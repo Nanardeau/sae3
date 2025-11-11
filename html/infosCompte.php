@@ -2,7 +2,12 @@
     session_start();
 
     $codeCompte = $_SESSION["codeCompte"];
-    
+    if($_GET["erreur"]){
+        $erreur = $_GET["erreur"];
+    }
+    else{
+        $erreur = "";
+    }
     require_once __DIR__ . '/env.php';
 
     loadEnv(__DIR__ . '/.env');
@@ -47,6 +52,9 @@
 </head>
 <body>   
     <main>
+        <?php if($_SESSION["mdpValide"] == 0):?>
+            <h2 class="erreur">Mot de passe incorrect</h2>
+        <?php endif?>
         <a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
         <div class="containerForm">
         <form action="modifCompteCli.php" method="post" enctype="multipart/form-data">
@@ -54,6 +62,9 @@
             <h2 hidden>Modifier mes informations</h2>
             <img src="<?php echo $photo["urlphoto"]?>" alt="photoProfil" title="photoProfil"/>
             <label for="identifiant">Identifiant</label>
+            <?php if($erreur == "pseudo"):?>
+                <p class="erreur">Pseudonyme déjà utilisé</p>
+            <?php endif?>
 
             <input type="text" name="pseudo" id="identifiant" pattern="[A-Za-z._0-9]{2,20}" value="<?php echo $compte["pseudo"]?>" required disabled/> 
             <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
@@ -68,11 +79,14 @@
                 </div>
             </div>
             <label for="mailCli">Adresse e-mail</label>
+            <?php if($erreur == "mail"):?>
+                <p class="erreur">Adresse e-mail déjà utilisée</p>
+            <?php endif?>
             <input type="text" name="email" id="mailCli" value="<?php echo "mail"?>" required disabled/>
             <span>Le mail doit être de la forme "abc@def.gh"</span>
             <span>Les deux adresses e-mail doivent être identiques</span>
             <label for="numTelCli">Numéro de téléphone</label>
-            <input type="text" name="numTel" id="numTelCli" pattern="[0-9]{10}" value="<?php echo $compte["numtel"]?>"disabled/>
+            <input type="text" name="numTel" id="numTelCli" pattern="\d{10}" value="<?php echo $compte["numtel"]?>"disabled/>
             <span>Le numéro doit être dans le format suivant : 0102030405</span>
             <label for="dateNaiss">Date de naissance</label>
             <input type="date" name="dateNaissance" class="boutonSec" id="dateNaiss" onChange="verifDate(event)" value="<?php echo $compte["datenaissance"]?>"required disabled/>
@@ -151,14 +165,12 @@
     <?php include('./includes/footer.php');?>
 
     <script>
-        
 
-
-
-
+                
 
         <?php
         if($_SESSION["mdpValide"] == 1):?>
+
             document.querySelectorAll("h2")[1].removeAttribute("hidden");
             document.querySelectorAll("h2")[0].setAttribute("hidden", null);
             document.getElementById("valider").removeAttribute("hidden");
@@ -171,14 +183,31 @@
             console.log(document.querySelectorAll("input:disabled")[4]);
             let taille = console.log(document.querySelectorAll("input:disabled").length);
             while(document.querySelector("input:disabled")){
-
+      
                 document.querySelector("input:disabled").classList.add("modifiable");
                 document.querySelector("input:disabled").removeAttribute("disabled");
-
-
+                
             }
-               
-                    
+
+            let date = document.getElementById("dateNaiss");
+            date.classList.remove("modifiable");
+            date.setAttribute("disabled",null);
+
+            let mail = document.getElementById("mailCli");
+            let formatMail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;        
+            mail.addEventListener("focusout", verifFormat);   
+
+            function verifFormat(evt){
+                if(evt.type == "focusout"){
+                    if(formatMail.test(mail.value) == false && evt.target == mail){
+                        mail.classList.add("invalid");
+                    }
+                    else{
+                        mail.classList.remove("invalid");
+                    }
+
+                }
+            }
         <?php endif?>
         
         let mdp = document.getElementById("mdpModifCli");
@@ -187,20 +216,6 @@
 
 
         function annuler(){
-            /*let taille = console.log(document.querySelectorAll(".modifiable").length);
-
-            document.getElementById("valider").setAttribute("hidden", null);
-            document.getElementById("annuler").setAttribute("hidden", null);
-
-            document.getElementById("modifInfos").removeAttribute("hidden");
-            document.getElementById("modifmdp").removeAttribute("hidden");
-
-            while(document.querySelector(".modifiable")){
-                document.querySelector(".modifiable").setAttribute("disabled", null);
-                document.querySelector(".modifiable").classList.remove("modifiable");
-
-
-            }*/   
            <?php 
            $_SESSION["mdpValide"] = ""?>
            window.location.reload();  
@@ -217,40 +232,11 @@
             }
 
         }
+
+
+
+
         
-        
-
-
-        /*let formatImage = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;
-        mail.addEventListener("focusout", verifFormat);
-        confMail.addEventListener("focusout", verifFormat);
-        confMdp.addEventListener("focusout", verifFormat);
-        function verifFormat(evt){
-
-            if(evt.type == "focusout"){
-                if(formatImage.test(mail.value) == false){
-                    mail.classList.add("invalid");
-                }
-                else{
-                    mail.classList.remove("invalid");
-                }
-
-
-            }
-        }
-
-        function verifDate(evt){
-            let elemDate = document.getElementById("dateNaiss");
-            let date = document.getElementById("dateNaiss").value;
-            date = Date.parse(date);
-            let mtn = Date.now();
-            if(date > mtn){
-                elemDate.classList.add("invalid");
-            }
-            else{
-                elemDate.classList.remove("invalid");
-            }
-        }*/
 
 
     </script>

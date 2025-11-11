@@ -589,7 +589,6 @@ form input:user-invalid, form input.invalid {
 }
 form input:user-invalid + span, form input.invalid + span {
   display: block;
-  color: red;
 }
 @media screen and (max-width : 428px) {
   form input {
@@ -749,4 +748,8 @@ form > img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.erreur {
+  color: red;
 }/*# sourceMappingURL=infosCompte.css.map */

@@ -17,42 +17,41 @@
 </head>
 <body>   
     <main>
-        <a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
-
+    <a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
         <form action="enreg.php" method="post" enctype="multipart/form-data">
             <h2>Création de compte</h2>
-            <label for="pseudo">Identifiant *</label>
+            <label for="identifiant">Identifiant *</label>
             <?php 
             if($erreur == "pseudo"){
                 echo "<p style=\"color:red\">Pseudonyme déjà utilisé</p>";
             }
             ?>
-            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._]{2,20}" required/> 
+            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._0-9]{2,20}" required/> 
             <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
             <div id="nomPrenomCli">
                 <div class="labelInput">
-                    <label for="nom">Nom *</label>
+                    <label for="nomCli">Nom *</label>
                     <input type="text" name="nom" placeholder="Nom..." id="nomCli" required/>
                 </div>
                 <div class="labelInput">
-                    <label for="prenom">Prénom *</label>
+                    <label for="prenomCli">Prénom *</label>
                     <input type="text" name="prenom" placeholder="Prénom..." id="prenomCli" required/>
                 </div>
             </div>
-            <label for="pdp">Photo de profil</label>
+            <label for="photoCli">Photo de profil</label>
             <input type="file" name="photo" id="photoCli" accept="image/*"/>
-            <label for="mail">Adresse e-mail *</label>
+            <label for="mailCli">Adresse e-mail *</label>
             <?php if($erreur == "mail"){
                 echo "<p>Adresse e-mail déjà utilisée</p>";   
             }?>
             <input type="text" name="mail" placeholder="E-mail..." id="mailCli" required/>
             <span>Le mail doit être de la forme "abc@def.gh"</span>
-            <label for="confMail">Confirmer adresse mail *</label>
+            <label for="confMailCli">Confirmer adresse mail *</label>
             <input type="text" name="confMail" id="confMailCli"/>
             <span>Les deux adresses e-mail doivent être identiques</span>
-            <label for="numTel">Numéro de téléphone</label>
-            <input type="text" name="numTel" id="numTelCli"/>
-            <span>Le numéro doit être dans le format suivant : 0102030405</span>
+            <label for="numTelCli">Numéro de téléphone</label>
+            <input type="text" name="numTel" id="numTelCli" pattern="\d{10}"/>
+            <span>Le numéro doit être de la forme 0102030405</span>
             <label for="dateNaiss">Date de naissance *</label>
             <input type="date" name="dateNaiss" class="boutonSec" id="dateNaiss" onChange="verifDate(event)" required/>
             <span>La date de naissance doit être antérieure à la date du jour</span>
@@ -60,33 +59,33 @@
             <div class="container-fluid p-0">
                 <div class="row ">
                     <div class="col-3 labelInput">
-                        <label for="numRue">Numéro</label>
+                        <label for="numRueCli">Numéro</label>
                         <input type="text" name="numRue" placeholder="1, 2A, 3Bis etc." id="numRueCli"/>
                     </div>
                     <div class="col-9 labelInput">
-                        <label for="nomRue">Nom de la rue, voie</label>
+                        <label for="nomRueCli">Nom de la rue, voie</label>
                         <input type="text" name="nomRue" placeholder="Ex : Rue des lilas" id="nomRueCli"/>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-4 labelInput">
-                        <label for="codePostal">Code postal</label>
+                        <label for="codePostalCli">Code postal</label>
                         <input type="text" name="codePostal" id="codePostalCli" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$"/>
                     </div>
                     <div class="col-8 labelInput">
-                        <label for="ville">Ville</label>
+                        <label for="villeCli">Ville</label>
                         <input type="text" name="ville" id="villeCli"/>
                     </div>
                 </div>
             </div>
-            <label for="numApp">Numéro d'appartement</label>
+            <label for="numAptCli">Numéro d'appartement</label>
             <input type="text" name="numApt" id="numAptCli"/>
-            <label for="comp">Complément</label>
+            <label for="compAdrCli">Complément</label>
             <input type="text" name="comp" placeholder="Numéro de bâtiment, d'escalier etc." id="compAdrCli"/>
-            <label for="mdp">Mot de passe *</label>
+            <label for="mdpCli">Mot de passe *</label>
             <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required />
             <span>Le mot de passe doit faire entre 2 et 20 caractères</span>
-            <label for="confMdp">Confirmer mot de passe *</label>
+            <label for="confMdpCli">Confirmer mot de passe *</label>
             <input type="password" name="confMdp" id="confMdpCli" required/>
             <span>Les deux mots de passe doivent être identiques</span>
             <input class="bouton" type="submit" value="Créer un compte"/>
@@ -111,44 +110,37 @@
         let confMail = document.getElementById("confMailCli");
         let mdp = document.getElementById("mdpCli");
         let confMdp = document.getElementById("confMdpCli");
-        let tel = document.getElementById("numTelCli");
 
-        let formatImage = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;
+        let formatMail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;
         
-        let formatTel = /[0-9]{10}||([0-9]{2}.[0-9]{2}.){2}[0-9]{2}||([0-9]{2} " "[0-9]{2} " "){2}[0-9]{2}/;
+
         
         mail.addEventListener("focusout", verifFormat);
         confMail.addEventListener("focusout", verifFormat);
         confMdp.addEventListener("focusout", verifFormat);
-        tel.addEventListener("focusout", verifFormat);
         function verifFormat(evt){
-
             if(evt.type == "focusout"){
-                if(formatImage.test(mail.value) == false){
+                if(formatMail.test(mail.value) == false && evt.target == mail){
                     mail.classList.add("invalid");
+                    console.log("cc");
                 }
                 else{
                     mail.classList.remove("invalid");
                 }
-                if(mail.value != confMail.value){
+                if(mail.value != confMail.value && evt.target == confMail){
                     confMail.classList.add("invalid");
                 }
                 else{
                     confMail.classList.remove("invalid");
                 }
-                if(mdp.value != confMdp.value){
+                if(mdp.value != confMdp.value && evt.target == confMdp){
 
                     confMdp.classList.add("invalid");
                 }
                 else{
                     confMdp.classList.remove("invalid");
                 }
-                if(formatTel.test(tel.value) == false){
-                    tel.classList.add("invalid");
-                }
-                else{
-                    tel.classList.remove("invalid");
-                }
+
 
             }
         }
