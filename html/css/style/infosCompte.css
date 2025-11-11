@@ -735,7 +735,7 @@ form > img {
   align-items: center;
 }
 .containerForm #overlaymdp {
-  height: 50%;
+  height: 60%;
   width: 50%;
 }
 .containerForm [popover]:popover-open::backdrop {

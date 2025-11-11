@@ -1,4 +1,5 @@
 <?php
+    header("location:infosCompte.php");
     session_start();
     require_once __DIR__ . '/env.php';
 
@@ -18,22 +19,71 @@
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
-
+    $_SESSION["codeCompte"] = 1;
     $codeCompte = $_SESSION["codeCompte"];
-    $codeCompte = 1;
     $infosCompte = $bdd->query("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
-    print_r($infosCompte);
-    $precPseudo = $infosCompte["pseudo"];
-    $precNom = $infosCompte["nom"];
-    $precPrenom = $infosCompte["prenom"];
 
-    if($_POST["pseudo"]){
-        $res = $bdd->query("SELECT * FROM alizon.Client WHERE pseudo = '".$_POST["pseudo"]."'")->fetch();
-        if($res == NULL){
-            $stmt = $bdd->prepare("UPDATE alizon.Client SET pseudo = ':pseudo'");
-            $stmt->execute(array(
-                ":identifiant" => $_POST["pseudo"]
-            ));
+    $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+
+    print_r($infosCompte);
+    print_r($infosAdresse);
+
+    
+    if($_GET["modif"] == "mdp"){
+        $stmt = $bdd->prepare("UPDATE alizon.Client SET mdp = '".$_SESSION["nouveauMdp"]."' WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
+        $stmt->execute();
+        $_SESSION["nouveauMdp"] = "";
+    }
+
+
+
+    //Faire les modifs sur tous les attributs    
+    foreach($_POST as $attribut => $valeur){
+        $item = strtolower($attribut);
+        //Vérifier si on est sur un attribut de compte
+        if(array_key_exists($item, $infosCompte)){
+
+            if($valeur != $infosCompte[$item]){
+                //Vérifier qu'un pseudo n'est pas déjà pris
+                if($item == "pseudo"){
+                    $verifPseudo = $bdd->query("SELECT * FROM alizon.Client WHERE pseudo = '".$valeur."'");
+                    if($verifPseudo == NULL){
+                        $stmt = $bdd->prepare("UPDATE alizon.Client SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
+                        $stmt->execute();                        
+                    }
+                    else{
+                        header('location:infosCompte.php?erreur=pseudo');
+                    }
+                }  
+                //Vérifier qu'un mail n'est pas déjà pris
+                if($item == "email"){
+                    $verifMail = $bdd->query("SELECT * FROM alizon.Client WHERE email = '".$valeur."'");
+                    if($verifMail == NULL){
+                        $stmt = $bdd->prepare("UPDATE alizon.Client SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
+                        $stmt->execute();                        
+                    }
+                    else{
+                        header('location:infosCompte.php?erreur=email');
+                    }
+                }                 
+                else{
+                    $stmt = $bdd->prepare("UPDATE alizon.Client SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
+                    $stmt->execute();
+                }
+
+            }
+
+        }
+
+
+        //Vérifier si on est sur un attribut d'adresse
+
+        else if(array_key_exists($item, $infosAdresse)){
+            if($valeur != $infosAdresse[$item]){
+                $stmt = $bdd->prepare("UPDATE alizon.Adresse SET ".$item." = '".$valeur."' WHERE idAdresse = '".$infosAdresse["idadresse"]."'");
+                $stmt->execute();
+            }
 
         }
     }
+$_SESSION["mdpValide"] = "";    
