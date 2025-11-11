@@ -27,7 +27,7 @@
                 echo "<p style=\"color:red\">Pseudonyme déjà utilisé</p>";
             }
             ?>
-            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._]{2,20}" required/> 
+            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._0-9]{2,20}" required/> 
             <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
             <div id="nomPrenomCli">
                 <div class="labelInput">
