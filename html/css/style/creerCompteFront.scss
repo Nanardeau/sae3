@@ -37,7 +37,8 @@ form{
     }
     span{
         display:none;
-        color:#6e6e6e;
+        //color:#6e6e6e;
+        color:red;
     }
     input{
         border:solid 1px;
@@ -57,6 +58,7 @@ form{
             border-color:red;
             &+span{
                 display:block;
+                
             }
         }
 

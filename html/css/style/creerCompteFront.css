@@ -290,7 +290,7 @@ form {
 }
 form span {
   display: none;
-  color: #6e6e6e;
+  color: red;
 }
 form input {
   border: solid 1px;

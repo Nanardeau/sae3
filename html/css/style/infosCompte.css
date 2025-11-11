@@ -560,7 +560,7 @@ form {
 }
 form span {
   display: none;
-  color: #6e6e6e;
+  color: red;
 }
 form input {
   border: solid 1px;
@@ -589,6 +589,7 @@ form input:user-invalid, form input.invalid {
 }
 form input:user-invalid + span, form input.invalid + span {
   display: block;
+  color: red;
 }
 @media screen and (max-width : 428px) {
   form input {

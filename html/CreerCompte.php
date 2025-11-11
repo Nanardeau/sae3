@@ -51,7 +51,7 @@
             <input type="text" name="confMail" id="confMailCli"/>
             <span>Les deux adresses e-mail doivent être identiques</span>
             <label for="numTel">Numéro de téléphone</label>
-            <input type="text" name="numTel" id="numTelCli" pattern="[0-9]{10}"/>
+            <input type="text" name="numTel" id="numTelCli"/>
             <span>Le numéro doit être dans le format suivant : 0102030405</span>
             <label for="dateNaiss">Date de naissance *</label>
             <input type="date" name="dateNaiss" class="boutonSec" id="dateNaiss" onChange="verifDate(event)" required/>
@@ -111,10 +111,16 @@
         let confMail = document.getElementById("confMailCli");
         let mdp = document.getElementById("mdpCli");
         let confMdp = document.getElementById("confMdpCli");
+        let tel = document.getElementById("numTelCli");
+
         let formatImage = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;
+        
+        let formatTel = /[0-9]{10}||([0-9]{2}.[0-9]{2}.){2}[0-9]{2}||([0-9]{2} " "[0-9]{2} " "){2}[0-9]{2}/;
+        
         mail.addEventListener("focusout", verifFormat);
         confMail.addEventListener("focusout", verifFormat);
         confMdp.addEventListener("focusout", verifFormat);
+        tel.addEventListener("focusout", verifFormat);
         function verifFormat(evt){
 
             if(evt.type == "focusout"){
@@ -136,6 +142,12 @@
                 }
                 else{
                     confMdp.classList.remove("invalid");
+                }
+                if(formatTel.test(tel.value) == false){
+                    tel.classList.add("invalid");
+                }
+                else{
+                    tel.classList.remove("invalid");
                 }
 
             }

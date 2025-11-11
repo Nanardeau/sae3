@@ -151,6 +151,12 @@
     <?php include('./includes/footer.php');?>
 
     <script>
+        
+
+
+
+
+
         <?php
         if($_SESSION["mdpValide"] == 1):?>
             document.querySelectorAll("h2")[1].removeAttribute("hidden");
