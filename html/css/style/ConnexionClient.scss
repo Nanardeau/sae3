@@ -4,8 +4,11 @@
 
 header{
     justify-self:center;
+    display:flex;
     margin :1em 0;
+    justify-content: center;
 }
+
 
 main{
     padding-bottom: 2em;
@@ -24,13 +27,41 @@ form{
     margin-top: 1em;
     justify-self:center;
     padding:2em;
+    font-family: 'mulish';
+    @media screen and (max-width:428px){
+        width:90%;
+        padding:1em;
+        align-items:center;
+        input{
+            width:80%;
+        }
+        label{
+            align-self:flex-start;
+            font-size:0.8em;
+        }
+    }
     input{
         border:solid 1px;
         border-radius:$radius;
         height:3em;
         margin:10px 0;
         padding:10px;
+        
     }
+    .bouton{
+    @include bouton;
+    height: 4em;
+    color:white;
+    font-family: 'mulish';
+    font-size:16px;
+    }
+    label{
+        font-weight:bold;
+    }
+    >h2{
+        margin:0;
+    }
+    
 }
 
 
@@ -39,6 +70,7 @@ aside{
     display:flex;
     flex-direction: column;
     justify-self:center;
+    font-family: 'mulish';
     figure{
         display:flex;
         img{

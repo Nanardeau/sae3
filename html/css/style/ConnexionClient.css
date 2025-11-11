@@ -31,7 +31,9 @@ h4 {
 
 header {
   justify-self: center;
+  display: flex;
   margin: 1em 0;
+  justify-content: center;
 }
 
 main {
@@ -51,6 +53,21 @@ form {
   margin-top: 1em;
   justify-self: center;
   padding: 2em;
+  font-family: "mulish";
+}
+@media screen and (max-width: 428px) {
+  form {
+    width: 90%;
+    padding: 1em;
+    align-items: center;
+  }
+  form input {
+    width: 80%;
+  }
+  form label {
+    align-self: flex-start;
+    font-size: 0.8em;
+  }
 }
 form input {
   border: solid 1px;
@@ -59,11 +76,33 @@ form input {
   margin: 10px 0;
   padding: 10px;
 }
+form .bouton {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-size: 20px;
+  background-color: #064082;
+  color: blanc;
+  border-radius: 1em;
+  cursor: pointer;
+  height: 4em;
+  color: white;
+  font-family: "mulish";
+  font-size: 16px;
+}
+form label {
+  font-weight: bold;
+}
+form > h2 {
+  margin: 0;
+}
 
 aside {
   display: flex;
   flex-direction: column;
   justify-self: center;
+  font-family: "mulish";
 }
 aside figure {
   display: flex;

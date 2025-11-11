@@ -19,9 +19,9 @@ try {
     $bdd = new PDO($ip, $user, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
-    echo "✅ Connecté à PostgreSQL ($dbname)";
+    //echo "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
-    echo "❌ Erreur de connexion : " . $e->getMessage();
+    //echo "❌ Erreur de connexion : " . $e->getMessage();
 }
 $bdd->query('set schema \'alizon\'');
 
@@ -54,7 +54,7 @@ if($_POST){
     <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <header><a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a></header>
+    <header><a href="accueil.php"><img src="../html/img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a></header>
     <main>
         <form action="ConnexionClient.php" method="post">
             <h2>Connexion</h2>
@@ -84,6 +84,6 @@ if($_POST){
         </aside>
         
     </main>
-    <footer></footer>
+    <?php include('./includes/footer.php');?>
 </body>
 </html>
