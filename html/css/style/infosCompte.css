@@ -712,14 +712,9 @@ form input[disabled] {
 form > h2 {
   align-self: center;
 }
-form > img {
-  width: -moz-fit-content;
-  width: fit-content;
-  align-self: center;
-  border-radius: 10em;
-}
 
 .containerForm {
+  padding-top: 40px;
   border: #A1A1A1 solid 0.01em;
   border-radius: 1em;
 }
@@ -734,14 +729,17 @@ form > img {
   flex-direction: column;
   align-items: center;
 }
-.containerForm #overlaymdp {
+
+#overlaymdp, #changerPhoto {
   height: 60%;
   width: 50%;
 }
-.containerForm [popover]:popover-open::backdrop {
+
+[popover]:popover-open::backdrop {
   background-color: rgba(0, 0, 0, 0.3);
 }
-.containerForm [popover]:popover-open {
+
+[popover]:popover-open {
   border-radius: 1em;
   border-width: 0.1em;
   display: flex;
@@ -750,6 +748,39 @@ form > img {
   align-items: center;
 }
 
+input[type=file] {
+  display: none;
+}
+
 .erreur {
   color: red;
+}
+
+.crayonPhoto {
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  left: 37%;
+}
+.crayonPhoto img {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+}
+.crayonPhoto label {
+  border: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0;
+  cursor: pointer;
+}
+.crayonPhoto label img {
+  width: auto;
+  height: 25%;
+  position: absolute;
+  border-radius: 25%;
+  bottom: 0;
+  right: 5px;
 }/*# sourceMappingURL=infosCompte.css.map */

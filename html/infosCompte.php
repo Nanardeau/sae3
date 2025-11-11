@@ -56,11 +56,23 @@
             <h2 class="erreur">Mot de passe incorrect</h2>
         <?php endif?>
         <a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
+
         <div class="containerForm">
+
         <form action="modifCompteCli.php" method="post" enctype="multipart/form-data">
+            <div class="crayonPhoto">
+                <img src="<?php echo $photo["urlphoto"]?>" alt="photoProfil" title="photoProfil"/>
+                <label for="changerPhoto" id="crayonPourModif" hidden><img src="./img/modifImage.svg"/></label>
+                <input type="file" name="photo" id="changerPhoto" style="display:none" hidden disabled/>
+            
+
+            </div>
+
             <h2>Mon compte</h2>
             <h2 hidden>Modifier mes informations</h2>
-            <img src="<?php echo $photo["urlphoto"]?>" alt="photoProfil" title="photoProfil"/>
+
+
+
             <label for="identifiant">Identifiant</label>
             <?php if($erreur == "pseudo"):?>
                 <p class="erreur">Pseudonyme déjà utilisé</p>
@@ -179,6 +191,10 @@
             document.getElementById("modifInfos").setAttribute("hidden", null);
 
             document.getElementById("modifmdp").setAttribute("hidden", null);
+            
+            document.getElementById("crayonPourModif").removeAttribute("hidden");
+            document.getElementById("changerPhoto").removeAttribute("hidden");
+            document.getElementById("changerPhoto").removeAttribute("disabled");
 
             console.log(document.querySelectorAll("input:disabled")[4]);
             let taille = console.log(document.querySelectorAll("input:disabled").length);
@@ -232,12 +248,6 @@
             }
 
         }
-
-
-
-
-        
-
 
     </script>
 </body>

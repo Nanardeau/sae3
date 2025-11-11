@@ -73,10 +73,7 @@
 
             }
 
-        }
-
-
-        //Vérifier si on est sur un attribut d'adresse
+        }        //Vérifier si on est sur un attribut d'adresse
 
         else if(array_key_exists($item, $infosAdresse)){
             if($valeur != $infosAdresse[$item]){
@@ -86,4 +83,26 @@
 
         }
     }
-$_SESSION["mdpValide"] = "";    
+
+if($_FILES["photo"]){
+    $extension = $_FILES["photo"]["type"];
+    $extension = substr($extension, strlen("image/"), (strlen($extension) - strlen("image/")));
+    $chemin = "./img/photosProfil/".time().".".$extension;
+
+
+    move_uploaded_file($_FILES["photo"]["tmp_name"], $chemin);
+
+
+    $stmt = $bdd->prepare("INSERT INTO alizon.Photo (urlPhoto) VALUES (:urlphoto)");
+    $stmt->execute(array(
+        ":urlphoto" => $chemin
+    ));
+    $stmt = $bdd->prepare("UPDATE alizon.Profil SET urlPhoto = :urlPhoto WHERE codeClient = :codeCompte");
+    $stmt->execute(array(
+        ":urlPhoto" => $chemin,
+        "codeCompte" => $codeCompte
+    ));
+
+    $_SESSION["mdpValide"] = "";
+}
+ 

@@ -15,14 +15,11 @@ form{
     >h2{
         align-self:center;
     }
-    >img{
-        width:fit-content;
-        align-self:center;
-        border-radius:10em;
-    }
 
 }
+
 .containerForm{
+    padding-top:$pad * 2;
     border:#A1A1A1 solid 0.01em;
     border-radius:$radius;
     .bouton{
@@ -33,29 +30,66 @@ form{
 
     }
 
+
+
     nav{
         display:flex;
         flex-direction: column;
         align-items:center;
     }
-    #overlaymdp{
-        height:60%;
-        width:50%;
-    }
-    [popover]:popover-open::backdrop{
-        background-color: rgb(0 0 0 / 30%);
-    }
-    [popover]:popover-open{
-        border: {
-            radius:$radius;
-            width:0.1em;
-        }
-        display:flex;
-        flex-direction:column;
-        justify-content: center;
-        align-items: center;
-    }
+
 }
+#overlaymdp, #changerPhoto{
+    height:60%;
+    width:50%;
+}
+[popover]:popover-open::backdrop{
+    background-color: rgb(0 0 0 / 30%);
+}
+[popover]:popover-open{
+    border: {
+        radius:$radius;
+        width:0.1em;
+    }
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+input[type="file"]{
+    display:none;
+}
+
 .erreur{
     color:red;
+}
+
+.crayonPhoto {
+    position: relative; 
+    width:fit-content;
+    left:37%;
+    img {
+        border-radius: 50%;
+        width:250px;
+        height: 250px;
+    }
+    label{
+        border:none;
+        width:fit-content;
+        height:fit-content;
+        padding:0;
+        cursor:pointer;
+        
+        img{
+            width: auto;
+
+            height: 25%;
+            position: absolute;
+            border-radius: 25%;
+            bottom: 0;
+            right: 5px;
+        }   
+
+    }
+      
 }
