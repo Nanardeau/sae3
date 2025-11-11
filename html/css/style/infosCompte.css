@@ -702,6 +702,9 @@ aside nav {
   width: 100%;
 }
 
+form {
+  border: none;
+}
 form input[disabled] {
   background-color: #ececec;
   color: black;
@@ -715,9 +718,34 @@ form > img {
   align-self: center;
   border-radius: 10em;
 }
-form .bouton {
-  height: 4em;
+
+.containerForm {
+  border: #A1A1A1 solid 0.01em;
+  border-radius: 1em;
+}
+.containerForm .bouton {
+  height: 3.5em;
   width: 70%;
   align-self: center;
   margin: 1em 0;
+}
+.containerForm nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.containerForm #overlaymdp {
+  height: 50%;
+  width: 50%;
+}
+.containerForm [popover]:popover-open::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.containerForm [popover]:popover-open {
+  border-radius: 1em;
+  border-width: 0.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=infosCompte.css.map */
