@@ -248,7 +248,7 @@ CREATE FUNCTION duplique_prixTTC()
 RETURNS TRIGGER AS $$
 BEGIN
 	SELECT Produit.prixTTC * NEW.qteProd INTO NEW.prixTTCtotal
-	FROM Produit WHERE Produit.codeProduit = NEW.codeProduit;
+	FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -263,7 +263,7 @@ CREATE FUNCTION duplique_prixHT()
 RETURNS TRIGGER AS $$
 BEGIN
 	SELECT Produit.prixHT * NEW.qteProd INTO NEW.prixHTtotal
-	FROM Produit WHERE Produit.codeProduit = NEW.codeProduit;
+	FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -286,60 +286,36 @@ EXECUTE FUNCTION duplique_prixTTC();
 
 --PrixTTCPanier = Somme(PrixTTC * qtProd)--
 
-CREATE FUNCTION calcul_prixTotalTTCPan() 
-RETURNS TRIGGER AS $$
-BEGIN
-    SELECT SUM(p.prixTTC * PUP.qteProd) INTO NEW.prixTTCtotal
-    FROM alizon.ProdUnitPanier PUP INNER JOIN alizon.Produit p ON PUP.codeProduit = p.codeProduit ;
-	
-	RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_calcul_TTCPanier
-BEFORE INSERT OR UPDATE ON ProdUnitPanier
-FOR EACH ROW
-EXECUTE FUNCTION calcul_prixTotalTTCPan();
 
 CREATE FUNCTION PanierFinalTestTTC()
 RETURNS TRIGGER AS $$
 BEGIN 
-	UPDATE Panier SET prixTTCtotal = (SELECT SUM(ProdUnitPanier.prixTTCtotal) FROM ProdUnitPanier INNER JOIN Panier ON ProdUnitPanier.idPanier = Panier.idPanier ) ;
+	UPDATE alizon.Panier SET prixTTCtotal = (SELECT SUM(ProdUnitPanier.prixTTCtotal) FROM alizon.ProdUnitPanier INNER JOIN alizon.Panier ON ProdUnitPanier.idPanier = Panier.idPanier ) ;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_panier_finTTC
-AFTER INSERT OR UPDATE ON ProdUnitPanier
+AFTER INSERT OR UPDATE OR DELETE ON ProdUnitPanier
 FOR EACH ROW
 EXECUTE FUNCTION PanierFinalTestTTC();
 
 CREATE FUNCTION PanierFinalTestHT()
 RETURNS TRIGGER AS $$
 BEGIN 
-	UPDATE Panier SET prixHTtotal = (SELECT SUM(ProdUnitPanier.prixHTtotal) FROM ProdUnitPanier INNER JOIN Panier ON ProdUnitPanier.idPanier = Panier.idPanier ) ;
+	UPDATE alizon.Panier SET prixHTtotal = (SELECT SUM(ProdUnitPanier.prixHTtotal) FROM alizon.ProdUnitPanier INNER JOIN alizon.Panier ON ProdUnitPanier.idPanier = Panier.idPanier ) ;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_panier_finHT
-AFTER INSERT OR UPDATE ON ProdUnitPanier
+AFTER INSERT OR UPDATE OR DELETE ON ProdUnitPanier
 FOR EACH ROW
 EXECUTE FUNCTION PanierFinalTestHT();
 --PrixHTPanier = Somme(PrixHT * qtProd)--
 
-CREATE FUNCTION calcul_prixTotalHTPan()
-RETURNS TRIGGER AS $$
-BEGIN
-	SELECT SUM(Produit.prixHT * PUP.qteProd) INTO NEW.prixTTCtotal
-	FROM Produit INNER JOIN ProdUnitPanier PUP ON PUP.codeProduit = Produit.codeProduit;
-	RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-CREATE TRIGGER trg_calcul_HTPanier
-BEFORE INSERT OR UPDATE ON ProdUnitPanier
-FOR EACH ROW
-EXECUTE FUNCTION calcul_prixTotalHTPan();
+
 
 
 --prixTotalTTC dans commande = somme(prixUnitTTC * qteProd)--
