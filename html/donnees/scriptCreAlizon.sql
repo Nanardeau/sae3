@@ -289,8 +289,8 @@ EXECUTE FUNCTION duplique_prixTTC();
 CREATE FUNCTION calcul_prixTotalTTCPan() 
 RETURNS TRIGGER AS $$
 BEGIN
-	SELECT SUM(Produit.prixTTC * PUP.qteProd) INTO NEW.prixTTCtotal
-	FROM ProdUnitPanier PUP INNER JOIN Produit ON PUP.codeProduit = Produit.codeProduit ;
+    SELECT SUM(p.prixTTC * PUP.qteProd) INTO NEW.prixTTCtotal
+    FROM alizon.ProdUnitPanier PUP INNER JOIN alizon.Produit p ON PUP.codeProduit = p.codeProduit ;
 	
 	RETURN NEW;
 END;

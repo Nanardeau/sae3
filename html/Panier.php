@@ -73,7 +73,7 @@ $bdd->query('set schema \'alizon\'');
             $infoPanier['prixHT'] = $ifPanierTemp["prixhttotal"];
             $infoPanier['nbProd'] = $nbProdPanier['count'];
               // Récupération de la liste des produits dans le panier
-            $stmProd = $bdd->query('SELECT ALL codeProduit,qteprod,prixTTCtotal from ProdUnitPanier where idPanier = 1');
+            $stmProd = $bdd->query('SELECT ALL codeProduit,qteprod,prixTTCtotal from ProdUnitPanier where idPanier = 1 ORDER BY codeProduit');
             $ListeProdPanier = $stmProd->fetchAll();
             ?>
 
@@ -87,7 +87,7 @@ $bdd->query('set schema \'alizon\'');
         <article>
         <?php
         foreach($ListeProdPanier as $liste){
-            $stmInfoProd = $bdd->query('SELECT libelleProd,urlphoto,codecomptevendeur from Produit where codeProduit = '.$liste["codeproduit"]);
+            $stmInfoProd = $bdd->query('SELECT libelleProd,urlphoto,codecomptevendeur from Produit where codeProduit = '.$liste["codeproduit"] );
             $infoProd = $stmInfoProd->fetch();
             //print_r($infoProd);
             $codeVendeur = $infoProd["codecomptevendeur"];
@@ -104,7 +104,7 @@ $bdd->query('set schema \'alizon\'');
             $prixTTC = $liste["prixttctotal"];
         ?>
         
-        <div class="articlePanier">
+        <div class="articlePanier" data-idpanier="<?php echo $infoPanier['idpanier']?>" data-codeprod="<?php echo $liste["codeproduit"]?>">
             <div>
                 <h3><?php echo $nomProd?></h3>
                 <p> Vendu par <strong><?php echo $vendeur?></strong></p>
@@ -112,9 +112,18 @@ $bdd->query('set schema \'alizon\'');
             <img src="<?php echo $urlImg?> " alt="Image produit"/>
             <article>
             <div class="compteur">
-                <input type="button" value="-" id="moinsArt" onclick="modifierQte()">
-                <p id="nbArt"><?php echo $qteProd?></p>
-                <input type="button" value="+" id="plusArt">
+                <?php 
+                    if($qteProd == 1){?>
+                        <input type="button" value="*" class="btn-supp">
+                        </input>
+                    <?php }else{?>
+                    
+                <input type="button" value="-" class="btn-moins">
+                <?php
+                }
+                ?>
+                <p class="nbArt"><?php echo $qteProd?></p>
+                <input type="button" value="+" class="btn-plus">
             </div>
             <p class="prix"><?php echo $prixTTC?> €</p>
             </article>
@@ -125,13 +134,7 @@ $bdd->query('set schema \'alizon\'');
         
         <input type="button" value="Vider Panier" style="grid-area: 2 / 1 / 3 / 2;"></input>
         
-        
-
-        
-
-
-
-
+    
         
         <?php }?>
     </main>

@@ -161,9 +161,13 @@ select * from ProdUnitPanier where idPanier = 1;
 select * from Panier where codecompte = 3;
 SELECT ALL count(*) from ProdUnitPanier where idPanier = 1;
 SELECT ALL codeProduit,qteprod from ProdUnitPanier where idPanier = 1;
+
 select * from produit where codeproduit = 1;
 SELECT libelleProd,urlphoto,codecomptevendeur from Produit where codeProduit = 1;
-SELECT * from Vendeur where codecompte = 1;
-
+SELECT * from Vendeur where codecompte = 5;
+update ProdUnitPanier set qteProd = qteProd + 1 where idPanier = 1 AND codeProduit = 1;
+select all * from ProdUnitPanier where idPanier = 1;
+delete from ProdUnitPanier where idPanier = 1 and codeProduit = 1;
+select all * from ProdUnitPanier where idPanier = 1;
 --SELECT * FROM Categoriser;
 --SELECT * FROM Categoriser where libelleCat = 'Alimentaire';

@@ -98,7 +98,11 @@ article{
                 border-radius: 0 $radius $radius 0;
             }
             
+            
         }
+        .btn-supp{
+                background-image: image-url('/html/img/svg/trash.svg') ;
+            }
         p{  
 
                 padding: 5px $pad;
