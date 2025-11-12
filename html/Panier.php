@@ -20,7 +20,8 @@ try {
     ]);
     // "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
-    // "❌ Erreur de connexion : " . $e->getMessage();
+    "❌ Erreur de connexion : " . $e->getMessage();
+    header("err.php");
 }
 $bdd->query('set schema \'alizon\'');
 ?>
@@ -42,23 +43,20 @@ $bdd->query('set schema \'alizon\'');
     <main>
         <?php //Si le client n'a rien dans so panier afficher -> panier vide 
         //Sinon -> afficher les informations du panier.  
-        $stmU = $bdd->prepare('SELECT codeCompte FROM Client WHERE pseudo = ?'); // Ligne test pour tester si le client a un panier vide
-        $stmU->execute(['test']);
-        //$stmU->execute(['Nanardeau']);
-        $idUsertmp = $stmU->fetchAll();
-        $idUser =  $idUsertmp[0]['codecompte'];
+        $_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
+        $idUser =  $_SESSION["codeCompte"];
 
         // Rercherche du panier par rapport au code compte 
         $stmP = $bdd->prepare('SELECT * from Panier where codeCompte = \''.$idUser.'\'');
         $stmP->execute();
         $ifPanierTemp = $stmP->fetch();
-        //print_r($nbProdPanier);
-        if($ifPanierTemp == null){?>
+        //’print_r($ifPanierTemp);
+        if($ifPanierTemp == null || $ifPanierTemp["prixttctotal"] == null){?>
 
             <!--version panier vide-->
             <div class="vide">
                 <h1> Votre panier est vide </h1>
-                <a href="index.html">Revenir à l'acceuil<a>
+                <a href="index.html">Revenir à l'accueil<a>
             </div>
 
         <?php
