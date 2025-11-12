@@ -284,6 +284,11 @@ header nav svg {
 .nav-cat svg {
   overflow: visible;
 }
+@media screen and (max-width: 428px) {
+  .nav-cat {
+    display: none;
+  }
+}
 
 .overlayMenuCat {
   z-index: 998;
@@ -311,6 +316,11 @@ header nav svg {
   overflow-y: scroll;
   scrollbar-width: none;
 }
+@media screen and (max-width: 428px) {
+  .overlayContentCat {
+    display: none;
+  }
+}
 .overlayContentCat ul {
   padding-inline-start: 1rem;
 }
@@ -332,6 +342,73 @@ header nav svg {
 }
 .overlayContentCat ul ul > li {
   margin-left: 1rem;
+}
+
+.overlayMenuCatMob {
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlayContentCatMob {
+  position: absolute;
+  background: white;
+  text-align: left;
+  min-width: 70%;
+  height: 100%;
+  left: 0;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.overlayContentCatMob ul {
+  padding-inline-start: 1rem;
+}
+.overlayContentCatMob ul li {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+.overlayContentCatMob ul li a {
+  text-decoration: underline;
+  font-family: "Mulish";
+  font-size: 24px;
+  font-weight: 600;
+  color: black;
+}
+.overlayContentCatMob ul ul > li > a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: normal;
+}
+.overlayContentCatMob ul ul > li {
+  margin-left: 1rem;
+}
+.overlayContentCatMob .page-acc {
+  text-decoration: none;
+  color: black;
+  margin-left: 1rem;
+  align-self: center;
+  border-bottom: 5px solid #A1A1A1;
+  width: 100%;
+}
+.overlayContentCatMob .identification {
+  background-color: #064082;
+  width: 100%;
+  height: 20%;
+}
+.overlayContentCatMob .identification a {
+  text-decoration: none;
+  color: white;
+}
+.overlayContentCatMob .identification h3, .overlayContentCatMob .identification p {
+  margin: 0;
+  color: white;
 }
 
 .card {
