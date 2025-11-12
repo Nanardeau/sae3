@@ -52,7 +52,7 @@
 </head>
 <body>   
     <main>
-        <?php if($_SESSION["mdpValide"] == 0):?>
+        <?php if($_SESSION["mdpValide"] == -1):?>
             <h2 class="erreur">Mot de passe incorrect</h2>
         <?php endif?>
         <a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
@@ -168,8 +168,10 @@
             </div>
             <button class="bouton" id="annuler" onclick="annuler()" hidden>Annuler</button>
             <button class="bouton" id="blocageCompte" onclick="bloquerCompte()">Bloquer compte</button>
+            
         </nav>
         </div>
+        <button class="btnJaune" id="deconnexion" onclick="deconnecter()">Se déconnecter</button>
 
 
 
@@ -247,6 +249,13 @@
                 confMdp.classList.remove("invalid");
             }
 
+        }
+        function deconnecter(){
+            <?php 
+                session_destroy(); 
+                header('location:index.php');   
+            ?>
+            window.location.reload();
         }
 
     </script>

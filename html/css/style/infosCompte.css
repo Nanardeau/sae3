@@ -666,21 +666,6 @@ aside .bouton {
   width: 80%;
   margin-bottom: 1em;
 }
-aside .btnJaune {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #064082;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
-  background-color: #FCB66B;
-  color: black;
-  width: 50%;
-  padding: 1em;
-}
 aside nav {
   display: flex;
   flex-direction: column;
@@ -700,6 +685,23 @@ aside nav {
 
 #nomCli {
   width: 100%;
+}
+
+.btnJaune {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  background-color: #FCB66B;
+  border: 0px;
+  color: black;
+  width: 50%;
+  padding: 1em;
 }
 
 form {
@@ -783,4 +785,9 @@ input[type=file] {
   border-radius: 25%;
   bottom: 0;
   right: 5px;
+}
+
+.btnJaune {
+  margin-top: 2em;
+  width: 30%;
 }/*# sourceMappingURL=infosCompte.css.map */

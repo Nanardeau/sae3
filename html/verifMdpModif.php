@@ -39,7 +39,7 @@
         }
     }
     else{
-        $_SESSION["mdpValide"] = 0;
+        $_SESSION["mdpValide"] = -1;
         if($_GET["modifMdp"] == 1){
             header('location:infosCompte.php');
         }        
