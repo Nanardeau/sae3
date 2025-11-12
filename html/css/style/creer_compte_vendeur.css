@@ -13,6 +13,16 @@ body header h1 {
   margin-left: 20px;
   font-family: "Baloo 2";
 }
+body main span {
+  display: none;
+  color: #6e6e6e;
+}
+body main input:user-invalid, body main input.invalid {
+  border-color: red;
+}
+body main input:user-invalid + span, body main input.invalid + span {
+  display: block;
+}
 body main .alignementPR_IE {
   border: black 2px solid;
   border-radius: 16px;

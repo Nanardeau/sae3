@@ -19,6 +19,20 @@ body{
         }
     }
     main {
+        span{
+            display:none;
+            color:#6e6e6e;
+        }
+        input {
+            &:user-invalid, &.invalid{
+                border-color:red;
+                &+span{
+                    display:block;
+                }
+            }
+        
+        }
+
         .alignementPR_IE {
             border: black 2px solid;
             border-radius: 16px;
