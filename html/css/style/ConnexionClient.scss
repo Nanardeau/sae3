@@ -29,17 +29,8 @@ form{
     justify-self:center;
     padding:2em;
     font-family: 'mulish';
-    @media screen and (max-width:428px){
-        width:90%;
-        padding:1em;
-        align-items:center;
-        input{
-            width:80%;
-        }
-        label{
-            align-self:flex-start;
-            font-size:0.8em;
-        }
+    @media screen and ($mobile){
+        width:85%;
     }
     input{
         border:solid 1px;
@@ -55,6 +46,9 @@ form{
     color:white;
     font-family: 'mulish';
     font-size:16px;
+    @media screen and ($mobile) {
+            width: 100%;
+        }
     }
     label{
         font-weight:bold;
@@ -75,8 +69,14 @@ aside{
     figure{
         display:flex;
         img{
-            margin: 0 10px;
+            margin: 0 5px;
             width: 100px;
+            @media screen and ($mobile){
+                width: 17%;
+                height:50px;
+            }
+        }
+       
         }
     }
 
@@ -85,6 +85,7 @@ aside{
         padding:1em;
         width:80%;
         margin-bottom:1em;
+        
     }
 
     .btnJaune{
@@ -105,4 +106,3 @@ aside{
         }
     }
 
-}

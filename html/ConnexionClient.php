@@ -54,8 +54,8 @@ if($_POST){
     <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <header><a href="accueil.php"><img src="../html/img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a></header>
     <main>
+        <a href="accueil.php"><img src="../html/img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
         <form action="ConnexionClient.php" method="post">
             <h2>Connexion</h2>
             <label for="pseudo">Identifiant</label>
