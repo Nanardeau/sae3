@@ -13,71 +13,68 @@ body header h1 {
   margin-left: 20px;
   font-family: "Baloo 2";
 }
-body main {
+body main .alignementPR_IE {
   border: black 2px solid;
   border-radius: 16px;
   display: flex;
 }
-body main div {
+body main .alignementPR_IE div {
   padding-left: 40px;
   padding-bottom: 65px;
   width: 480px;
   padding-top: 0;
 }
-body main div h2, body main div h3 {
+body main .alignementPR_IE div h2, body main .alignementPR_IE div h3 {
   text-align: center;
 }
-body main div h2 {
+body main .alignementPR_IE div h2 {
   font-size: 40px;
 }
-body main div h5 {
+body main .alignementPR_IE div h5 {
   font-size: 16px;
 }
-body main div input {
+body main .alignementPR_IE div input {
   background-color: white;
   border-radius: 8px;
   height: 40px;
   font-size: 16px;
 }
-body main .nomPrenom {
+body main .alignementPR_IE .nomPrenom {
   display: flex;
   flex-direction: row;
   padding-left: 0;
   padding-bottom: 0;
 }
-body main .labelInput {
+body main .alignementPR_IE .labelInput {
   padding-left: 0;
   padding-bottom: 0;
 }
-body main :nth-child(3) h3 {
+body main .alignementPR_IE :nth-child(3) h3 {
   padding-top: 5.5em;
 }
-body main .dimension {
+body main .alignementPR_IE .dimension {
   width: 430px;
 }
-body main .dimension_petit {
+body main .alignementPR_IE .dimension_petit {
   width: 190px;
 }
-body main .num_adresse {
+body main .alignementPR_IE .num_adresse {
   width: 150px;
   margin-right: 20px;
 }
-body main .rue_adresse {
+body main .alignementPR_IE .rue_adresse {
   width: 250px;
 }
-body footer {
+body main .button {
+  padding-top: 50px;
   text-align: center;
 }
-body footer button {
-  margin-top: 50px;
-  background-color: #CD4B22;
-  border-radius: 16px;
+body main .button button {
   height: 55px;
-  width: 440px;
+  width: 430px;
+  background-color: #CD4B22;
   color: white;
   font-size: 24px;
   font-weight: bold;
-}
-body footer button:hover {
-  border: black 4px solid;
+  border-radius: 16px;
 }/*# sourceMappingURL=creer_compte_vendeur.css.map */

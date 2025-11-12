@@ -19,77 +19,76 @@ body{
         }
     }
     main {
-        border: black 2px solid;
-        border-radius: 16px;
-        display: flex;
-
-        div {
-            padding-left: 40px;
-            padding-bottom: 65px;
-            width: 480px;
-            padding-top:0;
-            h2, h3 {
-                text-align: center;
-            }
-            h2{
-                font-size: 40px;
-            }
-            
-            
-            h5 {
-                font-size: 16px;
-            }
-            input {
-                background-color: $blanc;
-                border-radius: 8px;
-                height: 40px;
-                font-size: 16px;
-            }
-        }
-        .nomPrenom{
-            display:flex;
-            flex-direction: row;
-            padding-left:0;
-            padding-bottom: 0;
-        }
-        .labelInput{
-            padding-left:0;
-            padding-bottom: 0;
-        }
-        :nth-child(3) h3{
-            padding-top:5.5em;
-        }
-        .dimension {
-            width: 430px;
-        }
-        .dimension_petit{
-            width: 190px;
-        }
-        .num_adresse{
-            width: 150px;
-            margin-right: 20px;
-        }
-
-        .rue_adresse{
-            width: 250px;
-        }
-    }
-    footer{
-        text-align: center;
-        button {
-            margin-top: 50px;
-            background-color: $colP;
+        .alignementPR_IE {
+            border: black 2px solid;
             border-radius: 16px;
-            height: 55px;
-            width: 440px;
-            color: $blanc;
-            font-size: 24px;
-            font-weight: bold;
+            display: flex;
+
+            div {
+                padding-left: 40px;
+                padding-bottom: 65px;
+                width: 480px;
+                padding-top:0;
+                h2, h3 {
+                    text-align: center;
+                }
+                h2{
+                    font-size: 40px;
+                }
+                
+                
+                h5 {
+                    font-size: 16px;
+                }
+                input {
+                    background-color: $blanc;
+                    border-radius: 8px;
+                    height: 40px;
+                    font-size: 16px;
+                }
+            }
+            .nomPrenom{
+                display:flex;
+                flex-direction: row;
+                padding-left:0;
+                padding-bottom: 0;
+            }
+            .labelInput{
+                padding-left:0;
+                padding-bottom: 0;
+            }
+            :nth-child(3) h3{
+                padding-top:5.5em;
+            }
+            .dimension {
+                width: 430px;
+            }
+            .dimension_petit{
+                width: 190px;
+            }
+            .num_adresse{
+                width: 150px;
+                margin-right: 20px;
+            }
+
+            .rue_adresse{
+                width: 250px;
+            }
+            
         }
-        button:hover {
-            border: $noir 4px solid;
+        .button {
+            padding-top: 50px;
+            text-align: center;
+            button {
+                height: 55px;
+                width: 430px;
+                background-color: $colP;
+                color: $blanc;
+                font-size: $MoyTitle;
+                font-weight: bold;
+                border-radius: 16px;
+            }
         }
+        
     }
-
-
 }
