@@ -340,109 +340,129 @@ header nav svg {
   margin-left: 1rem;
 }
 
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
+header {
+  justify-self: center;
+  display: flex;
+  margin: 1em 0;
+  justify-content: center;
+  background-color: white;
 }
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
+
+main {
+  padding-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
+
+form {
+  border: #A1A1A1 solid 0.01em;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 35em;
+  margin-top: 1em;
+  justify-self: center;
+  padding: 2em;
+  font-family: "mulish";
 }
-@font-face {
+@media screen and (max-width : 428px) {
+  form {
+    width: 85%;
+  }
+}
+form input {
+  border: solid 1px;
+  border-radius: 1em;
+  height: 3em;
+  margin: 10px 0;
+  padding: 10px;
+}
+form .bouton {
   font-family: "Mulish";
-  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
   font-weight: bold;
-  font-style: italic;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  height: 4em;
+  color: white;
+  font-family: "mulish";
+  font-size: 16px;
 }
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
+@media screen and (max-width : 428px) {
+  form .bouton {
+    width: 100%;
+  }
 }
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
+form label {
   font-weight: bold;
-  font-style: normal;
 }
-body {
+form > h2 {
   margin: 0;
 }
 
-.anonnces_produits {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-  padding-top: 100px;
-}
-
-.annonce_produit {
-  background-color: #D1ECF8;
-  border-radius: 1em;
-  width: 40%;
-  padding: 1rem;
-  text-align: center;
+aside {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-self: center;
+  font-family: "mulish";
 }
-.annonce_produit img {
-  width: 100%;
-  height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  background-color: rgb(217, 217, 217);
-  margin-bottom: 1rem;
+aside figure {
+  display: flex;
+}
+aside figure img {
+  margin: 0 5px;
+  width: 100px;
+}
+@media screen and (max-width : 428px) {
+  aside figure img {
+    width: 17%;
+    height: 50px;
+  }
 }
 
-.boutton {
+.bouton {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
   background-color: #064082;
   color: white;
-  font-family: "Mulish";
-  text-decoration: none;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 1em;
+  cursor: pointer;
+  padding: 1em;
+  width: 80%;
+  margin-bottom: 1em;
 }
 
-.annonce_produit_large {
-  width: 65%;
-  position: relative;
+.btnJaune {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  background-color: #FCB66B;
+  padding: 1em;
+  color: black;
+  width: 30%;
+}
+
+nav {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.annonce_produit_large img {
-  height: 250px;
-}
-
-.separateur {
-  background-color: #FCB66B;
-  width: 98%;
-  height: 10px;
-  border-radius: 1em;
-}
-
-.aff_prod {
-  margin-left: 30px;
-}/*# sourceMappingURL=accueil.css.map */
+nav a {
+  text-decoration: none;
+  color: white;
+}/*# sourceMappingURL=ConnexionClient.css.map */
