@@ -51,7 +51,7 @@ $bdd->query('set schema \'alizon\'');
             </div>
             <div class="annonce_produit annonce_produit_large">
                 <img src="" alt="Image voir les evenement en cours">
-                <a class="boutton" href="">Evenement en cours</a>
+                <a class="boutton" href="Catalogue.php">Accèder au catalogue</a>
             </div>
             
         </section>

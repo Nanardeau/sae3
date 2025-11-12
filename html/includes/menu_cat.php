@@ -4,6 +4,7 @@
                     <path d="M1.5 10.7993H23.65" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M1.5 20.0986H23.65" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+            <div>
             <?php
                 $catCurr = null;
                 $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); //Nom de la catégorie  
@@ -17,6 +18,8 @@
                 <?php
                 }
                 ?>
+            </div>
+            <h2>></h2>
         </nav>
         <div id="overlayMenuCat" class="overlayMenuCat tab-only">
             <div class="overlayContentCat">
@@ -35,7 +38,6 @@
 
                     $listSousCats = $bdd->query("SELECT DISTINCT libSousCat FROM SousCat WHERE libCat = '" . $catCurr . "'");
 
-                    // Vérifier s'il y a des sous-catégories
                     if ($listSousCats->rowCount() > 0) {
                         echo "<ul>";
                         foreach ($listSousCats as $libSousCat) {

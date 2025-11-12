@@ -36,7 +36,10 @@ $bdd->query('set schema \'alizon\'');
 
 <body>
     <?php include 'includes/header.php';?>
+
     <main>
+        <?php include 'includes/menu_cat.php';?>
+
         <h1>Toutes les catégories</h1>
 
 
