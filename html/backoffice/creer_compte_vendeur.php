@@ -47,31 +47,41 @@
                         </h5>
                         
                         <input type="text" name="nom" id="nom"  class="dimension_petit" required>
+                        <span>Le nom doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
                     </div>
                     <div class="labelInput">
                         <h5>
                             Prenom* :
                         </h5>
                         <input type="text" name="prenom" id="prenom"  class="dimension_petit" required>
+                        <span>Le prenom doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
                     </div>
                 </div>
+                <!--
                 <label for="email">
+                -->
                     <h5>
                         Adresse e-mail* :
                     </h5>
+                <!--
                 </label>
+                -->
                 <?php 
                     if($erreur == "mail"){
                         echo "<p>Adresse e-mail déjà utilisée</p>";   
                     }
                 ?>
-                <input type="text" name="email" id="email" class="dimension" required>
-                
-                <label for="email_conf">
-                    <h5>
-                        Confirmer adresse e-mail* :
-                    </h5>
+                <input type="text" name="email" id="email" class="dimension" pattern="^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$" required>
+                <span>le format est incorrecte ("exemple : a@gmail.fr")</span>
+                <!--
+                <label for="email_conf"> 
+                -->
+                <h5>
+                    Confirmer adresse e-mail* :
+                </h5>
+                <!--
                 </label>
+                -->
                 <input type="text" name="email_conf" id="email_conf" class="dimension"  required>
                 <span>Les deux adresses e-mail doivent être identiques</span>
                 
@@ -80,10 +90,12 @@
                 </h5>
                 
                 <input type="text" name="num_tel" id="num_tel" class="dimension_petit" pattern="[0-9]{10}" required>
+                <span>Le numero de telephone doit faire 10 numéros</span>
                 <h5>
                     mot de passe* :
                 </h5>
                 <input type="password" name="mdp" id="mdp" class="dimension" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required>
+                <span>incorecte : minimum 2 et maximum 20 caractère</span>
                 <h5>
                     Confirmer mot de passe* :
                 </h5>
@@ -99,10 +111,12 @@
                     Numéro de SIREN* :
                 </h5>
                 <input type="text" name="num_siren" id="num_siren" class="dimension" required>
+                <span>Le numéro siren existe déjà</span>
                 <h5>
                     Raison sociale* :
                 </h5>
                 <input type="text" name="raison_soc" id="raison_soc" class="dimension" required>
+
                 <h5>
                     ligne d'adresse 1* :
                 </h5>
@@ -116,6 +130,7 @@
                     Code postal* :
                 </h5>
                 <input type="text" name="code_post" id="code_post" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" required>
+                <span>incorrecte on doit avoir 5 chiffres à la suite</span>
                 <h5>
                     Ville* :
                 </h5>
@@ -140,7 +155,6 @@
 
         let mdp = document.getElementById("mdp");
         let confMdp = document.getElementById("mdp_conf");
-        
         confMail.addEventListener("focusout", verifConfMail);
         confMdp.addEventListener("focusout", verifFormat);.
         
