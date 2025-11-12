@@ -91,7 +91,7 @@
                 </div>
             </div>
             <label for="mailCli">Adresse e-mail</label>
-            <?php if($erreur == "mail"):?>
+            <?php if($erreur == "email"):?>
                 <p class="erreur">Adresse e-mail déjà utilisée</p>
             <?php endif?>
             <input type="text" name="email" id="mailCli" value="<?php echo "mail"?>" required disabled/>
@@ -171,7 +171,7 @@
             
         </nav>
         </div>
-        <button class="btnJaune" id="deconnexion" onclick="deconnecter()">Se déconnecter</button>
+        <button class="btnJaune" id="deconnexion" onclick="deconnecter()"><img src="./img/icon_déconnexion.svg"/>Se déconnecter</button>
 
 
 
@@ -184,7 +184,7 @@
 
         <?php
         if($_SESSION["mdpValide"] == 1):?>
-
+            
             document.querySelectorAll("h2")[1].removeAttribute("hidden");
             document.querySelectorAll("h2")[0].setAttribute("hidden", null);
             document.getElementById("valider").removeAttribute("hidden");
@@ -226,6 +226,7 @@
 
                 }
             }
+            $_SESSION["mdpValide"] = 0;
         <?php endif?>
         
         let mdp = document.getElementById("mdpModifCli");
@@ -235,7 +236,7 @@
 
         function annuler(){
            <?php 
-           $_SESSION["mdpValide"] = ""?>
+           $_SESSION["mdpValide"] = 0?>
            window.location.reload();  
 
         }
@@ -258,6 +259,17 @@
             window.location.reload();
         }
 
+        function bloquerCompte(){
+            let res = confirm("Voulez-vous vraiment bloquer votre compte ? Celui-ci sera anonymisé");
+            if(res == true){
+                <?php                
+                    $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = TRUE WHERE codeCompte = '".$codeCompte."'");
+                    $stmt->execute();
+                    
+                ?>
+                deconnecter();
+            }
+        }
     </script>
 </body>
 </html>

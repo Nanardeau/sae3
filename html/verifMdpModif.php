@@ -34,6 +34,7 @@
         $_SESSION["mdpValide"] = 1;
         if($_GET["modifMdp"] == 1){
             $_SESSION["nouveauMdp"] = $_POST["mdpModifCli"];
+            $_SESSION["mdpValide"] = 0;
             header('location:modifCompteCli.php?modif=mdp');
             exit();
         }

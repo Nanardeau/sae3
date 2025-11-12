@@ -46,8 +46,8 @@
             if($valeur != $infosCompte[$item]){
                 //Vérifier qu'un pseudo n'est pas déjà pris
                 if($item == "pseudo"){
-                    $verifPseudo = $bdd->query("SELECT * FROM alizon.Client WHERE pseudo = '".$valeur."'");
-                    if($verifPseudo == NULL){
+                    $verifPseudo = $bdd->query("SELECT * FROM alizon.Client WHERE pseudo = '".$valeur."'")->fetch();
+                    if($verifPseudo == NULL || $verifPseudo["pseudo"] == $value){
                         $stmt = $bdd->prepare("UPDATE alizon.Client SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
                         $stmt->execute();                        
                     }
@@ -57,8 +57,8 @@
                 }  
                 //Vérifier qu'un mail n'est pas déjà pris
                 if($item == "email"){
-                    $verifMail = $bdd->query("SELECT * FROM alizon.Client WHERE email = '".$valeur."'");
-                    if($verifMail == NULL){
+                    $verifMail = $bdd->query("SELECT * FROM alizon.Client WHERE email = '".$valeur."'")->fetch();
+                    if($verifMail == NULL || $verifMail["email"] == $value){
                         $stmt = $bdd->prepare("UPDATE alizon.Client SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
                         $stmt->execute();                        
                     }
@@ -84,7 +84,8 @@
         }
     }
 
-if($_FILES["photo"]){
+if($_FILES["photo"]["name"] != ""){
+    print_r($_FILES["photo"]);
     $extension = $_FILES["photo"]["type"];
     $extension = substr($extension, strlen("image/"), (strlen($extension) - strlen("image/")));
     $chemin = "./img/photosProfil/".time().".".$extension;
@@ -103,6 +104,6 @@ if($_FILES["photo"]){
         "codeCompte" => $codeCompte
     ));
 
-    $_SESSION["mdpValide"] = "";
+    $_SESSION["mdpValide"] = 0;
 }
  
