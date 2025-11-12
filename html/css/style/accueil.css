@@ -1,4 +1,3 @@
-@import url("bootstrap/scss/utilities/api");
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
@@ -23,7 +22,7 @@
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bolder;
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -44,13 +43,13 @@
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bold;
+  font-weight: bolder;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -65,36 +64,29 @@ body {
 
 main {
   padding-top: 80px;
-  padding-bottom: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
 }
 
 h1 {
   font-family: "Baloo";
   font-size: 40px;
+  font-weight: bold;
 }
 
 h2 {
   font-family: "Baloo";
   font-size: 32px;
+  font-weight: bold;
 }
 
 h3 {
   font-family: "Baloo";
   font-size: 24px;
+  font-weight: bold;
 }
 
 h4 {
   font-family: "Baloo";
   font-size: 20px;
-}
-
-p, label, input {
-  font-family: "Mulish";
-}
-
-label {
   font-weight: bold;
 }
 
@@ -341,150 +333,123 @@ header nav svg {
   margin-left: 1rem;
 }
 
-.card {
-  margin: 0 20px;
-  color: black;
-  width: auto;
-  height: auto;
-  max-width: 240px;
-  max-height: 340px;
-  border-radius: 0.5em;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 20px;
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
+  font-weight: medium;
+  font-style: normal;
+  font-display: swap;
 }
-@media screen and (max-width : 428px) {
-  .card {
-    max-height: 260px;
-  }
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
 }
-.card figure {
-  grid-area: 1/1/2/3;
-  margin: 0;
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
-.card figure img {
-  width: 100%;
-  background-color: white;
-  max-height: 180px;
-  height: auto;
-  border-radius: 0.5em;
-}
-.card figure figcaption {
-  margin-top: 10px;
-}
-.card .prix {
-  grid-area: 2/1/3/2;
-  align-content: flex-end;
-  margin: 0;
-}
-.card div {
-  grid-area: 2/2/3/3;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: end;
-  float: right;
-  height: auto;
-}
-.card div a svg {
-  display: none;
-}
-@media screen and (max-width : 428px) {
-  .card div a svg {
-    display: block;
-    fill: #FCB66B;
-    stoke: black;
-  }
-}
-.card div a input {
-  display: block;
+@font-face {
   font-family: "Mulish";
-  width: 100%;
-  margin-top: 20px;
-  min-width: 8rem;
-  height: 2rem;
-  text-align: center;
-  color: black;
+  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
   font-weight: bold;
-  background-color: #FCB66B;
-  border: none;
-  border-radius: 1em;
-  cursor: pointer;
+  font-style: normal;
+  font-display: swap;
 }
-@media screen and (max-width : 428px) {
-  .card div a input {
-    display: none;
-  }
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  margin: 0;
 }
 
-a {
-  text-decoration: none;
-}
-
-.titre-cat {
+.anonnces_produits {
+  position: relative;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  padding-top: 100px;
+}
+
+.annonce_produit {
+  background-color: #D1ECF8;
+  border-radius: 1em;
+  width: 40%;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.annonce_produit img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: rgb(217, 217, 217);
+  margin-bottom: 1rem;
+}
+
+.boutton {
+  background-color: #064082;
+  color: white;
+  font-family: "Mulish";
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+}
+
+.annonce_produit_large {
+  width: 65%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.annonce_produit_large img {
+  height: 250px;
 }
 
 .separateur {
-  display: block;
   background-color: #FCB66B;
-  width: auto;
+  width: 98%;
   height: 10px;
   border-radius: 1em;
 }
-@media screen and (max-width : 428px) {
-  .separateur {
-    display: none;
-  }
-}
 
-.separateur2 {
-  display: none;
-  background-color: #FCB66B;
-  width: 100%;
-  height: 10px;
-  border-radius: 1em;
-}
-@media screen and (max-width : 428px) {
-  .separateur2 {
-    display: block;
-    margin-left: 20px;
-  }
-}
-
-h1 {
-  display: block;
-  margin-top: 20px;
-  margin-left: 20px;
-}
-@media screen and (max-width : 428px) {
-  h1 {
-    display: none;
-  }
-}
-
-h2 {
-  margin-top: 20px;
-  margin-left: 40px;
-}
-@media screen and (max-width : 428px) {
-  h2 {
-    margin-left: 20px;
-  }
-}
-
-.card {
-  background-color: #D1ECF8;
-  flex: 0 0 auto;
-}
-
-article {
-  overflow-x: scroll;
-  min-width: 100%;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-}/*# sourceMappingURL=catalogue.css.map */
+.aff_prod {
+  margin-left: 30px;
+}/*# sourceMappingURL=accueil.css.map */

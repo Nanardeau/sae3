@@ -1,27 +1,28 @@
 <?php
+//Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
-
-// Charger le fichier .env
 loadEnv(__DIR__ . '/.env');
 
-// Récupérer les variables
+// Récupération des variables
 $host = getenv('PGHOST');
 $port = getenv('PGPORT');
 $dbname = getenv('PGDATABASE');
 $user = getenv('PGUSER');
 $password = getenv('PGPASSWORD');
 
+
 // Connexion à PostgreSQL
-$dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
-    $pdo = new PDO($dsn, $user, $password, [
+
+try {
+    $ip = 'pgsql:host=' . $host . ';port=' . $port . ';dbname=' . $dbname . ';';
+    $bdd = new PDO($ip, $user, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
-// try {
-    
-//     echo "✅ Connecté à PostgreSQL ($dbname)";
-// } catch (PDOException $e) {
-//     echo "❌ Erreur de connexion : " . $e->getMessage();
-// }
+    // "✅ Connecté à PostgreSQL ($dbname)";
+} catch (PDOException $e) {
+    // "❌ Erreur de connexion : " . $e->getMessage();
+}
+$bdd->query('set schema \'alizon\'');
 ?>
 
 <html lang="fr">
@@ -36,9 +37,12 @@ $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
         include 'includes/header.php';
     ?>
     <main>
+        <?php
+            include 'includes/menu_cat.php';
+        ?>
         <section class="anonnces_produits">
             <div class="annonce_produit">
-                <img src="" alt="Image voir les nou²veautés">
+                <img src="" alt="Image voir les nouveautés">
                 <a class="boutton" href="">Voir les nouveautés</a>
             </div>
             <div class="annonce_produit">
@@ -47,7 +51,7 @@ $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
             </div>
             <div class="annonce_produit annonce_produit_large">
                 <img src="" alt="Image voir les evenement en cours">
-                <a class="boutton" href="">Evenement en cours</a>
+                <a class="boutton" href="Catalogue.php">Accèder au catalogue</a>
             </div>
             
         </section>
@@ -64,6 +68,6 @@ $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
     <?php
         include 'includes/footer.php';
     ?>
-
+    <script src="script/script.js"></script>
 </body>
 </html>
