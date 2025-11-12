@@ -27,6 +27,7 @@ $bdd->query('set schema \'alizon\'');
 
 $error_msg = "";
 
+
 if($_POST){
     $id = $_POST["pseudo"];
     $mdp = $_POST["mdp"];
@@ -34,8 +35,22 @@ if($_POST){
     $req= $bdd->query ("SELECT * FROM Client WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
     $rep= $req->fetch();
     if($rep!=null){
+        $blq = $rep["cmtblq"];
         //connexion
-        header("location: accueil.php");
+        //$req2= $bdd->query("SELECT cmtBlq FROM Client WHERE  pseudo = '".$id."' AND mdp = '".$mdp."'");
+        //$blq= $req2->fetch();
+        if($blq==true){
+            $error_msg="Vous avez décidé de bloquer votre compte.";
+            $debloq_msg="Pour le débloquer, cliquez ici.";
+        }else{
+            $blqMod=$rep["cmtblqmod"];
+            if($blqMod==true){
+                $error_msg="Votre compte a été bloqué car vous n'avez pas respecté les règles d'utilisation de ce site.";
+            }else{
+                header("location: accueil.php");
+            }
+        }
+        
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         
@@ -65,7 +80,8 @@ if($_POST){
             <?php 
                 if($error_msg != ""){
             ?>
-                    <p> <?php echo($error_msg); ?> </p>
+                    <p> <?php echo($error_msg); ?><br/>
+                    <a href=""><?php echo $debloq_msg?></a></p>
             <?php
                 }
             ?>
