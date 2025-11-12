@@ -1,6 +1,8 @@
 <?php 
     session_start();
-
+    if(!$_SESSION["codeCompte"]){
+        header('location:index.php');
+    }
     $codeCompte = $_SESSION["codeCompte"];
     if($_GET["erreur"]){
         $erreur = $_GET["erreur"];
