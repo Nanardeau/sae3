@@ -26,7 +26,7 @@
                 <path d="M1.13159 6.15454H23.8684" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M1.51111 5.43006C1.17934 5.87241 1 6.41044 1 6.96339V24C1 24.6778 1.26925 25.3278 1.7485 25.807C2.22776 26.2863 2.87778 26.5556 3.55556 26.5556H21.4444C22.1222 26.5556 22.7722 26.2863 23.2515 25.807C23.7308 25.3278 24 24.6778 24 24V6.96339C24 6.41044 23.8207 5.87241 23.4889 5.43006L20.9333 2.02222C20.6953 1.70483 20.3866 1.44722 20.0318 1.2698C19.6769 1.09237 19.2856 1 18.8889 1H6.11111C5.71437 1 5.32308 1.09237 4.96823 1.2698C4.61338 1.44722 4.30471 1.70483 4.06667 2.02222L1.51111 5.43006Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <a class="tab-only" href="#">Mon Panier</a>
+            <a class="tab-only" href="Panier.php">Mon Panier</a>
         </nav>
         
         <!--<input type="button" name="button" value="Se connecter">
