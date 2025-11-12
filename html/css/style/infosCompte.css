@@ -716,7 +716,7 @@ form > h2 {
 }
 
 .containerForm {
-  padding-top: 40px;
+  margin-top: 20px;
   border: #A1A1A1 solid 0.01em;
   border-radius: 1em;
 }

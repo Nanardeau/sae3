@@ -88,7 +88,7 @@
             <label for="confMdpCli">Confirmer mot de passe *</label>
             <input type="password" name="confMdp" id="confMdpCli" required/>
             <span>Les deux mots de passe doivent être identiques</span>
-            <input class="bouton" type="submit" value="Créer un compte"/>
+            <input class="bouton" type="submit" id="creerCompte" value="Créer un compte"/>
         </form>   
         <aside>
             <figure>
@@ -118,6 +118,7 @@
         mail.addEventListener("focusout", verifFormat);
         confMail.addEventListener("focusout", verifFormat);
         confMdp.addEventListener("focusout", verifFormat);
+        creerCompte.addEventListener("click", verifFormatClic);
         function verifFormat(evt){
             if(evt.type == "focusout"){
                 if(formatMail.test(mail.value) == false && evt.target == mail){
@@ -128,7 +129,9 @@
                     mail.classList.remove("invalid");
                 }
                 if(mail.value != confMail.value && evt.target == confMail){
+
                     confMail.classList.add("invalid");
+                    evt.preventDefault();
                 }
                 else{
                     confMail.classList.remove("invalid");
@@ -144,7 +147,16 @@
 
             }
         }
-
+        function verifFormatClic(evt){
+            if(confMail.value != mail.value){
+                evt.preventDefault();
+                confMail.classList.add("invalid");
+            }
+            if(confMdp.value != mdp.value){
+                evt.preventDefault();
+                confMdp.classList.add("invalid");
+            }
+        }
         function verifDate(evt){
             let elemDate = document.getElementById("dateNaiss");
             let date = document.getElementById("dateNaiss").value;
