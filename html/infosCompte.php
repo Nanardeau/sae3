@@ -32,15 +32,9 @@
     $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
     
     $photo = $bdd->query("SELECT profil.urlPhoto  FROM alizon.Photo photo INNER JOIN alizon.Profil profil ON photo.urlPhoto = profil.urlPhoto WHERE profil.codeClient = '".$codeCompte."'")->fetch();
-        print_r($photo["urlphoto"]);
-        print_r($adresse);
-
-    print_r($_SESSION);
-    echo "POST\n";
-    print_r($_POST);
-    
 
 ?>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
