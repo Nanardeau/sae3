@@ -1,4 +1,4 @@
-@use "../vFront" as *;
+@use "../vback" as *;
 
 @mixin text($taille){
     font: {
@@ -25,3 +25,19 @@
     cursor:pointer;
 }
    
+
+@mixin bouton($couleur  : $colP){
+    font: {
+        family: $Poltext;
+        weight: bold;
+    }
+    text: {
+        align: center;
+        decoration: none;
+        size: $PetTitle;
+    }
+    background-color: $couleur;
+    color:$blanc;
+    border-radius: $radius;
+    cursor:pointer;
+}
