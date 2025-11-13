@@ -1,0 +1,116 @@
+@use "../tools/vback" as *;
+
+
+body{
+    h1, h2, h3, h5{
+        font-family: $Poltitle;
+    }
+    p {
+        font-family: $Poltext;
+        font-size: $txtSize;
+    }
+    padding: 150px;
+    margin : auto;
+    width: 1140px;
+    header {
+        padding-left: 50px;
+        padding-bottom: 10px;
+        display: flex;
+        align-items: center;
+        h1 {
+            margin-left: 20px;
+            font-family: $Poltitle;
+            font-size: $TrGdTitle;
+        }
+    }
+    main {
+        span{
+            display:none;
+            color:#6e6e6e;
+        }
+        input {
+            &:user-invalid, &.invalid{
+                border-color:red;
+                &+span{
+                    display:block;
+                }
+            }
+        
+        }
+
+        .alignementPR_IE {
+            border: black 2px solid;
+            border-radius: 16px;
+            display: flex;
+
+            div {
+                padding-left: 40px;
+                padding-bottom: 65px;
+                width: 480px;
+                padding-top:0;
+                h2, h3 {
+                    text-align: center;
+                }
+                h2{
+                    font-size: $GdTitle;
+                    
+                }
+                h3 {
+                    font-size: $MoyTitle;
+                }
+                
+                h5 {
+                    font-size: 16px;
+                }
+                input {
+                    background-color: $blanc;
+                    border-radius: 8px;
+                    height: 40px;
+                    font-size: 16px;
+                }
+            }
+            .nomPrenom{
+                display:flex;
+                flex-direction: row;
+                padding-left:0;
+                padding-bottom: 0;
+            }
+            .labelInput{
+                padding-left:0;
+                padding-bottom: 0;
+            }
+            :nth-child(3) h3{
+                padding-top: 70px;
+            }
+            .dimension {
+                width: 430px;
+            }
+            .dimension_petit{
+                width: 190px;
+            }
+            .num_adresse{
+                width: 150px;
+                margin-right: 20px;
+            }
+
+            .rue_adresse{
+                width: 250px;
+            }
+            
+        }
+        .button {
+            padding-top: 50px;
+            text-align: center;
+            button {
+                height: 55px;
+                width: 430px;
+                background-color: $colP;
+                color: $blanc;
+                font-size: $MoyTitle;
+                font-weight: bold;
+                border-radius: 16px;
+            }
+        }
+        
+    }
+}
