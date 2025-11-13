@@ -1,8 +1,10 @@
 <?php 
     session_start();
-
+    if(!array_key_exists("codeCompte", $_SESSION)){
+        header("location:index.php");
+    }
     $codeCompte = $_SESSION["codeCompte"];
-    if($_GET["erreur"]){
+    if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
     }
     else{
@@ -26,7 +28,7 @@
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
-    $codeCompte = 1;
+    //$codeCompte = 1;
     $compte = $bdd->query("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
     
     $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
