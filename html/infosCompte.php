@@ -1,11 +1,10 @@
 <?php 
     session_start();
-    /*if(!$_SESSION["codeCompte"]){
-        header('location:index.php');
-    }*/
+    if(!array_key_exists("codeCompte", $_SESSION)){
+        header("location:index.php");
+    }
     $codeCompte = $_SESSION["codeCompte"];
-    $codeCompte = 1;
-    if($_GET["erreur"]){
+    if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
     }
     else{
@@ -29,7 +28,7 @@
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
-    $codeCompte = 1;
+    //$codeCompte = 1;
     $compte = $bdd->query("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
     
     $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
@@ -99,7 +98,6 @@
             <span>Le numéro doit être dans le format suivant : 0102030405</span>
             <label for="dateNaiss">Date de naissance</label>
             <input type="date" name="dateNaissance" class="boutonSec" id="dateNaiss" onChange="verifDate(event)" value="<?php echo $compte["datenaissance"]?>"required disabled/>
-            <span>La date de naissance doit être antérieure à la date du jour</span>
             <?php if($adresse):?>
             <h3>Adresse</h3> 
             <div class="container-fluid p-0">
@@ -160,7 +158,7 @@
                     <label for="confMdpModifCli">Confirmer le mot de passe</label>
                     <input type="password" name="confMdpModifCli" id="confMdpModifCli" required/>
                     <span>Les deux mots de passe doivent être identiques</span>
-                    <input type="submit" class="bouton" value="Valider"/>
+                    <input type="submit" id="validerModifMdp" class="bouton" value="Valider"/>
                 </form>
             </div>
             <button class="bouton" id="annuler" onclick="annuler()" hidden>Annuler</button>
@@ -181,7 +179,7 @@
 
         <?php
         if($_SESSION["mdpValide"] == 1):?>
-            
+            //Rendre modifiables les champs SAUF dateNaissance
             document.querySelectorAll("h2")[1].removeAttribute("hidden");
             document.querySelectorAll("h2")[0].setAttribute("hidden", null);
             document.getElementById("valider").removeAttribute("hidden");
@@ -194,7 +192,6 @@
             document.getElementById("crayonPourModif").removeAttribute("hidden");
             document.getElementById("changerPhoto").removeAttribute("hidden");
             document.getElementById("changerPhoto").removeAttribute("disabled");
-
             console.log(document.querySelectorAll("input:disabled")[4]);
             let taille = console.log(document.querySelectorAll("input:disabled").length);
             while(document.querySelector("input:disabled")){
@@ -208,6 +205,8 @@
             date.classList.remove("modifiable");
             date.setAttribute("disabled",null);
 
+
+            //Vérifications de formats
             let mail = document.getElementById("mailCli");
             let formatMail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;        
             mail.addEventListener("focusout", verifFormat);   
@@ -226,8 +225,11 @@
             $_SESSION["mdpValide"] = 0;
         <?php endif?>
         
+        //Vérification mot de passe = confirmer mot de passe
         let mdp = document.getElementById("mdpModifCli");
         let confMdp = document.getElementById("confMdpModifCli");
+        let btnValiderMdp = document.getElementById("validerModifMdp");
+        btnValiderMdp.addEventListener("click", verifMdp);
         confMdp.addEventListener("focusout", verifMdp);
 
 
@@ -239,15 +241,19 @@
         }
 
 
-        function verifMdp(){
+        function verifMdp(evt){
             if(mdp.value != confMdp.value){
                 confMdp.classList.add("invalid");
+                evt.preventDefault();
             }
             else{
                 confMdp.classList.remove("invalid");
+                
+
             }
 
         }
+        
         function deconnecter(){
             <?php 
                 session_destroy(); 
