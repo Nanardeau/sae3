@@ -465,10 +465,6 @@ header a .user {
   flex-direction: row;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 main {
   padding-bottom: 2em;
   display: flex;
@@ -486,20 +482,6 @@ form {
   margin-top: 1em;
   align-self: center;
   padding: 2em;
-}
-@media screen and (max-width : 428px) {
-  form {
-    width: 90%;
-    padding: 1em;
-    align-items: center;
-  }
-  form input {
-    width: 80%;
-  }
-  form label {
-    align-self: flex-start;
-    font-size: 0.8em;
-  }
 }
 form textarea {
   border: solid 1px;
@@ -549,17 +531,6 @@ form input#photoProd {
   border: none;
   font-size: 0.8em;
 }
-@media screen and (screen and (max-width : 428px)) {
-  form input {
-    width: 100%;
-  }
-  form input::-moz-placeholder {
-    font-size: 0.9em;
-  }
-  form input::placeholder {
-    font-size: 0.9em;
-  }
-}
 form input .bouton {
   height: 5em;
   font-size: 24px;
@@ -571,6 +542,25 @@ form input .bouton {
 }
 form h2 {
   margin: 0;
+}
+form label::after {
+  content: "*";
+  color: red;
+}
+form .taille label::after {
+  content: "";
+  color: none;
+}
+
+.labelInput {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (screen and (max-width : 428px)) {
+  .labelInput {
+    display: block;
+    width: 100%;
+  }
 }
 
 .bouton {

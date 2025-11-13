@@ -49,9 +49,7 @@ header{
     }
     
 }
-*{
-    box-sizing: border-box;
-}
+
 main{
     padding-bottom:2em;
     display:flex;
@@ -69,18 +67,7 @@ form{
     margin-top:1em;
     align-self:center;
     padding:2em;
-    @media #{$mobile}{
-        width:90%;
-        padding:1em;
-        align-items:center;
-        input{
-            width:80%;
-        }
-        label{
-            align-self:flex-start;
-            font-size:0.8em;
-        }
-    }
+    
     textarea{
         border:solid 1px;
         border-radius:$radius;
@@ -112,16 +99,6 @@ form{
             border:none;
             font-size:0.8em;
         }
-        
-        
-
-        @media screen and ($mobile){
-            width:100%;
-            &::placeholder{
-                font-size:0.9em;
-            }
-            
-        }
         .bouton{
         height:5em;
         font-size:$MoyTitle;
@@ -134,8 +111,29 @@ form{
     h2{
             margin: 0;
         }
+    label::after{
+            content: "*";
+            color:red;
+    }
+    .taille{
+        label::after{
+            content: "";
+            color:none;
+    }
+    }
+            
+        
+        
+}
 
-}  
+.labelInput{
+    display:flex;
+    flex-direction: column;
+    @media screen and ($mobile) {
+        display:block;
+        width:100%;
+    }
+}
 
 .bouton{
     @include bouton($colP);
