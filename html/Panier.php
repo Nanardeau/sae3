@@ -20,14 +20,21 @@ try {
     ]);
     // "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
-    "❌ Erreur de connexion : " . $e->getMessage();
+    //"❌ Erreur de connexion : " . $e->getMessage();
     ?>
     <script>
         alert("Erreur lors du chargement");
     </script>
     <?php
-    header("index.php");
+        header('Location: http://localhost:8888/index.php');
+        exit();
 }
+$_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
+
+if(!isset($_SESSION["codeCompte"])){
+        header('Location: http://localhost:8888/index.php');
+        exit();   
+    }
 $bdd->query('set schema \'alizon\'');
 ?>
 
@@ -48,7 +55,7 @@ $bdd->query('set schema \'alizon\'');
     <main>
         <?php //Si le client n'a rien dans so panier afficher -> panier vide 
         //Sinon -> afficher les informations du panier.  
-        $_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
+                
         $idUser =  $_SESSION["codeCompte"];
 
         // Rercherche du panier par rapport au code compte 
