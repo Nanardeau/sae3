@@ -3,6 +3,13 @@ body {
   margin: auto;
   width: 1140px;
 }
+body h1, body h2, body h3, body h5 {
+  font-family: "Baloo 2";
+}
+body p {
+  font-family: "Mulish";
+  font-size: 14px;
+}
 body header {
   padding-left: 50px;
   padding-bottom: 10px;
@@ -12,6 +19,7 @@ body header {
 body header h1 {
   margin-left: 20px;
   font-family: "Baloo 2";
+  font-size: 40px;
 }
 body main span {
   display: none;
@@ -38,7 +46,10 @@ body main .alignementPR_IE div h2, body main .alignementPR_IE div h3 {
   text-align: center;
 }
 body main .alignementPR_IE div h2 {
-  font-size: 40px;
+  font-size: 32px;
+}
+body main .alignementPR_IE div h3 {
+  font-size: 24px;
 }
 body main .alignementPR_IE div h5 {
   font-size: 16px;
@@ -60,7 +71,7 @@ body main .alignementPR_IE .labelInput {
   padding-bottom: 0;
 }
 body main .alignementPR_IE :nth-child(3) h3 {
-  padding-top: 5.5em;
+  padding-top: 70px;
 }
 body main .alignementPR_IE .dimension {
   width: 430px;

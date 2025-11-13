@@ -1,10 +1,14 @@
 @use "../tools/vback" as *;
 
 
-
-
 body{
-    
+    h1, h2, h3, h5{
+        font-family: $Poltitle;
+    }
+    p {
+        font-family: $Poltext;
+        font-size: $txtSize;
+    }
     padding: 150px;
     margin : auto;
     width: 1140px;
@@ -16,6 +20,7 @@ body{
         h1 {
             margin-left: 20px;
             font-family: $Poltitle;
+            font-size: $TrGdTitle;
         }
     }
     main {
@@ -47,9 +52,12 @@ body{
                     text-align: center;
                 }
                 h2{
-                    font-size: 40px;
+                    font-size: $GdTitle;
+                    
                 }
-                
+                h3 {
+                    font-size: $MoyTitle;
+                }
                 
                 h5 {
                     font-size: 16px;
@@ -72,7 +80,7 @@ body{
                 padding-bottom: 0;
             }
             :nth-child(3) h3{
-                padding-top:5.5em;
+                padding-top: 70px;
             }
             .dimension {
                 width: 430px;

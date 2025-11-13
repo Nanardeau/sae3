@@ -57,15 +57,11 @@
                         <span>Le prenom doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
                     </div>
                 </div>
-                <!--
-                <label for="email">
-                -->
-                    <h5>
-                        Adresse e-mail* :
-                    </h5>
-                <!--
-                </label>
-                -->
+                
+                <h5>
+                    Adresse e-mail* :
+                </h5>
+                
                 <?php 
                     if($erreur == "mail"){
                         echo "<p>Adresse e-mail déjà utilisée</p>";   
@@ -73,15 +69,11 @@
                 ?>
                 <input type="text" name="email" id="email" class="dimension" pattern="^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$" required>
                 <span>le format est incorrecte ("exemple : a@gmail.fr")</span>
-                <!--
-                <label for="email_conf"> 
-                -->
+                
                 <h5>
                     Confirmer adresse e-mail* :
                 </h5>
-                <!--
-                </label>
-                -->
+                
                 <input type="text" name="email_conf" id="email_conf" class="dimension"  required>
                 <span>Les deux adresses e-mail doivent être identiques</span>
                 
