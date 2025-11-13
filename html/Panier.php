@@ -20,9 +20,21 @@ try {
     ]);
     // "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
-    "❌ Erreur de connexion : " . $e->getMessage();
-    header("err.php");
+    //"❌ Erreur de connexion : " . $e->getMessage();
+    ?>
+    <script>
+        alert("Erreur lors du chargement");
+    </script>
+    <?php
+        header('Location: http://localhost:8888/index.php');
+        exit();
 }
+$_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
+
+if(!isset($_SESSION["codeCompte"])){
+        header('Location: http://localhost:8888/index.php');
+        exit();   
+    }
 $bdd->query('set schema \'alizon\'');
 ?>
 
@@ -43,7 +55,7 @@ $bdd->query('set schema \'alizon\'');
     <main>
         <?php //Si le client n'a rien dans so panier afficher -> panier vide 
         //Sinon -> afficher les informations du panier.  
-        $_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
+                
         $idUser =  $_SESSION["codeCompte"];
 
         // Rercherche du panier par rapport au code compte 
@@ -116,12 +128,12 @@ $bdd->query('set schema \'alizon\'');
                         
                     <?php }else{?>
                     
-                <button class="btn-moins" onclick="modifProduit(this,<?php echo $infoPanier['idpanier']?>,<?php echo $liste['codeproduit']?>)">-</button>
+                <button class="btn-moins" onclick="modifProduit(this,<?php echo $infoPanier['idpanier']?>,<?php echo $liste['codeproduit']?>)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus"><path d="M5 12h14"/></svg></button>
                 <?php
                 }
                 ?>
                 <p class="nbArt"><?php echo $qteProd?></p>
-                <button class="btn-plus" onclick="modifProduit(this,<?php echo $infoPanier['idpanier']?>,<?php echo $liste['codeproduit']?>)">+</button>
+                <button class="btn-plus" onclick="modifProduit(this,<?php echo $infoPanier['idpanier']?>,<?php echo $liste['codeproduit']?>)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
             </div>
             <p class="prix"><?php echo $prixTTC?> €</p>
             
@@ -130,7 +142,7 @@ $bdd->query('set schema \'alizon\'');
         <?php }?>
         </article>
         
-        <input type="button" value="Vider Panier" class="btn-vider" onclick="viderPanier(<?php echo $infoPanier['idpanier']?>,<?php echo $liste['codeproduit']?>)">
+        <button type="button" value="" class="btn-vider" onclick="viderPanier(<?php echo $infoPanier['idpanier']?>,<?php echo $liste['codeproduit']?>)">Vider Panier</button>
         
     
         
