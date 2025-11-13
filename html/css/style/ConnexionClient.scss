@@ -61,18 +61,20 @@ form{
     p{
         color: darkred;
     }
-    a {
-        &:visited{
-            color: darkred;
-        }
-        color:darkred;
-        text-decoration: none;
-        margin:0 0 0 0;
-    }
+    
     
 }
 
-
+#debloquerCompte{
+        border:none;
+        background-color: white;
+        color:darkred;
+        cursor: pointer;
+        padding: 0;
+    }
+p{
+        color: darkred;
+    }
 
 aside{
     display:flex;

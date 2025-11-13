@@ -260,12 +260,16 @@ form > h2 {
 form p {
   color: darkred;
 }
-form a {
+
+#debloquerCompte {
+  border: none;
+  background-color: white;
   color: darkred;
-  text-decoration: none;
-  margin: 0 0 0 0;
+  cursor: pointer;
+  padding: 0;
 }
-form a:visited {
+
+p {
   color: darkred;
 }
 
