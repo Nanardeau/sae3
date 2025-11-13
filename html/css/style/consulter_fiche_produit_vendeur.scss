@@ -1,0 +1,27 @@
+@use "../tools/vback" as *;
+
+
+
+div {
+    display: flex;
+    align-items: center;
+}
+img, input {
+    margin: 10px;
+}
+.buton_commentaire {
+    width: 250px;
+    height: 40px;
+    background-color: $blanc;
+    border-radius: 16px;
+}
+.buton_modif, .buton_ret_cat {
+    width: 200px;
+    height: 50px;
+    background-color: $blanc;
+    border-radius: 8px;
+    
+}
+section {
+    width: 868px;
+}
