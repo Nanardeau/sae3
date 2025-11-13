@@ -37,17 +37,17 @@ if($_POST){
     if($rep!=null){
         $blq = $rep["cmtblq"];
         //connexion
-        //$req2= $bdd->query("SELECT cmtBlq FROM Client WHERE  pseudo = '".$id."' AND mdp = '".$mdp."'");
-        //$blq= $req2->fetch();
+        $req2= $bdd->query("SELECT cmtBlq FROM Client WHERE  pseudo = '".$id."' AND mdp = '".$mdp."'");
+        $blq= $req2->fetch();
         if($blq==true){
             $error_msg="Vous avez décidé de bloquer votre compte.";
-            $debloq_msg="Pour le débloquer, cliquez ici.";
+            $debloq_msg="Pour le débloquer et vous connecter, cliquez ici.";
         }else{
             $blqMod=$rep["cmtblqmod"];
             if($blqMod==true){
                 $error_msg="Votre compte a été bloqué car vous n'avez pas respecté les règles d'utilisation de ce site.";
             }else{
-                header("location: accueil.php");
+               header("location: accueil.php");
             }
         }
         
@@ -77,11 +77,12 @@ if($_POST){
             <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" required/>
             <label for="mdp">Mot de passe</label>
             <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli" required/>
-            <?php 
+            <?php
                 if($error_msg != ""){
             ?>
                     <p> <?php echo($error_msg); ?><br/>
-                    <a href=""><?php echo $debloq_msg?></a></p>
+
+                    <button id="debloquerCompte" onclick="debloquerCompte()"><?php echo ($debloq_msg);?></button>
             <?php
                 }
             ?>
@@ -98,8 +99,22 @@ if($_POST){
                 <a href="Catalogue.php" class="btnJaune">Retour</a>
             <nav>
         </aside>
-        
+    
     </main>
     <?php include('./includes/footer.php');?>
+<script>
+    function debloquerCompte(){
+    <?php
+        $id = $_POST["pseudo"];
+        $mdp = $_POST["mdp"];
+
+        $req2= $bdd->query ("UPDATE Client SET cmtBlq=false WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
+        
+        header("location: accueil.php");
+    
+    ?>
+    }
+</script>
+
 </body>
 </html>
