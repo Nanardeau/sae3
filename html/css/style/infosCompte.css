@@ -714,6 +714,17 @@ form input[disabled] {
 form > h2 {
   align-self: center;
 }
+@media screen and (max-width : 428px) {
+  form {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  form #nomPrenomCli, form .labelInput {
+    width: 100%;
+  }
+}
 
 .containerForm {
   margin-top: 20px;
@@ -736,6 +747,12 @@ form > h2 {
   height: 60%;
   width: 50%;
 }
+@media screen and (max-width : 428px) {
+  #overlaymdp, #changerPhoto {
+    height: 90%;
+    width: 80%;
+  }
+}
 
 [popover]:popover-open::backdrop {
   background-color: rgba(0, 0, 0, 0.3);
@@ -748,6 +765,11 @@ form > h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width : 428px) {
+  [popover]:popover-open .bouton {
+    height: 2.5em;
+  }
 }
 
 input[type=file] {
@@ -762,7 +784,7 @@ input[type=file] {
   position: relative;
   width: -moz-fit-content;
   width: fit-content;
-  left: 37%;
+  left: 35%;
 }
 .crayonPhoto img {
   border-radius: 50%;
@@ -784,12 +806,26 @@ input[type=file] {
   position: absolute;
   border-radius: 25%;
   bottom: 0;
-  right: 5px;
+  right: 10px;
+}
+@media screen and (max-width : 428px) {
+  .crayonPhoto {
+    left: 0;
+  }
+  .crayonPhoto img {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .btnJaune {
   margin-top: 2em;
   width: 30%;
+}
+@media screen and (max-width : 428px) {
+  .btnJaune {
+    width: 60%;
+  }
 }
 
 #deconnexion img {

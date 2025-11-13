@@ -15,7 +15,17 @@ form{
     >h2{
         align-self:center;
     }
-
+    @media screen and ($mobile){
+        margin: {
+            left:auto;
+            right:auto;
+            bottom:0;
+        }
+        padding-bottom:0;
+        #nomPrenomCli, .labelInput{
+            width:100%;
+        }
+    }
 }
 
 .containerForm{
@@ -27,11 +37,7 @@ form{
         width:70%;
         align-self:center;
         margin: 1em 0;
-
     }
-
-
-
     nav{
         display:flex;
         flex-direction: column;
@@ -42,6 +48,10 @@ form{
 #overlaymdp, #changerPhoto{
     height:60%;
     width:50%;
+    @media screen and ($mobile){
+        height:90%;
+        width:80%;
+    }
 }
 [popover]:popover-open::backdrop{
     background-color: rgb(0 0 0 / 30%);
@@ -55,6 +65,13 @@ form{
     flex-direction:column;
     justify-content: center;
     align-items: center;
+    @media screen and ($mobile){
+        .bouton{
+            height:2.5em;
+
+        }
+    }
+
 }
 input[type="file"]{
     display:none;
@@ -67,11 +84,13 @@ input[type="file"]{
 .crayonPhoto {
     position: relative; 
     width:fit-content;
-    left:37%;
+    left:35%;
+
     img {
         border-radius: 50%;
         width:250px;
         height: 250px;
+        
     }
     label{
         border:none;
@@ -82,20 +101,28 @@ input[type="file"]{
         
         img{
             width: auto;
-
             height: 25%;
             position: absolute;
             border-radius: 25%;
             bottom: 0;
-            right: 5px;
+            right:10px;
         }   
 
     }
-      
+    @media screen and ($mobile){
+        left:0;
+        img{
+            width:200px;
+            height:200px;
+        }
+    }
 }
 .btnJaune{
     margin-top:2em;
     width:30%;
+    @media screen and ($mobile){
+        width:60%;
+    }
 }
 #deconnexion img{
     margin-right:1em;
