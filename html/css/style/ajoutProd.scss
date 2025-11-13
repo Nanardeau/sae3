@@ -1,0 +1,148 @@
+@use '../tools/vback.scss' as *;
+@use '../components/fonts.css' as *;
+@use '../style/styleCom.scss' as *;
+@use "../tools/mixin/com" as *;
+@use 'sass:color';
+
+header{
+    position:relative;
+    display: flex;
+    flex-direction: row;
+    background-color: $colP;
+    
+    .logo_alizon_back{
+        width: 118px;
+        height: auto;
+        margin: 1em 2em 1em 2em;
+    }
+
+    h1{
+        color: white;
+        font-family: $Poltitle , sans-serif;
+        font-size: 2em;
+        margin: 0 22em 0 0;
+    }
+
+    a {
+        display: flex;
+        outline:none;
+        text-decoration: none;
+        h2{
+        color: white;
+        font-family: $Poltitle , sans-serif;
+        font-size: 1.5em;
+        margin: 0 2em 0 0;
+        
+        }
+        .ajout{
+            margin: 0 0.5em 0 2em;
+            width: auto;
+            height: auto;
+            flex-direction: row;
+        }
+        .user{
+            width: 2em;
+            height: auto;
+            margin: 0 0.5em 0 2em;
+            flex-direction: row;
+        }
+    }
+    
+}
+*{
+    box-sizing: border-box;
+}
+main{
+    padding-bottom:2em;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    
+}
+form{
+    border:#A1A1A1 solid 0.01em;
+    border-radius:$radius;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    width:50em;
+    margin-top:1em;
+    align-self:center;
+    padding:2em;
+    @media #{$mobile}{
+        width:90%;
+        padding:1em;
+        align-items:center;
+        input{
+            width:80%;
+        }
+        label{
+            align-self:flex-start;
+            font-size:0.8em;
+        }
+    }
+    textarea{
+        border:solid 1px;
+        border-radius:$radius;
+        height:10em;
+        margin:10px 0;
+        padding:10px;
+        resize: none;
+    }
+    select {
+        @include bouton($colP);
+        border-radius:$radius;
+        margin:10px 0;
+        padding:10px;
+        border: none;
+        font-size:0.8em;
+        max-width: 200px;
+    }
+    input{
+        border:solid 1px;
+        border-radius:$radius;
+        height:3em;
+        margin:10px 0;
+        padding:10px;
+        &::file-selector-button{
+            @include bouton($colP);
+            border: none;
+        }
+        &#photoProd{
+            border:none;
+            font-size:0.8em;
+        }
+        
+        
+
+        @media screen and ($mobile){
+            width:100%;
+            &::placeholder{
+                font-size:0.9em;
+            }
+            
+        }
+        .bouton{
+        height:5em;
+        font-size:$MoyTitle;
+            @media screen and ($mobile){
+                height:4em;
+            }
+        }
+        
+    }
+    h2{
+            margin: 0;
+        }
+
+}  
+
+.bouton{
+    @include bouton($colP);
+    &:hover{
+        background-color : color.change($colP, $lightness: 40%);
+    }
+    &:active{
+        background-color : color.change($colP, $lightness: 10%);
+    }
+}
