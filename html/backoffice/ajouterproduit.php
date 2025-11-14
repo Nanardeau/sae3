@@ -1,4 +1,11 @@
 <?php
+if(isset($_GET["erreur"])){
+        $erreur = $_GET["erreur"];
+}
+else{
+        $erreur = NULL;
+    }
+session_start();
 //Connexion à la base de données.
 require_once('../_env.php');
 loadEnv('../.env');
@@ -21,11 +28,7 @@ try {
     // "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
     //"❌ Erreur de connexion : " . $e->getMessage();
-    ?>
-    <script>
-        alert("Erreur lors du chargement");
-    </script>
-    <?php
+
         header('Location: http://localhost:8888/index.php');
         exit();
 }
@@ -49,15 +52,23 @@ $bdd->query('set schema \'alizon\'');
 <body>
     <?php include("../includes/backoffice/header.php"); ?>
 <main>
-<form>
+    <?php if($erreur == "succes"){
+                echo "<h2 style=\"color:green\">Produit créé avec succès</h2>";
+            }
+    ?>
+<form action="energProduit.php" method="post" enctype="multipart/form-data">
     <h2>Ajouter Produit</h2>
     
-    <label for="intitule">Intitulé</label>
-    <input type="text" name="intitule" placeholder="Intitulé..." id="intitule" pattern="[A-Za-z._0-9]{2,20}" required/> 
-    <label for="appelation">Déscription détaillée</label>
+    <label for="nom">Intitulé</label>
+    <input type="text" name="nom" placeholder="Intitulé..." id="nom" required/> 
+    <?php if($erreur == "produit"){
+                echo "<p style=\"color:red\">Produit déjà existant</p>";
+            }
+    ?>
+    <label for="description">Déscription détaillée</label>
     <textarea name="description" id="description" rows="5" cols="33" required></textarea>
     <label for="categorie">Catégorie</label>
-    <select name="categorie" id="categorie-select" required>
+    <select name="categorie" id="categorie" required>
         <option value="" disabled selected>Choisir une catégorie</option>
         <?php 
     $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); //Nom de la catégorie  
@@ -69,8 +80,21 @@ $bdd->query('set schema \'alizon\'');
     }
     ?>
     </select>
+    <label for="TVA">TVA</label>
+    <select name="TVA" id="TVA" required>
+        <option value="" disabled selected>Choisir le taux TVA</option>
+        <?php 
+    $listTVA = $bdd->query('SELECT DISTINCT nomTVA FROM TVA'); //Nom de la catégorie  
+    foreach ($listTVA as $nomTVA) {
+        ?>
+    <option value="<?php echo $nomTVA['nomtva']; ?>"><?php echo $nomTVA['nomtva']; ?></option>
+    <?php
+    }
+    ?>
+    </select>
+    
     <label for="qteStock">Quantité Stock</label>
-    <input type="number" name="qteStock" placeholder="Nombre de produit dans le stock" id="qteStock" required/> 
+    <input type="number" name="qteStock" placeholder="Nombre de produit en stock" id="qteStock" required/> 
     <label for="prix">Seuil d'alerte</label>
     <input type="number" name="seuil" placeholder="Seuil d'alerte du produit" id="seuil" required/>
     <label for="photoProd">Photo du Produit</label>
@@ -93,7 +117,7 @@ $bdd->query('set schema \'alizon\'');
         </div>
     </div>
     <label for="prix">Prix</label>
-    <input type="text" name="prix" placeholder="Prix €" id="prix" pattern="[.0-9]{2,20}" required/> 
+    <input type="text" name="prix" placeholder="Prix Hors Taxe €" id="prix" pattern="[.0-9]{2,20}" required/> 
     <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
 </form>
         

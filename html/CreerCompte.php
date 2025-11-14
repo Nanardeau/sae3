@@ -1,5 +1,5 @@
 <?php 
-    if($_GET["erreur"]){
+    if(isset($_GET["erreur"])){
         $erreur = $_GET["erreur"];
     }
     else{

@@ -239,7 +239,7 @@ RETURNS TRIGGER AS
 $$
 	BEGIN
 		SELECT NEW.prixHT * (1 + (tva.tauxTVA / 100)) INTO NEW.prixTTC
-		FROM TVA tva WHERE tva.nomTVA = NEW.nomTVA;
+		FROM alizon.TVA tva WHERE tva.nomTVA = NEW.nomTVA;
 		RETURN NEW;
 	END;
 $$ 
