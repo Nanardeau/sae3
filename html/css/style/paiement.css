@@ -357,129 +357,76 @@ header nav svg {
   padding: 1em;
 }
 
-header {
-  justify-self: center;
-  display: flex;
-  margin: 1em 0;
-  justify-content: center;
-  background-color: white;
-}
-
-main {
-  padding-bottom: 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-form {
-  border: #A1A1A1 solid 0.01em;
-  border-radius: 1em;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 35em;
-  margin-top: 1em;
-  justify-self: center;
-  padding: 2em;
-  font-family: "mulish";
-}
-@media screen and (max-width : 428px) {
-  form {
-    width: 85%;
-  }
-}
-form input {
-  border: solid 1px;
-  border-radius: 1em;
-  height: 3em;
-  margin: 10px 0;
-  padding: 10px;
-}
-form .bouton {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #064082;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
-  height: 4em;
-  color: white;
-  font-family: "mulish";
-  font-size: 16px;
-}
-@media screen and (max-width : 428px) {
-  form .bouton {
-    width: 100%;
-  }
-}
-form label {
-  font-weight: bold;
-}
-form > h2 {
+body {
+  padding: 0;
   margin: 0;
 }
 
-aside {
+article {
+  background-color: #D1ECF8;
+  width: 100%;
+  height: 30%;
+  border-radius: 1em;
+}
+
+.labelInput {
   display: flex;
   flex-direction: column;
-  justify-self: center;
-  font-family: "mulish";
-}
-aside figure {
-  display: flex;
-}
-aside figure img {
-  margin: 0 5px;
-  width: 100px;
-}
-@media screen and (max-width : 428px) {
-  aside figure img {
-    width: 17%;
-    height: 50px;
-  }
 }
 
-.bouton {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #064082;
-  color: white;
+#numRue {
+  width: 5em;
+}
+
+input {
+  border: solid 1px;
   border-radius: 1em;
-  cursor: pointer;
+  height: 2.5em;
+  margin: 10px 0;
   padding: 1em;
-  width: 80%;
-  margin-bottom: 1em;
+  width: 100%;
+}
+input .btnJaune {
+  padding-top: 8px;
 }
 
-.btnJaune {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #064082;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
-  background-color: #FCB66B;
-  padding: 1em;
-  color: black;
-  width: 30%;
+section {
+  width: 40%;
 }
-
-nav {
+section article {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: -moz-max-content;
+  width: max-content;
+  height: -moz-max-content;
+  height: max-content;
+  padding: 20px;
 }
-nav a {
-  text-decoration: none;
-  color: white;
-}/*# sourceMappingURL=ConnexionClient.css.map */
+
+div.row {
+  margin: 1em 0;
+}
+
+.ligne {
+  border: solid 2px;
+  border-radius: 10px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.ligne div:nth-child(2) {
+  float: right;
+}
+.ligne div {
+  padding: 0.5em;
+}
+
+#articles {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}/*# sourceMappingURL=paiement.css.map */

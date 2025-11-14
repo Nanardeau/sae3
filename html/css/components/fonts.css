@@ -39,4 +39,9 @@
   src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  font-weight: normal;
 }/*# sourceMappingURL=fonts.css.map */
