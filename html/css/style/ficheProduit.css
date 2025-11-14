@@ -48,6 +48,11 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  font-weight: normal;
+}
 main {
   margin-left: 80px;
   margin-right: 80px;

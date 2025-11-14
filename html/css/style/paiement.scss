@@ -1,0 +1,79 @@
+@use './styleCom' as *;
+@use '../tools/vFront' as *;
+@use "../tools/mixin/com" as *;
+
+body{
+    padding:0;
+    margin:0;
+}
+
+article{
+    background-color:$colS;
+    width:100%;
+    height:30%;
+    border-radius:1em;
+}
+.labelInput{
+    display:flex;
+    flex-direction: column;
+}
+#numRue{
+    width:5em;
+}
+
+input{
+    border:solid 1px;
+    border-radius:$radius;
+    height:2.5em;
+    margin:10px 0;
+    padding:1em;
+    width:100%;
+    .btnJaune{
+        padding-top:8px;
+        
+    }
+    
+}
+section{
+    width:40%;
+    article{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        width:max-content;
+        height:max-content;
+        padding:$pad;
+
+    }
+}
+
+div {
+    &.row{
+        margin: 1em 0;
+    }
+}
+
+
+.ligne {
+    border:solid 2px;
+    border-radius:10px;
+    margin:10px 0;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:100%;
+    div:nth-child(2){
+        float:right;
+    }
+    div{
+        padding:0.5em;
+    }
+    
+}
+
+#articles{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}

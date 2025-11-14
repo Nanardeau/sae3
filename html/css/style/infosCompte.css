@@ -21,6 +21,13 @@
 }
 @font-face {
   font-family: "Mulish";
+  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
   src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: normal;
@@ -338,6 +345,23 @@ header nav svg {
 }
 .overlayContentCat ul ul > li {
   margin-left: 1rem;
+}
+
+.btnJaune {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  background-color: #FCB66B;
+  border: 0px;
+  color: black;
+  width: 50%;
+  padding: 1em;
 }
 
 @font-face {
@@ -363,6 +387,13 @@ header nav svg {
 }
 @font-face {
   font-family: "Mulish";
+  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
   src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: normal;
@@ -706,6 +737,23 @@ header nav svg {
 
 .overlayContentCat ul ul > li {
   margin-left: 1rem;
+}
+
+.btnJaune {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  background-color: #FCB66B;
+  border: 0px;
+  color: black;
+  width: 50%;
+  padding: 1em;
 }
 
 header {
@@ -872,23 +920,6 @@ aside nav {
 
 #nomCli {
   width: 100%;
-}
-
-.btnJaune {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #064082;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
-  background-color: #FCB66B;
-  border: 0px;
-  color: black;
-  width: 50%;
-  padding: 1em;
 }
 
 form {

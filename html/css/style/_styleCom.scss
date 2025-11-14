@@ -338,3 +338,12 @@ header{
         }
     }
 }
+.btnJaune{
+    @include m.bouton;
+    background-color:$eleOrange;
+    border:0px;
+    color:black;
+    width:50%;
+    padding:1em;
+    
+}
