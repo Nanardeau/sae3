@@ -18,7 +18,7 @@ try {
     $bdd = new PDO($ip, $user, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
-    echo "✅ Connecté à PostgreSQL ($dbname)";
+    //echo "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
     echo "❌ Erreur de connexion : " . $e->getMessage();
 }
@@ -83,7 +83,13 @@ try {
     <section class="lesAvis">
         <h1>Les Avis</h1>
         <div>
-            <?php $liste_reduc = $bdd->query("SELECT * FROM avis INNER JOIN produit ORDER BY codeproduit"); ?>
+            <!-- METTRE SOUS PHP
+            $liste_avis = $bdd->query("SELECT avis.codeproduit, avis.codecomptecli, avis.noteprod, avis.commentaire, produit.libelleprod FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN  ORDER BY avis.codeproduit");  
+            $rows = $liste_avis->fetchAll(PDO::FETCH_ASSOC);
+            $limit = 3;
+            for ($i = 0; $i < min($limit, count($rows)); $i++) {
+                $row = $rows[$i];
+            --> 
             <a href="avis.php" class="avis">
                 <h3>Non lu</h3>
                 <img src="" alt="pdpClient">
