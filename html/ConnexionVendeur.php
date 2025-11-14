@@ -35,7 +35,7 @@ if($_POST){
     $req= $bdd->query ("SELECT * FROM Vendeur WHERE raisonSociale = '".$id."' AND mdp = '".$mdp."'");
     $rep= $req->fetch();
     if($rep!=null){
-        header("location: accueil.php");
+        header("location: accueilVendeur.php");
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         
@@ -55,7 +55,7 @@ if($_POST){
 <body>
     <main>
         <div>
-            <a href="accueil.php"><img src="../html/img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
+            <a href="accueilVendeur.php"><img src="../html/img/logo_back.svg" alt="logo-alizon" title="logo-alizon"/></a>
             <h2>Back Office</h2>
         </div>
         <form action="ConnexionVendeur.php" method="post">
@@ -77,9 +77,9 @@ if($_POST){
        
         <aside>
             <figure>
-                <img src="./img/line_1.svg"/>
+                <img src="./img/line_3.svg"/>
                 <p>Pas encore de compte ?</p>
-                <img src="./img/line_1.svg"/>
+                <img src="./img/line_3.svg"/>
             </figure>
             <nav>
                 <a href="CreerCompteVendeur.php" class="bouton">Créer un compte</a>
