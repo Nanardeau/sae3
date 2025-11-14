@@ -57,7 +57,7 @@ if($_POST){
 </head>
 <body>
     <main>
-        <a href="accueil.php"><img src="../html/img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
+        <a href="accueilVendeur.php"><img src="../html/img/logo_back.svg" alt="logo-alizon" title="logo-alizon"/></a>
         <form action="ConnexionClient.php" method="post">
             <h2>Connexion</h2>
             <label for="pseudo">Identifiant</label>
@@ -75,9 +75,9 @@ if($_POST){
         </form>
         <aside>
             <figure>
-                <img src="./img/line_1.svg"/>
+                <img src="./img/line_3.svg"/>
                 <p>Pas encore de compte ?</p>
-                <img src="./img/line_1.svg"/>
+                <img src="./img/line_3.svg"/>
             </figure>
             <nav>
                 <a href="CreerCompte.php" class="bouton">Créer un compte</a>
