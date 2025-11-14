@@ -82,8 +82,8 @@ form{
         margin:10px 0;
         padding:10px;
         border: none;
-        font-size:0.8em;
-        max-width: 200px;
+        font-size:1em;
+        max-width: 225px;
     }
     input{
         border:solid 1px;
@@ -94,6 +94,7 @@ form{
         &::file-selector-button{
             @include bouton($colP);
             border: none;
+            
         }
         &#photoProd{
             border:none;
@@ -115,6 +116,7 @@ form{
             content: "*";
             color:red;
     }
+
     .taille{
         label::after{
             content: "";

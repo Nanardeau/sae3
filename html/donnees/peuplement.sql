@@ -1,8 +1,8 @@
  set schema 'alizon';
 INSERT INTO TVA(nomTVA,tauxTVA) 
 VALUES
-('réduite',5.5),
-('super-réduite',10),
+('super-réduite',5.5),
+('réduite',10),
 ('normale',20);
 
 INSERT INTO Photo(urlPhoto) VALUES
@@ -168,7 +168,7 @@ insert into ProdUnitPanier(idPanier,codeProduit,qteProd) VALUES
 --SELECT * from Vendeur where codecompte = 5;
 --update ProdUnitPanier set qteProd = qteProd + 1 where idPanier = 1 AND codeProduit = 1;
 --select all * from ProdUnitPanier where idPanier = 1;
---delete from ProdUnitPanier where idPanier = 1;
+--delete from ProdUnitPanier where idPanier = 1 and codeProduit = 1;
 --select all * from ProdUnitPanier where idPanier = 1;
 --delete from ProdUnitPanier where idPanier = 1;
 --delete from  Panier where idPanier = 1;
