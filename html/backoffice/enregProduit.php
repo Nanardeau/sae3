@@ -1,6 +1,6 @@
 <?php
+header('location:ajouterproduit.php?erreur=succes');
 session_start();
-
 $codeCompte = $_SESSION["codeCompte"];
 //Connexion à la base de données.
 require_once('../_env.php');
@@ -29,7 +29,7 @@ $nomProd = $_POST["nom"];
 
 $descProd = $_POST["description"];
 $catProd = $_POST["categorie"];
-$qteProd = $_POST["qteStock"];
+$qteProd = $_POST["qteStock"] ? $_POST["qteStock"] : NULL ;
 $tvaProd = $_POST["TVA"];
 $seuilProd = $_POST["seuil"];
 $prixProd = $_POST["prix"];
@@ -44,20 +44,27 @@ if($res){
         header('location:ajouterproduit.php?erreur=produit');
 }
 else{
+    
     if($_FILES["photo"]){
-            
-            $nomPhoto = $_FILES["photo"]["name"];
-            $extension = $_FILES["photo"]["type"];
-            $extension = substr($extension, strlen("image/"), (strlen($extension) - strlen("image/")));
-            $chemin = "../img/photosProduit/".time().".".$extension;
+            if($_FILES["photo"]["name"] != ""){
+                $nomPhoto = $_FILES["photo"]["name"];
+                $extension = $_FILES["photo"]["type"];
+                $extension = substr($extension, strlen("image/"), (strlen($extension) - strlen("image/")));
+                $chemin = "../img/photosProduit/".time().".".$extension;
 
-            move_uploaded_file($_FILES["photo"]["tmp_name"], $chemin);
-            $stmt = $bdd->prepare("INSERT INTO alizon.Photo (urlPhoto) VALUES (:urlPhoto)");
-            $stmt->execute(array(
-                ":urlPhoto" => $chemin
-            ));
-            
+                move_uploaded_file($_FILES["photo"]["tmp_name"], $chemin);
+                $stmt = $bdd->prepare("INSERT INTO alizon.Photo (urlPhoto) VALUES (:urlPhoto)");
+                $stmt->execute(array(
+                    ":urlPhoto" => $chemin
+                ));
+            }
+            else{
+                $chemin = "../img/photosProduit/imgErr.jpg";
+
+            }
     }
+    
+
     $stmtP = $bdd->prepare("INSERT INTO alizon.Produit(libelleProd, descriptionProd, prixHT, seuilAlerte, nomTVA, urlPhoto, codeCompteVendeur) VALUES (:libelleProd, :descriptionProd, :prixHT, :seuilAlerte, :nomTVA, :photo, :codeCompteVendeur)");
     
     $stmtC = $bdd->prepare("INSERT INTO alizon.Categoriser(libelleCat,codeProduit) VALUES (:libelleCat,:codeProduit)");
@@ -74,26 +81,13 @@ else{
             ":codeCompteVendeur" => $codeCompte
 
         ));
+    
     $prod = ($bdd->query("SELECT codeProduit FROM alizon.Produit WHERE libelleProd = '".$nomProd."'")->fetch());
     $codeProduit = $prod["codeproduit"];
 
     $stmtC->execute(array(
         ":libelleCat" => $catProd,
         ":codeProduit" => $codeProduit,
-        ));
-    
-    header("Location:ajouterproduit.php?erreur=succes");
-
-
-       
-
+        ));   
 }
-
-
-
-
-
-
-
-
 ?>
