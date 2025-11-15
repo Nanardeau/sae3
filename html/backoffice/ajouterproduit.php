@@ -30,13 +30,13 @@ try {
     //"❌ Erreur de connexion : " . $e->getMessage();
 
         header('Location: http://localhost:8888/index.php');
-        exit();
+        
 }
 $_SESSION["codeCompte"] = 5; //ligne temporaire, en attendant d"avoir le système de connexion 
 
 if(!isset($_SESSION["codeCompte"])){
         header('Location: http://localhost:8888/backoffice/index.php');
-        exit();   
+           
     }
 $bdd->query('set schema \'alizon\'');
 ?>
@@ -55,8 +55,11 @@ $bdd->query('set schema \'alizon\'');
     <?php if($erreur == "succes"){
                 echo "<h2 style=\"color:green\">Produit créé avec succès</h2>";
             }
+            else if($erreur == "image"){
+                echo "<h2 style=\"color:red\">Produit image avec erreur</h2>";
+            }
     ?>
-<form action="energProduit.php" method="post" enctype="multipart/form-data">
+<form action="enregProduit.php" method="post" enctype="multipart/form-data">
     <h2>Ajouter Produit</h2>
     
     <label for="nom">Intitulé</label>
@@ -93,31 +96,31 @@ $bdd->query('set schema \'alizon\'');
     ?>
     </select>
     
-    <label for="qteStock">Quantité Stock</label>
-    <input type="number" name="qteStock" placeholder="Nombre de produit en stock" id="qteStock" required/> 
+    <label for="qteStock" class="pObl">Quantité Stock</label>
+    <input type="number" name="qteStock" placeholder="Nombre de produit en stock" id="qteStock"/> 
     <label for="prix">Seuil d'alerte</label>
     <input type="number" name="seuil" placeholder="Seuil d'alerte du produit" id="seuil" required/>
-    <label for="photoProd">Photo du Produit</label>
+    <label for="photoProd" class="pObl">Photo du Produit</label>
     <input type="file" name="photo" id="photoProd" accept="image/*"/>
     <h3> Taille Produit </h3>
     <div class="taille container-fluid p-0">
         <div class="row">
             <div class="col-3 labelInput">
                 <label for="tailleHaut">Hauteur</label>
-                <input type="text" name="tailleHaut" placeholder="en centimètre" id="tailleHaut"/>
+                <input type="text" name="tailleHaut" placeholder="en mètre" id="tailleHaut"/>
             </div>
             <div class="col-3 labelInput">
                 <label for="tailleLarg">Largeur</label>
-                <input type="text" name="tailleLarg" placeholder="en centimètre" id="tailleLarg"/>
+                <input type="text" name="tailleLarg" placeholder="en mètre" id="tailleLarg"/>
             </div>
             <div class="col-3 labelInput">
                 <label for="tailleLong">Longueur</label>
-                <input type="text" name="tailleLong" placeholder="en centimètre" id="tailleLong"/>
+                <input type="text" name="tailleLong" placeholder="en mètre" id="tailleLong"/>
             </div>
         </div>
     </div>
     <label for="prix">Prix</label>
-    <input type="text" name="prix" placeholder="Prix Hors Taxe €" id="prix" pattern="[.0-9]{2,20}" required/> 
+    <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" id="prix" pattern="[.0-9]" required/> 
     <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
 </form>
         
