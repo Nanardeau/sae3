@@ -25,7 +25,8 @@ INSERT INTO Photo(urlPhoto) VALUES
 ('/img/parfum.jpg'),
 ('/img/collier.jpg'),
 ('/img/lunettes.jpg'),
-('/img/stylo.jpg');
+('/img/stylo.jpg'),
+('../img/photosProduit/imgErr.jpg');
 
 INSERT INTO Client(pseudo, dateCreation, nom, prenom, email, mdp, numTel, pdProfil) VALUES
 ('Zigor','2025-09-25','Mulish','Isigor','isizou@gmail.com','bababou0','0605040608','/img/photosProfil/PDP_ZIG.jpg'),
