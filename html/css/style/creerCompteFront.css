@@ -409,7 +409,7 @@ form input:user-invalid, form input.invalid {
 form input:user-invalid + span, form input.invalid + span {
   display: block;
 }
-@media screen and (max-width : 428px) {
+@media screen and (screen and (max-width : 428px)) {
   form input {
     width: 100%;
   }
@@ -424,7 +424,7 @@ form .bouton {
   height: 5em;
   font-size: 24px;
 }
-@media screen and (max-width : 428px) {
+@media screen and (screen and (max-width : 428px)) {
   form .bouton {
     height: 4em;
   }
@@ -465,7 +465,7 @@ aside figure img {
   margin: 0 10px;
   height: 1px;
 }
-@media screen and (max-width : 428px) {
+@media screen and (screen and (max-width : 428px)) {
   aside figure img {
     width: 20%;
     height: 20px;
@@ -495,7 +495,7 @@ aside nav {
   display: flex;
   flex-direction: column;
 }
-@media screen and (max-width : 428px) {
+@media screen and (screen and (max-width : 428px)) {
   .labelInput {
     display: block;
     width: 100%;
