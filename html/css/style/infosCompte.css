@@ -104,6 +104,13 @@ label {
   font-weight: bold;
 }
 
+input:user-invalid, input.invalid {
+  border-color: red;
+}
+input:user-invalid + span, input.invalid + span {
+  display: block;
+}
+
 /*###############################
 #            HEADER             #
 ###############################*/
@@ -468,6 +475,14 @@ p, label, input {
 
 label {
   font-weight: bold;
+}
+
+input:user-invalid, input.invalid {
+  border-color: red;
+}
+
+input:user-invalid + span, input.invalid + span {
+  display: block;
 }
 
 /*###############################

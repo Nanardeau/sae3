@@ -82,3 +82,89 @@ div {
     flex-direction:column;
     align-items:flex-start;
 }
+#secRecap{
+    width:80%;
+
+}
+#recapitulatif{
+    
+    width:100%;
+    height:fit-content;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:space-between;
+    #recap{
+        height:100%;
+    }
+    #prixTTCRecap{
+        justify-self:flex-end;
+        font: {
+            weight:bold;
+            size:$MoyTitle;
+        }
+    }
+    .libelleProdRecap{
+        display:flex;
+        justify-content: space-between;
+        
+        width:90%;
+
+    }
+
+}
+.ligneArtPaye{
+    display:flex;
+    
+    input{
+        width:auto;
+        border-radius:10px;
+        height:1em;
+        margin-bottom:3rem;
+    }
+    section:nth-child(2){
+
+        margin-left:12rem;
+        width:40%;
+        article{
+            padding-left:8em;
+            width:80%;
+            height:auto;
+            justify-content: flex-start;
+
+        }
+        form{
+            width:80%;
+            display:flex;
+            flex-direction:column;
+            align-items: flex-start;
+            height:100%;
+        }
+        .dateCVC{
+            display:flex;
+            
+        }
+        #expDate{
+            width:6rem;
+
+        }
+        #cvc{
+            width:6rem;
+        }
+    }
+    .bouton{
+        @include bouton;
+        background-color:$inverse;
+        padding:1rem;
+        width:10rem;
+        border:none;
+    }
+    nav{
+        display:flex;
+        button{
+            margin-right:2em;
+        }
+        align-self:flex-end;
+    }
+
+}
