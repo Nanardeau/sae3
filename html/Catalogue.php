@@ -88,8 +88,8 @@ $bdd->query('set schema \'alizon\'');
                                         <path d="M9.63037 13.4648V17.8585" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </a>
-                                <a><input type="button" value="Ajouter au panier"></input></a>
-                                <a><input type="button" value="Détails" href="test.php"></input></a>
+                                <a class ='button' href="test.php">Ajouter au panier</a>
+                                <a class ='button' href="test.php">Détails</a>
                             </div>
 
                         </div>

@@ -60,18 +60,19 @@ $hCard-mob: 260px;
                 
             }
         }
-        a  input{
-            display :block;
-            font-family: $Poltext;
+        .button{
+            display :flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            margin-top : $marg;
             min-width: 8rem;
-            
             height: 2rem;
+            font-family: $Poltext;
             text-align: center;
-            color : $noir;
             font-weight: bold;
+            margin-top : $marg;
             background-color: $eleOrange;
+            color : $noir;
             border:none;
             border-radius: $radius;
             cursor:pointer;

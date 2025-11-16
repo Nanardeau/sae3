@@ -396,23 +396,25 @@ header nav svg {
     stoke: black;
   }
 }
-.card div a input {
-  display: block;
-  font-family: "Mulish";
+.card div .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  margin-top: 20px;
   min-width: 8rem;
   height: 2rem;
+  font-family: "Mulish";
   text-align: center;
-  color: black;
   font-weight: bold;
+  margin-top: 20px;
   background-color: #FCB66B;
+  color: black;
   border: none;
   border-radius: 1em;
   cursor: pointer;
 }
 @media screen and (max-width : 428px) {
-  .card div a input {
+  .card div .button {
     display: none;
   }
 }
