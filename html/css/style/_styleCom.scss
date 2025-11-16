@@ -40,6 +40,16 @@ p, label, input{
 label{
     font-weight:bold;
 }
+input{
+
+    &:user-invalid, &.invalid{
+        border-color:red;
+        &+span{
+            display:block;
+            
+        }
+    }
+}
 /*###############################
 #            HEADER             #
 ###############################*/
