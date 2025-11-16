@@ -124,9 +124,10 @@
                             $detailProd = $bdd->query("SELECT * FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
                             echo "<div>".$detailProd["libelleprod"] . "</div>";
                             ?>
-                            <div class="prix"><?php echo $prodUnit["prixttctotal"]?>€</div>
-                            <div><button onclick="supprimerProd(<?php echo $prodUnit["codeproduit"]?>)">poub</button></div><?php
-                            echo "</div>";
+                            <div class="prixPoub">
+                                <div class="prix"><?php echo $prodUnit["prixttctotal"]?>€</div>
+                                <div><button onclick="supprimerProd(<?php echo $prodUnit["codeproduit"]?>)">poub</button></div><?php
+                                echo "</div></div>";
                         }
 
                     ?>
