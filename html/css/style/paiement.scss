@@ -61,13 +61,18 @@ div {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items:center; 
     width:100%;
-    div:nth-child(2){
-        float:right;
-    }
+    font-weight:bold;
     div{
         padding:0.5em;
     }
+    .prixPoub{
+        display:flex;
+        align-items:center;
+    }
+
+
     
 }
 

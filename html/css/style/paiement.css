@@ -422,13 +422,16 @@ div.row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-}
-.ligne div:nth-child(2) {
-  float: right;
+  font-weight: bold;
 }
 .ligne div {
   padding: 0.5em;
+}
+.ligne .prixPoub {
+  display: flex;
+  align-items: center;
 }
 
 #articles {
