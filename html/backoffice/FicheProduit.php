@@ -1,5 +1,5 @@
 <?php 
-    $_GET["codeProduit"]=1;
+    //$_GET["Produit"]=1;
     //include '../includes/backoffice/header.php';
     require_once('../_env.php');
     
@@ -28,6 +28,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../css/style/ficheProduit.css" >
         <link rel="stylesheet" type="text/css" href="../css/style/header_back.css" >
+        <script src="../js/FicheProd.js"></script>
         <title>alizon</title>
     </head>
     <body>
@@ -37,7 +38,7 @@
             <div class="alignemnt_droite_gauche">
                
                 <?php
-                $code_produit=$_GET["codeProduit"];
+                $code_produit=$_GET["Produit"];
                 $info = $bdd->query("SELECT urlPhoto FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
                 $res=$info["urlphoto"];
                 ?>
@@ -74,18 +75,18 @@
                             ?>
                         </h2>
                         <div>
-                            <button onclick="retirerCatalogue(<?php echo $code_produit?>)" value="Modifier le produit" class="buton_modif">
+                            <button class="buton_modif">Modifier le produit</button>
                             <?php
                             $state = $bdd->query("SELECT Disponible FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
                             
                             if($state['disponible'] == 1){                            
                             ?>
-                            <button onclick="retirerCatalogue(<?php echo $code_produit?>)" value="Retirer du catalogue" class="buton_ret_cat">
+                            <button onclick="retirerCatalogue(<?php echo $code_produit?>)" class="buton_ret_cat">Retirer du catalogue</button>
                             <?php
                             }
                             elseif ($state['disponible'] != 1){?>
 
-                            <input type="button" value="Ajouter au catalogue" class="buton_ajt_cat">
+                            <button onclick="ajouterCatalogue(<?php echo $code_produit?>)" class="buton_ajt_cat">Ajouter au catalogue</button>
 
                             <?php } ?>
                         </div> 

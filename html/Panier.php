@@ -75,7 +75,7 @@ $bdd->query('set schema \'alizon\'');
         }
         else{
             //Nombre d'élément dans le panier
-            $stmNb = $bdd->query('SELECT ALL count(*) from ProdUnitPanier where idPanier = 1');
+            $stmNb = $bdd->query('SELECT ALL count(*) from ProdUnitPanier where idPanier = '.$infoPanier['idpanier']);
             $nbProdPanier = $stmNb->fetch();
         
             $infoPanier['idpanier'] = $ifPanierTemp["idpanier"];
@@ -83,7 +83,7 @@ $bdd->query('set schema \'alizon\'');
             $infoPanier['prixHT'] = $ifPanierTemp["prixhttotal"];
             $infoPanier['nbProd'] = $nbProdPanier['count'];
               // Récupération de la liste des produits dans le panier
-            $stmProd = $bdd->query('SELECT ALL codeProduit,qteprod,prixTTCtotal from ProdUnitPanier where idPanier = 1 ORDER BY codeProduit');
+            $stmProd = $bdd->query('SELECT ALL codeProduit,qteprod,prixTTCtotal from ProdUnitPanier where idPanier = '.$infoPanier['idpanier'] .' ORDER BY codeProduit');
             $ListeProdPanier = $stmProd->fetchAll();
             ?>
 

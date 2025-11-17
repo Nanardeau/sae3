@@ -396,7 +396,10 @@ header nav svg {
     stoke: black;
   }
 }
-.card div a input {
+.card div .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   display: block;
   font-family: "Mulish";
   width: 100%;
@@ -412,7 +415,7 @@ header nav svg {
   cursor: pointer;
 }
 @media screen and (max-width : 428px) {
-  .card div a input {
+  .card div .button {
     display: none;
   }
 }
