@@ -40,35 +40,35 @@ INSERT INTO Vendeur(dateCreation, nom, prenom, email, mdp, numTel, siren, raison
 ('2025-09-15', 'Moreau', 'Léa', 'lea.moreau@gmail.com', 'L3a!Secure', '0678912345', '352000799', 'Moreau Boutique'),
 ('2025-11-01', 'Nguyen', 'Thierry', 'thierry.nguyen@techsolutions.fr', 'TnG!2025', '0780554433', '489765432', 'Tech Solutions');
 
-INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, hauteur, longueur, largeur, qteStock, seuilAlerte, urlPhoto, codeCompteVendeur)
+INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, hauteur, longueur, largeur, qteStock, Origine, seuilAlerte, urlPhoto, codeCompteVendeur)
 VALUES
 -- Nourriture
-('Fraises', 'Fruit frais de Plougastel', 6.20, 'réduite', NULL, NULL, NULL, 200, 20, '/img/fraises.jpg', 5),
-('Thé noir', 'Qualité supérieure, fabrique de Carhaix', 5.60, 'réduite', NULL, NULL, NULL, 150, 15, '/img/the.jpg', 6),
-('Lait', '1L demi-écrémé', 1.50, 'réduite', NULL, NULL, NULL, 100, 10, '/img/lait.jpg', 7),
-('Fromage', 'Camembert AOP', 3.80, 'réduite', NULL, NULL, NULL, 60, 10, '/img/fromage.jpg', 8),
-('Café', 'Moulu 250g', 4.90, 'réduite', NULL, NULL, NULL, 80, 10, '/img/cafe.jpg', 5),
+('Fraises', 'Fruit frais de Plougastel', 6.20, 'réduite', NULL, NULL, NULL, 200, 'Breizh', 20, '/img/fraises.jpg', 5),
+('Thé noir', 'Qualité supérieure, fabrique de Carhaix', 5.60, 'réduite', NULL, NULL, NULL, 150, 'Madagascar', 15, '/img/the.jpg', 6),
+('Lait', '1L demi-écrémé', 1.50, 'réduite', NULL, NULL, NULL, 100, 'Breizh', 10, '/img/lait.jpg', 7),
+('Fromage', 'Camembert AOP', 3.80, 'réduite', NULL, NULL, NULL, 60, 'Breizh', 10, '/img/fromage.jpg', 8),
+('Café', 'Moulu 250g', 4.90, 'réduite', NULL, NULL, NULL, 80, 'Breizh', 10, '/img/cafe.jpg', 5),
 
 -- Vêtements
-('T-shirt Armor lux', 'Coton blanc M', 15.00, 'super-réduite', NULL, NULL, NULL, 50, 10, '/img/tshirt.jpg', 6),
-('Jean à motif', 'denim 42', 45.00, 'super-réduite', NULL, NULL, NULL, 40, 5, '/img/pantalon.jpg', 7),
-('Veste papillon', 'Noire homme L', 70.00, 'super-réduite', NULL, NULL, NULL, 25, 5, '/img/veste.jpg', 8),
-('Derbies', 'Cuir marron 40', 90.00, 'super-réduite', NULL, NULL, NULL, 35, 5, '/img/mocassins.jpg', 5),
-('Casquette Cobrec', 'Bleue ajustable', 12.00, 'super-réduite', NULL, NULL, NULL, 60, 5, '/img/chapeau.jpg', 6),
+('T-shirt Armor lux', 'Coton blanc M', 15.00, 'super-réduite', NULL, NULL, NULL, 50, 'Breizh', 10, '/img/tshirt.jpg', 6),
+('Jean à motif', 'denim 42', 45.00, 'super-réduite', NULL, NULL, NULL, 40, 'Chine', 5, '/img/pantalon.jpg', 7),
+('Veste papillon', 'Noire homme L', 70.00, 'super-réduite', NULL, NULL, NULL, 25, 'France', 5, '/img/veste.jpg', 8),
+('Derbies', 'Cuir marron 40', 90.00, 'super-réduite', NULL, NULL, NULL, 35, 'Breizh', 5, '/img/mocassins.jpg', 5),
+('Casquette Cobrec', 'Bleue ajustable', 12.00, 'super-réduite', NULL, NULL, NULL, 60, 'Breizh', 5, '/img/chapeau.jpg', 6),
 
 -- Objets divers
-('Lampe rouge', 'De chevet LED', 25.00, 'super-réduite', 0.35, 0.20, 0.20, 30, 4, '/img/lampe.jpg', 7),
-('Gourde', 'Inox 1L', 18.00, 'super-réduite', 0.25, 0.08, 0.08, 45, 5, '/img/gourde.jpg', 8),
-('Coussin brodé', 'Velours bleu', 22.00, 'super-réduite', 0.15, 0.40, 0.40, 40, 5, '/img/coussin.jpg', 5),
-('Tasse Bretagne', 'Céramique blanche', 8.00, 'super-réduite', 0.10, 0.08, 0.08, 80, 8, '/img/tasse.jpg', 6),
-('Sac à dos', 'Noir imperméable', 35.00, 'super-réduite', 0.45, 0.30, 0.20, 20, 3, '/img/sac.jpg', 7),
+('Lampe rouge', 'De chevet LED', 25.00, 'super-réduite', 0.35, 0.20, 0.20, 30, 'France', 4, '/img/lampe.jpg', 7),
+('Gourde', 'Inox 1L', 18.00, 'super-réduite', 0.25, 0.08, 0.08, 45, 'Argentine', 5, '/img/gourde.jpg', 8),
+('Coussin brodé', 'Velours bleu', 22.00, 'super-réduite', 0.15, 0.40, 0.40, 40, 'Chine', 5, '/img/coussin.jpg', 5),
+('Tasse Bretagne', 'Céramique blanche', 8.00, 'super-réduite', 0.10, 0.08, 0.08, 80, 'Breizh', 8, '/img/tasse.jpg', 6),
+('Sac à dos', 'Noir imperméable', 35.00, 'super-réduite', 0.45, 0.30, 0.20, 20, 'France', 3, '/img/sac.jpg', 7),
 
 -- Produits de luxe
-('Montre LeDu', 'Acier argenté', 150.00, 'normale', NULL, NULL, NULL, 10, 2, '/img/montre.jpg', 8),
-('Bleu de Chanel', 'Eau de toilette 100ml', 75.00, 'normale', NULL, NULL, NULL, 15, 2, '/img/parfum.jpg', 5),
-('Collier', 'Or plaqué', 120.00, 'normale', NULL, NULL, NULL, 8, 1, '/img/collier.jpg', 6),
-('Lunettes Sandrine', 'Soleil noires', 60.00, 'normale', NULL, NULL, NULL, 25, 3, '/img/lunettes.jpg', 7),
-('Stylo à bille', 'thème Océan, haut de gamme', 40.00, 'normale', NULL, NULL, NULL, 30, 3, '/img/stylo.jpg', 8);
+('Montre LeDu', 'Acier argenté', 150.00, 'normale', NULL, NULL, NULL, 10, 'Suisse', 2, '/img/montre.jpg', 8),
+('Bleu de Chanel', 'Eau de toilette 100ml', 75.00, 'normale', NULL, NULL, NULL, 15, 'France', 2, '/img/parfum.jpg', 5),
+('Collier', 'Or plaqué', 120.00, 'normale', NULL, NULL, NULL, 8, 'Breizh', 1, '/img/collier.jpg', 6),
+('Lunettes Sandrine', 'Soleil noires', 60.00, 'normale', NULL, NULL, NULL, 25, 'Breizh', 3, '/img/lunettes.jpg', 7),
+('Stylo à bille', 'thème Océan, haut de gamme', 40.00, 'normale', NULL, NULL, NULL, 30, 'Breizh', 3, '/img/stylo.jpg', 8);
 
 
 INSERT INTO Adresse(num,codePostal, nomVille, nomRue) VALUES
