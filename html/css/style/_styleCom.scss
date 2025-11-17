@@ -1,13 +1,14 @@
 @use "../tools/vFront" as *;
 @use "../tools/mixin/com" as m;
 
+
 body{
     font: {
         family: $Poltext,$Poltitle,"sans-serif";
         size: $txtSize;
     }
     background: {
-        color: $blanc;
+        color: white;
     }
     color : $noir;
     margin: 0;
@@ -23,7 +24,6 @@ main{
 }
 h1{
    @include m.text($TrGdTitle);
-    
 }
 h2{
     @include m.text($GdTitle);
@@ -33,6 +33,12 @@ h3{
 }
 h4{
     @include m.text($PetTitle);
+}
+p, label, input{
+    font-family:$Poltext;
+}
+label{
+    font-weight:bold;
 }
 /*###############################
 #            HEADER             #
@@ -219,6 +225,116 @@ header{
             align-self: center;
             text-align: center;
             margin-top: 10px;
+        }
+    }
+}
+
+/*###############################
+#        Menu Categorie         #
+################################*/
+
+.nav-cat{
+    width: 100%;
+    background-color: $eleBleu;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    flex-direction: row;
+    
+
+    div{
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    h2{
+        margin: 0;
+        margin-left: 10px;
+        margin-right: 10px;
+        align-self: center;
+    }
+
+    svg, a{
+        z-index: 1000;
+        align-self: center;
+        color: $noir;
+        font: {
+            size: 18px;
+            weight: 600;
+        }
+        text-decoration: none;
+        white-space: nowrap;
+        background-color: $eleBleu;
+        padding: 15px;
+        padding-right: 30px;
+        cursor: pointer;
+    }
+
+    svg{
+        overflow: visible;
+    }
+
+
+}
+
+.overlayMenuCat{
+    z-index: 998;
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 500px;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.overlayContentCat {
+    position: absolute;
+    background: $eleBleu;
+    padding: 2rem;
+    padding-left: 1rem;
+    text-align: left;
+    max-width: 400px;
+    min-width: 200px;
+    height: 550px;
+    top: 100px;
+    left: 0;
+
+    overflow-y:scroll;
+    scrollbar-width: none;
+
+    
+    
+
+    ul{
+        padding-inline-start: 1rem;
+        li{
+            list-style: none;
+            margin-bottom: 1rem;
+            a{
+                text-decoration: underline;
+                font: {
+                    family: $Poltext;
+                    size: $MoyTitle;
+                    weight: 600;
+                    
+                }
+                color: $noir;
+            }
+        }
+        ul > li > a{
+            text-decoration: none;
+            font-size: $txtSize;
+            font-weight: normal;
+        }
+
+        ul > li{
+            margin-left: 1rem;
+
         }
     }
 }
