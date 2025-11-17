@@ -122,11 +122,12 @@ CREATE TABLE Carte(
 CREATE TABLE Panier(
     idPanier SERIAL PRIMARY KEY NOT NULL,
     codeCompte INTEGER REFERENCES Client(codeCompte),
-    dateCreaP TEXT,
-    dateModifP TEXT,
+    dateCreaP DATE,
+    dateModifP DATE,
     prixTTCtotal NUMERIC,
     prixHTtotal NUMERIC
 );
+
 
 CREATE TABLE Commande(
     numCom SERIAL PRIMARY KEY NOT NULL,
@@ -341,46 +342,34 @@ EXECUTE FUNCTION calcul_prixTotalTTCCom();
 
 -- Date création Panier
 
-CREATE FUNCTION dateCreationPanier()
-RETURNS TRIGGER AS $$
-BEGIN
-     INSERT INTO NEW(dateCreaP) VALUES (SELECT TO_CHAR(NOW(), 'DD/MM/YYYY hh:mm:ss'));
-     RETURNS NEW;
-END
-$$ LANGUAGE 'plpgsql';
-
-CREATE TRIGGER trg_dateCrea_Panier
-BEFORE INSERT ON Panier
-FOR EACH ROW
-EXECUTE FUNCTION dateCreationPanier();  
-
-CREATE FUNCTION dateModificationPanier()
-RETURNS TRIGGER AS $$
-BEGIN
-     INSERT INTO NEW(dateModifP) VALUES (SELECT TO_CHAR(NOW(), 'DD/MM/YYYY hh:mm:ss'));
-     RETURNS NEW;
-END
-$$ LANGUAGE 'plpgsql';
-
-CREATE TRIGGER trg_dateModif_Panier
-BEFORE INSERT OR UPDATE  ON Panier
-FOR EACH ROW
-EXECUTE FUNCTION dateModificationPanier(); 
-
---Création date avis--
-
-CREATE OR REPLACE FUNCTION alizon.dateCréationAvis()
+CREATE OR REPLACE FUNCTION alizon.dateModificationPanier()
 RETURNS TRIGGER AS $$
 DECLARE
     v_ts timestamptz;
 BEGIN
-    NEW.datepublication := to_char(now(), 'DD-MM-YYYY');
+    NEW.dateModifP := to_char(now(), 'DD/MM/YYYY HH24:MI:SS');
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE TRIGGER trg_dateCrea_Avis
-BEFORE INSERT ON alizon.Avis
+CREATE TRIGGER trg_dateModif_Panier
+BEFORE INSERT OR UPDATE ON alizon.Panier
 FOR EACH ROW
-EXECUTE FUNCTION alizon.dateCréationAvis();
+EXECUTE FUNCTION alizon.dateModificationPanier();
+
+CREATE OR REPLACE FUNCTION alizon.dateCréationPanier()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_ts timestamptz;
+BEGIN
+    NEW.dateCreaP := to_char(now(), 'DD/MM/YYYY HH24:MI:SS');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trg_dateCrea_Panier
+BEFORE INSERT ON alizon.Panier
+FOR EACH ROW
+EXECUTE FUNCTION alizon.dateCréationPanier();
