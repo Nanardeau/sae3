@@ -1,0 +1,140 @@
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+main {
+  margin-left: 80px;
+  margin-right: 80px;
+}
+main h1, main h2 {
+  font-family: "Baloo";
+}
+main p {
+  font-family: "Mulish";
+}
+main .image_prod {
+  border: black 2px solid;
+  margin: 0;
+  margin-top: 50px;
+}
+main .img_etoile {
+  padding-left: 20px;
+}
+main h1 {
+  margin-top: 80px;
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+main h2, main p {
+  margin: 0;
+  padding-left: 20px;
+}
+main input {
+  margin: 20px;
+}
+main input:hover {
+  border-color: #A1A1A1;
+}
+main .buton_commentaire {
+  width: 250px;
+  height: 60px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #FCB66B;
+  border-radius: 8px;
+  border: none;
+}
+main .buton_modif, main .buton_ret_cat {
+  width: 200px;
+  height: 70px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+}
+main .buton_modif {
+  background-color: #FCB66B;
+}
+main .buton_ret_cat {
+  background-color: #6CA6E9;
+}
+main .alignement_space_betwen {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+}
+main .alignemnt_droite_gauche {
+  display: flex;
+  align-items: center;
+}
+main hr {
+  margin-top: 60px;
+  margin-left: 10px;
+  width: 800px;
+}
+main div + h2 {
+  padding-top: 20px;
+}
+main p {
+  font-size: 20px;
+}
+main .catego {
+  margin-top: 50px;
+  display: flex;
+  height: auto;
+}
+main .caract {
+  background-color: #FFD6C2;
+  margin-right: 50px;
+  padding: 20px;
+  padding-bottom: 50px;
+  border-radius: 16px;
+  width: 20em;
+  height: auto;
+}
+main .caract p {
+  padding-top: 1em;
+  padding-left: 2em;
+  font-size: 22px;
+}
+main .caract h2 {
+  font-size: 32px;
+}/*# sourceMappingURL=consulter_fiche_produit_vendeur.css.map */
