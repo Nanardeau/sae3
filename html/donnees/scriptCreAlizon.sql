@@ -2,6 +2,10 @@ DROP SCHEMA IF EXISTS alizon CASCADE;
 CREATE SCHEMA alizon;
 SET SCHEMA 'alizon';
 
+CREATE TABLE Photo(
+    urlPhoto VARCHAR(40) PRIMARY KEY NOT NULL
+);
+
 CREATE TABLE Compte(
     codeCompte SERIAL PRIMARY KEY NOT NULL,
     dateCreation DATE,
@@ -9,7 +13,8 @@ CREATE TABLE Compte(
     prenom VARCHAR(20),
     email VARCHAR(50) NOT NULL,
     mdp VARCHAR(20) NOT NULL,
-    numTel VARCHAR(20)
+    numTel VARCHAR(20),
+    pdProfil VARCHAR(40) REFERENCES Photo(urlPhoto)
 );
 CREATE TABLE Adresse(
     idAdresse SERIAL PRIMARY KEY NOT NULL,
@@ -51,9 +56,7 @@ CREATE TABLE TVA(
     nomTVA VARCHAR(20) PRIMARY KEY NOT NULL CHECK (nomTVA IN ('normale', 'réduite', 'super-réduite')),
     tauxTVA FLOAT 
 );
-CREATE TABLE Photo(
-    urlPhoto VARCHAR(40) PRIMARY KEY NOT NULL
-);
+
 CREATE TABLE Produit(
     codeProduit SERIAL PRIMARY KEY NOT NULL,
     libelleProd VARCHAR(200) NOT NULL,
@@ -144,7 +147,7 @@ CREATE TABLE Avis(
 	codeProduit INTEGER REFERENCES Produit(codeProduit),
 	codeCompteCli INTEGER REFERENCES Client(codeCompte),
     noteProd FLOAT,
-    commentaire VARCHAR(20),
+    commentaire VARCHAR(512),
     datePublication DATE
 );
 
@@ -333,3 +336,22 @@ CREATE TRIGGER trg_calcul_prixTotalTTCCom
 BEFORE INSERT OR UPDATE ON Commande
 FOR EACH ROW
 EXECUTE FUNCTION calcul_prixTotalTTCCom();
+
+--Création date avis--
+
+CREATE OR REPLACE FUNCTION alizon.dateCréationAvis()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_ts timestamptz;
+BEGIN
+    NEW.datepublication := to_char(now(), 'DD-MM-YYYY');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trg_dateCrea_Avis
+BEFORE INSERT ON alizon.Avis
+FOR EACH ROW
+EXECUTE FUNCTION alizon.dateCréationAvis();
+SET DateStyle TO 'European';

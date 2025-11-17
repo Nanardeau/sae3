@@ -1,4 +1,4 @@
- set schema 'alizon';
+set schema 'alizon';
 INSERT INTO TVA(nomTVA,tauxTVA) 
 VALUES
 ('réduite',5.5),
@@ -27,11 +27,11 @@ INSERT INTO Photo(urlPhoto) VALUES
 ('/img/lunettes.jpg'),
 ('/img/stylo.jpg');
 
-INSERT INTO Client(pseudo, dateCreation, nom, prenom, email, mdp, numTel) VALUES
-('Zigor','2025-09-25','Mulish','Isigor','isizou@gmail.com','bababou0','0605040608'),
-('Eude02','2025-10-26','Pilup','Eude','Eudeux@gmail.com','oupala!','0704090506'),
-('test','2025-10-26','test','test','test@gmail.com','test','0701480506'),
-('Nanardeau','2025-10-29','Bernel','michar','moviestar@gmail.com','oupala!','0704090506');
+INSERT INTO Client(pseudo, dateCreation, nom, prenom, email, mdp, numTel, pdProfil) VALUES
+('Zigor','2025-09-25','Mulish','Isigor','isizou@gmail.com','bababou0','0605040608','/img/photosProfil/PDP_ZIG.jpg'),
+('Eude02','2025-10-26','Pilup','Eude','Eudeux@gmail.com','oupala!','0704090506','/img/photosProfil/PDP_EU2.jpg'),
+('test','2025-10-26','test','test','test@gmail.com','test','0701480506','/img/photosProfil/PDP_tst.jpg'),
+('Nanardeau','2025-10-29','Bernel','michar','moviestar@gmail.com','oupala!','0704090506','/img/photosProfil/PDP_BBl.jpg');
 
 
 INSERT INTO Vendeur(dateCreation, nom, prenom, email, mdp, numTel, siren, raisonSociale) VALUES
@@ -157,6 +157,16 @@ insert into ProdUnitPanier(idPanier,codeProduit,qteProd) VALUES
 (1,2,2),
 (1,4,1),
 (1,3,1);
+
+SET DateStyle TO 'European';
+
+insert into Avis(codeproduit,codecomptecli,noteprod,commentaire,datepublication) VALUES
+(1,1,5,'J adore ce produit, il est vraiment bien, il est arrivé vite en plus', DATE '08-01-2025'),
+(4,3,1,'Aucune protection du produit dans le colis, il est arrivé abimé, je ne recommande pas ce vendeur', DATE '15-06-2025'),
+(6,1,2,'Le produit est moyen', DATE '05-10-2025'),
+(2,2,3,'J aime bien mais c est pas mon truc non plus', DATE '22-03-2025');
+
+--SELECT client.pdprofil, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) ORDER BY avis.codeproduit;
 --select SUM(prixttctotal) FROM ProdUnitPanier INTO Panier.prixTTCtotal;
 --select * from ProdUnitPanier where idPanier = 1;
 --select * from Panier where codecompte = 3;
