@@ -1,5 +1,5 @@
 <?php
-$_GET["codeProduit"]=1;
+$_GET["codeProduit"]=11;
 if(isset($_GET["erreur"])){
         $erreur = $_GET["erreur"];
 }
@@ -136,7 +136,7 @@ $bdd->query('set schema \'alizon\'');
     $hauteur=$info["hauteur"];
     $largeur=$info["largeur"];
     $longueur=$info["longueur"];
-    $prix=$info["prixht"]
+    $prix=$info["prixht"];
     ?>
     <h3> Taille Produit </h3>
     <div class="taille container-fluid p-0">
