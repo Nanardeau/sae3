@@ -22,63 +22,7 @@
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
   font-weight: bolder;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-} 
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: medium;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -99,7 +43,7 @@
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bolder;
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -303,6 +247,105 @@ header nav svg {
   }
 }
 
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
+  font-weight: medium;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+} 
+body {
+  font-family: "Mulish", "Baloo", "sans-serif";
+  font-size: 14px;
+  background-color: white;
+  color: black;
+  margin: 0;
+}
+
+h1 {
+  font-family: "Baloo";
+  font-size: 40px;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: "Baloo";
+  font-size: 32px;
+  font-weight: bold;
+}
+
+h3 {
+  font-family: "Baloo";
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h4 {
+  font-family: "Baloo";
+  font-size: 20px;
+  font-weight: bold;
+}
+
+p, label, input {
+  font-family: "Mulish";
+}
+
+label {
+  font-weight: bold;
+}
+
+/*###############################
+#            HEADER             #
+###############################*/
 header {
   display: flex;
   flex-direction: row;
@@ -341,6 +384,70 @@ header a .user {
   height: auto;
   margin: 0 0.5em 0 2em;
   flex-direction: row;
+}
+
+/*###############################
+#            FOOTER             #
+###############################*/
+.footer {
+  background-color: #f9f9fb;
+  border-top: 4px solid #6CA6E9;
+  color: #333;
+  font-family: "Mulish";
+  padding-top: 1rem;
+  margin-top: 2em;
+}
+.footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  padding-top: 0;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.footer .footer-content .footer-section h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.footer .footer-content .footer-section p, .footer .footer-content .footer-section li, .footer .footer-content .footer-section a {
+  font-size: 14px;
+  color: #444;
+  text-decoration: none;
+}
+.footer .footer-content .footer-section p {
+  margin-bottom: 0.3rem;
+  margin-top: 0;
+}
+.footer .footer-content .footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer .footer-content .footer-section ul li {
+  margin-bottom: 0.3rem;
+}
+.footer .footer-content .footer-map {
+  text-align: center;
+}
+.footer .footer-content .footer-map img {
+  max-width: 100%;
+  height: auto;
+  opacity: 0.8;
+}
+.footer .footer-bottom {
+  background-color: #FFD6C2;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 14px;
+  color: #333;
+  border-top: 1px solid #ccc;
+}
+.footer .footer-logo {
+  align-self: center;
+  display: flex;
 }
 
 main {
@@ -384,7 +491,7 @@ main p {
   cursor: pointer;
 }
 .btnAcceuil a:last-child {
-  margin-left: 21em;
+  margin-left: 22.5em;
 }
 
 aside {
@@ -652,6 +759,7 @@ body {
   gap: 2em;
   margin-top: 1.5em;
   margin-bottom: 2em;
+  padding-bottom: 0.75em;
 }
 .promotions .promo {
   display: flex;
@@ -685,4 +793,4 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-}/*# sourceMappingURL=backend.css.map */
+}/*# sourceMappingURL=accueil.css.map */

@@ -1,52 +1,9 @@
-@use '../tools/vback.scss' as *;
-@use '../components/fonts.css' as *;
-@use '../style/styleCom.scss' as *;
+@use '../../tools/vback.scss' as *;
+@use '../styleCom.scss' as *;
+@use './styleComB.scss' as *;
 @use 'sass:color';
 
-header{
-    display: flex;
-    flex-direction: row;
-    background-color: $colP;
-    
-    .logo_alizon_back{
-        width: 118px;
-        height: auto;
-        margin: 1em 2em 1em 2em;
-    }
 
-    h1{
-        color: white;
-        font-family: $Poltitle , sans-serif;
-        font-size: 2em;
-        margin: 0 22em 0 0;
-    }
-
-    a {
-        display: flex;
-        outline:none;
-        text-decoration: none;
-        h2{
-        color: white;
-        font-family: $Poltitle , sans-serif;
-        font-size: 1.5em;
-        margin: 0 2em 0 0;
-        
-        }
-        .ajout{
-            margin: 0 0.5em 0 2em;
-            width: auto;
-            height: auto;
-            flex-direction: row;
-        }
-        .user{
-            width: 2em;
-            height: auto;
-            margin: 0 0.5em 0 2em;
-            flex-direction: row;
-        }
-    }
-    
-}
 main{
     margin-left : 3em;
     h1{
@@ -86,7 +43,7 @@ main{
                 cursor: pointer;
             }
             &:last-child{
-                margin-left: 21em;
+                margin-left: 22.5em;
             }
     }
     
@@ -386,6 +343,7 @@ body {
     gap: 2em;
     margin-top: 1.5em;
     margin-bottom: 2em;
+    padding-bottom: 0.75em;
 
     .promo{
         display: flex;
