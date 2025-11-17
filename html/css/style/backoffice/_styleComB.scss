@@ -1,6 +1,5 @@
-@use "../../tools/vback" as *;
+@use "../../tools/vBack" as *;
 @use "../../tools/mixin/com" as m;
-@use '../../components/fonts.css' as *;
 
 
 body{
@@ -9,7 +8,7 @@ body{
         size: $txtSize;
     }
     background: {
-        color: $blanc;
+        color: white;
     }
     color : $noir;
     margin: 0;
@@ -38,48 +37,35 @@ label{
 ###############################*/
 
 header{
-    display: flex;
-    flex-direction: row;
-    background-color: $colP;
-    
-    .logo_alizon_back{
+    display: inline-flex;
+    background: {
+        color: $colP;
+    }
+    height: 80px;
+    width: 100%;
+    align-items: center;
+
+    .logo_alizon_front{
         width: 118px;
         height: auto;
-        margin: 1em 2em 1em 2em;
+        padding-left: 80px;
+        left: 0;
     }
 
-    h1{
-        color: white;
-        font-family: $Poltitle , sans-serif;
-        font-size: 2em;
-        margin: 0 22em 0 0;
-    }
-
-    a {
+    nav{
+        margin-left: auto;
         display: flex;
-        outline:none;
-        text-decoration: none;
-        h2{
-        color: white;
-        font-family: $Poltitle , sans-serif;
-        font-size: 1.5em;
-        margin: 0 2em 0 0;
-        
+        align-items: center;
+        a{
+            padding-right: 20px;
+            color: $blanc;
+            text-decoration: none;
         }
-        .ajout{
-            margin: 0 0.5em 0 2em;
-            width: auto;
-            height: auto;
-            flex-direction: row;
-        }
-        .user{
-            width: 2em;
-            height: auto;
-            margin: 0 0.5em 0 2em;
-            flex-direction: row;
+        svg{
+            padding-right: 10px;
         }
     }
-    
+
 }
 
 /*###############################
@@ -92,7 +78,6 @@ header{
     color: #333;
     font-family: $Poltext;
     padding-top: 1rem;
-    margin-top: 2em;
 
     .footer-content {
         max-width: 1200px;

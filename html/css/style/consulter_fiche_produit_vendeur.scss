@@ -1,13 +1,13 @@
 @use "../tools/vback" as *;
 
-header {
-    
-    h2 {
-        display: none;
-    }
-}
 
 main {
+    h1, h2 {
+        font-family: $Poltitle;
+    }
+    p {
+        font-family: $Poltext;
+    }
     margin-left: 80px;
     margin-right: 80px;
     .image_prod{
@@ -50,12 +50,16 @@ main {
         height: 70px;
         font-size: 16px;
         font-weight: bold;
-        background-color: #FCB66B;
         border-radius: 8px;
         border: none;
         
     }
-    
+    .buton_modif {
+        background-color: #FCB66B;
+    }
+    .buton_ret_cat {
+        background-color: $eleBleu;
+    }
     .alignement_space_betwen {
         display: flex;
         justify-content: space-between;
@@ -80,6 +84,7 @@ main {
     .catego{
         margin-top: 50px;
         display: flex;
+        height: 300px;
     }
 
     .caract {
@@ -87,11 +92,13 @@ main {
         margin-right: 50px;
         padding: 20px;
         border-radius: 16px;
-        width: 240px;
-        height: 280px;
+        width: 20em;
+        height: 220px;
         p {
-            padding-top: 10px;
+            padding-top: 1em;
+            padding-left: 2em;
             font-size: 22px;
+            
         }
         h2 {
             font-size: $GdTitle;

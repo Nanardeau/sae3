@@ -1,26 +1,26 @@
-        <?php 
-            $_GET["codeProduit"]=1;
-            //include '../includes/backoffice/header.php';
-            require_once('../_env.php');
-            
-        
-            // Charger le fichier .env
-            loadEnv('../.env');
+<?php 
+    $_GET["codeProduit"]=11;
+    //include '../includes/backoffice/header.php';
+    require_once('../_env.php');
+    
 
-            // Récupérer les variables
-            $host = getenv('PGHOST');
-            $port = getenv('PGPORT');
-            $dbname = getenv('PGDATABASE');
-            $user = getenv('PGUSER');
-            $password = getenv('PGPASSWORD');
+    // Charger le fichier .env
+    loadEnv('../.env');
 
-            // Connexion à PostgreSQL
+    // Récupérer les variables
+    $host = getenv('PGHOST');
+    $port = getenv('PGPORT');
+    $dbname = getenv('PGDATABASE');
+    $user = getenv('PGUSER');
+    $password = getenv('PGPASSWORD');
 
-                $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
-                $bdd = new PDO($dsn, $user, $password, [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-            ]);
-        ?>
+    // Connexion à PostgreSQL
+
+        $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
+        $bdd = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -116,5 +116,6 @@
                 ?>
             </div>
         </main>
+        <?php include '../includes/backoffice/footer.php';?>
     </body>
 </html>
