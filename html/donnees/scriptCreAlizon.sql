@@ -69,6 +69,7 @@ CREATE TABLE Produit(
     largeur FLOAT, --en mètre
     qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
     Origine VARCHAR(20) NOT NULL,
+    Disponible BOOLEAN DEFAULT TRUE,  
     seuilAlerte NUMERIC(10,2) NOT NULL,
     urlPhoto VARCHAR(40) REFERENCES Photo(urlPhoto),
     codeCompteVendeur INTEGER REFERENCES Vendeur(codeCompte)	
