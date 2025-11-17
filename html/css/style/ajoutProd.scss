@@ -103,9 +103,7 @@ form{
         .bouton{
         height:5em;
         font-size:$MoyTitle;
-            @media screen and ($mobile){
-                height:4em;
-            }
+            
         }
         
     }
@@ -137,7 +135,18 @@ form{
     flex-direction: column;
     
 }
-
+.button{
+        font-family: $Poltext;
+        background-color: $eleBleu;
+        border-radius:$radius;
+        height:3em;
+        margin:10px 0;
+        padding:10px;
+        width: 25%;
+        text-align: center;
+        color:$noir;
+        text-decoration: none;
+}
 .bouton{
     @include bouton($colP);
     &:hover{

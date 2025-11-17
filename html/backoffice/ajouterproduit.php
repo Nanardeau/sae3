@@ -83,6 +83,13 @@ $bdd->query('set schema \'alizon\'');
     }
     ?>
     </select>
+    <label for="origine">Origine</label>
+    <select name="origine" id="origine" required>
+        <option value="" disabled selected>Choisir l'origine</option>
+        <option value="Étranger">Étranger</option>
+        <option value="France">France</option>
+        <option value="Breizh">Breizh</option>
+    </select>
     <label for="TVA">TVA</label>
     <select name="TVA" id="TVA" required>
         <option value="" disabled selected>Choisir le taux TVA</option>
@@ -123,7 +130,7 @@ $bdd->query('set schema \'alizon\'');
     <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" id="prix" pattern="[.0-9]" required/> 
     <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
 </form>
-        
+        <a class="button" href="./accueil.php">Retour</a>
 </main>
 </body>
 </html>
