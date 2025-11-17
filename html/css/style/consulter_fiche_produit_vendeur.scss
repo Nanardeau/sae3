@@ -1,27 +1,102 @@
 @use "../tools/vback" as *;
 
-
-
-div {
-    display: flex;
-    align-items: center;
-}
-img, input {
-    margin: 10px;
-}
-.buton_commentaire {
-    width: 250px;
-    height: 40px;
-    background-color: $blanc;
-    border-radius: 16px;
-}
-.buton_modif, .buton_ret_cat {
-    width: 200px;
-    height: 50px;
-    background-color: $blanc;
-    border-radius: 8px;
+header {
     
+    h2 {
+        display: none;
+    }
 }
-section {
-    width: 868px;
+
+main {
+    margin-left: 80px;
+    margin-right: 80px;
+    .image_prod{
+        border: black 2px solid;
+        margin: 0;
+        margin-top: 50px;
+    }
+    .img_etoile{
+        padding-left: 20px;
+    }
+    h1{
+        margin-top: 80px;
+        margin-bottom: 0;
+        padding-left: 20px;
+        
+    }
+    h2 , p{
+        margin: 0;
+        padding-left: 20px;
+    }
+    input {
+        margin: 20px;
+    }
+    input:hover {
+        border-color: #A1A1A1;
+        
+    }
+    .buton_commentaire {
+        width: 250px;
+        height: 60px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #FCB66B;
+        border-radius: 8px;
+        border: none;
+        
+    }
+    .buton_modif, .buton_ret_cat {
+        width: 200px;
+        height: 70px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #FCB66B;
+        border-radius: 8px;
+        border: none;
+        
+    }
+    
+    .alignement_space_betwen {
+        display: flex;
+        justify-content: space-between;
+        align-items: top;
+        
+    }
+    .alignemnt_droite_gauche {
+        display: flex;
+        align-items: center;
+    }
+    hr {
+        margin-top: 60px;
+        margin-left: 10px;
+        width: 800px;
+    }
+    div+h2 {
+        padding-top: 20px;
+    }
+    p {
+        font-size: 20px;
+    }
+    .catego{
+        margin-top: 50px;
+        display: flex;
+    }
+
+    .caract {
+        background-color: $colS;
+        margin-right: 50px;
+        padding: 20px;
+        border-radius: 16px;
+        width: 240px;
+        height: 280px;
+        p {
+            padding-top: 10px;
+            font-size: 22px;
+        }
+        h2 {
+            font-size: $GdTitle;
+        }
+    }
+
+
 }
