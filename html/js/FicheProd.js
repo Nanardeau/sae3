@@ -15,7 +15,7 @@ function sendGet(url, onSuccess, onError) {
 }
 function ajouterCatalogue(idProd){
         if(confirm("Voulez vous ajouter cet article au catalogue?")){
-        url = "backoffice/statut.php?Action=ajouter&Produit=" + encodeURIComponent(idProd);
+        url = "/backoffice/statut.php?Action=ajouter&Produit=" + encodeURIComponent(idProd);
         sendGet(url,function() { 
             location.reload(); 
         },
@@ -27,7 +27,7 @@ function ajouterCatalogue(idProd){
 }
 function retirerCatalogue(idProd){
         if(confirm("Voulez vous retirer cet article du catalogue?")){
-        url = "backoffice/statut.php?Action=retirer&Produit=" + encodeURIComponent(idProd);
+        url = "/backoffice/statut.php?Action=retirer&Produit=" + encodeURIComponent(idProd);
         sendGet(url,function() { 
             location.reload(); 
         },

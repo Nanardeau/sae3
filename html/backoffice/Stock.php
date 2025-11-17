@@ -82,9 +82,10 @@ $bdd->query('set schema \'alizon\'');
             </div>
             <article><?php
                         foreach ($listArt as $article) {
-
-                            $infoArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC, urlPhoto FROM Produit where codeProduit =\'' . $article['codeproduit'] . '\' and Disponible = true');
                             
+                            $infoArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC, urlPhoto FROM Produit where codeProduit =\'' . $article['codeproduit'] . '\' and Disponible = true');
+                            //print_r($infoArt->fetch());
+                            $codeProduit = $article['codeproduit'];
                             foreach ($infoArt as $article) {
                                 //print_r($article);
                                 $img = $article['urlphoto'];
@@ -108,8 +109,8 @@ $bdd->query('set schema \'alizon\'');
                                         <path d="M9.63037 13.4648V17.8585" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </a>
-                                <a><button type="button">Modifier</button></a>
-                                <a><button value="Détails" href="test.php">Détails</button></a>
+                                <a class="button" >Modifier</a>
+                                <a class="button" href="./FicheProduit.php?Produit=<?php echo $codeProduit ?>">Détails</a>
                             </div>
 
                         </div>
@@ -128,7 +129,7 @@ $bdd->query('set schema \'alizon\'');
                         foreach ($listArt as $article) {
 
                             $infoArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC, urlPhoto FROM Produit where codeProduit =\'' . $article['codeproduit'] . '\' and Disponible = false');
-
+                            $codeProduit = $article['codeproduit'];
                             foreach ($infoArt as $article) {
                                 //print_r($article);
                                 $img = $article['urlphoto'];
@@ -152,8 +153,8 @@ $bdd->query('set schema \'alizon\'');
                                         <path d="M9.63037 13.4648V17.8585" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </a>
-                                <a><button type="button">Modifier</button></a>
-                                <a><button value="Détails" href="test.php">Détails</button></a>
+                                <a class="button" >Modifier</a>
+                                <a class="button" href="./FicheProduit.php?Produit=<?php echo $codeProduit; ?>">Détails</a>
                             </div>
 
                         </div>

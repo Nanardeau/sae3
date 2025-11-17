@@ -21,7 +21,7 @@
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 
-
+    $bdd->query('set schema \'alizon\'');
 
     $action = $_GET["Action"];
     $codeProduit = $_GET["Produit"];
@@ -31,7 +31,7 @@
             $stmt = $bdd->prepare("UPDATE Produit SET Disponible = false WHERE codeProduit = :codeProduit");
             $stmt->execute([
             ':codeProduit' => $codeProduit
-        ]);
+            ]);
             break;
         case 'ajouter':
             $stmt = $bdd->prepare("UPDATE Produit SET Disponible = true WHERE codeProduit = :codeProduit");
