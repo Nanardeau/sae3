@@ -1,5 +1,5 @@
 <?php
-$_GET["codeProduit"]=11;
+$_GET["codeProduit"]=1;
 if(isset($_GET["erreur"])){
         $erreur = $_GET["erreur"];
 }
@@ -81,10 +81,15 @@ $bdd->query('set schema \'alizon\'');
     ?>
     
     <label for="description">Déscription détaillée</label>
-    <textarea name="description" id="description" rows="5" cols="33" value=<?php echo "$res"; ?> required></textarea>
+    <textarea name="description" id="description" rows="5" cols="33" placeholder="Description détaillée..." required><?php echo $res; ?></textarea>
     <label for="categorie">Catégorie</label>
+    <?php
+        
+        $info = $bdd->query("SELECT * FROM alizon.Categoriser WHERE codeproduit=$code_produit")->fetch();
+        $res=$info["libellecat"];
+    ?>
     <select name="categorie" id="categorie" required>
-        <option value="" disabled selected>Choisir une catégorie</option>
+        <option value="Choisir une categorie" disabled selected><?php echo $res ?></option>
         <?php 
     $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); //Nom de la catégorie  
     
@@ -96,8 +101,13 @@ $bdd->query('set schema \'alizon\'');
     ?>
     </select>
     <label for="TVA">TVA</label>
+    <?php
+        $info = $bdd->query("SELECT nomtva FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
+        $res=$info["nomtva"];
+
+    ?>
     <select name="TVA" id="TVA" required>
-        <option value="" disabled selected>Choisir le taux TVA</option>
+        <option value="<?php echo $res; ?>" disabled selected><?php echo $res; ?></option>
         <?php 
     $listTVA = $bdd->query('SELECT DISTINCT nomTVA FROM TVA'); //Nom de la catégorie  
     foreach ($listTVA as $nomTVA) {
@@ -109,30 +119,44 @@ $bdd->query('set schema \'alizon\'');
     </select>
     
     <label for="qteStock" class="pObl">Quantité Stock</label>
-    <input type="number" name="qteStock" placeholder="Nombre de produit en stock" id="qteStock"/> 
+    <?php
+    $info = $bdd->query("SELECT * FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
+    $res=$info["qtestock"];
+    ?>
+    <input type="number" name="qteStock" placeholder="Nombre de produit en stock" value="<?php echo $res; ?>" id="qteStock"/> 
     <label for="prix">Seuil d'alerte</label>
-    <input type="number" name="seuil" placeholder="Seuil d'alerte du produit" id="seuil" required/>
+    <?php
+    $res=$info["seuilalerte"];
+    
+    ?>
+    <input type="number" name="seuil" placeholder="Seuil d'alerte du produit" value="<?php echo $res; ?>" id="seuil" required/>
     <label for="photoProd" class="pObl">Photo du Produit</label>
     <input type="file" name="photo" id="photoProd" accept="image/*"/>
+    <?php
+    $hauteur=$info["hauteur"];
+    $largeur=$info["largeur"];
+    $longueur=$info["longueur"];
+    $prix=$info["prixht"]
+    ?>
     <h3> Taille Produit </h3>
     <div class="taille container-fluid p-0">
         <div class="row">
             <div class="col-3 labelInput">
                 <label for="tailleHaut">Hauteur</label>
-                <input type="text" name="tailleHaut" placeholder="en mètre" id="tailleHaut"/>
+                <input type="text" name="tailleHaut" placeholder="en mètre" value="<?php echo $hauteur; ?>" id="tailleHaut"/>
             </div>
             <div class="col-3 labelInput">
                 <label for="tailleLarg">Largeur</label>
-                <input type="text" name="tailleLarg" placeholder="en mètre" id="tailleLarg"/>
+                <input type="text" name="tailleLarg" placeholder="en mètre" value="<?php echo $largeur; ?>" id="tailleLarg"/>
             </div>
             <div class="col-3 labelInput">
                 <label for="tailleLong">Longueur</label>
-                <input type="text" name="tailleLong" placeholder="en mètre" id="tailleLong"/>
+                <input type="text" name="tailleLong" placeholder="en mètre" value="<?php echo $longueur; ?>" id="tailleLong"/>
             </div>
         </div>
     </div>
     <label for="prix">Prix</label>
-    <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" id="prix" pattern="[.0-9]" required/> 
+    <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" value="<?php echo $prix; ?>.00" id="prix" pattern="[0-9]{2}.[0-9]{2}" required/> 
     <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
 </form>
         
