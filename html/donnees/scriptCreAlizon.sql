@@ -65,7 +65,7 @@ CREATE TABLE Produit(
     longueur FLOAT, --en mètre
     largeur FLOAT, --en mètre
     qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
-    Origine VARCHAR(20) NOT NULL,
+    Origine VARCHAR(20) NOT NULL check (Origine IN ('Breizh','France','Étranger')),
     Disponible BOOLEAN DEFAULT TRUE,  
     seuilAlerte NUMERIC(10,2) NOT NULL,
     urlPhoto VARCHAR(40) REFERENCES Photo(urlPhoto),
@@ -149,7 +149,7 @@ CREATE TABLE Avis(
 	codeCompteCli INTEGER REFERENCES Client(codeCompte),
     noteProd FLOAT,
     commentaire VARCHAR(20),
-    datePublication DATE
+    datePublication TEXT
 );
 
 CREATE TABLE Reponse(
@@ -338,7 +338,7 @@ BEFORE INSERT OR UPDATE ON Commande
 FOR EACH ROW
 EXECUTE FUNCTION calcul_prixTotalTTCCom();
 
--- Date création Panier
+-- Date création/Modification Panier
 
 CREATE OR REPLACE FUNCTION alizon.dateModificationPanier()
 RETURNS TRIGGER AS $$
@@ -366,8 +366,25 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- Date création Avis
 
 CREATE TRIGGER trg_dateCrea_Panier
 BEFORE INSERT ON alizon.Panier
 FOR EACH ROW
 EXECUTE FUNCTION alizon.dateCréationPanier();
+
+CREATE OR REPLACE FUNCTION alizon.dateCréationAvis()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_ts timestamptz;
+BEGIN
+    NEW.datepublication := to_char(now(), 'DD/MM/YYYY HH24:MI:SS');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trg_dateCrea_Avis
+BEFORE INSERT ON alizon.Avis
+FOR EACH ROW
+EXECUTE FUNCTION alizon.dateCréationAvis();

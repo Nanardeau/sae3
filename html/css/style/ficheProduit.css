@@ -82,7 +82,7 @@ main .buton_commentaire {
   border-radius: 8px;
   border: none;
 }
-main .buton_modif, main .buton_ret_cat {
+main .buton_modif, main .buton_ret_cat, main .buton_ajt_cat {
   width: 200px;
   height: 70px;
   font-size: 16px;
@@ -93,8 +93,11 @@ main .buton_modif, main .buton_ret_cat {
 main .buton_modif {
   background-color: #FCB66B;
 }
-main .buton_ret_cat {
+main .buton_ajt_cat {
   background-color: #6CA6E9;
+}
+main .buton_ret_cat {
+  background-color: #FF4444;
 }
 main .alignement_space_betwen {
   display: flex;
@@ -121,7 +124,7 @@ main .catego {
   display: flex;
   height: auto;
 }
-main .caract {
+main .catego .caract {
   background-color: #FFD6C2;
   margin-right: 50px;
   padding: 20px;
@@ -130,11 +133,11 @@ main .caract {
   width: 20em;
   height: auto;
 }
-main .caract p {
+main .catego .caract p {
   padding-top: 1em;
   padding-left: 2em;
   font-size: 22px;
 }
-main .caract h2 {
-  font-size: 32px;
-}/*# sourceMappingURL=consulter_fiche_produit_vendeur.css.map */
+main .catego .caract ul li {
+  list-style-type: none;
+}/*# sourceMappingURL=ficheProduit.css.map */
