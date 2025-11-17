@@ -1,5 +1,5 @@
 <?php 
-    $_GET["codeProduit"]=11;
+    $_GET["codeProduit"]=1;
     //include '../includes/backoffice/header.php';
     require_once('../_env.php');
     
@@ -26,7 +26,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../css/style/consulter_fiche_produit_vendeur.css" >
+        <link rel="stylesheet" type="text/css" href="../css/style/ficheProduit.css" >
         <link rel="stylesheet" type="text/css" href="../css/style/header_back.css" >
         <title>alizon</title>
     </head>
@@ -74,45 +74,55 @@
                             ?>
                         </h2>
                         <div>
-                            <input type="button" value="Modifier le produit" class="buton_modif">
-                            <input type="button" value="Retirer du catalogue" class="buton_ret_cat">
+                            <button onclick="retirerCatalogue(<?php echo $code_produit?>)" value="Modifier le produit" class="buton_modif">
+                            <?php
+                            $state = $bdd->query("SELECT Disponible FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
+                            
+                            if($state['disponible'] == 1){                            
+                            ?>
+                            <button onclick="retirerCatalogue(<?php echo $code_produit?>)" value="Retirer du catalogue" class="buton_ret_cat">
+                            <?php
+                            }
+                            elseif ($state['disponible'] != 1){?>
+
+                            <input type="button" value="Ajouter au catalogue" class="buton_ajt_cat">
+
+                            <?php } ?>
                         </div> 
                     </div>
                 </section>
             </div>
-            <h2>Caractéristique</h2>
+            <h2>Caractéristiques</h2>
             <div class="catego">
                 <?php
                 
-                $info = $bdd->query("SELECT longueur FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
-                $res=$info["longueur"];
-                if ($res!=""){
-                    echo "
-                    <section class=\"caract\" >
-                        <h2>• Longueur</h2>
-                        <p>$res mètre</p>
-                    </section>";
+                $info = $bdd->query("SELECT longueur,largeur,hauteur FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
+                $Org = $bdd->query("SELECT Origine FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
+
+                if ($info!= NULL){?>
+                    <section class="caract">
+                        <h2> Taille</h2>
+                        <ul>
+                            <li>Longueur : <?php echo $info['longueur']?> mètre</li>
+                            <li>Largeur : <?php echo $info['largeur']?> mètre</li>
+                            <li>Hauteur : <?php echo $info['hauteur']?> mètre</li>
+                        </ul>
+                    </section>
+                <?php
                 }
-                $info = $bdd->query("SELECT hauteur FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
-                $res=$info["hauteur"];
-                if ($res!=""){
-                    echo "
-                    <section class=\"caract\" >
-                        <h2>• Taille</h2>
-                        <p>$res mètre</p>
-                    </section>";
-                }
-                $info = $bdd->query("SELECT largeur FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
-                $res=$info["largeur"];
-                if ($res!=""){
-                    echo "
-                    <section class=\"caract\" >
-                        <h2>• Largeur</h2>
-                        <p>$res mètre</p>
-                    </section>";
-                }
+                if ($Org != NULL){
+                    
+                ?>
                 
-                
+                <section class="caract">
+                        <h2> Origine</h2>
+                        <ul>
+                            <li>Made in <?php echo $Org['origine']?></li>
+
+                        </ul>
+                </section>
+                <?php
+                }
                 ?>
             </div>
         </main>

@@ -45,7 +45,7 @@ main {
         border: none;
         
     }
-    .buton_modif, .buton_ret_cat {
+    .buton_modif, .buton_ret_cat, .buton_ajt_cat {
         width: 200px;
         height: 70px;
         font-size: 16px;
@@ -57,8 +57,11 @@ main {
     .buton_modif {
         background-color: #FCB66B;
     }
-    .buton_ret_cat {
+    .buton_ajt_cat{
         background-color: $eleBleu;
+    }
+    .buton_ret_cat {
+        background-color: $inverse;
     }
     .alignement_space_betwen {
         display: flex;
@@ -85,26 +88,29 @@ main {
         margin-top: 50px;
         display: flex;
         height: auto;
+        .caract{
+            background-color: $colS;
+            margin-right: 50px;
+            padding: 20px;
+            padding-bottom: 50px;
+            border-radius: 16px;
+            width: 20em;
+            height: auto;
+            p {
+                padding-top: 1em;
+                padding-left: 2em;
+                font-size: 22px;
+                
+            }
+            ul li{
+                list-style-type: none;
+                
+            }
+        
+        }
     }
 
-    .caract {
-        background-color: $colS;
-        margin-right: 50px;
-        padding: 20px;
-        padding-bottom: 50px;
-        border-radius: 16px;
-        width: 20em;
-        height: auto;
-        p {
-            padding-top: 1em;
-            padding-left: 2em;
-            font-size: 22px;
-            
-        }
-        h2 {
-            font-size: $GdTitle;
-        }
-    }
+
 
 
 }
