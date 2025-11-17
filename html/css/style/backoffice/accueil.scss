@@ -281,16 +281,12 @@ body {
         display: flex;
         flex-direction: row;
         align-items: center;
-        button{
+        p{
             font-family: $Poltext , sans-serif;
             font-size: $PetTitle;
             color: $noir;
             font-weight: bold;
             margin-right: 0.25em;
-            background-color: transparent;
-            border: none;
-            outline: none;
-            cursor: pointer;
         }
         .note{
             display: flex;
