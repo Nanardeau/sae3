@@ -50,7 +50,8 @@
             $_SESSION["idAdresse"] = $infosAdresse["idadresse"];            
         }
 
-
+    $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
+    $idPanier = $panier["idpanier"];
 
    ?>
 
@@ -72,8 +73,14 @@
     if($_POST){
         print_r($_POST);
     }
-
-
+    if($_GET["suppProd"]){
+        
+        $stmt = $bdd->prepare("DELETE FROM ProdUnitPanier WHERE idPanier = :idPanier AND codeProduit = :codeProduit");
+        $stmt->execute([
+            ':idPanier' => $idPanier,
+            ':codeProduit' => $_GET["suppProd"]
+        ]);
+    }
     ?>
     <div class="container-fluid">
         <div class="row">
@@ -152,8 +159,7 @@
             <div class="col-5">
                 <section id="secRecap">
                     <?php 
-                    $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
-                    $idPanier = $panier["idpanier"];
+
                     $nbProd = ($bdd->query("SELECT ALL count(*) from alizon.ProdUnitPanier where idPanier = '".$idPanier."'")->fetch())["count"];
                     ?>
                     <h2>Récapitulatif ( <?php echo $nbProd?> articles) </h2>
@@ -200,7 +206,8 @@
                                         ?>
                                         <div class="prixPoub">
                                             <div class="prix"><?php echo $prodUnit["prixttctotal"]?>€</div>
-                                            <div><button onclick="supprimerProd(<?php echo $prodUnit["codeproduit"]?>)">poub</button></div><?php
+                                            
+                                            <div><button onclick="supprimerProd(<?php echo $idPanier ?> , <?php echo $prodUnit['codeproduit']?>)">poub</button></div><?php
                                             echo "</div></div>";
                                     }
 
@@ -255,8 +262,34 @@
     btnPayer.addEventListener("click", validerPaiement);
     btnModifAdr.addEventListener("click", modifierAdr);
 
-    function supprimerProd(codeProd){
-        console.log(codeProd);
+
+    function sendGet(url, onSuccess, onError) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                if (typeof onSuccess === 'function') onSuccess(xhr);
+            } else {
+                if (typeof onError === 'function') onError(xhr);
+            }
+        };
+        xhr.onerror = function() {
+            if (typeof onError === 'function') onError(xhr);
+        };
+        xhr.send();
+    }
+    function supprimerProd(idPanier, codeProd){
+        if(confirm("Voulez vous supprimer cet article ?")){
+        url = "modifPanier.php?Action=supprimerProduit&Panier=" + encodeURIComponent(idPanier) + "&Produit=" + encodeURIComponent(codeProd);
+        sendGet(url,function() { 
+            location.reload(); 
+        },
+        function() { 
+            alert('Erreur côté serveur.');
+         }
+        )
+
+    }
     }
     function annuler(){
         window.location.reload();
