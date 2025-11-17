@@ -68,6 +68,5 @@ $bdd->query('set schema \'alizon\'');
     <?php
         include 'includes/footer.php';
     ?>
-    <script src="script/script.js"></script>
 </body>
 </html>

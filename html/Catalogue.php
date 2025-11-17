@@ -36,6 +36,8 @@ $bdd->query('set schema \'alizon\'');
 
 <body>
     <?php include 'includes/header.php';?>
+    <?php include 'includes/menu_cat.php';?>
+
 
     <main>
 
@@ -62,7 +64,8 @@ $bdd->query('set schema \'alizon\'');
             ?><article><?php
                         foreach ($listArt as $article) {
 
-                            $infoArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC, urlPhoto FROM Produit where codeProduit =\'' . $article['codeproduit'] . '\'');
+                            //$infoArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC, urlPhoto FROM Produit where codeProduit =\'' . $article['codeproduit'] . '\'');
+                            $infoArt = $bdd->query('SELECT DISTINCT codeProduit, libelleProd, prixTTC, urlPhoto FROM Produit WHERE codeProduit = ' . $article['codeproduit']);
 
                             foreach ($infoArt as $article) {
                                 //print_r($article);
@@ -88,7 +91,9 @@ $bdd->query('set schema \'alizon\'');
                                     </svg>
                                 </a>
                                 <a><input type="button" value="Ajouter au panier"></input></a>
-                                <a><input type="button" value="Détails" href="test.php"></input></a>
+                                <a href="dproduit.php?id=<?= $article['codeproduit'] ?>">Détails</a>
+                                <!--<input type="button" value="Détails" href="dproduit.php?id=<?= $article['codeproduit'] ?>"></input>-->
+
                             </div>
 
                         </div>

@@ -19,9 +19,14 @@ body{
     gap: 2rem;
     padding: 2rem;
     padding-top: 100px;
+
+    @media screen and (max-width: 428px){
+        padding-top: 40px;
+    }
 }
 
 .annonce_produit {
+
     background-color: $colS;
     border-radius: $radius;
     width: 40%;
@@ -36,6 +41,12 @@ body{
         object-fit: cover;
         background-color: rgb(217, 217, 217);
         margin-bottom: 1rem;
+    }
+    @media screen and (max-width: 428px){
+        width: 100%;
+        img{
+            height: 100px;
+        }
     }
 }
 
@@ -60,6 +71,13 @@ body{
 
     img {
         height: 250px;
+    }
+
+    @media screen and (max-width: 428px){
+        width: 100%;
+        img{
+            height: 100px;
+        }
     }
 }
 

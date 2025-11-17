@@ -357,7 +357,7 @@ header nav svg {
 }
 
 .overlayContentCatMob {
-  position: absolute;
+  position: fixed;
   background: white;
   text-align: left;
   min-width: 70%;
@@ -389,10 +389,14 @@ header nav svg {
   margin-left: 1rem;
 }
 .overlayContentCatMob .page-acc {
+  position: sticky;
+  top: 20%;
   display: flex;
   align-items: center;
   border-bottom: 4px solid #A1A1A1;
   width: 100%;
+  background-color: white;
+  z-index: 1001;
   padding-bottom: 5px;
   padding-top: 5px;
 }
@@ -405,12 +409,12 @@ header nav svg {
   margin-left: 50px;
 }
 .overlayContentCatMob .identification {
-  position: fixed;
+  position: sticky;
+  top: 0;
   background-color: #064082;
-  min-width: 66%;
   left: 0;
+  width: 100%;
   height: 20%;
-  padding-left: 1rem;
 }
 .overlayContentCatMob .identification a {
   text-decoration: none;
@@ -421,21 +425,27 @@ header nav svg {
   color: white;
 }
 .overlayContentCatMob .identification .cross {
-  position: fixed;
+  position: absolute;
   top: 30px;
   right: 30px;
 }
 .overlayContentCatMob .identification .user-ident {
+  position: absolute;
   top: 30px;
+  padding-left: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 .overlayContentCatMob .identification .user-ident svg {
   margin-left: 20px;
+  height: 28px;
+  width: auto;
 }
 .overlayContentCatMob .identification .parcourir-alizon {
-  top: 45%;
+  position: absolute;
+  top: 90px;
+  padding-left: 1rem;
 }
 
 @font-face {
@@ -508,6 +518,11 @@ body {
   padding: 2rem;
   padding-top: 100px;
 }
+@media screen and (max-width: 428px) {
+  .anonnces_produits {
+    padding-top: 40px;
+  }
+}
 
 .annonce_produit {
   background-color: #D1ECF8;
@@ -526,6 +541,14 @@ body {
      object-fit: cover;
   background-color: rgb(217, 217, 217);
   margin-bottom: 1rem;
+}
+@media screen and (max-width: 428px) {
+  .annonce_produit {
+    width: 100%;
+  }
+  .annonce_produit img {
+    height: 100px;
+  }
 }
 
 .boutton {
@@ -546,6 +569,14 @@ body {
 }
 .annonce_produit_large img {
   height: 250px;
+}
+@media screen and (max-width: 428px) {
+  .annonce_produit_large {
+    width: 100%;
+  }
+  .annonce_produit_large img {
+    height: 100px;
+  }
 }
 
 .separateur {
