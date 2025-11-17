@@ -1,7 +1,7 @@
 
 <?php
 //Connexion à la base de données.
-require_once __DIR__ . '/_env.php';
+require_once '../_env.php';
 loadEnv(__DIR__ . '/.env');
 
 // Récupération des variables
@@ -49,13 +49,13 @@ if($_POST){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link href="./css/style/ConnexionVendeur.css" rel="stylesheet" type="text/css">
-    <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../css/style/ConnexionVendeur.css" rel="stylesheet" type="text/css">
+    <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <main>
         <div>
-            <a href="accueilVendeur.php"><img src="../html/img/logo_back.svg" alt="logo-alizon" title="logo-alizon"/></a>
+            <a href="accueilVendeur.php"><img src="../img/logo_back.svg" alt="logo-alizon" title="logo-alizon"/></a>
             <h2>Back Office</h2>
         </div>
         <form action="ConnexionVendeur.php" method="post">
@@ -77,9 +77,9 @@ if($_POST){
        
         <aside>
             <figure>
-                <img src="./img/line_3.svg"/>
+                <img src="../img/line_3.svg"/>
                 <p>Pas encore de compte ?</p>
-                <img src="./img/line_3.svg"/>
+                <img src="../img/line_3.svg"/>
             </figure>
             <nav>
                 <a href="CreerCompteVendeur.php" class="bouton">Créer un compte</a>
@@ -87,7 +87,7 @@ if($_POST){
         </aside>
     
     </main>
-    <?php include('./includes/footer.php');?>
+    <?php include('../includes/backoffice/footer.php');?>
 
 </script>
 

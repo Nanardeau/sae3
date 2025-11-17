@@ -1,0 +1,150 @@
+@use "../../tools/vback" as *;
+@use "../../tools/mixin/com" as m;
+
+
+body{
+    font: {
+        family: $Poltext,$Poltitle,"sans-serif";
+        size: $txtSize;
+    }
+    background: {
+        color: white;
+    }
+    color : $noir;
+    margin: 0;
+}
+
+h1{
+   @include m.text($TrGdTitle);
+}
+h2{
+    @include m.text($GdTitle);
+}
+h3{
+    @include m.text($MoyTitle);
+}
+h4{
+    @include m.text($PetTitle);
+}
+p, label, input{
+    font-family:$Poltext;
+}
+label{
+    font-weight:bold;
+}
+/*###############################
+#            HEADER             #
+###############################*/
+
+header{
+    display: inline-flex;
+    background: {
+        color: $colP;
+    }
+    height: 80px;
+    width: 100%;
+    align-items: center;
+
+    .logo_alizon_front{
+        width: 118px;
+        height: auto;
+        padding-left: 80px;
+        left: 0;
+    }
+
+    nav{
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        a{
+            padding-right: 20px;
+            color: $blanc;
+            text-decoration: none;
+        }
+        svg{
+            padding-right: 10px;
+        }
+    }
+
+}
+
+/*###############################
+#            FOOTER             #
+###############################*/
+
+.footer {
+    background-color: #f9f9fb;
+    border-top: 4px solid $eleBleu ;
+    color: #333;
+    font-family: $Poltext;
+    padding-top: 1rem;
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.5rem 2rem;
+        padding-top: 0;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+
+        .footer-section {
+            h3 {
+                font-size: $MoyTitle;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            p, li, a {
+                font-size: $txtSize;
+                color: #444;
+                text-decoration: none;
+
+            }
+
+            p{
+                margin: {
+                    bottom: 0.3rem;
+                    top:0;
+                }
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+            li {
+                margin-bottom: 0.3rem;
+            }
+            }
+
+        }
+
+        .footer-map {
+            text-align: center;
+
+            img {
+                max-width: 100%;
+                height: auto;
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .footer-bottom {
+        background-color: $colS;
+        text-align: center;
+        padding: 0.5rem;
+        font-size: $txtSize;
+        color: #333;
+        border-top: 1px solid #ccc;
+    }
+
+    .footer-logo{
+        align-self: center;
+        display: flex;
+        
+    }
+}
