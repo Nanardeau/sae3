@@ -1,4 +1,7 @@
 <?php
+session_start();
+$_SESSION["codecompte"] = 5;
+$codeCompte = $_SESSION["codecompte"];
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv('../.env');
