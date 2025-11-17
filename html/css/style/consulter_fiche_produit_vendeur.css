@@ -40,13 +40,15 @@
   font-weight: bold;
   font-style: normal;
 }
-header h2 {
-  display: none;
-}
-
 main {
   margin-left: 80px;
   margin-right: 80px;
+}
+main h1, main h2 {
+  font-family: "Baloo";
+}
+main p {
+  font-family: "Mulish";
 }
 main .image_prod {
   border: black 2px solid;
@@ -85,9 +87,14 @@ main .buton_modif, main .buton_ret_cat {
   height: 70px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #FCB66B;
   border-radius: 8px;
   border: none;
+}
+main .buton_modif {
+  background-color: #FCB66B;
+}
+main .buton_ret_cat {
+  background-color: #6CA6E9;
 }
 main .alignement_space_betwen {
   display: flex;
@@ -112,17 +119,19 @@ main p {
 main .catego {
   margin-top: 50px;
   display: flex;
+  height: 300px;
 }
 main .caract {
   background-color: #FFD6C2;
   margin-right: 50px;
   padding: 20px;
   border-radius: 16px;
-  width: 240px;
-  height: 280px;
+  width: 20em;
+  height: 220px;
 }
 main .caract p {
-  padding-top: 10px;
+  padding-top: 1em;
+  padding-left: 2em;
   font-size: 22px;
 }
 main .caract h2 {
