@@ -68,6 +68,7 @@ CREATE TABLE Produit(
     longueur FLOAT, --en mètre
     largeur FLOAT, --en mètre
     qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
+    Origine VARCHAR(20) NOT NULL,
     seuilAlerte NUMERIC(10,2) NOT NULL,
     urlPhoto VARCHAR(40) REFERENCES Photo(urlPhoto),
     codeCompteVendeur INTEGER REFERENCES Vendeur(codeCompte)	
@@ -110,7 +111,7 @@ CREATE TABLE Facture(
     prenomDest VARCHAR(20),
     idAdresseFact INTEGER REFERENCES Adresse(idAdresse)
 );
-CREATE TABLE Banque(
+CREATE TABLE Carte(
     numCarte VARCHAR(20) PRIMARY KEY NOT NULL,
     nomTit VARCHAR(20),
     prenomTit VARCHAR(20),
@@ -121,7 +122,8 @@ CREATE TABLE Banque(
 CREATE TABLE Panier(
     idPanier SERIAL PRIMARY KEY NOT NULL,
     codeCompte INTEGER REFERENCES Client(codeCompte),
-    dateCreaP DATE,
+    dateCreaP TEXT,
+    dateModifP TEXT,
     prixTTCtotal NUMERIC,
     prixHTtotal NUMERIC
 );
@@ -131,7 +133,7 @@ CREATE TABLE Commande(
     dateCom DATE,
     prixTTCtotal FLOAT, 
     prixHTtotal FLOAT,
-    numCarte VARCHAR(20) REFERENCES Banque(numCarte)
+    numCarte VARCHAR(20) REFERENCES Carte(numCarte)
 );
 CREATE TABLE Livraison(
     idLivraison SERIAL PRIMARY KEY NOT NULL,
@@ -148,7 +150,7 @@ CREATE TABLE Avis(
 	codeCompteCli INTEGER REFERENCES Client(codeCompte),
     noteProd FLOAT,
     commentaire VARCHAR(512),
-    datePublication DATE
+    datePublication TEXT
 );
 
 CREATE TABLE Reponse(
@@ -337,6 +339,34 @@ BEFORE INSERT OR UPDATE ON Commande
 FOR EACH ROW
 EXECUTE FUNCTION calcul_prixTotalTTCCom();
 
+-- Date création Panier
+
+CREATE FUNCTION dateCreationPanier()
+RETURNS TRIGGER AS $$
+BEGIN
+     INSERT INTO NEW(dateCreaP) VALUES (SELECT TO_CHAR(NOW(), 'DD/MM/YYYY hh:mm:ss'));
+     RETURNS NEW;
+END
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER trg_dateCrea_Panier
+BEFORE INSERT ON Panier
+FOR EACH ROW
+EXECUTE FUNCTION dateCreationPanier();  
+
+CREATE FUNCTION dateModificationPanier()
+RETURNS TRIGGER AS $$
+BEGIN
+     INSERT INTO NEW(dateModifP) VALUES (SELECT TO_CHAR(NOW(), 'DD/MM/YYYY hh:mm:ss'));
+     RETURNS NEW;
+END
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER trg_dateModif_Panier
+BEFORE INSERT OR UPDATE  ON Panier
+FOR EACH ROW
+EXECUTE FUNCTION dateModificationPanier(); 
+
 --Création date avis--
 
 CREATE OR REPLACE FUNCTION alizon.dateCréationAvis()
@@ -354,4 +384,3 @@ CREATE TRIGGER trg_dateCrea_Avis
 BEFORE INSERT ON alizon.Avis
 FOR EACH ROW
 EXECUTE FUNCTION alizon.dateCréationAvis();
-SET DateStyle TO 'European';
