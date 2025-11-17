@@ -1,4 +1,5 @@
 <?php
+$_GET["codeProduit"]=11;
 if(isset($_GET["erreur"])){
         $erreur = $_GET["erreur"];
 }
@@ -45,7 +46,7 @@ $bdd->query('set schema \'alizon\'');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/style/ajoutProd.css" rel="stylesheet" type="text/css">
+    <link href="../css/style/modifier_info_produit.css" rel="stylesheet" type="text/css">
     <link href="../bootstrap-5.3.8-dist/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">
     <title>Alizon BACK</title>
 </head>
@@ -60,16 +61,27 @@ $bdd->query('set schema \'alizon\'');
             }
     ?>
 <form action="enregProduit.php" method="post" enctype="multipart/form-data">
-    <h2>Ajouter Produit</h2>
+    <h2>Modifier Produit</h2>
     
     <label for="nom">Intitulé</label>
-    <input type="text" name="nom" placeholder="Intitulé..." id="nom" required/> 
-    <?php if($erreur == "produit"){
-                echo "<p style=\"color:red\">Produit déjà existant</p>";
-            }
+    <?php
+    $code_produit=$_GET["codeProduit"];
+    $info = $bdd->query("SELECT libelleProd FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
+    $res=$info["libelleprod"];
+        
     ?>
+    <input type="text" name="nom" placeholder="Intitulé..." value=<?php echo "$res"; ?> id="nom" required/> 
+    <?php 
+    if($erreur == "produit"){
+        echo "<p style=\"color:red\">Produit déjà existant</p>";
+    }
+    $info = $bdd->query("SELECT descriptionProd FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
+                        
+    $res=$info["descriptionprod"];
+    ?>
+    
     <label for="description">Déscription détaillée</label>
-    <textarea name="description" id="description" rows="5" cols="33" required></textarea>
+    <textarea name="description" id="description" rows="5" cols="33" placeholder="Description détaillée..." required></textarea>
     <label for="categorie">Catégorie</label>
     <select name="categorie" id="categorie" required>
         <option value="" disabled selected>Choisir une catégorie</option>
