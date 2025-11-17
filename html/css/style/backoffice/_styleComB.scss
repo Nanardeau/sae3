@@ -1,5 +1,6 @@
-@use "../../tools/vBack" as *;
+@use "../../tools/vback" as *;
 @use "../../tools/mixin/com" as m;
+@use '../../components/fonts.css' as *;
 
 
 body{
@@ -8,7 +9,7 @@ body{
         size: $txtSize;
     }
     background: {
-        color: white;
+        color: $blanc;
     }
     color : $noir;
     margin: 0;

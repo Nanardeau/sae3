@@ -81,7 +81,7 @@ $bdd->query('set schema \'alizon\'');
     ?>
     
     <label for="description">Déscription détaillée</label>
-    <textarea name="description" id="description" rows="5" cols="33" placeholder="Description détaillée..." required></textarea>
+    <textarea name="description" id="description" rows="5" cols="33" value=<?php echo "$res"; ?> required></textarea>
     <label for="categorie">Catégorie</label>
     <select name="categorie" id="categorie" required>
         <option value="" disabled selected>Choisir une catégorie</option>
