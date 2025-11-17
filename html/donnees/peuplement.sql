@@ -40,15 +40,16 @@ INSERT INTO Vendeur(dateCreation, nom, prenom, email, mdp, numTel, siren, raison
 ('2025-09-15', 'Moreau', 'Léa', 'lea.moreau@gmail.com', 'L3a!Secure', '0678912345', '352000799', 'Moreau Boutique'),
 ('2025-11-01', 'Nguyen', 'Thierry', 'thierry.nguyen@techsolutions.fr', 'TnG!2025', '0780554433', '489765432', 'Tech Solutions');
 
-INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, hauteur, longueur, largeur, qteStock, Origine, seuilAlerte, urlPhoto, codeCompteVendeur)
+INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, hauteur, longueur, largeur, qteStock, Origine, Disponible, seuilAlerte, urlPhoto, codeCompteVendeur)
 VALUES
 -- Nourriture
-('Fraises', 'Fruit frais de Plougastel', 6.20, 'réduite', NULL, NULL, NULL, 200, 'Breizh', 20, '/img/fraises.jpg', 5),
-('Thé noir', 'Qualité supérieure, fabrique de Carhaix', 5.60, 'réduite', NULL, NULL, NULL, 150, 'Madagascar', 15, '/img/the.jpg', 6),
-('Lait', '1L demi-écrémé', 1.50, 'réduite', NULL, NULL, NULL, 100, 'Breizh', 10, '/img/lait.jpg', 7),
-('Fromage', 'Camembert AOP', 3.80, 'réduite', NULL, NULL, NULL, 60, 'Breizh', 10, '/img/fromage.jpg', 8),
-('Café', 'Moulu 250g', 4.90, 'réduite', NULL, NULL, NULL, 80, 'Breizh', 10, '/img/cafe.jpg', 5),
-
+('Fraises', 'Fruit frais de Plougastel', 6.20, 'réduite', NULL, NULL, NULL, 200, 'Breizh',false, 20, '/img/fraises.jpg', 5),
+('Thé noir', 'Qualité supérieure, fabrique de Carhaix', 5.60, 'réduite', NULL, NULL, NULL, 150, 'Madagascar', true, 15, '/img/the.jpg', 6),
+('Lait', '1L demi-écrémé', 1.50, 'réduite', NULL, NULL, NULL, 100, 'Breizh', true, 10, '/img/lait.jpg', 7),
+('Fromage', 'Camembert AOP', 3.80, 'réduite', NULL, NULL, NULL, 60, 'Breizh', true, 10, '/img/fromage.jpg', 8),
+('Café', 'Moulu 250g', 4.90, 'réduite', NULL, NULL, NULL, 80, 'Breizh', true, 10, '/img/cafe.jpg', 5);
+INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, hauteur, longueur, largeur, qteStock,Origine, seuilAlerte, urlPhoto, codeCompteVendeur)
+VALUES
 -- Vêtements
 ('T-shirt Armor lux', 'Coton blanc M', 15.00, 'super-réduite', NULL, NULL, NULL, 50, 'Breizh', 10, '/img/tshirt.jpg', 6),
 ('Jean à motif', 'denim 42', 45.00, 'super-réduite', NULL, NULL, NULL, 40, 'Chine', 5, '/img/pantalon.jpg', 7),

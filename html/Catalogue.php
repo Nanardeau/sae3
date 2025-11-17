@@ -63,7 +63,7 @@ $bdd->query('set schema \'alizon\'');
             ?><article><?php
                         foreach ($listArt as $article) {
 
-                            $infoArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC, urlPhoto FROM Produit where codeProduit =\'' . $article['codeproduit'] . '\'');
+                            $infoArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC, urlPhoto FROM Produit where codeProduit =\'' . $article['codeproduit'] . '\'  AND Disponible = true');
 
                             foreach ($infoArt as $article) {
                                 //print_r($article);
