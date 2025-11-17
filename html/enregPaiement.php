@@ -18,7 +18,12 @@
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
-if(!array_key_exists("banque", $_GET)){
+    $_SESSION["codeCompte"] = 3;
+    $codeCompte = $_SESSION["codeCompte"];
+if(array_key_exists("adresse", $_GET)){
+    #Modification de l'adresse
+    header("location:paiement.php");
+    $_SESSION["adrModif"] = 1;
 
     $numRue = $_POST["numRue"];
     $nomRue = $_POST["nomRue"];
@@ -39,7 +44,17 @@ if(!array_key_exists("banque", $_GET)){
     $_SESSION["idAdresse"] = $idAdresse;
     //header("location:paiement.php?adr=1");
 }
+if(!isset($_GET["adresse"])){
+    if($_SESSION["modifAdr"] == 0){
+        print_r($_SESSION);
+        #$idAdresseFact = $_SESSION["idAdresse"]/*($bdd->query("SELECT * FROM alizon.AdrFactCli WHERE codeCompte = '".$codeCompte."'")->fetch())["idAdresse"]*/;
+        $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+        $idAdresse = $adresse["idadresse"];
+    }
+}
 if(array_key_exists("banque", $_GET)){
+    header("location:paiementFini.php");
+    echo "uwu";
     $nom = $_POST["nomTitulaireCB"];
     $numCarte = $_POST["numCB"];
     $expDate = $_POST["expDate"];
@@ -52,8 +67,30 @@ if(array_key_exists("banque", $_GET)){
         ":cvc" => $cvc,
         ":dateExp" => $expDate
     ));
-    #$infosPanier = 
-    #$stmt = $bdd->prepare("INSERT INTO alizon.Commande (")
+    $idCarte = $bdd->lastInsertId();
+    $idPanier = ($bdd->query("SELECT idPanier FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch())["idpanier"];
+
+    $stmt = $bdd->prepare("INSERT INTO alizon.Commande (dateCom, idCarte) VALUES (:dateCom, :idCarte)");
+    $stmt->execute(array( //PROBLEME FUNCTION TRIGGER BDD
+        ":dateCom" => date("Y-m-d H:i:s"),
+        ":idCarte" => $idCarte
+    ));
+    $numCom = $bdd->lastInsertId();
+
+    $prodUnitPan = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
+    foreach($prodUnitPan as $prodUnit){
+        $prixTTCProd = $bdd->query("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
+
+        $stmt = $bdd->prepare("INSERT INTO alizon.ProdUnitCommande (codeProduit, numCom, prixTTCtotal, qteProd) VALUES (:codeProduit, :numCom, :prixTTCtotal, :qteProd)");
+        $stmt->execute(array(
+            ":codeProduit" => $prodUnit["codeproduit"],
+            ":numCom" => $numCom,
+            ":prixTTCtotal" => $prixTTCProd["prixttc"],
+            ":qteProd" => $prodUnit["qteprod"]
+        ));
+    }
+
 }
+
 
 ?>
