@@ -40,7 +40,6 @@
             else{
                 $_SESSION["adrModif"] = 0;
                 $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-                print_r($_SESSION);
                 $_SESSION["idAdresse"] = $infosAdresse["idadresse"];
             }
         }
@@ -48,7 +47,6 @@
             
             $_SESSION["adrModif"] = 0;
             $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-            print_r($infosAdresse);
             $_SESSION["idAdresse"] = $infosAdresse["idadresse"];            
         }
 
@@ -230,7 +228,6 @@
                                         <input type="text" name="cvc" id="cvc" pattern="\d{3}" required/>
                                     </div>
                                 </div>
-
                             </form>
 
                     </article>
