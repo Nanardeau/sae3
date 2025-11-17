@@ -1,7 +1,7 @@
 <?php
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
-loadEnv(__DIR__ . '/.env');
+loadEnv(__DIR__ . '/backoffice/.env');
 
 // Récupération des variables
 $host = getenv('PGHOST');
@@ -37,10 +37,10 @@ $bdd->query('set schema \'alizon\'');
 <body>
     <?php include 'includes/header.php';?>
     <main>
-        <h1>Toutes les catégories</h1>
-
-
         <?php
+           if(isset($_GET["ajout"])){
+                echo "<script>alert(\"le produit a bien été ajouté\")</script>";
+            }
         $catCurr = null;
         $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); //Nom de la catégorie  
 
@@ -59,11 +59,10 @@ $bdd->query('set schema \'alizon\'');
             $listArt = $bdd->query('SELECT codeProduit FROM Categoriser where libelleCat =\'' . $catCurr . '\'');
             ?><article><?php
                         foreach ($listArt as $article) {
-
+                            $codeProduit = $article["codeproduit"];
                             $infoArt = $bdd->query('SELECT DISTINCT libelleProd, prixTTC, urlPhoto FROM Produit where codeProduit =\'' . $article['codeproduit'] . '\'');
 
                             foreach ($infoArt as $article) {
-                                //print_r($article);
                                 $img = $article['urlphoto'];
                                 $libArt = $article['libelleprod'];
                                 $prix = $article['prixttc'];
@@ -85,7 +84,7 @@ $bdd->query('set schema \'alizon\'');
                                         <path d="M9.63037 13.4648V17.8585" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </a>
-                                <a><input type="button" value="Ajouter au panier"></input></a>
+                                <a href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>">Ajouter au panier</a>
                                 <a><input type="button" value="Détails" href="test.php"></input></a>
                             </div>
 
@@ -97,11 +96,6 @@ $bdd->query('set schema \'alizon\'');
             </article>
         <?php
         } ?>
-
-
-
-
-
 
     </main>
     <?php include 'includes/footer.php';?>
