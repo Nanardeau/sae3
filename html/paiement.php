@@ -30,7 +30,29 @@
             echo "Erreur de connexion : " . $e->getMessage();
         }
         $nomPrenom = $bdd->query("SELECT nom, prenom FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
-        $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+        if(array_key_exists("adrModif", $_SESSION)){
+            if($_SESSION["adrModif"] == 1){
+                $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse  WHERE idAdresse = '".$_SESSION["idAdresse"]."'")->fetch();
+                $_SESSION["adrModif"] = 0;
+                
+            }
+
+            else{
+                $_SESSION["adrModif"] = 0;
+                $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+                print_r($_SESSION);
+                $_SESSION["idAdresse"] = $infosAdresse["idadresse"];
+            }
+        }
+        else{
+            
+            $_SESSION["adrModif"] = 0;
+            $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+            print_r($infosAdresse);
+            $_SESSION["idAdresse"] = $infosAdresse["idadresse"];            
+        }
+
+
 
    ?>
 
@@ -47,9 +69,14 @@
 <?php include "./includes/header.php"?>
 
 <main>
-    <?php         if($_POST){
-            print_r($_POST);
-        }?>
+
+    <?php   
+    if($_POST){
+        print_r($_POST);
+    }
+
+
+    ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-6">
@@ -63,16 +90,16 @@
                         
                     ?>
                     <div class="container-fluid gap-2">
-                    <form action="enregPaiement.php" method="post" id="formulaireAdr">
+                    <form action="enregPaiement.php?adresse=1" method="post" id="formulaireAdr">
                         <div class="row">
                             <div class="col">
                                 <label for="nom">Nom *</label>
-                                <input type="text" name="nom" id="nom" value="<?php echo $nomPrenom["nom"]?>" required/>                    
+                                <input type="text" name="nom" id="nom" value="<?php echo $nomPrenom["nom"]?>" required disabled/>                    
                             </div>
                             <div class="col">
                                 
                                 <label for="prenom">Prénom *</label>
-                                <input type="text" name="prenom" id="prenom" value="<?php echo $nomPrenom["prenom"]?>" required/>
+                                <input type="text" name="prenom" id="prenom" value="<?php echo $nomPrenom["prenom"]?>" required disabled/>
                                 
                             </div>
                             <div class="col">
@@ -85,52 +112,60 @@
                         <div class="row">
                             <div class="col-2">
                                 <label for="numRue">Numéro *</label>
-                                <input type="text" name="numRue" id="numRue" value="<?php echo $infosAdresse["num"]?>" required/>
+                                <input type="text" name="numRue" id="numRue" value="<?php echo $infosAdresse["num"]?>" required disabled/>
                             </div>
                             <div class="col-6">
                                 <div class="labelInput">
                                     <label for="nomRue">Rue *</label>
-                                    <input type="text" name="nomRue" id="nomRue" value="<?php echo $infosAdresse["nomrue"]?>" required/>
+                                    <input type="text" name="nomRue" id="nomRue" value="<?php echo $infosAdresse["nomrue"]?>" required disabled/>
                                 </div>
                             </div>
+
                         </div>
                         <div class="row">
                             <div class="col-3 labelInput">
                                 
                                 <label for="codePostal">Code postal *</label>
-                                <input type="text" name="codePostal" id="codePostal" value="<?php echo $infosAdresse["codepostal"]?>" required/>
+                                <input type="text" name="codePostal" id="codePostal" value="<?php echo $infosAdresse["codepostal"]?>" required disabled/>
                             </div>
                             <div class="col-5 labelInput">
                                 <label for="ville">Ville *</label>
-                                <input type="text" name="ville" id="ville" value="<?php echo $infosAdresse["nomville"]?>" required/>
+                                <input type="text" name="ville" id="ville" value="<?php echo $infosAdresse["nomville"]?>" required disabled/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-3 labelInput">
                                 <label>N° appartement</label>
-                                <input type="text" name="numApt" id="numApt" value="<?php echo $infosAdresse["numappart"]?>" /> 
+                                <input type="text" name="numApt" id="numApt" value="<?php echo $infosAdresse["numappart"]?>" disabled/> 
                             </div>
                             <div class="col-5 labelInput">
                                 <label for="complement">Complément d'adresse</label>
-                                <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse["complementadresse"]?>" />
+                                <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse["complementadresse"]?>" disabled />
+                                <input type="submit" class="btnJaune" value="Valider" hidden/>
                             </div>
-                        </div>            
+                        </div>
                     </form>
                     </div>
                     </article>
+                    <button class="bouton" id="modifAdr">Modifier</button>
                 </section>
             </div>
-            <div class="col-6">
+            
+            <div class="col-5">
                 <section id="secRecap">
+                    <?php 
+                    $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
+                    $idPanier = $panier["idpanier"];
+                    $nbProd = ($bdd->query("SELECT ALL count(*) from alizon.ProdUnitPanier where idPanier = '".$idPanier."'")->fetch())["count"];
+                    ?>
                     <h2>Récapitulatif ( <?php echo $nbProd?> articles) </h2>
                     <article id="recapitulatif">
 
                             <?php 
                             $i = 1;
-                            $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
-                            $idPanier = $panier["idpanier"];
+
                             $produits = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
-                            $nbProd = ($bdd->query("SELECT ALL count(*) from alizon.ProdUnitPanier where idPanier = '".$idPanier."'")->fetch())["count"];
+                            
                             foreach($produits as $prodUnit){
                                 ?><div class="libelleProdRecap"><?php
                                 $detailProd = $bdd->query("SELECT * FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
@@ -182,7 +217,7 @@
                     <article id="infosPaiement">
                             <form action="enregPaiement.php?banque=1" method="post" id="formulaireBanque">
                                 <label for="nomTitulaireCB">Nom figurant sur la carte *</label>
-                                <input type="text" name="nomCB" id="nomTitulaireCB" required/>
+                                <input type="text" name="nomTitulaireCB" id="nomTitulaireCB" required/>
                                 <label for="numCB">Numéro de carte *</label>
                                 <input type="text" name="numCB" id="numCB" pattern="\d{16}" required/>
                                 <div class="dateCVC">
@@ -218,7 +253,10 @@
 ?>
 <script>
     let btnPayer = document.getElementById("btnPayer");
+    let btnModifAdr = document.getElementById("modifAdr");
+    let btnValiderAdr = document.querySelector("#adresseLivraison .btnJaune");
     btnPayer.addEventListener("click", validerPaiement);
+    btnModifAdr.addEventListener("click", modifierAdr);
 
     function supprimerProd(codeProd){
         console.log(codeProd);
@@ -250,11 +288,20 @@
             console.log("non");
         }
         else{
-            submitTout();
+            document.getElementById("formulaireBanque").submit();           
            
         }
 
     }
+    function modifierAdr(){
+        let champsAdresse = document.querySelectorAll("#adresseLivraison input");
+        for(let i = 0 ; i < champsAdresse.length ; i++){
+            champsAdresse[i].removeAttribute("disabled");
+        }
+        btnValiderAdr.removeAttribute("hidden");
+        
+    }
+    /*
     function submitTout(){
         const formulaireAdr = document.getElementById("formulaireAdr");
         const formulaireBanque = document.getElementById("formulaireBanque");
@@ -291,7 +338,7 @@
     }
 
     formulaireBanque.submit();
-    }
+    }*/
 </script>
 </body>
 
