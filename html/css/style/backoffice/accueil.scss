@@ -105,12 +105,19 @@ body {
     position: relative;
     padding-top: 0.75em;
     box-sizing: border-box;
+    gap: 0.10em;
 
     > svg {
         position: absolute;
         top: 5px;
         left: 5px;
         z-index: 2;
+    }
+    a{
+        img{
+            text-decoration: none;
+            border-color: black;
+        }
     }
 
     img {
@@ -201,7 +208,7 @@ body {
     flex-direction: column;
     
     float: right;
-    margin: 0 4em 3.5em 5em;
+    margin: 0 4em 3em 5em;
     display: block;
     position: relative;
     z-index: 1;
