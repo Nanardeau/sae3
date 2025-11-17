@@ -84,16 +84,17 @@ main {
     .catego{
         margin-top: 50px;
         display: flex;
-        height: 300px;
+        height: auto;
     }
 
     .caract {
         background-color: $colS;
         margin-right: 50px;
         padding: 20px;
+        padding-bottom: 50px;
         border-radius: 16px;
         width: 20em;
-        height: 220px;
+        height: auto;
         p {
             padding-top: 1em;
             padding-left: 2em;
