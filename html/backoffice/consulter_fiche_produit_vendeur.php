@@ -1,5 +1,5 @@
         <?php 
-            $_GET["codeProduit"]=11;
+            $_GET["codeProduit"]=1;
             //include '../includes/backoffice/header.php';
             require_once('../_env.php');
             
