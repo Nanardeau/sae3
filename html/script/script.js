@@ -30,4 +30,19 @@ window.onclick = function(event) {
   }
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+    const selectQte = document.getElementById('qte');
+    const priceElement = document.getElementById('price');
+    const basePrice = parseFloat(priceElement.dataset.price);
+
+    function updatePrice() {
+        const qte = parseInt(selectQte.value);
+        const total = (basePrice * qte).toFixed(2);
+        priceElement.textContent = total + " €";
+    }
+
+    // Maj au changement de quantité
+    selectQte.addEventListener('change', updatePrice);
+});
+
 

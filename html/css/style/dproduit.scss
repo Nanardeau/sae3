@@ -8,12 +8,17 @@ body{
 
 main{
     display: flex;
-    flex-direction: row;
-    gap: 50px;
+    flex-direction: column;
     margin: {
         left:40px;
         right:40px;
     }
+}
+
+.prod{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
 
 
@@ -94,7 +99,7 @@ main{
         font-size: 2rem;
         font-weight: 700;
         margin-bottom: 20px;
-        color: #004a80;
+        color: $colP;
     }
 
     .quantity {
@@ -118,6 +123,13 @@ main{
         border-radius: 25px;
         font-size: 1rem;
         font-weight: 600;
+        text-decoration: none;
+        color: $noir;
+
+    }
+
+    .add-to-cart:visited {
+        color: $noir;
     }
 }
 
@@ -126,7 +138,7 @@ main{
 /*################################*/
 
 .avis-section {
-    background-color: $colS;
+    //background-color: $colS;
     padding: 25px;
     width: 420px;
     border-radius: 16px;
@@ -184,3 +196,56 @@ main{
     }
 }
 
+.liste-avis{
+    border-radius: 8px;
+    border: 1px solid #444;
+    height: 400px;
+}
+
+.avis-produits{
+    margin-bottom: 20px;
+}
+
+/*################################*/
+/*-------- affichage avis --------*/
+/*################################*/
+
+.avis-produits {
+    margin-top: 40px;
+}
+
+.liste-avis {
+    display: flex;
+    flex-direction: column;
+    max-height: 350px;   /* hauteur fixe */
+    overflow-y: auto;    /* scroll vertical */
+    padding-right: 10px; /* pour éviter que le scroll cache le texte */
+    gap: 15px;           /* espace entre les avis */
+}
+
+.avis {
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    //box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.avis-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.commentaire {
+    margin-top: 10px;
+}
+
+.note {
+    color: gold;
+    font-size: 20px;
+}
+
+.date {
+    font-size: 13px;
+    color: #888;
+}
