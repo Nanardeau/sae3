@@ -1,27 +1,27 @@
 @font-face {
   font-family: "Baloo";
-  src: url("/html/fonts/baloo2-regular-webfont.woff") format("woff"), url("/html/fonts/baloo2-regular-webfont.woff2") format("woff2");
+  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
   font-weight: medium;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Baloo";
-  src: url("/html/fonts/baloo2-extrabold-webfont.woff") format("woff"), url("/html/fonts/baloo2-extrabold-webfont.woff2") format("woff2");
+  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Baloo";
-  src: url("/html/fonts/baloo2-medium-webfont.woff") format("woff"), url("/html/fonts/baloo2-medium-webfont.woff2") format("woff2");
+  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
-  src: url("/html/fonts/mulish-black-webfont.woff") format("woff"), url("/html/fonts/mulish-black-webfont.woff2") format("woff2");
+  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: normal;
   font-display: swap;
@@ -35,21 +35,21 @@
 }
 @font-face {
   font-family: "Mulish";
-  src: url("/html/fonts/mulish-bolditalic-webfont.woff") format("woff"), url("/html/fonts/mulish-bolditalic-webfont.woff2") format("woff2");
+  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
-  src: url("/html/fonts/mulish-bold-webfont.woff") format("woff"), url("/html/fonts/mulish-bold-webfont.woff2") format("woff2");
+  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
-  src: url("/html/fonts/mulish-latin-500-normal.woff") format "woff", url("/html/fonts/mulish-latin-500-normal.woff2") format("woff2");
+  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -342,28 +342,28 @@ header nav svg {
 
 @font-face {
   font-family: "Baloo";
-  src: url("/html/fonts/baloo2-regular-webfont.woff") format("woff"), url("/html/fonts/baloo2-regular-webfont.woff2") format("woff2");
+  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
   font-weight: medium;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Baloo";
-  src: url("/html/fonts/baloo2-extrabold-webfont.woff") format("woff"), url("/html/fonts/baloo2-extrabold-webfont.woff2") format("woff2");
+  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Baloo";
-  src: url("/html/fonts/baloo2-medium-webfont.woff") format("woff"), url("/html/fonts/baloo2-medium-webfont.woff2") format("woff2");
+  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
-  src: url("/html/fonts/mulish-black-webfont.woff") format("woff"), url("/html/fonts/mulish-black-webfont.woff2") format("woff2");
+  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: normal;
   font-display: swap;
@@ -377,21 +377,21 @@ header nav svg {
 }
 @font-face {
   font-family: "Mulish";
-  src: url("/html/fonts/mulish-bolditalic-webfont.woff") format("woff"), url("/html/fonts/mulish-bolditalic-webfont.woff2") format("woff2");
+  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
-  src: url("/html/fonts/mulish-bold-webfont.woff") format("woff"), url("/html/fonts/mulish-bold-webfont.woff2") format("woff2");
+  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
-  src: url("/html/fonts/mulish-latin-500-normal.woff") format "woff", url("/html/fonts/mulish-latin-500-normal.woff2") format("woff2");
+  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
