@@ -60,13 +60,15 @@ $hCard-mob: 260px;
                 
             }
         }
-        a  input{
+        .button{
+            display : flex;
+            align-items: center;
+            justify-content: center;
             display :block;
             font-family: $Poltext;
             width: 100%;
             margin-top : $marg;
             min-width: 8rem;
-            
             height: 2rem;
             text-align: center;
             color : $noir;

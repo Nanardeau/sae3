@@ -68,6 +68,9 @@ CREATE TABLE Produit(
     longueur FLOAT, --en mètre
     largeur FLOAT, --en mètre
     qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
+    Origine VARCHAR(20) NOT NULL check (Origine IN ('Breizh','France','Étranger')),
+    Disponible BOOLEAN DEFAULT TRUE,
+    grilleTarification VARCHAR(20) check (grilleTarification IN ('tarif1','tarif2','tarif3','tarif4','tarif5'),  
     seuilAlerte NUMERIC(10,2) NOT NULL,
     urlPhoto VARCHAR(40) REFERENCES Photo(urlPhoto),
     codeCompteVendeur INTEGER REFERENCES Vendeur(codeCompte)	
@@ -110,7 +113,7 @@ CREATE TABLE Facture(
     prenomDest VARCHAR(20),
     idAdresseFact INTEGER REFERENCES Adresse(idAdresse)
 );
-CREATE TABLE Banque(
+CREATE TABLE Carte(
     numCarte VARCHAR(20) PRIMARY KEY NOT NULL,
     nomTit VARCHAR(20),
     prenomTit VARCHAR(20),
@@ -122,16 +125,18 @@ CREATE TABLE Panier(
     idPanier SERIAL PRIMARY KEY NOT NULL,
     codeCompte INTEGER REFERENCES Client(codeCompte),
     dateCreaP DATE,
+    dateModifP DATE,
     prixTTCtotal NUMERIC,
     prixHTtotal NUMERIC
 );
+
 
 CREATE TABLE Commande(
     numCom SERIAL PRIMARY KEY NOT NULL,
     dateCom DATE,
     prixTTCtotal FLOAT, 
     prixHTtotal FLOAT,
-    numCarte VARCHAR(20) REFERENCES Banque(numCarte)
+    numCarte VARCHAR(20) REFERENCES Carte(numCarte)
 );
 CREATE TABLE Livraison(
     idLivraison SERIAL PRIMARY KEY NOT NULL,
@@ -148,7 +153,7 @@ CREATE TABLE Avis(
 	codeCompteCli INTEGER REFERENCES Client(codeCompte),
     noteProd FLOAT,
     commentaire VARCHAR(512),
-    datePublication DATE
+    datePublication TEXT
 );
 
 CREATE TABLE Reponse(
@@ -235,7 +240,7 @@ RETURNS TRIGGER AS
 $$
 	BEGIN
 		SELECT NEW.prixHT * (1 + (tva.tauxTVA / 100)) INTO NEW.prixTTC
-		FROM TVA tva WHERE tva.nomTVA = NEW.nomTVA;
+		FROM alizon.TVA tva WHERE tva.nomTVA = NEW.nomTVA;
 		RETURN NEW;
 	END;
 $$ 
@@ -326,25 +331,58 @@ EXECUTE FUNCTION PanierFinalTestHT();
 CREATE FUNCTION calcul_prixTotalTTCCom()
 RETURNS TRIGGER AS $$
 BEGIN
-	SELECT SUM(PUC.prixUnitTTC * PUC.qteProd) INTO NEW.prixTTC
-	FROM ProdUnitCommande PUC WHERE PUC.codeProduit = NEW.codeProduit;
+	UPDATE alizon.Commande SET prixTTCtotal = (SELECT SUM(PUC.prixTTCtotal * PUC.qteProd) 
+	FROM alizon.ProdUnitCommande PUC WHERE PUC.numCom = Commande.numCom);
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_calcul_prixTotalTTCCom
-BEFORE INSERT OR UPDATE ON Commande
+BEFORE INSERT OR UPDATE ON ProdUnitCommande
 FOR EACH ROW
 EXECUTE FUNCTION calcul_prixTotalTTCCom();
 
---Création date avis--
+-- Date création/Modification Panier
+
+CREATE OR REPLACE FUNCTION alizon.dateModificationPanier()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_ts timestamptz;
+BEGIN
+    NEW.dateModifP := to_char(now(), 'DD/MM/YYYY HH24:MI:SS');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trg_dateModif_Panier
+BEFORE INSERT OR UPDATE ON alizon.Panier
+FOR EACH ROW
+EXECUTE FUNCTION alizon.dateModificationPanier();
+
+CREATE OR REPLACE FUNCTION alizon.dateCréationPanier()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_ts timestamptz;
+BEGIN
+    NEW.dateCreaP := to_char(now(), 'DD/MM/YYYY HH24:MI:SS');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Date création Avis
+
+CREATE TRIGGER trg_dateCrea_Panier
+BEFORE INSERT ON alizon.Panier
+FOR EACH ROW
+EXECUTE FUNCTION alizon.dateCréationPanier();
 
 CREATE OR REPLACE FUNCTION alizon.dateCréationAvis()
 RETURNS TRIGGER AS $$
 DECLARE
     v_ts timestamptz;
 BEGIN
-    NEW.datepublication := to_char(now(), 'DD-MM-YYYY');
+    NEW.datepublication := to_char(now(), 'DD/MM/YYYY HH24:MI:SS');
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -354,4 +392,3 @@ CREATE TRIGGER trg_dateCrea_Avis
 BEFORE INSERT ON alizon.Avis
 FOR EACH ROW
 EXECUTE FUNCTION alizon.dateCréationAvis();
-SET DateStyle TO 'European';

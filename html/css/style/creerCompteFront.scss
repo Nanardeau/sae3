@@ -23,7 +23,7 @@ form{
     margin-top:1em;
     align-self:center;
     padding:2em;
-    @media screen and (max-width:428px){
+    @media #{$mobile}{
         width:90%;
         padding:1em;
         align-items:center;
@@ -49,6 +49,7 @@ form{
         &::file-selector-button{
             @include bouton;
         }
+        
         &#photoCli{
             border:none;
             font-size:0.8em;

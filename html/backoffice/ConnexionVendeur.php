@@ -1,8 +1,8 @@
 
 <?php
 //Connexion à la base de données.
-require_once __DIR__ . '/_env.php';
-loadEnv(__DIR__ . '/.env');
+require_once '../_env.php';
+loadEnv('../.env');
 
 // Récupération des variables
 $host = getenv('PGHOST');
@@ -24,25 +24,22 @@ try {
     //echo "❌ Erreur de connexion : " . $e->getMessage();
 }
 $bdd->query('set schema \'alizon\'');
-
 $error_msg = "";
+
+
 
 if($_POST){
     $id = $_POST["pseudo"];
     $mdp = $_POST["mdp"];
 
-    $req= $bdd->query ("SELECT * FROM Client WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
+    $req= $bdd->query ("SELECT * FROM Vendeur WHERE raisonSociale = '".$id."' AND mdp = '".$mdp."'");
     $rep= $req->fetch();
     if($rep!=null){
-        //connexion
-        session_start();
-        $_SESSION["codeCompte"] = $rep["codecompte"];
-        header("location: infosCompte.php");
+        header("location: accueilVendeur.php");
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         
     }
-    
 }
 ?> 
 
@@ -52,40 +49,47 @@ if($_POST){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link href="./css/style/ConnexionClient.css" rel="stylesheet" type="text/css">
-    <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../css/style/ConnexionVendeur.css" rel="stylesheet" type="text/css">
+    <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <main>
-        <a href="accueilVendeur.php"><img src="../html/img/logo_back.svg" alt="logo-alizon" title="logo-alizon"/></a>
-        <form action="ConnexionClient.php" method="post">
+        <div>
+            <a href="accueilVendeur.php"><img src="../img/logo_back.svg" alt="logo-alizon" title="logo-alizon"/></a>
+            <h2>Back Office</h2>
+        </div>
+        <form action="ConnexionVendeur.php" method="post">
             <h2>Connexion</h2>
+            <h4>Profil Responsable</h4>
             <label for="pseudo">Identifiant</label>
             <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" required/>
             <label for="mdp">Mot de passe</label>
-            <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli" required/>
-            <?php 
-                if($error_msg != ""){
+            <input type="password" name="mdp" placeholder="Mot de passe..." id="mdp" required/>
+             <?php
+                if($error_msg != ""):
             ?>
-                    <p> <?php echo($error_msg); ?> </p>
+                    <p> <?php echo($error_msg); ?><br/>
             <?php
-                }
+                endif
             ?>
-            <input class="bouton" type="submit" value="Se connecter"/>
+            <input class="bouton" type="submit" value="Se connecter" id="validerConnexion"/>
         </form>
+       
         <aside>
             <figure>
-                <img src="./img/line_3.svg"/>
+                <img src="../img/line_3.svg"/>
                 <p>Pas encore de compte ?</p>
-                <img src="./img/line_3.svg"/>
+                <img src="../img/line_3.svg"/>
             </figure>
             <nav>
-                <a href="CreerCompte.php" class="bouton">Créer un compte</a>
-                <a href="Catalogue.php" class="btnJaune">Retour</a>
+                <a href="CreerCompteVendeur.php" class="bouton">Créer un compte</a>
             <nav>
         </aside>
-        
+    
     </main>
-    <?php include('./includes/footer.php');?>
+    <?php include('../includes/backoffice/footer.php');?>
+
+
+
 </body>
 </html>

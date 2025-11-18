@@ -3,42 +3,36 @@
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
   font-weight: medium;
   font-style: normal;
-  font-display: swap;
 }
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: normal;
-  font-display: swap;
 }
 @font-face {
   font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
+  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../..fonts/baloo2-medium-webfont.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: normal;
-  font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: bold;
+  font-weight: bolder;
   font-style: italic;
-  font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: italic;
-  font-display: swap;
 }
 @font-face {
   font-family: "Mulish";
@@ -49,7 +43,7 @@
 }
 @font-face {
   font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -100,6 +94,62 @@
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+} 
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
+  font-weight: medium;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -391,8 +441,44 @@ header nav svg {
 }
 
 header {
-  justify-self: center;
-  margin: 1em 0;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background-color: #CD4B22;
+}
+header .logo_alizon_back {
+  width: 118px;
+  height: auto;
+  margin: 1em 2em 1em 2em;
+}
+header h1 {
+  color: white;
+  font-family: "Baloo", sans-serif;
+  font-size: 2em;
+  margin: 0 22em 0 0;
+}
+header a {
+  display: flex;
+  outline: none;
+  text-decoration: none;
+}
+header a h2 {
+  color: white;
+  font-family: "Baloo", sans-serif;
+  font-size: 1.5em;
+  margin: 0 2em 0 0;
+}
+header a .ajout {
+  margin: 0 0.5em 0 2em;
+  width: auto;
+  height: auto;
+  flex-direction: row;
+}
+header a .user {
+  width: 2em;
+  height: auto;
+  margin: 0 0.5em 0 2em;
+  flex-direction: row;
 }
 
 main {
@@ -413,23 +499,30 @@ form {
   align-self: center;
   padding: 2em;
 }
-@media screen and (max-width : 428px) {
-  form {
-    width: 90%;
-    padding: 1em;
-    align-items: center;
-  }
-  form input {
-    width: 80%;
-  }
-  form label {
-    align-self: flex-start;
-    font-size: 0.8em;
-  }
+form textarea {
+  border: solid 1px;
+  border-radius: 1em;
+  height: 10em;
+  margin: 10px 0;
+  padding: 10px;
+  resize: none;
 }
-form span {
-  display: none;
-  color: red;
+form select {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-size: 20px;
+  background-color: #CD4B22;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  border-radius: 1em;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  font-size: 1em;
+  max-width: 225px;
 }
 form input {
   border: solid 1px;
@@ -448,39 +541,48 @@ form input::file-selector-button {
   color: white;
   border-radius: 1em;
   cursor: pointer;
+  border: none;
 }
-form input#photoCli {
+form input#photoProd {
   border: none;
   font-size: 0.8em;
 }
-form input:user-invalid, form input.invalid {
-  border-color: red;
-}
-form input:user-invalid + span, form input.invalid + span {
-  display: block;
-}
-@media screen and (screen and (max-width : 428px)) {
-  form input {
-    width: 100%;
-  }
-  form input::-moz-placeholder {
-    font-size: 0.9em;
-  }
-  form input::placeholder {
-    font-size: 0.9em;
-  }
-}
-form .bouton {
+form input .bouton {
   height: 5em;
   font-size: 24px;
 }
-@media screen and (screen and (max-width : 428px)) {
-  form .bouton {
-    height: 4em;
-  }
+form h2 {
+  margin: 0;
 }
-form .btnSec {
+form label::after {
+  content: " *";
+  color: red;
+}
+form .taille label::after {
+  content: "";
+  color: none;
+}
+form .pObl::after {
+  content: "";
+  color: none;
+}
+
+.labelInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  font-family: "Mulish";
   background-color: #6CA6E9;
+  border-radius: 1em;
+  height: 3em;
+  margin: 10px 0;
+  padding: 10px;
+  width: 25%;
+  text-align: center;
+  color: black;
+  text-decoration: none;
 }
 
 .bouton {
@@ -495,80 +597,8 @@ form .btnSec {
   cursor: pointer;
 }
 .bouton:hover {
-  background-color: rgb(4.5, 48, 97.5);
+  background-color: rgb(174.9790794979, 64.0167364017, 29.0209205021);
 }
 .bouton:active {
-  background-color: rgb(2.25, 24, 48.75);
-}
-
-aside {
-  display: flex;
-  flex-direction: column;
-}
-aside figure {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-}
-aside figure img {
-  margin: 0 10px;
-  height: 1px;
-}
-@media screen and (screen and (max-width : 428px)) {
-  aside figure img {
-    width: 20%;
-    height: 20px;
-  }
-}
-aside .bouton {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  text-size: 20px;
-  background-color: #CD4B22;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
-  padding: 1em;
-  width: 80%;
-  margin-bottom: 1em;
-}
-aside nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.labelInput {
-  display: flex;
-  flex-direction: column;
-}
-@media screen and (screen and (max-width : 428px)) {
-  .labelInput {
-    display: block;
-    width: 100%;
-  }
-}
-
-#nomCli {
-  width: 100%;
-}
-
-.btnJaune {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  text-size: 20px;
-  background-color: #CD4B22;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
-  background-color: #FCB66B;
-  border: 0px;
-  color: black;
-  width: 50%;
-  padding: 1em;
-}/*# sourceMappingURL=creerCompteFront.css.map */
+  background-color: rgb(43.7447698745, 16.0041841004, 7.2552301255);
+}/*# sourceMappingURL=ajoutProd.css.map */

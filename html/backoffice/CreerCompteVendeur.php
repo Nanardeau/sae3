@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-    if($_GET["erreur"]){
+    if(isset($_GET["erreur"])){
         $erreur = $_GET["erreur"];
     }
     else{
@@ -148,7 +148,7 @@
         let mdp = document.getElementById("mdp");
         let confMdp = document.getElementById("mdp_conf");
         confMail.addEventListener("focusout", verifConfMail);
-        confMdp.addEventListener("focusout", verifFormat);.
+        confMdp.addEventListener("focusout", verifFormat);
         
 
         function verifFormat(evt){

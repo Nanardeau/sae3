@@ -54,8 +54,10 @@ h2 {
     background-color: $colS;
     flex: 0 0 auto;
     margin-top: $marg;
-    a button{
-        display :block;
+    .button{
+        display :flex;
+        justify-content: center;
+        align-content: center;
         font-family: $Poltext;
         width: 100%;
         margin-top : $marg;
