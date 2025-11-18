@@ -145,30 +145,43 @@ label {
 #            HEADER             #
 ###############################*/
 header {
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
   background-color: #CD4B22;
-  height: 80px;
-  width: 100%;
-  align-items: center;
 }
-header .logo_alizon_front {
+header .logo_alizon_back {
   width: 118px;
   height: auto;
-  padding-left: 80px;
-  left: 0;
+  margin: 1em 2em 1em 2em;
 }
-header nav {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-}
-header nav a {
-  padding-right: 20px;
+header h1 {
   color: white;
+  font-family: "Baloo", sans-serif;
+  font-size: 2em;
+  margin: 0 22em 0 0;
+}
+header a {
+  display: flex;
+  outline: none;
   text-decoration: none;
 }
-header nav svg {
-  padding-right: 10px;
+header a h2 {
+  color: white;
+  font-family: "Baloo", sans-serif;
+  font-size: 1.5em;
+  margin: 0 2em 0 0;
+}
+header a .ajout {
+  margin: 0 0.5em 0 2em;
+  width: auto;
+  height: auto;
+  flex-direction: row;
+}
+header a .user {
+  width: 2em;
+  height: auto;
+  margin: 0 0.5em 0 2em;
+  flex-direction: row;
 }
 
 /*###############################
@@ -180,6 +193,7 @@ header nav svg {
   color: #333;
   font-family: "Mulish";
   padding-top: 1rem;
+  margin-top: 2em;
 }
 .footer .footer-content {
   max-width: 1200px;

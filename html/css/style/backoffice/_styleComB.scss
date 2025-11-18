@@ -37,35 +37,48 @@ label{
 ###############################*/
 
 header{
-    display: inline-flex;
-    background: {
-        color: $colP;
-    }
-    height: 80px;
-    width: 100%;
-    align-items: center;
-
-    .logo_alizon_front{
+    display: flex;
+    flex-direction: row;
+    background-color: $colP;
+    
+    .logo_alizon_back{
         width: 118px;
         height: auto;
-        padding-left: 80px;
-        left: 0;
+        margin: 1em 2em 1em 2em;
     }
 
-    nav{
-        margin-left: auto;
+    h1{
+        color: white;
+        font-family: $Poltitle , sans-serif;
+        font-size: 2em;
+        margin: 0 22em 0 0;
+    }
+
+    a {
         display: flex;
-        align-items: center;
-        a{
-            padding-right: 20px;
-            color: $blanc;
-            text-decoration: none;
+        outline:none;
+        text-decoration: none;
+        h2{
+        color: white;
+        font-family: $Poltitle , sans-serif;
+        font-size: 1.5em;
+        margin: 0 2em 0 0;
+        
         }
-        svg{
-            padding-right: 10px;
+        .ajout{
+            margin: 0 0.5em 0 2em;
+            width: auto;
+            height: auto;
+            flex-direction: row;
+        }
+        .user{
+            width: 2em;
+            height: auto;
+            margin: 0 0.5em 0 2em;
+            flex-direction: row;
         }
     }
-
+    
 }
 
 /*###############################
@@ -78,6 +91,7 @@ header{
     color: #333;
     font-family: $Poltext;
     padding-top: 1rem;
+    margin-top: 2em;
 
     .footer-content {
         max-width: 1200px;
