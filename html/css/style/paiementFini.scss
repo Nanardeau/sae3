@@ -1,7 +1,17 @@
 @use '../components/fonts.scss';
 @use '../tools/vFront' as *;
 @use './styleCom' as *;
-
+header{
+    .logo_alizon_front{
+        width:200px;
+    }
+    nav{
+        svg{
+            width:40px;
+            height:40px;
+        }
+    }
+}
 .bouton{
     padding:$pad * 2;
     font-size:large;

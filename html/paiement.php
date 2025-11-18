@@ -62,7 +62,6 @@
     <title>Paiement</title>
     <link href="./css/style/paiement.css" rel="stylesheet" type="text/css">
     <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
-    <link href="./bootstrap-5.3.8-dist/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">
 </head>
 <body>
 <?php include "./includes/header.php"?>
@@ -82,9 +81,9 @@
         ]);
     }
     ?>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-6">
+    <div class="conteneur">
+        <div class="ligneSection">
+            <div class="colonne">
                 <section id="adresseLivraison">
                     <h2>Adresse livraison</h2>
                     <h4 id="AdrInvalide" style="color:red" hidden>Veuillez remplir tous les champs</h4>
@@ -94,56 +93,53 @@
                         #print_r($infosAdresse);
                         
                     ?>
-                    <div class="container-fluid gap-2">
+                    <div class="conteneur">
                     <form action="enregPaiement.php?adresse=1" method="post" id="formulaireAdr">
-                        <div class="row">
-                            <div class="col">
+                        <div class="ligneInput">
+                            <div class="labelInput">
                                 <label for="nom">Nom *</label>
                                 <input type="text" name="nom" id="nom" value="<?php echo $nomPrenom["nom"]?>" required disabled/>                    
                             </div>
-                            <div class="col">
+                            <div class="labelInput">
                                 
                                 <label for="prenom">Prénom *</label>
                                 <input type="text" name="prenom" id="prenom" value="<?php echo $nomPrenom["prenom"]?>" required disabled/>
                                 
                             </div>
-                            <div class="col">
-                            </div>
-                            <div class="col-4 labelInput">
-                                <br/> 
-                            </div>
+
+
                         </div>
                         <?php if($infosAdresse)?>
-                        <div class="row">
-                            <div class="col-2">
+                        <div class="ligneInput">
+                            <div class="labelInput">
                                 <label for="numRue">Numéro *</label>
                                 <input type="text" name="numRue" id="numRue" value="<?php echo $infosAdresse["num"]?>" required disabled/>
                             </div>
-                            <div class="col-6">
-                                <div class="labelInput">
-                                    <label for="nomRue">Rue *</label>
-                                    <input type="text" name="nomRue" id="nomRue" value="<?php echo $infosAdresse["nomrue"]?>" required disabled/>
-                                </div>
+                        
+                            <div class="labelInput">
+                                <label for="nomRue">Rue *</label>
+                                <input type="text" name="nomRue" id="nomRue" value="<?php echo $infosAdresse["nomrue"]?>" required disabled/>
                             </div>
+                            
 
                         </div>
-                        <div class="row">
-                            <div class="col-3 labelInput">
+                        <div class="ligneInput">
+                            <div class="labelInput">
                                 
                                 <label for="codePostal">Code postal *</label>
                                 <input type="text" name="codePostal" id="codePostal" value="<?php echo $infosAdresse["codepostal"]?>" required disabled/>
                             </div>
-                            <div class="col-5 labelInput">
+                            <div class="labelInput">
                                 <label for="ville">Ville *</label>
                                 <input type="text" name="ville" id="ville" value="<?php echo $infosAdresse["nomville"]?>" required disabled/>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-3 labelInput">
+                        <div class="ligneInput">
+                            <div class="labelInput">
                                 <label>N° appartement</label>
                                 <input type="text" name="numApt" id="numApt" value="<?php echo $infosAdresse["numappart"]?>" disabled/> 
                             </div>
-                            <div class="col-5 labelInput">
+                            <div class="labelInput">
                                 <label for="complement">Complément d'adresse</label>
                                 <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse["complementadresse"]?>" disabled />
                                 <input type="submit" class="btnJaune" value="Valider" hidden/>
@@ -156,7 +152,7 @@
                 </section>
             </div>
             
-            <div class="col-5">
+
                 <section id="secRecap">
                     <?php 
 
@@ -180,13 +176,15 @@
                             ?>      
                              
                             <!--<p>Prix HT : <?php echo $panier["prixhttotal"]?>€</p>!-->
-                            <p>Sous-total (HT) <?php echo number_format((float)$panier["prixhttotal"], 2, '.', '') ?>€</p>
+                            <div class="libelleProdRecap">
+                            <p>Sous-total (HT) : </p><p class="prixAffiche"><?php echo number_format((float)$panier["prixhttotal"], 2, '.', '') ?>€</p>
+                            </div>
                             <p id="prixTTCRecap">Total (TTC) : <?php echo $panier["prixttctotal"]?>€</p>
 
 
                     </article>
                 </section>
-            </div>
+            
         </div> <!-- Row container global !-->
         <div class="ligneArtPaye">
 
@@ -207,7 +205,7 @@
                                         <div class="prixPoub">
                                             <div class="prix"><?php echo $prodUnit["prixttctotal"]?>€</div>
                                             
-                                            <div><button onclick="supprimerProd(<?php echo $idPanier ?> , <?php echo $prodUnit['codeproduit']?>)">poub</button></div><?php
+                                            <div><button id="poubelle" onclick="supprimerProd(<?php echo $idPanier ?> , <?php echo $prodUnit['codeproduit']?>)"><img src="img/Icon_poubelle.svg" alt="poubelle" title="poubelle"/></button></div><?php
                                             echo "</div></div>";
                                     }
 
