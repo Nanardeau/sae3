@@ -400,6 +400,56 @@ article {
   flex-direction: column;
 }
 
+.ligneSection {
+  display: flex;
+  padding: 1rem;
+}
+@media screen and (max-width : 428px) {
+  .ligneSection {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+.ligneSection section {
+  width: 100%;
+  margin: 5rem 0;
+}
+@media screen and (max-width : 428px) {
+  .ligneSection section {
+    margin-left: 0;
+  }
+}
+.ligneSection section:nth-child(1) article {
+  padding: 3em;
+}
+.ligneSection section:nth-child(2) {
+  margin-left: 20%;
+  margin-right: 10%;
+}
+@media screen and (max-width : 428px) {
+  .ligneSection section:nth-child(2) {
+    margin: 0;
+  }
+}
+
+.ligneInput {
+  display: flex;
+  margin-bottom: 1em;
+}
+.ligneInput .labelInput:nth-child(1) {
+  margin-right: 2em;
+}
+.ligneInput .labelInput:nth-child(2) {
+  width: 60%;
+}
+.ligneInput #codePostal {
+  width: 6em;
+}
+.ligneInput #numApt {
+  width: 6em;
+}
+
 #numRue {
   width: 5em;
 }
@@ -407,13 +457,18 @@ article {
 input {
   border: solid 1px;
   border-radius: 1em;
-  height: 2.5em;
+  height: 3em;
   margin: 10px 0;
   padding: 1em;
   width: 100%;
 }
 input .btnJaune {
   padding-top: 8px;
+}
+
+section:nth-child(1) .bouton {
+  padding: 10px 20px;
+  margin-top: 1em;
 }
 
 section {
@@ -428,6 +483,18 @@ section article {
   height: -moz-max-content;
   height: max-content;
   padding: 20px;
+}
+@media screen and (max-width : 428px) {
+  section article {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  section article .labelInput {
+    flex-direction: column;
+  }
+  section article form {
+    width: 100%;
+  }
 }
 
 div.row {
@@ -461,7 +528,7 @@ div.row {
 }
 
 #secRecap {
-  width: 80%;
+  width: 100%;
 }
 
 #recapitulatif {
@@ -489,6 +556,18 @@ div.row {
 
 .ligneArtPaye {
   display: flex;
+  padding-bottom: 3em;
+}
+@media screen and (max-width : 428px) {
+  .ligneArtPaye {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+  }
+  .ligneArtPaye section {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 }
 .ligneArtPaye input {
   width: auto;
@@ -497,14 +576,26 @@ div.row {
   margin-bottom: 3rem;
 }
 .ligneArtPaye section:nth-child(2) {
-  margin-left: 12rem;
+  margin-left: 13rem;
   width: 40%;
+}
+@media screen and (max-width : 428px) {
+  .ligneArtPaye section:nth-child(2) {
+    margin: 0;
+    width: 100%;
+  }
 }
 .ligneArtPaye section:nth-child(2) article {
   padding-left: 8em;
   width: 80%;
   height: auto;
   justify-content: flex-start;
+}
+@media screen and (max-width : 428px) {
+  .ligneArtPaye section:nth-child(2) article {
+    padding: 1rem;
+    width: 100%;
+  }
 }
 .ligneArtPaye section:nth-child(2) form {
   width: 80%;
@@ -513,8 +604,15 @@ div.row {
   align-items: flex-start;
   height: 100%;
 }
+@media screen and (max-width : 428px) {
+  .ligneArtPaye section:nth-child(2) form {
+    width: 100%;
+  }
+}
 .ligneArtPaye section:nth-child(2) .dateCVC {
   display: flex;
+  justify-content: space-between;
+  width: 65%;
 }
 .ligneArtPaye section:nth-child(2) #expDate {
   width: 6rem;
@@ -533,14 +631,27 @@ div.row {
   border-radius: 1em;
   cursor: pointer;
   background-color: #FF4444;
-  padding: 1rem;
+  padding: 1.5rem;
   width: 10rem;
   border: none;
 }
 .ligneArtPaye nav {
   display: flex;
+  justify-content: space-between;
   align-self: flex-end;
 }
 .ligneArtPaye nav button {
   margin-right: 2em;
+  margin-top: 2em;
+}
+
+#poubelle {
+  border: none;
+  background-color: #D1ECF8;
+}
+#poubelle img {
+  width: 30px;
+}
+#poubelle:hover {
+  background-color: rgb(178.5, 178.5, 178.5);
 }/*# sourceMappingURL=paiement.css.map */

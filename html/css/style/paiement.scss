@@ -1,6 +1,7 @@
 @use './styleCom' as *;
 @use '../tools/vFront' as *;
 @use "../tools/mixin/com" as *;
+@use 'sass:color';
 
 body{
     padding:0;
@@ -17,6 +18,59 @@ article{
     display:flex;
     flex-direction: column;
 }
+.ligneSection{
+    display:flex;
+    padding:1rem;
+    @media screen and ($mobile){
+        flex-direction:column;
+        justify-content: flex-start;
+        align-items:flex-start;
+    }
+    section{
+        width:100%;
+        margin: 5rem 0;
+        @media screen and ($mobile){
+            margin-left:0;
+            
+        }
+    }
+    section:nth-child(1){
+        article{
+            padding:3em;
+        }
+    }
+    section:nth-child(2){
+        margin: {
+            left:20%;
+            right:10%;
+        }   
+        @media screen and ($mobile){
+            margin:0;    
+        }
+    }
+
+}
+
+.ligneInput{
+
+    display:flex;
+    margin-bottom:1em;
+    .labelInput:nth-child(1){
+        margin-right:2em;
+    }
+    .labelInput:nth-child(2){
+        width:60%;
+    }
+    #codePostal{
+        width:6em;
+    }
+    #numApt{
+        width:6em;
+    }
+
+}
+
+
 #numRue{
     width:5em;
 }
@@ -24,7 +78,7 @@ article{
 input{
     border:solid 1px;
     border-radius:$radius;
-    height:2.5em;
+    height:3em;
     margin:10px 0;
     padding:1em;
     width:100%;
@@ -34,9 +88,17 @@ input{
     }
     
 }
+section:nth-child(1){
+    .bouton{
+        padding:$pad/2 $pad;
+        margin-top:1em;
+    }
+}
 section{
     width:40%;
+
     article{
+
         display:flex;
         justify-content: center;
         align-items: center;
@@ -44,6 +106,17 @@ section{
         height:max-content;
         padding:$pad;
 
+        @media screen and ($mobile){
+            width:fit-content;
+            .labelInput{
+                flex-direction: column;
+            }
+            form{
+                width:100%;
+            }
+
+
+        }
     }
 }
 
@@ -83,7 +156,7 @@ div {
     align-items:flex-start;
 }
 #secRecap{
-    width:80%;
+    width:100%;
 
 }
 #recapitulatif{
@@ -116,6 +189,16 @@ div {
 .ligneArtPaye{
     display:flex;
     
+    @media screen and ($mobile) {
+        flex-direction:column;
+        justify-content: flex-start;
+        padding:1rem;
+        section{
+            width:100%;
+            margin-bottom:1rem;
+        }
+    }
+    
     input{
         width:auto;
         border-radius:10px;
@@ -124,13 +207,21 @@ div {
     }
     section:nth-child(2){
 
-        margin-left:12rem;
+        margin-left:13rem;
         width:40%;
+        @media screen and ($mobile){
+            margin:0;
+            width:100%;
+        }
         article{
             padding-left:8em;
             width:80%;
             height:auto;
             justify-content: flex-start;
+            @media screen and ($mobile){
+                padding:1rem;
+                width:100%;
+            }
 
         }
         form{
@@ -139,9 +230,14 @@ div {
             flex-direction:column;
             align-items: flex-start;
             height:100%;
+            @media screen and ($mobile){
+                width:100%;
+            }
         }
         .dateCVC{
             display:flex;
+            justify-content: space-between;
+            width:65%;
             
         }
         #expDate{
@@ -155,16 +251,31 @@ div {
     .bouton{
         @include bouton;
         background-color:$inverse;
-        padding:1rem;
+        padding:1.5rem;
         width:10rem;
         border:none;
     }
     nav{
         display:flex;
+        justify-content: space-between;
         button{
-            margin-right:2em;
+            margin: {
+                right: 2em;
+                top:2em;
+            }
         }
         align-self:flex-end;
     }
+    padding-bottom:3em;
 
+}
+#poubelle{
+    border:none;
+    background-color: $colS;
+    img{
+        width:30px;
+    }
+    &:hover{
+        background-color: color.change($noir, $lightness: 70%) ;
+    }
 }
