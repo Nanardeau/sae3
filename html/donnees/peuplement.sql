@@ -28,10 +28,10 @@ INSERT INTO Photo(urlPhoto) VALUES
 ('/img/stylo.jpg');
 
 INSERT INTO Client(pseudo, dateCreation, nom, prenom, email, mdp, numTel, pdProfil) VALUES
-('Zigor','2025-09-25','Mulish','Isigor','isizou@gmail.com','bababou0','0605040608','/img/photosProfil/PDP_ZIG.jpg'),
-('Eude02','2025-10-26','Pilup','Eude','Eudeux@gmail.com','oupala!','0704090506','/img/photosProfil/PDP_EU2.jpg'),
-('test','2025-10-26','test','test','test@gmail.com','test','0701480506','/img/photosProfil/PDP_tst.jpg'),
-('Nanardeau','2025-10-29','Bernel','michar','moviestar@gmail.com','oupala!','0704090506','/img/photosProfil/PDP_BBl.jpg');
+('Zigor','2025-09-25','Mulish','Isigor','isizou@gmail.com','bababou0','0605040608','/img/photosProfil/PDP_ZIG.jpeg'),
+('Eude02','2025-10-26','Pilup','Eude','Eudeux@gmail.com','oupala!','0704090506','/img/photosProfil/PDP_EU2.jpeg'),
+('test','2025-10-26','test','test','test@gmail.com','test','0701480506','/img/photosProfil/PDP_tst.jpeg'),
+('Nanardeau','2025-10-29','Bernel','michar','moviestar@gmail.com','oupala!','0704090506','/img/photosProfil/PDP_BBl.jpeg');
 
 
 INSERT INTO Vendeur(dateCreation, nom, prenom, email, mdp, numTel, siren, raisonSociale) VALUES
