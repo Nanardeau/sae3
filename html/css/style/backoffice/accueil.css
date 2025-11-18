@@ -3,6 +3,56 @@
   src: url("/html/fonts/baloo2-regular-webfont.woff") format("woff"), url("/html/fonts/baloo2-regular-webfont.woff2") format("woff2");
   font-weight: medium;
   font-style: normal;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("/html/fonts/baloo2-extrabold-webfont.woff") format("woff"), url("/html/fonts/baloo2-extrabold-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("/html/fonts/baloo2-medium-webfont.woff") format("woff"), url("/html/fonts/baloo2-medium-webfont.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("/html/fonts/mulish-black-webfont.woff") format("woff"), url("/html/fonts/mulish-black-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("/html/fonts/mulish-blackitalic-webfont.woff") format("woff"), url("/html/fonts/mulish-blackitalic-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("/html/fonts/mulish-bolditalic-webfont.woff") format("woff"), url("/html/fonts/mulish-bolditalic-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("/html/fonts/mulish-bold-webfont.woff") format("woff"), url("/html/fonts/mulish-bold-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("/html/fonts/mulish-latin-500-normal.woff") format("woff"), url("/html/fonts/mulish-latin-500-normal.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("/html/fonts/baloo2-regular-webfont.woff") format("woff"), url("/html/fonts/baloo2-regular-webfont.woff2") format("woff2");
+  font-weight: medium;
+  font-style: normal;
   font-display: swap;
 }
 @font-face {
@@ -72,24 +122,28 @@ main {
 h1 {
   font-family: "Baloo";
   font-size: 40px;
-  font-weight: bold;
 }
 
 h2 {
   font-family: "Baloo";
   font-size: 32px;
-  font-weight: bold;
 }
 
 h3 {
   font-family: "Baloo";
   font-size: 24px;
-  font-weight: bold;
 }
 
 h4 {
   font-family: "Baloo";
   font-size: 20px;
+}
+
+p, label, input {
+  font-family: "Mulish";
+}
+
+label {
   font-weight: bold;
 }
 
@@ -247,62 +301,95 @@ header nav svg {
   }
 }
 
-@font-face {
-  font-family: "Baloo";
-  src: url("/html/fonts/baloo2-regular-webfont.woff") format("woff"), url("/html/fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: medium;
-  font-style: normal;
-  font-display: swap;
+/*###############################
+#        Menu Categorie         #
+################################*/
+.nav-cat {
+  width: 100%;
+  background-color: #6CA6E9;
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
 }
-@font-face {
-  font-family: "Baloo";
-  src: url("/html/fonts/baloo2-extrabold-webfont.woff") format("woff"), url("/html/fonts/baloo2-extrabold-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-  font-display: swap;
+.nav-cat div {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
-@font-face {
-  font-family: "Baloo";
-  src: url("/html/fonts/baloo2-medium-webfont.woff") format("woff"), url("/html/fonts/baloo2-medium-webfont.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+.nav-cat h2 {
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-self: center;
 }
-@font-face {
+.nav-cat svg, .nav-cat a {
+  z-index: 1000;
+  align-self: center;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: #6CA6E9;
+  padding: 15px;
+  padding-right: 30px;
+  cursor: pointer;
+}
+.nav-cat svg {
+  overflow: visible;
+}
+
+.overlayMenuCat {
+  z-index: 998;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 500px;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlayContentCat {
+  position: absolute;
+  background: #6CA6E9;
+  padding: 2rem;
+  padding-left: 1rem;
+  text-align: left;
+  max-width: 400px;
+  min-width: 200px;
+  height: 550px;
+  top: 100px;
+  left: 0;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.overlayContentCat ul {
+  padding-inline-start: 1rem;
+}
+.overlayContentCat ul li {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+.overlayContentCat ul li a {
+  text-decoration: underline;
   font-family: "Mulish";
-  src: url("/html/fonts/mulish-black-webfont.woff") format("woff"), url("/html/fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
+  font-size: 24px;
+  font-weight: 600;
+  color: black;
 }
-@font-face {
-  font-family: "Mulish";
-  src: url("/html/fonts/mulish-blackitalic-webfont.woff") format("woff"), url("/html/fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("/html/fonts/mulish-bolditalic-webfont.woff") format("woff"), url("/html/fonts/mulish-bolditalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("/html/fonts/mulish-bold-webfont.woff") format("woff"), url("/html/fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("/html/fonts/mulish-latin-500-normal.woff") format("woff"), url("/html/fonts/mulish-latin-500-normal.woff2") format("woff2");
+.overlayContentCat ul ul > li > a {
+  text-decoration: none;
+  font-size: 14px;
   font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-} 
+}
+.overlayContentCat ul ul > li {
+  margin-left: 1rem;
+}
+
 body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
@@ -314,25 +401,21 @@ body {
 h1 {
   font-family: "Baloo";
   font-size: 40px;
-  font-weight: bold;
 }
 
 h2 {
   font-family: "Baloo";
   font-size: 32px;
-  font-weight: bold;
 }
 
 h3 {
   font-family: "Baloo";
   font-size: 24px;
-  font-weight: bold;
 }
 
 h4 {
   font-family: "Baloo";
   font-size: 20px;
-  font-weight: bold;
 }
 
 p, label, input {
@@ -482,7 +565,7 @@ main p {
   text-align: center;
   background-color: #FCB66B;
   color: black;
-  border-radius: 0.5em;
+  border-radius: 1em;
   text-decoration: none;
   margin-bottom: 1em;
 }
