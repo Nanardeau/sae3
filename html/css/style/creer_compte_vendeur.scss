@@ -67,6 +67,7 @@ body{
                     border-radius: 8px;
                     height: 40px;
                     font-size: 16px;
+                    border:solid 1px;
                 }
             }
             .nomPrenom{
@@ -109,6 +110,7 @@ body{
                 font-size: $MoyTitle;
                 font-weight: bold;
                 border-radius: 16px;
+                border: none;
             }
         }
         

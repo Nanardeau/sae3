@@ -109,6 +109,7 @@ body main .alignementPR_IE div input {
   border-radius: 8px;
   height: 40px;
   font-size: 16px;
+  border: solid 1px;
 }
 body main .alignementPR_IE .nomPrenom {
   display: flex;
@@ -148,4 +149,5 @@ body main .button button {
   font-size: 24px;
   font-weight: bold;
   border-radius: 16px;
+  border: none;
 }/*# sourceMappingURL=creer_compte_vendeur.css.map */
