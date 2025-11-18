@@ -41,7 +41,7 @@ try {
     <main>
         <div class="btnAcceuil">
             <a href="ajouterproduit.php">Ajouter un produit</a>
-            <a href="cataloguevendeur.php">Consulter la liste des produits</a>
+            <a href="stock.php">Consulter la liste des produits</a>
         </div>
     </main>
 
