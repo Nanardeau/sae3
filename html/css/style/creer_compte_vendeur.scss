@@ -1,4 +1,5 @@
 @use "../tools/vback" as *;
+@use '../style/backoffice/styleComB.scss' as *;
 
 
 body{
@@ -16,7 +17,9 @@ body{
         padding-left: 50px;
         padding-bottom: 10px;
         display: flex;
-        align-items: center;
+        justify-content: center;
+        
+        
         h1 {
             margin-left: 20px;
             font-family: $Poltitle;

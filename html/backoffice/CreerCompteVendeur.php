@@ -15,10 +15,10 @@
     <title>Creer Compte Vendeur</title>
 </head>
 <body>
-    <header>
+    <div class="logo">
         <img src="../img/logoAlizonBack.svg" alt="Alizon">
         <h1>Back Office</h1>
-    </header>
+</div>
     <main>
         <form action="creer_compte_vendeur.php" method="post">
         <div class="alignementPR_IE">
@@ -258,9 +258,9 @@
         ));
 
     }
-
+    include('../includes/backoffice/footer.php');
     ?>
-
+    
 </body>
 </html>
 
