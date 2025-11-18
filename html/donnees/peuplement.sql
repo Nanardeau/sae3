@@ -160,7 +160,8 @@ insert into ProdUnitPanier(idPanier,codeProduit,qteProd) VALUES
 (1,4,1),
 (1,3,1);
 
-SET DateStyle TO 'European';
+INSERT INTO Photo(urlPhoto) VALUES ('./img/photosProfil/Cunty.png');
+INSERT INTO Profil(urlPhoto, codeClient) VALUES ('./img/photosProfil/Cunty.png' , 1);
 
 insert into Avis(codeproduit,codecomptecli,noteprod,commentaire,datepublication) VALUES
 (1,1,5,'J adore ce produit, il est vraiment bien, il est arrivé vite en plus', DATE '08-01-2025'),

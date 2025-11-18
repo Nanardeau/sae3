@@ -69,7 +69,8 @@ CREATE TABLE Produit(
     largeur FLOAT, --en mètre
     qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
     Origine VARCHAR(20) NOT NULL check (Origine IN ('Breizh','France','Étranger')),
-    Disponible BOOLEAN DEFAULT TRUE,  
+    Disponible BOOLEAN DEFAULT TRUE,
+    grilleTarification VARCHAR(20) check (grilleTarification IN ('tarif1','tarif2','tarif3','tarif4','tarif5'),  
     seuilAlerte NUMERIC(10,2) NOT NULL,
     urlPhoto VARCHAR(40) REFERENCES Photo(urlPhoto),
     codeCompteVendeur INTEGER REFERENCES Vendeur(codeCompte)	
@@ -330,14 +331,14 @@ EXECUTE FUNCTION PanierFinalTestHT();
 CREATE FUNCTION calcul_prixTotalTTCCom()
 RETURNS TRIGGER AS $$
 BEGIN
-	SELECT SUM(PUC.prixUnitTTC * PUC.qteProd) INTO NEW.prixTTC
-	FROM ProdUnitCommande PUC WHERE PUC.codeProduit = NEW.codeProduit;
+	UPDATE alizon.Commande SET prixTTCtotal = (SELECT SUM(PUC.prixTTCtotal * PUC.qteProd) 
+	FROM alizon.ProdUnitCommande PUC WHERE PUC.numCom = Commande.numCom);
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_calcul_prixTotalTTCCom
-BEFORE INSERT OR UPDATE ON Commande
+BEFORE INSERT OR UPDATE ON ProdUnitCommande
 FOR EACH ROW
 EXECUTE FUNCTION calcul_prixTotalTTCCom();
 
