@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 @use "../../tools/vBack" as *;
 @use "../../tools/mixin/com" as m;
+=======
+@use "../../tools/vback" as *;
+@use "../../tools/mixin/com" as m;
+@use '../../components/fonts.css' as *;
+>>>>>>> accueilBackOffice
 
 
 body{
@@ -8,7 +14,11 @@ body{
         size: $txtSize;
     }
     background: {
+<<<<<<< HEAD
         color: white;
+=======
+        color: $blanc;
+>>>>>>> accueilBackOffice
     }
     color : $noir;
     margin: 0;
@@ -37,6 +47,7 @@ label{
 ###############################*/
 
 header{
+<<<<<<< HEAD
     display: inline-flex;
     background: {
         color: $colP;
@@ -66,6 +77,50 @@ header{
         }
     }
 
+=======
+    display: flex;
+    flex-direction: row;
+    background-color: $colP;
+    
+    .logo_alizon_back{
+        width: 118px;
+        height: auto;
+        margin: 1em 2em 1em 2em;
+    }
+
+    h1{
+        color: white;
+        font-family: $Poltitle , sans-serif;
+        font-size: 2em;
+        margin: 0 22em 0 0;
+    }
+
+    a {
+        display: flex;
+        outline:none;
+        text-decoration: none;
+        h2{
+        color: white;
+        font-family: $Poltitle , sans-serif;
+        font-size: 1.5em;
+        margin: 0 2em 0 0;
+        
+        }
+        .ajout{
+            margin: 0 0.5em 0 2em;
+            width: auto;
+            height: auto;
+            flex-direction: row;
+        }
+        .user{
+            width: 2em;
+            height: auto;
+            margin: 0 0.5em 0 2em;
+            flex-direction: row;
+        }
+    }
+    
+>>>>>>> accueilBackOffice
 }
 
 /*###############################
@@ -78,6 +133,10 @@ header{
     color: #333;
     font-family: $Poltext;
     padding-top: 1rem;
+<<<<<<< HEAD
+=======
+    margin-top: 2em;
+>>>>>>> accueilBackOffice
 
     .footer-content {
         max-width: 1200px;
