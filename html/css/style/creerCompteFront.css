@@ -363,7 +363,7 @@ form {
   align-self: center;
   padding: 2em;
 }
-@media screen and (max-width: 428px) {
+@media screen and (max-width : 428px) {
   form {
     width: 90%;
     padding: 1em;
