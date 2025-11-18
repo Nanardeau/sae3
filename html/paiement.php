@@ -156,9 +156,9 @@
                 <section id="secRecap">
                     <?php 
 
-                    $nbProd = ($bdd->query("SELECT ALL count(*) from alizon.ProdUnitPanier where idPanier = '".$idPanier."'")->fetch())["count"];
+                    $nbProd = ($bdd->query("SELECT ALL SUM(qteProd) somme from alizon.ProdUnitPanier where idPanier = '".$idPanier."'")->fetch())["somme"];
                     ?>
-                    <h2>Récapitulatif ( <?php echo $nbProd?> articles) </h2>
+                    <h2>Récapitulatif ( <?php echo number_format((int)$nbProd, 0, '.', '')?> articles ) </h2>
                     <article id="recapitulatif">
 
                             <?php 
@@ -169,7 +169,7 @@
                             foreach($produits as $prodUnit){
                                 ?><div class="libelleProdRecap"><?php
                                 $detailProd = $bdd->query("SELECT * FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
-                                echo "<p>Article ".$i." (".$detailProd["libelleprod"]. ") : </p><p class=\"prixAffiche\">".number_format((float)$detailProd["prixht"], 2, '.', '')."€</p>";
+                                echo "<p>Article ".$i." (".$detailProd["libelleprod"]. ") : ( x ". number_format((int)$prodUnit["qteprod"], 0, '.', '')." )</p><p class=\"prixAffiche\">".number_format((float)$prodUnit["prixhttotal"], 2, '.', '')."€</p>";
                                 $i++;
                                 ?></div><?php
                             }
@@ -290,7 +290,7 @@
     }
     }
     function annuler(){
-        window.location.reload();
+        window.location = "Panier.php";
     }
     function validerPaiement(evt){
         let adrValide = true;
