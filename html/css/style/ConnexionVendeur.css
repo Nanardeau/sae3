@@ -91,6 +91,9 @@ header {
   display: flex;
   flex-direction: row;
   background-color: #CD4B22;
+  height: 80px;
+  width: 100%;
+  align-items: center;
 }
 header .logo_alizon_back {
   width: 118px;
@@ -198,17 +201,16 @@ main {
   align-items: center;
 }
 main h2 {
-  font-family: baloo;
+  font-family: "baloo";
 }
-
-div {
+main div {
   display: flex;
   flex-direction: row;
 }
-div a {
+main div a {
   margin-right: 5px;
 }
-div h2 {
+main div h2 {
   margin-left: 5px;
 }
 

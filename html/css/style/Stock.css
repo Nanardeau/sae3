@@ -92,6 +92,9 @@ header {
   display: flex;
   flex-direction: row;
   background-color: #CD4B22;
+  height: 80px;
+  width: 100%;
+  align-items: center;
 }
 header .logo_alizon_back {
   width: 118px;

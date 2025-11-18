@@ -178,12 +178,12 @@ $bdd->query('set schema \'alizon\'');
                 </article>
             <?php } ?>
 
-            <?php include('../includes/backoffice/footer.php'); ?>
-
-
-
-
-    </main>
+            
+            
+            
+            
+        </main>
+        <?php include('../includes/backoffice/footer.php'); ?>
 
 
 </body>

@@ -9,19 +9,20 @@ main{
     flex-direction: column;
     align-items: center;
     h2{
-        font-family: baloo;
+        font-family: 'baloo';
     }
-}
-div{
+    div{
     display:flex;
     flex-direction: row;
-    a{
-        margin-right: 5px;
-    }
-    h2{
-       margin-left: 5px; 
-    }
+        a{
+            margin-right: 5px;
+        }
+        h2{
+            margin-left: 5px; 
+        }
 }
+}
+
 
 form{
     border:#A1A1A1 solid 0.01em;

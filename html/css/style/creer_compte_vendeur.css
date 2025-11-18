@@ -18,8 +18,8 @@
 }
 @font-face {
   font-family: "Mulish";
-  src: url("/html/fonts/mulish-black-webfont.woff") format("woff"), url("/html/fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bold;
+  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
+  font-weight: bolder;
   font-style: normal;
 }
 @font-face {

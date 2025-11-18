@@ -2,7 +2,7 @@
 <?php
 //Connexion à la base de données.
 require_once '../_env.php';
-loadEnv(__DIR__ . '/.env');
+loadEnv('../.env');
 
 // Récupération des variables
 $host = getenv('PGHOST');
@@ -89,7 +89,7 @@ if($_POST){
     </main>
     <?php include('../includes/backoffice/footer.php');?>
 
-</script>
+
 
 </body>
 </html>
