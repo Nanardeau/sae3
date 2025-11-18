@@ -41,7 +41,7 @@ $bdd->query('set schema \'alizon\'');
 
 
     <main>
-        <?php include('../includes/header.php'); ?>
+        <?php include('../includes/backoffice/header.php'); ?>
         <h1>Votre Stock</h1>
         <div class="separateur"></div>
         <?php
