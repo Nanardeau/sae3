@@ -1,4 +1,12 @@
-<?php 
+<?php
+/*if(!array_key_exists("codeCompte", $_SESSION) || $_SESSION["codecompte"] == null){
+    header('location: connexionVendeur.php');
+    
+}else{
+
+    $codeCompte = $_SESSION["codecompte"];
+    
+}*/
     //$_GET["Produit"]=1;
     //include '../includes/backoffice/header.php';
     require_once('../_env.php');

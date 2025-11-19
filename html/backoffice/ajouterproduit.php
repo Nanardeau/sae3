@@ -1,4 +1,12 @@
 <?php
+/*if(!array_key_exists("codeCompte", $_SESSION) || $_SESSION["codecompte"] == null){
+    header('location: connexionVendeur.php');
+    
+}else{
+
+    $codeCompte = $_SESSION["codecompte"];
+    
+}*/
 if(isset($_GET["erreur"])){
         $erreur = $_GET["erreur"];
 }
@@ -131,6 +139,7 @@ $bdd->query('set schema \'alizon\'');
     <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
 </form>
         <a class="button" href="./accueil.php">Retour</a>
-</main>
+    </main>
+    <?php include('../includes/backoffice/footer.php');?>
 </body>
 </html>

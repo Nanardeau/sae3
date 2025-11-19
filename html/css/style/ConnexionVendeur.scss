@@ -34,7 +34,7 @@ form{
     width:35em;
     margin-top: 1em;
     justify-self:center;
-    padding:2em 2em 1em;
+    padding:2em;
     font-family: 'mulish';
     
     input{
@@ -46,7 +46,7 @@ form{
         
     }
     .bouton{
-    @include bouton;
+    @include bouton($colP);
     height: 4em;
     color:white;
     font-family: 'mulish';
@@ -91,18 +91,13 @@ aside{
     }
 
     .bouton{
-        @include bouton;
+        @include bouton($colP);
         padding:1em;
         width:80%;
+        
     }
 
-    .btnBleu{
-        @include bouton;
-        background-color:$eleBleu;
-        padding:1em; 
-        color:black;
-        width:30%;
-    }
+    
 
     nav{
         display:flex;

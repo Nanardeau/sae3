@@ -57,7 +57,7 @@ if($_POST){
 </head>
 <body>
     <main>
-        <a href="accueilVendeur.php"><img src="../html/img/logo_back.svg" alt="logo-alizon" title="logo-alizon"/></a>
+        <a href="accueil.php"><img src="/img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
         <form action="ConnexionClient.php" method="post">
             <h2>Connexion</h2>
             <label for="pseudo">Identifiant</label>

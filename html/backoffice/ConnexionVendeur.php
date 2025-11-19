@@ -35,7 +35,7 @@ if($_POST){
     $req= $bdd->query ("SELECT * FROM Vendeur WHERE raisonSociale = '".$id."' AND mdp = '".$mdp."'");
     $rep= $req->fetch();
     if($rep!=null){
-        header("location: accueilVendeur.php");
+        header("location: accueil.php");
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         
