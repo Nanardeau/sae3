@@ -43,48 +43,6 @@
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: normal;
-} 
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
   font-weight: medium;
   font-style: normal;
   font-display: swap;
@@ -138,6 +96,48 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Baloo";
+  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+} 
 body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
@@ -281,55 +281,13 @@ header a .user {
   display: flex;
 }
 
-header {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  background-color: #CD4B22;
-}
-header .logo_alizon_back {
-  width: 118px;
-  height: auto;
-  margin: 1em 2em 1em 2em;
-}
-header h1 {
-  color: white;
-  font-family: "Baloo", sans-serif;
-  font-size: 2em;
-  margin: 0 22em 0 0;
-}
-header a {
-  display: flex;
-  outline: none;
-  text-decoration: none;
-}
-header a h2 {
-  color: white;
-  font-family: "Baloo", sans-serif;
-  font-size: 1.5em;
-  margin: 0 2em 0 0;
-}
-header a .ajout {
-  margin: 0 0.5em 0 2em;
-  width: auto;
-  height: auto;
-  flex-direction: row;
-}
-header a .user {
-  width: 2em;
-  height: auto;
-  margin: 0 0.5em 0 2em;
-  flex-direction: row;
-}
-
 main {
   padding-bottom: 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-form {
+main form {
   border: #A1A1A1 solid 0.01em;
   border-radius: 1em;
   display: flex;
@@ -340,7 +298,7 @@ form {
   align-self: center;
   padding: 2em;
 }
-form textarea {
+main form textarea {
   border: solid 1px;
   border-radius: 1em;
   height: 10em;
@@ -348,7 +306,7 @@ form textarea {
   padding: 10px;
   resize: none;
 }
-form select {
+main form select {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
@@ -365,14 +323,14 @@ form select {
   font-size: 1em;
   max-width: 225px;
 }
-form input {
+main form input {
   border: solid 1px;
   border-radius: 1em;
   height: 3em;
   margin: 10px 0;
   padding: 10px;
 }
-form input::file-selector-button {
+main form input::file-selector-button {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
@@ -384,41 +342,39 @@ form input::file-selector-button {
   cursor: pointer;
   border: none;
 }
-form input#photoProd {
+main form input#photoProd {
   border: none;
   font-size: 0.8em;
 }
-form input .bouton {
+main form input .bouton {
   height: 5em;
   font-size: 24px;
 }
 @media screen and (screen and (max-width : 428px)) {
-  form input .bouton {
+  main form input .bouton {
     height: 4em;
   }
 }
-form h2 {
+main form h2 {
   margin: 0;
 }
-form label::after {
+main form label::after {
   content: " *";
   color: red;
 }
-form .taille label::after {
+main form .taille label::after {
   content: "";
   color: none;
 }
-form .pObl::after {
+main form .pObl::after {
   content: "";
   color: none;
 }
-
-.labelInput {
+main .labelInput {
   display: flex;
   flex-direction: column;
 }
-
-.bouton {
+main .bouton {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
@@ -429,9 +385,9 @@ form .pObl::after {
   border-radius: 1em;
   cursor: pointer;
 }
-.bouton:hover {
+main .bouton:hover {
   background-color: rgb(174.9790794979, 64.0167364017, 29.0209205021);
 }
-.bouton:active {
+main .bouton:active {
   background-color: rgb(43.7447698745, 16.0041841004, 7.2552301255);
 }/*# sourceMappingURL=modifier_info_produit.css.map */
