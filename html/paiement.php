@@ -72,7 +72,7 @@
     if($_POST){
         print_r($_POST);
     }
-    if($_GET["suppProd"]){
+    if(isset($_GET["suppProd"])){
         
         $stmt = $bdd->prepare("DELETE FROM ProdUnitPanier WHERE idPanier = :idPanier AND codeProduit = :codeProduit");
         $stmt->execute([
