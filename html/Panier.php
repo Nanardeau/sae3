@@ -88,12 +88,15 @@ $bdd->query('set schema \'alizon\'');
             ?>
 
         <h2>Votre Panier (<?php echo $infoPanier['nbProd'] ?> articles)</h2>
-    <div class="recap">
-            <h4>Récapitulatif ( <?php echo $infoPanier['nbProd']?> articles) </h4>
-            <p>Prix HT : <?php echo $infoPanier["prixHT"]?></p>
-            <p style="font-weight : bold">Prix TTC : <?php echo $infoPanier["prixTTC"]?></p>
-            <input type="button" value="Commander"/>
-        </div>
+        <aside>
+            <div class="recap">
+                <h4>Récapitulatif ( <?php echo $infoPanier['nbProd']?> articles) </h4>
+                <p>Prix HT : <?php echo $infoPanier["prixHT"]?></p>
+                <p style="font-weight : bold">Prix TTC : <?php echo $infoPanier["prixTTC"]?></p>
+                <a class="btn-recap" href="./paiement.php">Commander</a>
+            </div>
+                <a href="Catalogue.php" class="btn-recap">Retour</a>
+        </aside>
         <article>
         <?php
         foreach($ListeProdPanier as $liste){

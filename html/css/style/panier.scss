@@ -118,6 +118,7 @@ article {
         display: flex;
         flex-direction: row;
         justify-content: center ;
+        
         @media #{$mobile} {
             height: 60%;
             
@@ -128,7 +129,7 @@ article {
             background-color: $blanc;
             border: 2px solid $noir;
             min-width: 10%;
-
+            cursor: pointer;
             &:first-child {
                 border-radius: $radius 0 0 $radius;
             }
@@ -167,15 +168,29 @@ article {
         
     }
 }
+aside{
 
+    float: right;
+    width: 25%;
+    
+    .btn-recap{
+        background-color: $eleOrange;
+        text-decoration: none;
+        color:$noir;
+        padding: 10px;
+        border-radius: $radius;
+        width: 50%;
+        text-align: center;
+        display: block;
+
+    }
 .recap {
     background-color: $colS;
     align-content: center;
-    float: right;
+    text-align: right;
     border-radius: $radius;
     padding: $pad;
     margin: $marg 0;
-    width: 25%;
     h4{
         margin:0;
     }
@@ -183,8 +198,15 @@ article {
         float:none;
         width: 90%;
     }
-}
 
+    .btn-recap{
+        width: 95%;
+
+
+    }
+    
+}
+}
 .btn-vider {
     @include btn;
     grid-area: 2 / 1 / 3 / 2;
