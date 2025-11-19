@@ -209,6 +209,25 @@ label {
   font-weight: bold;
 }
 
+input:user-invalid, input.invalid {
+  border-color: red;
+}
+input:user-invalid + span, input.invalid + span {
+  display: block;
+}
+
+.bouton {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
 /*###############################
 #            HEADER             #
 ###############################*/
