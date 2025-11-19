@@ -245,6 +245,7 @@ form .bouton {
   font-family: "mulish";
   font-size: 16px;
   width: 100%;
+  margin-bottom: 0;
 }
 @media screen and (max-width : 428px) {
   form .bouton {
@@ -267,10 +268,7 @@ form p {
   color: darkred;
   cursor: pointer;
   padding: 0;
-}
-
-p {
-  color: darkred;
+  margin-top: 0;
 }
 
 aside {

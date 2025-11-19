@@ -26,26 +26,26 @@ try {
 $bdd->query('set schema \'alizon\'');
 $error_msg = "";
 
-session_start();
+
 
 if($_POST){
     $id = $_POST["pseudo"];
     $mdp = $_POST["mdp"];
-    $_SESSION["pseudo"] = $id;
-    $_SESSION["mdp"] = $mdp;
+
     $req= $bdd->query ("SELECT * FROM Client WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
     $rep= $req->fetch();
     if($rep!=null){
         $blq = $rep["cmtblq"];
         //bon id mais verif si bloqué
         echo $blq;
-        if($blq==true){
+        if($blq==1){
             $error_msg="Vous avez décidé de bloquer votre compte.";
-            $debloq_msg="Pour le débloquer, cliquez ici.";
+            $debloq_msg="Pour le débloquer et vous connecter, entrez vos informations et cliquez ici.";
+
         }else{
             $blqMod=$rep["cmtblqmod"];
             //si compte pas bloqué, vérif si compte bloqué par modo
-            if($blqMod==true){
+            if($blqMod==1){
                 $error_msg="Votre compte a été bloqué car vous n'avez pas respecté les règles d'utilisation de ce site.";
             }else{
                header("location: accueil.php");
@@ -54,7 +54,6 @@ if($_POST){
         
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
-        
     }
     
 }
@@ -72,24 +71,24 @@ if($_POST){
 <body>
     <main>
         <a href="accueil.php"><img src="../html/img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
-        <form action="ConnexionClient.php" method="post">
+        <form action="ConstanceCo.php" method="post">
             <h2>Connexion</h2>
             <label for="pseudo">Identifiant</label>
             <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" required/>
             <label for="mdp">Mot de passe</label>
             <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli" required/>
-            <?php
+            
+            <input class="bouton" type="submit" value="Se connecter" id="validerConnexion"/>
+        </form>
+        <?php
                 if($error_msg != ""):
             ?>
                     <p> <?php echo($error_msg); ?><br/>
-                    <a href="debloquer.php"><?php echo ($debloq_msg);?></a>
+
                     
             <?php
                 endif
             ?>
-            <input class="bouton" type="submit" value="Se connecter" id="validerConnexion"/>
-        </form>
-        
         <aside>
             <figure>
                 <img src="./img/line_1.svg"/>
@@ -103,14 +102,22 @@ if($_POST){
         </aside>
     
     </main>
-    <?php include('./includes/footer.php');?>
-<script>
-
-    function debloquerCompte(){
-        console.log("cc");
-        window.location.href = "debloquer.php";
-    }  
-</script>
-
+    <?php include('./includes/footer.php');
+   
+    ?>
 </body>
 </html>
+
+<script>
+ function debloquerCompte(){
+    window.load("debloquer.php");
+    /*
+        <?php    
+    #            $stmt = $bdd->prepare("UPDATE Client SET cmtBlq = false WHERE pseudo = '".$_POST["pseudo"]."' AND mdp = '".$mdp."'");
+    #            $stmt->execute();
+    #            
+    #            header("location: accueil.php");
+           ?> 
+    */        //le problème c'est que si un compte bloqué se connecte il est auto. débloqué même sans le vouloir.
+        }
+</script>
