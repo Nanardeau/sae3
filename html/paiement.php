@@ -2,9 +2,9 @@
     <?php
         session_start(); 
 
-        /*$_SESSION["codeCompte"] = 1;
-        $codeCompte = $_SESSION["codeCompte"];*/
-        $codeCompte = 3;
+        $_SESSION["codeCompte"] = 3;
+        $codeCompte = $_SESSION["codeCompte"];
+        //$codeCompte = 3;
 
         if(!array_key_exists("codeCompte", $_SESSION)){
             //header("location:index.php");
