@@ -207,20 +207,11 @@ body .header {
 }
 body .header h1 {
   margin-left: 20px;
-  font-family: "Baloo 2";
-  font-size: 40px;
 }
 body main {
   padding: 150px;
   margin: auto;
   width: 1140px;
-}
-body main h1, body main h2, body main h3, body main h5 {
-  font-family: "Baloo 2";
-}
-body main p {
-  font-family: "Mulish";
-  font-size: 14px;
 }
 body main span {
   display: none;
