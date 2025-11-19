@@ -1,6 +1,9 @@
 <?php
+session_start();
+$codeCompte = $_SESSION['codeCompte'];
+
 //Connexion à la base de données.
-require_once __DIR__ . '/_env.php';
+require_once( __DIR__ . '/_env.php');
 loadEnv(__DIR__ . '/.env');
 
 // Récupération des variables
@@ -35,10 +38,17 @@ $bdd->query('set schema \'alizon\'');
 </head>
 
 <body>
-    <?php include 'includes/header.php';?>
+    <?php 
+
+    if($codeCompte != null){
+        include 'includes/headerCon.php' ;
+    }else{
+        include 'includes/header.php';
+    }
+    ?>
 
     <main>
-        <?php include 'includes/menu_cat.php';?>
+        
 
         <h1>Toutes les catégories</h1>
 
@@ -105,7 +115,7 @@ $bdd->query('set schema \'alizon\'');
                                         <path d="M9.63037 13.4648V17.8585" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </a>
-                                <a class="button">Ajouter au panier</a>
+                                <a class="button" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>">Ajouter au panier</a>
                                 <a class="button">Détails</a>
                             </div>
 

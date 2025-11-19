@@ -4,6 +4,7 @@
         header("location:index.php");
     }
     $codeCompte = $_SESSION["codeCompte"];
+    
     if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
     }

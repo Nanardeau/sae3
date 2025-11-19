@@ -31,10 +31,7 @@ try {
 }
 $_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
 
-if(!isset($_SESSION["codeCompte"])){
-        header('Location: http://localhost:8888/index.php');
-        exit();   
-    }
+
 $bdd->query('set schema \'alizon\'');
 ?>
 
@@ -51,15 +48,30 @@ $bdd->query('set schema \'alizon\'');
 
 <body>
 
-    <?php include 'includes/header.php' ?>
+    <?php 
+    
+    if(isset( $_SESSION["codeCompte"])){
+        $idUser =  $_SESSION["codeCompte"];
+        include 'includes/headerCon.php' ;
+    }else{
+        include 'includes/header.php';
+    }
+     ?>
     <main>
         <?php //Si le client n'a rien dans so panier afficher -> panier vide 
         //Sinon -> afficher les informations du panier.  
                 
-        $idUser =  $_SESSION["codeCompte"];
+        
 
         // Rercherche du panier par rapport au code compte 
+        if($idUser != null){
+
+        
         $stmP = $bdd->prepare('SELECT * from Panier where codeCompte = \''.$idUser.'\'');
+        
+        }else {
+            $stmP = $bdd->prepare('SELECT * from Panier where idPanier = \''.$idPanier.'\'');
+        }
         $stmP->execute();
         $ifPanierTemp = $stmP->fetch();
         //’print_r($ifPanierTemp);

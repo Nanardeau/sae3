@@ -37,7 +37,7 @@ if($_POST){
         //connexion
         session_start();
         $_SESSION["codeCompte"] = $rep["codecompte"];
-        header("location: infosCompte.php");
+        header("location: Catalogue.php");
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         

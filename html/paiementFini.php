@@ -9,9 +9,9 @@
 </head>
 <body>
     
-<?php include "includes/header.php"?>
+<?php include "includes/headerCon.php"?>
 <main>
-    <h1>Votre commande a été enregistrée ! UwU</h1>
+    <h1>Votre commande a été enregistrée !</h1>
     <a href="index.php" class="bouton">Retour à l'accueil</a>
 </main>
 <?php include "includes/footer.php"?>
