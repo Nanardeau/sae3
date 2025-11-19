@@ -160,8 +160,16 @@ insert into ProdUnitPanier(idPanier,codeProduit,qteProd) VALUES
 (1,4,1),
 (1,3,1);
 
-INSERT INTO Photo(urlPhoto) VALUES ('./img/photosProfil/Cunty.png');
-INSERT INTO Profil(urlPhoto, codeClient) VALUES ('./img/photosProfil/Cunty.png' , 1);
+INSERT INTO Photo(urlPhoto) VALUES 
+('./img/photosProfil/Cunty.png'),
+('./img/photosProfil/PDP_EU2.jpeg'),
+('./img/photosProfil/PDP_tst.jpeg'),
+('./img/photosProfil/PDP_BBl.jpeg');
+INSERT INTO Profil(urlPhoto, codeClient) VALUES 
+('./img/photosProfil/Cunty.png' , 1),
+('./img/photosProfil/PDP_EU2.jpeg' , 2),
+('./img/photosProfil/PDP_tst.jpeg' , 3),
+('./img/photosProfil/PDP_BBl.jpeg' , 4);
 
 insert into Avis(codeproduit,codecomptecli,noteprod,commentaire,datepublication) VALUES
 (1,1,5,'J adore ce produit, il est vraiment bien, il est arrivé vite en plus', DATE '08-01-2025'),
@@ -169,7 +177,7 @@ insert into Avis(codeproduit,codecomptecli,noteprod,commentaire,datepublication)
 (6,1,2,'Le produit est moyen', DATE '05-10-2025'),
 (2,2,3,'J aime bien mais c est pas mon truc non plus', DATE '22-03-2025');
 
---SELECT client.pdprofil, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) ORDER BY avis.codeproduit;
+SELECT profil.urlPhoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit)  INNER JOIN client ON (avis.codecomptecli = client.codecompte) ORDER BY avis.codeproduit INNER JOIN profil ON (client.codecompte = profil.codeclient);
 --select SUM(prixttctotal) FROM ProdUnitPanier INTO Panier.prixTTCtotal;
 --select * from ProdUnitPanier where idPanier = 1;
 --select * from Panier where codecompte = 3;
