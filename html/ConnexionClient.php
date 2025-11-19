@@ -38,7 +38,6 @@ if($_POST){
     if($rep!=null){
         $blq = $rep["cmtblq"];
         //bon id mais verif si bloqué
-        echo $blq;
         if($blq==true){
             $error_msg="Vous avez décidé de bloquer votre compte.";
             $debloq_msg="Pour le débloquer, cliquez ici.";
