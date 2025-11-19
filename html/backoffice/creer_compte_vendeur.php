@@ -15,11 +15,12 @@
     <title>Creer Compte Vendeur</title>
 </head>
 <body>
-    <header>
-        <img src="../img/logoAlizonBack.svg" alt="Alizon">
-        <h1>Back Office</h1>
-    </header>
     <main>
+        <div class="header">
+            <img src="../img/logoAlizonBack.svg" alt="Alizon">
+            <h1>Back Office</h1>
+        </div>
+       
         <form action="creer_compte_vendeur.php" method="post">
         <div class="alignementPR_IE">
             <div>

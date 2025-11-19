@@ -1,18 +1,9 @@
 @use "../tools/vback" as *;
-
+@use "backoffice/styleComB" as *;
 
 body{
-    h1, h2, h3, h5{
-        font-family: $Poltitle;
-    }
-    p {
-        font-family: $Poltext;
-        font-size: $txtSize;
-    }
-    padding: 150px;
-    margin : auto;
-    width: 1140px;
-    header {
+    
+    .header {
         padding-left: 50px;
         padding-bottom: 10px;
         display: flex;
@@ -22,8 +13,19 @@ body{
             font-family: $Poltitle;
             font-size: $TrGdTitle;
         }
+        
     }
     main {
+        h1, h2, h3, h5{
+        font-family: $Poltitle;
+        }
+        p {
+            font-family: $Poltext;
+            font-size: $txtSize;
+        }
+        padding: 150px;
+        margin : auto;
+        width: 1140px;
         span{
             display:none;
             color:#6e6e6e;
