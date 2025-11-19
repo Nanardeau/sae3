@@ -54,13 +54,13 @@ $bdd->query('set schema \'alizon\'');
     <?php include("../includes/backoffice/header.php"); ?>
 <main>
     <?php if($erreur == "succes"){
-                echo "<h2 style=\"color:green\">Produit créé avec succès</h2>";
+                echo "<h2 style=\"color:green\">Produit modifier avec succès</h2>";
             }
             else if($erreur == "image"){
                 echo "<h2 style=\"color:red\">Produit image avec erreur</h2>";
             }
     ?>
-<form action="enregProduit.php" method="post" enctype="multipart/form-data">
+<form action="enregProduit.php?codeproduit=<?php echo $_GET["codeProduit"] ?>" method="post" enctype="multipart/form-data">
     <h2>Modifier Produit</h2>
     
     <label for="nom">Intitulé</label>
@@ -161,5 +161,6 @@ $bdd->query('set schema \'alizon\'');
 </form>
         
 </main>
+<?php include("../includes/backoffice/footer.php"); ?>
 </body>
 </html>
