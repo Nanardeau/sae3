@@ -139,6 +139,7 @@
         
         </form>
     </main>
+    <?php include("../includes/backoffice/footer.php"); ?>
         <script>
         
         let mail = document.getElementById("email");
