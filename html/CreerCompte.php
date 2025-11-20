@@ -20,12 +20,17 @@
     <a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
         <form action="enreg.php" method="post" enctype="multipart/form-data">
             <h2>Création de compte</h2>
-            <label for="identifiant">Identifiant *</label>
-            <?php 
+            <?php if($erreur == "mail"){
+                echo "<p style=\"color:red\">Adresse e-mail déjà utilisée</p>";   
+            }?>
+            <?php
             if($erreur == "pseudo"){
                 echo "<p style=\"color:red\">Pseudonyme déjà utilisé</p>";
             }
             ?>
+            <label for="identifiant">Identifiant *</label>
+
+
             <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._0-9]{2,20}" required/> 
             <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
             <div id="nomPrenomCli">
@@ -41,9 +46,7 @@
             <label for="photoCli">Photo de profil</label>
             <input type="file" name="photo" id="photoCli" accept="image/*"/>
             <label for="mailCli">Adresse e-mail *</label>
-            <?php if($erreur == "mail"){
-                echo "<p>Adresse e-mail déjà utilisée</p>";   
-            }?>
+
             <input type="text" name="mail" placeholder="E-mail..." id="mailCli" required/>
             <span>Le mail doit être de la forme "abc@def.gh"</span>
             <label for="confMailCli">Confirmer adresse mail *</label>

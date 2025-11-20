@@ -29,6 +29,7 @@ CREATE TABLE Client(
     pseudo VARCHAR(20) NOT NULL,
     cmtBlq BOOLEAN,
     cmtBlqMod BOOLEAN,
+	dateNaissance DATE,
 	UNIQUE(codeCompte)
 ) INHERITS (Compte);
 
@@ -41,6 +42,7 @@ CREATE TABLE Gestionaire(UNIQUE(codeCompte)) INHERITS (Compte);
 
 CREATE TABLE Vendeur(
     SIREN VARCHAR(20) UNIQUE,
+	pseudo VARCHAR(20) UNIQUE NOT NULL,
     raisonSociale VARCHAR(20),
 	idAdresseSiege INTEGER REFERENCES Adresse(idAdresse),
 	UNIQUE(codeCompte)
