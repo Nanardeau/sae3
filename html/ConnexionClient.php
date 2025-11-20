@@ -47,7 +47,7 @@ if($_POST){
             if($blqMod==true){
                 $error_msg="Votre compte a été bloqué car vous n'avez pas respecté les règles d'utilisation de ce site.";
             }else{
-               header("location: accueil.php");
+               header("location: index.php");
                 die();
 
             }
