@@ -32,10 +32,12 @@ if($_POST){
     $id = $_POST["pseudo"];
     $mdp = $_POST["mdp"];
 
-    $req= $bdd->query ("SELECT * FROM Vendeur WHERE raisonSociale = '".$id."' AND mdp = '".$mdp."'");
+    $req= $bdd->query ("SELECT * FROM Vendeur WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
     $rep= $req->fetch();
     if($rep!=null){
-        header("location: accueilVendeur.php");
+        session_start();
+        $_SESSION["codeCompte"] = $rep["codeCompte"];
+        header("location: accueil.php");
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         

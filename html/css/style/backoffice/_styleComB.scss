@@ -1,5 +1,6 @@
-@use "../../tools/vBack" as *;
+@use "../../tools/vback" as *;
 @use "../../tools/mixin/com" as m;
+@use '../../components/fonts.css' as *;
 
 
 body{
@@ -8,7 +9,7 @@ body{
         size: $txtSize;
     }
     background: {
-        color: white;
+        color: $blanc;
     }
     color : $noir;
     margin: 0;
@@ -40,9 +41,8 @@ header{
     display: flex;
     flex-direction: row;
     background-color: $colP;
-    height: 80px;
-    width: 100%;
     align-items: center;
+    justify-content: space-between;
     
     .logo_alizon_back{
         width: 118px;
@@ -54,9 +54,12 @@ header{
         color: white;
         font-family: $Poltitle , sans-serif;
         font-size: 2em;
-        margin: 0 22em 0 0;
+        margin-top: 1em;
     }
+    div{
+        display: flex;
 
+    }
     a {
         display: flex;
         outline:none;
@@ -70,7 +73,7 @@ header{
         }
         .ajout{
             margin: 0 0.5em 0 2em;
-            width: auto;
+            width: 2em;
             height: auto;
             flex-direction: row;
         }

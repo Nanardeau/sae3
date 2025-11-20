@@ -116,67 +116,19 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: medium;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../..fonts/baloo2-medium-webfont.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-} 
 body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
   background-color: white;
   color: black;
   margin: 0;
+}
+
+main {
+  padding-top: 80px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 h1 {
@@ -207,52 +159,78 @@ label {
   font-weight: bold;
 }
 
+input:user-invalid, input.invalid {
+  border-color: red;
+}
+input:user-invalid + span, input.invalid + span {
+  display: block;
+}
+
+.bouton {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
 /*###############################
 #            HEADER             #
 ###############################*/
 header {
-  display: flex;
-  flex-direction: row;
-  background-color: #CD4B22;
+  z-index: 1000;
+  position: fixed;
+  display: inline-flex;
+  background-color: #064082;
+  height: 80px;
+  width: 100%;
   align-items: center;
-  justify-content: space-between;
 }
-header .logo_alizon_back {
+header .mobile-only {
+  display: none;
+}
+header .logo_alizon_front {
   width: 118px;
   height: auto;
-  margin: 1em 2em 1em 2em;
+  padding-left: 80px;
+  left: 0;
 }
-header h1 {
+header nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+header nav a {
+  padding-right: 20px;
   color: white;
-  font-family: "Baloo", sans-serif;
-  font-size: 2em;
-  margin-top: 1em;
-}
-header div {
-  display: flex;
-}
-header a {
-  display: flex;
-  outline: none;
   text-decoration: none;
 }
-header a h2 {
-  color: white;
-  font-family: "Baloo", sans-serif;
-  font-size: 1.5em;
-  margin: 0 2em 0 0;
+header nav svg {
+  padding-right: 10px;
 }
-header a .ajout {
-  margin: 0 0.5em 0 2em;
-  width: 2em;
-  height: auto;
-  flex-direction: row;
-}
-header a .user {
-  width: 2em;
-  height: auto;
-  margin: 0 0.5em 0 2em;
-  flex-direction: row;
+@media screen and (max-width: 428px) {
+  header .logo_alizon_front {
+    padding-left: 30px;
+    width: 100px;
+  }
+  header nav a {
+    padding-right: 10px;
+    font-size: 12px;
+  }
+  header .tab-only {
+    display: none;
+  }
+  header .mobile-only {
+    display: block;
+    padding-left: 20px;
+  }
+  header nav svg {
+    padding-right: 30px;
+  }
 }
 
 /*###############################
@@ -260,11 +238,10 @@ header a .user {
 ###############################*/
 .footer {
   background-color: #f9f9fb;
-  border-top: 4px solid #6CA6E9;
+  border-top: 4px solid #FCB66B;
   color: #333;
   font-family: "Mulish";
   padding-top: 1rem;
-  margin-top: 2em;
 }
 .footer .footer-content {
   max-width: 1200px;
@@ -307,7 +284,7 @@ header a .user {
   opacity: 0.8;
 }
 .footer .footer-bottom {
-  background-color: #FFD6C2;
+  background-color: #D1ECF8;
   text-align: center;
   padding: 0.5rem;
   font-size: 14px;
@@ -316,109 +293,171 @@ header a .user {
 }
 .footer .footer-logo {
   align-self: center;
-  display: flex;
+}
+.footer .logo-mobile-only-footer {
+  display: none;
+}
+.footer .mobile-only {
+  display: none;
+}
+@media screen and (max-width: 428px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer .footer-content {
+    grid-template-columns: 50% 50%;
+    text-align: left;
+  }
+  .footer .footer-content h3 {
+    font-size: 13px;
+  }
+  .footer .footer-content .footer-logo {
+    display: none;
+  }
+  .footer .footer-bottom {
+    font-size: 10px;
+  }
+  .footer .logo-mobile-only-footer {
+    display: block;
+    align-self: center;
+  }
+  .footer .mobile-only {
+    display: none;
+  }
+  .footer .other-account {
+    align-self: center;
+    text-align: center;
+    margin-top: 10px;
+  }
 }
 
-body {
-  padding: 150px;
-  margin: auto;
-  width: 1140px;
-}
-body h1, body h2, body h3, body h5 {
-  font-family: "Baloo";
-}
-body p {
-  font-family: "Mulish";
-  font-size: 14px;
-}
-body header {
-  padding-left: 50px;
-  padding-bottom: 10px;
-  display: flex;
-  justify-content: center;
-}
-body header h1 {
-  margin-left: 20px;
-  font-family: "Baloo";
-  font-size: 40px;
-}
-body main span {
-  display: none;
-  color: #6e6e6e;
-}
-body main input:user-invalid, body main input.invalid {
-  border-color: red;
-}
-body main input:user-invalid + span, body main input.invalid + span {
-  display: block;
-}
-body main .alignementPR_IE {
-  border: black 2px solid;
-  border-radius: 16px;
-  display: flex;
-}
-body main .alignementPR_IE div {
-  padding-left: 40px;
-  padding-bottom: 65px;
-  width: 480px;
-  padding-top: 0;
-}
-body main .alignementPR_IE div h2, body main .alignementPR_IE div h3 {
-  text-align: center;
-}
-body main .alignementPR_IE div h2 {
-  font-size: 32px;
-}
-body main .alignementPR_IE div h3 {
-  font-size: 24px;
-}
-body main .alignementPR_IE div h5 {
-  font-size: 16px;
-}
-body main .alignementPR_IE div input {
-  background-color: white;
-  border-radius: 8px;
-  height: 40px;
-  font-size: 16px;
-  border: solid 1px;
-}
-body main .alignementPR_IE .nomPrenom {
+/*###############################
+#        Menu Categorie         #
+################################*/
+.nav-cat {
+  width: 100%;
+  background-color: #6CA6E9;
+  position: fixed;
+  z-index: 999;
   display: flex;
   flex-direction: row;
-  padding-left: 0;
-  padding-bottom: 0;
 }
-body main .alignementPR_IE .labelInput {
-  padding-left: 0;
-  padding-bottom: 0;
+.nav-cat div {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
-body main .alignementPR_IE :nth-child(3) h3 {
-  padding-top: 70px;
+.nav-cat h2 {
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-self: center;
 }
-body main .alignementPR_IE .dimension {
-  width: 430px;
+.nav-cat svg, .nav-cat a {
+  z-index: 1000;
+  align-self: center;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: #6CA6E9;
+  padding: 15px;
+  padding-right: 30px;
+  cursor: pointer;
 }
-body main .alignementPR_IE .dimension_petit {
-  width: 190px;
+.nav-cat svg {
+  overflow: visible;
 }
-body main .alignementPR_IE .num_adresse {
-  width: 150px;
-  margin-right: 20px;
+
+.overlayMenuCat {
+  z-index: 998;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 500px;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
 }
-body main .alignementPR_IE .rue_adresse {
-  width: 250px;
+
+.overlayContentCat {
+  position: absolute;
+  background: #6CA6E9;
+  padding: 2rem;
+  padding-left: 1rem;
+  text-align: left;
+  max-width: 400px;
+  min-width: 200px;
+  height: 550px;
+  top: 100px;
+  left: 0;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
-body main .button {
-  padding-top: 50px;
-  text-align: center;
+.overlayContentCat ul {
+  padding-inline-start: 1rem;
 }
-body main .button button {
-  height: 55px;
-  width: 430px;
-  background-color: #CD4B22;
-  color: white;
+.overlayContentCat ul li {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+.overlayContentCat ul li a {
+  text-decoration: underline;
+  font-family: "Mulish";
   font-size: 24px;
+  font-weight: 600;
+  color: black;
+}
+.overlayContentCat ul ul > li > a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: normal;
+}
+.overlayContentCat ul ul > li {
+  margin-left: 1rem;
+}
+
+.btnJaune {
+  font-family: "Mulish";
   font-weight: bold;
-  border-radius: 16px;
-  border: none;
-}/*# sourceMappingURL=creer_compte_vendeur.css.map */
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  background-color: #FCB66B;
+  border: 0px;
+  color: black;
+  width: 50%;
+  padding: 1em;
+}
+
+header .logo_alizon_front {
+  width: 200px;
+}
+header nav svg {
+  width: 40px;
+  height: 40px;
+}
+
+.bouton {
+  padding: 40px;
+  font-size: large;
+}
+
+main {
+  padding-top: 20em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50em;
+}
+main h1 {
+  margin-bottom: 5em;
+}/*# sourceMappingURL=paiementFini.css.map */

@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: medium;
+  font-weight: normal;
   font-style: normal;
 }
 @font-face {
@@ -12,7 +12,7 @@
 }
 @font-face {
   font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../..fonts/baloo2-medium-webfont.woff2") format("woff2");
+  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
 }
@@ -25,7 +25,7 @@
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
+  font-weight: bold;
   font-style: italic;
 }
 @font-face {
@@ -39,19 +39,6 @@
   src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
 }
 @font-face {
   font-family: "Baloo";
@@ -76,13 +63,6 @@
 }
 @font-face {
   font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
   src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: normal;
@@ -111,7 +91,7 @@
 }
 @font-face {
   font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format "woff", url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -119,7 +99,7 @@
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: medium;
+  font-weight: normal;
   font-style: normal;
 }
 @font-face {
@@ -130,7 +110,7 @@
 }
 @font-face {
   font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../..fonts/baloo2-medium-webfont.woff2") format("woff2");
+  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../../fonts/baloo2-medium-webfont.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
 }
@@ -143,7 +123,7 @@
 @font-face {
   font-family: "Mulish";
   src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
+  font-weight: bold;
   font-style: italic;
 }
 @font-face {
@@ -157,19 +137,6 @@
   src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
 } 
 body {
   font-family: "Mulish", "Baloo", "sans-serif";
@@ -319,106 +286,113 @@ header a .user {
   display: flex;
 }
 
-body {
-  padding: 150px;
-  margin: auto;
-  width: 1140px;
-}
-body h1, body h2, body h3, body h5 {
-  font-family: "Baloo";
-}
-body p {
-  font-family: "Mulish";
-  font-size: 14px;
-}
-body header {
-  padding-left: 50px;
-  padding-bottom: 10px;
+main {
+  padding-bottom: 2em;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-body header h1 {
-  margin-left: 20px;
-  font-family: "Baloo";
-  font-size: 40px;
-}
-body main span {
-  display: none;
-  color: #6e6e6e;
-}
-body main input:user-invalid, body main input.invalid {
-  border-color: red;
-}
-body main input:user-invalid + span, body main input.invalid + span {
-  display: block;
-}
-body main .alignementPR_IE {
-  border: black 2px solid;
-  border-radius: 16px;
+main form {
+  border: #A1A1A1 solid 0.01em;
+  border-radius: 1em;
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 50em;
+  margin-top: 1em;
+  align-self: center;
+  padding: 2em;
 }
-body main .alignementPR_IE div {
-  padding-left: 40px;
-  padding-bottom: 65px;
-  width: 480px;
-  padding-top: 0;
-}
-body main .alignementPR_IE div h2, body main .alignementPR_IE div h3 {
-  text-align: center;
-}
-body main .alignementPR_IE div h2 {
-  font-size: 32px;
-}
-body main .alignementPR_IE div h3 {
-  font-size: 24px;
-}
-body main .alignementPR_IE div h5 {
-  font-size: 16px;
-}
-body main .alignementPR_IE div input {
-  background-color: white;
-  border-radius: 8px;
-  height: 40px;
-  font-size: 16px;
+main form textarea {
   border: solid 1px;
+  border-radius: 1em;
+  height: 10em;
+  margin: 10px 0;
+  padding: 10px;
+  resize: none;
 }
-body main .alignementPR_IE .nomPrenom {
-  display: flex;
-  flex-direction: row;
-  padding-left: 0;
-  padding-bottom: 0;
-}
-body main .alignementPR_IE .labelInput {
-  padding-left: 0;
-  padding-bottom: 0;
-}
-body main .alignementPR_IE :nth-child(3) h3 {
-  padding-top: 70px;
-}
-body main .alignementPR_IE .dimension {
-  width: 430px;
-}
-body main .alignementPR_IE .dimension_petit {
-  width: 190px;
-}
-body main .alignementPR_IE .num_adresse {
-  width: 150px;
-  margin-right: 20px;
-}
-body main .alignementPR_IE .rue_adresse {
-  width: 250px;
-}
-body main .button {
-  padding-top: 50px;
+main form select {
+  font-family: "Mulish";
+  font-weight: bold;
   text-align: center;
-}
-body main .button button {
-  height: 55px;
-  width: 430px;
+  text-size: 20px;
+  text-decoration: none;
   background-color: #CD4B22;
   color: white;
-  font-size: 24px;
-  font-weight: bold;
-  border-radius: 16px;
+  border-radius: 1em;
+  cursor: pointer;
+  border-radius: 1em;
+  margin: 10px 0;
+  padding: 10px;
   border: none;
-}/*# sourceMappingURL=creer_compte_vendeur.css.map */
+  font-size: 1em;
+  max-width: 225px;
+}
+main form input {
+  border: solid 1px;
+  border-radius: 1em;
+  height: 3em;
+  margin: 10px 0;
+  padding: 10px;
+}
+main form input::file-selector-button {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #CD4B22;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  border: none;
+}
+main form input#photoProd {
+  border: none;
+  font-size: 0.8em;
+}
+main form input .bouton {
+  height: 5em;
+  font-size: 24px;
+}
+@media screen and (screen and (max-width : 428px)) {
+  main form input .bouton {
+    height: 4em;
+  }
+}
+main form h2 {
+  margin: 0;
+}
+main form label::after {
+  content: " *";
+  color: red;
+}
+main form .taille label::after {
+  content: "";
+  color: none;
+}
+main form .pObl::after {
+  content: "";
+  color: none;
+}
+main .labelInput {
+  display: flex;
+  flex-direction: column;
+}
+main .bouton {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #CD4B22;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+}
+main .bouton:hover {
+  background-color: rgb(174.9790794979, 64.0167364017, 29.0209205021);
+}
+main .bouton:active {
+  background-color: rgb(43.7447698745, 16.0041841004, 7.2552301255);
+}/*# sourceMappingURL=modifier_info_produit.css.map */

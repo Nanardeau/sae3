@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+/*if(!array_key_exists("codeCompte", $_SESSION) || $_SESSION["codecompte"] == null){
+    header('location: connexionVendeur.php');
+    
+}else{
+
+    
+    
+}
+ */   
 $_SESSION["codecompte"] = 5;
 $codeCompte = $_SESSION["codecompte"];
 //Connexion à la base de données.

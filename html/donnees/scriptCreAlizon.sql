@@ -70,7 +70,7 @@ CREATE TABLE Produit(
     qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
     Origine VARCHAR(20) NOT NULL check (Origine IN ('Breizh','France','Étranger')),
     Disponible BOOLEAN DEFAULT TRUE,
-    grilleTarification VARCHAR(20) check (grilleTarification IN ('tarif1','tarif2','tarif3','tarif4','tarif5'),  
+    grilleTarification VARCHAR(20) check (grilleTarification IN ('tarif1','tarif2','tarif3','tarif4','tarif5')),  
     seuilAlerte NUMERIC(10,2) NOT NULL,
     urlPhoto VARCHAR(40) REFERENCES Photo(urlPhoto),
     codeCompteVendeur INTEGER REFERENCES Vendeur(codeCompte)	
@@ -124,8 +124,8 @@ CREATE TABLE Carte(
 CREATE TABLE Panier(
     idPanier SERIAL PRIMARY KEY NOT NULL,
     codeCompte INTEGER REFERENCES Client(codeCompte),
-    dateCreaP DATE,
-    dateModifP DATE,
+    dateCreaP TEXT,
+    dateModifP TEXT,
     prixTTCtotal NUMERIC,
     prixHTtotal NUMERIC
 );
@@ -360,7 +360,7 @@ BEFORE INSERT OR UPDATE ON alizon.Panier
 FOR EACH ROW
 EXECUTE FUNCTION alizon.dateModificationPanier();
 
-CREATE OR REPLACE FUNCTION alizon.dateCréationPanier()
+CREATE OR REPLACE FUNCTION alizon.dateCreationPanier()
 RETURNS TRIGGER AS $$
 DECLARE
     v_ts timestamptz;
@@ -375,9 +375,9 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER trg_dateCrea_Panier
 BEFORE INSERT ON alizon.Panier
 FOR EACH ROW
-EXECUTE FUNCTION alizon.dateCréationPanier();
+EXECUTE FUNCTION alizon.dateCreationPanier();
 
-CREATE OR REPLACE FUNCTION alizon.dateCréationAvis()
+CREATE OR REPLACE FUNCTION alizon.dateCreationAvis()
 RETURNS TRIGGER AS $$
 DECLARE
     v_ts timestamptz;
@@ -391,4 +391,4 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER trg_dateCrea_Avis
 BEFORE INSERT ON alizon.Avis
 FOR EACH ROW
-EXECUTE FUNCTION alizon.dateCréationAvis();
+EXECUTE FUNCTION alizon.dateCreationAvis();

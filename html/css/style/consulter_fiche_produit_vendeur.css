@@ -319,106 +319,101 @@ header a .user {
   display: flex;
 }
 
-body {
-  padding: 150px;
-  margin: auto;
-  width: 1140px;
+main {
+  margin-left: 80px;
+  margin-right: 80px;
 }
-body h1, body h2, body h3, body h5 {
+main h1, main h2 {
   font-family: "Baloo";
 }
-body p {
+main p {
   font-family: "Mulish";
-  font-size: 14px;
 }
-body header {
-  padding-left: 50px;
-  padding-bottom: 10px;
-  display: flex;
-  justify-content: center;
-}
-body header h1 {
-  margin-left: 20px;
-  font-family: "Baloo";
-  font-size: 40px;
-}
-body main span {
-  display: none;
-  color: #6e6e6e;
-}
-body main input:user-invalid, body main input.invalid {
-  border-color: red;
-}
-body main input:user-invalid + span, body main input.invalid + span {
-  display: block;
-}
-body main .alignementPR_IE {
+main .image_prod {
   border: black 2px solid;
-  border-radius: 16px;
-  display: flex;
+  margin: 0;
+  margin-top: 50px;
 }
-body main .alignementPR_IE div {
-  padding-left: 40px;
-  padding-bottom: 65px;
-  width: 480px;
-  padding-top: 0;
+main .img_etoile {
+  padding-left: 20px;
 }
-body main .alignementPR_IE div h2, body main .alignementPR_IE div h3 {
-  text-align: center;
+main h1 {
+  margin-top: 80px;
+  margin-bottom: 0;
+  padding-left: 20px;
 }
-body main .alignementPR_IE div h2 {
-  font-size: 32px;
+main h2, main p {
+  margin: 0;
+  padding-left: 20px;
 }
-body main .alignementPR_IE div h3 {
-  font-size: 24px;
+main input {
+  margin: 20px;
 }
-body main .alignementPR_IE div h5 {
-  font-size: 16px;
+main input:hover {
+  border-color: #A1A1A1;
 }
-body main .alignementPR_IE div input {
-  background-color: white;
-  border-radius: 8px;
-  height: 40px;
-  font-size: 16px;
-  border: solid 1px;
-}
-body main .alignementPR_IE .nomPrenom {
-  display: flex;
-  flex-direction: row;
-  padding-left: 0;
-  padding-bottom: 0;
-}
-body main .alignementPR_IE .labelInput {
-  padding-left: 0;
-  padding-bottom: 0;
-}
-body main .alignementPR_IE :nth-child(3) h3 {
-  padding-top: 70px;
-}
-body main .alignementPR_IE .dimension {
-  width: 430px;
-}
-body main .alignementPR_IE .dimension_petit {
-  width: 190px;
-}
-body main .alignementPR_IE .num_adresse {
-  width: 150px;
-  margin-right: 20px;
-}
-body main .alignementPR_IE .rue_adresse {
+main .buton_commentaire {
   width: 250px;
-}
-body main .button {
-  padding-top: 50px;
-  text-align: center;
-}
-body main .button button {
-  height: 55px;
-  width: 430px;
-  background-color: #CD4B22;
-  color: white;
-  font-size: 24px;
+  height: 60px;
+  font-size: 16px;
   font-weight: bold;
-  border-radius: 16px;
+  background-color: #FCB66B;
+  border-radius: 8px;
   border: none;
-}/*# sourceMappingURL=creer_compte_vendeur.css.map */
+}
+main .buton_modif, main .buton_ret_cat {
+  width: 200px;
+  height: 70px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+}
+main .buton_modif {
+  background-color: #FCB66B;
+}
+main .buton_ret_cat {
+  background-color: #6CA6E9;
+}
+main .alignement_space_betwen {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+}
+main .alignemnt_droite_gauche {
+  display: flex;
+  align-items: center;
+}
+main hr {
+  margin-top: 60px;
+  margin-left: 10px;
+  width: 800px;
+}
+main div + h2 {
+  padding-top: 20px;
+}
+main p {
+  font-size: 20px;
+}
+main .catego {
+  margin-top: 50px;
+  display: flex;
+  height: auto;
+}
+main .caract {
+  background-color: #FFD6C2;
+  margin-right: 50px;
+  padding: 20px;
+  padding-bottom: 50px;
+  border-radius: 16px;
+  width: 20em;
+  height: auto;
+}
+main .caract p {
+  padding-top: 1em;
+  padding-left: 2em;
+  font-size: 22px;
+}
+main .caract h2 {
+  font-size: 32px;
+}/*# sourceMappingURL=consulter_fiche_produit_vendeur.css.map */

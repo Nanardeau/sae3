@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
@@ -29,12 +30,9 @@ try {
         header('Location: http://localhost:8888/index.php');
         exit();
 }
-$_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
+//$_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
 
-if(!isset($_SESSION["codeCompte"])){
-        header('Location: http://localhost:8888/index.php');
-        exit();   
-    }
+
 $bdd->query('set schema \'alizon\'');
 ?>
 
@@ -51,15 +49,33 @@ $bdd->query('set schema \'alizon\'');
 
 <body>
 
-    <?php include 'includes/header.php' ?>
+    <?php 
+    
+    if(isset( $_SESSION["codeCompte"])){
+        $idUser =  $_SESSION["codeCompte"];
+        include 'includes/headerCon.php' ;
+    }else{
+        include 'includes/header.php';
+    }
+     ?>
     <main>
         <?php //Si le client n'a rien dans so panier afficher -> panier vide 
         //Sinon -> afficher les informations du panier.  
                 
-        $idUser =  $_SESSION["codeCompte"];
+        
 
         // Rercherche du panier par rapport au code compte 
+        if(isset($_SESSION['codeCompte'])){
+
+        
         $stmP = $bdd->prepare('SELECT * from Panier where codeCompte = \''.$idUser.'\'');
+        
+        }else if(isset($_SESSION['idPanier'])) {
+            $idPanier =  $_SESSION["idPanier"];
+            $stmP = $bdd->prepare('SELECT * from Panier where idPanier = \''.$idPanier.'\'');
+        }else{
+            $stmP = $bdd->prepare('SELECT * from Panier where idPanier = -1'); // -1 est la valeur impossible à avoir en BDD donc aucun panier associer 
+        }
         $stmP->execute();
         $ifPanierTemp = $stmP->fetch();
         //’print_r($ifPanierTemp);
@@ -74,26 +90,29 @@ $bdd->query('set schema \'alizon\'');
         <?php
         }
         else{
-            //Nombre d'élément dans le panier
-            $stmNb = $bdd->query('SELECT ALL count(*) from ProdUnitPanier where idPanier = '.$infoPanier['idpanier']);
-            $nbProdPanier = $stmNb->fetch();
-        
             $infoPanier['idpanier'] = $ifPanierTemp["idpanier"];
             $infoPanier['prixTTC'] = $ifPanierTemp["prixttctotal"];
             $infoPanier['prixHT'] = $ifPanierTemp["prixhttotal"];
+            //Nombre d'élément dans le panier
+            $stmNb = $bdd->query('SELECT ALL count(*) from ProdUnitPanier where idPanier = '.$infoPanier['idpanier']);
+            $nbProdPanier = $stmNb->fetch();
             $infoPanier['nbProd'] = $nbProdPanier['count'];
-              // Récupération de la liste des produits dans le panier
+        
+            // Récupération de la liste des produits dans le panier
             $stmProd = $bdd->query('SELECT ALL codeProduit,qteprod,prixTTCtotal from ProdUnitPanier where idPanier = '.$infoPanier['idpanier'] .' ORDER BY codeProduit');
             $ListeProdPanier = $stmProd->fetchAll();
             ?>
 
         <h2>Votre Panier (<?php echo $infoPanier['nbProd'] ?> articles)</h2>
-    <div class="recap">
-            <h4>Récapitulatif ( <?php echo $infoPanier['nbProd']?> articles) </h4>
-            <p>Prix HT : <?php echo $infoPanier["prixHT"]?></p>
-            <p style="font-weight : bold">Prix TTC : <?php echo $infoPanier["prixTTC"]?></p>
-            <input type="button" value="Commander"/>
-        </div>
+        <aside>
+            <div class="recap">
+                <h4>Récapitulatif ( <?php echo $infoPanier['nbProd']?> articles) </h4>
+                <p>Prix HT : <?php echo $infoPanier["prixHT"]?></p>
+                <p style="font-weight : bold">Prix TTC : <?php echo $infoPanier["prixTTC"]?></p>
+                <a class="btn-recap" href="./paiement.php">Commander</a>
+            </div>
+                <a href="Catalogue.php" class="btn-recap">Retour</a>
+        </aside>
         <article>
         <?php
         foreach($ListeProdPanier as $liste){

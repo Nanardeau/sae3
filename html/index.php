@@ -34,7 +34,13 @@ $bdd->query('set schema \'alizon\'');
 </head>
 <body>
     <?php
+    session_start();
+    if(isset( $_SESSION["codeCompte"])){
+        $idUser =  $_SESSION["codeCompte"];
+        include 'includes/headerCon.php' ;
+    }else{
         include 'includes/header.php';
+    }
     ?>
     <main>
         <?php
