@@ -260,6 +260,9 @@ header nav {
   align-items: center;
 }
 header nav a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding-right: 20px;
   color: white;
   text-decoration: none;

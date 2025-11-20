@@ -84,6 +84,9 @@ header{
         display: flex;
         align-items: center;
         a{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
             padding-right: 20px;
             color: $blanc;
             text-decoration: none;
