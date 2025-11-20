@@ -25,9 +25,6 @@ try {
 }
 $bdd->query('set schema \'alizon\'');
 $error_msg = "";
-
-
-
 if($_POST){
     $id = $_POST["pseudo"];
     $mdp = $_POST["mdp"];
@@ -37,10 +34,10 @@ if($_POST){
 
     if($rep!=null){
         session_start();
-        $_SESSION["codeCompte"] = $rep["codeCompte"];
+        $_SESSION["codeCompte"] = $rep["codecompte"];
         $_SESSION["pseudo"] = "";
         $_SESSION["mdp"] = "";
-        header("location: accueil.php");
+        exit(header("location: accueil.php"));
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         
