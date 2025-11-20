@@ -38,6 +38,7 @@ if($_POST){
         session_start();
         $_SESSION["codeCompte"] = $rep["codecompte"];
         header("location: index.php");
+        die();
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         
