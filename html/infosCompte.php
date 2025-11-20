@@ -3,6 +3,7 @@
     if(!array_key_exists("codeCompte", $_SESSION)){
         header("location:index.php");
     }
+
     $codeCompte = $_SESSION["codeCompte"];
     if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
@@ -256,13 +257,13 @@
         
         function deconnecter(){
 
-            window.location.href = "modifCompteCli?traitement=deconnecter";
+            window.location.href = "modifCompteCli.php?traitement=deconnecter";
         }
 
         function bloquerCompte(){
             let res = confirm("Voulez-vous vraiment bloquer votre compte ? Celui-ci sera anonymisé");
             if(res == true){
-                window.location.href = "modifCompteCli?traitement=bloquer" 
+                window.location.href = "modifCompteCli.php?traitement=bloquer" 
                     
                 
                 deconnecter();

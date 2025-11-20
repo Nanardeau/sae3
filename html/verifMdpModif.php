@@ -27,7 +27,7 @@
         echo "Erreur de connexion : " . $e->getMessage();
     }
     $codeCompte = $_SESSION["codeCompte"];
-    $codeCompte = 1;
+
     $mdpBase = ($bdd->query("SELECT mdp FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch())["mdp"];
 
     if($mdpBase == $_POST["mdpPourValider"]){
