@@ -64,7 +64,7 @@
             ":prenom" => $prenom,
             ":email" => $mail,
             ":mdp" => $mdp,
-            ":numTel" => $numtel
+            ":numTel" => $numTel
         ));
         
         if($numRue != NULL && $codePostal != NULL && $ville != NULL){

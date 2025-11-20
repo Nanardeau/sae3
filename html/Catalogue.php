@@ -90,7 +90,7 @@ $bdd->query('set schema \'alizon\'');
             ?><article><?php
                         foreach($articles as $article){
 
-                            
+                            $codeProduit = $article["codeProduit"];
 
                             
                                 //print_r($article);

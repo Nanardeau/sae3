@@ -10,7 +10,7 @@
     <?php
         session_start(); 
 
-        $_SESSION["codeCompte"] = 3;
+
         $codeCompte = $_SESSION["codeCompte"];
         //$codeCompte = 3;
 
