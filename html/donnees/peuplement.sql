@@ -35,11 +35,11 @@ INSERT INTO Client(pseudo, dateCreation, nom, prenom, email, mdp, numTel, pdProf
 ('Nanardeau','2025-10-29','Bernel','michar','moviestar@gmail.com','oupala!','0704090506','/img/photosProfil/PDP_BBl.jpg');
 
 
-INSERT INTO Vendeur(dateCreation, nom, prenom, email, mdp, numTel, siren, raisonSociale) VALUES
-('2025-10-23','test','test','email@gmail.com','admin','020482675','000000000','admin'),
-('2025-10-23', 'Dupont', 'Martin', 'martin.dupont@gmail.com', 'Password123', '0612345678', '812345678', 'Dupont & Fils SARL'),
-('2025-09-15', 'Moreau', 'Léa', 'lea.moreau@gmail.com', 'L3a!Secure', '0678912345', '352000799', 'Moreau Boutique'),
-('2025-11-01', 'Nguyen', 'Thierry', 'thierry.nguyen@techsolutions.fr', 'TnG!2025', '0780554433', '489765432', 'Tech Solutions');
+INSERT INTO Vendeur(dateCreation, pseudo, nom, prenom, email, mdp, numTel, siren, raisonSociale) VALUES
+('2025-10-23', 'admin','test','test','email@gmail.com','admin','020482675','000000000','admin'),
+('2025-10-23', 'MDupont', 'Dupont', 'Martin', 'martin.dupont@gmail.com', 'Password123', '0612345678', '812345678', 'Dupont & Fils SARL'),
+('2025-09-15', 'Lereau', 'Moreau', 'Léa', 'lea.moreau@gmail.com', 'L3a!Secure', '0678912345', '352000799', 'Moreau Boutique'),
+('2025-11-01', 'NguyenT', 'Nguyen', 'Thierry', 'thierry.nguyen@techsolutions.fr', 'TnG!2025', '0780554433', '489765432', 'Tech Solutions');
 
 INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, hauteur, longueur, largeur, qteStock, Origine, Disponible, seuilAlerte, urlPhoto, codeCompteVendeur)
 VALUES
@@ -168,7 +168,7 @@ insert into Avis(codeproduit,codecomptecli,noteprod,commentaire,datepublication)
 (4,3,1,'Aucune protection du produit dans le colis, il est arrivé abimé, je ne recommande pas ce vendeur','15-06-2025'),
 (6,1,2,'Le produit est moyen','05-10-2025'),
 (2,2,3,'J aime bien mais c est pas mon truc non plus', '22-03-2025');
-
+select * from avis;
 --SELECT client.pdprofil, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) ORDER BY avis.codeproduit;
 --select SUM(prixttctotal) FROM ProdUnitPanier INTO Panier.prixTTCtotal;
 --select * from ProdUnitPanier where idPanier = 1;

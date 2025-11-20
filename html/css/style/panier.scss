@@ -172,7 +172,8 @@ aside{
 
     float: right;
     width: 25%;
-    
+    display:flex;
+    flex-direction: column;
     .btn-recap{
         background-color: $eleOrange;
         text-decoration: none;
@@ -182,8 +183,13 @@ aside{
         width: 50%;
         text-align: center;
         display: block;
-
+        
     }
+    .btn-retour{
+            display: flex;
+            justify-content: center;
+            align-self: center;
+        }
 .recap {
     background-color: $colS;
     align-content: center;

@@ -8,6 +8,7 @@ CREATE TABLE Photo(
 
 CREATE TABLE Compte(
     codeCompte SERIAL PRIMARY KEY NOT NULL,
+    pseudo VARCHAR(20) NOT NULL,
     dateCreation DATE,
     nom VARCHAR(20),
     prenom VARCHAR(20),
@@ -27,7 +28,6 @@ CREATE TABLE Adresse(
 );
 
 CREATE TABLE Client(
-    pseudo VARCHAR(20) NOT NULL,
     cmtBlq BOOLEAN,
     cmtBlqMod BOOLEAN,
 	UNIQUE(codeCompte)

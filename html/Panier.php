@@ -111,7 +111,7 @@ $bdd->query('set schema \'alizon\'');
                 <p style="font-weight : bold">Prix TTC : <?php echo $infoPanier["prixTTC"]?></p>
                 <a class="btn-recap" href="./paiement.php">Commander</a>
             </div>
-                <a href="Catalogue.php" class="btn-recap">Retour</a>
+                <a href="Catalogue.php" class="btn-recap btn-retour">Retour</a>
         </aside>
         <article>
         <?php
