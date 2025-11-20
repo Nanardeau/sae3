@@ -17,7 +17,7 @@
 </head>
 <body>   
     <main>
-    <a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
+    <a href="index.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
         <form action="enreg.php" method="post" enctype="multipart/form-data">
             <h2>Création de compte</h2>
             <?php if($erreur == "mail"){
