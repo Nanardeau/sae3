@@ -67,7 +67,9 @@
 <?php include "./includes/header.php"?>
 
 <main>
-
+    <nav class="ariane">
+        <a class="arianeItem" href="index.php">Accueil > </a><a class="arianeItem" href="Catalogue.php">Catalogue > </a><a class="arianeItem" href="Panier.php">Panier</a>
+    </nav>
     <?php   
     if($_POST){
         print_r($_POST);
@@ -282,7 +284,7 @@
         sendGet(url,function() { 
             location.reload(); 
         },
-        function() { 
+        function() { +
             alert('Erreur côté serveur.');
          }
         )

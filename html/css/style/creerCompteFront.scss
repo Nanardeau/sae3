@@ -23,7 +23,7 @@ form{
     margin-top:1em;
     align-self:center;
     padding:2em;
-    @media screen and (max-width:428px){
+    @media #{$mobile}{
         width:90%;
         padding:1em;
         align-items:center;
@@ -62,7 +62,7 @@ form{
             }
         }
 
-        @media screen and ($mobile){
+        @media #{mobile}{
             width:100%;
             &::placeholder{
                 font-size:0.9em;
@@ -73,7 +73,7 @@ form{
     .bouton{
         height:5em;
         font-size:$MoyTitle;
-        @media screen and ($mobile){
+        @media #{$mobile}{
             height:4em;
         }
     }
@@ -104,7 +104,7 @@ aside{
         img{
             margin: 0 10px;
             height:1px;
-            @media screen and ($mobile){
+            @media #{$mobile}{
                 width:20%;
                 height:20px;  
             }
@@ -129,7 +129,7 @@ aside{
 .labelInput{
     display:flex;
     flex-direction: column;
-    @media screen and ($mobile) {
+    @media #{$mobile} {
         display:block;
         width:100%;
     }

@@ -360,3 +360,18 @@ header{
     padding:1em;
     
 }
+.ariane{
+    margin: {
+        top:30px;
+        left:1em;
+    }
+    
+    .arianeItem{
+        
+        font-size:$PetTitle;
+        color:rgb(122, 122, 122);
+        &:active{
+            color:black;
+        }
+    }
+}

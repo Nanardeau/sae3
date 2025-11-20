@@ -376,6 +376,18 @@ header nav svg {
   padding: 1em;
 }
 
+.ariane {
+  margin-top: 30px;
+  margin-left: 1em;
+}
+.ariane .arianeItem {
+  font-size: 20px;
+  color: rgb(122, 122, 122);
+}
+.ariane .arianeItem:active {
+  color: black;
+}
+
 header {
   justify-self: center;
   margin: 1em 0;
@@ -399,7 +411,7 @@ form {
   align-self: center;
   padding: 2em;
 }
-@media screen and (max-width: 428px) {
+@media screen and (max-width : 428px) {
   form {
     width: 90%;
     padding: 1em;
@@ -445,7 +457,7 @@ form input:user-invalid, form input.invalid {
 form input:user-invalid + span, form input.invalid + span {
   display: block;
 }
-@media screen and (max-width : 428px) {
+@media mobile {
   form input {
     width: 100%;
   }

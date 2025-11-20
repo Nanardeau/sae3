@@ -22,6 +22,13 @@
 }
 @font-face {
   font-family: "Mulish";
+  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
   src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
   font-weight: bolder;
   font-style: normal;
@@ -45,13 +52,6 @@
   font-family: "Mulish";
   src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
   font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
@@ -96,6 +96,25 @@ p, label, input {
 
 label {
   font-weight: bold;
+}
+
+input:user-invalid, input.invalid {
+  border-color: red;
+}
+input:user-invalid + span, input.invalid + span {
+  display: block;
+}
+
+.bouton {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
 }
 
 /*###############################
@@ -339,6 +358,35 @@ header nav svg {
 }
 .overlayContentCat ul ul > li {
   margin-left: 1rem;
+}
+
+.btnJaune {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  background-color: #FCB66B;
+  border: 0px;
+  color: black;
+  width: 50%;
+  padding: 1em;
+}
+
+.ariane {
+  margin-top: 30px;
+  margin-left: 1em;
+}
+.ariane .arianeItem {
+  font-size: 20px;
+  color: rgb(122, 122, 122);
+}
+.ariane .arianeItem:active {
+  color: black;
 }
 
 .card {
