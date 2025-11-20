@@ -30,15 +30,19 @@
             case "bloquer":
                     $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = TRUE WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
                     $stmt->execute();
+                    session_destroy();
             case "deconnecter":
                 session_destroy();
         }
     }    
 
-    if($_GET["modif"] == "mdp"){
-        $stmt = $bdd->prepare("UPDATE alizon.Client SET mdp = '".$_SESSION["nouveauMdp"]."' WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
-        $stmt->execute();
-        $_SESSION["nouveauMdp"] = "";
+    if(isset($_GET["modif"])){
+        if( $_GET["modif"] == "mdp"){
+            $stmt = $bdd->prepare("UPDATE alizon.Client SET mdp = '".$_SESSION["nouveauMdp"]."' WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
+            $stmt->execute();
+            $_SESSION["nouveauMdp"] = "";
+        }
+
     }
 
 

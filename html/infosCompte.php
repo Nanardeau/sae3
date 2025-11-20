@@ -268,7 +268,7 @@
                 window.location.href = "modifCompteCli.php?traitement=bloquer" 
                     
                 
-                deconnecter();
+                
             }
         }
     </script>
