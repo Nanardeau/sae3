@@ -47,6 +47,9 @@ if($_POST){
             if($blqMod==true){
                 $error_msg="Votre compte a été bloqué car vous n'avez pas respecté les règles d'utilisation de ce site.";
             }else{
+                $_SESSION["id"] = "";
+                $_SESSION["mdp"] = "";
+                $_SESSION["codeCompte"] = $rep["codecompte"];
                header("location: index.php");
                 die();
 
@@ -108,7 +111,7 @@ if($_POST){
 <script>
 
     function debloquerCompte(){
-        console.log("cc");
+
         window.location.href = "debloquer.php";
     }  
 </script>

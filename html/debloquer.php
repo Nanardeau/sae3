@@ -24,8 +24,8 @@
         //echo "❌ Erreur de connexion : " . $e->getMessage();
     }
 
-    $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = false WHERE pseudo = '".$_SESSION["pseudo"]."' AND mdp = '".$_SESSION["mdp"]."'");
+    $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = NULL WHERE pseudo = '".$_SESSION["pseudo"]."' AND mdp = '".$_SESSION["mdp"]."'");
     $stmt->execute();
-    $req2= $bdd->query ("UPDATE alizon.Client SET cmtBlq=false WHERE pseudo = '".$_SESSION["pseudo"]."' AND mdp = '".$_SESSION["mdp"]."'");
+    #$req2= $bdd->query ("UPDATE alizon.Client SET cmtBlq=NULL WHERE pseudo = '".$_SESSION["pseudo"]."' AND mdp = '".$_SESSION["mdp"]."'");
     header("location:ConnexionClient.php");
 ?>
