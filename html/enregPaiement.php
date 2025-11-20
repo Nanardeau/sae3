@@ -78,6 +78,8 @@ if(array_key_exists("banque", $_GET)){
         ":dateCom" => date("Y-m-d H:i:s"),
         ":idCarte" => $idCarte
     ));
+    $stmt = $bdd->prepare("DELETE FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'");
+    $stmt->execute();
     $numCom = $bdd->lastInsertId();
 
     $prodUnitPan = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
