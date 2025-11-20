@@ -25,6 +25,16 @@
 
     $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
     
+    if(isset($_GET["traitement"])){
+        switch($_GET["traitement"]){
+            case "bloquer":
+                    $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = TRUE WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
+                    $stmt->execute();
+            case "deconnecter":
+                session_destroy();
+        }
+    }    
+
     if($_GET["modif"] == "mdp"){
         $stmt = $bdd->prepare("UPDATE alizon.Client SET mdp = '".$_SESSION["nouveauMdp"]."' WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
         $stmt->execute();

@@ -222,7 +222,7 @@
 
                 }
             }
-            $_SESSION["mdpValide"] = 0;
+            
         <?php endif?>
         
         //Vérification mot de passe = confirmer mot de passe
@@ -255,21 +255,16 @@
         }
         
         function deconnecter(){
-            <?php 
-                session_destroy(); 
-                header('location:index.php');   
-            ?>
-            window.location.reload();
+
+            window.location.href = "modifCompteCli?traitement=deconnecter";
         }
 
         function bloquerCompte(){
             let res = confirm("Voulez-vous vraiment bloquer votre compte ? Celui-ci sera anonymisé");
             if(res == true){
-                <?php                
-                    $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = TRUE WHERE codeCompte = '".$codeCompte."'");
-                    $stmt->execute();
+                window.location.href = "modifCompteCli?traitement=bloquer" 
                     
-                ?>
+                
                 deconnecter();
             }
         }
