@@ -2,7 +2,7 @@
 
 @mixin text($taille){
     font: {
-         family: $Poltitle;
+        family: $Poltitle;
         size: $taille;
         weight : bold;
     }
