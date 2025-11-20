@@ -13,12 +13,24 @@ main{
         left:40px;
         right:40px;
     }
+
+    @media screen and (max-width: 428px){
+        margin: {
+            left:20px;
+            right:20px;
+        }
+    }
 }
 
 .prod{
     display: flex;
     flex-direction: row;
     gap: 20px;
+
+    @media screen and (max-width: 428px){
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 
@@ -70,6 +82,32 @@ main{
         
     }
 
+    @media screen and (max-width: 428px){
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+
+        .detail-produit-content{
+            height: auto;
+            display: flex;
+            flex-direction: column;
+
+            .info-produit {
+                margin-left: 0;
+            }
+
+            .prix{
+                border: none;
+            }
+            img{
+                align-self: center;
+                width: 65%;
+                height: 65%;
+            }
+        }
+    }
+
 
 
     
@@ -80,6 +118,11 @@ main{
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+    @media screen and (max-width: 428px){
+        padding-top: 0;
+        gap: 10px;
+    }
 }
 
 /*################################*/
@@ -88,7 +131,7 @@ main{
 
 .panier-section {
     background-color: $colS;
-    padding: 25px;
+    padding: 20px;
     width: 420px;
     border-radius: 16px;
     display: flex;
@@ -130,6 +173,46 @@ main{
 
     .add-to-cart:visited {
         color: $noir;
+    }
+
+    @media screen and (max-width: 428px){
+        padding-top: 0;
+        width: 90%;
+        background-color: $blanc;
+
+        .price{
+            margin-top: 10px;
+        }
+
+        .quantity{
+            display: flex;
+            flex-direction: row;
+            background-color: $eleOrange;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            justify-content: center;
+
+            select{
+                border: none;
+                background-color: $eleOrange;
+                align-self: center;
+                font-weight: bold;
+            }
+
+            label{
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+
+        .add-to-cart {
+            width: 100%;
+            text-align: center;
+            color: $blanc;
+            background-color: $colP;
+            padding: 10px;
+        }
     }
 }
 
@@ -173,7 +256,7 @@ main{
         font-weight: 500;
     }
 
-    .buttons {
+    .plein-buttons {
         padding-right: 20px;
         display: flex;
         justify-content: flex-end;
@@ -183,7 +266,6 @@ main{
             padding: 10px 18px;
             border-radius: 8px;
             border: none;
-            font-weight: 600;
         }
 
         .cancel {
@@ -193,6 +275,28 @@ main{
         .submit {
             background-color: $eleOrange;
         }
+
+        .photo{
+            background-color: $eleOrange;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        @media screen and (max-width: 428px){
+            gap: 15px;
+            padding-right: 0;
+
+            .photo, .cancel, .submit {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+        }
+
+    }
+
+    @media screen and (max-width: 428px){
+        width: 100%;
+        padding: 0;
     }
 }
 
@@ -204,6 +308,10 @@ main{
 
 .avis-produits{
     margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: none;
 }
 
 /*################################*/
@@ -220,14 +328,22 @@ main{
     max-height: 350px;   /* hauteur fixe */
     overflow-y: auto;    /* scroll vertical */
     padding-right: 10px; /* pour éviter que le scroll cache le texte */
-    gap: 15px;           /* espace entre les avis */
+    gap: 15px; 
+    
+    p{
+        padding-left: 20px;
+    }/* espace entre les avis */
 }
 
 .avis {
     background: #fff;
     padding: 15px;
     border-radius: 12px;
-    //box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+
+    @media screen and (max-width: 428px){
+        width: 90%;
+    }
 }
 
 .avis-header {
@@ -238,6 +354,9 @@ main{
 
 .commentaire {
     margin-top: 10px;
+    @media screen and (max-width: 428px){
+        width: 90%;
+    }
 }
 
 .note {
@@ -247,5 +366,28 @@ main{
 
 .date {
     font-size: 13px;
-    color: #888;
+    color: $colP;
 }
+
+
+.photos-avis {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.photo-avis {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+
+    @media screen and (max-width: 428px){
+        width: 60px;
+        height: 60px;
+    }
+}
+
+

@@ -118,6 +118,9 @@ header nav {
   align-items: center;
 }
 header nav a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding-right: 20px;
   color: white;
   text-decoration: none;
@@ -515,11 +518,23 @@ main {
   margin-left: 40px;
   margin-right: 40px;
 }
+@media screen and (max-width: 428px) {
+  main {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
 
 .prod {
   display: flex;
   flex-direction: row;
   gap: 20px;
+}
+@media screen and (max-width: 428px) {
+  .prod {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .detail-produit {
@@ -559,6 +574,30 @@ main {
   height: 340px;
   border-radius: 8px;
 }
+@media screen and (max-width: 428px) {
+  .detail-produit {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+  .detail-produit .detail-produit-content {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .detail-produit .detail-produit-content .info-produit {
+    margin-left: 0;
+  }
+  .detail-produit .detail-produit-content .prix {
+    border: none;
+  }
+  .detail-produit .detail-produit-content img {
+    align-self: center;
+    width: 65%;
+    height: 65%;
+  }
+}
 
 .partie-droite {
   padding-top: 20px;
@@ -566,13 +605,19 @@ main {
   flex-direction: column;
   gap: 30px;
 }
+@media screen and (max-width: 428px) {
+  .partie-droite {
+    padding-top: 0;
+    gap: 10px;
+  }
+}
 
 /*################################*/
 /* ----------- PANIER ----------- */
 /*################################*/
 .panier-section {
   background-color: #D1ECF8;
-  padding: 25px;
+  padding: 20px;
   width: 420px;
   border-radius: 16px;
   display: flex;
@@ -610,6 +655,42 @@ main {
 .panier-section .add-to-cart:visited {
   color: black;
 }
+@media screen and (max-width: 428px) {
+  .panier-section {
+    padding-top: 0;
+    width: 90%;
+    background-color: white;
+  }
+  .panier-section .price {
+    margin-top: 10px;
+  }
+  .panier-section .quantity {
+    display: flex;
+    flex-direction: row;
+    background-color: #FCB66B;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    justify-content: center;
+  }
+  .panier-section .quantity select {
+    border: none;
+    background-color: #FCB66B;
+    align-self: center;
+    font-weight: bold;
+  }
+  .panier-section .quantity label {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .panier-section .add-to-cart {
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: #064082;
+    padding: 10px;
+  }
+}
 
 /*################################*/
 /* ------------ AVIS ------------ */
@@ -646,23 +727,43 @@ main {
   font-family: "Mulish";
   font-weight: 500;
 }
-.avis-section .buttons {
+.avis-section .plein-buttons {
   padding-right: 20px;
   display: flex;
   justify-content: flex-end;
   gap: 30px;
 }
-.avis-section .buttons button {
+.avis-section .plein-buttons button {
   padding: 10px 18px;
   border-radius: 8px;
   border: none;
-  font-weight: 600;
 }
-.avis-section .buttons .cancel {
+.avis-section .plein-buttons .cancel {
   background-color: #FCB66B;
 }
-.avis-section .buttons .submit {
+.avis-section .plein-buttons .submit {
   background-color: #FCB66B;
+}
+.avis-section .plein-buttons .photo {
+  background-color: #FCB66B;
+  padding: 10px 18px;
+  border-radius: 8px;
+}
+@media screen and (max-width: 428px) {
+  .avis-section .plein-buttons {
+    gap: 15px;
+    padding-right: 0;
+  }
+  .avis-section .plein-buttons .photo, .avis-section .plein-buttons .cancel, .avis-section .plein-buttons .submit {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 428px) {
+  .avis-section {
+    width: 100%;
+    padding: 0;
+  }
 }
 
 .liste-avis {
@@ -673,6 +774,10 @@ main {
 
 .avis-produits {
   margin-bottom: 20px;
+}
+
+input[type=file] {
+  display: none;
 }
 
 /*################################*/
@@ -688,13 +793,23 @@ main {
   max-height: 350px; /* hauteur fixe */
   overflow-y: auto; /* scroll vertical */
   padding-right: 10px; /* pour éviter que le scroll cache le texte */
-  gap: 15px; /* espace entre les avis */
+  gap: 15px;
+  /* espace entre les avis */
+}
+.liste-avis p {
+  padding-left: 20px;
 }
 
 .avis {
   background: #fff;
   padding: 15px;
   border-radius: 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+@media screen and (max-width: 428px) {
+  .avis {
+    width: 90%;
+  }
 }
 
 .avis-header {
@@ -706,6 +821,11 @@ main {
 .commentaire {
   margin-top: 10px;
 }
+@media screen and (max-width: 428px) {
+  .commentaire {
+    width: 90%;
+  }
+}
 
 .note {
   color: gold;
@@ -714,5 +834,27 @@ main {
 
 .date {
   font-size: 13px;
-  color: #888;
+  color: #064082;
+}
+
+.photos-avis {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.photo-avis {
+  width: 120px;
+  height: 120px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+@media screen and (max-width: 428px) {
+  .photo-avis {
+    width: 60px;
+    height: 60px;
+  }
 }/*# sourceMappingURL=dproduit.css.map */

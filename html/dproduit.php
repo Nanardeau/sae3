@@ -36,15 +36,51 @@ if (!$produit) die("Produit introuvable !");
 
 
 // --- RÉCUPÉRATION DES AVIS DU PRODUIT --- //
-$sqlAvis = "SELECT A.*, C.prenom, C.nom 
-            FROM Avis A
-            LEFT JOIN Client C ON C.codeCompte = A.codeCompteCli
-            WHERE A.codeProduit = :id
-            ORDER BY A.datePublication DESC";
+$sqlAvis = "SELECT A.*, C.prenom, C.nom,
+        ARRAY(
+            SELECT J.urlPhoto
+            FROM JustifierAvis J
+            WHERE J.numAvis = A.numAvis
+        ) AS photos
+    FROM Avis A
+    LEFT JOIN Client C ON C.codeCompte = A.codeCompteCli
+    WHERE A.codeProduit = :id
+    ORDER BY A.datePublication DESC
+";
+
 
 $stmtAvis = $bdd->prepare($sqlAvis);
 $stmtAvis->execute(['id' => $id]);
 $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
+// Conversion des tableaux PostgreSQL en vrais tableaux PHP
+foreach ($avisList as &$avis) {
+    if (isset($avis['photos']) && is_string($avis['photos'])) {
+        // On s'assure que ce n'est pas null
+        $str = $avis['photos'] ?? '';
+        $str = trim($str, '{}');
+
+        $avis['photos'] = str_getcsv(
+            $str,
+            ',',
+            '"',
+            "\\"
+        );
+
+        $avis['photos'] = array_filter($avis['photos'], function($p){
+            return trim((string)$p) !== "";
+        });
+
+        $avis['photos'] = array_values($avis['photos']);
+    } else {
+        // Pas de photos : on met un tableau vide
+        $avis['photos'] = [];
+    }
+}
+unset($avis);
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +93,7 @@ $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <?php include 'includes/header.php'; ?>
+    <?php include 'includes/menu_cat.php';?>
 
     <main>
         <section class="prod">
@@ -84,13 +121,14 @@ $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
                             <?php for ($i = 1; $i <= 100; $i++): ?>
                                 <option value="<?= $i ?>"><?= $i ?></option>
                             <?php endfor; ?>
+                                <option value="1000000">1000000</option>
                         </select>
                     </div>
                     <a class="add-to-cart" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>">Ajouter au panier</a>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
 
-                <form class="avis-section" method="POST" action="ajout_avis.php">
+                <form class="avis-section" method="POST" action="ajout_avis.php" enctype="multipart/form-data">
 
                     <h2>Votre avis</h2>
 
@@ -106,15 +144,20 @@ $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
 
                     <textarea name="commentaire" maxlength="255" placeholder="Rédiger un commentaire..." required></textarea>
 
-                    <div class="buttons">
+                    
+
+                    <div class="plein-buttons">
+                        <label class="photo" for="photos">Ajouter des photos</label>
+                        <input id="photos" type="file" name="photos[]" multiple accept="image/*">
                         <button type="reset" class="cancel">Annuler</button>
                         <button type="submit" class="submit">Publier</button>
                     </div>
+
                     <input type="hidden" name="codeProduit" value="<?= $produit['codeproduit'] ?>">
                     <input type="hidden" name="noteProd" value="4">
 
-
                 </form>
+
 
             </div>
         </section>
@@ -143,6 +186,16 @@ $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
                             <p class="commentaire">
                                 <?= htmlspecialchars($avis['commentaire']) ?>
                             </p>
+                            <?php if (!empty($avis['photos'])): ?>
+                                <div id="overlay-photos-avis" class="photos-avis" >
+                                    <?php foreach ($avis['photos'] as $photo): ?>
+                                        <img src="<?= htmlspecialchars($photo) ?>" 
+                                            alt="Photo de l'avis"
+                                            class="photo-avis">
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>

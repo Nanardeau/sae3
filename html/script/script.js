@@ -45,4 +45,18 @@ document.addEventListener("DOMContentLoaded", () => {
     selectQte.addEventListener('change', updatePrice);
 });
 
+const overlay = document.getElementById('overlay-photos-avis');
+
+document.querySelectorAll('.photo-avis').forEach(img => {
+    img.addEventListener('click', () => {
+        overlay.innerHTML = `<img src="${img.src}" alt="Image agrandie">`;
+        overlay.style.display = 'flex';
+    });
+});
+
+overlay.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    overlay.innerHTML = '';
+});
+
 
