@@ -31,18 +31,18 @@
         if($_GET["modifMdp"] == 1){
             $_SESSION["nouveauMdp"] = $_POST["mdpModifCli"];
             $_SESSION["mdpValide"] = 0;
-            header('location:modifCompteCli.php?modif=mdp');
-            exit();
+            exit(header('location:modifCompteCli.php?modif=mdp'));
+            ;
         }
         else{
-            header("location:infosCompte.php");
+            exit(header("location:infosCompte.php"));
         }
     }
     else{
         $_SESSION["mdpValide"] = -1;
         if($_GET["modifMdp"] == 1){
-            header('location:infosCompte.php');
+            exit(header('location:infosCompte.php'));
         }        
         
     }
-print_r($_SESSION);
+print_r($_SESSION);?>

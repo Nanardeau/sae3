@@ -3,7 +3,7 @@
     if(!array_key_exists("codeCompte", $_SESSION)){
         header("location:index.php");
     }
-    
+
     $codeCompte = $_SESSION["codeCompte"];
     if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
@@ -36,7 +36,9 @@
     $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
     
     $photo = $bdd->query("SELECT profil.urlPhoto  FROM alizon.Photo photo INNER JOIN alizon.Profil profil ON photo.urlPhoto = profil.urlPhoto WHERE profil.codeClient = '".$codeCompte."'")->fetch();
-
+    if(!$_SESSION["mdpValide"]){
+        $_SESSION["mdpValide"] = 0;
+    }
 ?>
 
 <html lang="fr">

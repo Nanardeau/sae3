@@ -84,7 +84,7 @@ $bdd->query('set schema \'alizon\'');
             <!--version panier vide-->
             <div class="vide">
                 <h1> Votre panier est vide </h1>
-                <a href="index.html">Revenir à l'accueil<a>
+                <a href="index.php">Revenir à l'accueil<a>
             </div>
 
         <?php

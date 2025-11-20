@@ -1,4 +1,3 @@
-
 <?php
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
