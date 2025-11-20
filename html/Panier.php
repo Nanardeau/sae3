@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
@@ -29,7 +30,7 @@ try {
         header('Location: http://localhost:8888/index.php');
         exit();
 }
-$_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
+//$_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
 
 
 $bdd->query('set schema \'alizon\'');
@@ -64,13 +65,16 @@ $bdd->query('set schema \'alizon\'');
         
 
         // Rercherche du panier par rapport au code compte 
-        if($idUser != null){
+        if(isset($_SESSION['codeCompte'])){
 
         
         $stmP = $bdd->prepare('SELECT * from Panier where codeCompte = \''.$idUser.'\'');
         
-        }else {
+        }else if(isset($_SESSION['idPanier'])) {
+            $idPanier =  $_SESSION["idPanier"];
             $stmP = $bdd->prepare('SELECT * from Panier where idPanier = \''.$idPanier.'\'');
+        }else{
+            $stmP = $bdd->prepare('SELECT * from Panier where idPanier = -1'); // -1 est la valeur impossible à avoir en BDD donc aucun panier associer 
         }
         $stmP->execute();
         $ifPanierTemp = $stmP->fetch();

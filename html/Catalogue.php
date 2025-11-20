@@ -1,6 +1,5 @@
 <?php
 session_start();
-$codeCompte = $_SESSION['codeCompte'];
 
 //Connexion à la base de données.
 require_once( __DIR__ . '/_env.php');
@@ -40,8 +39,9 @@ $bdd->query('set schema \'alizon\'');
 <body>
     <?php 
 
-    if($codeCompte != null){
+    if(isset($_SESSION['codeCompte'])){
         include 'includes/headerCon.php' ;
+        $codeCompte = $_SESSION['codeCompte'];
     }else{
         include 'includes/header.php';
     }

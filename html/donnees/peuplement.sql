@@ -164,10 +164,10 @@ INSERT INTO Photo(urlPhoto) VALUES ('./img/photosProfil/Cunty.png');
 INSERT INTO Profil(urlPhoto, codeClient) VALUES ('./img/photosProfil/Cunty.png' , 1);
 
 insert into Avis(codeproduit,codecomptecli,noteprod,commentaire,datepublication) VALUES
-(1,1,5,'J adore ce produit, il est vraiment bien, il est arrivé vite en plus', DATE '08-01-2025'),
-(4,3,1,'Aucune protection du produit dans le colis, il est arrivé abimé, je ne recommande pas ce vendeur', DATE '15-06-2025'),
-(6,1,2,'Le produit est moyen', DATE '05-10-2025'),
-(2,2,3,'J aime bien mais c est pas mon truc non plus', DATE '22-03-2025');
+(1,1,5,'J adore ce produit, il est vraiment bien, il est arrivé vite en plus', '08-01-2025'),
+(4,3,1,'Aucune protection du produit dans le colis, il est arrivé abimé, je ne recommande pas ce vendeur','15-06-2025'),
+(6,1,2,'Le produit est moyen','05-10-2025'),
+(2,2,3,'J aime bien mais c est pas mon truc non plus', '22-03-2025');
 
 --SELECT client.pdprofil, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) ORDER BY avis.codeproduit;
 --select SUM(prixttctotal) FROM ProdUnitPanier INTO Panier.prixTTCtotal;
