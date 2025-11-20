@@ -13,8 +13,7 @@ CREATE TABLE Compte(
     prenom VARCHAR(20),
     email VARCHAR(50) NOT NULL,
     mdp VARCHAR(20) NOT NULL,
-    numTel VARCHAR(20),
-    pdProfil VARCHAR(40) REFERENCES Photo(urlPhoto)
+    numTel VARCHAR(20)
 );
 CREATE TABLE Adresse(
     idAdresse SERIAL PRIMARY KEY NOT NULL,
