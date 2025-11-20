@@ -22,7 +22,7 @@
     $codeCompte = $_SESSION["codeCompte"];
 if(array_key_exists("adresse", $_GET)){
     #Modification de l'adresse
-    header("location:paiement.php");
+    exit(header("location:paiement.php"));
     $_SESSION["adrModif"] = 1;
 
     $numRue = $_POST["numRue"];
@@ -45,22 +45,25 @@ if(array_key_exists("adresse", $_GET)){
     //header("location:paiement.php?adr=1");
 }
 if(!isset($_GET["adresse"])){
-    if($_SESSION["modifAdr"] == 0){
-        print_r($_SESSION);
-        #$idAdresseFact = $_SESSION["idAdresse"]/*($bdd->query("SELECT * FROM alizon.AdrFactCli WHERE codeCompte = '".$codeCompte."'")->fetch())["idAdresse"]*/;
-        $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-        $idAdresse = $adresse["idadresse"];
+    if(isset($_SESSION["modifAdr"])){
+        if($_SESSION["modifAdr"] == 0){
+
+            #$idAdresseFact = $_SESSION["idAdresse"]/*($bdd->query("SELECT * FROM alizon.AdrFactCli WHERE codeCompte = '".$codeCompte."'")->fetch())["idAdresse"]*/;
+            $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+            $idAdresse = $adresse["idadresse"];
+        }
     }
+
 }
 if(array_key_exists("banque", $_GET)){
-    header("location:paiementFini.php");
-    echo "uwu";
+    exit(header("location:paiementFini.php"));
+
     $nom = $_POST["nomTitulaireCB"];
     $numCarte = $_POST["numCB"];
     $expDate = $_POST["expDate"];
     $cvc = $_POST["cvc"];
 
-    $stmt = $bdd->prepare("INSERT INTO alizon.Banque (numCarte, nomTit, cvc, dateExp) VALUES (:numCarte, :nomTit, :cvc, :dateExp)");
+    $stmt = $bdd->prepare("INSERT INTO alizon.Carte (numCarte, nomTit, cvc, dateExp) VALUES (:numCarte, :nomTit, :cvc, :dateExp)");
     $stmt->execute(array(
         ":numCarte" => $numCarte,
         ":nomTit" => $nom,
