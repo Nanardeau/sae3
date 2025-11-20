@@ -50,7 +50,7 @@ if($_POST){
                 $_SESSION["id"] = "";
                 $_SESSION["mdp"] = "";
                 $_SESSION["codeCompte"] = $rep["codecompte"];
-               header("location: index.php");
+                exit(header("location: index.php"));
                 die();
 
             }
