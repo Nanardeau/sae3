@@ -1,14 +1,10 @@
 <?php
-
-    if(!$_GET){
-        header('location:infosCompte.php');
-
-    }
-
-    
     session_start();
+
     
-    require_once __DIR__ . '/env.php';
+    
+    
+    require_once __DIR__ . '/_env.php';
 
     loadEnv(__DIR__ . '/.env');
 
@@ -27,7 +23,7 @@
         echo "Erreur de connexion : " . $e->getMessage();
     }
     $codeCompte = $_SESSION["codeCompte"];
-    $codeCompte = 1;
+
     $mdpBase = ($bdd->query("SELECT mdp FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch())["mdp"];
 
     if($mdpBase == $_POST["mdpPourValider"]){
@@ -37,6 +33,9 @@
             $_SESSION["mdpValide"] = 0;
             header('location:modifCompteCli.php?modif=mdp');
             exit();
+        }
+        else{
+            header("location:infosCompte.php");
         }
     }
     else{

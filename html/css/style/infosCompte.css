@@ -157,7 +157,7 @@ header nav a {
 header nav svg {
   padding-right: 10px;
 }
-@media screen and (max-width: 428px) {
+@media screen and (max-width : 428px) {
   header .logo_alizon_front {
     padding-left: 30px;
     width: 100px;
@@ -245,7 +245,7 @@ header nav svg {
 .footer .mobile-only {
   display: none;
 }
-@media screen and (max-width: 428px) {
+@media screen and (max-width : 428px) {
   .footer {
     display: flex;
     flex-direction: column;
@@ -549,7 +549,7 @@ header nav svg {
   padding-right: 10px;
 }
 
-@media screen and (max-width: 428px) {
+@media screen and (max-width : 428px) {
   header .logo_alizon_front {
     padding-left: 30px;
     width: 100px;
@@ -649,7 +649,7 @@ header nav svg {
   display: none;
 }
 
-@media screen and (max-width: 428px) {
+@media screen and (max-width : 428px) {
   .footer {
     display: flex;
     flex-direction: column;
@@ -864,7 +864,7 @@ form input:user-invalid, form input.invalid {
 form input:user-invalid + span, form input.invalid + span {
   display: block;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   form input {
     width: 100%;
   }
@@ -879,7 +879,7 @@ form .bouton {
   height: 5em;
   font-size: 24px;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   form .bouton {
     height: 4em;
   }
@@ -920,7 +920,7 @@ aside figure img {
   margin: 0 10px;
   height: 1px;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   aside figure img {
     width: 20%;
     height: 20px;
@@ -950,7 +950,7 @@ aside nav {
   display: flex;
   flex-direction: column;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   .labelInput {
     display: block;
     width: 100%;
@@ -959,6 +959,23 @@ aside nav {
 
 #nomCli {
   width: 100%;
+}
+
+.btnJaune {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  background-color: #FCB66B;
+  border: 0px;
+  color: black;
+  width: 50%;
+  padding: 1em;
 }
 
 form {
@@ -970,6 +987,17 @@ form input[disabled] {
 }
 form > h2 {
   align-self: center;
+}
+@media screen and (max-width : 428px) {
+  form {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  form #nomPrenomCli, form .labelInput {
+    width: 100%;
+  }
 }
 
 .containerForm {
@@ -993,6 +1021,12 @@ form > h2 {
   height: 60%;
   width: 50%;
 }
+@media screen and (max-width : 428px) {
+  #overlaymdp, #changerPhoto {
+    height: 90%;
+    width: 80%;
+  }
+}
 
 [popover]:popover-open::backdrop {
   background-color: rgba(0, 0, 0, 0.3);
@@ -1005,6 +1039,11 @@ form > h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width : 428px) {
+  [popover]:popover-open .bouton {
+    height: 2.5em;
+  }
 }
 
 input[type=file] {
@@ -1019,7 +1058,7 @@ input[type=file] {
   position: relative;
   width: -moz-fit-content;
   width: fit-content;
-  left: 37%;
+  left: 35%;
 }
 .crayonPhoto img {
   border-radius: 50%;
@@ -1041,12 +1080,26 @@ input[type=file] {
   position: absolute;
   border-radius: 25%;
   bottom: 0;
-  right: 5px;
+  right: 10px;
+}
+@media screen and (max-width : 428px) {
+  .crayonPhoto {
+    left: 0;
+  }
+  .crayonPhoto img {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .btnJaune {
   margin-top: 2em;
   width: 30%;
+}
+@media screen and (max-width : 428px) {
+  .btnJaune {
+    width: 60%;
+  }
 }
 
 #deconnexion img {

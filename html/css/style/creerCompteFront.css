@@ -157,7 +157,7 @@ header nav a {
 header nav svg {
   padding-right: 10px;
 }
-@media screen and (max-width: 428px) {
+@media screen and (max-width : 428px) {
   header .logo_alizon_front {
     padding-left: 30px;
     width: 100px;
@@ -245,7 +245,7 @@ header nav svg {
 .footer .mobile-only {
   display: none;
 }
-@media screen and (max-width: 428px) {
+@media screen and (max-width : 428px) {
   .footer {
     display: flex;
     flex-direction: column;
@@ -452,7 +452,7 @@ form input:user-invalid, form input.invalid {
 form input:user-invalid + span, form input.invalid + span {
   display: block;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   form input {
     width: 100%;
   }
@@ -467,7 +467,7 @@ form .bouton {
   height: 5em;
   font-size: 24px;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   form .bouton {
     height: 4em;
   }
@@ -508,7 +508,7 @@ aside figure img {
   margin: 0 10px;
   height: 1px;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   aside figure img {
     width: 20%;
     height: 20px;
@@ -538,7 +538,7 @@ aside nav {
   display: flex;
   flex-direction: column;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   .labelInput {
     display: block;
     width: 100%;
@@ -547,4 +547,21 @@ aside nav {
 
 #nomCli {
   width: 100%;
+}
+
+.btnJaune {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  background-color: #FCB66B;
+  border: 0px;
+  color: black;
+  width: 50%;
+  padding: 1em;
 }/*# sourceMappingURL=creerCompteFront.css.map */

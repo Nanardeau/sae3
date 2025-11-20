@@ -3,10 +3,11 @@
     if(!array_key_exists("codeCompte", $_SESSION)){
         header("location:index.php");
     }
-    $codeCompte = $_SESSION["codeCompte"];
     
+    $codeCompte = $_SESSION["codeCompte"];
     if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
+
     }
     else{
         $erreur = "";
@@ -30,7 +31,6 @@
         echo "Erreur de connexion : " . $e->getMessage();
     }
     //$codeCompte = 1;
-    $_SESSION['mdpValide'] = 0;
     $compte = $bdd->query("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
     
     $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
@@ -50,6 +50,7 @@
 </head>
 <body>   
     <main>
+
         <?php if($_SESSION["mdpValide"] == -1):?>
             <h2 class="erreur">Mot de passe incorrect</h2>
         <?php endif?>
@@ -99,7 +100,7 @@
             <input type="text" name="numTel" id="numTelCli" pattern="\d{10}" value="<?php echo $compte["numtel"]?>"disabled/>
             <span>Le numéro doit être dans le format suivant : 0102030405</span>
             <label for="dateNaiss">Date de naissance</label>
-            <input type="date" name="dateNaissance" class="boutonSec" id="dateNaiss" onChange="verifDate(event)" value="<?php echo $compte["datenaissance"]?>" required disabled/>
+            <input type="date" name="dateNaissance" class="boutonSec" id="dateNaiss" onChange="verifDate(event)" value="<?php echo $compte["datenaissance"]?>"required disabled/>
             <?php if($adresse):?>
             <h3>Adresse</h3> 
             <div class="container-fluid p-0">
@@ -224,7 +225,7 @@
 
                 }
             }
-            $_SESSION["mdpValide"] = 0;
+            
         <?php endif?>
         
         //Vérification mot de passe = confirmer mot de passe
@@ -257,21 +258,16 @@
         }
         
         function deconnecter(){
-            <?php 
-                session_destroy(); 
-                
-            ?>
-            window.location.reload();
+
+            window.location.href = "modifCompteCli.php?traitement=deconnecter";
         }
 
         function bloquerCompte(){
             let res = confirm("Voulez-vous vraiment bloquer votre compte ? Celui-ci sera anonymisé");
             if(res == true){
-                <?php                
-                    $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = TRUE WHERE codeCompte = '".$codeCompte."'");
-                    $stmt->execute();
+                window.location.href = "modifCompteCli.php?traitement=bloquer" 
                     
-                ?>
+                
                 deconnecter();
             }
         }
