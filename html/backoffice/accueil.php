@@ -45,14 +45,6 @@ try {
 <body>
     <?php include '../includes/backoffice/header.php';
     $bdd->query("SET SCHEMA 'alizon'"); ?>
-    
-    <main>
-        <div class="btnAcceuil">
-            <a href="ajouterproduit.php">Ajouter un produit</a>
-            <a href="stock.php">Consulter la liste des produits</a>
-        </div>
-    </main>
-
     <div class="content-wrapper"> 
         <aside>
             <h1>Les produits</h1>
@@ -86,7 +78,6 @@ try {
                 </a>
             </div>
         </aside>
-
         <div>
             <section class="lesAvis">
                 <h1>Les avis</h1>
@@ -128,18 +119,9 @@ try {
                     <?php } ?>
                 </div>
             </section>
-            <section class="lesPromotions">
-                <h1>Vos promotions</h1>
-                <div class="promotions">
-                    <a class="promo" href="gestionPromotions.php">
-                        <img src="../img/promocidre.png" alt="img promotion">
-                        <h2>Promotion de la semaine</h2>
-                    </a>
-                    <a class="promo" href="gestionPromotions.php">
-                        <img src="../img/promocidre.png" alt="img promotion">
-                        <h2>Promotion de la semaine</h2>
-                    </a>
-                </div>
+            <section class="btnAccueil">
+                    <a href="ajouterproduit.php">Ajouter un produit</a>
+                    <a href="stock.php">Consulter la liste des produits</a>
             </section>
         </div>
     </div>

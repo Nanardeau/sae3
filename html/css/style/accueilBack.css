@@ -333,36 +333,6 @@ main p {
   color: black;
 }
 
-.btnAcceuil {
-  display: flex;
-  flex-direction: row;
-}
-.btnAcceuil a {
-  padding: 0.5em 1em;
-  margin: 1em 0;
-  width: 15em;
-  height: 1.5em;
-  display: flex;
-  font-weight: bold;
-  font-size: 24px;
-  font-family: "Mulish", sans-serif;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: #FCB66B;
-  color: black;
-  border-radius: 1em;
-  text-decoration: none;
-  margin-bottom: 1em;
-}
-.btnAcceuil a:hover {
-  background-color: rgb(250.9867549669, 157.3443708609, 57.0132450331);
-  cursor: pointer;
-}
-.btnAcceuil a:last-child {
-  margin-left: 22.5em;
-}
-
 aside {
   display: flex;
   flex-direction: column;
@@ -586,6 +556,34 @@ body {
   margin: 0;
 }
 
+.btnAccueil {
+  clear: right;
+  display: flex;
+  flex-direction: row;
+  margin: 0 4em 1em 5em;
+}
+.btnAccueil a {
+  padding: 0.5em 1em;
+  margin: 1em 0.5em 1em 0;
+  flex-basis: 100%;
+  height: 1.5em;
+  display: flex;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: "Mulish", sans-serif;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #FCB66B;
+  color: black;
+  border-radius: 1em;
+  text-decoration: none;
+}
+.btnAccueil a:hover {
+  background-color: rgb(250.9867549669, 157.3443708609, 57.0132450331);
+  cursor: pointer;
+}
+
 .lesPromotions {
   background-color: #FFD6C2;
   text-decoration: none;
@@ -646,6 +644,7 @@ body {
 }
 
 .content-wrapper {
+  margin-top: 2em;
   display: flex;
   flex-direction: row;
   width: 100%;
