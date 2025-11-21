@@ -5,7 +5,7 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
     
 }else{
 
-    $codeCompte = $_SESSION["codecompte"];
+    $codeCompte = $_SESSION["codeCompte"];
     
 }
 //Connexion à la base de données.
@@ -81,7 +81,7 @@ try {
                 <h1>Les avis</h1>
                 <div>
                 <?php
-                    $liste_avis = $bdd->query("SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis WHERE produit.codecomptevendeur = " . $codeCompte . "  INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) ORDER BY avis.codeproduit;");  
+                    $liste_avis = $bdd->query("SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) WHERE produit.codecomptevendeur = " . $codeCompte . " ORDER BY avis.codeproduit;");  
                     $rows = $liste_avis->fetchAll(PDO::FETCH_ASSOC);
                     $limit = 3;
                     for ($i = 0; $i < $limit; $i++) {
