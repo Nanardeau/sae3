@@ -1,17 +1,18 @@
 <?php
 session_start();
 
-/*if(!array_key_exists("codeCompte", $_SESSION) || $_SESSION["codecompte"] == null){
+if(!array_key_exists("codeCompte", $_SESSION) || isset($_SESSION["codeCompte"])){
     header('location: connexionVendeur.php');
     
 }else{
 
+    $codeCompte = $_SESSION["codeCompte"];
     
     
 }
- */   
-$_SESSION["codecompte"] = 5;
-$codeCompte = $_SESSION["codecompte"];
+ 
+//$_SESSION["codecompte"] = 5;
+
 //Connexion à la base de données.
 require_once('../_env.php');
 loadEnv('../.env');
@@ -53,6 +54,7 @@ $bdd->query('set schema \'alizon\'');
     <main>
         <?php include('../includes/backoffice/header.php'); ?>
         <h1>Votre Stock</h1>
+        
         <div class="separateur"></div>
         <?php
         $listArtTmp = $bdd->query('SELECT * FROM Produit where codeCompteVendeur =' . $codeCompte);

@@ -1,15 +1,13 @@
 <?php
 session_start();
-$_SESSION["codecompte"] = 5;
 if(!array_key_exists("codeCompte", $_SESSION) || isset($_SESSION["codeCompte"])){
     //header('location: connexionVendeur.php');
     
 }else{
 
-    $codeCompte = $_SESSION["codeCompte"];
+    $codeCompte = $_SESSION["codecompte"];
     
 }
-$codeCompte = $_SESSION["codecompte"];
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv('../.env');
@@ -48,7 +46,7 @@ try {
     <div class="content-wrapper"> 
         <aside>
             <h1>Les produits</h1>
-            <?php $liste_reduc = $bdd->query("SELECT * FROM produit ORDER BY codeproduit"); ?>
+            <?php $liste_reduc = $bdd->query("SELECT * FROM produit WHERE produit.codecomptevendeur = " . $codeCompte . " ORDER BY codeproduit LIMIT 6"); ?>
             <div>
                 <?php 
                 $rows = $liste_reduc->fetchAll(PDO::FETCH_ASSOC);
@@ -83,7 +81,7 @@ try {
                 <h1>Les avis</h1>
                 <div>
                 <?php
-                    $liste_avis = $bdd->query("SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) ORDER BY avis.codeproduit;");  
+                    $liste_avis = $bdd->query("SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis WHERE produit.codecomptevendeur = " . $codeCompte . "  INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) ORDER BY avis.codeproduit;");  
                     $rows = $liste_avis->fetchAll(PDO::FETCH_ASSOC);
                     $limit = 3;
                     for ($i = 0; $i < $limit; $i++) {
