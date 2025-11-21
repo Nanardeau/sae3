@@ -58,6 +58,7 @@ input{
 ###############################*/
 
 header{
+    transition: transform 0.3s ease;
     .mobile-only{
         display: none;
     }
@@ -84,6 +85,9 @@ header{
         display: flex;
         align-items: center;
         a{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
             padding-right: 20px;
             color: $blanc;
             text-decoration: none;
@@ -91,6 +95,7 @@ header{
         svg{
             padding-right: 10px;
         }
+
     }
 
     @media #{$mobile}{
@@ -247,11 +252,12 @@ header{
 ################################*/
 
 .nav-cat{
+    transition: transform 0.3s ease;
     width: 100%;
     background-color: $eleBleu;
     position: fixed;
     z-index: 999;
-    display: flex;
+    display: none;
     flex-direction: row;
     
 
@@ -289,7 +295,14 @@ header{
         overflow: visible;
     }
 
+    @media screen and (max-width: 428px) {
+        display: none;
+    }
 
+}
+
+.burger-menu{
+    margin-left: 20px;
 }
 
 .overlayMenuCat{
@@ -319,6 +332,10 @@ header{
 
     overflow-y:scroll;
     scrollbar-width: none;
+
+    @media screen and (max-width: 428px){
+        display: none;
+    }
 
     
     
@@ -359,4 +376,135 @@ header{
     width:50%;
     padding:1em;
     
+}
+.overlayMenuCatMob{
+    z-index: 1000;
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+
+}
+
+.overlayContentCatMob {
+    position: fixed;
+    background: $blanc;
+    text-align: left;
+    min-width: 70%;
+    height: 100%;
+    left: 0;
+
+    overflow-y:scroll;
+    scrollbar-width: none;
+
+    ul{
+        padding-inline-start: 1rem;
+        li{
+            list-style: none;
+            margin-bottom: 1rem;
+            a{
+                text-decoration: underline;
+                font: {
+                    family: $Poltext;
+                    size: $MoyTitle;
+                    weight: 600;
+                    
+                }
+                color: $noir;
+            }
+        }
+        ul > li > a{
+            text-decoration: none;
+            font-size: $txtSize;
+            font-weight: normal;
+        }
+
+        ul > li{
+            margin-left: 1rem;
+
+        }
+    }
+
+    .page-acc{
+        position: sticky;
+        top: 20%;
+        display: flex;
+        align-items: center;
+        border-bottom: 4px solid #A1A1A1;
+        width: 100%;
+        background-color: $blanc;
+        z-index: 1001;
+
+        padding: {
+            bottom: 5px;
+            top: 5px;
+        }
+
+        a{
+            text-decoration: none;
+            color: $noir;
+            margin-left: 1rem;
+            
+        }
+
+        svg{
+            margin-left: 50px;
+        }
+    }
+
+
+
+
+    .identification{
+        position: sticky;
+        top: 0;
+        background-color: $colP;
+        left:0;
+        width: 100%;
+        height: 20%;
+        //padding-left: 1rem;
+
+        a{
+            text-decoration: none;
+            color: $blanc;
+        }
+
+        h3, p{
+            margin: 0;
+            color: $blanc;
+        }
+
+        .cross{
+            position: absolute;
+            top: 30px;
+            right: 30px;
+        }
+
+        .user-ident{
+            position: absolute;
+            top: 30px;
+            padding-left: 1rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            svg{
+                margin-left: 20px;
+                height: 28px;
+                width: auto;
+            }
+        }
+
+        .parcourir-alizon{
+            position: absolute;
+            top: 90px;
+            padding-left: 1rem;
+        }
+
+    }
 }

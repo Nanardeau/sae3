@@ -1,0 +1,426 @@
+@use "./styleCom" as *;
+@use "../tools/vFront" as *;
+@use "../components/fonts" as *;
+
+body{
+    margin: 0;  
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    margin: {
+        left:40px;
+        right:40px;
+    }
+
+    @media screen and (max-width: 428px){
+        margin: {
+            left:20px;
+            right:20px;
+        }
+    }
+}
+
+.prod{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    @media screen and (max-width: 428px){
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+.detail-produit {
+    display: flex;
+    flex-direction: row;
+    background-color: $colS;
+    padding: 20px;
+    width: 60%;
+
+    border-radius: 16px;
+    margin-top: 20px;
+
+    .detail-produit-content{
+        height: 340px;
+        display: flex;
+        flex-direction: row;
+
+        .info-produit {
+            margin-left: 50px;
+            display: flex;
+            flex-direction: column;
+
+            h1{
+                margin: {
+                    top: 0;
+                    bottom: 0;
+                }
+            }
+        }
+
+        .prix {
+            align-self: flex-end;
+            margin-top: 20px;
+            border-top: 2px solid $colP;
+            padding-top: 5px;
+            width: 100%;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        
+        img {
+            width: 340px;
+            height: 340px;
+            border-radius: 8px;
+        }
+
+        
+    }
+
+    @media screen and (max-width: 428px){
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+
+        .detail-produit-content{
+            height: auto;
+            display: flex;
+            flex-direction: column;
+
+            .info-produit {
+                margin-left: 0;
+            }
+
+            .prix{
+                border: none;
+            }
+            img{
+                align-self: center;
+                width: 65%;
+                height: 65%;
+            }
+        }
+    }
+
+
+
+    
+}
+
+.partie-droite {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    @media screen and (max-width: 428px){
+        padding-top: 0;
+        gap: 10px;
+    }
+}
+
+/*################################*/
+/* ----------- PANIER ----------- */
+/*################################*/
+
+.panier-section {
+    background-color: $colS;
+    padding: 20px;
+    width: 420px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .price {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: $colP;
+    }
+
+    .quantity {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        select {
+            padding: 5px 8px;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+    }
+
+    .add-to-cart {
+        background-color: $eleOrange;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: $noir;
+
+    }
+
+    .add-to-cart:visited {
+        color: $noir;
+    }
+
+    @media screen and (max-width: 428px){
+        padding-top: 0;
+        width: 90%;
+        background-color: $blanc;
+
+        .price{
+            margin-top: 10px;
+        }
+
+        .quantity{
+            display: flex;
+            flex-direction: row;
+            background-color: $eleOrange;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            justify-content: center;
+
+            select{
+                border: none;
+                background-color: $eleOrange;
+                align-self: center;
+                font-weight: bold;
+            }
+
+            label{
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+
+        .add-to-cart {
+            width: 100%;
+            text-align: center;
+            color: $blanc;
+            background-color: $colP;
+            padding: 10px;
+        }
+    }
+}
+
+/*################################*/
+/* ------------ AVIS ------------ */
+/*################################*/
+
+.avis-section {
+    //background-color: $colS;
+    padding: 25px;
+    width: 420px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .noter {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .noter span {
+        font-size: 2.4rem;
+        cursor: pointer;
+        color: transparent;
+        -webkit-text-stroke: 2px #f5b301; /* Contour jaune */
+        transition: 0.2s;
+    }
+
+    /* Étoiles "pleines" */
+    .noter span.full {
+        color: #f5b301;
+        -webkit-text-stroke: 2px #f5b301;
+    }
+
+
+    textarea {
+        align-self: center;
+        width: 90%;
+        height: 180px;
+        border-radius: 8px;
+        border: 1px solid #444;
+        padding: 10px;
+        resize: none;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        font-family: $Poltext;
+        font-weight: 500;
+    }
+
+    .plein-buttons {
+        padding-right: 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 30px;
+
+        button {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: none;
+            color: $noir;
+        }
+
+        .cancel {
+            background-color: $inverse;
+        }
+
+        .submit {
+            background-color: $eleOrange;
+        }
+
+        .photo{
+            background-color: $eleOrange;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        @media screen and (max-width: 428px){
+            gap: 15px;
+            padding-right: 0;
+
+            .photo, .cancel, .submit {
+                padding: 8px 12px;
+                font-size: 14px;
+                font-weight: normal;
+            }
+
+            justify-content: center;
+        }
+
+    }
+
+    @media screen and (max-width: 428px){
+        width: 100%;
+        padding: 0;
+    }
+}
+
+.liste-avis{
+    border-radius: 8px;
+    border: 1px solid #444;
+    height: 400px;
+}
+
+.avis-produits{
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/*################################*/
+/*-------- affichage avis --------*/
+/*################################*/
+
+.avis-produits {
+    margin-top: 40px;
+}
+
+.liste-avis {
+    display: flex;
+    flex-direction: column;
+    max-height: 350px;   /* hauteur fixe */
+    overflow-y: auto;    /* scroll vertical */
+    padding-right: 10px; /* pour éviter que le scroll cache le texte */
+    gap: 15px; 
+    
+    p{
+        padding-left: 20px;
+    }/* espace entre les avis */
+}
+
+.avis {
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+
+    @media screen and (max-width: 428px){
+        width: 90%;
+    }
+}
+
+.avis-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.commentaire {
+    margin-top: 10px;
+    @media screen and (max-width: 428px){
+        width: 90%;
+    }
+}
+
+.note {
+    color: #f5b301;
+    font-size: 20px;
+}
+
+.note .star {
+    font-size: 1rem;
+    color: transparent;
+    -webkit-text-stroke: 1px #f5b301; /* Contour jaune */
+    margin: 0;
+    padding: 0;
+}
+
+/* étoiles pleines */
+.note .star.full {
+    color: #f5b301;
+}
+
+
+.date {
+    font-size: 13px;
+    color: $colP;
+}
+
+
+.photos-avis {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.photo-avis {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+
+    @media screen and (max-width: 428px){
+        width: 60px;
+        height: 60px;
+    }
+}
+
+

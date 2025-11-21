@@ -1,5 +1,5 @@
 <header>
-        <a class="mobile-only" href="#">
+        <a class="burger-menu" href="#" onclick="openOverlayMobile()">
             <svg width="26" height="22" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.5 1.5H23.65" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M1.5 10.7993H23.65" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -19,19 +19,21 @@
         <!--<img src="" alt="logo front">-->
         <!--<input type="text" placeholder="Rechercher">-->
         <nav>
-            <a class="tab-only" href="ConnexionClient.php">
-            <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.3333 12.6667C13.555 12.6667 16.1667 10.055 16.1667 6.83333C16.1667 3.61167 13.555 1 10.3333 1C7.11167 1 4.5 3.61167 4.5 6.83333C4.5 10.055 7.11167 12.6667 10.3333 12.6667Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M19.6667 21.9998C19.6667 19.5245 18.6833 17.1505 16.933 15.4002C15.1826 13.6498 12.8087 12.6665 10.3333 12.6665C7.85798 12.6665 5.48401 13.6498 3.73367 15.4002C1.98333 17.1505 1 19.5245 1 21.9998" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Se connecter</a>
-            <a class="tab-only" href="Panier.php">
-            <svg width="25" height="28" viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.6111 11.2224C17.6111 12.578 17.0726 13.878 16.1141 14.8365C15.1556 15.795 13.8556 16.3335 12.5 16.3335C11.1445 16.3335 9.84444 15.795 8.88593 14.8365C7.92741 13.878 7.38892 12.578 7.38892 11.2224" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M1.13159 6.15454H23.8684" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M1.51111 5.43006C1.17934 5.87241 1 6.41044 1 6.96339V24C1 24.6778 1.26925 25.3278 1.7485 25.807C2.22776 26.2863 2.87778 26.5556 3.55556 26.5556H21.4444C22.1222 26.5556 22.7722 26.2863 23.2515 25.807C23.7308 25.3278 24 24.6778 24 24V6.96339C24 6.41044 23.8207 5.87241 23.4889 5.43006L20.9333 2.02222C20.6953 1.70483 20.3866 1.44722 20.0318 1.2698C19.6769 1.09237 19.2856 1 18.8889 1H6.11111C5.71437 1 5.32308 1.09237 4.96823 1.2698C4.61338 1.44722 4.30471 1.70483 4.06667 2.02222L1.51111 5.43006Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Mon Panier</a>
+            <a href="ConnexionClient.php">
+                <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.3333 12.6667C13.555 12.6667 16.1667 10.055 16.1667 6.83333C16.1667 3.61167 13.555 1 10.3333 1C7.11167 1 4.5 3.61167 4.5 6.83333C4.5 10.055 7.11167 12.6667 10.3333 12.6667Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M19.6667 21.9998C19.6667 19.5245 18.6833 17.1505 16.933 15.4002C15.1826 13.6498 12.8087 12.6665 10.3333 12.6665C7.85798 12.6665 5.48401 13.6498 3.73367 15.4002C1.98333 17.1505 1 19.5245 1 21.9998" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="tab-only">Se connecter</p>
+            </a>
+            <a href="Panier.php">
+                <svg width="25" height="28" viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.6111 11.2224C17.6111 12.578 17.0726 13.878 16.1141 14.8365C15.1556 15.795 13.8556 16.3335 12.5 16.3335C11.1445 16.3335 9.84444 15.795 8.88593 14.8365C7.92741 13.878 7.38892 12.578 7.38892 11.2224" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.13159 6.15454H23.8684" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.51111 5.43006C1.17934 5.87241 1 6.41044 1 6.96339V24C1 24.6778 1.26925 25.3278 1.7485 25.807C2.22776 26.2863 2.87778 26.5556 3.55556 26.5556H21.4444C22.1222 26.5556 22.7722 26.2863 23.2515 25.807C23.7308 25.3278 24 24.6778 24 24V6.96339C24 6.41044 23.8207 5.87241 23.4889 5.43006L20.9333 2.02222C20.6953 1.70483 20.3866 1.44722 20.0318 1.2698C19.6769 1.09237 19.2856 1 18.8889 1H6.11111C5.71437 1 5.32308 1.09237 4.96823 1.2698C4.61338 1.44722 4.30471 1.70483 4.06667 2.02222L1.51111 5.43006Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="tab-only">Mon Panier</p>
+            </a>
         </nav>
         
         <!--<input type="button" name="button" value="Se connecter">

@@ -1,7 +1,8 @@
 @use "../tools/vFront" as *;
 @use "sass:math";
+
 $wCard:240px;
-$hCard: 340px;
+$hCard: 360px;
 $hCard-mob: 260px;
 
 .card{
@@ -27,7 +28,7 @@ $hCard-mob: 260px;
         img{
             width: 100%;
             background-color: white;
-            max-height: 180px;
+            //max-height: 180px;
             height: auto;
             border-radius: math.div($radius,2);
         }

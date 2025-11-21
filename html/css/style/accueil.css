@@ -1,3 +1,4 @@
+@import url("bootstrap/scss/utilities/api");
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
@@ -127,6 +128,7 @@ input:user-invalid + span, input.invalid + span {
 #            HEADER             #
 ###############################*/
 header {
+  transition: transform 0.3s ease;
   z-index: 1000;
   position: fixed;
   display: inline-flex;
@@ -150,6 +152,9 @@ header nav {
   align-items: center;
 }
 header nav a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding-right: 20px;
   color: white;
   text-decoration: none;
@@ -281,11 +286,12 @@ header nav svg {
 #        Menu Categorie         #
 ################################*/
 .nav-cat {
+  transition: transform 0.3s ease;
   width: 100%;
   background-color: #6CA6E9;
   position: fixed;
   z-index: 999;
-  display: flex;
+  display: none;
   flex-direction: row;
 }
 .nav-cat div {
@@ -316,6 +322,15 @@ header nav svg {
 .nav-cat svg {
   overflow: visible;
 }
+@media screen and (max-width: 428px) {
+  .nav-cat {
+    display: none;
+  }
+}
+
+.burger-menu {
+  margin-left: 20px;
+}
 
 .overlayMenuCat {
   z-index: 998;
@@ -342,6 +357,11 @@ header nav svg {
   left: 0;
   overflow-y: scroll;
   scrollbar-width: none;
+}
+@media screen and (max-width: 428px) {
+  .overlayContentCat {
+    display: none;
+  }
 }
 .overlayContentCat ul {
   padding-inline-start: 1rem;
@@ -381,6 +401,111 @@ header nav svg {
   color: black;
   width: 50%;
   padding: 1em;
+}
+
+.overlayMenuCatMob {
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlayContentCatMob {
+  position: fixed;
+  background: white;
+  text-align: left;
+  min-width: 70%;
+  height: 100%;
+  left: 0;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.overlayContentCatMob ul {
+  padding-inline-start: 1rem;
+}
+.overlayContentCatMob ul li {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+.overlayContentCatMob ul li a {
+  text-decoration: underline;
+  font-family: "Mulish";
+  font-size: 24px;
+  font-weight: 600;
+  color: black;
+}
+.overlayContentCatMob ul ul > li > a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: normal;
+}
+.overlayContentCatMob ul ul > li {
+  margin-left: 1rem;
+}
+.overlayContentCatMob .page-acc {
+  position: sticky;
+  top: 20%;
+  display: flex;
+  align-items: center;
+  border-bottom: 4px solid #A1A1A1;
+  width: 100%;
+  background-color: white;
+  z-index: 1001;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.overlayContentCatMob .page-acc a {
+  text-decoration: none;
+  color: black;
+  margin-left: 1rem;
+}
+.overlayContentCatMob .page-acc svg {
+  margin-left: 50px;
+}
+.overlayContentCatMob .identification {
+  position: sticky;
+  top: 0;
+  background-color: #064082;
+  left: 0;
+  width: 100%;
+  height: 20%;
+}
+.overlayContentCatMob .identification a {
+  text-decoration: none;
+  color: white;
+}
+.overlayContentCatMob .identification h3, .overlayContentCatMob .identification p {
+  margin: 0;
+  color: white;
+}
+.overlayContentCatMob .identification .cross {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.overlayContentCatMob .identification .user-ident {
+  position: absolute;
+  top: 30px;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.overlayContentCatMob .identification .user-ident svg {
+  margin-left: 20px;
+  height: 28px;
+  width: auto;
+}
+.overlayContentCatMob .identification .parcourir-alizon {
+  position: absolute;
+  top: 90px;
+  padding-left: 1rem;
 }
 
 @font-face {
@@ -452,6 +577,11 @@ body {
   padding: 2rem;
   padding-top: 100px;
 }
+@media screen and (max-width: 428px) {
+  .anonnces_produits {
+    padding-top: 40px;
+  }
+}
 
 .annonce_produit {
   background-color: #D1ECF8;
@@ -470,6 +600,14 @@ body {
      object-fit: cover;
   background-color: rgb(217, 217, 217);
   margin-bottom: 1rem;
+}
+@media screen and (max-width: 428px) {
+  .annonce_produit {
+    width: 100%;
+  }
+  .annonce_produit img {
+    height: 100px;
+  }
 }
 
 .boutton {
@@ -491,6 +629,14 @@ body {
 .annonce_produit_large img {
   height: 250px;
 }
+@media screen and (max-width: 428px) {
+  .annonce_produit_large {
+    width: 100%;
+  }
+  .annonce_produit_large img {
+    height: 100px;
+  }
+}
 
 .separateur {
   background-color: #FCB66B;
@@ -501,4 +647,131 @@ body {
 
 .aff_prod {
   margin-left: 30px;
+}
+
+.grid-produits {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  justify-items: center;
+  padding: 2rem;
+}
+@media screen and (max-width: 428px) {
+  .grid-produits {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    padding-top: 1rem;
+    gap: 0;
+  }
+}
+
+.carte-produit {
+  background-color: #D1ECF8;
+  flex: 0 0 auto;
+}
+
+.details {
+  text-decoration: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: "Mulish";
+  width: 100%;
+  min-width: 8rem;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+  justify-items: center;
+  color: black;
+  font-weight: bold;
+  background-color: #FCB66B;
+  border-radius: 1em;
+}
+@media screen and (max-width: 428px) {
+  .details {
+    display: none;
+  }
+}
+
+.carte-produit {
+  margin: 0 20px;
+  color: black;
+  width: auto;
+  height: auto;
+  max-width: 240px;
+  max-height: 360px;
+  border-radius: 0.5em;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+}
+@media screen and (max-width : 428px) {
+  .carte-produit {
+    max-height: 260px;
+    margin: 10px;
+    gap: 5px;
+    padding: 10px;
+  }
+}
+.carte-produit figure {
+  grid-area: 1/1/2/3;
+  margin: 0;
+}
+.carte-produit figure img {
+  width: 100%;
+  background-color: white;
+  height: auto;
+  border-radius: 0.5em;
+}
+.carte-produit figure figcaption {
+  margin-top: 10px;
+}
+.carte-produit .prix {
+  grid-area: 2/1/3/2;
+  align-content: flex-end;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.carte-produit div {
+  grid-area: 2/2/3/3;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: end;
+  float: right;
+  height: auto;
+  gap: 10px;
+}
+.carte-produit div a svg {
+  display: none;
+}
+@media screen and (max-width : 428px) {
+  .carte-produit div a svg {
+    display: block;
+    fill: #FCB66B;
+    stoke: black;
+    width: 30px;
+    height: auto;
+    stroke-width: 1px;
+  }
+}
+.carte-produit div a input {
+  display: block;
+  font-family: "Mulish";
+  width: 100%;
+  margin-top: 20px;
+  min-width: 8rem;
+  height: 2rem;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  background-color: #FCB66B;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+}
+@media screen and (max-width : 428px) {
+  .carte-produit div a input {
+    display: none;
+  }
 }/*# sourceMappingURL=accueil.css.map */
