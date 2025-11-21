@@ -1,15 +1,15 @@
 <?php
 session_start();
-//$_SESSION["codecompte"] = 5;
+$_SESSION["codecompte"] = 5;
 if(!array_key_exists("codeCompte", $_SESSION) || isset($_SESSION["codeCompte"])){
-    header('location: connexionVendeur.php');
+    //header('location: connexionVendeur.php');
     
 }else{
 
     $codeCompte = $_SESSION["codeCompte"];
     
 }
-//$codeCompte = $_SESSION["codecompte"];
+$codeCompte = $_SESSION["codecompte"];
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv('../.env');
@@ -40,7 +40,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alizon BackOffice</title>
-    <link rel="stylesheet" href="../css/style/backoffice/accueil.css" type="text/css">
+    <link rel="stylesheet" href="../css/style/accueilBack.css" type="text/css">
 </head>
 <body>
     <?php include '../includes/backoffice/header.php';
@@ -55,7 +55,7 @@ try {
 
     <div class="content-wrapper"> 
         <aside>
-            <h1>Les réductions</h1>
+            <h1>Les produits</h1>
             <?php $liste_reduc = $bdd->query("SELECT * FROM produit ORDER BY codeproduit"); ?>
             <div>
                 <?php 
@@ -65,24 +65,13 @@ try {
                     $row = $rows[$i];
                 ?>
                 <div class="reduction">
-                    <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.95415 7.94658C2.80088 7.25617 2.82442 6.53824 3.02257 5.85935C3.22073 5.18047 3.58709 4.5626 4.08769 4.06305C4.58829 3.5635 5.20692 3.19843 5.88622 3.00169C6.56552 2.80496 7.2835 2.78293 7.97359 2.93764C8.35341 2.34361 8.87667 1.85475 9.49512 1.51612C10.1136 1.17749 10.8073 1 11.5124 1C12.2175 1 12.9112 1.17749 13.5297 1.51612C14.1481 1.85475 14.6714 2.34361 15.0512 2.93764C15.7423 2.78225 16.4615 2.80419 17.1419 3.0014C17.8223 3.19861 18.4418 3.5647 18.9427 4.0656C19.4436 4.56651 19.8097 5.18596 20.0069 5.86635C20.2041 6.54673 20.226 7.26594 20.0706 7.95708C20.6647 8.3369 21.1535 8.86016 21.4922 9.47861C21.8308 10.0971 22.0083 10.7908 22.0083 11.4959C22.0083 12.201 21.8308 12.8947 21.4922 13.5132C21.1535 14.1316 20.6647 14.6549 20.0706 15.0347C20.2253 15.7248 20.2033 16.4428 20.0066 17.1221C19.8098 17.8014 19.4448 18.42 18.9452 18.9206C18.4457 19.4212 17.8278 19.7875 17.1489 19.9857C16.47 20.1839 15.7521 20.2074 15.0617 20.0541C14.6824 20.6504 14.1587 21.1414 13.5392 21.4815C12.9197 21.8217 12.2244 22 11.5176 22C10.8109 22 10.1156 21.8217 9.49608 21.4815C8.87658 21.1414 8.35292 20.6504 7.97359 20.0541C7.2835 20.2088 6.56552 20.1868 5.88622 19.9901C5.20692 19.7933 4.58829 19.4283 4.08769 18.9287C3.58709 18.4292 3.22073 17.8113 3.02257 17.1324C2.82442 16.4535 2.80088 15.7356 2.95415 15.0452C2.35555 14.6664 1.86249 14.1423 1.52083 13.5217C1.17916 12.9012 1 12.2043 1 11.4959C1 10.7875 1.17916 10.0906 1.52083 9.47003C1.86249 8.84947 2.35555 8.3254 2.95415 7.94658Z" fill="#FF4444" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M14.5012 8.20062L8.20062 14.5012Z" fill="#FF4444"/>
-                        <path d="M14.5012 8.20062L8.20062 14.5012" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8.20062 8.20062H8.21112Z" fill="#FF4444"/>
-                        <path d="M8.20062 8.20062H8.21112" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M14.5012 14.5012H14.5117Z" fill="#FF4444"/>
-                        <path d="M14.5012 14.5012H14.5117" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
                     <a href="article.php">
                 <?php   
                     echo '<img src="../'.htmlspecialchars($row['urlphoto']).'" alt="Photo de '.htmlspecialchars($row['libelleprod']).'"> </a>';
                     echo '<p class="nomArticle">'.htmlspecialchars($row['libelleprod']).'</p>';
-                    echo '<p class="prixBase">'.round(htmlspecialchars($row['prixttc']), 2).'€</p>';
                     echo '<div>';
-                        echo '<p class="prixReduc">'.round(htmlspecialchars($row['prixttc'] / 2), 2).'€</p>';
+                        echo '<p class="prixReduc">'.round(htmlspecialchars($row['prixttc'], 2)).'€</p>';
                 ?>
-                        <p class="pourcentReduc">-50%</p>
                         <a href="modifArticle.php" class="btnModifReduc">
                             <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="15.0422" cy="15.0422" r="15.0422" fill="#6CA6E9"/>
@@ -103,14 +92,14 @@ try {
                 <h1>Les avis</h1>
                 <div>
                 <?php
-                    $liste_avis = $bdd->query("SELECT client.pdprofil, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) ORDER BY avis.codeproduit;");  
+                    $liste_avis = $bdd->query("SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) ORDER BY avis.codeproduit;");  
                     $rows = $liste_avis->fetchAll(PDO::FETCH_ASSOC);
                     $limit = 3;
                     for ($i = 0; $i < $limit; $i++) {
                     ?> 
                     <a href="avis.php" class="avis">
                        <?php 
-                       echo '<img src="../'.htmlspecialchars($rows[$i]['pdprofil']).'" alt="Photo de profil de '.htmlspecialchars($rows[$i]['pseudo']).'" class="pdp">';?>
+                       echo '<img src="../'.htmlspecialchars($rows[$i]['urlphoto']).'" alt="Photo de profil de '.htmlspecialchars($rows[$i]['pseudo']).'" class="pdp">';?>
                         <div class="infoAvis">
                             <div class="nomNote">
                                 <?php
@@ -132,6 +121,7 @@ try {
                                 } else {
                                     $affichage = $commentaire;
                                 }
+                                echo '<p class="contenuAvis">'.$affichage.'</p>';
                             ?>
                         </div>
                     </a>

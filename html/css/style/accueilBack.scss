@@ -1,6 +1,8 @@
-@use '../../tools/vback.scss' as *;
-//@use '../styleCom.scss' as *;
+
 @use './styleComB.scss' as *;
+@use '../tools/vback.scss' as *;
+
+
 @use 'sass:color';
 
 
@@ -234,28 +236,17 @@ body {
         padding: 1em;
         text-decoration: none;
         position: relative;
-
-        h3{
-            font-family: $Poltitle , sans-serif;
-            font-size: 1em;
-            color: $blanc;
-            margin-bottom: 0.5em;
-            background-color: $inverse;
-            text-align: center;
-            border-radius: 8px;
-            width: 7.8em;
-            top: -1.75em;
-            right: 0em;
-            position: absolute;
-
         }
 
         .pdp{
             width: 4.5em;
             height: 4.5em;
             border-radius: 50%;
-            margin-top: -0.25em;
-            margin-bottom: 0.5em;
+            margin :{
+                bottom: 0.5em;
+                top: -0.25em;
+                right: 0.5em;
+            }    
             display: flex;
             align-items: center;
             justify-content: center;
@@ -271,16 +262,15 @@ body {
         
 
         
-    }
 }
 .infoAvis{
     display: flex;
     flex-direction: column;
-    margin-top: -0.75em;
     .nomNote{
         display: flex;
         flex-direction: row;
         align-items: center;
+        height: 1.5em;
         p{
             font-family: $Poltext , sans-serif;
             font-size: $PetTitle;
@@ -299,11 +289,8 @@ body {
         font-family: $Poltext , sans-serif;
         font-size: 1.2em;
         color: $noir;
-        margin: {
-            top: 0;
-            left: 0.5em;
-        } 
-        
+        margin-top: 0em;
+        height: 0.5em;
     }
 
     .contenuAvis{
@@ -312,7 +299,6 @@ body {
         color: $noir;
         text-overflow: ellipsis;
         margin: 0;
-        margin-left: 0.5em;
     }
 }
 .lesPromotions {
