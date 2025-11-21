@@ -1,56 +1,13 @@
 @use '../tools/vback.scss' as *;
 @use '../components/fonts.css' as *;
-@use '../style/styleCom.scss' as *;
+@use '../style/backoffice/styleComB' as *;
 @use "../tools/mixin/com" as *;
 @use 'sass:color';
 
-header{
-    position:relative;
-    display: flex;
-    flex-direction: row;
-    background-color: $colP;
-    
-    .logo_alizon_back{
-        width: 118px;
-        height: auto;
-        margin: 1em 2em 1em 2em;
-    }
 
-    h1{
-        color: white;
-        font-family: $Poltitle , sans-serif;
-        font-size: 2em;
-        margin: 0 22em 0 0;
-    }
-
-    a {
-        display: flex;
-        outline:none;
-        text-decoration: none;
-        h2{
-        color: white;
-        font-family: $Poltitle , sans-serif;
-        font-size: 1.5em;
-        margin: 0 2em 0 0;
-        
-        }
-        .ajout{
-            margin: 0 0.5em 0 2em;
-            width: auto;
-            height: auto;
-            flex-direction: row;
-        }
-        .user{
-            width: 2em;
-            height: auto;
-            margin: 0 0.5em 0 2em;
-            flex-direction: row;
-        }
-    }
-    
-}
 
 main{
+    margin-top: 2em;
     padding-bottom:2em;
     display:flex;
     flex-direction:column;

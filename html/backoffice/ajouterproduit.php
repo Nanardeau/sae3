@@ -13,6 +13,7 @@ if(isset($_GET["erreur"])){
 else{
         $erreur = NULL;
     }
+
 session_start();
 //Connexion à la base de données.
 require_once('../_env.php');
@@ -40,10 +41,10 @@ try {
         header('Location: http://localhost:8888/index.php');
         
 }
-$_SESSION["codeCompte"] = 5; //ligne temporaire, en attendant d"avoir le système de connexion 
+//$_SESSION["codeCompte"] = 5; //ligne temporaire, en attendant d"avoir le système de connexion 
 
-if(!isset($_SESSION["codeCompte"])){
-        header('Location: http://localhost:8888/backoffice/index.php');
+if(isset($_SESSION["codeCompte"])){
+        header('Location: http://localhost:8888/backoffice/accueil.php');
            
     }
 $bdd->query('set schema \'alizon\'');
@@ -111,7 +112,7 @@ $bdd->query('set schema \'alizon\'');
     </select>
 
     <label for="TVA">TVA</label>
-    <span>taux de TVA à appliquer au produit </span>
+    <span>taux de TVA à appliquée au produit </span>
     <select name="TVA" id="TVA" required>
         <option value="" disabled selected>Choisir le taux TVA</option>
         <?php 
