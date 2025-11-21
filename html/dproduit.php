@@ -132,12 +132,12 @@ unset($avis);
 
                     <h2>Votre avis</h2>
 
-                    <div class="noter">
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
+                    <div class="noter" id="stars">
+                        <span data-value="1">★</span>
+                        <span data-value="2">★</span>
+                        <span data-value="3">★</span>
+                        <span data-value="4">★</span>
+                        <span data-value="5">★</span>
                     </div>
 
                     <span id="note-value" style="display:none;">0</span>
@@ -154,7 +154,7 @@ unset($avis);
                     </div>
 
                     <input type="hidden" name="codeProduit" value="<?= $produit['codeproduit'] ?>">
-                    <input type="hidden" name="noteProd" value="4">
+                    <input type="hidden" name="noteProd" id="noteProd" value="0">
 
                 </form>
 
@@ -174,14 +174,16 @@ unset($avis);
                                 <strong>
                                     <?= htmlspecialchars($avis['prenom'] . " " . strtoupper($avis['nom'])) ?>
                                 </strong>
-                                <!-- <span class="note">
-                                    <?= str_repeat("★", (int)$avis['noteprod']) ?>
-                                    <?= str_repeat("☆", 5 - (int)$avis['noteprod']) ?>
-                                </span> -->
                                 <span class="date">
                                     <?= date("d/m/Y", strtotime($avis['datepublication'])) ?>
                                 </span>
                             </div>
+                            <span class="note">
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <span class="star <?= $i <= (int)$avis['noteprod'] ? 'full' : '' ?>">★</span>
+                                <?php endfor; ?>
+                            </span>
+
 
                             <p class="commentaire">
                                 <?= htmlspecialchars($avis['commentaire']) ?>

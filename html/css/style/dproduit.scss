@@ -242,6 +242,21 @@ main{
         margin-bottom: 15px;
     }
 
+    .noter span {
+        font-size: 2.4rem;
+        cursor: pointer;
+        color: transparent;
+        -webkit-text-stroke: 2px #f5b301; /* Contour jaune */
+        transition: 0.2s;
+    }
+
+    /* Étoiles "pleines" */
+    .noter span.full {
+        color: #f5b301;
+        -webkit-text-stroke: 2px #f5b301;
+    }
+
+
     textarea {
         align-self: center;
         width: 90%;
@@ -364,9 +379,23 @@ input[type="file"] {
 }
 
 .note {
-    color: gold;
+    color: #f5b301;
     font-size: 20px;
 }
+
+.note .star {
+    font-size: 1rem;
+    color: transparent;
+    -webkit-text-stroke: 1px #f5b301; /* Contour jaune */
+    margin: 0;
+    padding: 0;
+}
+
+/* étoiles pleines */
+.note .star.full {
+    color: #f5b301;
+}
+
 
 .date {
     font-size: 13px;

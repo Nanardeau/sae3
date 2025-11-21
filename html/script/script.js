@@ -73,4 +73,35 @@ window.addEventListener("scroll", () => {
 });
 
 
+const stars = document.querySelectorAll('#stars span');
+const noteInput = document.getElementById('noteProd');
+
+function updateStars(note) {
+    stars.forEach(s => {
+        if (s.dataset.value <= note) {
+            s.classList.add('full');
+        } else {
+            s.classList.remove('full');
+        }
+    });
+}
+
+stars.forEach(star => {
+
+    star.addEventListener('click', () => {
+        noteInput.value = star.dataset.value;
+        updateStars(noteInput.value);
+    });
+
+    star.addEventListener('mouseover', () => {
+        updateStars(star.dataset.value);
+    });
+
+    star.addEventListener('mouseout', () => {
+        updateStars(noteInput.value);
+    });
+});
+
+
+
 
