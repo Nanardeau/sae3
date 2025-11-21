@@ -1,7 +1,7 @@
 <?php
     header("location:infosCompte.php");
     session_start();
-    require_once __DIR__ . '/env.php';
+    require_once __DIR__ . '/_env.php';
 
     loadEnv(__DIR__ . '/.env');
 
@@ -19,16 +19,30 @@
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
-    $_SESSION["codeCompte"] = 1;
+
     $codeCompte = $_SESSION["codeCompte"];
     $infosCompte = $bdd->query("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
 
     $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
     
-    if($_GET["modif"] == "mdp"){
-        $stmt = $bdd->prepare("UPDATE alizon.Client SET mdp = '".$_SESSION["nouveauMdp"]."' WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
-        $stmt->execute();
-        $_SESSION["nouveauMdp"] = "";
+    if(isset($_GET["traitement"])){
+        switch($_GET["traitement"]){
+            case "bloquer":
+                    $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = TRUE WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
+                    $stmt->execute();
+                    session_destroy();
+            case "deconnecter":
+                session_destroy();
+        }
+    }    
+
+    if(isset($_GET["modif"])){
+        if( $_GET["modif"] == "mdp"){
+            $stmt = $bdd->prepare("UPDATE alizon.Client SET mdp = '".$_SESSION["nouveauMdp"]."' WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
+            $stmt->execute();
+            $_SESSION["nouveauMdp"] = "";
+        }
+
     }
 
 

@@ -267,7 +267,7 @@ header nav a {
 header nav svg {
   padding-right: 10px;
 }
-@media screen and (max-width: 428px) {
+@media screen and (max-width : 428px) {
   header .logo_alizon_front {
     padding-left: 30px;
     width: 100px;
@@ -355,7 +355,7 @@ header nav svg {
 .footer .mobile-only {
   display: none;
 }
-@media screen and (max-width: 428px) {
+@media screen and (max-width : 428px) {
   .footer {
     display: flex;
     flex-direction: column;

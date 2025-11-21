@@ -1,23 +1,14 @@
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paiement</title>
-    <link href="./css/style/paiement.css" rel="stylesheet" type="text/css">
-    <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <?php
+<?php
         session_start(); 
 
-        $_SESSION["codeCompte"] = 3;
-        $codeCompte = $_SESSION["codeCompte"];
-        //$codeCompte = 3;
+
+        
+
 
         if(!array_key_exists("codeCompte", $_SESSION)){
-            //header("location:index.php");
+            header("location:index.php");
         }
-        
+        $codeCompte = $_SESSION["codeCompte"];
         
         require_once __DIR__ . '/_env.php';
 
@@ -62,6 +53,16 @@
     $idPanier = $panier["idpanier"];
 
    ?>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement</title>
+    <link href="./css/style/paiement.css" rel="stylesheet" type="text/css">
+    <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
 
 
 <?php include "./includes/headerCon.php"?>

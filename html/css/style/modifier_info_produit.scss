@@ -57,9 +57,7 @@ main{
             .bouton{
             height:5em;
             font-size:$MoyTitle;
-                @media screen and ($mobile){
-                    height:4em;
-                }
+
             }
             
         }

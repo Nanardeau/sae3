@@ -25,19 +25,19 @@ try {
 }
 $bdd->query('set schema \'alizon\'');
 $error_msg = "";
-
-
-
 if($_POST){
     $id = $_POST["pseudo"];
     $mdp = $_POST["mdp"];
 
-    $req= $bdd->query ("SELECT * FROM Vendeur WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
+    $req= $bdd->query("SELECT * FROM Vendeur WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
     $rep= $req->fetch();
+
     if($rep!=null){
         session_start();
-        $_SESSION["codeCompte"] = $rep["codeCompte"];
-        header("location: accueil.php");
+        $_SESSION["codeCompte"] = $rep["codecompte"];
+        $_SESSION["pseudo"] = "";
+        $_SESSION["mdp"] = "";
+        exit(header("location: accueil.php"));
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         
@@ -64,7 +64,7 @@ if($_POST){
             <h2>Connexion</h2>
             <h4>Profil Responsable</h4>
             <label for="pseudo">Identifiant</label>
-            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" required/>
+            <input type="text" name="pseudo" placeholder="Identifiant..." id="pseudo" required/>
             <label for="mdp">Mot de passe</label>
             <input type="password" name="mdp" placeholder="Mot de passe..." id="mdp" required/>
              <?php

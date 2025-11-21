@@ -13,8 +13,7 @@ CREATE TABLE Compte(
     prenom VARCHAR(20),
     email VARCHAR(50) NOT NULL,
     mdp VARCHAR(20) NOT NULL,
-    numTel VARCHAR(20),
-    pdProfil VARCHAR(40) REFERENCES Photo(urlPhoto)
+    numTel VARCHAR(20)
 );
 CREATE TABLE Adresse(
     idAdresse SERIAL PRIMARY KEY NOT NULL,
@@ -30,6 +29,7 @@ CREATE TABLE Client(
     pseudo VARCHAR(20) NOT NULL,
     cmtBlq BOOLEAN,
     cmtBlqMod BOOLEAN,
+	dateNaissance DATE,
 	UNIQUE(codeCompte)
 ) INHERITS (Compte);
 
@@ -42,6 +42,7 @@ CREATE TABLE Gestionaire(UNIQUE(codeCompte)) INHERITS (Compte);
 
 CREATE TABLE Vendeur(
     SIREN VARCHAR(20) UNIQUE,
+	pseudo VARCHAR(20) UNIQUE NOT NULL,
     raisonSociale VARCHAR(20),
 	idAdresseSiege INTEGER REFERENCES Adresse(idAdresse),
 	UNIQUE(codeCompte)

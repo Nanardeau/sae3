@@ -93,7 +93,7 @@ header{
         }
     }
 
-    @media screen and (max-width: 428px) {
+    @media #{$mobile}{
         .logo_alizon_front{
             padding-left: 30px;
             width: 100px;
@@ -204,7 +204,7 @@ header{
         display: none;
     }
 
-    @media screen and (max-width: 428px) {
+    @media #{$mobile} {
         display: flex;
         flex-direction: column;
 
