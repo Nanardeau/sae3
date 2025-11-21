@@ -555,6 +555,10 @@ form {
   align-self: center;
   padding: 2em;
 }
+form span {
+  color: #6e6e6e;
+  font-size: small;
+}
 form textarea {
   border: solid 1px;
   border-radius: 1em;

@@ -67,7 +67,10 @@ form{
     margin-top:1em;
     align-self:center;
     padding:2em;
-    
+    span{
+        color:#6e6e6e;
+        font-size: small;
+    }
     textarea{
         border:solid 1px;
         border-radius:$radius;

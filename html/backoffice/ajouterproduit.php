@@ -92,6 +92,7 @@ $bdd->query('set schema \'alizon\'');
     ?>
     </select>
     <label for="origine">Origine</label>
+    <span>Provenance du produit</span>
     <select name="origine" id="origine" required>
         <option value="" disabled selected>Choisir l'origine</option>
         <option value="Étranger">Étranger</option>
@@ -99,6 +100,7 @@ $bdd->query('set schema \'alizon\'');
         <option value="Breizh">Breizh</option>
     </select>
     <label for="tarif">Tarification</label>
+    <span>Ajout du coût de livraison au prix HT du produit</span>
     <select name="tarif" id="tarif" required>
         <option value="" disabled selected>Choisir la tarification</option>
         <option value="tarif1">Tarification 1 - 2,00€</option>
@@ -109,6 +111,7 @@ $bdd->query('set schema \'alizon\'');
     </select>
 
     <label for="TVA">TVA</label>
+    <span>taux de TVA à appliquer au produit </span>
     <select name="TVA" id="TVA" required>
         <option value="" disabled selected>Choisir le taux TVA</option>
         <?php 
@@ -124,6 +127,7 @@ $bdd->query('set schema \'alizon\'');
     <label for="qteStock" class="pObl">Quantité Stock</label>
     <input type="number" name="qteStock" placeholder="Nombre de produit en stock" id="qteStock"/> 
     <label for="prix">Seuil d'alerte</label>
+    <span>Seuil à partir duquel vous serez averti pour le réassort </span>
     <input type="number" name="seuil" placeholder="Seuil d'alerte du produit" id="seuil" required/>
     <label for="photoProd" class="pObl">Photo du Produit</label>
     <input type="file" name="photo" id="photoProd" accept="image/*"/>
