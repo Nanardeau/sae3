@@ -44,29 +44,16 @@ $bdd->query('set schema \'alizon\'');
         $codeCompte = $_SESSION['codeCompte'];
     }else{
         include 'includes/header.php';
+        include 'includes/menu_cat.php';
     }
     ?>
-    
+
     <main>
-        <button popovertarget="overlayAchat">Ouvrir</button>
-        <div popover="auto" id="overlayAchat">
-            <p>Acheter maintenant ?</p>
-            <button>Ui</button>
-        </div>
+        
+
         <h1>Toutes les catégories</h1>
 
-<!-- mettre dans session "enachat=1" et changer dans connexion client le bouton !
-$_SESSION["enAchat"] = 1;
 
-
-##DANS CONNEXION##
-if(isset($_SESSION["enAchat"])){
-    exit(header("location:paiement.php"));
-} 
-else{
-    exit(header("location:index.php));
-}
---> 
         <?php
         
         $catCurr = null;
@@ -116,7 +103,7 @@ else{
 
                         <div class="card">
                             <figure>
-                                <a href="test.php"><img src="<?php echo $img ?>" /></a>
+                                <a href="dproduit.php?id=<?= $codeProduit ?>"><img src="<?php echo $img ?>" /></a>
                                 <figcaption><?php echo $libArt ?></figcaption>
                             </figure>
                             <p class="prix"><?php  echo $prix ?> €</p>
@@ -130,7 +117,7 @@ else{
                                     </svg>
                                 </a>
                                 <a class="button" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>">Ajouter au panier</a>
-                                <a class="button">Détails</a>
+                                <a class="button" href="dproduit.php?id=<?= $codeProduit  ?>">Détails</a>
                             </div>
 
                         </div>
