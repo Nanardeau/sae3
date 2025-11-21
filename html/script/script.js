@@ -103,5 +103,18 @@ stars.forEach(star => {
 });
 
 
+const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+let index = 0;
+
+function nextSlide() {
+    index = (index + 1) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+// Défilement automatique toutes les 4 secondes
+setInterval(nextSlide, 4000);
+
+
 
 
