@@ -44,6 +44,7 @@ $bdd->query('set schema \'alizon\'');
         $codeCompte = $_SESSION['codeCompte'];
     }else{
         include 'includes/header.php';
+        include 'includes/menu_cat.php';
     }
     ?>
 
@@ -102,7 +103,7 @@ $bdd->query('set schema \'alizon\'');
 
                         <div class="card">
                             <figure>
-                                <a href="test.php"><img src="<?php echo $img ?>" /></a>
+                                <a href="dproduit.php?id=<?= $codeProduit ?>"><img src="<?php echo $img ?>" /></a>
                                 <figcaption><?php echo $libArt ?></figcaption>
                             </figure>
                             <p class="prix"><?php  echo $prix ?> €</p>
@@ -116,7 +117,7 @@ $bdd->query('set schema \'alizon\'');
                                     </svg>
                                 </a>
                                 <a class="button" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>">Ajouter au panier</a>
-                                <a class="button">Détails</a>
+                                <a class="button" href="dproduit.php?id=<?= $codeProduit  ?>">Détails</a>
                             </div>
 
                         </div>

@@ -127,6 +127,7 @@ input:user-invalid + span, input.invalid + span {
 #            HEADER             #
 ###############################*/
 header {
+  transition: transform 0.3s ease;
   z-index: 1000;
   position: fixed;
   display: inline-flex;
@@ -150,6 +151,9 @@ header nav {
   align-items: center;
 }
 header nav a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding-right: 20px;
   color: white;
   text-decoration: none;
@@ -281,11 +285,12 @@ header nav svg {
 #        Menu Categorie         #
 ################################*/
 .nav-cat {
+  transition: transform 0.3s ease;
   width: 100%;
   background-color: #6CA6E9;
   position: fixed;
   z-index: 999;
-  display: flex;
+  display: none;
   flex-direction: row;
 }
 .nav-cat div {
@@ -316,6 +321,15 @@ header nav svg {
 .nav-cat svg {
   overflow: visible;
 }
+@media screen and (max-width: 428px) {
+  .nav-cat {
+    display: none;
+  }
+}
+
+.burger-menu {
+  margin-left: 20px;
+}
 
 .overlayMenuCat {
   z-index: 998;
@@ -342,6 +356,11 @@ header nav svg {
   left: 0;
   overflow-y: scroll;
   scrollbar-width: none;
+}
+@media screen and (max-width: 428px) {
+  .overlayContentCat {
+    display: none;
+  }
 }
 .overlayContentCat ul {
   padding-inline-start: 1rem;
@@ -383,13 +402,118 @@ header nav svg {
   padding: 1em;
 }
 
+.overlayMenuCatMob {
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlayContentCatMob {
+  position: fixed;
+  background: white;
+  text-align: left;
+  min-width: 70%;
+  height: 100%;
+  left: 0;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.overlayContentCatMob ul {
+  padding-inline-start: 1rem;
+}
+.overlayContentCatMob ul li {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+.overlayContentCatMob ul li a {
+  text-decoration: underline;
+  font-family: "Mulish";
+  font-size: 24px;
+  font-weight: 600;
+  color: black;
+}
+.overlayContentCatMob ul ul > li > a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: normal;
+}
+.overlayContentCatMob ul ul > li {
+  margin-left: 1rem;
+}
+.overlayContentCatMob .page-acc {
+  position: sticky;
+  top: 20%;
+  display: flex;
+  align-items: center;
+  border-bottom: 4px solid #A1A1A1;
+  width: 100%;
+  background-color: white;
+  z-index: 1001;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.overlayContentCatMob .page-acc a {
+  text-decoration: none;
+  color: black;
+  margin-left: 1rem;
+}
+.overlayContentCatMob .page-acc svg {
+  margin-left: 50px;
+}
+.overlayContentCatMob .identification {
+  position: sticky;
+  top: 0;
+  background-color: #064082;
+  left: 0;
+  width: 100%;
+  height: 20%;
+}
+.overlayContentCatMob .identification a {
+  text-decoration: none;
+  color: white;
+}
+.overlayContentCatMob .identification h3, .overlayContentCatMob .identification p {
+  margin: 0;
+  color: white;
+}
+.overlayContentCatMob .identification .cross {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.overlayContentCatMob .identification .user-ident {
+  position: absolute;
+  top: 30px;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.overlayContentCatMob .identification .user-ident svg {
+  margin-left: 20px;
+  height: 28px;
+  width: auto;
+}
+.overlayContentCatMob .identification .parcourir-alizon {
+  position: absolute;
+  top: 90px;
+  padding-left: 1rem;
+}
+
 .card {
   margin: 0 20px;
   color: black;
   width: auto;
   height: auto;
   max-width: 240px;
-  max-height: 340px;
+  max-height: 360px;
   border-radius: 0.5em;
   padding: 20px;
   display: grid;
@@ -409,7 +533,6 @@ header nav svg {
 .card figure img {
   width: 100%;
   background-color: white;
-  max-height: 180px;
   height: auto;
   border-radius: 0.5em;
 }

@@ -1,6 +1,15 @@
+@use "sass:math";
 @use "./styleCom" as *;
 @use "../tools/vFront" as *;
 @use "../components/fonts" as *;
+//@use "../components/carte";
+@import url("bootstrap/scss/utilities/api");
+
+$wCard:240px;
+$hCard: 360px;
+$hCard-mob: 260px;
+
+
 
 body{
     margin: 0;  
@@ -19,9 +28,14 @@ body{
     gap: 2rem;
     padding: 2rem;
     padding-top: 100px;
+
+    @media screen and (max-width: 428px){
+        padding-top: 40px;
+    }
 }
 
 .annonce_produit {
+
     background-color: $colS;
     border-radius: $radius;
     width: 40%;
@@ -36,6 +50,12 @@ body{
         object-fit: cover;
         background-color: rgb(217, 217, 217);
         margin-bottom: 1rem;
+    }
+    @media screen and (max-width: 428px){
+        width: 100%;
+        img{
+            height: 100px;
+        }
     }
 }
 
@@ -61,6 +81,13 @@ body{
     img {
         height: 250px;
     }
+
+    @media screen and (max-width: 428px){
+        width: 100%;
+        img{
+            height: 100px;
+        }
+    }
 }
 
 
@@ -75,6 +102,144 @@ body{
 .aff_prod{
     margin-left: 30px;
 }
+
+.grid-produits {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+    justify-items: center;
+    padding: 2rem;
+
+    @media screen and (max-width: 428px) {
+        grid-template-columns: 1fr 1fr;
+        padding: 0;
+        padding-top: 1rem;
+        gap: 0;
+    }
+}
+
+.carte-produit{
+    background-color: $colS;
+    flex: 0 0 auto;
+    
+}
+
+.details{
+    text-decoration: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: $Poltext;
+    width: 100%;
+    min-width: 8rem;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    justify-items: center;
+    color : $noir;
+    font-weight: bold;
+    background-color: $eleOrange;
+    border-radius: $radius;
+
+    @media screen and (max-width: 428px){
+        display:none;
+    }
+}
+
+
+
+.carte-produit{
+    margin: 0 20px;
+    color : $noir;
+    width: auto;
+    height: auto;
+    max-width: $wCard;
+    max-height: $hCard;
+    border-radius: math.div($radius,2);
+    padding : $pad;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap:$marg;
+    @media #{$mobile} {
+        max-height: $hCard-mob;
+        margin: 10px;
+        gap: 5px;
+        padding: 10px;
+    }
+    figure{
+        grid-area: 1/1/2/3;
+        
+        margin:0;
+        img{
+            width: 100%;
+            background-color: white;
+            //max-height: 180px;
+            height: auto;
+            border-radius: math.div($radius,2);
+        }
+        figcaption{
+            margin-top : 10px;
+            
+        }
+        
+    }
+
+    .prix{
+        grid-area: 2/1/3/2;
+        align-content: flex-end;
+        margin:0;
+        
+    }
+    div{
+        grid-area: 2/2/3/3;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: end;
+        float: right;
+        height: auto;
+        a svg{
+            display: none;
+            @media #{$mobile} {
+                display: block;
+                fill: $eleOrange;
+                stoke : $noir;
+                width: 30px;
+                height: auto;
+                stroke-width: 1px;
+                
+                
+            }
+        }
+        a  input{
+            display :block;
+            font-family: $Poltext;
+            width: 100%;
+            margin-top : $marg;
+            min-width: 8rem;
+            
+            height: 2rem;
+            text-align: center;
+            color : $noir;
+            font-weight: bold;
+            background-color: $eleOrange;
+            border:none;
+            border-radius: $radius;
+            cursor:pointer;
+            @media #{$mobile}{
+                display:none;
+                
+            }
+        
+            
+        }
+
+    }
+    
+
+    
+}
+
+
 
 
 

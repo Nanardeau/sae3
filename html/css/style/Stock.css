@@ -326,7 +326,7 @@ header a .user {
   width: auto;
   height: auto;
   max-width: 240px;
-  max-height: 340px;
+  max-height: 360px;
   border-radius: 0.5em;
   padding: 20px;
   display: grid;
@@ -346,7 +346,6 @@ header a .user {
 .card figure img {
   width: 100%;
   background-color: white;
-  max-height: 180px;
   height: auto;
   border-radius: 0.5em;
 }
