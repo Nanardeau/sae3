@@ -20,124 +20,138 @@
             <img src="../img/logoAlizonBack.svg" alt="Alizon">
             <h1>Back Office</h1>
         </div>
-       
         <form action="creer_compte_vendeur.php" method="post">
-        <div class="alignementPR_IE">
-            <div>
-                
-                <h2>
-                    Création de compte
-                </h2>
-                <h3>
-                    Profil Responsable
-                </h3>
-                <h5>
-                    Identifiant* :
-                </h5>
-                <?php 
-                    if($erreur == "pseudo"){
-                        echo "<p style=\"color:red\">Pseudonyme déjà utilisé</p>";
-                    }
-                ?>
-                <input type="text" name="identifiant" id="identifiant" class="dimension" pattern="[A-Za-z._0-9]{2,20}" required>
-                <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
-                <div class="nomPrenom">
-                    <div class="labelInput">
-                        <h5>
-                            Nom* :
-                        </h5>
-                        
-                        <input type="text" name="nom" id="nom"  class="dimension_petit" required>
-                        <span>Le nom doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
+            <div class="main">
+                <section>
+                    <h2>
+                        Création de compte
+                    </h2>
+                    <h3>
+                        Profil Responsable
+                    </h3>
+                    <div class="label">
+                        <label>
+                            Identifiant* :
+                        </label>
+                        <?php 
+                            if($erreur == "pseudo"){
+                                echo "<p style=\"color:red\">Pseudonyme déjà utilisé</p>";
+                            }
+                        ?>
+                        <input type="text" name="identifiant" id="identifiant" pattern="[A-Za-z._0-9]{2,20}" required>
+                        <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
                     </div>
-                    <div class="labelInput">
-                        <h5>
-                            Prenom* :
-                        </h5>
-                        <input type="text" name="prenom" id="prenom"  class="dimension_petit" required>
-                        <span>Le prenom doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
+                    <div class="alignementdesentrer">
+                        <div class="label">
+                            <label>
+                                Nom* :
+                            </label>
+                            <input type="text" name="nom" id="nom" required>
+                            <span>Le nom doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
+                        </div>
+                        <div class="label">
+                            <label>
+                                Prenom* :
+                            </label>
+                            <input type="text" name="prenom" id="prenom"  class="dimension_petit" required>
+                            <span>Le prenom doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
+                        </div>
                     </div>
-                </div>
-                
-                <h5>
-                    Adresse e-mail* :
-                </h5>
-                
-                <?php 
-                    if($erreur == "mail"){
-                        echo "<p>Adresse e-mail déjà utilisée</p>";   
-                    }
-                ?>
-                <input type="text" name="email" id="email" class="dimension" pattern="^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$" required>
-                <span>le format est incorrecte ("exemple : a@gmail.fr")</span>
-                
-                <h5>
-                    Confirmer adresse e-mail* :
-                </h5>
-                
-                <input type="text" name="email_conf" id="email_conf" class="dimension"  required>
-                <span>Les deux adresses e-mail doivent être identiques</span>
-                
-                <h5>
-                    Numéro de téléphone* :
-                </h5>
-                
-                <input type="text" name="num_tel" id="num_tel" class="dimension_petit" pattern="[0-9]{10}" required>
-                <span>Le numero de telephone doit faire 10 numéros</span>
-                <h5>
-                    mot de passe* :
-                </h5>
-                <input type="password" name="mdp" id="mdp" class="dimension" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required>
-                <span>incorecte : minimum 2 et maximum 20 caractère</span>
-                <h5>
-                    Confirmer mot de passe* :
-                </h5>
-                <input type="password" name="mdp_conf" id="mdp_conf" class="dimension" required>
-                <span>les deux mots de passe doivent être pareil</span>
+                    <div class="label">
+                        <label>
+                            Adresse e-mail* :
+                        </label>
+                        <?php 
+                            if($erreur == "mail"){
+                                echo "<p>Adresse e-mail déjà utilisée</p>";   
+                            }
+                        ?>
+                        <input type="text" name="email" id="email" pattern="^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$" placeholder="Adresse e-mail(ex: nomadresse@gmail.fr)" required>
+                        <span>le format est incorrecte ("exemple : a@gmail.fr")</span>
+                    </div>
+                    <div class="label">
+                        <label>
+                            Confirmer adresse e-mail* :
+                        </label>
+                        <input type="text" name="email_conf" id="email_conf"  required>
+                        <span>Les deux adresses e-mail doivent être identiques</span>
+                    </div>
+                    <div class="label">
+                        <label>
+                            Numéro de téléphone* :
+                        </label>
+                        <input type="text" name="num_tel" id="num_tel" pattern="[0-9]{10}" placeholder="Numéro de téléphone(ex: 0298525236)" required>
+                        <span>Le numero de telephone doit faire 10 numéros</span>
+                    </div>
+                    <div class="label">
+                        <label>
+                            Mot de passe* :
+                        </label>
+                        <input type="password" name="mdp" id="mdp" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required>
+                        <span>incorecte : minimum 2 et maximum 20 caractère</span>
+                    </div>
+                    <div class="label">
+                        <label>
+                            Confirmer mot de passe* :
+                        </label>
+                        <input type="password" name="mdp_conf" id="mdp_conf" required>
+                        <span>les deux mots de passe doivent être pareil</span>
+                    </div>
+                </section>
+                <hr>
+                <section>
+                    <h3>
+                        Information entreprise
+                    </h3>
+                    <div class="label">
+                        <label>
+                            Numéro de SIREN* :
+                        </label>
+                        <input type="text" name="num_siren" id="num_siren" required>
+                        <span>Le numéro siren existe déjà</span>
+                    </div>
+                    <div class="label">
+                        <label>
+                            Raison sociale* :
+                        </label>
+                        <input type="text" name="raison_soc" id="raison_soc" required>
+                    </div>
+                    <div class="label">
+                        <label>
+                            Numéro d'adresse* :
+                        </label>
+                        <input type="text" name="num_adresse1" id="num_adresse1" required>
+                    </div>
+                    <div class="label">
+                        <label>
+                            Rue* :
+                        </label>
+                        <input type="text" name="rue_adresse1" id="rue_adresse1" required>
+                    </div>
+                    <div class="label">
+                        <label>
+                            Complément :
+                        </label>
+                        <input type="text" name="adresse2" id="adresse2">
+                    </div>
+                    <div class="label">
+                        <label>
+                            Code postal* :
+                        </label>
+                        <input type="text" name="code_post" id="code_post" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" required>
+                        <span>incorrecte on doit avoir 5 chiffres à la suite</span>
+                    </div>
+                    <div class="label">
+                        <label>
+                            Ville* :
+                        </label>
+                        <input type="text" name="ville" id="ville" required>
+                    </div>
+                </section>
             </div>
-            <hr>
-            <div>
-                <h3>
-                    Information entreprise
-                </h3>
-                <h5>
-                    Numéro de SIREN* :
-                </h5>
-                <input type="text" name="num_siren" id="num_siren" class="dimension" required>
-                <span>Le numéro siren existe déjà</span>
-                <h5>
-                    Raison sociale* :
-                </h5>
-                <input type="text" name="raison_soc" id="raison_soc" class="dimension" required>
-
-                <h5>
-                    ligne d'adresse 1* :
-                </h5>
-                <input type="text" name="num_adresse1" id="num_adresse1" placeholder="Numéro de l'adresse" class="num_adresse" required>
-                <input type="text"name="rue_adresse1" id="rue_adresse1" placeholder="Rue" class="rue_adresse" required>
-                <h5>
-                    ligne d'adresse 2 :
-                </h5>
-                <input type="text" name="adresse2" id="adresse2" placeholder="Apt, suite, unité, nom de l’entreprise (facultatif)" class="dimension">
-                <h5>
-                    Code postal* :
-                </h5>
-                <input type="text" name="code_post" id="code_post" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" required>
-                <span>incorrecte on doit avoir 5 chiffres à la suite</span>
-                <h5>
-                    Ville* :
-                </h5>
-                <input type="text" name="ville" id="ville" class="dimension" required>
-                
-                
-                
+            <div class="boutton">
+                <button type="submit" id="valider" >Créer le compte</button>
             </div>
-        </div>
-        <div class="button">
-            <button type="submit" id="valider" >Créer le compte</button>
-        </div>
-        
-        
         </form>
     </main>
     <?php include("../includes/backoffice/footer.php"); ?>

@@ -195,90 +195,80 @@ header a .user {
   display: flex;
 }
 
-body .header {
+main {
+  padding: 150px;
+  margin: auto;
+  width: 1140px;
+}
+main .header {
   padding-left: 50px;
   padding-bottom: 10px;
   display: flex;
   align-items: center;
 }
-body .header h1 {
+main h1 {
   margin-left: 20px;
 }
-body main {
-  padding: 150px;
-  margin: auto;
-  width: 1140px;
-}
-body main span {
+main span {
   display: none;
   color: #6e6e6e;
 }
-body main input:user-invalid, body main input.invalid {
+main input:user-invalid, main input.invalid {
   border-color: red;
 }
-body main input:user-invalid + span, body main input.invalid + span {
+main input:user-invalid + span, main input.invalid + span {
   display: block;
 }
-body main .alignementPR_IE {
+main .main {
   border: black 2px solid;
   border-radius: 16px;
   display: flex;
 }
-body main .alignementPR_IE div {
+main .main section {
   padding-left: 40px;
+  padding-right: 40px;
   padding-bottom: 65px;
   width: 480px;
   padding-top: 0;
 }
-body main .alignementPR_IE div h2, body main .alignementPR_IE div h3 {
+main .main section h2, main .main section h3 {
   text-align: center;
 }
-body main .alignementPR_IE div h2 {
-  font-size: 32px;
-}
-body main .alignementPR_IE div h3 {
-  font-size: 24px;
-}
-body main .alignementPR_IE div h5 {
+main .main section label {
   font-size: 16px;
+  padding-bottom: 10px;
+  font-family: "Baloo";
 }
-body main .alignementPR_IE div input {
+main .main section input {
   background-color: white;
   border-radius: 8px;
   height: 40px;
   font-size: 16px;
+  border: black 2px solid;
+  font-family: "Baloo";
 }
-body main .alignementPR_IE .nomPrenom {
+main .main section .label {
+  padding-top: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+main .main section .alignementdesentrer {
+  display: flex;
   padding-left: 0;
   padding-bottom: 0;
 }
-body main .alignementPR_IE .labelInput {
-  padding-left: 0;
-  padding-bottom: 0;
+main .main section .label {
+  padding-right: 50px;
 }
-body main .alignementPR_IE :nth-child(3) h3 {
-  padding-top: 70px;
+main .main :nth-child(3) h3 {
+  padding-top: 78px;
 }
-body main .alignementPR_IE .dimension {
-  width: 430px;
-}
-body main .alignementPR_IE .dimension_petit {
-  width: 190px;
-}
-body main .alignementPR_IE .num_adresse {
-  width: 150px;
-  margin-right: 20px;
-}
-body main .alignementPR_IE .rue_adresse {
-  width: 250px;
-}
-body main .button {
+main .boutton {
   padding-top: 50px;
   text-align: center;
 }
-body main .button button {
+main .boutton button {
+  border: none;
   height: 55px;
   width: 430px;
   background-color: #CD4B22;
