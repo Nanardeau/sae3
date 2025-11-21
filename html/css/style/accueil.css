@@ -607,6 +607,14 @@ body {
   justify-items: center;
   padding: 2rem;
 }
+@media screen and (max-width: 428px) {
+  .grid-produits {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    padding-top: 1rem;
+    gap: 0;
+  }
+}
 
 .carte-produit {
   background-color: #D1ECF8;
@@ -629,6 +637,11 @@ body {
   background-color: #FCB66B;
   border-radius: 1em;
 }
+@media screen and (max-width: 428px) {
+  .details {
+    display: none;
+  }
+}
 
 .carte-produit {
   margin: 0 20px;
@@ -647,6 +660,9 @@ body {
 @media screen and (max-width : 428px) {
   .carte-produit {
     max-height: 260px;
+    margin: 10px;
+    gap: 5px;
+    padding: 10px;
   }
 }
 .carte-produit figure {
@@ -683,6 +699,9 @@ body {
     display: block;
     fill: #FCB66B;
     stoke: black;
+    width: 30px;
+    height: auto;
+    stroke-width: 1px;
   }
 }
 .carte-produit div a input {
