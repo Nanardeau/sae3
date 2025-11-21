@@ -61,7 +61,8 @@ session_start();
                 <a class="boutton" href="Catalogue.php">Accèder au catalogue</a>
             </div>
             
-        </section>
+        </section> -->
+        <!--
     
         <section id="Promotion" class="aff_prod">
             <div class="separateur"></div>
