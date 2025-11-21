@@ -34,7 +34,7 @@ if($_POST){
 
     if($rep!=null){
         session_start();
-        $_SESSION["codecompte"] = $rep["codecompte"];
+        $_SESSION["codeCompte"] = $rep["codecompte"];
         header("location: accueil.php");
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";

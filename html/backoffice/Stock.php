@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!array_key_exists("codeCompte", $_SESSION) || isset($_SESSION["codeCompte"])){
+if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
     header('location: connexionVendeur.php');
     
 }else{
