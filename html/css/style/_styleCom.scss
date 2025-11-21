@@ -33,6 +33,7 @@ h4{
 ###############################*/
 
 header{
+    transition: transform 0.3s ease;
     .mobile-only{
         display: none;
     }
@@ -226,11 +227,12 @@ header{
 ################################*/
 
 .nav-cat{
+    transition: transform 0.3s ease;
     width: 100%;
     background-color: $eleBleu;
     position: fixed;
     z-index: 999;
-    display: flex;
+    display: none;
     flex-direction: row;
     
 
@@ -272,7 +274,10 @@ header{
         display: none;
     }
 
+}
 
+.burger-menu{
+    margin-left: 20px;
 }
 
 .overlayMenuCat{

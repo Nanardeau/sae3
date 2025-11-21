@@ -30,6 +30,13 @@ window.onclick = function(event) {
   }
 };
 
+window.onclick = function(event) {
+  const overlay = document.getElementById("overlayMenuCatMob");
+  if (event.target === overlay) {
+    closeOverlayMobile();
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     const selectQte = document.getElementById('qte');
     const priceElement = document.getElementById('price');
@@ -45,18 +52,25 @@ document.addEventListener("DOMContentLoaded", () => {
     selectQte.addEventListener('change', updatePrice);
 });
 
-const overlay = document.getElementById('overlay-photos-avis');
+let lastScroll = 0;
+const header = document.querySelector("header");
+const navbar = document.getElementsByClassName("nav-cat");
 
-document.querySelectorAll('.photo-avis').forEach(img => {
-    img.addEventListener('click', () => {
-        overlay.innerHTML = `<img src="${img.src}" alt="Image agrandie">`;
-        overlay.style.display = 'flex';
-    });
+window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > lastScroll) {
+        // Scroll vers le bas → cacher le header
+        header.style.transform = "translateY(-100%)";
+        //navbar.style.transform = "translateY(-100%)";
+    } else {
+        // Scroll vers le haut → montrer le header
+        header.style.transform = "translateY(0)";
+        //navbar.style.transform = "translateY(0)";
+    }
+
+    lastScroll = currentScroll;
 });
 
-overlay.addEventListener('click', () => {
-    overlay.style.display = 'none';
-    overlay.innerHTML = '';
-});
 
 

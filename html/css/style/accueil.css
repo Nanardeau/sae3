@@ -1,3 +1,4 @@
+@import url("bootstrap/scss/utilities/api");
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
@@ -94,6 +95,7 @@ h4 {
 #            HEADER             #
 ###############################*/
 header {
+  transition: transform 0.3s ease;
   z-index: 1000;
   position: fixed;
   display: inline-flex;
@@ -251,11 +253,12 @@ header nav svg {
 #        Menu Categorie         #
 ################################*/
 .nav-cat {
+  transition: transform 0.3s ease;
   width: 100%;
   background-color: #6CA6E9;
   position: fixed;
   z-index: 999;
-  display: flex;
+  display: none;
   flex-direction: row;
 }
 .nav-cat div {
@@ -290,6 +293,10 @@ header nav svg {
   .nav-cat {
     display: none;
   }
+}
+
+.burger-menu {
+  margin-left: 20px;
 }
 
 .overlayMenuCat {
@@ -591,4 +598,110 @@ body {
 
 .aff_prod {
   margin-left: 30px;
+}
+
+.grid-produits {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  justify-items: center;
+  padding: 2rem;
+}
+
+.carte-produit {
+  background-color: #D1ECF8;
+  flex: 0 0 auto;
+}
+
+.details {
+  text-decoration: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: "Mulish";
+  width: 100%;
+  min-width: 8rem;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+  justify-items: center;
+  color: black;
+  font-weight: bold;
+  background-color: #FCB66B;
+  border-radius: 1em;
+}
+
+.carte-produit {
+  margin: 0 20px;
+  color: black;
+  width: auto;
+  height: auto;
+  max-width: 240px;
+  max-height: 360px;
+  border-radius: 0.5em;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+}
+@media screen and (max-width : 428px) {
+  .carte-produit {
+    max-height: 260px;
+  }
+}
+.carte-produit figure {
+  grid-area: 1/1/2/3;
+  margin: 0;
+}
+.carte-produit figure img {
+  width: 100%;
+  background-color: white;
+  height: auto;
+  border-radius: 0.5em;
+}
+.carte-produit figure figcaption {
+  margin-top: 10px;
+}
+.carte-produit .prix {
+  grid-area: 2/1/3/2;
+  align-content: flex-end;
+  margin: 0;
+}
+.carte-produit div {
+  grid-area: 2/2/3/3;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: end;
+  float: right;
+  height: auto;
+}
+.carte-produit div a svg {
+  display: none;
+}
+@media screen and (max-width : 428px) {
+  .carte-produit div a svg {
+    display: block;
+    fill: #FCB66B;
+    stoke: black;
+  }
+}
+.carte-produit div a input {
+  display: block;
+  font-family: "Mulish";
+  width: 100%;
+  margin-top: 20px;
+  min-width: 8rem;
+  height: 2rem;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  background-color: #FCB66B;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+}
+@media screen and (max-width : 428px) {
+  .carte-produit div a input {
+    display: none;
+  }
 }/*# sourceMappingURL=accueil.css.map */

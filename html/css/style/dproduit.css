@@ -95,6 +95,7 @@ h4 {
 #            HEADER             #
 ###############################*/
 header {
+  transition: transform 0.3s ease;
   z-index: 1000;
   position: fixed;
   display: inline-flex;
@@ -252,11 +253,12 @@ header nav svg {
 #        Menu Categorie         #
 ################################*/
 .nav-cat {
+  transition: transform 0.3s ease;
   width: 100%;
   background-color: #6CA6E9;
   position: fixed;
   z-index: 999;
-  display: flex;
+  display: none;
   flex-direction: row;
 }
 .nav-cat div {
@@ -291,6 +293,10 @@ header nav svg {
   .nav-cat {
     display: none;
   }
+}
+
+.burger-menu {
+  margin-left: 20px;
 }
 
 .overlayMenuCat {
@@ -737,9 +743,10 @@ main {
   padding: 10px 18px;
   border-radius: 8px;
   border: none;
+  color: black;
 }
 .avis-section .plein-buttons .cancel {
-  background-color: #FCB66B;
+  background-color: #FF4444;
 }
 .avis-section .plein-buttons .submit {
   background-color: #FCB66B;
@@ -753,10 +760,12 @@ main {
   .avis-section .plein-buttons {
     gap: 15px;
     padding-right: 0;
+    justify-content: center;
   }
   .avis-section .plein-buttons .photo, .avis-section .plein-buttons .cancel, .avis-section .plein-buttons .submit {
     padding: 8px 12px;
     font-size: 14px;
+    font-weight: normal;
   }
 }
 @media screen and (max-width: 428px) {

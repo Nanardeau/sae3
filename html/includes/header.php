@@ -1,6 +1,5 @@
 <header>
-    <script src="script/script.js"></script>
-        <a class="mobile-only" href="#" onclick="openOverlayMobile()">
+        <a class="burger-menu" href="#" onclick="openOverlayMobile()">
             <svg width="26" height="22" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.5 1.5H23.65" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M1.5 10.7993H23.65" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
