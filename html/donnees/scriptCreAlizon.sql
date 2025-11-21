@@ -57,6 +57,11 @@ CREATE TABLE TVA(
     tauxTVA FLOAT 
 );
 
+CREATE TABLE Tarification(
+    nomTarif VARCHAR(20) PRIMARY KEY NOT NULL CHECK (nomTarif IN ('tarif1', 'tarif2', 'tarif3', 'tarif4', 'tarif5')),
+    tauxTarif FLOAT 
+);
+
 CREATE TABLE Produit(
     codeProduit SERIAL PRIMARY KEY NOT NULL,
     libelleProd VARCHAR(200) NOT NULL,
@@ -70,7 +75,7 @@ CREATE TABLE Produit(
     qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
     Origine VARCHAR(20) NOT NULL check (Origine IN ('Breizh','France','Étranger')),
     Disponible BOOLEAN DEFAULT TRUE,
-    grilleTarification VARCHAR(20) check (grilleTarification IN ('tarif1','tarif2','tarif3','tarif4','tarif5')),  
+    nomTarif VARCHAR(20) REFERENCES Tarification(nomTarif),  -- LIEN AVEC TARIFICATION 
     seuilAlerte NUMERIC(10,2) NOT NULL,
     urlPhoto VARCHAR(40) REFERENCES Photo(urlPhoto),
     codeCompteVendeur INTEGER REFERENCES Vendeur(codeCompte)	
@@ -233,9 +238,30 @@ CREATE TABLE Profil(
 );
 
 --FONCTIONS--
+CREATE OR REPLACE FUNCTION calcul_tarifs()
+RETURNS TRIGGER AS
+$$
+BEGIN
+    SELECT NEW.prixHT + tarif.tauxTarif 
+	INTO new.prixHT
+    FROM alizon.Tarification tarif where tarif.nomTarif = NEW.nomTarif;
+	
+	SELECT NEW.prixHT * (1 + (tva.tauxTVA / 100)) 
+	INTO NEW.prixTTC
+	FROM alizon.TVA tva WHERE tva.nomTVA = NEW.nomTVA;
+    RETURN NEW;
+    END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_calcul_tarifs
+BEFORE INSERT OR UPDATE ON Produit
+FOR EACH ROW
+EXECUTE FUNCTION calcul_tarifs();
+
 
 --PrixTTC = prixHT * tauxTVA--
-CREATE OR REPLACE FUNCTION calcul_prixTTC()
+/*CREATE OR REPLACE FUNCTION calcul_prixTTC()
 RETURNS TRIGGER AS 
 $$
 	BEGIN
@@ -248,8 +274,9 @@ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_calcul_prixTTC
 BEFORE INSERT OR UPDATE ON Produit
+FOLLOWS trg_calcul_tarifHT
 FOR EACH ROW
-EXECUTE FUNCTION calcul_prixTTC();
+EXECUTE FUNCTION calcul_prixTTC();*/
 --ProdUnitCommande.PrixTTC = produit.prixTTC--
 
 CREATE FUNCTION duplique_prixTTC()
