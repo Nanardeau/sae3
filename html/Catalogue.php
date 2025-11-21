@@ -46,13 +46,27 @@ $bdd->query('set schema \'alizon\'');
         include 'includes/header.php';
     }
     ?>
-
+    
     <main>
-        
-
+        <button popovertarget="overlayAchat">Ouvrir</button>
+        <div popover="auto" id="overlayAchat">
+            <p>Acheter maintenant ?</p>
+            <button>Ui</button>
+        </div>
         <h1>Toutes les catégories</h1>
 
+<!-- mettre dans session "enachat=1" et changer dans connexion client le bouton !
+$_SESSION["enAchat"] = 1;
 
+
+##DANS CONNEXION##
+if(isset($_SESSION["enAchat"])){
+    exit(header("location:paiement.php"));
+} 
+else{
+    exit(header("location:index.php));
+}
+--> 
         <?php
         
         $catCurr = null;

@@ -61,6 +61,7 @@ CREATE TABLE Produit(
     prixHT  FLOAT NOT NULL,
     nomTVA VARCHAR(20) REFERENCES TVA(nomTVA),--LIEN AVEC TVA
     prixTTC  NUMERIC,
+    Disponible BOOLEAN,
     hauteur FLOAT, --en mètre
     longueur FLOAT, --en mètre
     largeur FLOAT, --en mètre
