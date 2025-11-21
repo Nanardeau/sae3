@@ -25,3 +25,9 @@ h3{
 h4{
     @include m.text($PetTitle);
 }
+p, label, input{
+    font-family:$Poltext;
+}
+label{
+    font-weight:bold;
+}

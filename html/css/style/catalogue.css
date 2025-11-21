@@ -23,4 +23,12 @@ h3 {
 h4 {
   font-family: "Baloo";
   font-size: 20px;
+}
+
+p, label, input {
+  font-family: "Mulish";
+}
+
+label {
+  font-weight: bold;
 }/*# sourceMappingURL=catalogue.css.map */

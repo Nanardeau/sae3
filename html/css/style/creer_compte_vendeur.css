@@ -195,6 +195,10 @@ header a .user {
   display: flex;
 }
 
+header {
+  background-color: white;
+}
+
 main {
   padding: 150px;
   margin: auto;
@@ -212,6 +216,7 @@ main h1 {
 main span {
   display: none;
   color: #6e6e6e;
+  padding-top: 2px;
 }
 main input:user-invalid, main input.invalid {
   border-color: red;
@@ -242,23 +247,40 @@ main .main section label {
 main .main section input {
   background-color: white;
   border-radius: 8px;
-  height: 40px;
+  height: 20px;
   font-size: 16px;
-  border: black 2px solid;
+  padding: 10px;
+  border: black 1px solid;
   font-family: "Baloo";
+  border-color: black;
 }
 main .main section .label {
+  padding-left: 35px;
   padding-top: 20px;
   display: flex;
   flex-direction: column;
+  padding-right: 60px;
+}
+main .main section .labelaligner {
+  padding-left: 0;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-right: 60px;
 }
 main .main section .alignementdesentrer {
   display: flex;
   padding-left: 0;
   padding-bottom: 0;
 }
-main .main section .label {
-  padding-right: 50px;
+main .main section .grandinput {
+  width: 400px;
+}
+main .main section .moyeninput {
+  width: 160px;
+}
+main .main section .petitinput {
+  width: 110px;
 }
 main .main :nth-child(3) h3 {
   padding-top: 78px;
