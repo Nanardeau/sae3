@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['codeCompte'])) {
-    $_SESSION['codeCompte'] = 1;  // Utilisateur temporaire
-}
-
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
 
@@ -36,18 +32,15 @@ $commentaire = trim($_POST['commentaire']);
 $noteProd = floatval($_POST['noteProd']);
 $codeCompteCli = intval($_SESSION['codeCompte']);
 
-// Validation
 if ($codeProduit <= 0) die("Produit invalide.");
 if ($commentaire === '') die("Commentaire vide.");
-if ($noteProd < 0 || $noteProd > 5) $noteProd = 5;
+if ($noteProd < 0 || $noteProd > 5) $noteProd = 0;
 
-// Vérifier que le client existe
 $stmt = $bdd->prepare("SELECT 1 FROM Client WHERE codeCompte = :cc");
 $stmt->execute([':cc' => $codeCompteCli]);
 
 if (!$stmt->fetch()) die("Client introuvable.");
 
-// ➤ 1) Insérer l'avis
 $sql = "INSERT INTO Avis (codeProduit, codeCompteCli, noteProd, commentaire, datePublication)
         VALUES (:prod, :cli, :note, :commentaire, NOW())
         RETURNING numAvis";
@@ -63,10 +56,8 @@ $stmt->execute([
 $numAvis = $stmt->fetchColumn();
 
 
-// ➤ 2) TRAITEMENT DES PHOTOS
 if (!empty($_FILES['photos']) && $_FILES['photos']['error'][0] !== UPLOAD_ERR_NO_FILE) {
 
-    // Dossier d'upload
     $uploadDir = "uploads/avis/";
     if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
 
@@ -78,22 +69,17 @@ if (!empty($_FILES['photos']) && $_FILES['photos']['error'][0] !== UPLOAD_ERR_NO
         $tmpName = $_FILES['photos']['tmp_name'][$i];
         $name = basename($_FILES['photos']['name'][$i]);
 
-        // Vérification extension
         $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
         if (!in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) continue;
 
-        // Nouveau nom unique
         $photoName = uniqid("avis_") . "." . $ext;
         $destination = $uploadDir . $photoName;
 
-        // Upload
         move_uploaded_file($tmpName, $destination);
 
-        // ➤ 2a) Insérer dans Photo
         $stmtPhoto = $bdd->prepare("INSERT INTO Photo (urlPhoto) VALUES (:url) ON CONFLICT DO NOTHING;");
         $stmtPhoto->execute([':url' => $destination]);
 
-        // ➤ 2b) Lier à l'avis
         $stmtLink = $bdd->prepare("INSERT INTO JustifierAvis (urlPhoto, numAvis) VALUES (:url, :avis)");
         $stmtLink->execute([
             ':url' => $destination,
@@ -102,6 +88,5 @@ if (!empty($_FILES['photos']) && $_FILES['photos']['error'][0] !== UPLOAD_ERR_NO
     }
 }
 
-// ➤ 3) Redirection
 header("Location: dproduit.php?id=" . $codeProduit);
 exit;

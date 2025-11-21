@@ -1,25 +1,25 @@
 function openOverlay() {
   const overlay = document.getElementById("overlayMenuCat");
   overlay.style.display = "block";
-  document.body.style.overflow = "hidden"; // bloque le scroll de la page
+  document.body.style.overflow = "hidden"; 
 }
 
 function closeOverlay() {
   const overlay = document.getElementById("overlayMenuCat");
   overlay.style.display = "none";
-  document.body.style.overflow = ""; // réactive le scroll
+  document.body.style.overflow = ""; 
 }
 
 function openOverlayMobile() {
   const overlay = document.getElementById("overlayMenuCatMob");
   overlay.style.display = "block";
-  document.body.style.overflow = "hidden"; // bloque le scroll de la page
+  document.body.style.overflow = "hidden"; 
 }
 
 function closeOverlayMobile() {
   const overlay = document.getElementById("overlayMenuCatMob");
   overlay.style.display = "none";
-  document.body.style.overflow = ""; // réactive le scroll
+  document.body.style.overflow = ""; 
 }
 
 
@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
         priceElement.textContent = total + " €";
     }
 
-    // Maj au changement de quantité
     selectQte.addEventListener('change', updatePrice);
 });
 
@@ -60,11 +59,9 @@ window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > lastScroll) {
-        // Scroll vers le bas → cacher le header
         header.style.transform = "translateY(-100%)";
         //navbar.style.transform = "translateY(-100%)";
     } else {
-        // Scroll vers le haut → montrer le header
         header.style.transform = "translateY(0)";
         //navbar.style.transform = "translateY(0)";
     }

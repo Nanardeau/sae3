@@ -24,9 +24,6 @@ try {
 }
 $bdd->query('set schema \'alizon\'');
 
-$_SESSION["codeCompte"] = 1; //ligne temporaire, en attendant d"avoir le système de connexion 
-
-
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id <= 0) die("Produit introuvable.");
@@ -35,7 +32,6 @@ $produit = $bdd->query("SELECT * FROM Produit WHERE codeProduit = $id")->fetch(P
 if (!$produit) die("Produit introuvable !");
 
 
-// --- RÉCUPÉRATION DES AVIS DU PRODUIT --- //
 $sqlAvis = "SELECT A.*, C.prenom, C.nom,
         ARRAY(
             SELECT J.urlPhoto
@@ -52,10 +48,11 @@ $sqlAvis = "SELECT A.*, C.prenom, C.nom,
 $stmtAvis = $bdd->prepare($sqlAvis);
 $stmtAvis->execute(['id' => $id]);
 $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
-// Conversion des tableaux PostgreSQL en vrais tableaux PHP
+
+
 foreach ($avisList as &$avis) {
     if (isset($avis['photos']) && is_string($avis['photos'])) {
-        // On s'assure que ce n'est pas null
+
         $str = $avis['photos'] ?? '';
         $str = trim($str, '{}');
 
@@ -72,7 +69,6 @@ foreach ($avisList as &$avis) {
 
         $avis['photos'] = array_values($avis['photos']);
     } else {
-        // Pas de photos : on met un tableau vide
         $avis['photos'] = [];
     }
 }

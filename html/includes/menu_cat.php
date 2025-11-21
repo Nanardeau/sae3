@@ -27,7 +27,7 @@
                 <ul>
                     <?php
                     $catCurr = null;
-                    $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); //Nom de la catégorie  
+                    $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); 
 
                     foreach ($listCat as $libcat) {
 
@@ -85,7 +85,7 @@
                     <ul>
                         <?php
                         $catCurr = null;
-                        $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); //Nom de la catégorie  
+                        $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat');
 
                         foreach ($listCat as $libcat) {
 
