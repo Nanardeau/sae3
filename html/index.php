@@ -98,9 +98,9 @@ session_start();
                                 <path d="M11.8272 15.6617H7.43353" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M9.63037 13.4648V17.8585" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                        </a>
 
-                        <a><input type="button" value="Ajouter au panier"></a>
+
+                        <a class="details" href="AjouterAuPanier.php?codeProd=<?php echo $p["codeproduit"]?>" >Ajouter au panier</a>
                         <a class="details" href="dproduit.php?id=<?= $p['codeproduit'] ?>">Détails</a>
                     </div>
                 </div>

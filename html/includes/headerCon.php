@@ -1,5 +1,5 @@
 <header>
-        <a class="mobile-only" href="#">
+        <a class="burger-menu" href="#" onclick="openOverlayMobile()">
             <svg width="26" height="22" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.5 1.5H23.65" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M1.5 10.7993H23.65" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -19,13 +19,13 @@
         <!--<img src="" alt="logo front">-->
         <!--<input type="text" placeholder="Rechercher">-->
         <nav>
-            <a class="tab-only" href="infosCompte.php">
+            <a href="infosCompte.php">
             <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.3333 12.6667C13.555 12.6667 16.1667 10.055 16.1667 6.83333C16.1667 3.61167 13.555 1 10.3333 1C7.11167 1 4.5 3.61167 4.5 6.83333C4.5 10.055 7.11167 12.6667 10.3333 12.6667Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M19.6667 21.9998C19.6667 19.5245 18.6833 17.1505 16.933 15.4002C15.1826 13.6498 12.8087 12.6665 10.3333 12.6665C7.85798 12.6665 5.48401 13.6498 3.73367 15.4002C1.98333 17.1505 1 19.5245 1 21.9998" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             Mon Compte</a>
-            <a class="tab-only" href="Panier.php">
+            <a href="Panier.php">
             <svg width="25" height="28" viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M17.6111 11.2224C17.6111 12.578 17.0726 13.878 16.1141 14.8365C15.1556 15.795 13.8556 16.3335 12.5 16.3335C11.1445 16.3335 9.84444 15.795 8.88593 14.8365C7.92741 13.878 7.38892 12.578 7.38892 11.2224" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M1.13159 6.15454H23.8684" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
