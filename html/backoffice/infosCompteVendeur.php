@@ -34,22 +34,18 @@
     //$codeCompte = 1;
     $compte = $bdd->query("SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'")->fetch();
     
-    $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+    $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrSiegeSocial fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
     
-    $photo = $bdd->query("SELECT profil.urlPhoto  FROM alizon.Photo photo INNER JOIN alizon.Profil profil ON photo.urlPhoto = profil.urlPhoto WHERE profil.codeClient = '".$codeCompte."'")->fetch();
-    if(!$_SESSION["mdpValide"]){
-        $_SESSION["mdpValide"] = 0;
-    }
+
 ?>
 
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon compte</title>
+    <title>[BackOffice] Mon compte</title>
     <link href="../css/style/backoffice/infosCompteVendeur.css" rel="stylesheet" type="text/css">
     <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
-    <link href="./bootstrap-5.3.8-dist/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">
 </head>
 <body>   
     <main>
@@ -57,77 +53,101 @@
         <?php if($_SESSION["mdpValide"] == -1):?>
             <h2 class="erreur">Mot de passe incorrect</h2>
         <?php endif?>
-        <a href="accueil.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
-
+    <div class="logo">
+        <a href="accueil.php"><img src="../img/logoAlizonBack.svg" alt="Alizon"></a>
+        <h1>Back Office</h1>
+    </div>
+        <h2>Mon compte</h2>
+        <h2 hidden>Modifier mes informations</h2>
         <div class="containerForm">
-
-        <form action="modifCompteCli.php" method="post" enctype="multipart/form-data">
-
-            <h2>Mon compte</h2>
-            <h2 hidden>Modifier mes informations</h2>
+  
+        <form action="modifCompteVendeur.php" method="post" enctype="multipart/form-data">
 
 
-
-            <label for="identifiant">Identifiant</label>
-            <?php if($erreur == "pseudo"):?>
-                <p class="erreur">Pseudonyme déjà utilisé</p>
-            <?php endif?>
-
-            <input type="text" name="pseudo" id="identifiant" pattern="[A-Za-z._0-9]{2,20}" value="<?php echo $compte["pseudo"]?>" required disabled/> 
-            <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
-            <div id="nomPrenomCli">
+        
+            <div id="profResp">
+                <h3>Profil responsable</h3>
                 <div class="labelInput">
-                    <label for="nomCli">Nom</label>
-                    <input type="text" name="nom" id="nomCli" value="<?php echo $compte["nom"] ?>" required disabled/>
+                    <label for="identifiant">Identifiant</label>
+                    <?php if($erreur == "pseudo"):?>
+                        <p class="erreur">Pseudonyme déjà utilisé</p>
+                    <?php endif?>
+                    <input type="text" name="pseudo" id="identifiant" pattern="[A-Za-z._0-9]{2,20}" value="<?php echo $compte["pseudo"]?>" required disabled/> 
+                </div>
+                <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
+                <div id="nomPrenomVendeur">
+                    <div class="labelInput">
+                        <label for="nomVendeur">Nom</label>
+                        <input type="text" name="nom" id="nomVendeur" value="<?php echo $compte["nom"] ?>" required disabled/>
+                    </div>
+                    <div class="labelInput">
+                        <label for="prenomVendeur">Prénom</label>
+                        <input type="text" name="prenom" id="prenomVendeur" value="<?php echo $compte["prenom"]?>" required disabled/>
+                    </div>
                 </div>
                 <div class="labelInput">
-                    <label for="prenomCli">Prénom</label>
-                    <input type="text" name="prenom" id="prenomCli" value="<?php echo $compte["prenom"]?>" required disabled/>
+                <label for="mailVendeur">Adresse e-mail</label>
+                <?php if($erreur == "email"):?>
+                    <p class="erreur">Adresse e-mail déjà utilisée</p>
+                <?php endif?>
+                <input type="text" name="email" id="mailVendeur" value="<?php echo "mail"?>" required disabled/>
+                
+                <span>Le mail doit être de la forme "abc@def.gh"</span>
+                <span>Les deux adresses e-mail doivent être identiques</span>
                 </div>
+                <div class="labelInput">
+                <label for="numTelVendeur">Numéro de téléphone</label>
+                <input type="text" name="numTel" id="numTelVendeur" pattern="\d{10}" value="<?php echo $compte["numtel"]?>"disabled/>
+                <span>Le numéro doit être dans le format suivant : 0102030405</span>
+                </div>
+
             </div>
-            <label for="mailCli">Adresse e-mail</label>
-            <?php if($erreur == "email"):?>
-                <p class="erreur">Adresse e-mail déjà utilisée</p>
-            <?php endif?>
-            <input type="text" name="email" id="mailCli" value="<?php echo "mail"?>" required disabled/>
-            <span>Le mail doit être de la forme "abc@def.gh"</span>
-            <span>Les deux adresses e-mail doivent être identiques</span>
-            <label for="numTelCli">Numéro de téléphone</label>
-            <input type="text" name="numTel" id="numTelCli" pattern="\d{10}" value="<?php echo $compte["numtel"]?>"disabled/>
-            <span>Le numéro doit être dans le format suivant : 0102030405</span>
-            <label for="dateNaiss">Date de naissance</label>
-            <input type="date" name="dateNaissance" class="boutonSec" id="dateNaiss" onChange="verifDate(event)" value="<?php echo $compte["datenaissance"]?>"required disabled/>
-            <?php if($adresse):?>
-            <h3>Adresse</h3> 
-            <div class="container-fluid p-0">
-                <div class="row ">                      
-                    <div class="col-3 labelInput">
-                        <label for="numRueCli">Numéro</label>
-                        <input type="text" name="num" id="numRueCli" value="<?php echo $adresse["num"]?>"disabled/>
+            <hr>
+            <div id="entreprise" class="container-fluid">
+                    <h3>Informations entreprise</h3>
+                    <div class="labelInput">
+                        <label for="siren">Numéro de SIREN</label>
+                        <input type="text" name="siren" id="siren" value="<?php echo $compte["siren"]?>"disabled/>
                     </div>
-                    <div class="col-9 labelInput">
-                        <label for="nomRueCli">Nom de la rue, voie</label>
-                        <input type="text" name="nomRue" id="nomRueCli" value="<?php echo $adresse["nomrue"]?>"disabled/>
+                    <div class="labelInput">
+                        <label for="raisonSoc">Raison sociale</label>
+                        <input type="text" name="raisonSoc" id="raisonSoc" value="<?php echo $compte["raisonsociale"]?>" disabled/>
                     </div>
-                </div>
-                <div class="row ">
-                    <div class="col-4 labelInput">
-                        <label for="codePostalCli">Code postal</label>
-                        <input type="text" name="codePostal" id="codePostalCli" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" value="<?php echo $adresse["codepostal"]?>" disabled/>
+
+ 
+                    
+                        <div id="numNomRue">
+                            <div class="labelInput">
+                                <label for="numRueVendeur">Numéro</label>
+                                <input type="text" name="num" id="numRueVendeur" value="<?php echo $adresse["num"]?>"disabled/>
+                            </div>
+                            <div class="labelInput">
+                                <label for="nomRueVendeur">Nom de la rue, voie</label>
+                                <input type="text" name="nomRue" id="nomRueVendeur" value="<?php echo $adresse["nomrue"]?>"disabled/>
+                            </div>
+                        </div>
+                        <div id="cpVille">
+                            <div class="labelInput">
+                                <label for="codePostalVendeur">Code postal</label>
+                                <input type="text" name="codePostal" id="codePostalVendeur" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" value="<?php echo $adresse["codepostal"]?>" disabled/>
+                            </div>
+                            <div class="labelInput">
+                                <label for="villeVendeur">Ville</label>
+                                <input type="text" name="nomVille" id="villeVendeur" value="<?php echo $adresse["nomville"]?>" disabled/>
+                            </div>
+                        </div>
+                            <div class="labelInput">
+                                <label for="compAdrVendeur">Complément</label>
+                                <input type="text" name="complementAdresse" id="compAdrVendeur" value="<?php if($adresse["complementadresse"]){echo $adresse["complementadresse"];}else{echo "";}?>" disabled/>
+                            </div>
+                        
+                        
                     </div>
-                    <div class="col-8 labelInput">
-                        <label for="villeCli">Ville</label>
-                        <input type="text" name="nomVille" id="villeCli" value="<?php echo $adresse["nomville"]?>" disabled/>
-                    </div>
-                </div>
+
             </div>
-            <label for="numAptCli">Numéro d'appartement</label>
-            <input type="text" name="numAppart" id="numAptCli" value="<?php if($adresse["numappart"]){echo $adresse["numappart"];}else{echo "";}?>" disabled/>
-            <label for="compAdrCli">Complément</label>
-            <input type="text" name="complementAdresse" id="compAdrCli" value="<?php if($adresse["complementadresse"]){echo $adresse["complementadresse"];}else{echo "";}?>" disabled/>
-            <?php endif?>
-            <!--<label for="mdpCli">Mot de passe</label>
-            <input type="password" name="mdp" id="mdpCli" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required disabled/>
+
+            <!--<label for="mdpVendeur">Mot de passe</label>
+            <input type="password" name="mdp" id="mdpVendeur" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required disabled/>
             <span>Le mot de passe doit faire entre 2 et 20 caractères</span>
             <span>Les deux mots de passe doivent être identiques</span> !-->    
             <button class="bouton" id="valider" hidden>Valider</button>
@@ -139,8 +159,10 @@
             <button class="bouton" id="modifInfos" popovertarget="mdpValider" onclick="modifierInfos()">Modifier informations</button>
             <div popover="auto" id="mdpValider">
                 <form action="verifMdpModif.php" method="post">
+      
                     <label for="mdpPourValider">Entrez votre mot de passe</label>
                     <input type="password" name="mdpPourValider" id="mdpPourValider" required/>
+      
                     <input type="submit" class="bouton" value="Valider"/> 
                 </form>
             </div>
@@ -151,21 +173,20 @@
                     <h2>Modifier le mot de passe</h2>
                     <label for="mdpActuel">Mot de passe actuel</label>
                     <input type="password" name="mdpPourValider" id="mdpActuel"/>
-                    <label for="mdpModifCli">Mot de passe</label>
-                    <input type="password" name="mdpModifCli" id="mdpModifCli" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required/>
+                    <label for="mdpModifVendeur">Mot de passe</label>
+                    <input type="password" name="mdpModifVendeur" id="mdpModifVendeur" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required/>
                     <span>Le mot de passe doit faire entre 2 et 20 caractères</span>
-                    <label for="confMdpModifCli">Confirmer le mot de passe</label>
-                    <input type="password" name="confMdpModifCli" id="confMdpModifCli" required/>
+                    <label for="confMdpModifVendeur">Confirmer le mot de passe</label>
+                    <input type="password" name="confMdpModifVendeur" id="confMdpModifVendeur" required/>
                     <span>Les deux mots de passe doivent être identiques</span>
                     <input type="submit" id="validerModifMdp" class="bouton" value="Valider"/>
                 </form>
             </div>
             <button class="bouton" id="annuler" onclick="annuler()" hidden>Annuler</button>
-            <button class="bouton" id="blocageCompte" onclick="bloquerCompte()">Bloquer compte</button>
             
         </nav>
         </div>
-        <button class="btnJaune" id="deconnexion" onclick="deconnecter()"><img src="./img/icon_déconnexion.svg"/>Se déconnecter</button>
+        <button class="btnJaune" id="deconnexion" onclick="deconnecter()">Se déconnecter</button>
 
 
 
@@ -188,10 +209,7 @@
 
             document.getElementById("modifmdp").setAttribute("hidden", null);
             
-            document.getElementById("crayonPourModif").removeAttribute("hidden");
-            document.getElementById("changerPhoto").removeAttribute("hidden");
-            document.getElementById("changerPhoto").removeAttribute("disabled");
-            console.log(document.querySelectorAll("input:disabled")[4]);
+
             let taille = console.log(document.querySelectorAll("input:disabled").length);
             while(document.querySelector("input:disabled")){
       
@@ -200,13 +218,11 @@
                 
             }
 
-            let date = document.getElementById("dateNaiss");
-            date.classList.remove("modifiable");
-            date.setAttribute("disabled",null);
+
 
 
             //Vérifications de formats
-            let mail = document.getElementById("mailCli");
+            let mail = document.getElementById("mailVendeur");
             let formatMail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;        
             mail.addEventListener("focusout", verifFormat);   
 
@@ -225,8 +241,8 @@
         <?php endif?>
         
         //Vérification mot de passe = confirmer mot de passe
-        let mdp = document.getElementById("mdpModifCli");
-        let confMdp = document.getElementById("confMdpModifCli");
+        let mdp = document.getElementById("mdpModifVendeur");
+        let confMdp = document.getElementById("confMdpModifVendeur");
         let btnValiderMdp = document.getElementById("validerModifMdp");
         btnValiderMdp.addEventListener("click", verifMdp);
         confMdp.addEventListener("focusout", verifMdp);
@@ -235,6 +251,7 @@
         function annuler(){
            <?php 
            $_SESSION["mdpValide"] = 0?>
+
            window.location.reload();  
 
         }
@@ -258,15 +275,7 @@
             window.location.href = "modifCompteVendeur.php?traitement=deconnecter";
         }
 
-        function bloquerCompte(){
-            let res = confirm("Voulez-vous vraiment bloquer votre compte ? Celui-ci sera anonymisé");
-            if(res == true){
-                window.location.href = "modifCompteVendeur.php?traitement=bloquer" 
-                    
-                
-                
-            }
-        }
+
     </script>
 </body>
 </html>

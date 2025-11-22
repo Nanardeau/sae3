@@ -93,27 +93,3 @@
 
         }
     }
-
-if($_FILES["photo"]["name"] != ""){
-    print_r($_FILES["photo"]);
-    $extension = $_FILES["photo"]["type"];
-    $extension = substr($extension, strlen("image/"), (strlen($extension) - strlen("image/")));
-    $chemin = "./img/photosProfil/".time().".".$extension;
-
-
-    move_uploaded_file($_FILES["photo"]["tmp_name"], $chemin);
-
-
-    $stmt = $bdd->prepare("INSERT INTO alizon.Photo (urlPhoto) VALUES (:urlphoto)");
-    $stmt->execute(array(
-        ":urlphoto" => $chemin
-    ));
-    $stmt = $bdd->prepare("UPDATE alizon.Profil SET urlPhoto = :urlPhoto WHERE codeVendeur = :codeCompte");
-    $stmt->execute(array(
-        ":urlPhoto" => $chemin,
-        "codeCompte" => $codeCompte
-    ));
-
-    $_SESSION["mdpValide"] = 0;
-}
- 

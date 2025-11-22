@@ -1,3 +1,96 @@
-@use './_styleComB' as *;
 @use '../../tools/vback' as *;
 @use "../../tools/mixin/com" as *;
+
+
+@use 'sass:color';
+@import './_styleComB'; 
+@import "../infosCompte.scss";
+.bouton{
+    @include bouton($colP);
+
+}
+.btnJaune{
+    @include bouton($eleBleu);
+
+}
+form{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:0;
+    width:100%;
+    
+    input{
+        height:4em;
+    }
+    .labelInput{
+        margin: 3% 0;
+    }
+    #profResp, #entreprise{
+        width:40%;
+    }
+
+    #nomPrenomVendeur, #numNomRue, #cpVille{
+        display:flex;
+        justify-content:space-between;
+
+    }
+    #numNomRue{
+        @include inputDouble(20%, 70%);
+    }
+    #cpVille{
+        @include inputDouble(40%, 50%);      
+    }
+
+
+}
+    #valider{
+        padding:2em;
+        border:none;
+        width:10em;
+        margin-top:2em;
+    }
+.containerForm{
+    padding:3%;
+    width:70%;
+}
+nav{
+    width:30%;
+    display:flex;
+    justify-content: space-between;
+    
+    margin:2em 0 ;
+    button{
+        padding:2em;
+        width:40%;
+        border:none;
+
+    }
+}
+[popover]:popover-open::backdrop{
+    background-color: rgb(0 0 0 / 30%);
+}
+[popover]:popover-open{
+    border: {
+        radius:$radius;
+        width:0.1em;
+    }
+    padding:$pad * 5;
+    width:50%;
+
+    form{
+        label{
+            font-size:18px;
+        }
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+        input{
+            width:100%;
+           
+        }
+
+
+    }
+}

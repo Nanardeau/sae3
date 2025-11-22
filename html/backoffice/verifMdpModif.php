@@ -30,7 +30,7 @@
         $_SESSION["mdpValide"] = 1;
         if(isset($_GET["modifMdp"])){
             if($_GET["modifMdp"] == 1){
-                $_SESSION["nouveauMdp"] = $_POST["mdpModifCli"];
+                $_SESSION["nouveauMdp"] = $_POST["mdpModifVendeur"];
                 $_SESSION["mdpValide"] = 0;
                 exit(header('location:modifCompteVendeur.php?modif=mdp'));
                 ;

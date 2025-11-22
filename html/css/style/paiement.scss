@@ -21,7 +21,7 @@ article{
 .ligneSection{
     display:flex;
     padding:1rem;
-    @media screen and ($mobile){
+    @media #{$mobile}{
         flex-direction:column;
         justify-content: flex-start;
         align-items:flex-start;
@@ -29,7 +29,7 @@ article{
     section{
         width:100%;
         margin: 5rem 0;
-        @media screen and ($mobile){
+        @media #{$mobile}{
             margin-left:0;
             
         }
@@ -44,7 +44,7 @@ article{
             left:20%;
             right:10%;
         }   
-        @media screen and ($mobile){
+        @media #{$mobile}{
             margin:0;    
         }
     }
@@ -106,7 +106,7 @@ section{
         height:max-content;
         padding:$pad;
 
-        @media screen and ($mobile){
+        @media #{$mobile}{
             width:fit-content;
             .labelInput{
                 flex-direction: column;
@@ -189,7 +189,7 @@ div {
 .ligneArtPaye{
     display:flex;
     
-    @media screen and ($mobile) {
+    @media #{$mobile} {
         flex-direction:column;
         justify-content: flex-start;
         padding:1rem;
@@ -209,7 +209,7 @@ div {
 
         margin-left:13rem;
         width:40%;
-        @media screen and ($mobile){
+        @media #{$mobile}{
             margin:0;
             width:100%;
         }
@@ -218,7 +218,7 @@ div {
             width:80%;
             height:auto;
             justify-content: flex-start;
-            @media screen and ($mobile){
+            @media #{$mobile}{
                 padding:1rem;
                 width:100%;
             }
@@ -230,7 +230,7 @@ div {
             flex-direction:column;
             align-items: flex-start;
             height:100%;
-            @media screen and ($mobile){
+            @media #{$mobile}{
                 width:100%;
             }
         }

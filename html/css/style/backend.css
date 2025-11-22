@@ -232,6 +232,12 @@ input:user-invalid + span, input.invalid + span {
   border-radius: 1em;
   cursor: pointer;
 }
+.bouton:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.bouton:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
 
 /*###############################
 #            HEADER             #
@@ -510,6 +516,12 @@ header nav svg {
   color: black;
   width: 50%;
   padding: 1em;
+}
+.btnJaune:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.btnJaune:active {
+  background-color: rgb(4.5, 48, 97.5);
 }
 
 .overlayMenuCatMob {

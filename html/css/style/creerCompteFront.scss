@@ -85,12 +85,7 @@ form{
 }
 .bouton{
     @include bouton;
-    &:hover{
-        background-color : color.change($colP, $lightness: 20%);
-    }
-    &:active{
-        background-color : color.change($colP, $lightness: 10%);
-    }
+
 }
 aside{
     display:flex;
@@ -112,7 +107,7 @@ aside{
     }
 
     .bouton{
-        @include bouton;
+
         padding:1em;
         width:80%;
         margin-bottom:1em;
