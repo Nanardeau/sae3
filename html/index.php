@@ -72,8 +72,9 @@ session_start();
         <section id="Nouveautes" class="aff_prod">
             <h1>Nouveautés</h1>
         </section> -->
-        <?php $produits = $bdd->query("SELECT codeProduit, libelleProd, prixTTC, urlPhoto FROM Produit ORDER BY codeProduit"); ?>
+        <?php $produits = $bdd->query("SELECT codeProduit, libelleProd, prixTTC, urlPhoto FROM Produit ORDER BY codeProduit"); print_r($_SESSION) ?>
         <article class="grid-produits">
+            
             <?php
             foreach ($produits as $p) {
                 $img = $p['urlphoto'];
