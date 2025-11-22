@@ -654,6 +654,12 @@ aside .recap h4 {
 aside .recap .btn-recap {
   width: 95%;
 }
+@media screen and (max-width : 428px) {
+  aside {
+    float: none;
+    width: 100%;
+  }
+}
 
 .btn-vider {
   font-family: "Mulish";

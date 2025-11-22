@@ -173,6 +173,7 @@ article {
 }
 aside{
 
+
     float: right;
     width: 25%;
     display:flex;
@@ -215,6 +216,11 @@ aside{
     }
     
 }
+@media #{$mobile} {
+        float:none;
+        width: 100%;
+        
+    }
 }
 .btn-vider {
     @include btn;
