@@ -43,9 +43,9 @@ try {
 }
 //$_SESSION["codeCompte"] = 5; //ligne temporaire, en attendant d"avoir le système de connexion 
 
-if(isset($_SESSION["codeCompte"])){
-        header('Location: http://localhost:8888/backoffice/connexionVendeur.php');
-           
+if(!isset($_SESSION["codeCompte"])){
+       header('Location: http://localhost:8888/backoffice/connexionVendeur.php');
+        
     }
 $bdd->query('set schema \'alizon\'');
 ?>

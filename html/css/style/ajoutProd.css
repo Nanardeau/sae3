@@ -398,7 +398,7 @@ form h2 {
   margin: 0;
 }
 form label::after {
-  content: " *";
+  content: "*";
   color: red;
 }
 form .taille label::after {
