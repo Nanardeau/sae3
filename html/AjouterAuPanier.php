@@ -41,7 +41,7 @@ $bdd->query('set schema \'alizon\'');
     }
     $idPanier = $_SESSION["idPanier"];
     $codeProduit = $_GET["codeProd"];
-    $prodUnitPanier = $bdd->query("SELECT * FROM ProdUnitPanier WHERE codeProduit = '".$codeProduit."'AND idPanier = '".$idPanier."'")->fetch();
+    $prodUnitPanier = $bdd->query("SELECT * FROM ProdUnitPanier WHERE codeProduit = '".$codeProduit."' AND idPanier = '".$idPanier."'")->fetch();
     if($prodUnitPanier){
         $qteProd = $prodUnitPanier["qteprod"];
 
