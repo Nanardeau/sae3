@@ -22,10 +22,11 @@ try {
 } catch (PDOException $e) {
     // "❌ Erreur de connexion : " . $e->getMessage();
 }
-session_start();
 $bdd->query('set schema \'alizon\'');
 ?>
 <?php
+session_start();
+
     if(!isset($_SESSION["idPanier"]) || $_SESSION["idPanier"] = NULL){
         if(!isset($_SESSION["codeCompte"])){
             $stmt = $bdd->prepare("INSERT INTO Panier (dateCreaP) VALUES ('".date("Y-m-s H:i:s")."')");
