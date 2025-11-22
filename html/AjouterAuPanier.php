@@ -29,6 +29,7 @@ session_start();
 
     if(!isset($_SESSION["idPanier"]) || $_SESSION["idPanier"] = NULL){
         if(!isset($_SESSION["codeCompte"])){
+            echo "explosion";
             $stmt = $bdd->prepare("INSERT INTO Panier (dateCreaP) VALUES ('".date("Y-m-s H:i:s")."')");
 
         }
@@ -54,4 +55,4 @@ session_start();
     $req->execute();
 
     #alert("Le produit a bien été ajouté au panier.");
-    exit(header("location:".$_GET["page"]."?ajout=1"));
+    #exit(header("location:".$_GET["page"]."?ajout=1"));
