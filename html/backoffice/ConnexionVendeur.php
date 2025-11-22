@@ -34,9 +34,7 @@ if($_POST){
     if($rep!=null){
         session_start();
         $_SESSION["codeCompte"] = $rep["codecompte"];
-        $_SESSION["pseudo"] = "";
-        $_SESSION["mdp"] = "";
-        exit(header("location: accueil.php"));
+        header("location: accueil.php");
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         
