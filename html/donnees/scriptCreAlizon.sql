@@ -127,8 +127,8 @@ CREATE TABLE Panier(
     codeCompte INTEGER REFERENCES Client(codeCompte),
     dateCreaP TEXT,
     dateModifP TEXT,
-    prixTTCtotal NUMERIC,
-    prixHTtotal NUMERIC
+    prixTTCtotal NUMERIC DEFAULT 0,
+    prixHTtotal NUMERIC DEFAULT 0
 );
 
 
@@ -300,7 +300,7 @@ EXECUTE FUNCTION duplique_prixTTC();
 CREATE FUNCTION PanierFinalTestTTC()
 RETURNS TRIGGER AS $$
 BEGIN 
-	UPDATE alizon.Panier SET prixTTCtotal = (SELECT SUM(ProdUnitPanier.prixTTCtotal) FROM alizon.ProdUnitPanier INNER JOIN alizon.Panier ON ProdUnitPanier.idPanier = Panier.idPanier ) ;
+	UPDATE alizon.Panier SET prixTTCtotal = (SELECT SUM(PUP.prixTTCtotal + NEW.prixTTCtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = NEW.idPanier ) WHERE Panier.idPanier = NEW.idPanier;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -311,9 +311,10 @@ FOR EACH ROW
 EXECUTE FUNCTION PanierFinalTestTTC();
 
 CREATE FUNCTION PanierFinalTestHT()
+ 
 RETURNS TRIGGER AS $$
 BEGIN 
-	UPDATE alizon.Panier SET prixHTtotal = (SELECT SUM(ProdUnitPanier.prixHTtotal) FROM alizon.ProdUnitPanier INNER JOIN alizon.Panier ON ProdUnitPanier.idPanier = Panier.idPanier ) ;
+	UPDATE alizon.Panier SET prixHTtotal = (SELECT SUM(PUP.prixHTtotal  + NEW.prixHTtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = NEW.idPanier) WHERE Panier.idPanier = NEW.idPanier;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;

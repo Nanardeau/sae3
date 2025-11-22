@@ -333,36 +333,6 @@ main p {
   color: black;
 }
 
-.btnAcceuil {
-  display: flex;
-  flex-direction: row;
-}
-.btnAcceuil a {
-  padding: 0.5em 1em;
-  margin: 1em 0;
-  width: 15em;
-  height: 1.5em;
-  display: flex;
-  font-weight: bold;
-  font-size: 24px;
-  font-family: "Mulish", sans-serif;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: #FCB66B;
-  color: black;
-  border-radius: 1em;
-  text-decoration: none;
-  margin-bottom: 1em;
-}
-.btnAcceuil a:hover {
-  background-color: rgb(250.9867549669, 157.3443708609, 57.0132450331);
-  cursor: pointer;
-}
-.btnAcceuil a:last-child {
-  margin-left: 22.5em;
-}
-
 aside {
   display: flex;
   flex-direction: column;
@@ -530,25 +500,13 @@ body {
   text-decoration: none;
   position: relative;
 }
-.lesAvis .avis h3 {
-  font-family: "Baloo", sans-serif;
-  font-size: 1em;
-  color: white;
-  margin-bottom: 0.5em;
-  background-color: #FF4444;
-  text-align: center;
-  border-radius: 8px;
-  width: 7.8em;
-  top: -1.75em;
-  right: 0em;
-  position: absolute;
-}
-.lesAvis .avis .pdp {
+.lesAvis .pdp {
   width: 4.5em;
   height: 4.5em;
   border-radius: 50%;
-  margin-top: -0.25em;
   margin-bottom: 0.5em;
+  margin-top: -0.25em;
+  margin-right: 0.5em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -564,23 +522,19 @@ body {
 .infoAvis {
   display: flex;
   flex-direction: column;
-  margin-top: -0.75em;
 }
 .infoAvis .nomNote {
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 1.5em;
 }
-.infoAvis .nomNote button {
+.infoAvis .nomNote p {
   font-family: "Mulish", sans-serif;
   font-size: 20px;
   color: black;
   font-weight: bold;
   margin-right: 0.25em;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
 }
 .infoAvis .nomNote .note {
   display: flex;
@@ -591,9 +545,8 @@ body {
   font-family: "Mulish", sans-serif;
   font-size: 1.2em;
   color: black;
-  margin-top: 0;
-  margin-bottom: 0.25em;
-  margin-left: 0.5em;
+  margin-top: 0em;
+  height: 0.5em;
 }
 .infoAvis .contenuAvis {
   font-family: "Mulish", sans-serif;
@@ -601,7 +554,34 @@ body {
   color: black;
   text-overflow: ellipsis;
   margin: 0;
-  margin-left: 0.5em;
+}
+
+.btnAccueil {
+  clear: right;
+  display: flex;
+  flex-direction: row;
+  margin: 0 4em 1em 5em;
+}
+.btnAccueil a {
+  padding: 0.5em 1em;
+  margin: 1em 0.5em 1em 0;
+  flex-basis: 100%;
+  height: 1.5em;
+  display: flex;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: "Mulish", sans-serif;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #FCB66B;
+  color: black;
+  border-radius: 1em;
+  text-decoration: none;
+}
+.btnAccueil a:hover {
+  background-color: rgb(250.9867549669, 157.3443708609, 57.0132450331);
+  cursor: pointer;
 }
 
 .lesPromotions {
@@ -664,7 +644,8 @@ body {
 }
 
 .content-wrapper {
+  margin-top: 2em;
   display: flex;
   flex-direction: row;
   width: 100%;
-}/*# sourceMappingURL=accueil.css.map */
+}/*# sourceMappingURL=accueilBack.css.map */

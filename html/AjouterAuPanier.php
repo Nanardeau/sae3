@@ -26,13 +26,14 @@ $bdd->query('set schema \'alizon\'');
 ?>
 <?php
 session_start();
-
+print_r($_SESSION);
     if(!isset($_SESSION["idPanier"]) || $_SESSION["idPanier"] = NULL){
         if(!isset($_SESSION["codeCompte"])){
             $stmt = $bdd->prepare("INSERT INTO Panier (dateCreaP) VALUES ('".date("Y-m-s H:i:s")."')");
 
         }
-        else{
+        else if($_SESSION["codeCompte"] != NULL){
+
             $stmt = $bdd->prepare("INSERT INTO Panier (dateCreaP, codeCompte) VALUES ('".date("Y-m-s H:i:s")."', '".$_SESSION["codeCompte"]."')");
 
         } 
@@ -54,4 +55,4 @@ session_start();
     $req->execute();
 
     #alert("Le produit a bien été ajouté au panier.");
-    exit(header("location:".$_GET["page"]."?ajout=1"));
+    #exit(header("location:".$_GET["page"]."?ajout=1"));
