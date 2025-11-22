@@ -9,7 +9,7 @@ $port = getenv('PGPORT');
 $dbname = getenv('PGDATABASE');
 $user = getenv('PGUSER');
 $password = getenv('PGPASSWORD');
-
+session_start();
 global $bdd;
 // Connexion à PostgreSQL
 
@@ -61,6 +61,7 @@ switch($action){
         $stmtPanier->execute([
             ':idPanier' => $idPanier
         ]);
+        unset($_SESSION["idPanier"]);
         break;
     
 }
