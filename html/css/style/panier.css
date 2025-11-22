@@ -528,7 +528,7 @@ article {
   .articlePanier {
     width: 350px;
     height: 230px;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1.5fr 1fr 1fr;
     grid-template-rows: 0.5fr 1fr;
     min-width: 350px;
     min-height: auto;
@@ -544,9 +544,14 @@ article {
 .articlePanier .desc {
   grid-area: 2/2/2/2;
 }
+@media screen and (max-width : 428px) {
+  .articlePanier .desc {
+    display: none;
+  }
+}
 .articlePanier .prix {
   grid-area: 2/3/3/4;
-  text-align: center;
+  text-align: end;
 }
 .articlePanier img {
   grid-area: 1/1/3/4;
@@ -567,11 +572,12 @@ article {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: end;
 }
 @media screen and (max-width : 428px) {
   .articlePanier .compteur {
-    height: 60%;
+    height: 50%;
+    width: 100%;
   }
 }
 .articlePanier .compteur button {
@@ -637,7 +643,6 @@ aside .btn-retour {
 aside .recap {
   background-color: #D1ECF8;
   align-content: center;
-  text-align: right;
   border-radius: 1em;
   padding: 20px;
   margin: 20px 0;
@@ -650,6 +655,14 @@ aside .recap h4 {
     float: none;
     width: 90%;
   }
+}
+aside .recap .prix {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+aside .recap .prix p {
+  margin-top: 0;
 }
 aside .recap .btn-recap {
   width: 95%;

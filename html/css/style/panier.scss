@@ -71,7 +71,7 @@ article {
     @media #{$mobile} {
         width: $McardW;
         height: $McardH;
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 1.5fr 1fr 1fr;
         grid-template-rows: .5fr 1fr;
         min-width: $McardW;
         min-height: auto;
@@ -90,11 +90,14 @@ article {
     }
     .desc{
         grid-area: 2/2/2/2;
+        @media #{$mobile}{
+            display: none;
+        }
     }
     .prix {
         grid-area: 2 / 3 / 3 / 4;
-        //margin-top: 10px;
-        text-align: center;
+        
+        text-align: end;
         
     }
 
@@ -120,10 +123,11 @@ article {
         width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: center ;
+        justify-content: end ;
         
         @media #{$mobile} {
-            height: 60%;
+            height: 50%;
+            width: 100%;
             
         }
         button{
@@ -197,7 +201,6 @@ aside{
 .recap {
     background-color: $colS;
     align-content: center;
-    text-align: right;
     border-radius: $radius;
     padding: $pad;
     margin: $marg 0;
@@ -208,7 +211,14 @@ aside{
         float:none;
         width: 90%;
     }
-
+    .prix{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        p{
+            margin-top:0;
+        }
+    }
     .btn-recap{
         width: 95%;
 
