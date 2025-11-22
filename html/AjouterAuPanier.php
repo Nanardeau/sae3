@@ -39,12 +39,13 @@ $bdd->query('set schema \'alizon\'');
 
         $_SESSION["idPanier"] = $bdd->lastInsertId();
     }
+    $idPanier = $_SESSION["idPanier"];
     $codeProduit = $_GET["codeProd"];
-    $prodUnitPanier = $bdd->query("SELECT * FROM ProdUnitPanier WHERE codeProduit = '".$codeProduit."'")->fetch();
+    $prodUnitPanier = $bdd->query("SELECT * FROM ProdUnitPanier WHERE codeProduit = '".$codeProduit."'AND idPanier = '".$idPanier."'")->fetch();
     if($prodUnitPanier){
         $qteProd = $prodUnitPanier["qteprod"];
 
-        $req = $bdd->prepare("UPDATE ProdUnitPanier SET qteProd = '".$qteProd + 1 ."' WHERE codeProduit = '".$codeProduit."'");
+        $req = $bdd->prepare("UPDATE ProdUnitPanier SET qteProd = '".$qteProd + 1 ."' WHERE codeProduit = '".$codeProduit."' AND idPanier = '".$idPanier."'");
     }
     else{
         $req = $bdd->prepare("INSERT INTO ProdUnitPanier(codeProduit, idPanier, qteProd) VALUES ('".$codeProduit."', '".$_SESSION["idPanier"]."',1)");
@@ -52,4 +53,4 @@ $bdd->query('set schema \'alizon\'');
     $req->execute();
 
     #alert("Le produit a bien été ajouté au panier.");
-    exit(header("location:Catalogue.php?ajout=1"));
+    exit(header("location:".$_GET["page"]."?ajout=1"));

@@ -100,7 +100,7 @@ session_start();
                             </svg>
 
 
-                        <a class="details" href="AjouterAuPanier.php?codeProd=<?php echo $p["codeproduit"]?>" >Ajouter au panier</a>
+                        <a class="details" href="AjouterAuPanier.php?codeProd=<?php echo $p["codeproduit"]?>&page=index.php" >Ajouter au panier</a>
                         <a class="details" href="dproduit.php?id=<?= $p['codeproduit'] ?>">Détails</a>
                     </div>
                 </div>
