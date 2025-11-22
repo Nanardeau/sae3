@@ -29,11 +29,12 @@ session_start();
 
     if(!isset($_SESSION["idPanier"]) || $_SESSION["idPanier"] = NULL){
         if(!isset($_SESSION["codeCompte"])){
-            echo "explosion";
             $stmt = $bdd->prepare("INSERT INTO Panier (dateCreaP) VALUES ('".date("Y-m-s H:i:s")."')");
 
         }
         else{
+            echo "explosion";
+
             $stmt = $bdd->prepare("INSERT INTO Panier (dateCreaP, codeCompte) VALUES ('".date("Y-m-s H:i:s")."', '".$_SESSION["codeCompte"]."')");
 
         } 
