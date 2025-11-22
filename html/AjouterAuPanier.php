@@ -26,7 +26,7 @@ $bdd->query('set schema \'alizon\'');
 ?>
 <?php
 session_start();
-
+print_r($_SESSION);
     if(!isset($_SESSION["idPanier"]) || $_SESSION["idPanier"] = NULL){
         if(!isset($_SESSION["codeCompte"])){
             $stmt = $bdd->prepare("INSERT INTO Panier (dateCreaP) VALUES ('".date("Y-m-s H:i:s")."')");
