@@ -32,8 +32,7 @@ session_start();
             $stmt = $bdd->prepare("INSERT INTO Panier (dateCreaP) VALUES ('".date("Y-m-s H:i:s")."')");
 
         }
-        else{
-            echo "explosion";
+        else if($_SESSION["codeCompte"] != NULL){
 
             $stmt = $bdd->prepare("INSERT INTO Panier (dateCreaP, codeCompte) VALUES ('".date("Y-m-s H:i:s")."', '".$_SESSION["codeCompte"]."')");
 
