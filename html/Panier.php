@@ -44,6 +44,7 @@ $bdd->query('set schema \'alizon\'');
     , initial-scale=1.0">
     <title>Alizon</title>
     <link href="./css/style/panier.css" rel="stylesheet" type="text/css">
+    
     <script src="js/Panier.js"></script>
 </head>
 
@@ -116,7 +117,7 @@ $bdd->query('set schema \'alizon\'');
         <article>
         <?php
         foreach($ListeProdPanier as $liste){
-            $stmInfoProd = $bdd->query('SELECT libelleProd,urlphoto,codecomptevendeur from Produit where codeProduit = '.$liste["codeproduit"] );
+            $stmInfoProd = $bdd->query('SELECT libelleProd,descriptionProd,urlphoto,codecomptevendeur from Produit where codeProduit = '.$liste["codeproduit"] );
             $infoProd = $stmInfoProd->fetch();
             //print_r($infoProd);
             $codeVendeur = $infoProd["codecomptevendeur"];
@@ -126,6 +127,7 @@ $bdd->query('set schema \'alizon\'');
             //print_r($infoVendeur);
 
             $nomProd = $infoProd["libelleprod"];
+            $descProd = $infoProd["descriptionprod"];
             $urlImg = $infoProd["urlphoto"];
             $vendeur = $infoVendeur["nom"];
             $qteProd = $liste["qteprod"];
@@ -139,7 +141,9 @@ $bdd->query('set schema \'alizon\'');
                 <p> Vendu par <strong><?php echo $vendeur?></strong></p>
             </div>
             <img src="<?php echo $urlImg?> " alt="Image produit"/>
-            
+            <div class="desc">
+                <p><?php echo $descProd ?></p>
+            </div>
             <div class="compteur">
                 <?php 
                     if($qteProd == 1){?>

@@ -36,8 +36,9 @@ if($_POST){
     $rep= $req->fetch();
     if($rep!=null){
         session_start();
-        $_SESSION["codeCompte"] = $rep["codeCompte"];
+        $_SESSION["codeCompte"] = $rep["codecompte"];
         header("location: accueil.php");
+        //print_r($_SESSION['codeCompte']);
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
         

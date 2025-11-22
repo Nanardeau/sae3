@@ -74,6 +74,8 @@ CREATE TABLE Produit(
     largeur FLOAT, --en mètre
     qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
     Origine VARCHAR(20) NOT NULL check (Origine IN ('Breizh','France','Étranger')),
+    dateCreaProduit TEXT NOT NULL, 
+    dateModifProduit TEXT NOT NULL,
     Disponible BOOLEAN DEFAULT TRUE,
     nomTarif VARCHAR(20) REFERENCES Tarification(nomTarif),  -- LIEN AVEC TARIFICATION 
     seuilAlerte NUMERIC(10,2) NOT NULL,
@@ -419,3 +421,35 @@ CREATE TRIGGER trg_dateCrea_Avis
 BEFORE INSERT ON alizon.Avis
 FOR EACH ROW
 EXECUTE FUNCTION alizon.dateCreationAvis();
+
+-- Date de création et modif d'un avis
+CREATE OR REPLACE FUNCTION alizon.dateCreationProduit()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_ts timestamptz;
+BEGIN
+    NEW.dateCreaProduit := to_char(now(), 'DD/MM/YYYY HH24:MI:SS');
+    RETURN NEW;
+END;
+$$LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_dateCrea_Produit
+BEFORE INSERT ON alizon.Produit
+FOR EACH ROW
+EXECUTE FUNCTION alizon.dateCreationProduit();
+
+-- Date de création d'un avis
+CREATE OR REPLACE FUNCTION alizon.dateModificationProduit()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_ts timestamptz;
+BEGIN
+    NEW.dateModifProduit := to_char(now(), 'DD/MM/YYYY HH24:MI:SS');
+    RETURN NEW;
+END;
+$$LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_dateModif_Produit
+BEFORE INSERT OR UPDATE  ON alizon.Produit
+FOR EACH ROW
+EXECUTE FUNCTION alizon.dateModificationProduit();
