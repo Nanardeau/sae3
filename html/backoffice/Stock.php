@@ -7,19 +7,11 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
 }else{
 
     $codeCompte = $_SESSION["codeCompte"];
-<<<<<<< HEAD
-    
-    
-}
- 
-//$_SESSION["codecompte"] = 5;
-=======
     print_r($_SESSION);
     
 }
 
 
->>>>>>> ModifPanier
 
 //Connexion à la base de données.
 require_once('../_env.php');
