@@ -1,13 +1,25 @@
 <?php
 session_start();
+<<<<<<< HEAD
 if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
     //header('location: connexionVendeur.php');
+=======
+
+if(!array_key_exists('codeCompte', $_SESSION) || !isset($_SESSION['codeCompte'])){
+    //header('location: connexionVendeur.php');
+    print_r($_SESSION);
+>>>>>>> ModifPanier
     
 }else{
 
     $codeCompte = $_SESSION["codeCompte"];
     
 }
+<<<<<<< HEAD
+=======
+
+//$codeCompte = $_SESSION["codecompte"];
+>>>>>>> ModifPanier
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv('../.env');
