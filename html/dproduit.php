@@ -2,7 +2,7 @@
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
-
+session_start();
 // Récupération des variables
 $host = getenv('PGHOST');
 $port = getenv('PGPORT');
@@ -88,7 +88,16 @@ unset($avis);
     <link rel="stylesheet" href="css/style/dproduit.css">
 </head>
 <body>
-    <?php include 'includes/header.php'; ?>
+    <?php 
+
+    if(isset($_SESSION['codeCompte'])){
+        include 'includes/headerCon.php' ;
+        $codeCompte = $_SESSION['codeCompte'];
+    }else{
+        include 'includes/header.php';
+        include 'includes/menu_cat.php';
+    }
+    ?>
     <?php include 'includes/menu_cat.php';?>
 
     <main>
@@ -123,7 +132,7 @@ unset($avis);
                     <a class="add-to-cart" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>">Ajouter au panier</a>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
-
+                <?php if(isset($_SESSION["codeCompte"])):?>
                 <form class="avis-section" method="POST" action="ajout_avis.php" enctype="multipart/form-data">
 
                     <h2>Votre avis</h2>
@@ -153,7 +162,7 @@ unset($avis);
                     <input type="hidden" name="noteProd" id="noteProd" value="0">
 
                 </form>
-
+            <?php endif?>
 
             </div>
         </section>
