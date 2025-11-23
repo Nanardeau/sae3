@@ -267,6 +267,9 @@ body{
                 
             }
         }
+        a{
+            text-decoration: none;
+        }
         a  input{
             display :block;
             font-family: $Poltext;
