@@ -13,7 +13,7 @@ function closeOverlay() {
 function openOverlayMobile() {
   const overlay = document.getElementById("overlayMenuCatMob");
   overlay.style.display = "block";
-  document.body.style.overflow = "hidden"; 
+  document.body.style.overflow = "hidden";
 }
 
 function closeOverlayMobile() {
@@ -98,6 +98,18 @@ stars.forEach(star => {
         updateStars(noteInput.value);
     });
 });
+
+
+const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+let index = 0;
+
+function nextSlide() {
+    index = (index + 1) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+setInterval(nextSlide, 4000);
 
 
 
