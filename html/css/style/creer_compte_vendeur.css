@@ -410,16 +410,63 @@ main .main :nth-child(3) h3 {
   padding-top: 78px;
 }
 main .boutton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-top: 50px;
   text-align: center;
 }
 main .boutton button {
-  border: none;
-  height: 55px;
-  width: 430px;
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
   background-color: #CD4B22;
   color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  height: 55px;
+  width: 430px;
+  border: none;
+  margin-bottom: 1em;
   font-size: 24px;
+  /* border: none;
+   height: 55px;
+   width: 430px;
+   background-color: $colP;
+   color: $blanc;
+   font: {
+       size:$MoyTitle;
+       weight:bold;
+   }
+
+   border-radius: 16px;
+   margin-bottom:1em;*/
+}
+main .boutton button:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+main .boutton button:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
+}
+main .bouton {
+  font-family: "Mulish";
   font-weight: bold;
-  border-radius: 16px;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #6CA6E9;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  padding: 2em;
+  color: black;
+  width: 200px;
+}
+main .bouton:hover {
+  background-color: rgb(19.9171597633, 72.426035503, 133.0828402367);
+}
+main .bouton:active {
+  background-color: rgb(13.2781065089, 48.2840236686, 88.7218934911);
 }/*# sourceMappingURL=creer_compte_vendeur.css.map */

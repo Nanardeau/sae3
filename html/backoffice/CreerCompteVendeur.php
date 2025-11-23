@@ -103,7 +103,6 @@
 
 
     }
-    include('../includes/backoffice/footer.php');
     ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -271,6 +270,7 @@
             </div>
             <div class="boutton">
                 <button type="submit" id="valider" >Créer le compte</button>
+                <a href="ConnexionVendeur.php" class="bouton">Retour</a>
             </div>
         </form>
     </main>
