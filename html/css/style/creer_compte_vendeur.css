@@ -431,18 +431,6 @@ main .boutton button {
   border: none;
   margin-bottom: 1em;
   font-size: 24px;
-  /* border: none;
-   height: 55px;
-   width: 430px;
-   background-color: $colP;
-   color: $blanc;
-   font: {
-       size:$MoyTitle;
-       weight:bold;
-   }
-
-   border-radius: 16px;
-   margin-bottom:1em;*/
 }
 main .boutton button:hover {
   background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
