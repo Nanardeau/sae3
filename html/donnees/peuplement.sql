@@ -191,6 +191,22 @@ insert into Avis(codeproduit,codecomptecli,noteprod,commentaire,datepublication)
 (10,4,4,'Casquette confortable et de bonne qualité',null),
 (15,1,5,'Sac à dos super solide, très satisfait de mon achat',null),
 (2,2,3,'J aime bien mais c est pas mon truc non plus',null);
+
+insert into Carte(numCarte,nomTit,prenomTit,CVC,dateExp) VALUES
+('1234 5678 9123 4567','test','adalbert','890','2026-01-01');
+
+insert into Commande(codeCompte,idCarte,dateCom) VALUES
+(3,1,'2025-11-23');
+
+insert into ProdUnitCommande(numCom,codeProduit,qteProd) VALUES
+(1,1,2),
+(1,2,2),
+(1,4,1);
+
+select * from ProdUnitCommande;
+select * from Commande;
+SELECT codeProduit FROM ProdUnitCommande WHERE numCom = 1 ORDER BY codeProduit LIMIT 3
+
 SELECT * FROM alizon.Client;
 SELECT * FROM alizon.Vendeur;
 --SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) ORDER BY avis.codeproduit;
