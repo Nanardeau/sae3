@@ -232,6 +232,12 @@ input:user-invalid + span, input.invalid + span {
   border-radius: 1em;
   cursor: pointer;
 }
+.bouton:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.bouton:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
 
 /*###############################
 #            HEADER             #
@@ -511,6 +517,12 @@ header nav svg {
   width: 50%;
   padding: 1em;
 }
+.btnJaune:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.btnJaune:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
 
 .overlayMenuCatMob {
   z-index: 1000;
@@ -701,6 +713,12 @@ form select {
   font-size: 1em;
   max-width: 225px;
 }
+form select:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+form select:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
+}
 form input {
   border: solid 1px;
   border-radius: 1em;
@@ -719,6 +737,12 @@ form input::file-selector-button {
   border-radius: 1em;
   cursor: pointer;
   border: none;
+}
+form input::file-selector-button:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+form input::file-selector-button:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
 }
 form input#photoProd {
   border: none;
@@ -772,6 +796,12 @@ form .pObl::after {
   color: white;
   border-radius: 1em;
   cursor: pointer;
+}
+.bouton:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+.bouton:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
 }
 .bouton:hover {
   background-color: rgb(174.9790794979, 64.0167364017, 29.0209205021);

@@ -375,6 +375,12 @@ form .bouton {
   font-size: 16px;
   width: 100%;
 }
+form .bouton:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+form .bouton:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
+}
 form label {
   font-weight: bold;
 }
@@ -417,6 +423,12 @@ aside figure img {
   cursor: pointer;
   padding: 1em;
   width: 80%;
+}
+.bouton:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+.bouton:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
 }
 
 nav {

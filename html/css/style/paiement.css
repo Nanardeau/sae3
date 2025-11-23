@@ -122,6 +122,12 @@ input:user-invalid + span, input.invalid + span {
   border-radius: 1em;
   cursor: pointer;
 }
+.bouton:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.bouton:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
 
 /*###############################
 #            HEADER             #
@@ -401,6 +407,12 @@ header nav svg {
   width: 50%;
   padding: 1em;
 }
+.btnJaune:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.btnJaune:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
 
 .overlayMenuCatMob {
   z-index: 1000;
@@ -528,7 +540,7 @@ article {
   display: flex;
   padding: 1rem;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   .ligneSection {
     flex-direction: column;
     justify-content: flex-start;
@@ -539,7 +551,7 @@ article {
   width: 100%;
   margin: 5rem 0;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   .ligneSection section {
     margin-left: 0;
   }
@@ -551,7 +563,7 @@ article {
   margin-left: 20%;
   margin-right: 10%;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   .ligneSection section:nth-child(2) {
     margin: 0;
   }
@@ -608,7 +620,7 @@ section article {
   height: max-content;
   padding: 20px;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   section article {
     width: -moz-fit-content;
     width: fit-content;
@@ -682,7 +694,7 @@ div.row {
   display: flex;
   padding-bottom: 3em;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   .ligneArtPaye {
     flex-direction: column;
     justify-content: flex-start;
@@ -703,7 +715,7 @@ div.row {
   margin-left: 13rem;
   width: 40%;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   .ligneArtPaye section:nth-child(2) {
     margin: 0;
     width: 100%;
@@ -715,7 +727,7 @@ div.row {
   height: auto;
   justify-content: flex-start;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   .ligneArtPaye section:nth-child(2) article {
     padding: 1rem;
     width: 100%;
@@ -728,7 +740,7 @@ div.row {
   align-items: flex-start;
   height: 100%;
 }
-@media screen and (screen and (max-width : 428px)) {
+@media screen and (max-width : 428px) {
   .ligneArtPaye section:nth-child(2) form {
     width: 100%;
   }
@@ -758,6 +770,12 @@ div.row {
   padding: 1.5rem;
   width: 10rem;
   border: none;
+}
+.ligneArtPaye .bouton:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.ligneArtPaye .bouton:active {
+  background-color: rgb(4.5, 48, 97.5);
 }
 .ligneArtPaye nav {
   display: flex;

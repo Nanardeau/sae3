@@ -1,4 +1,5 @@
 @use "../vFront" as *;
+@use 'sass:color';
 
 @mixin text($taille){
     font: {
@@ -23,6 +24,20 @@
     color:$blanc; 
     border-radius:$radius;
     cursor:pointer;
+        &:hover{
+            background-color : color.change($couleur, $lightness: 30%);
+        }
+        &:active{
+            background-color : color.change($couleur, $lightness: 20%);
+        }
 }
    
 
+@mixin inputDouble($width1 : 50%, $width2 : 50%){
+    .labelInput:nth-child(1){
+        width:$width1;
+    }
+    .labelInput:nth-child(2){
+        width:$width2;
+    }
+}
