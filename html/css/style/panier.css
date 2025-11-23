@@ -577,7 +577,7 @@ header nav svg {
 .card div .button {
   display: flex;
   align-items: center;
-  justify-content: center;
+  align-content: center;
   display: block;
   font-family: "Mulish";
   width: 100%;

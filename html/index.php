@@ -101,7 +101,7 @@ session_start();
                     $prix = number_format($p['prixttc'], 2, ',', '');
                 ?>
                     
-                    <div class="carte-produit">
+                    <div class="card">
                         <figure>
                             <a href="dproduit.php?id=<?= $p['codeproduit'] ?>">
                                 <img src="<?php echo $img ?>" />
@@ -120,8 +120,8 @@ session_start();
                                 </svg>
                             </a>
 
-                            <a href="AjouterAuPanier.php?codeProd=<?php echo $p["codeproduit"]?>&page=index.php"><input type="button" value="Ajouter au panier"></a>
-                            <a class="details" href="dproduit.php?id=<?= $p['codeproduit'] ?>">Détails</a>
+                            <a href="AjouterAuPanier.php?codeProd=<?php echo $p["codeproduit"]?>&page=index.php" class="button">Ajouter au panier</a>
+                            <a class="button" href="dproduit.php?id=<?= $p['codeproduit'] ?>">Détails</a>
                         </div>
                     </div>
 

@@ -2,6 +2,7 @@
 @use "./styleCom" as *;
 @use "../tools/vFront" as *;
 @use "../components/fonts" as *;
+@use "../components/carte" as *;
 //@use "../components/carte";
 @import url("bootstrap/scss/utilities/api");
 
@@ -114,7 +115,9 @@ body{
     padding: 1rem 1.5rem;
     border-radius: 8px;
 }
-
+a{
+    text-decoration: none;
+}
 
 .annonce_produit_large {
     width: 65%;
@@ -172,33 +175,12 @@ body{
     margin-bottom: $marg;  
 }
 
-.carte-produit{
+.card{
     background-color: $colS;
     flex: 0 0 auto;
     
 }
 
-.details{
-    text-decoration: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-family: $Poltext;
-    width: 100%;
-    min-width: 8rem;
-    text-align: center;
-    align-self: center;
-    justify-self: center;
-    justify-items: center;
-    color : $noir;
-    font-weight: bold;
-    background-color: $eleOrange;
-    border-radius: $radius;
-
-
-    @media screen and (max-width: 428px){
-        display:none;
-    }
-}
 
 
 
