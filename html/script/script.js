@@ -10,6 +10,18 @@ function closeOverlay() {
   document.body.style.overflow = ""; 
 }
 
+function openOverlayCompte() {
+  const overlayCpt = document.getElementById("overlayCompte");
+  overlayCpt.style.display = "block";
+  document.body.style.overflow = "hidden"; 
+}
+
+
+function closeOverlayCompte() {
+  const overlay = document.getElementById("overlayMenuCat");
+  overlay.style.display = "none";
+  document.body.style.overflow = ""; 
+}
 function openOverlayMobile() {
   const overlay = document.getElementById("overlayMenuCatMob");
   overlay.style.display = "block";
@@ -34,6 +46,12 @@ window.onclick = function(event) {
   const overlay = document.getElementById("overlayMenuCatMob");
   if (event.target === overlay) {
     closeOverlayMobile();
+  }
+};
+window.onclick = function(event) {
+  const overlay = document.getElementById("overlayCompte");
+  if (event.target === overlay) {
+    closeOverlay();
   }
 };
 

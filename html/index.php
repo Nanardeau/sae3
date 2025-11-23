@@ -46,6 +46,7 @@ session_start();
     <main>
         <?php
             include 'includes/menu_cat.php';
+            include 'includes/menuCompte.php';
         ?>
         <!-- <section class="bienvenue">
             <img src="img/bvn4.png" alt="">
