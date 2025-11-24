@@ -337,6 +337,9 @@ main .image_prod {
 main .img_etoile {
   padding-left: 20px;
 }
+main .img_etoile svg:last-child {
+  margin-right: 20px;
+}
 main h1 {
   margin-top: 80px;
   margin-bottom: 0;

@@ -337,7 +337,6 @@ aside {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-left: 1.25em;
   gap: 1.25em;
   box-sizing: border-box;
   margin-left: 4em;
@@ -350,8 +349,7 @@ aside div {
   display: grid;
   grid-template-columns: repeat(2, 11.75em);
   gap: 1.25em;
-  justify-content: start;
-  align-items: start;
+  justify-content: center;
 }
 aside h1 {
   font-family: "Baloo", sans-serif;
@@ -370,7 +368,7 @@ body {
   box-sizing: border-box;
 }
 
-.reduction {
+.produit {
   color: inherit;
   display: flex;
   flex-direction: column;
@@ -379,24 +377,22 @@ body {
   border-radius: 24px;
   width: 11.75em;
   height: 11.75em;
-  margin-left: 1.25em;
   text-decoration: none;
   position: relative;
-  padding-top: 0.75em;
   box-sizing: border-box;
   gap: 0.1em;
 }
-.reduction > svg {
+.produit > svg {
   position: absolute;
   top: 5px;
   left: 5px;
   z-index: 2;
 }
-.reduction a img {
+.produit a img {
   text-decoration: none;
   border-color: black;
 }
-.reduction img {
+.produit img {
   position: static;
   z-index: 1;
   width: 5.5em;
@@ -406,10 +402,10 @@ body {
   border: 2px solid;
   margin-left: 10px;
 }
-.reduction p {
+.produit p {
   margin: 0;
 }
-.reduction .nomArticle {
+.produit .nomArticle {
   padding-left: 10px;
   font-family: "Mulish", sans-serif;
   font-size: 1em;
@@ -417,7 +413,7 @@ body {
   text-align: left;
   margin-top: 0.25em;
 }
-.reduction .prixBase {
+.produit .prixBase {
   padding-left: 10px;
   font-family: "Mulish", sans-serif;
   font-size: 0.75em;
@@ -427,7 +423,7 @@ body {
   text-decoration-thickness: 2px;
   text-align: left;
 }
-.reduction div {
+.produit div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -436,7 +432,7 @@ body {
   gap: 0.25em;
   position: relative;
 }
-.reduction div .prixReduc {
+.produit div .prixReduc {
   font-family: "Mulish", sans-serif;
   font-size: 1.25em;
   padding-left: 10px;
@@ -444,24 +440,24 @@ body {
   color: black;
   font-weight: bold;
 }
-.reduction div .pourcentReduc {
+.produit div .pourcentReduc {
   font-family: "Mulish", sans-serif;
   font-size: 1em;
   padding-right: 20px;
   color: #FF4444;
 }
-.reduction div .btnModifReduc {
+.produit div .btnModifReduc {
   display: flex;
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
 }
-.reduction div .btnModifReduc svg {
+.produit div .btnModifReduc svg {
   width: 30px;
   height: 100%;
 }
-.reduction div .btnModifReduc:hover svg circle {
+.produit div .btnModifReduc:hover svg circle {
   fill: rgb(63.6390532544, 139.1420118343, 226.3609467456);
 }
 
