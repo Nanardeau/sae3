@@ -56,6 +56,7 @@
         <?php if($_SESSION["mdpValide"] == -1):?>
             <h2 class="erreur">Mot de passe incorrect</h2>
         <?php endif?>
+        <a class="btnRetour" onclick="retour()">Retour</a>
         <a href="index.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
 
         <div class="containerForm">
@@ -272,6 +273,9 @@
                 
                 
             }
+        }
+        function retour(){
+            history.back();
         }
     </script>
 </body>

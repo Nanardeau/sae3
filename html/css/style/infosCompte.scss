@@ -127,3 +127,10 @@ input[type="file"]{
 #deconnexion img{
     margin-right:1em;
 }
+.btnRetour{
+    align-self:flex-start;
+    margin-left:10em;
+    font-size:$GdTitle;
+    color:black;
+    cursor:pointer;
+}
