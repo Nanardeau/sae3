@@ -144,7 +144,7 @@ try {
                     <a href="Stock.php">Consulter la liste des produits</a>
             </section>
             <section class="btnAccueil">
-                <a href="commande.php">Consulter la liste des commandes</a>
+                <a href="Commandes.php">Consulter la liste des commandes</a>
             </section>
         </div>
     </div>
