@@ -1,0 +1,10 @@
+@use "../vFront" as *;
+
+@mixin text($taille){
+    font: {
+         family: $Poltitle;
+        size: $taille;
+        weight : bold;
+    }
+}
+   

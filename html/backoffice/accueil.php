@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
     header('location: connexionVendeur.php');
     
@@ -56,7 +57,7 @@ try {
                 ?>
                 <div class="reduction">
                 <?php
-                echo '<a href="./FicheProduit.php?Produit='.htmlspecialchars($row['codeproduit']).'">';
+                echo '<a href="./ficheProduit.php?Produit='.htmlspecialchars($row['codeproduit']).'">';
                     echo '<img src="../'.htmlspecialchars($row['urlphoto']).'" alt="Photo de '.htmlspecialchars($row['libelleprod']).'"> </a>';
                     echo '<p class="nomArticle">'.htmlspecialchars($row['libelleprod']).'</p>';
                     echo '<div>';
@@ -80,13 +81,13 @@ try {
                 <h1>Les avis</h1>
                 <div>
                 <?php
-                    $liste_avis = $bdd->query("SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) WHERE produit.codecomptevendeur = " . $codeCompte . " ORDER BY avis.codeproduit;");  
+                    $liste_avis = $bdd->query("SELECT profil.urlphoto, avis.codeproduit, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) WHERE produit.codecomptevendeur = " . $codeCompte . " ORDER BY avis.codeproduit;");  
                     $rows = $liste_avis->fetchAll(PDO::FETCH_ASSOC);
                     $limit = 3;
                     for ($i = 0; $i < $limit; $i++) {
                     ?> 
-                    <a href="avis.php" class="avis">
-                       <?php 
+                    <?php 
+                    echo '<a href="ficheProduit.php?Produit='.htmlspecialchars($rows[$i]['codeproduit']).'" class="avis">';
                        echo '<img src="../'.htmlspecialchars($rows[$i]['urlphoto']).'" alt="Photo de profil de '.htmlspecialchars($rows[$i]['pseudo']).'" class="pdp">';?>
                         <div class="infoAvis">
                             <div class="nomNote">

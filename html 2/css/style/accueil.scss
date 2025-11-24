@@ -1,0 +1,103 @@
+@use "./styleCom" as *;
+@use "../tools/vFront" as *;
+@use "../components/fonts" as *;
+
+body{
+    margin: 0;  
+}
+
+// main{
+//     padding-top: 80px;
+// }
+
+.anonnces_produits {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    padding-top: 100px;
+
+    @media screen and (max-width: 428px){
+        padding-top: 40px;
+    }
+}
+
+.annonce_produit {
+
+    background-color: $colS;
+    border-radius: $radius;
+    width: 40%;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background-color: rgb(217, 217, 217);
+        margin-bottom: 1rem;
+    }
+    @media screen and (max-width: 428px){
+        width: 100%;
+        img{
+            height: 100px;
+        }
+    }
+}
+
+.boutton {
+    background-color: $colP;
+    color: white;
+    font: {
+        family: $Poltext;   
+    }
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+}
+
+
+.annonce_produit_large {
+    width: 65%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        height: 250px;
+    }
+
+    @media screen and (max-width: 428px){
+        width: 100%;
+        img{
+            height: 100px;
+        }
+    }
+}
+
+
+.separateur {
+    background-color: $eleOrange;
+    width: 98%;
+    height: 10px;
+    border-radius: $radius;
+
+}
+
+.aff_prod{
+    margin-left: 30px;
+}
+
+
+
+
+
+
+
+
