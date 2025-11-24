@@ -573,6 +573,31 @@ header nav svg {
   padding-left: 1rem;
 }
 
+.ajoutPanierFait {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  position: fixed;
+  background-color: #D1ECF8;
+  width: 15em;
+  padding: 1em;
+  right: 40px;
+  border-radius: 10px;
+  margin-top: 1em;
+  margin-left: 2em;
+}
+.ajoutPanierFait svg {
+  color: green;
+}
+.ajoutPanierFait .bouton {
+  padding: 0.3em;
+}
+.ajoutPanierFait .partieDroite {
+  display: flex;
+  flex-direction: column;
+}
+
 header .logo_alizon_front {
   width: 200px;
 }

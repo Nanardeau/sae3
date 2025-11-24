@@ -508,3 +508,29 @@ header{
 
     }
 }
+.ajoutPanierFait{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    z-index:1000;
+    position:fixed;
+    background-color:$colS;
+    width:15em;
+    padding:1em;
+    right:40px;
+    border-radius:10px;
+    svg{
+        color:green;
+    }
+    margin: {
+        top:1em;
+        left:2em;
+    }
+    .bouton{
+        padding:0.3em;
+    }
+    .partieDroite{
+        display:flex;
+        flex-direction: column;
+    }
+}

@@ -49,7 +49,15 @@ $bdd->query('set schema \'alizon\'');
     ?>
 
     <main>
-        
+        <div class="ajoutPanierFait">
+            <div class="partieGauche" onclick="fermerPopUpPanier()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <div class="partieDroite">
+                <p>Produit ajouté au panier</p>
+                <a href="Panier.php" class="bouton">Aller au panier</a>
+            </div>
+        </div>
 
         <h1>Toutes les catégories</h1>
 
@@ -138,7 +146,11 @@ $bdd->query('set schema \'alizon\'');
 
     </main>
     <?php include 'includes/footer.php';?>
-
+    <script>
+        function fermerPopUpPanier(){
+            window.location.href = "index.php";
+        }
+    </script>
 </body>
 
 </html>
