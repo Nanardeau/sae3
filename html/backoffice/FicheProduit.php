@@ -103,7 +103,7 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
                             ?>
                         </h2>
                         <div>
-                            <button class="buton_modif">Modifier le produit</button>
+                            <a href="modifProduit.php?codeProduit=<?php echo $code_produit?>" class="buton_modif"><div>Modifier le produit</div></a>
                             <?php
                             $state = $bdd->query("SELECT Disponible FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
                             

@@ -59,7 +59,18 @@ main {
         cursor: pointer;
     }
     .buton_modif {
+        display: inline-flex;
+        text-decoration: none;
         background-color: #FCB66B;
+        div{
+            display: flex;
+            justify-content: center;
+            color: $noir;
+            align-items: center;
+            flex-grow: 1;
+        }
+        width: 200px;
+        height: 70px;
     }
     .buton_ajt_cat{
         background-color: $eleBleu;

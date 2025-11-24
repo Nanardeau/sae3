@@ -375,7 +375,18 @@ main .buton_modif, main .buton_ret_cat, main .buton_ajt_cat {
   cursor: pointer;
 }
 main .buton_modif {
+  display: inline-flex;
+  text-decoration: none;
   background-color: #FCB66B;
+  width: 200px;
+  height: 70px;
+}
+main .buton_modif div {
+  display: flex;
+  justify-content: center;
+  color: black;
+  align-items: center;
+  flex-grow: 1;
 }
 main .buton_ajt_cat {
   background-color: #6CA6E9;
