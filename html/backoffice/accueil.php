@@ -83,7 +83,7 @@ try {
                 <h1>Les avis</h1>
                 <div>
                 <?php
-                    $liste_avis = $bdd->query("SELECT avis.numAvis, profil.urlphoto, avis.codeproduit, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) WHERE produit.codecomptevendeur = " . $codeCompte . " ORDER BY avis.codeproduit;");  
+                    $liste_avis = $bdd->query("SELECT avis.numAvis, profil.urlphoto, avis.codeproduit, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) WHERE produit.codecomptevendeur = " . $codeCompte . " ORDER BY avis.codeproduit DESC;");  
                     $rows = $liste_avis->fetchAll(PDO::FETCH_ASSOC);
                     $limit = 3;
                     $count = count($rows);
