@@ -83,21 +83,27 @@ try {
                 <h1>Les avis</h1>
                 <div>
                 <?php
-                    $liste_avis = $bdd->query("SELECT profil.urlphoto, avis.codeproduit, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) WHERE produit.codecomptevendeur = " . $codeCompte . " ORDER BY avis.codeproduit;");  
+                    $liste_avis = $bdd->query("SELECT avis.numAvis, profil.urlphoto, avis.codeproduit, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) WHERE produit.codecomptevendeur = " . $codeCompte . " ORDER BY avis.codeproduit;");  
                     $rows = $liste_avis->fetchAll(PDO::FETCH_ASSOC);
                     $limit = 3;
-                    for ($i = 0; $i < $limit; $i++) {
-                    ?> 
-                    <?php 
-                    echo '<a href="ficheProduit.php?Produit='.htmlspecialchars($rows[$i]['codeproduit']).'" class="avis">';
-                       echo '<img src="../'.htmlspecialchars($rows[$i]['urlphoto']).'" alt="Photo de profil de '.htmlspecialchars($rows[$i]['pseudo']).'" class="pdp">';?>
+                    $count = count($rows);
+                    if ($count === 0) {
+                        echo '<p>Aucun avis pour le moment.</p>';
+                    } else {
+                        for ($i = 0; $i < min($limit, $count); $i++) {
+                            $row = $rows[$i];
+                            // Ne pas générer le paramètre Avis si la valeur n'existe pas
+                            echo '<a href="ficheProduit.php?Produit=' . htmlspecialchars($row['codeproduit']) .'&Avis=1" class="avis">';
+                            echo '<img src="../' . htmlspecialchars($row['urlphoto']) . '" alt="Photo de profil de ' . htmlspecialchars($row['pseudo']) . '" class="pdp">';
+                ?>
                         <div class="infoAvis">
                             <div class="nomNote">
                                 <?php
-                                echo "<p>".htmlspecialchars($rows[$i]['libelleprod'])."</p>"?>
+                                echo "<p>" . htmlspecialchars($row['libelleprod']) . "</p>";
+                                ?>
                                 <div class="note">
                                     <?php
-                                    $note = htmlspecialchars($rows[$i]['noteprod']);
+                                    $note = htmlspecialchars($row['noteprod']);
                                     // Assurer que $note est un nombre et afficher les étoiles pleines puis les vides jusqu'à 5
                                     $rempli = is_numeric($note) ? (int)floor($note) : 0;
                                     $rempli = max(0, min(5, $rempli));
@@ -115,8 +121,8 @@ try {
                                     } ?>
                                 </div>
                             </div>
-                            <?php echo'<p class="nomUtilisateur">'.htmlspecialchars($rows[$i]['pseudo']).'</p>';
-                                $commentaire = htmlspecialchars($rows[$i]['commentaire']);
+                            <?php echo'<p class="nomUtilisateur">'.htmlspecialchars($row['pseudo']).'</p>';
+                                $commentaire = htmlspecialchars($row['commentaire']);
                                 $maxLength = 90;
                                 if (mb_strlen($commentaire) > $maxLength) {
                                     $affichage = mb_substr($commentaire, 0, $maxLength - 3) . '...';
@@ -127,7 +133,10 @@ try {
                             ?>
                         </div>
                     </a>
-                    <?php } ?>
+                    <?php
+                        } // end for
+                    } // end else
+                    ?>
                 </div>
             </section>
             <section class="btnAccueil">
