@@ -407,6 +407,11 @@ header nav svg {
   background-color: #D1ECF8;
   border: solid #064082;
 }
+@media screen and (max-width : 428px) {
+  .overlayContentCompte {
+    right: 70px;
+  }
+}
 .overlayContentCompte nav {
   height: 90%;
   display: flex;
@@ -992,6 +997,11 @@ header nav svg {
   border: solid #064082;
 }
 
+@media screen and (max-width : 428px) {
+  .overlayContentCompte {
+    right: 70px;
+  }
+}
 .overlayContentCompte nav {
   height: 90%;
   display: flex;

@@ -382,6 +382,9 @@ header{
     z-index:100;
     position:fixed;
     right:125px;
+    @media #{$mobile}{
+        right:70px;
+    }
     height:15em;
     background-color:$colS;
     border:solid $colP;
