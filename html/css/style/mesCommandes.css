@@ -601,7 +601,8 @@ header nav svg {
 .separateur {
   display: block;
   background-color: #FCB66B;
-  width: auto;
+  width: 80%;
+  margin: 1em auto 0 auto;
   height: 10px;
   border-radius: 1em;
 }

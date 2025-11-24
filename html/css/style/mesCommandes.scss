@@ -7,8 +7,10 @@
 
 .separateur {
     display: block;
+    
     background-color: $eleOrange;
-    width: auto;
+    width: 80%;
+    margin: 1em auto 0 auto;
     height: 10px;
     border-radius: $radius;
     @media #{$mobile}{
