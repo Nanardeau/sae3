@@ -1,0 +1,29 @@
+@use "../tools/vback" as *;
+@use "../style/styleComB" as *;
+#popup-overlay {
+    position: fixed;
+    border:$noir 2px solid;
+    border-radius: 8px;
+    top: 5%;
+    left: 10%;
+    width: 80%;
+    height: 90%;
+    background: $blanc;
+    display: none;
+    z-index: 999;
+    .avis-item{
+        border:$grisclaire 1px solid;
+        border-radius: 8px;
+        margin: 20px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    }
+    img{
+        width:125px;
+        height:125px;
+        border-radius: 50%;
+    };
+}
