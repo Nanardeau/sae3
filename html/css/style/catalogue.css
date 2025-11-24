@@ -395,6 +395,9 @@ header nav svg {
 .overlayCompte {
   z-index: 1000;
   display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 .overlayContentCompte {
@@ -459,6 +462,7 @@ header nav svg {
 }
 
 .overlayContentCatMob {
+  z-index: 100;
   position: fixed;
   background: white;
   text-align: left;

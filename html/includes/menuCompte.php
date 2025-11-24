@@ -7,7 +7,7 @@
 
             <h2>></h2>
         </nav>
-        <div id="overlayCompte" class="overlayCompte tab-only">
+        <div id="overlayCompte" class="overlayCompte mob-only">
             <div class="overlayContentCompte">
                 
                 <nav>
@@ -18,7 +18,7 @@
             </div>
         </div>
         
-        <div id="overlayMenuCatMob" class="overlayMenuCatMob mob-only">
+        <!-- <div id="overlayMenuCatMob" class="overlayMenuCatMob mob-only">
             <div class="overlayContentCatMob">
                 <div class="identification">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="cross" onclick="closeOverlayMobile()">
@@ -48,4 +48,4 @@
                 
                 
             </div>
-        </div>
+        </div> -->
