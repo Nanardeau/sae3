@@ -2,11 +2,13 @@
 session_start();
 $_SESSION["codeCompte"] = 3 ; 
 
-if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
+if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"]) || $_GET['numCom'] == null){
             header("location:index.php");
-        }
+}
 
 $codeCompte = $_SESSION["codeCompte"];
+$numCom = $_GET['numCom'];
+
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
@@ -38,8 +40,6 @@ try {
         exit();
 }
 $bdd->query('set schema \'alizon\'');
-
-
 ?>
 <html lang="fr">
 <head>
@@ -51,48 +51,91 @@ $bdd->query('set schema \'alizon\'');
 <body>
     <?php include "includes/headerCon.php"?>
     <main>
-    <h1>Vos commandes</h1>
-    <div class="separateur"></div>
-    <?php  
-    $lesCommandes = $bdd->query('SELECT * FROM Commande WHERE codeCompte =\''. $codeCompte .'\'')->fetchAll();
-    print_r($lesCommandes);
-    // Si ne possède pas des commandes -> Pas de commandes
-    // Sinon afficher son nb de commandes
-    if($lesCommandes == null){
-        ?>
-        <div class="vide">
-                <h1> Vous n'avez pas passé de commande</h1>
-                <a href="index.php">Revenir à l'accueil<a>
-            </div>
-        <?php
-    }
-    else {
-        foreach($lesCommandes as $commande){
+        <div class="titre-cat">
+            <h1>Suivi commande</h1>
+            <div class="separateur"></div>
+        </div>
+        <article>
+            <?php
+            //Récupération des informations de la commande 
+            $commande = $bdd->query("SELECT * FROM Commande where numCom = ".$numCom)->fetch();
+            $client = $commande["codecompte"];
             $prixTTC = $commande["prixttctotal"];
             $prixHT = $commande["prixhttotal"];
-            $date = $commande["datecom"];
-            $idCom = $commande["numcom"];
-            $lesProduits = $bdd->query('SELECT codeProduit FROM ProdUnitCommande WHERE numCom =\''.$idCom.'\' ORDER BY codeProduit LIMIT 3 ');
+            $date = date( 'd/m/Y', strtotime($commande["datecom"]));
             
+            //Récupération des informations de l'acheteur
+            $infoCpt = $bdd->query("SELECT nom,prenom,numtel from Client where codeCompte = ".$client)->fetch();
+            $nomCli = $infoCpt['nom'] ;
+            $prenomCli = $infoCpt['prenom'];
+            $numTel = wordwrap($infoCpt['numtel'], 2, ".", 1);
+
+
+            //Récupération des informations de l'adresse de facturation
+            $adrLiv = $bdd->query("SELECT idAdresse FROM AdrLiv where numCom = ".$numCom)->fetch();
+            $infoAdr = $bdd->query("SELECT * FROM Adresse WHERE idAdresse = ".$adrLiv['idadresse'])->fetch();
+            $num = $infoAdr['num'];
+            $nomRue = $infoAdr['nomrue'];
+            $ville = $infoAdr['nomville'];
+            $codePostal = $infoAdr['codepostal'];
+            
+            /* Print d'essaie */
+                //print_r($infoCpt);
+                //print_r($commande);
+                //print_r($infoAdr);
+                
             ?>
-            <article>
-                <div >
-                <?php foreach($lesProduits as $prod){
-                    $imgProd = $bdd->query("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit'])->fetch();
+            <div>
+                <p><strong>Numero de commande :</strong> <?php echo $numCom ?></p>
+                <p><strong>Date de commande :</strong> <?php echo $date ?></p>
+            </div>
+            <div>
+                <p><strong>Informations Client :</strong> <?php echo $nomCli .' '.$prenomCli; ?></p>
+                <p><strong>Numéro téléphone :</strong> <?php echo $numTel ?></p>
+            </div>
+            <div>
+                <p><strong>Adresse Livraison :</strong></p>
+                <p><?php echo $num.' '.$nomRue.' '.$ville.' '.$codePostal ;?></p>
+            </div>
+
+        </article>
+        <div class="titre-cat">
+            <h1>Produits</h1>
+            <div class="separateur"></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom produit</th>
+                    <th>Code Produit</th>
+                    <th>Prix TTC</th>
+                    <th>Quantité</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                $lesProduits = $bdd->query("SELECT ALL * FROM ProdUnitCommande where numCom = ".$numCom)->fetchAll();
+                //print_r($lesProduits);
+                foreach($lesProduits as $prod){
+                    $idProd = $prod['codeproduit'];
+                    $prixTTC = $prod['prixttctotal'];
+                    $qteprod =$prod['qteprod'];
+                    $nomProd = $bdd->query('SELECT libelleProd FROM Produit where codeProduit = '. $idProd)->fetch();
                     
                     ?>
-                
-                    <img src="<?php echo $imgProd['urlphoto']?>" alt="Image produit"/>
-                
-                <?php }?>
-                <div>
-            </article>
-            <?php
-        }
-    }
-    ?>
-    
-
+                    
+                     <tr>
+                        <td><?php echo $nomProd['libelleprod'];?></td>
+                        <td><?php echo $idProd ; ?></td>
+                        <td><?php echo $prixTTC ;?></td>
+                        <td><?php echo $qteprod ;?></td>
+                     </tr>
+                   
+                     <?php
+                }
+                ?>
+            </tbody>
+        </table>
     </main>
     <?php include "includes/footer.php"?>
 </body>

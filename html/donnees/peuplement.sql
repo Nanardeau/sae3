@@ -203,9 +203,12 @@ insert into ProdUnitCommande(numCom,codeProduit,qteProd) VALUES
 (1,2,2),
 (1,4,1);
 
+insert into AdrLiv(numCom,idAdresse) VALUES
+(1,1);
+
 select * from ProdUnitCommande;
 select * from Commande;
-SELECT codeProduit FROM ProdUnitCommande WHERE numCom = 1 ORDER BY codeProduit LIMIT 3
+SELECT codeProduit FROM ProdUnitCommande WHERE numCom = 1 ORDER BY codeProduit LIMIT 2;
 
 SELECT * FROM alizon.Client;
 SELECT * FROM alizon.Vendeur;

@@ -150,13 +150,18 @@ CREATE TABLE Commande(
 );
 CREATE TABLE Livraison(
     idLivraison SERIAL PRIMARY KEY NOT NULL,
+	--numCom INTEGER REFERENCES Commande(numCom),
     dateCommande DATE,
     dateEncaissement DATE,
     datePreparation DATE,
     dateExpedition DATE,
     statutLiv VARCHAR(20)
 );
-
+CREATE TABLE AdrLiv(
+	--idLivraison INTEGER NOT NULL REFERENCES Livraison(idLivraison),
+	numCom INTEGER NOT NULL REFERENCES Commande(numCom),
+	idAdresse INTEGER NOT NULL REFERENCES Adresse(idAdresse)
+);
 CREATE TABLE Avis(
     numAvis SERIAL PRIMARY KEY NOT NULL,
 	codeProduit INTEGER REFERENCES Produit(codeProduit),

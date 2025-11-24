@@ -598,85 +598,102 @@ header nav svg {
   }
 }
 
-.titre-cat {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 .separateur {
   display: block;
   background-color: #FCB66B;
-  width: 100%;
+  width: auto;
   height: 10px;
   border-radius: 1em;
 }
 @media screen and (max-width : 428px) {
   .separateur {
-    display: block;
-    margin-left: 20px;
+    height: 5px;
   }
 }
 
-h1 {
-  display: block;
-  width: 30%;
-  margin-top: 20px;
-  margin-left: 20px;
-}
-@media screen and (max-width : 428px) {
-  h1 {
-    width: 80%;
-  }
-}
-
-article {
-  background-color: #D1ECF8;
+.vide {
   padding: 20px;
-  border-radius: 1em;
-  display: flex;
-  width: 80%;
-  margin: 0 auto;
-  justify-content: space-evenly;
-}
-@media screen and (max-width : 428px) {
-  article {
-    width: 80%;
-    flex-direction: column;
-  }
-}
-article div {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 40%;
 }
-article div p:first-child {
-  margin-top: 1em 0;
-}
-article div p:last-child {
-  margin-top: 0;
-  margin-bottom: 1em;
+.vide a {
+  color: grey;
+  text-decoration: none;
+  font-weight: lighter;
+  font-style: italic;
 }
 
-table {
-  background-color: #D1ECF8;
-  border-collapse: collapse;
-  border: 2px solid #064082;
+input {
   font-family: "Mulish";
-  width: 70%;
-  font-size: 0.8rem;
-  margin: 0 auto;
+  width: 100%;
+  margin-top: 20px;
+  min-width: 8rem;
+  height: 2rem;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: larger;
+  background-color: #FCB66B;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
+.cmd {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.cmd article {
+  border-radius: 1em;
+  margin-top: 20px;
+  padding: 20px;
+  width: 40%;
+  background-color: #D1ECF8;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+.cmd article div {
+  padding: 0 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.cmd article div img {
+  border-radius: 1em;
+  width: 30%;
+}
+.cmd article .info {
+  padding: 0 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 @media screen and (max-width : 428px) {
-  table {
-    width: 100%;
+  .cmd article .info p {
+    font-size: smaller;
   }
 }
-table thead {
+.cmd article .button {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
   background-color: #064082;
   color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  height: 4em;
+  align-content: center;
 }
-table th,
-table td {
-  border: 1px solid #064082;
-  padding: 12px 15px;
-}/*# sourceMappingURL=Commande.css.map */
+.cmd article .button:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.cmd article .button:active {
+  background-color: rgb(4.5, 48, 97.5);
+}/*# sourceMappingURL=mesCommandes.css.map */
