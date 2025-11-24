@@ -1,6 +1,6 @@
 <?php
 session_start();
-//$_SESSION["codecompte"] = 5;
+
 if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
     header('location: connexionVendeur.php');
     
