@@ -1,4 +1,6 @@
 <?php
+    header("location:ConnexionClient.php");
+
     session_start();
     //Connexion à la base de données.
     require_once __DIR__ . '/_env.php';
@@ -27,5 +29,4 @@
     $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = NULL WHERE pseudo = '".$_SESSION["pseudo"]."' AND mdp = '".$_SESSION["mdp"]."'");
     $stmt->execute();
     #$req2= $bdd->query ("UPDATE alizon.Client SET cmtBlq=NULL WHERE pseudo = '".$_SESSION["pseudo"]."' AND mdp = '".$_SESSION["mdp"]."'");
-    header("location:ConnexionClient.php");
 ?>

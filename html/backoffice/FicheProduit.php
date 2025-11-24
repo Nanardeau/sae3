@@ -128,7 +128,7 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
                 $info = $bdd->query("SELECT longueur,largeur,hauteur FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
                 $Org = $bdd->query("SELECT Origine FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
 
-                if ($info!= NULL){?>
+                if ($info['longueur']!= NULL && $info['largeur']!= NULL && $info['hauteur']!= NULL){?>
                     <section class="caract">
                         <h2> Taille</h2>
                         <ul>
@@ -139,7 +139,7 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
                     </section>
                 <?php
                 }
-                if ($Org != NULL){
+                if ($Org['origine'] != NULL){
                     
                 ?>
                 

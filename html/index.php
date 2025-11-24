@@ -43,6 +43,7 @@ session_start();
         include 'includes/header.php';
     }
     ?>
+
     <main>
         <?php
             include 'includes/menu_cat.php';
@@ -50,6 +51,18 @@ session_start();
         <!-- <section class="bienvenue">
             <img src="img/bvn4.png" alt="">
         </section> -->
+        <?php
+        if(isset($_GET["ajout"])):?>
+            <div class="ajoutPanierFait">
+                <div class="partieGauche" onclick="fermerPopUpPanier()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                </div>
+                <div class="partieDroite">
+                    <p>Produit ajouté au panier</p>
+                    <a href="Panier.php" class="bouton">Aller au panier</a>
+                </div>
+            </div>
+        <?php endif?>
         <section class="bienvenue">
             <div class="carousel">
                 <div class="carousel-track">
@@ -76,7 +89,7 @@ session_start();
         </section> 
         <!--
     
-        <!-- <section id="Promotion" class="aff_prod">
+         <section id="Promotion" class="aff_prod">
             <div class="separateur"></div>
             <h1>Promotions</h1>
             <div class="separateur"></div>
@@ -136,5 +149,10 @@ session_start();
     <?php
         include 'includes/footer.php';
     ?>
+    <script>
+        function fermerPopUpPanier(){
+            window.location.href = "index.php";
+        }
+    </script>
 </body>
 </html>

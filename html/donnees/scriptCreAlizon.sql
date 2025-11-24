@@ -329,7 +329,7 @@ EXECUTE FUNCTION duplique_prixTTC();
 CREATE FUNCTION PanierFinalTestTTC()
 RETURNS TRIGGER AS $$
 BEGIN 
-	UPDATE alizon.Panier SET prixTTCtotal = (SELECT SUM(PUP.prixTTCtotal + NEW.prixTTCtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = NEW.idPanier ) WHERE Panier.idPanier = NEW.idPanier;
+	UPDATE alizon.Panier SET prixTTCtotal = (SELECT SUM(PUP.prixTTCtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = NEW.idPanier ) WHERE Panier.idPanier = NEW.idPanier;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -343,7 +343,7 @@ CREATE FUNCTION PanierFinalTestHT()
  
 RETURNS TRIGGER AS $$
 BEGIN 
-	UPDATE alizon.Panier SET prixHTtotal = (SELECT SUM(PUP.prixHTtotal  + NEW.prixHTtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = NEW.idPanier) WHERE Panier.idPanier = NEW.idPanier;
+	UPDATE alizon.Panier SET prixHTtotal = (SELECT SUM(PUP.prixHTtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = NEW.idPanier) WHERE Panier.idPanier = NEW.idPanier;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
