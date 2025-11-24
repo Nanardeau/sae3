@@ -48,6 +48,25 @@ session_start();
             include 'includes/menu_cat.php';
             include 'includes/menuCompte.php';
         ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <?php if(isset($_GET["deconnexion"])):?>
+            <script>alert("Vous avez été déconnecté.");</script>
+        <?php endif?>
         <!-- <section class="bienvenue">
             <img src="img/bvn4.png" alt="">
         </section> -->

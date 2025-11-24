@@ -11,9 +11,11 @@
             <div class="overlayContentCompte">
                 
                 <nav>
-                    <a href="infosCompteClient.php">Mon compte</a>
+                    <a href="infosCompte.php">Mon compte</a>
                     <hr>
                     <a href="mesCommandes.php">Mes commandes</a>
+                    <hr>
+                    <a href="modifCompteCli.php?traitement=deconnecter">Déconnexion</a>
                 </nav>
             </div>
         </div>
