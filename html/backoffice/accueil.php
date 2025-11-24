@@ -124,6 +124,11 @@ try {
                     <a href="ajouterproduit.php">Ajouter un produit</a>
                     <a href="Stock.php">Consulter la liste des produits</a>
             </section>
+            <section class="btnAccueil">
+                    <a href="Commandes.php">Consulter les commandes</a>
+                   
+            </section>
+
         </div>
     </div>
     <?php include '../includes/backoffice/footer.php'; ?>

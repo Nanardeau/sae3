@@ -3,7 +3,7 @@ session_start();
 //$_SESSION["codeCompte"] = 5 ; 
 
 if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
-            //header("location:index.php");
+            header("location:index.php");
         }
 
 $codeCompte = $_SESSION["codeCompte"];
