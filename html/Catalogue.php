@@ -124,7 +124,7 @@ $bdd->query('set schema \'alizon\'');
                                         <path d="M9.63037 13.4648V17.8585" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </a>
-                                <a class="button" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&page=Catalogue.php">Ajouter au panier</a>
+                                <a class="button" popovertarget="overlayAchat">Ajouter au panier</a>
                                 <a class="button" href="dproduit.php?id=<?= $codeProduit  ?>">Détails</a>
                             </div>
 
@@ -139,7 +139,16 @@ $bdd->query('set schema \'alizon\'');
            }
         ?>
 
-
+        <div popover="auto" id="overlayAchat">
+            <h4>Ajouter au panier</h4>
+            <figure>
+                <a href="dproduit.php?id=<?= $codeProduit ?>"><img src="<?php echo $img ?>" /></a>
+                <figcaption><?php echo $libArt ?></figcaption>
+            </figure>
+            <p>Souhaitez vous ajouter ce produit au panier ou l'acheter instantanément?</p>
+            <button>Acheter</button>
+            <a class="button" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&page=Catalogue.php">Ajouter au panier</a>
+        </div>
 
 
 
