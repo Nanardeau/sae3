@@ -82,6 +82,9 @@
         ]);
     }
     ?>
+    <nav class="ariane">
+        <a class="arianeItem" href="index.php">Accueil > </a><a class="arianeItem" href="Catalogue.php">Catalogue > </a><a class="arianeItem" href="Panier.php">Panier</a>
+    </nav>
     <div class="conteneur">
         <div class="ligneSection">
             <div class="colonne">
