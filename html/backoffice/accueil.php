@@ -9,6 +9,8 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
     $codeCompte = $_SESSION["codeCompte"];
     
 }
+
+//$codeCompte = $_SESSION["codecompte"];
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv('../.env');
@@ -62,7 +64,7 @@ try {
                     echo '<p class="nomArticle">'.htmlspecialchars($row['libelleprod']).'</p>';
                     echo '<div>';
                         echo '<p class="prixReduc">'.round(htmlspecialchars($row['prixttc'], 2)).'€</p>';
-                        echo '<a href="modifArticle.php" class="btnModifReduc">'?>
+                        echo '<a href="modifier_info_produit.php?codeProduit='.$row['codeproduit'].'" class="btnModifReduc">'?>
                             <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="15.0422" cy="15.0422" r="15.0422" fill="#6CA6E9"/>
                                 <path d="M14.761 21.7632H20.9583H14.761Z" fill="#6CA6E9"/>
@@ -119,7 +121,7 @@ try {
             </section>
             <section class="btnAccueil">
                     <a href="ajouterproduit.php">Ajouter un produit</a>
-                    <a href="stock.php">Consulter la liste des produits</a>
+                    <a href="Stock.php">Consulter la liste des produits</a>
             </section>
         </div>
     </div>

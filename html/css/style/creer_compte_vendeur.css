@@ -319,106 +319,142 @@ header a .user {
   display: flex;
 }
 
-body {
+header {
+  background-color: white;
+}
+
+main {
   padding: 150px;
   margin: auto;
   width: 1140px;
 }
-body h1, body h2, body h3, body h5 {
-  font-family: "Baloo";
-}
-body p {
-  font-family: "Mulish";
-  font-size: 14px;
-}
-body header {
+main .header {
   padding-left: 50px;
   padding-bottom: 10px;
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
-body header h1 {
+main h1 {
   margin-left: 20px;
-  font-family: "Baloo";
-  font-size: 40px;
 }
-body main span {
+main span {
   display: none;
   color: #6e6e6e;
+  padding-top: 2px;
 }
-body main input:user-invalid, body main input.invalid {
+main input:user-invalid, main input.invalid {
   border-color: red;
 }
-body main input:user-invalid + span, body main input.invalid + span {
+main input:user-invalid + span, main input.invalid + span {
   display: block;
 }
-body main .alignementPR_IE {
+main .main {
   border: black 2px solid;
   border-radius: 16px;
   display: flex;
 }
-body main .alignementPR_IE div {
+main .main section {
   padding-left: 40px;
+  padding-right: 40px;
   padding-bottom: 65px;
   width: 480px;
   padding-top: 0;
 }
-body main .alignementPR_IE div h2, body main .alignementPR_IE div h3 {
+main .main section h2, main .main section h3 {
   text-align: center;
 }
-body main .alignementPR_IE div h2 {
-  font-size: 32px;
-}
-body main .alignementPR_IE div h3 {
-  font-size: 24px;
-}
-body main .alignementPR_IE div h5 {
+main .main section label {
   font-size: 16px;
+  padding-bottom: 10px;
+  font-family: "Baloo";
 }
-body main .alignementPR_IE div input {
+main .main section input {
   background-color: white;
   border-radius: 8px;
-  height: 40px;
+  height: 20px;
   font-size: 16px;
-  border: solid 1px;
+  padding: 10px;
+  border: black 1px solid;
+  font-family: "Baloo";
+  border-color: black;
 }
-body main .alignementPR_IE .nomPrenom {
+main .main section .label {
+  padding-left: 35px;
+  padding-top: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  padding-right: 60px;
+}
+main .main section .labelaligner {
+  padding-left: 0;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-right: 60px;
+}
+main .main section .alignementdesentrer {
+  display: flex;
   padding-left: 0;
   padding-bottom: 0;
 }
-body main .alignementPR_IE .labelInput {
-  padding-left: 0;
-  padding-bottom: 0;
+main .main section .grandinput {
+  width: 400px;
 }
-body main .alignementPR_IE :nth-child(3) h3 {
-  padding-top: 70px;
+main .main section .moyeninput {
+  width: 160px;
 }
-body main .alignementPR_IE .dimension {
-  width: 430px;
+main .main section .petitinput {
+  width: 110px;
 }
-body main .alignementPR_IE .dimension_petit {
-  width: 190px;
+main .main :nth-child(3) h3 {
+  padding-top: 78px;
 }
-body main .alignementPR_IE .num_adresse {
-  width: 150px;
-  margin-right: 20px;
-}
-body main .alignementPR_IE .rue_adresse {
-  width: 250px;
-}
-body main .button {
+main .boutton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-top: 50px;
   text-align: center;
 }
-body main .button button {
-  height: 55px;
-  width: 430px;
+main .boutton button {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
   background-color: #CD4B22;
   color: white;
-  font-size: 24px;
-  font-weight: bold;
-  border-radius: 16px;
+  border-radius: 1em;
+  cursor: pointer;
+  height: 55px;
+  width: 430px;
   border: none;
+  margin-bottom: 1em;
+  font-size: 24px;
+}
+main .boutton button:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+main .boutton button:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
+}
+main .bouton {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #6CA6E9;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  padding: 2em;
+  color: black;
+  width: 200px;
+}
+main .bouton:hover {
+  background-color: rgb(19.9171597633, 72.426035503, 133.0828402367);
+}
+main .bouton:active {
+  background-color: rgb(13.2781065089, 48.2840236686, 88.7218934911);
 }/*# sourceMappingURL=creer_compte_vendeur.css.map */

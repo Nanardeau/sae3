@@ -2,7 +2,7 @@
 @use "sass:math";
 
 $wCard:240px;
-$hCard: 360px;
+$hCard: 390px;
 $hCard-mob: 260px;
 
 .card{
@@ -64,7 +64,7 @@ $hCard-mob: 260px;
         .button{
             display : flex;
             align-items: center;
-            justify-content: center;
+            align-content: center;
             display :block;
             font-family: $Poltext;
             width: 100%;

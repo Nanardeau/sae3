@@ -34,6 +34,7 @@ $tvaProd = $_POST["TVA"];
 $seuilProd = $_POST["seuil"];
 $prixProd = $_POST["prix"];
 $origine = $_POST["origine"];
+$tarif = $_POST["tarif"];
 
 // TAILLE 
 $tailleH = $_POST["tailleHaut"] ? $_POST["tailleHaut"] : NULL;
@@ -66,7 +67,7 @@ else{
     }
     
 
-    $stmtP = $bdd->prepare("INSERT INTO alizon.Produit(libelleProd, descriptionProd, prixHT, seuilAlerte, nomTVA, urlPhoto,Origine, codeCompteVendeur) VALUES (:libelleProd, :descriptionProd, :prixHT, :seuilAlerte, :nomTVA, :photo, :origine, :codeCompteVendeur)");
+    $stmtP = $bdd->prepare("INSERT INTO alizon.Produit(libelleProd, descriptionProd, prixHT, seuilAlerte, nomTarif, nomTVA, urlPhoto,Origine, codeCompteVendeur) VALUES (:libelleProd, :descriptionProd, :prixHT, :seuilAlerte,:nomTarif, :nomTVA, :photo, :origine, :codeCompteVendeur)");
     
     $stmtC = $bdd->prepare("INSERT INTO alizon.Categoriser(libelleCat,codeProduit) VALUES (:libelleCat,:codeProduit)");
     
@@ -77,6 +78,7 @@ else{
             ":descriptionProd" => $descProd,
             ":prixHT" => $prixProd,
             ":seuilAlerte" => $seuilProd,
+            ":nomTarif" => $tarif,
             ":nomTVA" => $tvaProd,
             ":photo" => $chemin,
             ":origine" => $origine,

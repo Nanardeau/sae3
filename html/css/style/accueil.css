@@ -123,6 +123,12 @@ input:user-invalid + span, input.invalid + span {
   border-radius: 1em;
   cursor: pointer;
 }
+.bouton:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.bouton:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
 
 /*###############################
 #            HEADER             #
@@ -392,15 +398,20 @@ header nav svg {
   text-align: center;
   text-size: 20px;
   text-decoration: none;
-  background-color: #064082;
+  background-color: #FCB66B;
   color: white;
   border-radius: 1em;
   cursor: pointer;
-  background-color: #FCB66B;
   border: 0px;
   color: black;
   width: 50%;
   padding: 1em;
+}
+.btnJaune:hover {
+  background-color: rgb(149.9602649007, 79.0331125828, 3.0397350993);
+}
+.btnJaune:active {
+  background-color: rgb(99.9735099338, 52.6887417219, 2.0264900662);
 }
 
 .overlayMenuCatMob {
@@ -563,10 +574,129 @@ header nav svg {
   src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
 }
+.card {
+  margin: 0 20px;
+  color: black;
+  width: auto;
+  height: auto;
+  max-width: 240px;
+  max-height: 390px;
+  border-radius: 0.5em;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+}
+@media screen and (max-width : 428px) {
+  .card {
+    max-height: 260px;
+  }
+}
+.card figure {
+  grid-area: 1/1/2/3;
+  margin: 0;
+}
+.card figure img {
+  width: 100%;
+  background-color: white;
+  height: auto;
+  border-radius: 0.5em;
+}
+.card figure figcaption {
+  margin-top: 10px;
+}
+.card .prix {
+  grid-area: 2/1/3/2;
+  align-content: flex-end;
+  margin: 0;
+}
+.card div {
+  grid-area: 2/2/3/3;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: end;
+  float: right;
+  height: auto;
+}
+.card div a svg {
+  display: none;
+}
+@media screen and (max-width : 428px) {
+  .card div a svg {
+    display: block;
+    fill: #FCB66B;
+    stoke: black;
+  }
+}
+.card div .button {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  display: block;
+  font-family: "Mulish";
+  width: 100%;
+  margin-top: 20px;
+  min-width: 8rem;
+  height: 2rem;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  background-color: #FCB66B;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+}
+@media screen and (max-width : 428px) {
+  .card div .button {
+    display: none;
+  }
+}
+
 body {
   margin: 0;
 }
 
+.bienvenue {
+  padding: 0 50px;
+  padding-top: 30px;
+}
+.bienvenue img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.bienvenue {
+  padding: 0 50px;
+  padding-top: 30px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.carousel-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.6s ease;
+}
+
+.carousel img {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+@media (max-width: 428px) {
+  .bienvenue {
+    padding: 0 15px;
+    padding-top: 20px;
+  }
+}
 .anonnces_produits {
   position: relative;
   display: flex;
@@ -575,7 +705,7 @@ body {
   align-items: center;
   gap: 2rem;
   padding: 2rem;
-  padding-top: 100px;
+  padding-top: 30px;
 }
 @media screen and (max-width: 428px) {
   .anonnces_produits {
@@ -619,6 +749,10 @@ body {
   border-radius: 8px;
 }
 
+a {
+  text-decoration: none;
+}
+
 .annonce_produit_large {
   width: 65%;
   position: relative;
@@ -650,46 +784,16 @@ body {
 }
 
 .grid-produits {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 2rem;
-  justify-items: center;
-  padding: 2rem;
-}
-@media screen and (max-width: 428px) {
-  .grid-produits {
-    grid-template-columns: 1fr 1fr;
-    padding: 0;
-    padding-top: 1rem;
-    gap: 0;
-  }
+  overflow-x: scroll;
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
 }
 
-.carte-produit {
+.card {
   background-color: #D1ECF8;
   flex: 0 0 auto;
-}
-
-.details {
-  text-decoration: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-family: "Mulish";
-  width: 100%;
-  min-width: 8rem;
-  text-align: center;
-  align-self: center;
-  justify-self: center;
-  justify-items: center;
-  color: black;
-  font-weight: bold;
-  background-color: #FCB66B;
-  border-radius: 1em;
-}
-@media screen and (max-width: 428px) {
-  .details {
-    display: none;
-  }
 }
 
 .carte-produit {
@@ -754,6 +858,9 @@ body {
     height: auto;
     stroke-width: 1px;
   }
+}
+.carte-produit div a {
+  text-decoration: none;
 }
 .carte-produit div a input {
   display: block;

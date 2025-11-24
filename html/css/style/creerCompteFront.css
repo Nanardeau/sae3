@@ -122,6 +122,12 @@ input:user-invalid + span, input.invalid + span {
   border-radius: 1em;
   cursor: pointer;
 }
+.bouton:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.bouton:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
 
 /*###############################
 #            HEADER             #
@@ -391,15 +397,20 @@ header nav svg {
   text-align: center;
   text-size: 20px;
   text-decoration: none;
-  background-color: #064082;
+  background-color: #FCB66B;
   color: white;
   border-radius: 1em;
   cursor: pointer;
-  background-color: #FCB66B;
   border: 0px;
   color: black;
   width: 50%;
   padding: 1em;
+}
+.btnJaune:hover {
+  background-color: rgb(149.9602649007, 79.0331125828, 3.0397350993);
+}
+.btnJaune:active {
+  background-color: rgb(99.9735099338, 52.6887417219, 2.0264900662);
 }
 
 .overlayMenuCatMob {
@@ -566,6 +577,12 @@ form input::file-selector-button {
   border-radius: 1em;
   cursor: pointer;
 }
+form input::file-selector-button:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+form input::file-selector-button:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
 form input#photoCli {
   border: none;
   font-size: 0.8em;
@@ -612,10 +629,10 @@ form .btnSec {
   cursor: pointer;
 }
 .bouton:hover {
-  background-color: rgb(4.5, 48, 97.5);
+  background-color: rgb(6.75, 72, 146.25);
 }
 .bouton:active {
-  background-color: rgb(2.25, 24, 48.75);
+  background-color: rgb(4.5, 48, 97.5);
 }
 
 aside {
@@ -639,15 +656,6 @@ aside figure img {
   }
 }
 aside .bouton {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #064082;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
   padding: 1em;
   width: 80%;
   margin-bottom: 1em;
@@ -688,4 +696,10 @@ aside nav {
   color: black;
   width: 50%;
   padding: 1em;
+}
+.btnJaune:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.btnJaune:active {
+  background-color: rgb(4.5, 48, 97.5);
 }/*# sourceMappingURL=creerCompteFront.css.map */

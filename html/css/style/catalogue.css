@@ -123,6 +123,12 @@ input:user-invalid + span, input.invalid + span {
   border-radius: 1em;
   cursor: pointer;
 }
+.bouton:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.bouton:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
 
 /*###############################
 #            HEADER             #
@@ -392,15 +398,20 @@ header nav svg {
   text-align: center;
   text-size: 20px;
   text-decoration: none;
-  background-color: #064082;
+  background-color: #FCB66B;
   color: white;
   border-radius: 1em;
   cursor: pointer;
-  background-color: #FCB66B;
   border: 0px;
   color: black;
   width: 50%;
   padding: 1em;
+}
+.btnJaune:hover {
+  background-color: rgb(149.9602649007, 79.0331125828, 3.0397350993);
+}
+.btnJaune:active {
+  background-color: rgb(99.9735099338, 52.6887417219, 2.0264900662);
 }
 
 .overlayMenuCatMob {
@@ -514,7 +525,7 @@ header nav svg {
   width: auto;
   height: auto;
   max-width: 240px;
-  max-height: 360px;
+  max-height: 390px;
   border-radius: 0.5em;
   padding: 20px;
   display: grid;
@@ -566,7 +577,7 @@ header nav svg {
 .card div .button {
   display: flex;
   align-items: center;
-  justify-content: center;
+  align-content: center;
   display: block;
   font-family: "Mulish";
   width: 100%;

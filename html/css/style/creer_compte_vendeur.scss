@@ -1,121 +1,123 @@
 @use "../tools/vback" as *;
-@use '../style/backoffice/styleComB.scss' as *;
+@use "backoffice/styleComB" as *;
+@use "../tools/mixin/com" as *;
+header{
+    background-color: white;
+}
+main {
 
-
-body{
-    h1, h2, h3, h5{
-        font-family: $Poltitle;
-    }
-    p {
-        font-family: $Poltext;
-        font-size: $txtSize;
-    }
     padding: 150px;
     margin : auto;
     width: 1140px;
-    header {
+    .header {
         padding-left: 50px;
         padding-bottom: 10px;
         display: flex;
-        justify-content: center;
-        
-        
-        h1 {
-            margin-left: 20px;
-            font-family: $Poltitle;
-            font-size: $TrGdTitle;
+        align-items: center;
+
+    }
+    h1 {
+        margin-left: 20px;
+    }
+    span{
+        display:none;
+        color:#6e6e6e;
+        padding-top: 2px;
+    }
+    input {
+        &:user-invalid, &.invalid{
+            border-color:red;
+            &+span{
+                display:block;
+            }
         }
     }
-    main {
-        span{
-            display:none;
-            color:#6e6e6e;
-        }
-        input {
-            &:user-invalid, &.invalid{
-                border-color:red;
-                &+span{
-                    display:block;
-                }
-            }
-        
-        }
-
-        .alignementPR_IE {
-            border: black 2px solid;
-            border-radius: 16px;
-            display: flex;
-
-            div {
-                padding-left: 40px;
-                padding-bottom: 65px;
-                width: 480px;
-                padding-top:0;
-                h2, h3 {
-                    text-align: center;
-                }
-                h2{
-                    font-size: $GdTitle;
-                    
-                }
-                h3 {
-                    font-size: $MoyTitle;
-                }
-                
-                h5 {
-                    font-size: 16px;
-                }
-                input {
-                    background-color: $blanc;
-                    border-radius: 8px;
-                    height: 40px;
-                    font-size: 16px;
-                    border:solid 1px;
-                }
-            }
-            .nomPrenom{
-                display:flex;
-                flex-direction: row;
-                padding-left:0;
-                padding-bottom: 0;
-            }
-            .labelInput{
-                padding-left:0;
-                padding-bottom: 0;
-            }
-            :nth-child(3) h3{
-                padding-top: 70px;
-            }
-            .dimension {
-                width: 430px;
-            }
-            .dimension_petit{
-                width: 190px;
-            }
-            .num_adresse{
-                width: 150px;
-                margin-right: 20px;
-            }
-
-            .rue_adresse{
-                width: 250px;
-            }
+    .main {
+        border: black 2px solid;
+        border-radius: 16px;
+        display: flex;
+        section {
             
-        }
-        .button {
-            padding-top: 50px;
-            text-align: center;
-            button {
-                height: 55px;
-                width: 430px;
-                background-color: $colP;
-                color: $blanc;
-                font-size: $MoyTitle;
-                font-weight: bold;
-                border-radius: 16px;
-                border: none;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 65px;
+            width: 480px;
+            padding-top: 0;
+            h2, h3 {
+                text-align: center;
             }
+            label {
+                font-size: 16px;
+                padding-bottom: 10px;
+                font-family: "Baloo";
+            }
+            input {
+                background-color: $blanc;
+                border-radius: 8px;
+                height: 20px;
+                font-size: 16px;
+                padding:10px;   
+                border: $noir 1px solid;
+                font-family: "Baloo";
+                border-color:black;
+  
+            }
+            .label {
+                padding-left: 35px;
+                padding-top: 20px;
+                display: flex;
+                flex-direction: column;
+                padding-right: 60px;
+            }
+            .labelaligner {
+                padding-left: 0;
+                padding-top: 20px;
+                display: flex;
+                flex-direction: column;
+                padding-right: 60px;
+            }
+            .alignementdesentrer{
+                display:flex;
+                padding-left:0;
+                padding-bottom: 0; 
+            }
+            .grandinput {
+                width: 400px;
+            }
+            .moyeninput {
+                width: 160px;
+            }
+            .petitinput {
+                width: 110px;
+            }
+
         }
         
+        :nth-child(3) h3{
+            padding-top: 78px;
+        }
+    }
+    .boutton {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+        text-align: center;
+        button {
+            @include bouton($colP);
+            height:55px;
+            width:430px;
+            border:none;
+            margin-bottom:1em;
+            font-size:$MoyTitle;
+
+        }
+
+    }
+    .bouton{
+        @include bouton($eleBleu);
+        padding:2em;
+        color:black;
+        width:200px;
     }
 }

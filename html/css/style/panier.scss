@@ -2,7 +2,10 @@
 @use "../tools/vFront" as *;
 @use "../components/carte";
 
-
+$cardW : 700px;
+$cardH : 260px;
+$McardW : 350px;
+$McardH : 230px;
 
 .vide {
     padding: $pad;
@@ -38,10 +41,7 @@
 input{
     @include btn;
 }
-$cardW : 700px;
-$cardH : 260px;
-$McardW : 350px;
-$McardH : 230px;
+
 article {
     scrollbar-width: none;
     overflow: scroll;
@@ -59,9 +59,9 @@ article {
 
 .articlePanier {
     display: grid;
-    
-    grid-template-columns: 2fr repeat(2, 1fr);
-    grid-template-rows: .5fr 1fr 1fr;
+    gap: .5em;
+    grid-template-columns: repeat(2,1fr) 2fr ;
+    grid-template-rows: .5fr 2fr 1fr;
     background-color: $colS;
     padding: $pad;
     margin: $marg 0;
@@ -71,7 +71,7 @@ article {
     @media #{$mobile} {
         width: $McardW;
         height: $McardH;
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 1.5fr 1fr 1fr;
         grid-template-rows: .5fr 1fr;
         min-width: $McardW;
         min-height: auto;
@@ -79,7 +79,7 @@ article {
     
 
     div:first-child {
-        grid-area: 1 / 1 / 2 / 2;
+        grid-area: 1 / 2 / 2 / 2;
     }
 
     
@@ -88,24 +88,30 @@ article {
     p {
         margin: 0;
     }
-
+    .desc{
+        grid-area: 2/2/2/2;
+        @media #{$mobile}{
+            display: none;
+        }
+    }
     .prix {
         grid-area: 2 / 3 / 3 / 4;
-        margin-top: 10px;
-        display: flex;
-        justify-content: center ;
-       
+        
+        text-align: end;
+        
     }
 
 
     img {
-        grid-area: 2 / 1 / 3 / 3;
+        grid-area: 1 / 1 / 3 / 4;
 
         border-radius: $radius;
-        max-width: 30%;
+        max-width: 40%;
+        max-height: 80%;
          @media #{$mobile} {
             margin-top: 10px;
             max-width: 35%;
+            max-height: 80%;
             
         }
     }
@@ -117,10 +123,11 @@ article {
         width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: center ;
+        justify-content: end ;
         
         @media #{$mobile} {
-            height: 60%;
+            height: 50%;
+            width: 100%;
             
         }
         button{
@@ -170,9 +177,11 @@ article {
 }
 aside{
 
+
     float: right;
     width: 25%;
-    
+    display:flex;
+    flex-direction: column;
     .btn-recap{
         background-color: $eleOrange;
         text-decoration: none;
@@ -182,12 +191,16 @@ aside{
         width: 50%;
         text-align: center;
         display: block;
-
+        
     }
+    .btn-retour{
+            display: flex;
+            justify-content: center;
+            align-self: center;
+        }
 .recap {
     background-color: $colS;
     align-content: center;
-    text-align: right;
     border-radius: $radius;
     padding: $pad;
     margin: $marg 0;
@@ -198,7 +211,14 @@ aside{
         float:none;
         width: 90%;
     }
-
+    .prix{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        p{
+            margin-top:0;
+        }
+    }
     .btn-recap{
         width: 95%;
 
@@ -206,6 +226,11 @@ aside{
     }
     
 }
+@media #{$mobile} {
+        float:none;
+        width: 100%;
+        
+    }
 }
 .btn-vider {
     @include btn;

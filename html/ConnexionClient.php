@@ -49,6 +49,11 @@ if($_POST){
                 $_SESSION["id"] = "";
                 $_SESSION["mdp"] = "";
                 $_SESSION["codeCompte"] = $rep["codecompte"];
+                $panierExiste = $bdd->query("SELECT idPanier FROM alizon.Panier WHERE codeCompte = '".$rep["codecompte"]."'")->fetch();
+                if($panierExiste){
+                    $_SESSION["idPanier"] = $panierExiste["idpanier"];
+                }
+
                 exit(header("location: index.php"));
                 die();
 

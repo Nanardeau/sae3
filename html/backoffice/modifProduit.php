@@ -1,5 +1,4 @@
 <?php
-$_GET["codeProduit"]=11;
 if(isset($_GET["erreur"])){
         $erreur = $_GET["erreur"];
 }
