@@ -2,7 +2,7 @@
 session_start();
 
 if(!array_key_exists('codeCompte', $_SESSION) || !isset($_SESSION['codeCompte'])){
-    header('location: connexionVendeur.php');
+    exit(header('location: ConnexionVendeur.php'));
     //print_r($_SESSION);
     
 }else{
