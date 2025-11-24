@@ -15,7 +15,23 @@ function openOverlayMobile() {
   overlay.style.display = "block";
   document.body.style.overflow = "hidden";
 }
+function ouvrirOverlayAchat(){
+  const achat = document.getElementById("overlayAchat");
+  achat.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
 
+function fermerOverlayAchat(){
+  const achat = document.getElementById("overlayAchat");
+  achat.style.display = "none";
+  document.body.style.overflow = ""; 
+}
+window.onclick = function(event){
+  const achat = document.getElementById("overlayAchat");
+  if(event.target === achat){
+    fermerOverlayAchat();
+  }
+}
 function closeOverlayMobile() {
   const overlay = document.getElementById("overlayMenuCatMob");
   overlay.style.display = "none";

@@ -1,5 +1,11 @@
 <?php
-header("location:".$_GET["page"]."?ajout=1");
+if(!isset($_GET["instant"])){
+    header("location:".$_GET["page"]."?ajout=1");
+
+}
+else{
+    header("location:paiement.php");
+}
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');

@@ -3,61 +3,6 @@
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
   font-weight: medium;
   font-style: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../..fonts/baloo2-medium-webfont.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: medium;
-  font-style: normal;
   font-display: swap;
 }
 @font-face {
@@ -618,28 +563,4 @@ header nav svg {
   [popover]:popover-open .bouton {
     height: 2.5em;
   }
-}
-
-header .logo_alizon_front {
-  width: 200px;
-}
-header nav svg {
-  width: 40px;
-  height: 40px;
-}
-
-.bouton {
-  padding: 40px;
-  font-size: large;
-}
-
-main {
-  padding-top: 20em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 50em;
-}
-main h1 {
-  margin-bottom: 5em;
-}/*# sourceMappingURL=paiementFini.css.map */
+}/*# sourceMappingURL=overlayAchat.css.map */

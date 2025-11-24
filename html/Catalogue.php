@@ -49,6 +49,7 @@ $bdd->query('set schema \'alizon\'');
     ?>
 
     <main>
+        <?php if(isset($_GET["ajout"])):?>
         <div class="ajoutPanierFait">
             <div class="partieGauche" onclick="fermerPopUpPanier()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
@@ -58,6 +59,7 @@ $bdd->query('set schema \'alizon\'');
                 <a href="Panier.php" class="bouton">Aller au panier</a>
             </div>
         </div>
+        <?php endif?>
 
         <h1>Toutes les catégories</h1>
 
@@ -124,8 +126,9 @@ $bdd->query('set schema \'alizon\'');
                                         <path d="M9.63037 13.4648V17.8585" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </a>
-                                <a class="button" popovertarget="overlayAchat">Ajouter au panier</a>
+                                <a class="button" href="OverlayAcheter.php?codeProd=<?php echo $codeProduit?>">Ajouter au panier</a>
                                 <a class="button" href="dproduit.php?id=<?= $codeProduit  ?>">Détails</a>
+                                        
                             </div>
 
                         </div>
@@ -148,6 +151,7 @@ $bdd->query('set schema \'alizon\'');
             <p>Souhaitez vous ajouter ce produit au panier ou l'acheter instantanément?</p>
             <button>Acheter</button>
             <a class="button" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&page=Catalogue.php">Ajouter au panier</a>
+            <button onclick="fermerOverlayAchat()">Fermer</button>
         </div>
 
 

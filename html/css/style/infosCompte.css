@@ -543,6 +543,28 @@ header nav svg {
   flex-direction: column;
 }
 
+/*###############################
+#        Overlay Achat          #
+################################*/
+[popover]:popover-open::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+[popover]:popover-open {
+  border-radius: 1em;
+  border-width: 0.1em;
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width : 428px) {
+  [popover]:popover-open .bouton {
+    height: 2.5em;
+  }
+}
+
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
@@ -1137,6 +1159,28 @@ header nav svg {
   flex-direction: column;
 }
 
+/*###############################
+#        Overlay Achat          #
+################################*/
+[popover]:popover-open::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+[popover]:popover-open {
+  border-radius: 1em;
+  border-width: 0.1em;
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width : 428px) {
+  [popover]:popover-open .bouton {
+    height: 2.5em;
+  }
+}
 header {
   justify-self: center;
   margin: 1em 0;

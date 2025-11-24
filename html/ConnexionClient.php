@@ -55,6 +55,8 @@ if($_POST){
                 }
 
                 exit(header("location: index.php"));
+                    
+                
                 die();
 
             }
