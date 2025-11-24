@@ -101,4 +101,26 @@ main{
             background-color : color.change($colP, $lightness: 10%);
         }
     }
+
+    a{
+        &:hover{
+            background-color : color.change($eleBleu, $lightness: 40%);
+        }
+        &:active{
+            background-color : color.change($eleBleu, $lightness: 10%);
+        }
+    }
+
+    a {
+        background-color: $eleBleu;
+        border-radius: $radius;
+        width: 200px;
+        height: 50px;
+        text-align: center;
+        align-content: center;
+        color: $blanc;
+        text-decoration: none;
+        font-weight: bold;
+        font-family: $Poltitle;
+    }
 }

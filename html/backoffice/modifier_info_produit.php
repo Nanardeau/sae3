@@ -159,7 +159,8 @@ $bdd->query('set schema \'alizon\'');
     <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" value="<?php echo $prix; ?>.00" id="prix" pattern="[0-9]{2}.[0-9]{2}" required/> 
     <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
 </form>
-        
+<br>
+<a href="ficheProduit.php?Produit=<?php echo $code_produit ?>">Retour</a>
 </main>
 <?php include("../includes/backoffice/footer.php"); ?>
 </body>
