@@ -1,7 +1,7 @@
 <div id="popup-overlay">
     <div class="popup-content">
         <span class="close-button">&times;</span>
-        <h2>Avis des clients</h2>
+        <h2>Les avis</h2>
         <div class="avis-container">
             <?php
             $liste_avis = $bdd->query("SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire, avis.datepublication FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) WHERE produit.codeproduit = " . $code_produit . " ORDER BY avis.codeproduit;");  
