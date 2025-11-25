@@ -809,6 +809,7 @@ main {
   cursor: pointer;
   color: transparent;
   -webkit-text-stroke: 2px #f5b301;
+  -webkit-text-stroke: 2px #f5b301;
   transition: 0.2s;
 }
 .avis-section .noter span.full {
@@ -884,6 +885,32 @@ input[type=file] {
   display: none;
 }
 
+#retour {
+  display: none;
+}
+
+.label-retour {
+  cursor: pointer;
+  font-family: "Mulish";
+  width: 120px;
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  margin-top: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
+.btn-retour {
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
 /*################################*/
 /*-------- affichage avis --------*/
 /*################################*/
@@ -894,6 +921,9 @@ input[type=file] {
 .liste-avis {
   display: flex;
   flex-direction: column;
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 10px;
   max-height: 350px;
   overflow-y: auto;
   padding-right: 10px;
@@ -938,6 +968,7 @@ input[type=file] {
 .note .star {
   font-size: 1rem;
   color: transparent;
+  -webkit-text-stroke: 1px #f5b301;
   -webkit-text-stroke: 1px #f5b301;
   margin: 0;
   padding: 0;

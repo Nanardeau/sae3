@@ -837,7 +837,8 @@ a {
 }
 @media screen and (max-width : 428px) {
   .carte-produit {
-    max-height: 260px;
+    max-height: 280px;
+    width: 200px;
     margin: 10px;
     gap: 5px;
     padding: 10px;

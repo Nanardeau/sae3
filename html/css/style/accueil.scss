@@ -8,7 +8,7 @@
 
 $wCard:240px;
 $hCard: 360px;
-$hCard-mob: 260px;
+$hCard-mob: 280px;
 
 
 
@@ -199,10 +199,12 @@ a{
     gap:$marg;
     @media #{$mobile} {
         max-height: $hCard-mob;
+        width: 200px;
         margin: 10px;
         gap: 5px;
         padding: 10px;
     }
+
     figure{
         grid-area: 1/1/2/3;
         
