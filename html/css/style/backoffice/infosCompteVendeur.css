@@ -2119,6 +2119,10 @@ input[type=file] {
   cursor: pointer;
 }
 
+.logo {
+  display: flex;
+}
+
 .bouton {
   font-family: "Mulish";
   font-weight: bold;

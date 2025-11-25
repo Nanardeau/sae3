@@ -5,6 +5,10 @@
 @use 'sass:color';
 @import '../_styleComB'; 
 @import "../infosCompte.scss";
+
+.logo {
+    display : flex;
+}
 .bouton{
     @include bouton($colP);
 
