@@ -1,5 +1,5 @@
-@use "./backoffice/styleComB" as *;
-@use "../tools/vback" as *;
+@use "./styleComB" as *;
+@use "../../tools/vback" as *;
 @use "../components/carte";
 @import url("bootstrap/scss/utilities/api");
 

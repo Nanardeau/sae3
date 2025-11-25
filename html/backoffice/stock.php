@@ -45,7 +45,8 @@ $bdd->query('set schema \'alizon\'');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alizon BACK</title>
-    <link href="../css/style/stock.css" rel="stylesheet" type="text/css">
+    <link href="../css/style/backoffice/stock.css" rel="stylesheet" type="text/css">
+    <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>

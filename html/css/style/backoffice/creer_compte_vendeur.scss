@@ -1,6 +1,6 @@
-@use "../tools/vback" as *;
-@use "backoffice/styleComB" as *;
-@use "../tools/mixin/com" as *;
+@use "../../tools/vback" as *;
+@use "./styleComB" as *;
+@use "../../tools/mixin/com" as *;
 header{
     background-color: white;
 }
