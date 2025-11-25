@@ -101,8 +101,9 @@ $bdd->query('set schema \'alizon\'');
         function fermerPopUpPanier(){
             window.location.href = "index.php";
         }
-
+            
     </script>
+
 </body>
 
 </html>

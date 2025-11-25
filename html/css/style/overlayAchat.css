@@ -644,7 +644,6 @@ main > section {
 }
 @media screen and (max-width : 428px) {
   main > section {
-    height: 90%;
     width: 90%;
   }
 }
