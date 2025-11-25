@@ -585,6 +585,12 @@ main > section {
   height: 45%;
   margin: 15px;
 }
+@media screen and (max-width : 428px) {
+  main > section {
+    height: 90%;
+    width: 90%;
+  }
+}
 
 main > section > .content {
   display: flex;
@@ -672,12 +678,6 @@ main > section > .content > figure > figcaption {
   display: flex;
   flex-direction: row;
 }
-@media screen and (max-width : 428px) {
-  .compteur {
-    height: 50%;
-    width: 100%;
-  }
-}
 .compteur button {
   margin: 0;
   padding: 5px;
@@ -692,18 +692,6 @@ main > section > .content > figure > figcaption {
 .compteur button:last-child {
   border-radius: 0 1em 1em 0;
 }
-@media screen and (max-width : 428px) {
-  .compteur button svg {
-    width: 14px;
-    height: 14px;
-  }
-}
-@media screen and (max-width : 428px) {
-  .compteur button {
-    padding: 3px;
-    min-width: 0;
-  }
-}
 .compteur p {
   padding: 10px 20px;
   background-color: white;
@@ -711,9 +699,4 @@ main > section > .content > figure > figcaption {
   margin: 0;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
-}
-@media screen and (max-width : 428px) {
-  .compteur p {
-    padding: 2.5px 7.5px;
-  }
 }/*# sourceMappingURL=overlayAchat.css.map */

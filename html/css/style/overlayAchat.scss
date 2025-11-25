@@ -21,6 +21,11 @@ main>section{
     width: 45%;
     height: 45%;
     margin: 15px;
+    @media #{$mobile} {
+            height: 90%;
+            width: 90%;
+            
+        }
 }
 main>section>.content{
     display:flex;
@@ -96,11 +101,7 @@ main>section>.content>figure>figcaption{
         flex-direction: row;
         
         
-        @media #{$mobile} {
-            height: 50%;
-            width: 100%;
-            
-        }
+        
         button{
             margin: 0;
             padding: 5px;
@@ -115,20 +116,7 @@ main>section>.content>figure>figcaption{
             &:last-child {
                 border-radius: 0 $radius $radius 0;
             }
-            svg{
-                
-                @media #{$mobile} {
-                    width: 14px;
-                    height: 14px;
-                }
-            }
-
-            @media #{$mobile} {
-                
-                padding: 3px;
-                min-width: 0;
-                
-            }
+           
 
         }
 
@@ -139,10 +127,7 @@ main>section>.content>figure>figcaption{
             margin:0;
             border-top: 2px solid $noir;
             border-bottom: 2px solid $noir;
-            @media #{$mobile} {
-                padding: 2.5px 7.5px;
-                
-            }
+            
         }
         
     }
