@@ -11,7 +11,7 @@ main{
     justify-content: center;
 }
 
-main>div{
+main>section{
     background-color: $colS;
     border-radius: $radius;
     display:flex;
@@ -22,7 +22,7 @@ main>div{
     height: 45%;
     margin: 15px;
 }
-main>div>div{
+main>section>.content{
     display:flex;
     justify-self: center;
     align-items: center;
@@ -40,11 +40,11 @@ main>div>div{
     flex-direction: column;
     width: 100%;
 }
-main>div>div>p{
+main>section>.content>p{
     width: 300px;
     margin-top: 0;
 }
-main>div>div>figure>figcaption{
+main>section>.content>figure>figcaption{
     margin-top: 10px;
     font-weight: bold;
 }
@@ -136,7 +136,7 @@ main>div>div>figure>figcaption{
             padding: 10px $pad;
             background-color: $blanc;
             align-content: center;
-            
+            margin:0;
             border-top: 2px solid $noir;
             border-bottom: 2px solid $noir;
             @media #{$mobile} {
