@@ -25,6 +25,8 @@ try {
 $bdd->query('set schema \'alizon\'');
 
 
+
+
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id <= 0) die("Produit introuvable.");
 
@@ -49,32 +51,34 @@ $stmtAvis = $bdd->prepare($sqlAvis);
 $stmtAvis->execute(['id' => $id]);
 $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
 
-
 foreach ($avisList as &$avis) {
-    if (isset($avis['photos']) && is_string($avis['photos'])) {
 
-        $str = $avis['photos'] ?? '';
-        $str = trim($str, '{}');
+    if (is_string($avis["photos"]) && $avis["photos"] !== "{}") {
 
-        $avis['photos'] = str_getcsv(
-            $str,
-            ',',
-            '"',
-            "\\"
-        );
+        $str = trim($avis["photos"], "{}");
 
-        $avis['photos'] = array_filter($avis['photos'], function($p){
-            return trim((string)$p) !== "";
-        });
+        $parts = array_map('trim', explode(',', $str));
 
-        $avis['photos'] = array_values($avis['photos']);
+        $photos = [];
+
+        foreach ($parts as $p) {
+            $p = trim($p, '"');
+
+            if (strtoupper($p) !== "NULL" && $p !== "") {
+                $photos[] = $p;
+            }
+        }
+
+        $avis["photos"] = $photos;
+
     } else {
-        $avis['photos'] = [];
+        $avis["photos"] = [];
     }
 }
 unset($avis);
 
 
+$cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit = '".$id."'")->fetch())["libellecat"];
 
 
 ?>
@@ -88,6 +92,7 @@ unset($avis);
     <link rel="stylesheet" href="css/style/dproduit.css">
 </head>
 <body>
+
     <?php 
 
     if(isset($_SESSION['codeCompte'])){
@@ -98,9 +103,21 @@ unset($avis);
         include 'includes/menu_cat.php';
     }
     ?>
-    <?php include 'includes/menu_cat.php';?>
+    
+
+
 
     <main>
+        <?php 
+            include 'includes/menu_cat.php';
+            include 'includes/menuCompte.php';
+        ?>
+    <nav class="ariane">
+        <a class="arianeItem" href="index.php">Accueil > </a><a class="arianeItem" href="Catalogue.php">Catalogue > </a><a class="arianeItem" href="Categorie.php?cat=<?php echo $cat?>"><?php echo $cat?></a>
+    </nav>
+        <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
+        <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
+        
         <section class="prod">
             <div class="detail-produit">
                 <div class="detail-produit-content">
@@ -166,6 +183,52 @@ unset($avis);
 
             </div>
         </section>
+        <section class="evaluation-produit">
+            <h1>Évaluation du produit</h1>
+            <div class="evaluation">
+                <?php
+                $totalAvis = count($avisList);
+                $sommeNotes = 0;
+                $noteCounts = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0]; 
+
+                foreach ($avisList as $avis) {
+                    $note = (int)$avis['noteprod'];
+                    $sommeNotes += $note;
+                    $noteCounts[$note]++;
+                }
+
+                $moyenneNote = $totalAvis > 0 ? round($sommeNotes / $totalAvis, 2) : 0;
+                ?>
+
+                <div class="eval-moy">
+                    <div class="score-moyen">
+                        <span class="score"><?= $moyenneNote ?></span>/5
+                    </div>
+                    <div class="etoiles">
+                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                            <span class="etoile <?= $i <= round($moyenneNote) ? 'pleine' : '' ?>">★</span>
+                        <?php endfor; ?>
+                    </div>
+                    <div class="total">
+                        (<?= $totalAvis ?> avis)
+                    </div>
+                </div>
+
+                <div class="repartition-notes">
+                    <?php foreach ($noteCounts as $note => $count): ?>
+                        <div class="note-bar">
+                            <span class="note-label"><?= $note ?>★</span>
+                            <div class="progression-note">
+                                <div class="barre-progression" style="width: <?= $totalAvis > 0 ? ($count / $totalAvis) * 100 : 0 ?>%"></div>
+                            </div>
+                            <span class="nbr-note"><?= $count ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+            </div>
+        </section>
+
         <section class="avis-produits">
             <h1>Les avis</h1>
 
@@ -177,8 +240,20 @@ unset($avis);
                         <div class="avis">
                             <div class="avis-header">
                                 <strong>
-                                    <?= htmlspecialchars($avis['prenom'] . " " . strtoupper($avis['nom'])) ?>
+                                    <?php
+                                    $prenom = htmlspecialchars($avis['prenom'] ?? 'Anonyme');
+                                    $nom = strtoupper(htmlspecialchars($avis['nom'] ?? 'Utilisateur'));
+                                    echo "$prenom $nom";
+                                    ?>
                                 </strong>
+                                <!-- <strong>
+                                    <?php
+                                    $prenom = htmlspecialchars($avis['prenom']);
+                                    $nom = strtoupper(htmlspecialchars($avis['nom']));
+                                    echo "$prenom $nom";
+                                    ?>
+
+                                </strong> -->
                                 <span class="date">
                                     <?= date("d/m/Y", strtotime($avis['datepublication'])) ?>
                                 </span>
@@ -189,20 +264,18 @@ unset($avis);
                                 <?php endfor; ?>
                             </span>
 
-
                             <p class="commentaire">
                                 <?= htmlspecialchars($avis['commentaire']) ?>
                             </p>
                             <?php if (!empty($avis['photos'])): ?>
-                                <div id="overlay-photos-avis" class="photos-avis" >
+                                <div id="overlay-photos-avis" class="photos-avis">
                                     <?php foreach ($avis['photos'] as $photo): ?>
                                         <img src="<?= htmlspecialchars($photo) ?>" 
-                                            alt="Photo de l'avis"
+                                            alt="Photo de l'avis" 
                                             class="photo-avis">
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
-
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>

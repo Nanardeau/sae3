@@ -211,6 +211,8 @@ label {
 #            HEADER             #
 ###############################*/
 header {
+  transition: transform 0.3s ease;
+  z-index: 998;
   display: flex;
   flex-direction: row;
   background-color: #CD4B22;
@@ -337,6 +339,9 @@ main .image_prod {
 main .img_etoile {
   padding-left: 20px;
 }
+main .img_etoile svg:last-child {
+  margin-right: 20px;
+}
 main h1 {
   margin-top: 80px;
   margin-bottom: 0;
@@ -360,6 +365,7 @@ main .buton_commentaire {
   background-color: #FCB66B;
   border-radius: 8px;
   border: none;
+  cursor: pointer;
 }
 main .buton_modif, main .buton_ret_cat, main .buton_ajt_cat {
   width: 200px;
@@ -368,9 +374,21 @@ main .buton_modif, main .buton_ret_cat, main .buton_ajt_cat {
   font-weight: bold;
   border-radius: 8px;
   border: none;
+  cursor: pointer;
 }
 main .buton_modif {
+  display: inline-flex;
+  text-decoration: none;
   background-color: #FCB66B;
+  width: 200px;
+  height: 70px;
+}
+main .buton_modif div {
+  display: flex;
+  justify-content: center;
+  color: black;
+  align-items: center;
+  flex-grow: 1;
 }
 main .buton_ajt_cat {
   background-color: #6CA6E9;

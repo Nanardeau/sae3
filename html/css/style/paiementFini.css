@@ -446,6 +446,46 @@ header nav svg {
   margin-left: 1rem;
 }
 
+.overlayCompte {
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.overlayContentCompte {
+  z-index: 100;
+  position: fixed;
+  right: 125px;
+  height: 15em;
+  background-color: #D1ECF8;
+  border: solid #064082;
+}
+@media screen and (max-width : 428px) {
+  .overlayContentCompte {
+    right: 70px;
+  }
+}
+.overlayContentCompte nav {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.overlayContentCompte nav hr {
+  width: 95%;
+}
+.overlayContentCompte nav a {
+  padding: 1.5em;
+  color: black;
+  text-decoration: none;
+}
+.overlayContentCompte nav a:hover {
+  color: #6CA6E9;
+}
+
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
@@ -482,6 +522,7 @@ header nav svg {
 }
 
 .overlayContentCatMob {
+  z-index: 100;
   position: fixed;
   background: white;
   text-align: left;
@@ -598,39 +639,48 @@ header nav svg {
   flex-direction: column;
 }
 
-/*###############################
-#        Overlay Achat          #
-################################*/
-[popover]:popover-open::backdrop {
-  background-color: rgba(0, 0, 0, 0.3);
+.ariane {
+  margin-top: 30px;
+  margin-left: 1em;
+}
+.ariane .arianeItem {
+  font-size: 20px;
+  color: rgb(122, 122, 122);
+}
+.ariane .arianeItem:active {
+  color: black;
 }
 
-[popover]:popover-open {
-  border-radius: 1em;
-  border-width: 0.1em;
-  width: 1000px;
+#retour {
+  display: none;
+}
+
+.label-retour {
+  cursor: pointer;
+  font-family: "Mulish";
+  width: 120px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-@media screen and (max-width : 428px) {
-  [popover]:popover-open .bouton {
-    height: 2.5em;
-  }
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  margin-top: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
 }
 
-header .logo_alizon_front {
-  width: 200px;
-}
-header nav svg {
-  width: 40px;
-  height: 40px;
+.btn-retour {
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
 }
 
 .bouton {
-  padding: 40px;
+  padding: 40px 2em;
   font-size: large;
+  margin-bottom: 1em;
 }
 
 main {

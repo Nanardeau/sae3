@@ -37,18 +37,22 @@ $bdd->query('set schema \'alizon\'');
 </head>
 
 <body>
-    <?php 
+    <?php
 
-    if(isset($_SESSION['codeCompte'])){
+    if(isset( $_SESSION["codeCompte"])){
+        $idUser =  $_SESSION["codeCompte"];
         include 'includes/headerCon.php' ;
-        $codeCompte = $_SESSION['codeCompte'];
     }else{
         include 'includes/header.php';
-        include 'includes/menu_cat.php';
     }
     ?>
 
     <main>
+        <?php
+            include 'includes/menu_cat.php';
+            include 'includes/menuCompte.php';
+        ?>
+    
         <?php if(isset($_GET["ajout"])):?>
         <div class="ajoutPanierFait">
             <div class="partieGauche" onclick="fermerPopUpPanier()">
@@ -60,6 +64,8 @@ $bdd->query('set schema \'alizon\'');
             </div>
         </div>
         <?php endif?>
+        <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
+        <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
 
         <h1>Toutes les catégories</h1>
 
@@ -91,8 +97,9 @@ $bdd->query('set schema \'alizon\'');
         ?>
             <div class="separateur"></div>
             <div class="titre-cat">
-                <h2>
+                <h2><a href="Categorie.php?cat=<?php echo $catCurr?>">
                     <?php echo $catCurr; ?>
+                    </a>
                 </h2>
                 <div class="separateur2"></div>
             </div>
@@ -146,7 +153,7 @@ $bdd->query('set schema \'alizon\'');
     <?php include 'includes/footer.php';?>
     <script>
         function fermerPopUpPanier(){
-            window.location.href = "index.php";
+            window.location.href = "Catalogue.php";
         }
     </script>
 </body>

@@ -2,7 +2,17 @@
 @use "../../tools/mixin/com" as m;
 @use '../../components/fonts.css' as *;
 
+.btn-retour{
+    display: flex;
+    align-items: end;
+    text-decoration:underline;
+    margin:$marg;
+    color:#A1A1A1;
+    font-size: $PetTitle;
+    
+    
 
+}
 body{
     font: {
         family: $Poltext,$Poltitle,"sans-serif";

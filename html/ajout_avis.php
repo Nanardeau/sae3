@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
 
@@ -11,7 +10,7 @@ $user = getenv('PGUSER');
 $password = getenv('PGPASSWORD');
 
 try {
-    $bdd = new PDO(
+    $pdo = new PDO(
         "pgsql:host=$host;port=$port;dbname=$dbname;",
         $user,
         $password,
@@ -21,72 +20,67 @@ try {
     die("Erreur BDD : " . $e->getMessage());
 }
 
-$bdd->query("SET SCHEMA 'alizon'");
+$pdo->query("SET SCHEMA 'alizon'");
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    die("Méthode non autorisée.");
-}
+try {
+    $codeProduit = $_POST['codeProduit'] ?? null;
+    $commentaire = $_POST['commentaire'] ?? null;
+    $noteProd     = $_POST['noteProd'] ?? null;
+    $codeCompteCli = $_POST['codeCompteCli'] ?? null;
 
-$codeProduit = intval($_POST['codeProduit']);
-$commentaire = trim($_POST['commentaire']);
-$noteProd = floatval($_POST['noteProd']);
-$codeCompteCli = intval($_SESSION['codeCompte']);
+    $sql = "INSERT INTO Avis (commentaire, noteProd, codeCompteCli, codeProduit, datePublication)
+            VALUES (:commentaire, :noteProd, :cli, :prod, null)";
 
-if ($codeProduit <= 0) die("Produit invalide.");
-if ($commentaire === '') die("Commentaire vide.");
-if ($noteProd < 0 || $noteProd > 5) $noteProd = 0;
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ":commentaire" => $commentaire,
+        ":noteProd"    => $noteProd,
+        ":cli"         => $codeCompteCli,
+        ":prod"        => $codeProduit
+    ]);
 
-$stmt = $bdd->prepare("SELECT 1 FROM Client WHERE codeCompte = :cc");
-$stmt->execute([':cc' => $codeCompteCli]);
+    $numAvis = $pdo->lastInsertId();
 
-if (!$stmt->fetch()) die("Client introuvable.");
-
-$sql = "INSERT INTO Avis (codeProduit, codeCompteCli, noteProd, commentaire, datePublication)
-        VALUES (:prod, :cli, :note, :commentaire, NOW())
-        RETURNING numAvis";
-
-$stmt = $bdd->prepare($sql);
-$stmt->execute([
-    ':prod' => $codeProduit,
-    ':cli' => $codeCompteCli,
-    ':note' => $noteProd,
-    ':commentaire' => $commentaire,
-]);
-
-$numAvis = $stmt->fetchColumn();
-
-
-if (!empty($_FILES['photos']) && $_FILES['photos']['error'][0] !== UPLOAD_ERR_NO_FILE) {
-
-    $uploadDir = "uploads/avis/";
-    if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
-
-    for ($i = 0; $i < count($_FILES['photos']['name']); $i++) {
-
-        if ($_FILES['photos']['error'][$i] !== UPLOAD_ERR_OK)
-            continue;
-
-        $tmpName = $_FILES['photos']['tmp_name'][$i];
-        $name = basename($_FILES['photos']['name'][$i]);
-
-        $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
-        if (!in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) continue;
-
-        $photoName = uniqid("avis_") . "." . $ext;
-        $destination = $uploadDir . $photoName;
-
-        move_uploaded_file($tmpName, $destination);
-
-        $stmtPhoto = $bdd->prepare("INSERT INTO Photo (urlPhoto) VALUES (:url) ON CONFLICT DO NOTHING;");
-        $stmtPhoto->execute([':url' => $destination]);
-
-        $stmtLink = $bdd->prepare("INSERT INTO JustifierAvis (urlPhoto, numAvis) VALUES (:url, :avis)");
-        $stmtLink->execute([
-            ':url' => $destination,
-            ':avis' => $numAvis
-        ]);
+    $uploadDir = __DIR__ . "/uploads/avis/";
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true); 
     }
-}
 
-header("Location: dproduit.php?id=" . $codeProduit);
-exit;
+    if (!empty($_FILES['photos']['name'][0])) {
+        foreach ($_FILES['photos']['name'] as $index => $name) {
+            if ($_FILES['photos']['error'][$index] === UPLOAD_ERR_OK) {
+                $tmpName = $_FILES['photos']['tmp_name'][$index];
+
+                $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+                if (!in_array($ext, $allowedExtensions)) {
+                    continue; 
+                }
+
+                $newName = "avis_" . uniqid() . "." . $ext;
+                $destPath = $uploadDir . $newName;
+
+                if (move_uploaded_file($tmpName, $destPath)) {
+                    $relativePath = "uploads/avis/" . $newName;
+
+                    $stmtPhoto = $pdo->prepare("INSERT INTO Photo (urlPhoto) VALUES (:p) RETURNING urlPhoto");
+                    $stmtPhoto->execute([":p" => $relativePath]);
+                    $urlPhoto = $stmtPhoto->fetchColumn();
+
+                    $stmtJust = $pdo->prepare("INSERT INTO JustifierAvis (numAvis, urlPhoto) VALUES (:a, :p)");
+                    $stmtJust->execute([
+                        ":a" => $numAvis,
+                        ":p" => $urlPhoto
+                    ]);
+                }
+            }
+        }
+    }
+
+    header("Location: dproduit.php?id=" . urlencode($codeProduit));
+    exit();
+
+} catch (Exception $e) {
+    echo "Erreur : " . $e->getMessage();
+}
+?>

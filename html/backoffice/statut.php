@@ -29,9 +29,16 @@
     switch($action){
         case 'retirer':
             $stmt = $bdd->prepare("UPDATE Produit SET Disponible = false WHERE codeProduit = :codeProduit");
+            
+            $stmtPUC = $bdd->prepare("DELETE FROM ProdUnitPanier WHERE codeProduit = :codeProduit");
+            
             $stmt->execute([
             ':codeProduit' => $codeProduit
             ]);
+            $stmtPUC->execute([
+            ':codeProduit' => $codeProduit
+            ]);
+            
             break;
         case 'ajouter':
             $stmt = $bdd->prepare("UPDATE Produit SET Disponible = true WHERE codeProduit = :codeProduit");

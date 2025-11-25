@@ -1,6 +1,5 @@
 @use '../tools/vback.scss' as *;
-@use '../components/fonts.css' as *;
-@use '../style/backoffice/styleComB' as *;
+@use '../style/styleComB' as *;
 @use "../tools/mixin/com" as *;
 @use 'sass:color';
 
@@ -89,10 +88,15 @@ form{
         
         
 }
+.taille{
+    display: flex;
+    
+}
 
 .labelInput{
     display:flex;
     flex-direction: column;
+    margin-right:2em;
     
 }
 .button{
@@ -115,4 +119,7 @@ form{
     &:active{
         background-color : color.change($colP, $lightness: 10%);
     }
+}
+.btn-retour{
+    margin-left:25%;
 }

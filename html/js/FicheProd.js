@@ -16,8 +16,9 @@ function sendGet(url, onSuccess, onError) {
 function ajouterCatalogue(idProd){
         if(confirm("Voulez vous ajouter cet article au catalogue?")){
         url = "/backoffice/statut.php?Action=ajouter&Produit=" + encodeURIComponent(idProd);
+        url2 = "/backoffice/ficheProduit.php?Produit=" + encodeURIComponent(idProd);
         sendGet(url,function() { 
-            location.reload(); 
+            location.replace(url2); 
         },
         function() { 
             alert('Erreur côté serveur.');
@@ -28,8 +29,9 @@ function ajouterCatalogue(idProd){
 function retirerCatalogue(idProd){
         if(confirm("Voulez vous retirer cet article du catalogue?")){
         url = "/backoffice/statut.php?Action=retirer&Produit=" + encodeURIComponent(idProd);
+        url2 = "/backoffice/ficheProduit.php?Produit=" + encodeURIComponent(idProd);
         sendGet(url,function() { 
-            location.reload(); 
+            location.replace(url2); 
         },
         function() { 
             alert('Erreur côté serveur.');

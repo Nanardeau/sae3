@@ -47,7 +47,12 @@ session_start();
     <main>
         <?php
             include 'includes/menu_cat.php';
+            include 'includes/menuCompte.php';
         ?>
+
+        <?php if(isset($_GET["deconnexion"])):?>
+            <script>alert("Vous avez été déconnecté.");</script>
+        <?php endif?>
         <!-- <section class="bienvenue">
             <img src="img/bvn4.png" alt="">
         </section> -->
@@ -77,11 +82,11 @@ session_start();
                 <img src="" alt="Image voir les nouveautés">
                 <a class="boutton" href="#nouveautes">Voir les nouveautés</a>
             </div>
-            <div class="annonce_produit">
+            <!-- <div class="annonce_produit">
                 <img src="" alt="Image voir les articles en vedettes">
                 <a class="boutton" href="">Voir les articles en vedettes</a>
-            </div>
-            <div class="annonce_produit annonce_produit_large">
+            </div> -->
+            <div class="annonce_produit ">
                 <img src="" alt="Image voir les evenement en cours">
                 <a class="boutton" href="Catalogue.php">Accèder au catalogue</a>
             </div>

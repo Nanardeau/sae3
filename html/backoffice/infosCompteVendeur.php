@@ -2,7 +2,7 @@
     session_start();
     
     if(!array_key_exists("codeCompte", $_SESSION)){
-        header("location:ConnexionVendeur.php");
+        header("location:connexionVendeur.php");
     }
 
     $codeCompte = $_SESSION["codeCompte"];
@@ -113,6 +113,9 @@
                     </div>
                     <div class="labelInput">
                         <label for="raisonSoc">Raison sociale</label>
+                        <?php if($erreur == "raisonSoc"):?>
+                            <p class="erreur">Raison sociale déjà utilisée</p>
+                        <?php endif?>
                         <input type="text" name="raisonSoc" id="raisonSoc" value="<?php echo $compte["raisonsociale"]?>" disabled/>
                     </div>
 
@@ -205,7 +208,9 @@
             document.querySelectorAll("h2")[1].removeAttribute("hidden");
             document.querySelectorAll("h2")[0].setAttribute("hidden", null);
             document.getElementById("valider").removeAttribute("hidden");
+            document.getElementById("annuler").classList.add("centre");
             document.getElementById("annuler").removeAttribute("hidden");
+
 
             document.getElementById("modifInfos").setAttribute("hidden", null);
 

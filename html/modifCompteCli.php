@@ -33,6 +33,7 @@
                     session_destroy();
             case "deconnecter":
                 session_destroy();
+                exit(header("location:index.php?deconnexion"));
         }
     }    
 

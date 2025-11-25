@@ -1,13 +1,24 @@
-function openOverlay() {
-  const overlay = document.getElementById("overlayMenuCat");
-  overlay.style.display = "block";
-  document.body.style.overflow = "hidden"; 
+// function openOverlay() {
+//   const overlay = document.getElementById("overlayMenuCat");
+//   overlay.style.display = "block";
+//   document.body.style.overflow = "hidden"; 
+// }
+
+// function closeOverlay() {
+//   const overlay = document.getElementById("overlayMenuCat");
+//   overlay.style.display = "none";
+//   document.body.style.overflow = ""; 
+// }
+
+function openOverlayCompte() {
+  const overlayCpt = document.getElementById("overlayCompte");
+  overlayCpt.style.display = "block";
 }
 
-function closeOverlay() {
-  const overlay = document.getElementById("overlayMenuCat");
-  overlay.style.display = "none";
-  document.body.style.overflow = ""; 
+
+function closeOverlayCompte() {
+  const overlayCpt = document.getElementById("overlayCompte");
+  overlayCpt.style.display = "none";
 }
 
 function openOverlayMobile() {
@@ -53,6 +64,14 @@ window.onclick = function(event) {
   }
 };
 
+window.onclick = function(event) {
+  const overlayCpt = document.getElementById("overlayCompte");
+  if (event.target === overlayCpt) {
+    closeOverlayCompte();
+  }
+};
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const selectQte = document.getElementById('qte');
     const priceElement = document.getElementById('price');
@@ -68,22 +87,42 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let lastScroll = 0;
+let ticking = false;
 const header = document.querySelector("header");
-const navbar = document.getElementsByClassName("nav-cat");
 
-window.addEventListener("scroll", () => {
+function onScroll() {
     const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 0) {
+        header.style.transform = "translateY(0)";
+        lastScroll = 0;
+        return;
+    }
+
+    if (Math.abs(currentScroll - lastScroll) < 5) {
+        return;
+    }
 
     if (currentScroll > lastScroll) {
         header.style.transform = "translateY(-100%)";
-        //navbar.style.transform = "translateY(-100%)";
+        closeOverlayCompte();
     } else {
         header.style.transform = "translateY(0)";
-        //navbar.style.transform = "translateY(0)";
     }
 
     lastScroll = currentScroll;
+}
+
+window.addEventListener("scroll", () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            onScroll();
+            ticking = false;
+        });
+        ticking = true;
+    }
 });
+
 
 
 const stars = document.querySelectorAll('#stars span');
@@ -126,6 +165,13 @@ function nextSlide() {
 }
 
 setInterval(nextSlide, 4000);
+
+
+//photo overlay avis 
+
+
+
+
 
 
 
