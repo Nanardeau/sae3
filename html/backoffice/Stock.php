@@ -114,7 +114,7 @@ $bdd->query('set schema \'alizon\'');
 
                         <div class="card">
                             <figure>
-                                <a href="test.php"><img src="<?php echo $img ?>" /></a>
+                                <a href="FicheProduit.php?Produit=<?php echo $codeProduit?>"><img src="<?php echo $img ?>" /></a>
                                 <figcaption><?php echo $libArt ?></figcaption>
                             </figure>
                             <p class="prix"><?php echo $prix ?> €</p>
@@ -127,7 +127,7 @@ $bdd->query('set schema \'alizon\'');
                                         <path d="M9.63037 13.4648V17.8585" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </a>
-                                <a class="button">Modifier</a>
+                                <a class="button" href="modifProduit.php?codeProduit=<?php echo $codeProduit?>">Modifier</a>
                                 <a class="button" href="./FicheProduit.php?Produit=<?php echo $codeProduit ?>">Détails</a>
                             </div>
 

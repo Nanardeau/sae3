@@ -52,7 +52,7 @@ else{
                 $nomPhoto = $_FILES["photo"]["name"];
                 $extension = $_FILES["photo"]["type"];
                 $extension = substr($extension, strlen("image/"), (strlen($extension) - strlen("image/")));
-                $chemin = "/img/photosProduit/".time().".".$extension;
+                $chemin = "../img/photosProduit/".time().".".$extension;
 
                 move_uploaded_file($_FILES["photo"]["tmp_name"], $chemin);
                 $stmt = $bdd->prepare("INSERT INTO alizon.Photo (urlPhoto) VALUES (:urlPhoto)");
@@ -61,7 +61,7 @@ else{
                 ));
             }
             else{
-                $chemin = "/img/photosProduit/imgErr.jpg";
+                $chemin = "../img/photosProduit/imgErr.jpg";
 
             }
     }

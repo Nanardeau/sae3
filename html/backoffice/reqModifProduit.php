@@ -44,7 +44,8 @@ else{
 }
 $seuilProd = $_POST["seuil"];
 $prixProd = $_POST["prix"];
-if($_POST["origine"]==='Breizh' || $_POST["origine"]==='France' || $_POST["origine"]==='Étranger'){
+
+if(isset($_POST["origine"])){
     $origine = $_POST["origine"];
 }
 else{
@@ -79,10 +80,9 @@ else{
                 $chemin = "../img/photosProduit/".time().".".$extension;
 
                 move_uploaded_file($_FILES["photo"]["tmp_name"], $chemin);
-                $stmt = $bdd->prepare("UPDATE INTO alizon.Photo (urlPhoto) VALUES (:urlPhoto)");
-                $stmt->execute(array(
-                    ":urlPhoto" => $chemin
-                ));
+                $stmt = $bdd->prepare("INSERT INTO alizon.Photo (urlPhoto) VALUES ('".$chemin."')");
+                $stmt->execute();
+                $stmt = $bdd->prepare("UPDATE alizon.Produit SET urlPhoto = '".$chemin."'");
             }
             else{
                 $chemin = "../img/photosProduit/imgErr.jpg";
