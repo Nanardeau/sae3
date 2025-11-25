@@ -475,3 +475,29 @@ header{
 
     }
 }
+
+#retour{
+    display: none;
+}
+
+.label-retour{
+    cursor: pointer;
+    font-family: $Poltext;
+    width: 120px;
+    display: flex;
+    align-items: end;
+    text-decoration:underline;
+    margin:$marg;
+    margin-top: 20px;
+    color:#A1A1A1;
+    font-size: $PetTitle;
+}
+
+.btn-retour{
+    display: flex;
+    align-items: end;
+    text-decoration:underline;
+    margin:$marg;
+    color:#A1A1A1;
+    font-size: $PetTitle;
+}
