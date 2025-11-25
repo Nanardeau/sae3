@@ -45,7 +45,9 @@ try {
     <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <?php include '../includes/backoffice/header.php';
+    <?php include '../includes/backoffice/header.php';?>
+    <main><?php
+    include "../includes/menuCompteBack.php";
     $bdd->query("SET SCHEMA 'alizon'"); ?>
     <div class="content-wrapper"> 
         <aside>
@@ -150,5 +152,6 @@ try {
         </div>
     </div>
     <?php include '../includes/backoffice/footer.php'; ?>
+    </main>
 </body>
 </html>
