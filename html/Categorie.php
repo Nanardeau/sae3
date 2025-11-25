@@ -56,7 +56,6 @@ $prodsCat = $bdd->query("SELECT ALL * FROM alizon.Categoriser WHERE libelleCat =
         include 'includes/menu_cat.php';
     }
     ?>
-        <?php include 'includes/menu_cat.php';?>
     <main>
     <h2><?php echo $cat?></h2>
             <div class="separateur"></div>
@@ -98,6 +97,7 @@ $prodsCat = $bdd->query("SELECT ALL * FROM alizon.Categoriser WHERE libelleCat =
     </section>
     <button class="bouton" style="padding:2em 5em" onclick="retour()">Retour</button>
 </main>
+<?php include 'includes/footer.php';?>
 <script>
     function retour(){
         history.back();
