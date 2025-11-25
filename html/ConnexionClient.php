@@ -24,7 +24,7 @@ try {
 }
 $bdd->query('set schema \'alizon\'');
 $error_msg = "";
-
+$debloq_msg = "";
 session_start();
 
 if($_POST){
