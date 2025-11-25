@@ -82,7 +82,6 @@ if(array_key_exists("banque", $_GET)){
     ));
 
     $numCom = $bdd->lastInsertId();
-    echo $numCom;
     $prodUnitPan = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
     foreach($prodUnitPan as $prodUnit){
         $prixTTCProd = $bdd->query("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
