@@ -114,7 +114,7 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
                             <?php
                             $state = $bdd->query("SELECT Disponible FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
                             
-                            if($state['disponible'] == 1){                            
+                            if($state['disponible'] == 1 ){                            
                             ?>
                             <button onclick="retirerCatalogue(<?php echo $code_produit?>)" class="buton_ret_cat">Retirer du catalogue</button>
                             <?php
