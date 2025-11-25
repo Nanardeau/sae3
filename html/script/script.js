@@ -89,6 +89,7 @@ function onScroll() {
 
     if (currentScroll > lastScroll) {
         header.style.transform = "translateY(-100%)";
+        closeOverlayCompte();
     } else {
         header.style.transform = "translateY(0)";
     }

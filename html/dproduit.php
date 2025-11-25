@@ -103,11 +103,15 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         include 'includes/menu_cat.php';
     }
     ?>
-    <?php include 'includes/menu_cat.php';?>
+    
 
 
 
     <main>
+        <?php 
+            include 'includes/menu_cat.php';
+            include 'includes/menuCompte.php';
+        ?>
     <nav class="ariane">
         <a class="arianeItem" href="index.php">Accueil > </a><a class="arianeItem" href="Catalogue.php">Catalogue > </a><a class="arianeItem" href="Categorie.php?cat=<?php echo $cat?>"><?php echo $cat?></a>
     </nav>
