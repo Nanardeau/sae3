@@ -55,7 +55,7 @@ $bdd->query('set schema \'alizon\'');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/style/ajoutProd.css" rel="stylesheet" type="text/css">
-    <link href="../bootstrap-5.3.8-dist/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">
+    <!--<link href="../bootstrap-5.3.8-dist/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">-->
     <title>Alizon BACK</title>
 </head>
 <body>
@@ -133,21 +133,20 @@ $bdd->query('set schema \'alizon\'');
     <label for="photoProd" class="pObl">Photo du Produit</label>
     <input type="file" name="photo" id="photoProd" accept="image/*"/>
     <h3> Taille Produit </h3>
-    <div class="taille container-fluid p-0">
-        <div class="row">
-            <div class="col-3 labelInput">
+    <div class="taille">
+            <div class="labelInput">
                 <label for="tailleHaut">Hauteur</label>
                 <input type="text" name="tailleHaut" placeholder="en mètre" id="tailleHaut"/>
             </div>
-            <div class="col-3 labelInput">
+            <div class="labelInput">
                 <label for="tailleLarg">Largeur</label>
                 <input type="text" name="tailleLarg" placeholder="en mètre" id="tailleLarg"/>
             </div>
-            <div class="col-3 labelInput">
+            <div class="labelInput">
                 <label for="tailleLong">Longueur</label>
                 <input type="text" name="tailleLong" placeholder="en mètre" id="tailleLong"/>
             </div>
-        </div>
+        
     </div>
     <label for="prix">Prix</label>
     <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" id="prix" pattern="[.0-9]" required/> 

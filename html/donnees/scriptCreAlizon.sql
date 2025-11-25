@@ -122,11 +122,12 @@ CREATE TABLE Facture(
     idAdresseFact INTEGER REFERENCES Adresse(idAdresse)
 );
 CREATE TABLE Carte(
-    numCarte VARCHAR(20) PRIMARY KEY NOT NULL,
+	idCarte SERIAL PRIMARY KEY NOT NULL,
+    numCarte VARCHAR(20) unique NOT NULL,
     nomTit VARCHAR(20),
     prenomTit VARCHAR(20),
-    CVC NUMERIC(3,0),
-    dateExp DATE
+    CVC NUMERIC(3,0) NOT NULL,
+    dateExp DATE NOT NULL
 );
 
 CREATE TABLE Panier(
@@ -141,20 +142,26 @@ CREATE TABLE Panier(
 
 CREATE TABLE Commande(
     numCom SERIAL PRIMARY KEY NOT NULL,
+	codeCompte INTEGER NOT NULL REFERENCES Client(codeCompte),
     dateCom DATE,
-    prixTTCtotal FLOAT, 
-    prixHTtotal FLOAT,
-    numCarte VARCHAR(20) REFERENCES Carte(numCarte)
+    prixTTCtotal NUMERIC DEFAULT 0, 
+    prixHTtotal NUMERIC DEFAULT 0,
+    idCarte INTEGER REFERENCES Carte(idCarte)
 );
 CREATE TABLE Livraison(
     idLivraison SERIAL PRIMARY KEY NOT NULL,
+	--numCom INTEGER REFERENCES Commande(numCom),
     dateCommande DATE,
     dateEncaissement DATE,
     datePreparation DATE,
     dateExpedition DATE,
     statutLiv VARCHAR(20)
 );
-
+CREATE TABLE AdrLiv(
+	--idLivraison INTEGER NOT NULL REFERENCES Livraison(idLivraison),
+	numCom INTEGER NOT NULL REFERENCES Commande(numCom),
+	idAdresse INTEGER NOT NULL REFERENCES Adresse(idAdresse)
+);
 CREATE TABLE Avis(
     numAvis SERIAL PRIMARY KEY NOT NULL,
 	codeProduit INTEGER REFERENCES Produit(codeProduit),
@@ -187,8 +194,8 @@ CREATE TABLE FaireSignalement(
 CREATE TABLE ProdUnitCommande(
     codeProduit INTEGER REFERENCES Produit(codeProduit),
     numCom INTEGER REFERENCES Commande(numCom),
-    prixUnitTTC NUMERIC(20,2),
-    prixUnitHT NUMERIC(20,2),
+    prixTTCtotal NUMERIC(20,2),
+    prixHTtotal NUMERIC(20,2),
     qteProd NUMERIC(20,2),
     PRIMARY KEY(codeProduit,numCom)
 );
@@ -362,16 +369,31 @@ EXECUTE FUNCTION PanierFinalTestHT();
 CREATE FUNCTION calcul_prixTotalTTCCom()
 RETURNS TRIGGER AS $$
 BEGIN
-	UPDATE alizon.Commande SET prixTTCtotal = (SELECT SUM(PUC.prixTTCtotal * PUC.qteProd) 
-	FROM alizon.ProdUnitCommande PUC WHERE PUC.numCom = Commande.numCom);
+	UPDATE alizon.Commande SET prixTTCtotal = (SELECT SUM(PUC.prixTTCtotal  + NEW.prixTTCtotal) FROM ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_calcul_prixTotalTTCCom
-BEFORE INSERT OR UPDATE ON ProdUnitCommande
+AFTER INSERT OR UPDATE ON ProdUnitCommande
 FOR EACH ROW
 EXECUTE FUNCTION calcul_prixTotalTTCCom();
+
+--prixTotalTTC dans commande = somme(prixUnitHT * qteProd)--
+CREATE FUNCTION calcul_prixTotalHTCom()
+RETURNS TRIGGER AS $$
+BEGIN
+	UPDATE alizon.Commande SET prixHTtotal = (SELECT SUM(PUC.prixHTtotal  + NEW.prixHTtotal) FROM ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_calcul_prixTotalHTCom
+AFTER INSERT OR UPDATE ON ProdUnitCommande
+FOR EACH ROW
+EXECUTE FUNCTION calcul_prixTotalHTCom();
+-- Prix HT d'un produit 
+
 
 -- Date création/Modification Panier
 
