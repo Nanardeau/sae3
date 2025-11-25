@@ -1,4 +1,3 @@
-
 DROP SCHEMA IF EXISTS alizon CASCADE;
 CREATE SCHEMA alizon;
 SET SCHEMA 'alizon';
@@ -126,7 +125,7 @@ CREATE TABLE Carte(
     numCarte VARCHAR(20) NOT NULL,
     nomTit VARCHAR(20),
     prenomTit VARCHAR(20),
-    CVC NUMERIC(3,0) NOT NULL,
+    CVC TEXT NOT NULL,
     dateExp TEXT NOT NULL
 );
 

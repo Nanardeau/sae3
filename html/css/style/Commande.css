@@ -784,4 +784,13 @@ table th,
 table td {
   border: 1px solid #064082;
   padding: 12px 15px;
+}
+table a {
+  text-decoration: none;
+}
+
+.btn-prod {
+  display: flex;
+  align-items: end;
+  color: black;
 }/*# sourceMappingURL=Commande.css.map */
