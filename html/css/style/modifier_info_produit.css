@@ -450,4 +450,22 @@ main .bouton:hover {
 }
 main .bouton:active {
   background-color: rgb(43.7447698745, 16.0041841004, 7.2552301255);
+}
+main a:hover {
+  background-color: rgb(26.5562130178, 96.5680473373, 177.4437869822);
+}
+main a:active {
+  background-color: rgb(6.6390532544, 24.1420118343, 44.3609467456);
+}
+main a {
+  background-color: #6CA6E9;
+  border-radius: 1em;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  align-content: center;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: "Baloo";
 }/*# sourceMappingURL=modifier_info_produit.css.map */

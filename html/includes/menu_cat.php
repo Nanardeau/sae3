@@ -7,7 +7,7 @@
             <div>
             <?php
                 $catCurr = null;
-                $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); //Nom de la catégorie  
+                $listCat = $bdd->query('SELECT DISTINCT libCat FROM alizon.SousCat'); //Nom de la catégorie  
 
                 foreach ($listCat as $libcat) {
 
@@ -27,7 +27,7 @@
                 <ul>
                     <?php
                     $catCurr = null;
-                    $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); 
+                    $listCat = $bdd->query('SELECT DISTINCT libCat FROM alizon.SousCat'); 
 
                     foreach ($listCat as $libcat) {
 
@@ -37,7 +37,7 @@
                     <li><a href="#"><?php echo $catCurr;?></a></li>
                     <?php
 
-                    $listSousCats = $bdd->query("SELECT DISTINCT libSousCat FROM SousCat WHERE libCat = '" . $catCurr . "'");
+                    $listSousCats = $bdd->query("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = '" . $catCurr . "'");
 
                     if ($listSousCats->rowCount() > 0) {
                         echo "<ul>";
@@ -85,7 +85,7 @@
                     <ul>
                         <?php
                         $catCurr = null;
-                        $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat');
+                        $listCat = $bdd->query('SELECT DISTINCT libCat FROM alizon.SousCat');
 
                         foreach ($listCat as $libcat) {
 
@@ -95,7 +95,7 @@
                         <li><a href="#"><?php echo $catCurr;?></a></li>
                         <?php
 
-                        $listSousCats = $bdd->query("SELECT DISTINCT libSousCat FROM SousCat WHERE libCat = '" . $catCurr . "'");
+                        $listSousCats = $bdd->query("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = '" . $catCurr . "'");
 
                         if ($listSousCats->rowCount() > 0) {
                             echo "<ul>";

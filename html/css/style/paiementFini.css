@@ -598,6 +598,18 @@ header nav svg {
   flex-direction: column;
 }
 
+.ariane {
+  margin-top: 30px;
+  margin-left: 1em;
+}
+.ariane .arianeItem {
+  font-size: 20px;
+  color: rgb(122, 122, 122);
+}
+.ariane .arianeItem:active {
+  color: black;
+}
+
 header .logo_alizon_front {
   width: 200px;
 }

@@ -543,6 +543,18 @@ header nav svg {
   flex-direction: column;
 }
 
+.ariane {
+  margin-top: 30px;
+  margin-left: 1em;
+}
+.ariane .arianeItem {
+  font-size: 20px;
+  color: rgb(122, 122, 122);
+}
+.ariane .arianeItem:active {
+  color: black;
+}
+
 body {
   padding: 0;
   margin: 0;

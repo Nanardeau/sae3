@@ -90,8 +90,9 @@ $bdd->query('set schema \'alizon\'');
         ?>
             <div class="separateur"></div>
             <div class="titre-cat">
-                <h2>
+                <h2><a href="Categorie.php?cat=<?php echo $catCurr?>">
                     <?php echo $catCurr; ?>
+                    </a>
                 </h2>
                 <div class="separateur2"></div>
             </div>

@@ -75,7 +75,7 @@ foreach ($avisList as &$avis) {
 unset($avis);
 
 
-
+$cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit = '".$id."'")->fetch())["libellecat"];
 
 ?>
 
@@ -88,6 +88,7 @@ unset($avis);
     <link rel="stylesheet" href="css/style/dproduit.css">
 </head>
 <body>
+
     <?php 
 
     if(isset($_SESSION['codeCompte'])){
@@ -100,7 +101,12 @@ unset($avis);
     ?>
     <?php include 'includes/menu_cat.php';?>
 
+
+
     <main>
+    <nav class="ariane">
+        <a class="arianeItem" href="index.php">Accueil > </a><a class="arianeItem" href="Catalogue.php">Catalogue > </a><a class="arianeItem" href="Categorie.php?cat=<?php echo $cat?>"><?php echo $cat?></a>
+    </nav>
         <section class="prod">
             <div class="detail-produit">
                 <div class="detail-produit-content">

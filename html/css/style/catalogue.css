@@ -544,6 +544,18 @@ header nav svg {
   flex-direction: column;
 }
 
+.ariane {
+  margin-top: 30px;
+  margin-left: 1em;
+}
+.ariane .arianeItem {
+  font-size: 20px;
+  color: rgb(122, 122, 122);
+}
+.ariane .arianeItem:active {
+  color: black;
+}
+
 .card {
   margin: 0 20px;
   color: black;
@@ -560,7 +572,7 @@ header nav svg {
 }
 @media screen and (max-width : 428px) {
   .card {
-    max-height: 260px;
+    height: 300px;
   }
 }
 .card figure {
@@ -713,4 +725,8 @@ article {
 
 .nav-cat {
   display: none;
+}
+
+a {
+  color: black;
 }/*# sourceMappingURL=catalogue.css.map */
