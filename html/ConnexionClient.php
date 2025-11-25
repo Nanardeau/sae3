@@ -53,7 +53,7 @@ if($_POST){
                 if($panierExiste){
                     $_SESSION["idPanier"] = $panierExiste["idpanier"];
                 }
-
+                
                 exit(header("location: index.php"));
                     
                 

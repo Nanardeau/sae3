@@ -593,23 +593,25 @@ main > div > div {
   flex-direction: column;
 }
 
-main > div > div > div {
+.ligneCompteurBoutons {
   display: flex;
   flex-direction: row;
-  width: 300px;
+  align-items: center;
+  width: 350px;
 }
 
-main > div > div > div > div {
+.boutons {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 100%;
 }
 
-main > p {
+main > div > div > p {
   width: 300px;
+  margin-top: 0;
 }
 
-main > figcaption {
+main > div > div > figure > figcaption {
   margin-top: 10px;
   font-weight: bold;
 }
@@ -635,7 +637,7 @@ main > figcaption {
   display: flex;
   align-items: end;
   text-decoration: underline;
-  margin: 20px;
+  margin: 10px;
   color: #A1A1A1;
   font-size: 20px;
 }
@@ -651,10 +653,9 @@ main > figcaption {
   border-radius: 1em;
   cursor: pointer;
   background-color: #FCB66B;
-  padding: 1em;
+  padding: 20px;
   color: black;
   width: 100%;
-  height: 1em;
   margin: 5px;
 }
 .btnJaune:hover {
@@ -666,11 +667,10 @@ main > figcaption {
 
 .compteur {
   grid-area: 1/3/2/4;
-  height: 20%;
-  width: 50%;
+  height: 80%;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: end;
 }
 @media screen and (max-width : 428px) {
   .compteur {
@@ -705,7 +705,7 @@ main > figcaption {
   }
 }
 .compteur p {
-  padding: 5px 20px;
+  padding: 10px 20px;
   background-color: white;
   align-content: center;
   border-top: 2px solid black;

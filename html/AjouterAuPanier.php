@@ -56,14 +56,21 @@ else{
 #Vérifier si il y a déjà un exemplaire dans le panier
 $prodPanier = $bdd->query("SELECT codeProduit, qteProd FROM alizon.ProdUnitPanier WHERE idPanier = '".$_SESSION["idPanier"]."' AND codeProduit = '".$_GET["codeProd"]."'")->fetch();
 if($prodPanier != false){
-    #On augmente juste la qteProd de cet article   
-    $qteProd = $prodPanier["qteprod"] + 1;
+    #On augmente juste la qteProd de cet article
+    if(isset($_GET['qteProd'])){
+        $qteProd = $prodPanier["qteprod"] + $_GET['qteProd'];
+    }else    
+        $qteProd = $prodPanier["qteprod"] + 1;
+
     $stmt = $bdd->prepare("UPDATE alizon.ProdUnitPanier set qteProd = '".$qteProd."' WHERE codeProduit = '".$_GET["codeProd"]."' AND idPanier = '".$_SESSION["idPanier"]."'");
 
 }
 
 else{
-    $qteProd = 1;
+    if(isset($_GET['qteProd'])){
+        $qteProd = $_GET['qteProd'];
+    }else 
+        $qteProd = 1;
 
     $stmt = $bdd->prepare("INSERT INTO alizon.ProdUnitPanier (idPanier, codeProduit, qteProd) VALUES ('".$_SESSION["idPanier"]."', '".$_GET["codeProd"]."', '".$qteProd."')");
 

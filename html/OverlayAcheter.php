@@ -60,37 +60,39 @@ $bdd->query('set schema \'alizon\'');
     <main>
         <div>
             <h4>Ajouter au panier</h4>
+            <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
+                <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
             <div>
                 <figure>
-                    <a href="dproduit.php?id=<?= $codeProduit ?>"><img src="<?php echo $img ?>"width=250px /></a>
+                    <a href="dproduit.php?id=<?= $codeProduit ?>"><img src="<?php echo $img ?>"width=300px /></a>
                     <figcaption><?php echo $libelProduit ?></figcaption>
                 </figure>
-                
-                <p>Souhaitez vous ajouter ce produit au panier ou l'acheter instantanément?</p>
-                <div>
+                <?php if(!isset($_SESSION["codeCompte"])):?>
+                    <p> Souhaitez vous ajouter ce produit au panier? <br>
+                    En vous connectant, vous pouvez aussi l'acheter instantanément.</p>
+                    <?php endif?>
+                <?php if(isset($_SESSION["codeCompte"])):?>
+                    <p> Souhaitez vous ajouter ce produit au panier ou l'acheter instantanément?</p>
+                <?php endif?> 
+                <div class="ligneCompteurBoutons">
                     <div class="compteur">
                         
                         <button onclick='modifier(this)' class="btn-moins"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus"><path d="M5 12h14"/></svg></button>
                         
-                        <span id="nbArt"><?php echo $qteProd ?></span>
-                        <?php echo 'yo';
-                        //echo $_COOKIE['qteprod'];
-                        $qteProd = $_COOKIE['qteprod'];
-                        echo $qteProd ?>
+                        <p id="nbArt">1</p>
+                        
                         <button onclick='modifier(this)' class="btn-plus"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
                     </div>
-                    <div>
-                        <?php if(!isset($_SESSION["codeCompte"])):?>
-                        <a class="btnJaune" href="ConnexionClient.php?page=paiement">Acheter</a>
-                        <?php endif?>
+                    
+                    <div class="boutons">
+                        
                         <?php if(isset($_SESSION["codeCompte"])):?>
-                        <a class="btnJaune" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&instant=1">Acheter</a>
+                        <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</a>
                         <?php endif?>
-                        <a class="btnJaune" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&page=Catalogue.php">Ajouter au panier</a>
+                        <button class="btnJaune" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $codeProduit ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&page=Catalogue.php';">Ajouter au panier</button>
                     </div>
                 </div>
-                <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
-                <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
+                
             </div>
         </div>
     </main>
