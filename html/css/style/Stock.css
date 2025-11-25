@@ -345,7 +345,7 @@ header a .user {
 }
 @media screen and (max-width : 428px) {
   .card {
-    max-height: 260px;
+    height: 300px;
   }
 }
 .card figure {

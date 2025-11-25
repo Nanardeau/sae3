@@ -3,7 +3,7 @@
 
 $wCard:240px;
 $hCard: 390px;
-$hCard-mob: 260px;
+$hCard-mob: 300px;
 
 .card{
     margin: 0 20px;
@@ -19,7 +19,8 @@ $hCard-mob: 260px;
     grid-template-rows: repeat(2, 1fr);
     gap:$marg;
     @media #{$mobile}{
-        max-height: $hCard-mob;
+        
+        height: $hCard-mob;
     }
     figure{
         grid-area: 1/1/2/3;
