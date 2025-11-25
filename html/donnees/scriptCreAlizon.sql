@@ -369,7 +369,7 @@ EXECUTE FUNCTION PanierFinalTestHT();
 CREATE FUNCTION calcul_prixTotalTTCCom()
 RETURNS TRIGGER AS $$
 BEGIN
-	UPDATE alizon.Commande SET prixTTCtotal = (SELECT SUM(PUC.prixTTCtotal  + NEW.prixTTCtotal) FROM ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
+	UPDATE alizon.Commande SET prixTTCtotal = (SELECT SUM(PUC.prixTTCtotal) FROM ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -383,7 +383,7 @@ EXECUTE FUNCTION calcul_prixTotalTTCCom();
 CREATE FUNCTION calcul_prixTotalHTCom()
 RETURNS TRIGGER AS $$
 BEGIN
-	UPDATE alizon.Commande SET prixHTtotal = (SELECT SUM(PUC.prixHTtotal  + NEW.prixHTtotal) FROM ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
+	UPDATE alizon.Commande SET prixHTtotal = (SELECT SUM(PUC.prixHTtotal) FROM ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
