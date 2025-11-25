@@ -50,16 +50,22 @@ $bdd->query('set schema \'alizon\'');
 
 <body>
 
-    <?php 
-    
+
+    <?php
+
     if(isset( $_SESSION["codeCompte"])){
         $idUser =  $_SESSION["codeCompte"];
         include 'includes/headerCon.php' ;
     }else{
         include 'includes/header.php';
     }
-     ?>
+    ?>
+
     <main>
+        <?php
+            include 'includes/menu_cat.php';
+            include 'includes/menuCompte.php';
+        ?>
         <?php //Si le client n'a rien dans so panier afficher -> panier vide 
         //Sinon -> afficher les informations du panier.  
                 

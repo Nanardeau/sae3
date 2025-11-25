@@ -49,6 +49,8 @@ $bdd->query('set schema \'alizon\'');
 </head>
 <body>
     <?php include "includes/headerCon.php"?>
+    <?php include 'includes/menuCompte.php'?>   
+
     <main>
     <h1>Vos commandes</h1>
     

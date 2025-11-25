@@ -1,13 +1,24 @@
-function openOverlay() {
-  const overlay = document.getElementById("overlayMenuCat");
-  overlay.style.display = "block";
-  document.body.style.overflow = "hidden"; 
+// function openOverlay() {
+//   const overlay = document.getElementById("overlayMenuCat");
+//   overlay.style.display = "block";
+//   document.body.style.overflow = "hidden"; 
+// }
+
+// function closeOverlay() {
+//   const overlay = document.getElementById("overlayMenuCat");
+//   overlay.style.display = "none";
+//   document.body.style.overflow = ""; 
+// }
+
+function openOverlayCompte() {
+  const overlayCpt = document.getElementById("overlayCompte");
+  overlayCpt.style.display = "block";
 }
 
-function closeOverlay() {
-  const overlay = document.getElementById("overlayMenuCat");
-  overlay.style.display = "none";
-  document.body.style.overflow = ""; 
+
+function closeOverlayCompte() {
+  const overlayCpt = document.getElementById("overlayCompte");
+  overlayCpt.style.display = "none";
 }
 
 function openOverlayMobile() {
@@ -36,6 +47,14 @@ window.onclick = function(event) {
     closeOverlayMobile();
   }
 };
+
+window.onclick = function(event) {
+  const overlayCpt = document.getElementById("overlayCompte");
+  if (event.target === overlayCpt) {
+    closeOverlayCompte();
+  }
+};
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const selectQte = document.getElementById('qte');

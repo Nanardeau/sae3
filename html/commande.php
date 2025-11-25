@@ -48,8 +48,21 @@ $bdd->query('set schema \'alizon\'');
     <title>Alizon</title>
 </head>
 <body>
-    <?php include "includes/headerCon.php"?>
+    <?php
+
+    if(isset( $_SESSION["codeCompte"])){
+        $idUser =  $_SESSION["codeCompte"];
+        include 'includes/headerCon.php' ;
+    }else{
+        include 'includes/header.php';
+    }
+    ?>
+
     <main>
+        <?php
+            include 'includes/menu_cat.php';
+            include 'includes/menuCompte.php';
+        ?>
         <div class="titre-cat">
             <h1>Suivi commande</h1>
             <div class="separateur"></div>

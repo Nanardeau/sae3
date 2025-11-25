@@ -52,7 +52,6 @@
 </head>
 <body>   
     <main>
-
         <?php if($_SESSION["mdpValide"] == -1):?>
             <h2 class="erreur">Mot de passe incorrect</h2>
         <?php endif?>

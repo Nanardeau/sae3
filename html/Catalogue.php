@@ -37,18 +37,22 @@ $bdd->query('set schema \'alizon\'');
 </head>
 
 <body>
-    <?php 
+    <?php
 
-    if(isset($_SESSION['codeCompte'])){
+    if(isset( $_SESSION["codeCompte"])){
+        $idUser =  $_SESSION["codeCompte"];
         include 'includes/headerCon.php' ;
-        $codeCompte = $_SESSION['codeCompte'];
     }else{
         include 'includes/header.php';
-        include 'includes/menu_cat.php';
     }
     ?>
 
     <main>
+        <?php
+            include 'includes/menu_cat.php';
+            include 'includes/menuCompte.php';
+        ?>
+    
         <?php if(isset($_GET["ajout"])):?>
         <div class="ajoutPanierFait">
             <div class="partieGauche" onclick="fermerPopUpPanier()">
