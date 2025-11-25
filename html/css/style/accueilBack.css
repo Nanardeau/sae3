@@ -211,6 +211,8 @@ label {
 #            HEADER             #
 ###############################*/
 header {
+  transition: transform 0.3s ease;
+  z-index: 998;
   display: flex;
   flex-direction: row;
   background-color: #CD4B22;
@@ -390,6 +392,8 @@ body {
 }
 .produit a img {
   text-decoration: none;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-color: black;
 }
 .produit img {

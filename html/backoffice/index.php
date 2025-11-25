@@ -12,7 +12,7 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
 
 //$codeCompte = $_SESSION["codecompte"];
 //Connexion à la base de données.
-require_once __DIR__ . '/_env.php';
+require_once  '../_env.php';
 loadEnv('../.env');
 
 // Récupération des variables
@@ -63,7 +63,7 @@ try {
                     echo '<img src="../'.htmlspecialchars($row['urlphoto']).'" alt="Photo de '.htmlspecialchars($row['libelleprod']).'"> </a>';
                     echo '<p class="nomArticle">'.htmlspecialchars($row['libelleprod']).'</p>';
                     echo '<div>';
-                        echo '<p class="prixReduc">'.round(htmlspecialchars($row['prixttc'], 2)).'€</p>';
+                        echo '<p class="prixReduc">'.$row['prixht'].'€</p>';
                         echo '<a href="modifProduit.php?codeProduit='.$row['codeproduit'].'" class="btnModifReduc">'?>
                             <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="15.0422" cy="15.0422" r="15.0422" fill="#6CA6E9"/>
@@ -124,8 +124,8 @@ try {
                             <?php echo'<p class="nomUtilisateur">'.htmlspecialchars($row['pseudo']).'</p>';
                                 $commentaire = htmlspecialchars($row['commentaire']);
                                 $maxLength = 90;
-                                if (mb_strlen($commentaire) > $maxLength) {
-                                    $affichage = mb_substr($commentaire, 0, $maxLength - 3) . '...';
+                                if (strlen($commentaire) > $maxLength) {
+                                    $affichage = substr($commentaire, 0, $maxLength - 3) . '...';
                                 } else {
                                     $affichage = $commentaire;
                                 }
@@ -140,8 +140,8 @@ try {
                 </div>
             </section>
             <section class="btnAccueil">
-                    <a href="ajouterproduit.php">Ajouter un produit</a>
-                    <a href="Stock.php">Consulter la liste des produits</a>
+                    <a href="ajouterProduit.php">Ajouter un produit</a>
+                    <a href="backoffice/Stock.php">Consulter la liste des produits</a>
             </section>
             <section class="btnAccueil">
                 <a href="Commandes.php">Consulter la liste des commandes</a>

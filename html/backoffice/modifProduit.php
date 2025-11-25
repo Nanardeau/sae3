@@ -29,15 +29,13 @@ try {
 } catch (PDOException $e) {
     //"❌ Erreur de connexion : " . $e->getMessage();
 
-        header('Location: http://localhost:8888/backoffice/index.php');
         
 }
-$_SESSION["codeCompte"] = 5; //ligne temporaire, en attendant d"avoir le système de connexion 
 
 if(!isset($_SESSION["codeCompte"])){
-        header('Location: http://localhost:8888/backoffice/accueil.php');
+        header('Location: http://localhost:8888/backoffice/index.php');
            
-    }
+}
 $bdd->query('set schema \'alizon\'');
 ?>
 
@@ -46,30 +44,33 @@ $bdd->query('set schema \'alizon\'');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/style/modifier_info_produit.css" rel="stylesheet" type="text/css">
-    <link href="../bootstrap-5.3.8-dist/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">
-    <title>Alizon BACK</title>
+    <link rel="shortcut icon" href="img/favicon_alizon.png" type="image/x-icon">
+    <title>Alizon Back Office - Modifier la fiche produit</title>
 </head>
 <body>
-    <?php include("../includes/backoffice/header.php"); ?>
+    <?php include("../includes/backoffice/header.php"); 
+        $code_produit=$_GET["codeProduit"];?>
+    <a href="index.php" class="btn-retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</a>
+    
 <main>
     <?php if($erreur == "succes"){
-                echo "<h2 style=\"color:green\">Produit modifier avec succès</h2>";
+                echo "<h2 style=\"color:green\">Produit modifié avec succès</h2>";
             }
             else if($erreur == "image"){
-                echo "<h2 style=\"color:red\">Produit image avec erreur</h2>";
+                echo "<h2 style=\"color:red\">ERREUR : Image indisponible</h2>";
             }
     ?>
-<form action="enregProduit.php?codeproduit=<?php echo $_GET["codeProduit"] ?>" method="post" enctype="multipart/form-data">
+
+<form action="reqModifProduit.php?codeproduit=<?php echo $_GET["codeProduit"] ?>" method="post" enctype="multipart/form-data">
     <h2>Modifier Produit</h2>
     
     <label for="nom">Intitulé</label>
     <?php
-    $code_produit=$_GET["codeProduit"];
+
     $info = $bdd->query("SELECT libelleProd FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
     $res=$info["libelleprod"];
-        
     ?>
-    <input type="text" name="nom" placeholder="Intitulé..." value=<?php echo "$res"; ?> id="nom" required/> 
+    <input type="text" name="nom" placeholder="Intitulé..." value="<?php echo "$res"; ?>" id="nom" required/> 
     <?php 
     if($erreur == "produit"){
         echo "<p style=\"color:red\">Produit déjà existant</p>";
@@ -79,7 +80,7 @@ $bdd->query('set schema \'alizon\'');
     $res=$info["descriptionprod"];
     ?>
     
-    <label for="description">Déscription détaillée</label>
+    <label for="description">Description détaillée</label>
     <textarea name="description" id="description" rows="5" cols="33" placeholder="Description détaillée..." required><?php echo $res; ?></textarea>
     <label for="categorie">Catégorie</label>
     <?php
@@ -99,7 +100,36 @@ $bdd->query('set schema \'alizon\'');
     }
     ?>
     </select>
+    <label for="origine">Origine</label>
+    <span>Provenance du produit</span>
+    <?php
+        $info = $bdd->query("SELECT origine FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
+        $res=$info["origine"];
+
+    ?>
+    <select name="origine" id="origine" required>
+        <option value="<?php echo $res; ?>" disabled selected><?php echo $res; ?></option>
+        <option value="Étranger">Étranger</option>
+        <option value="France">France</option>
+        <option value="Breizh">Breizh</option>
+    </select>
+    <label for="tarif">Tarification</label>
+    <span>Ajout du coût de livraison au prix HT du produit</span>
+    <?php
+        $info = $bdd->query("SELECT nomTarif FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
+        $res=$info["nomtarif"];
+
+    ?>
+    <select name="tarif" id="tarif" required>
+        <option value="<?php echo $res; ?>" disabled selected><?php echo $res; ?></option>
+        <option value="tarif1">Tarification 1 - 2,00€</option>
+        <option value="tarif2">Tarification 2 - 5,00€</option>
+        <option value="tarif3">Tarification 3 - 8,00€</option>
+        <option value="tarif4">Tarification 4 - 10,00€</option>
+        <option value="tarif5">Tarification 5 - 15,00€</option>
+    </select>
     <label for="TVA">TVA</label>
+    <span>taux de TVA à appliquée au produit </span>
     <?php
         $info = $bdd->query("SELECT nomtva FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
         $res=$info["nomtva"];
@@ -138,24 +168,22 @@ $bdd->query('set schema \'alizon\'');
     $prix=$info["prixht"];
     ?>
     <h3> Taille Produit </h3>
-    <div class="taille container-fluid p-0">
-        <div class="row">
-            <div class="col-3 labelInput">
+    <div class="taille">
+            <div class="labelInput">
                 <label for="tailleHaut">Hauteur</label>
                 <input type="text" name="tailleHaut" placeholder="en mètre" value="<?php echo $hauteur; ?>" id="tailleHaut"/>
             </div>
-            <div class="col-3 labelInput">
+            <div class="labelInput">
                 <label for="tailleLarg">Largeur</label>
                 <input type="text" name="tailleLarg" placeholder="en mètre" value="<?php echo $largeur; ?>" id="tailleLarg"/>
             </div>
-            <div class="col-3 labelInput">
+            <div class="labelInput">
                 <label for="tailleLong">Longueur</label>
                 <input type="text" name="tailleLong" placeholder="en mètre" value="<?php echo $longueur; ?>" id="tailleLong"/>
             </div>
-        </div>
     </div>
     <label for="prix">Prix</label>
-    <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" value="<?php echo $prix; ?>.00" id="prix" pattern="[0-9]{1,}.[0-9]{2}" required/> 
+    <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" value="<?php echo $prix; ?>" id="prix" pattern="[0-9]{1,}.[0-9]{2}" required/> 
     <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
 </form>
         

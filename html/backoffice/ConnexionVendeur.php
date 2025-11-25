@@ -34,7 +34,7 @@ if($_POST){
     if($rep!=null){
         session_start();
         $_SESSION["codeCompte"] = $rep["codecompte"];
-        header("location: accueil.php");
+        header("location: index.php");
         //print_r($_SESSION['codeCompte']);
     }else{
         $error_msg="Identifiant ou mot de passe incorrect.";
@@ -55,7 +55,7 @@ if($_POST){
 <body>
     <main>
         <div>
-            <a href="accueilVendeur.php"><img src="../img/logo_back.svg" alt="logo-alizon" title="logo-alizon"/></a>
+            <a href="index.php"><img src="../img/logo_back.svg" alt="logo-alizon" title="logo-alizon"/></a>
             <h2>Back Office</h2>
         </div>
         <form action="ConnexionVendeur.php" method="post">

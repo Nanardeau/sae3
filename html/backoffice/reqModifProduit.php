@@ -1,5 +1,5 @@
 <?php
-header('location:ajouterproduit.php?erreur=succes');
+header('location:modifProduit.php?codeProduit='.$_GET["codeproduit"].'&erreur=succes');
 session_start();
 $codeCompte = $_SESSION["codeCompte"];
 //Connexion à la base de données.
@@ -24,17 +24,41 @@ try {
     //"❌ Erreur de connexion : " . $e->getMessage();
     
 }
-
+$codeProduit = $_GET["codeproduit"];
 $nomProd = $_POST["nom"];
-
 $descProd = $_POST["description"];
-$catProd = $_POST["categorie"];
+if(isset($_POST["categorie"])){
+    $catProd = $_POST["categorie"];
+}
+else{
+    $catProd = $bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit = '".$codeProduit."'")->fetch();
+    $catProd = $catProd["libellecat"];
+}
 $qteProd = $_POST["qteStock"] ? $_POST["qteStock"] : NULL ;
-$tvaProd = $_POST["TVA"];
+if(isset($_POST["TVA"])){
+    $tvaProd = $_POST["TVA"];
+}
+else{
+    $tvaProd = $bdd->query("SELECT nomTVA FROM alizon.Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
+    $tvaProd = $tvaProd["nomtva"];
+}
 $seuilProd = $_POST["seuil"];
 $prixProd = $_POST["prix"];
-$origine = $_POST["origine"];
-$tarif = $_POST["tarif"];
+if($_POST["origine"]==='Breizh' || $_POST["origine"]==='France' || $_POST["origine"]==='Étranger'){
+    $origine = $_POST["origine"];
+}
+else{
+    $origine = $bdd->query("SELECT Origine FROM alizon.Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
+    $origine = $origine["origine"];
+}
+if(isset($_POST["tarif"])){
+    $tarif = $_POST["tarif"];
+}
+else{
+    $tarif = $bdd->query("SELECT nomTarif FROM alizon.Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
+    $tarif = $tarif["nomtarif"];
+}
+//$tarif = $_POST["tarif"];
 
 // TAILLE 
 $tailleH = $_POST["tailleHaut"] ? $_POST["tailleHaut"] : NULL;
@@ -42,12 +66,12 @@ $tailleLong = $_POST["tailleLong"] ? $_POST["tailleLong"] : NULL;
 $tailleLarg = $_POST["tailleLarg"] ? $_POST["tailleLarg"] : NULL;
 
 $res = $bdd->query("SELECT * FROM alizon.Produit WHERE libelleProd = '".$nomProd."'")->fetch();
-if($res){
-        header('location:ajouterproduit.php?erreur=produit');
+$nomOldProd = $bdd->query("SELECT libelleProd FROM alizon.Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
+if($res=!$nomOldProd && $nomProd == $res["libelleprod"]){
+        header('location:modifProduit.php?erreur=produit');
 }
 else{
-    
-    if($_FILES["photo"]){
+    if($_FILES["photo"] && $_FILES["photo"]["tmp_name"] !=''){
             if($_FILES["photo"]["name"] != ""){
                 $nomPhoto = $_FILES["photo"]["name"];
                 $extension = $_FILES["photo"]["type"];
@@ -55,22 +79,25 @@ else{
                 $chemin = "../img/photosProduit/".time().".".$extension;
 
                 move_uploaded_file($_FILES["photo"]["tmp_name"], $chemin);
-                $stmt = $bdd->prepare("INSERT INTO alizon.Photo (urlPhoto) VALUES (:urlPhoto)");
+                $stmt = $bdd->prepare("UPDATE INTO alizon.Photo (urlPhoto) VALUES (:urlPhoto)");
                 $stmt->execute(array(
                     ":urlPhoto" => $chemin
                 ));
             }
             else{
                 $chemin = "../img/photosProduit/imgErr.jpg";
-
             }
     }
+    else{
+        $photoProd = $bdd->query("SELECT urlPhoto FROM alizon.Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
+        $chemin = $photoProd["urlphoto"];
+    }
+
     
 
-    $stmtP = $bdd->prepare("INSERT INTO alizon.Produit(libelleProd, descriptionProd, prixHT, seuilAlerte, nomTarif, nomTVA, urlPhoto,Origine, codeCompteVendeur) VALUES (:libelleProd, :descriptionProd, :prixHT, :seuilAlerte,:nomTarif, :nomTVA, :photo, :origine, :codeCompteVendeur)");
+    $stmtP = $bdd->prepare("UPDATE alizon.Produit SET libelleProd = :libelleProd, descriptionProd = :descriptionProd, prixHT = :prixHT , seuilAlerte = :seuilAlerte , nomTarif= :nomTarif, nomTVA = :nomTVA, urlPhoto = :photo, Origine = :origine, codeCompteVendeur = :codeCompteVendeur WHERE codeProduit=:codeProduit");
     
-    $stmtC = $bdd->prepare("INSERT INTO alizon.Categoriser(libelleCat,codeProduit) VALUES (:libelleCat,:codeProduit)");
-    
+    $stmtC = $bdd->prepare("UPDATE alizon.Categoriser SET libelleCat = :libelleCat, codeProduit =:codeProduit)");
     
 
     $stmtP->execute(array(
@@ -82,7 +109,8 @@ else{
             ":nomTVA" => $tvaProd,
             ":photo" => $chemin,
             ":origine" => $origine,
-            ":codeCompteVendeur" => $codeCompte
+            ":codeCompteVendeur" => $codeCompte,
+            ":codeProduit" => $codeProduit
 
         ));
     
