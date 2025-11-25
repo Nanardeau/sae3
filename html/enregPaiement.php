@@ -21,15 +21,14 @@
     $bdd->query("SET SCHEMA 'alizon'");
     $codeCompte = $_SESSION["codeCompte"];
 if(isset($_GET["adresse"])){
-    print_r($_POST);
     #Modification de l'adresse
 
     $numRue = $_POST["numRue"];
     $nomRue = $_POST["nomRue"];
     $codePostal = $_POST["codePostal"];
     $nomVille = $_POST["ville"];
-    $numApt = $_POST["numApt"] ? $_POST["numApt"] : "";
-    $complement = $_POST["comp"] ? $_POST["comp"] : ""; 
+    $numApt = isset($_POST["numApt"]) ? $_POST["numApt"] : "";
+    $complement = isset($_POST["comp"]) ? $_POST["comp"] : ""; 
     $stmt = $bdd->prepare("INSERT INTO alizon.Adresse (num, nomRue, codePostal, nomVille, numAppart, complementAdresse) VALUES (:num, :nomRue, :codePostal, :nomVille, :numAppart, :complementAdresse)");
     $stmt->execute(array(
         ":num" => $numRue,
@@ -44,6 +43,7 @@ if(isset($_GET["adresse"])){
     $_SESSION["adrModif"] = 1;
 
     exit(header("location:paiement.php?adr=1"));
+    die();
 }
 if(!isset($_GET["adresse"])){
     if(isset($_SESSION["modifAdr"])){
