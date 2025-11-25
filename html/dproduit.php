@@ -25,6 +25,9 @@ try {
 $bdd->query('set schema \'alizon\'');
 
 $_SESSION["codeCompte"] = 1; //ligne temporaire, en attendant d"avoir le système de connexion 
+if (!isset($_SESSION["codeCompte"])) {
+    $_SESSION["codeCompte"] = 1; 
+}
 
 
 
@@ -52,31 +55,33 @@ $sqlAvis = "SELECT A.*, C.prenom, C.nom,
 $stmtAvis = $bdd->prepare($sqlAvis);
 $stmtAvis->execute(['id' => $id]);
 $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
-// Conversion des tableaux PostgreSQL en vrais tableaux PHP
+
 foreach ($avisList as &$avis) {
-    if (isset($avis['photos']) && is_string($avis['photos'])) {
-        // On s'assure que ce n'est pas null
-        $str = $avis['photos'] ?? '';
-        $str = trim($str, '{}');
 
-        $avis['photos'] = str_getcsv(
-            $str,
-            ',',
-            '"',
-            "\\"
-        );
+    if (is_string($avis["photos"]) && $avis["photos"] !== "{}") {
 
-        $avis['photos'] = array_filter($avis['photos'], function($p){
-            return trim((string)$p) !== "";
-        });
+        $str = trim($avis["photos"], "{}");
 
-        $avis['photos'] = array_values($avis['photos']);
+        $parts = array_map('trim', explode(',', $str));
+
+        $photos = [];
+
+        foreach ($parts as $p) {
+            $p = trim($p, '"');
+
+            if (strtoupper($p) !== "NULL" && $p !== "") {
+                $photos[] = $p;
+            }
+        }
+
+        $avis["photos"] = $photos;
+
     } else {
-        // Pas de photos : on met un tableau vide
-        $avis['photos'] = [];
+        $avis["photos"] = [];
     }
 }
 unset($avis);
+
 
 
 
@@ -130,6 +135,7 @@ unset($avis);
                     <a class="add-to-cart" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>">Ajouter au panier</a>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
+                
 
                 <form class="avis-section" method="POST" action="ajout_avis.php" enctype="multipart/form-data">
 
@@ -164,6 +170,52 @@ unset($avis);
 
             </div>
         </section>
+        <section class="evaluation-produit">
+            <h1>Évaluation du produit</h1>
+            <div class="evaluation">
+                <?php
+                $totalAvis = count($avisList);
+                $sommeNotes = 0;
+                $noteCounts = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0]; 
+
+                foreach ($avisList as $avis) {
+                    $note = (int)$avis['noteprod'];
+                    $sommeNotes += $note;
+                    $noteCounts[$note]++;
+                }
+
+                $moyenneNote = $totalAvis > 0 ? round($sommeNotes / $totalAvis, 2) : 0;
+                ?>
+
+                <div class="eval-moy">
+                    <div class="score-moyen">
+                        <span class="score"><?= $moyenneNote ?></span>/5
+                    </div>
+                    <div class="etoiles">
+                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                            <span class="etoile <?= $i <= round($moyenneNote) ? 'pleine' : '' ?>">★</span>
+                        <?php endfor; ?>
+                    </div>
+                    <div class="total">
+                        (<?= $totalAvis ?> avis)
+                    </div>
+                </div>
+
+                <div class="repartition-notes">
+                    <?php foreach ($noteCounts as $note => $count): ?>
+                        <div class="note-bar">
+                            <span class="note-label"><?= $note ?>★</span>
+                            <div class="progression-note">
+                                <div class="barre-progression" style="width: <?= $totalAvis > 0 ? ($count / $totalAvis) * 100 : 0 ?>%"></div>
+                            </div>
+                            <span class="nbr-note"><?= $count ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+            </div>
+        </section>
+
         <section class="avis-produits">
             <h1>Les avis</h1>
 
@@ -175,8 +227,20 @@ unset($avis);
                         <div class="avis">
                             <div class="avis-header">
                                 <strong>
-                                    <?= htmlspecialchars($avis['prenom'] . " " . strtoupper($avis['nom'])) ?>
+                                    <?php
+                                    $prenom = htmlspecialchars($avis['prenom'] ?? 'Anonyme');
+                                    $nom = strtoupper(htmlspecialchars($avis['nom'] ?? 'Utilisateur'));
+                                    echo "$prenom $nom";
+                                    ?>
                                 </strong>
+                                <!-- <strong>
+                                    <?php
+                                    $prenom = htmlspecialchars($avis['prenom']);
+                                    $nom = strtoupper(htmlspecialchars($avis['nom']));
+                                    echo "$prenom $nom";
+                                    ?>
+
+                                </strong> -->
                                 <span class="date">
                                     <?= date("d/m/Y", strtotime($avis['datepublication'])) ?>
                                 </span>
@@ -187,20 +251,18 @@ unset($avis);
                                 <?php endfor; ?>
                             </span>
 
-
                             <p class="commentaire">
                                 <?= htmlspecialchars($avis['commentaire']) ?>
                             </p>
                             <?php if (!empty($avis['photos'])): ?>
-                                <div id="overlay-photos-avis" class="photos-avis" >
+                                <div id="overlay-photos-avis" class="photos-avis">
                                     <?php foreach ($avis['photos'] as $photo): ?>
                                         <img src="<?= htmlspecialchars($photo) ?>" 
-                                            alt="Photo de l'avis"
+                                            alt="Photo de l'avis" 
                                             class="photo-avis">
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
-
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>

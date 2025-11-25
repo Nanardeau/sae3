@@ -131,5 +131,12 @@ function nextSlide() {
 setInterval(nextSlide, 4000);
 
 
+//photo overlay avis 
+
+
+
+
+
+
 
 
