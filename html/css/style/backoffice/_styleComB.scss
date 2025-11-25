@@ -1,6 +1,6 @@
 @use "../../tools/vback" as *;
 @use "../../tools/mixin/com" as m;
-@use '../../components/fonts.css' as *;
+@use '../../tools/fonts' as *;
 
 .btn-retour{
     display: flex;
@@ -9,9 +9,6 @@
     margin:$marg;
     color:#A1A1A1;
     font-size: $PetTitle;
-    
-    
-
 }
 body{
     font: {

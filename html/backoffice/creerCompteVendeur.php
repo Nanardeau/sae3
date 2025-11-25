@@ -109,7 +109,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/style/creer_compte_vendeur.css" >
+    <link rel="stylesheet" type="text/css" href="../css/style/backoffice/creer_compte_vendeur.css" >
+    <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
     <title>Creer Compte Vendeur</title>
 </head>
 <body>
@@ -270,7 +271,7 @@
             </div>
             <div class="boutton">
                 <button type="submit" id="valider" >Créer le compte</button>
-                <a href="ConnexionVendeur.php" class="bouton">Retour</a>
+                <a href="connexionVendeur.php" class="bouton">Retour</a>
             </div>
         </form>
     </main>
