@@ -896,6 +896,7 @@ header nav svg {
 .overlayContentCompte nav a {
   padding: 1.5em;
   color: black;
+  text-decoration: none;
 }
 
 .overlayContentCompte nav a:hover {
@@ -1548,6 +1549,7 @@ header nav svg {
 .overlayContentCompte nav a {
   padding: 1.5em;
   color: black;
+  text-decoration: none;
 }
 
 .overlayContentCompte nav a:hover {

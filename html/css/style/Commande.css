@@ -391,27 +391,66 @@ header nav svg {
   margin-left: 1rem;
 }
 
+.overlayCompte {
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.overlayContentCompte {
+  z-index: 100;
+  position: fixed;
+  right: 125px;
+  height: 15em;
+  background-color: #D1ECF8;
+  border: solid #064082;
+}
+@media screen and (max-width : 428px) {
+  .overlayContentCompte {
+    right: 70px;
+  }
+}
+.overlayContentCompte nav {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.overlayContentCompte nav hr {
+  width: 95%;
+}
+.overlayContentCompte nav a {
+  padding: 1.5em;
+  color: black;
+  text-decoration: none;
+}
+.overlayContentCompte nav a:hover {
+  color: #6CA6E9;
+}
+
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
   text-size: 20px;
   text-decoration: none;
-  background-color: #064082;
+  background-color: #FCB66B;
   color: white;
   border-radius: 1em;
   cursor: pointer;
-  background-color: #FCB66B;
   border: 0px;
   color: black;
   width: 50%;
   padding: 1em;
 }
 .btnJaune:hover {
-  background-color: rgb(6.75, 72, 146.25);
+  background-color: rgb(149.9602649007, 79.0331125828, 3.0397350993);
 }
 .btnJaune:active {
-  background-color: rgb(4.5, 48, 97.5);
+  background-color: rgb(99.9735099338, 52.6887417219, 2.0264900662);
 }
 
 .overlayMenuCatMob {
@@ -428,6 +467,7 @@ header nav svg {
 }
 
 .overlayContentCatMob {
+  z-index: 100;
   position: fixed;
   background: white;
   text-align: left;
@@ -519,6 +559,43 @@ header nav svg {
   padding-left: 1rem;
 }
 
+.ajoutPanierFait {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  position: fixed;
+  background-color: #D1ECF8;
+  width: 15em;
+  padding: 1em;
+  right: 40px;
+  border-radius: 10px;
+  margin-top: 1em;
+  margin-left: 2em;
+}
+.ajoutPanierFait svg {
+  color: green;
+}
+.ajoutPanierFait .bouton {
+  padding: 0.3em;
+}
+.ajoutPanierFait .partieDroite {
+  display: flex;
+  flex-direction: column;
+}
+
+.ariane {
+  margin-top: 30px;
+  margin-left: 1em;
+}
+.ariane .arianeItem {
+  font-size: 20px;
+  color: rgb(122, 122, 122);
+}
+.ariane .arianeItem:active {
+  color: black;
+}
+
 .card {
   margin: 0 20px;
   color: black;
@@ -535,7 +612,7 @@ header nav svg {
 }
 @media screen and (max-width : 428px) {
   .card {
-    max-height: 260px;
+    height: 300px;
   }
 }
 .card figure {
