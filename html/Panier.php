@@ -26,9 +26,8 @@ try {
     <script>
         alert("Erreur lors du chargement");
     </script>
-    <?php
-        header('Location: http://localhost:8888/index.php');
-        exit();
+    <?php        
+        header('Location: index.php');
 }
 //$_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
 
@@ -77,17 +76,24 @@ $bdd->query('set schema \'alizon\'');
         
         $stmP = $bdd->prepare('SELECT * from Panier where codeCompte = \''.$idUser.'\'');
         
+        
         }else if(isset($_SESSION['idPanier'])) {
             $idPanier =  $_SESSION["idPanier"];
             $stmP = $bdd->prepare('SELECT * from Panier where idPanier = \''.$idPanier.'\'');
-        }else{
+                        
+        }else if(!isset($_SESSION['idPanier'])){
             $stmP = $bdd->prepare('SELECT * from Panier where idPanier = -1'); // -1 est la valeur impossible à avoir en BDD donc aucun panier associer 
         }
+        
         $stmP->execute();
         $ifPanierTemp = $stmP->fetch();
+        if($ifPanierTemp){
+            $stmNb = $bdd->prepare('SELECT ALL count(*) from ProdUnitPanier where idPanier = '.$ifPanierTemp['idpanier']);
+            $stmNb->execute();
+            $nbProdPanier = $stmNb->fetch();
+        }
         //’print_r($ifPanierTemp);
-        if($ifPanierTemp == null || $ifPanierTemp["prixttctotal"] == null){?>
-
+        if($ifPanierTemp == false || $nbProdPanier['count'] < 1){?>
             <!--version panier vide-->
             <div class="vide">
                 <h1> Votre panier est vide </h1>
@@ -96,7 +102,7 @@ $bdd->query('set schema \'alizon\'');
 
         <?php
         }
-        else{
+        else if($ifPanierTemp){
             $infoPanier['idpanier'] = $ifPanierTemp["idpanier"];
             $infoPanier['prixTTC'] = $ifPanierTemp["prixttctotal"];
             $infoPanier['prixHT'] = $ifPanierTemp["prixhttotal"];

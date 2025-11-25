@@ -311,7 +311,7 @@ EXECUTE FUNCTION duplique_prixTTC();
 
 
 
-CREATE FUNCTION PanierFinalTestTTC()
+CREATE FUNCTION PanierFinalTTC()
 RETURNS TRIGGER AS $$
 BEGIN 
 	UPDATE alizon.Panier SET prixTTCtotal = (SELECT SUM(PUP.prixTTCtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = NEW.idPanier ) WHERE Panier.idPanier = NEW.idPanier;
@@ -320,11 +320,24 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_panier_finTTC
-AFTER INSERT OR UPDATE OR DELETE ON ProdUnitPanier
+AFTER INSERT OR UPDATE OR DELETE ON alizon.ProdUnitPanier
 FOR EACH ROW
-EXECUTE FUNCTION PanierFinalTestTTC();
+EXECUTE FUNCTION PanierFinalTTC();
 
-CREATE FUNCTION PanierFinalTestHT()
+CREATE FUNCTION PanierFinalDeleteTTC()
+RETURNS TRIGGER AS $$
+BEGIN 
+	UPDATE alizon.Panier SET prixTTCtotal = (SELECT SUM(PUP.prixTTCtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = OLD.idPanier ) WHERE Panier.idPanier = OLD.idPanier;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_panier_deleteTTC
+AFTER DELETE ON alizon.ProdUnitPanier
+FOR EACH ROW
+EXECUTE FUNCTION PanierFinalDeleteTTC();
+
+CREATE FUNCTION PanierFinalHT()
  
 RETURNS TRIGGER AS $$
 BEGIN 
@@ -336,7 +349,21 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER trg_panier_finHT
 AFTER INSERT OR UPDATE OR DELETE ON ProdUnitPanier
 FOR EACH ROW
-EXECUTE FUNCTION PanierFinalTestHT();
+EXECUTE FUNCTION PanierFinalHT();
+
+CREATE FUNCTION PanierFinalDeleteHT()
+ 
+RETURNS TRIGGER AS $$
+BEGIN 
+	UPDATE alizon.Panier SET prixHTtotal = (SELECT SUM(PUP.prixHTtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = OLD.idPanier) WHERE Panier.idPanier = OLD.idPanier;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_panier_deleteHT
+AFTER DELETE ON alizon.ProdUnitPanier
+FOR EACH ROW
+EXECUTE FUNCTION PanierFinalDeleteHT();
 --PrixHTPanier = Somme(PrixHT * qtProd)--
 
 
