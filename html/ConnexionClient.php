@@ -88,10 +88,10 @@ if($_POST){
             <label for="mdp">Mot de passe</label>
             <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli" required/>
             <?php
-                if($error_msg != "" && $debloq_msg):
+                if($error_msg != ""):
             ?>
                     <p> <?php echo($error_msg); ?><br/>
-                    <a href="debloquer.php"><?php echo ($debloq_msg);?></a>
+                    <a><?php echo ($debloq_msg);?></a>
                     
             <?php
                 endif
