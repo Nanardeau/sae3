@@ -415,9 +415,13 @@ main form .pObl::after {
   content: "";
   color: none;
 }
+main .taille {
+  display: flex;
+}
 main .labelInput {
   display: flex;
   flex-direction: column;
+  margin-right: 2em;
 }
 main .bouton {
   font-family: "Mulish";
