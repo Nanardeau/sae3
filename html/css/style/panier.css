@@ -671,7 +671,7 @@ article {
 .articlePanier {
   display: grid;
   gap: 0.5em;
-  grid-template-columns: repeat(2, 3fr) 2fr;
+  grid-template-columns: repeat(2, 2fr) 2fr;
   grid-template-rows: 0.5fr 2fr 1fr;
   background-color: #D1ECF8;
   padding: 20px;
