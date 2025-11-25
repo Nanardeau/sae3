@@ -77,6 +77,7 @@
                 ":complement" => $complement,
                 ":numAppart" => $numApt
             ));
+            $idAdresse = $bdd->lastInsertId();
         }
         else{
             $idAdresse = -1;
@@ -87,8 +88,6 @@
         $res = ($bdd->query("SELECT codeCompte FROM alizon.Client WHERE pseudo = '".$pseudo."'")->fetch());
         $codeCompte = $res["codecompte"];
         if($idAdresse > 0){
-            $res = ($bdd->query("SELECT idAdresse FROM alizon.Adresse ORDER BY idAdresse DESC LIMIT 1")->fetch());
-            $idAdresse = $res["idadresse"];
 
             $stmt = $bdd->prepare("INSERT INTO alizon.AdrFactCli(codeCompte, idAdresse) VALUES (:codeCompte, :idAdresse)");
             $stmt->execute(array(
