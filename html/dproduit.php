@@ -129,7 +129,7 @@ unset($avis);
                                 <option value="1000000">1000000</option>
                         </select>
                     </div>
-                    <a class="add-to-cart" href="AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>">Ajouter au panier</a>
+                    <a class="add-to-cart" href="OverlayAcheter.php?codeProd=<?php echo $id?>">Ajouter au panier</a>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
                 <?php if(isset($_SESSION["codeCompte"])):?>
