@@ -1,12 +1,13 @@
 <?php
-/*if(!array_key_exists("codeCompte", $_SESSION) || $_SESSION["codecompte"] == null){
+session_start();
+if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
     header('location: connexionVendeur.php');
     
 }else{
 
-    $codeCompte = $_SESSION["codecompte"];
+    $codeCompte = $_SESSION["codeCompte"];
     
-}*/
+}
 if(isset($_GET["erreur"])){
         $erreur = $_GET["erreur"];
 }
@@ -14,7 +15,6 @@ else{
         $erreur = NULL;
     }
 
-session_start();
 //Connexion à la base de données.
 require_once('../_env.php');
 loadEnv('../.env');
@@ -38,13 +38,13 @@ try {
 } catch (PDOException $e) {
     //"❌ Erreur de connexion : " . $e->getMessage();
 
-        header('Location: http://localhost:8888/index.php');
+        header('Location: index.php');
         
 }
 //$_SESSION["codeCompte"] = 5; //ligne temporaire, en attendant d"avoir le système de connexion 
 
 if(!isset($_SESSION["codeCompte"])){
-       exit(header('Location: http://localhost:8888/backoffice/ConnexionVendeur.php'));
+       exit(header('Location: connexionVendeur.php'));
         
     }
 $bdd->query('set schema \'alizon\'');

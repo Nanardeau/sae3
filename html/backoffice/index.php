@@ -141,10 +141,10 @@ try {
             </section>
             <section class="btnAccueil">
                     <a href="ajouterProduit.php">Ajouter un produit</a>
-                    <a href="Stock.php">Consulter la liste des produits</a>
+                    <a href="stock.php">Consulter la liste des produits</a>
             </section>
             <section class="btnAccueil">
-                <a href="Commandes.php">Consulter la liste des commandes</a>
+                <a href="commandes.php">Consulter la liste des commandes</a>
             </section>
         </div>
     </div>
