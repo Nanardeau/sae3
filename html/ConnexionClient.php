@@ -38,8 +38,8 @@ if($_POST){
         $blq = $rep["cmtblq"];
         //bon id mais verif si bloqué
         if($blq==true){
-            $error_msg="Vous avez décidé de bloquer votre compte.";
-            $debloq_msg="Pour le débloquer, cliquez ici.";
+            $error_msg="Vous avez décidé de bloquer votre compte. Vous ne pouvez pas vous connecter.";
+            //$debloq_msg="Pour le débloquer, cliquez ici.";
         }else{
             $blqMod=$rep["cmtblqmod"];
             //si compte pas bloqué, vérif si compte bloqué par modo
@@ -88,7 +88,7 @@ if($_POST){
             <label for="mdp">Mot de passe</label>
             <input type="password" name="mdp" placeholder="Mot de passe..." id="mdpCli" required/>
             <?php
-                if($error_msg != ""):
+                if($error_msg != "" && $debloq_msg):
             ?>
                     <p> <?php echo($error_msg); ?><br/>
                     <a href="debloquer.php"><?php echo ($debloq_msg);?></a>
