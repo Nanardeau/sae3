@@ -596,6 +596,32 @@ header nav svg {
   color: black;
 }
 
+#retour {
+  display: none;
+}
+
+.label-retour {
+  cursor: pointer;
+  font-family: "Mulish";
+  width: 120px;
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  margin-top: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
+.btn-retour {
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
 header {
   justify-self: center;
   margin: 1em 0;

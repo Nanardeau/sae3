@@ -71,22 +71,41 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let lastScroll = 0;
+let ticking = false;
 const header = document.querySelector("header");
-const navbar = document.getElementsByClassName("nav-cat");
 
-window.addEventListener("scroll", () => {
+function onScroll() {
     const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 0) {
+        header.style.transform = "translateY(0)";
+        lastScroll = 0;
+        return;
+    }
+
+    if (Math.abs(currentScroll - lastScroll) < 5) {
+        return;
+    }
 
     if (currentScroll > lastScroll) {
         header.style.transform = "translateY(-100%)";
-        //navbar.style.transform = "translateY(-100%)";
     } else {
         header.style.transform = "translateY(0)";
-        //navbar.style.transform = "translateY(0)";
     }
 
     lastScroll = currentScroll;
+}
+
+window.addEventListener("scroll", () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            onScroll();
+            ticking = false;
+        });
+        ticking = true;
+    }
 });
+
 
 
 const stars = document.querySelectorAll('#stars span');
@@ -129,6 +148,13 @@ function nextSlide() {
 }
 
 setInterval(nextSlide, 4000);
+
+
+//photo overlay avis 
+
+
+
+
 
 
 

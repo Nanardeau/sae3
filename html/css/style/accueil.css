@@ -597,6 +597,32 @@ header nav svg {
   color: black;
 }
 
+#retour {
+  display: none;
+}
+
+.label-retour {
+  cursor: pointer;
+  font-family: "Mulish";
+  width: 120px;
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  margin-top: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
+.btn-retour {
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
@@ -890,7 +916,8 @@ a {
 }
 @media screen and (max-width : 428px) {
   .carte-produit {
-    max-height: 260px;
+    max-height: 280px;
+    width: 200px;
     margin: 10px;
     gap: 5px;
     padding: 10px;

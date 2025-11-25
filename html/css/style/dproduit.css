@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
@@ -596,6 +597,32 @@ header nav svg {
   color: black;
 }
 
+#retour {
+  display: none;
+}
+
+.label-retour {
+  cursor: pointer;
+  font-family: "Mulish";
+  width: 120px;
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  margin-top: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
+.btn-retour {
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
@@ -937,6 +964,32 @@ input[type=file] {
   display: none;
 }
 
+#retour {
+  display: none;
+}
+
+.label-retour {
+  cursor: pointer;
+  font-family: "Mulish";
+  width: 120px;
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  margin-top: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
+.btn-retour {
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
 /*################################*/
 /*-------- affichage avis --------*/
 /*################################*/
@@ -1025,4 +1078,109 @@ input[type=file] {
     width: 60px;
     height: 60px;
   }
-}/*# sourceMappingURL=dproduit.css.map */
+}
+
+/*################################*/
+/* -------- évaluation ----------*/
+.evaluation-produit {
+  margin: 20px 0;
+}
+
+.evaluation {
+  margin-left: 200px;
+  display: flex;
+  gap: 200px;
+  align-items: center;
+}
+@media screen and (max-width: 428px) {
+  .evaluation {
+    margin-left: 0;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+}
+
+.eval-moy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #6CA6E9;
+}
+
+.score-moyen {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6CA6E9;
+}
+
+.etoiles {
+  margin-top: 5px;
+}
+
+.etoile {
+  color: #ccc;
+  font-size: 1.5rem;
+}
+
+.etoile.pleine {
+  color: #f5b301;
+}
+
+.total {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #666;
+}
+
+.repartition-notes {
+  width: 50%;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+@media screen and (max-width: 428px) {
+  .repartition-notes {
+    width: 90%;
+    padding-left: 0;
+  }
+}
+
+.note-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.note-label {
+  width: 50px;
+  font-size: 1rem;
+  color: #064082;
+}
+
+.progression-note {
+  flex: 1;
+  height: 12px;
+  background-color: #eee;
+  margin-left: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.barre-progression {
+  height: 100%;
+  background-color: #6CA6E9;
+  border-radius: 10px;
+}
+
+.nbr-note {
+  width: 30px;
+  text-align: center;
+  font-size: 1rem;
+  color: #333;
+}
+
+/*################################*/
+/* ----photo zoom avis ---------- */
+/*################################*//*# sourceMappingURL=dproduit.css.map */
