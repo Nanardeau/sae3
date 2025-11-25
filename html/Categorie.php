@@ -35,7 +35,16 @@ $prodsCat = $bdd->query("SELECT ALL * FROM alizon.Categoriser WHERE libelleCat =
 
     <title><?php echo $cat?></title>
 </head>
+<style>
 
+    section{
+        display:flex;
+        flex-wrap:wrap;
+        .card{
+            margin-bottom:2em;
+        }
+    }
+</style>
 <body>
     <?php 
 
@@ -57,7 +66,8 @@ $prodsCat = $bdd->query("SELECT ALL * FROM alizon.Categoriser WHERE libelleCat =
             </h2>
                 <div class="separateur2"></div>
             </div>
-    <article>
+    
+    <section>        
     <?php foreach($prodsCat as $produit){
         $prodUnit = $bdd->query("SELECT * FROM alizon.Produit WHERE codeProduit = '".$produit["codeproduit"]."'")->fetch();
         ?>
@@ -85,7 +95,7 @@ $prodsCat = $bdd->query("SELECT ALL * FROM alizon.Categoriser WHERE libelleCat =
     <?php
     }
     ?>
-    </article>
+    </section>
     <button class="bouton" style="padding:2em 5em" onclick="retour()">Retour</button>
 </main>
 <script>
