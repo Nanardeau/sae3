@@ -29,15 +29,13 @@ try {
 } catch (PDOException $e) {
     //"❌ Erreur de connexion : " . $e->getMessage();
 
-        header('Location: http://localhost:8888/backoffice/index.php');
         
 }
-$_SESSION["codeCompte"] = 5; //ligne temporaire, en attendant d"avoir le système de connexion 
 
 if(!isset($_SESSION["codeCompte"])){
-        header('Location: http://localhost:8888/backoffice/accueil.php');
+        header('Location: http://localhost:8888/backoffice/index.php');
            
-    }
+}
 $bdd->query('set schema \'alizon\'');
 ?>
 
