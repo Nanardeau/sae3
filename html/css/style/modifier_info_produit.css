@@ -454,4 +454,8 @@ main .bouton:hover {
 }
 main .bouton:active {
   background-color: rgb(43.7447698745, 16.0041841004, 7.2552301255);
+}
+
+.btn-retour {
+  margin-left: 25%;
 }/*# sourceMappingURL=modifier_info_produit.css.map */
