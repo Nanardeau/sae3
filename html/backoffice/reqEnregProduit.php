@@ -1,5 +1,5 @@
 <?php
-header('location:ajouterproduit.php?erreur=succes');
+header('location:ajouterProduit.php?erreur=succes');
 session_start();
 $codeCompte = $_SESSION["codeCompte"];
 //Connexion à la base de données.
