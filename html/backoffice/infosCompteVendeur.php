@@ -49,9 +49,16 @@
     <link href="../css/style/backoffice/infosCompteVendeur.css" rel="stylesheet" type="text/css">
     <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
-<body>   
+<body>  
+    <a href="index.php" class="btn-retour" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left">
+                    <rect width="18" height="18" x="3" y="3" rx="2"/>
+                    <path d="m14 16-4-4 4-4"/>
+                </svg>
+                Retour
+        </a> 
     <main>
-
+    
         <?php if($_SESSION["mdpValide"] == -1):?>
             <h2 class="erreur">Mot de passe incorrect</h2>
         <?php endif?>
@@ -59,6 +66,7 @@
         <a href="accueil.php"><img src="../img/logoAlizonBack.svg" alt="Alizon"></a>
         <h1>Back Office</h1>
     </div>
+    
         <h2>Mon compte</h2>
         <h2 hidden>Modifier mes informations</h2>
         <div class="containerForm">
@@ -208,7 +216,7 @@
             document.querySelectorAll("h2")[1].removeAttribute("hidden");
             document.querySelectorAll("h2")[0].setAttribute("hidden", null);
             document.getElementById("valider").removeAttribute("hidden");
-            document.getElementById("annuler").classList.add("centre");
+            document.getElementById("annuler").classList.add("annuler");
             document.getElementById("annuler").removeAttribute("hidden");
 
 
@@ -285,4 +293,4 @@
 
     </script>
 </body>
-</html>html/css/style/infosCompteVendeur.scss
+</html>

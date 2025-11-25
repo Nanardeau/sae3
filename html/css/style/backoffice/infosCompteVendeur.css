@@ -234,61 +234,15 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: medium;
-  font-style: normal;
+.btn-retour {
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
 }
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../..fonts/baloo2-medium-webfont.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-} 
+
 body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
@@ -329,8 +283,6 @@ label {
 #            HEADER             #
 ###############################*/
 header {
-  transition: transform 0.3s ease;
-  z-index: 998;
   display: flex;
   flex-direction: row;
   background-color: #CD4B22;
@@ -2195,7 +2147,8 @@ form #cpVille .labelInput:nth-child(2) {
 #valider {
   padding: 2em;
   border: none;
-  width: 10em;
+  width: 30%;
+  max-width: 40em;
   margin-top: 2em;
 }
 
@@ -2243,6 +2196,8 @@ nav button {
   height: auto;
 }
 
-.centre {
-  margin-left: 30%;
+.annuler {
+  margin: auto;
+  max-width: 40em;
+  width: 100%;
 }/*# sourceMappingURL=infosCompteVendeur.css.map */
