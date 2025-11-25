@@ -95,7 +95,7 @@
             <?php if($erreur == "email"):?>
                 <p class="erreur">Adresse e-mail déjà utilisée</p>
             <?php endif?>
-            <input type="text" name="email" id="mailCli" value="<?php echo "mail"?>" required disabled/>
+            <input type="text" name="email" id="mailCli" value="<?php echo $compte["email"]?>" required disabled/>
             <span>Le mail doit être de la forme "abc@def.gh"</span>
             <span>Les deux adresses e-mail doivent être identiques</span>
             <label for="numTelCli">Numéro de téléphone</label>
