@@ -80,7 +80,7 @@ $bdd->query('set schema \'alizon\'');
     $res=$info["descriptionprod"];
     ?>
     
-    <label for="description">Déscription détaillée</label>
+    <label for="description">Description détaillée</label>
     <textarea name="description" id="description" rows="5" cols="33" placeholder="Description détaillée..." required><?php echo $res; ?></textarea>
     <label for="categorie">Catégorie</label>
     <?php
@@ -116,11 +116,11 @@ $bdd->query('set schema \'alizon\'');
     <label for="tarif">Tarification</label>
     <span>Ajout du coût de livraison au prix HT du produit</span>
     <?php
-        $info = $bdd->query("SELECT grilletarification FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
-        $res=$info["grilletarification"];
+        $info = $bdd->query("SELECT nomTarif FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
+        $res=$info["nomtarif"];
 
     ?>
-    <select name="origine" id="origine" required>
+    <select name="tarif" id="tarif" required>
         <option value="<?php echo $res; ?>" disabled selected><?php echo $res; ?></option>
         <option value="tarif1">Tarification 1 - 2,00€</option>
         <option value="tarif2">Tarification 2 - 5,00€</option>

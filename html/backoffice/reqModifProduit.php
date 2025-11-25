@@ -46,7 +46,7 @@ if($res=!$nomOldProd && $nomProd == $res["libelleprod"]){
         header('location:modifProduit.php?erreur=produit');
 }
 else{
-    if($_FILES["photo"]){
+    if($_FILES["photo"] && $_FILES["photo"]["tmp_name"] !=''){
             if($_FILES["photo"]["name"] != ""){
                 $nomPhoto = $_FILES["photo"]["name"];
                 $extension = $_FILES["photo"]["type"];
@@ -63,12 +63,16 @@ else{
                 $chemin = "../img/photosProduit/imgErr.jpg";
             }
     }
+    else{
+        $photoProd = $bdd->query("SELECT urlPhoto FROM alizon.Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
+        $chemin = $photoProd["urlphoto"];
+    }
+
     
 
     $stmtP = $bdd->prepare("UPDATE alizon.Produit SET libelleProd = :libelleProd, descriptionProd = :descriptionProd, prixHT = :prixHT , seuilAlerte = :seuilAlerte , nomTarif= :nomTarif, nomTVA = :nomTVA, urlPhoto = :photo,Origine = :origine, codeCompteVendeur = :codeCompteVendeur WHERE codeProduit=:codeProduit");
     
     $stmtC = $bdd->prepare("UPDATE alizon.Categoriser SET libelleCat = :libelleCat, codeProduit =:codeProduit)");
-    
     
 
     $stmtP->execute(array(
