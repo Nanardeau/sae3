@@ -126,8 +126,8 @@ CREATE TABLE Carte(
     numCarte VARCHAR(20) NOT NULL,
     nomTit VARCHAR(20),
     prenomTit VARCHAR(20),
-    CVC NUMERIC(3,0),
-    dateExp DATE
+    CVC NUMERIC(3,0) NOT NULL,
+    dateExp DATE NOT NULL
 );
 
 CREATE TABLE Panier(
@@ -142,21 +142,26 @@ CREATE TABLE Panier(
 
 CREATE TABLE Commande(
     numCom SERIAL PRIMARY KEY NOT NULL,
+	codeCompte INTEGER NOT NULL REFERENCES Client(codeCompte),
     dateCom DATE,
-	codeCompte INTEGER REFERENCES Client(codeCompte),
-    prixTTCtotal FLOAT, 
-    prixHTtotal FLOAT,
+    prixTTCtotal NUMERIC DEFAULT 0, 
+    prixHTtotal NUMERIC DEFAULT 0,
     idCarte INTEGER REFERENCES Carte(idCarte)
 );
 CREATE TABLE Livraison(
     idLivraison SERIAL PRIMARY KEY NOT NULL,
+	--numCom INTEGER REFERENCES Commande(numCom),
     dateCommande DATE,
     dateEncaissement DATE,
     datePreparation DATE,
     dateExpedition DATE,
     statutLiv VARCHAR(20)
 );
-
+CREATE TABLE AdrLiv(
+	--idLivraison INTEGER NOT NULL REFERENCES Livraison(idLivraison),
+	numCom INTEGER NOT NULL REFERENCES Commande(numCom),
+	idAdresse INTEGER NOT NULL REFERENCES Adresse(idAdresse)
+);
 CREATE TABLE Avis(
     numAvis SERIAL PRIMARY KEY NOT NULL,
 	codeProduit INTEGER REFERENCES Produit(codeProduit),
