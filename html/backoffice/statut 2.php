@@ -1,0 +1,44 @@
+<?php 
+    $_GET["codeProduit"]=1;
+    //include '../includes/backoffice/header.php';
+    require_once('../_env.php');
+    
+
+    // Charger le fichier .env
+    loadEnv('../.env');
+
+    // Récupérer les variables
+    $host = getenv('PGHOST');
+    $port = getenv('PGPORT');
+    $dbname = getenv('PGDATABASE');
+    $user = getenv('PGUSER');
+    $password = getenv('PGPASSWORD');
+
+    // Connexion à PostgreSQL
+
+        $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
+        $bdd = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+
+    $bdd->query('set schema \'alizon\'');
+
+    $action = $_GET["Action"];
+    $codeProduit = $_GET["Produit"];
+
+    switch($action){
+        case 'retirer':
+            $stmt = $bdd->prepare("UPDATE Produit SET Disponible = false WHERE codeProduit = :codeProduit");
+            $stmt->execute([
+            ':codeProduit' => $codeProduit
+            ]);
+            break;
+        case 'ajouter':
+            $stmt = $bdd->prepare("UPDATE Produit SET Disponible = true WHERE codeProduit = :codeProduit");
+            $stmt->execute([
+            ':codeProduit' => $codeProduit
+            ]);
+            break;
+    }
+?>
+

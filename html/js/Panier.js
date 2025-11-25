@@ -39,7 +39,7 @@ function modifProduit(btn,idPanier,idProd){
                 url ="modifPanier.php?Action=reduireProduit&Panier=" + encodeURIComponent(idPanier) + "&Produit=" + encodeURIComponent(idProd);
     }
     sendGet(url,function() { 
-            location.reload(); 
+            location.reload();
         },
         function() { 
             alert('Erreur côté serveur.');
