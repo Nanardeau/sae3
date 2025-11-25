@@ -354,7 +354,9 @@ header a .user {
 .card figure img {
   width: 100%;
   background-color: white;
-  height: auto;
+  height: 180px;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 0.5em;
 }
 .card figure figcaption {

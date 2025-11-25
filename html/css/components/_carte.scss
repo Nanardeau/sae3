@@ -28,9 +28,11 @@ $hCard-mob: 300px;
         margin:0;
         img{
             width: 100%;
+            
             background-color: white;
             //max-height: 180px;
-            height: auto;
+            height: 180px;
+            object-fit: cover;
             border-radius: math.div($radius,2);
         }
         figcaption{
