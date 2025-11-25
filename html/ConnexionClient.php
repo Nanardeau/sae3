@@ -53,7 +53,10 @@ if($_POST){
                 if($panierExiste){
                     $_SESSION["idPanier"] = $panierExiste["idpanier"];
                 }
-
+                else if(isset($_SESSION["idPanier"])){
+                    $stmt = $bdd->prepare("UPDATE alizon.Panier SET codeCompte = '".$_SESSION["codeCompte"]."' WHERE idPanier = '".$_SESSION["idPanier"]."'");
+                    $stmt->execute();
+                }
                 exit(header("location: index.php"));
                 die();
 

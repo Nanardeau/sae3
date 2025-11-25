@@ -45,8 +45,11 @@
         // else{
             
         //     $_SESSION["adrModif"] = 0;
-        //     $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-        //     $_SESSION["idAdresse"] = $infosAdresse["idadresse"];            
+
+                    $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+                   
+
+          
         // }
 
     $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
@@ -308,6 +311,7 @@
         window.location = "Panier.php";
     }
     function validerPaiement(evt){
+
         let adrValide = true;
         let banqueValide = true;
         let champsAdresse = document.querySelectorAll("#adresseLivraison :required");
@@ -320,6 +324,10 @@
 
             }
         }
+        //Il faut que les champs soient modifiables pour être pris en compte dans le $_POST
+        for(let i = 0 ; i < champsAdresse.length ; i++){
+            champsAdresse[i].removeAttribute("disabled");
+        }
         for(let i = 0 ; i < champsBanque.length ; i++){
             if(champsBanque[i].value == ""){
                 banqueValide = false;
@@ -331,7 +339,7 @@
             console.log("non");
         }
         else{
-            document.getElementById("formulaireBanque").submit();           
+            document.getElementById("formulaireAdr").submit();           
            
         }
 

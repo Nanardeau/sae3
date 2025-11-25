@@ -20,9 +20,9 @@
     }
     $bdd->query("SET SCHEMA 'alizon'");
     $codeCompte = $_SESSION["codeCompte"];
-if(array_key_exists("adresse", $_GET)){
+if(isset($_GET["adresse"])){
+    print_r($_POST);
     #Modification de l'adresse
-    $_SESSION["adrModif"] = 1;
 
     $numRue = $_POST["numRue"];
     $nomRue = $_POST["nomRue"];
@@ -41,17 +41,19 @@ if(array_key_exists("adresse", $_GET)){
     ));
     $idAdresse = $bdd->lastInsertId();
     $_SESSION["idAdresse"] = $idAdresse;
+    $_SESSION["adrModif"] = 1;
 
     exit(header("location:paiement.php?adr=1"));
 }
 if(!isset($_GET["adresse"])){
     if(isset($_SESSION["modifAdr"])){
-        if($_SESSION["modifAdr"] == 0){
+        if($_SESSION["modifAdr"] != 1){
 
             #$idAdresseFact = $_SESSION["idAdresse"]/*($bdd->query("SELECT * FROM alizon.AdrFactCli WHERE codeCompte = '".$codeCompte."'")->fetch())["idAdresse"]*/;
             $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
             $idAdresse = $adresse["idadresse"];
         }
+
     }
 
 }
