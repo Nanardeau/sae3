@@ -1,6 +1,6 @@
-@use "./styleComB" as *;
+@use "./_styleComB" as *;
 @use "../../tools/vback" as *;
-@use "../components/carte";
+@use "../../components/carte";
 @import url("bootstrap/scss/utilities/api");
 
 .vide {

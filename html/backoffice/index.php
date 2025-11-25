@@ -47,7 +47,6 @@ try {
 <body>
     <?php include '../includes/backoffice/header.php';?>
     <main><?php
-    include "../includes/menuCompteBack.php";
     $bdd->query("SET SCHEMA 'alizon'"); ?>
     <div class="content-wrapper"> 
         <aside>

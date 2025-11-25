@@ -1,5 +1,5 @@
-@use "../tools/vback" as *;
-@use "../style/styleComB" as *;
+@use "../../tools/vback" as *;
+@use "./styleComB" as *;
 #popup-overlay {
     position: fixed;
     border:$noir 2px solid;
