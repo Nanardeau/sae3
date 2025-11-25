@@ -392,6 +392,8 @@ body {
 }
 .produit a img {
   text-decoration: none;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-color: black;
 }
 .produit img {
