@@ -101,11 +101,11 @@ article {
         
     }
     .btn-supprimer{
-    @include btn;
-    width: 30%;
-    align-self: end;
-    justify-self: end;
-    grid-area: 3/ 3 / 3 / 4
+        @include btn;
+        width: 30%;
+        align-self: end;
+        justify-self: end;
+        grid-area: 3/ 3 / 3 / 4
     }
 
 
