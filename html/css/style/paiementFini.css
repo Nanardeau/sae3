@@ -651,17 +651,10 @@ header nav svg {
   color: black;
 }
 
-header .logo_alizon_front {
-  width: 200px;
-}
-header nav svg {
-  width: 40px;
-  height: 40px;
-}
-
 .bouton {
-  padding: 40px;
+  padding: 40px 2em;
   font-size: large;
+  margin-bottom: 1em;
 }
 
 main {
