@@ -151,7 +151,7 @@ $bdd->query('set schema \'alizon\'');
         
     </div>
     <label for="prix">Prix</label>
-    <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" id="prix" pattern="[.0-9]" required/> 
+    <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" id="prix" pattern="[0-9]{1,}.[0-9]{2}" required/> 
     <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
 </form>
     </main>
