@@ -71,6 +71,18 @@
                         header('location:infosCompte.php?erreur=email');
                     }
                 }                 
+                if($item == "raisonsoc"){
+                    $verifRaison = $bdd->query("SELECT * FROM alizon.Vendeur WHERE raisonSociale = '".$valeur."'")->fetch();
+                    if($verifRaison == NULL || $verifRaison["raisonsociale"] == $value){
+                        $stmt = $bdd->prepare("UPDATE alizon.Vendeur SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
+                        $stmt->execute();   
+                    }
+                    else{
+                        header('location:infosCompte.php?erreur=raisonSoc');
+
+                    }
+
+                }
                 else{
                     $stmt = $bdd->prepare("UPDATE alizon.Vendeur SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
                     $stmt->execute();

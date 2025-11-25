@@ -113,6 +113,9 @@
                     </div>
                     <div class="labelInput">
                         <label for="raisonSoc">Raison sociale</label>
+                        <?php if($erreur == "raisonSoc"):?>
+                            <p class="erreur">Raison sociale déjà utilisée</p>
+                        <?php endif?>
                         <input type="text" name="raisonSoc" id="raisonSoc" value="<?php echo $compte["raisonsociale"]?>" disabled/>
                     </div>
 
