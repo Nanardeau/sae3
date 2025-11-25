@@ -57,7 +57,7 @@
                         $stmt->execute();                        
                     }
                     else{
-                        header('location:infosCompte.php?erreur=pseudo');
+                        header('location:infosCompteVendeur.php?erreur=pseudo');
                     }
                 }  
                 //Vérifier qu'un mail n'est pas déjà pris
@@ -68,7 +68,7 @@
                         $stmt->execute();                        
                     }
                     else{
-                        header('location:infosCompte.php?erreur=email');
+                        header('location:infosCompteVendeur.php?erreur=email');
                     }
                 }                 
                 if($item == "raisonsoc"){
@@ -78,7 +78,7 @@
                         $stmt->execute();   
                     }
                     else{
-                        header('location:infosCompte.php?erreur=raisonSoc');
+                        header('location:infosCompteVendeur.php?erreur=raisonSoc');
 
                     }
 

@@ -2,7 +2,7 @@
     session_start();
     
     if(!array_key_exists("codeCompte", $_SESSION)){
-        header("location:ConnexionVendeur.php");
+        header("location:connexionVendeur.php");
     }
 
     $codeCompte = $_SESSION["codeCompte"];

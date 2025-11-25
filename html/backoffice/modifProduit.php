@@ -33,7 +33,7 @@ try {
 }
 
 if(!isset($_SESSION["codeCompte"])){
-        header('Location: http://localhost:8888/backoffice/index.php');
+        header('Location: index.php');
            
 }
 $bdd->query('set schema \'alizon\'');
