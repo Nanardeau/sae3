@@ -47,11 +47,11 @@
     $res = $bdd->query("SELECT * FROM alizon.Client WHERE pseudo = '".$pseudo."'")->fetch();
     $resMail = $bdd->query("SELECT * FROM alizon.Client WHERE email = '".$mail."'")->fetch();
     if($res){
-        header('location:CreerCompte.php?erreur=pseudo');
+        exit(header('location:CreerCompte.php?erreur=pseudo'));
         die();
     }
     else if($resMail){
-        header('location:CreerCompte.php?erreur=mail');
+        exit(header('location:CreerCompte.php?erreur=mail'));
         die();
     }
     else{
@@ -120,7 +120,7 @@
             ":photo" => $chemin,
             ":client" => $codeCompte
         ));
-        $_SESSION["connecte"] = 1;
+
         $_SESSION["codeCompte"] = $codeCompte;
     }
 
