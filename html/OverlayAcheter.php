@@ -33,7 +33,7 @@ $bdd->query('set schema \'alizon\'');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alizon</title>
     <link href="./css/style/overlayAchat.css" rel="stylesheet" type="text/css">
-    <script src="js/Panier.js"></script>
+    <script src="js/achat.js"></script>
 </head>
 
 <body>
@@ -54,6 +54,7 @@ $bdd->query('set schema \'alizon\'');
 
     $img = $rep["urlphoto"];
     $libelProduit = $rep["libelleprod"];
+    
     ?>
 
     <main>
@@ -69,10 +70,14 @@ $bdd->query('set schema \'alizon\'');
                 <div>
                     <div class="compteur">
                         
-                        <button class="btn-moins" onclick="modifProduit(this,,<?php echo $codeProduit?>)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus"><path d="M5 12h14"/></svg></button>
+                        <button onclick='modifier(this)' class="btn-moins"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus"><path d="M5 12h14"/></svg></button>
                         
-                        <p class="nbArt"><?php echo $qteProd?></p>
-                        <button class="btn-plus" onclick="modifProduit(this,<?php echo $infoPanier['idpanier']?>,<?php echo $liste['codeproduit']?>)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
+                        <span id="nbArt"><?php echo $qteProd ?></span>
+                        <?php echo 'yo';
+                        //echo $_COOKIE['qteprod'];
+                        $qteProd = $_COOKIE['qteprod'];
+                        echo $qteProd ?>
+                        <button onclick='modifier(this)' class="btn-plus"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
                     </div>
                     <div>
                         <?php if(!isset($_SESSION["codeCompte"])):?>
