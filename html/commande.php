@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION["codeCompte"] = 3 ; 
 
 if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"]) || $_GET['numCom'] == null){
             header("location:index.php");

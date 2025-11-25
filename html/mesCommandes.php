@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION["codeCompte"] = 3 ; 
 
 if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
             header("location:index.php");
@@ -54,7 +53,8 @@ $bdd->query('set schema \'alizon\'');
     <h1>Vos commandes</h1>
     
     
-    <?php  
+    <?php 
+     
     $lesCommandes = $bdd->query('SELECT * FROM Commande WHERE codeCompte =\''. $codeCompte .'\'')->fetchAll();
     //print_r($lesCommandes);
     // Si ne possède pas des commandes -> Pas de commandes

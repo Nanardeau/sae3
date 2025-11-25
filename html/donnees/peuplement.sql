@@ -487,9 +487,7 @@ insert into ProdUnitCommande(numCom,codeProduit,qteProd) VALUES
 (3,4,1),
 (3,9,1);
 
-insert into AdrLiv(numCom,idAdresse) VALUES
-(1,1),
-(2,4);
+
 
 select * from ProdUnitCommande;
 select * from Commande;
