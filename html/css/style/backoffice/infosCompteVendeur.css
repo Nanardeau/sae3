@@ -2150,7 +2150,8 @@ form #cpVille .labelInput:nth-child(2) {
 #valider {
   padding: 2em;
   border: none;
-  width: 10em;
+  width: 30%;
+  max-width: 40em;
   margin-top: 2em;
 }
 
@@ -2198,6 +2199,8 @@ nav button {
   height: auto;
 }
 
-.centre {
-  margin-left: 30%;
+.annuler {
+  margin: auto;
+  max-width: 40em;
+  width: 100%;
 }/*# sourceMappingURL=infosCompteVendeur.css.map */
