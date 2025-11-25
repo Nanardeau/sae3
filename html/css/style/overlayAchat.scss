@@ -22,26 +22,26 @@ main>div{
     height: 45%;
     margin: 15px;
 }
-div>div{
+main>div>div{
     display:flex;
     justify-self: center;
     align-items: center;
     flex-direction: column;
 }
-div>div>div{
+main>div>div>div{
     display:flex;
     flex-direction: row;
     width: 300px;
 }
-div>div>div>div{
+main>div>div>div>div{
     display:flex;
     flex-direction: column;
     width: 300px;
 }
-p{
+main>p{
     width: 300px;
 }
-figcaption{
+main>figcaption{
     margin-top: 10px;
     font-weight: bold;
 }

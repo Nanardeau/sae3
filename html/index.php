@@ -133,7 +133,7 @@ session_start();
                                 </svg>
                             </a>
 
-                            <a href="AjouterAuPanier.php?codeProd=<?php echo $p["codeproduit"]?>&page=index.php" class="button">Ajouter au panier</a>
+                            <a href="OverlayAcheter.php?codeProd=<?php echo $p["codeproduit"]?>&page=index.php" class="button">Ajouter au panier</a>
                             <a class="button" href="dproduit.php?id=<?= $p['codeproduit'] ?>">Détails</a>
                         </div>
                     </div>
