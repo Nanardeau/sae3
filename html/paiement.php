@@ -29,25 +29,25 @@
             echo "Erreur de connexion : " . $e->getMessage();
         }
         $nomPrenom = $bdd->query("SELECT nom, prenom FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
-        if(array_key_exists("adrModif", $_SESSION)){
-            if($_SESSION["adrModif"] == 1){
-                $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse  WHERE idAdresse = '".$_SESSION["idAdresse"]."'")->fetch();
-                $_SESSION["adrModif"] = 0;
+        // if(array_key_exists("adrModif", $_SESSION)){
+        //     if($_SESSION["adrModif"] == 1){
+        //         $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse  WHERE idAdresse = '".$_SESSION["idAdresse"]."'")->fetch();
+        //         $_SESSION["adrModif"] = 0;
                 
-            }
+        //     }
 
-            else{
-                $_SESSION["adrModif"] = 0;
-                $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-                $_SESSION["idAdresse"] = $infosAdresse["idadresse"];
-            }
-        }
-        else{
+        //     else{
+        //         $_SESSION["adrModif"] = 0;
+        //         $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+        //         $_SESSION["idAdresse"] = $infosAdresse["idadresse"];
+        //     }
+        // }
+        // else{
             
-            $_SESSION["adrModif"] = 0;
-            $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-            $_SESSION["idAdresse"] = $infosAdresse["idadresse"];            
-        }
+        //     $_SESSION["adrModif"] = 0;
+        //     $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+        //     $_SESSION["idAdresse"] = $infosAdresse["idadresse"];            
+        // }
 
     $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
     $idPanier = $panier["idpanier"];
@@ -157,7 +157,7 @@
                             <div class="labelInput">
                                 <label for="complement">Complément d'adresse</label>
                                 <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse["complementadresse"]?>" disabled />
-                                <input type="submit" class="btnJaune" value="Valider" hidden/>
+                                <p class="btnJaune" value="Valider" onclick="validerAdresse()" id="validerAdr" hidden>Valider</p>
                             </div>
                         </div>
                     </form>
@@ -343,6 +343,13 @@
         }
         btnValiderAdr.removeAttribute("hidden");
         
+    }
+    function validerAdresse(){
+        let champsAdresse = document.querySelectorAll("#adresseLivraison input");
+        for(let i = 0 ; i < champsAdresse.length ; i++){
+            champsAdresse[i].setAttribute("disabled", null);
+        }
+        btnValiderAdr.setAttribute("hidden", null);        
     }
     /*
     function submitTout(){
