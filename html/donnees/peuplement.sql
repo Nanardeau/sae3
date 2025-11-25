@@ -487,15 +487,18 @@ insert into ProdUnitCommande(numCom,codeProduit,qteProd) VALUES
 (3,4,1),
 (3,9,1);
 
-
+insert into AdrLiv(numCom,idAdresse) VALUES
+(1,1),
+(2,4);
 
 select * from ProdUnitCommande;
 select * from Commande;
 select * from AdrLiv;
+select * from adresse;
 SELECT codeProduit FROM ProdUnitCommande WHERE numCom = 1 ORDER BY codeProduit LIMIT 2;
 --SELECT PUC.codeProduit FROM ProdUnitCommande PUC WHERE;
 SELECT DISTINCT puc.numCom FROM Produit p INNER JOIN ProdUnitCommande puc ON p.codeProduit = puc.codeProduit where  CodeCompteVendeur = 5 ORDER BY numCom  ;
-                                
+                              
 
 SELECT * FROM alizon.Client;
 SELECT * FROM alizon.Vendeur;

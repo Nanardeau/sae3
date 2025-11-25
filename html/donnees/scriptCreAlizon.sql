@@ -127,7 +127,7 @@ CREATE TABLE Carte(
     nomTit VARCHAR(20),
     prenomTit VARCHAR(20),
     CVC NUMERIC(3,0) NOT NULL,
-    dateExp DATE NOT NULL
+    dateExp TEXT NOT NULL
 );
 
 CREATE TABLE Panier(
@@ -201,7 +201,7 @@ CREATE TABLE ProdUnitCommande(
 );
 CREATE TABLE ProdUnitPanier(
     codeProduit INTEGER REFERENCES Produit(codeProduit),
-    idPanier INTEGER REFERENCES Panier(idPanier),    
+    idPanier INTEGER REFERENCES Panier(idPanier) ON DELETE CASCADE,    
     qteProd NUMERIC(20,2),
 	prixTTCtotal NUMERIC(20,2),
 	prixHTtotal NUMERIC(20,2),
@@ -247,11 +247,6 @@ CREATE TABLE Profil(
 	PRIMARY KEY(urlPhoto, codeClient)
 );
 
-CREATE TABLE AdrLiv(
-    --idLivraison INTEGER NOT NULL REFERENCES Livraison(idLivraison),
-    numCom INTEGER NOT NULL REFERENCES Commande(numCom),
-    idAdresse INTEGER NOT NULL REFERENCES Adresse(idAdresse)
-);
 --FONCTIONS--
 
 --PrixTTC = prixHT * tauxTVA--
@@ -352,13 +347,13 @@ EXECUTE FUNCTION PanierFinalTestHT();
 CREATE FUNCTION calcul_prixTotalTTCCom()
 RETURNS TRIGGER AS $$
 BEGIN
-    UPDATE alizon.Commande SET prixTTCtotal = (SELECT SUM(PUC.prixTTCtotal) FROM ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
+    UPDATE alizon.Commande SET prixTTCtotal = (SELECT SUM(PUC.prixTTCtotal) FROM alizon.ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_calcul_prixTotalTTCCom
-AFTER INSERT OR UPDATE ON ProdUnitCommande
+AFTER INSERT OR UPDATE ON alizon.ProdUnitCommande
 FOR EACH ROW
 EXECUTE FUNCTION calcul_prixTotalTTCCom();
 
@@ -366,13 +361,13 @@ EXECUTE FUNCTION calcul_prixTotalTTCCom();
 CREATE FUNCTION calcul_prixTotalHTCom()
 RETURNS TRIGGER AS $$
 BEGIN
-    UPDATE alizon.Commande SET prixHTtotal = (SELECT SUM(PUC.prixHTtotal) FROM ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
+    UPDATE alizon.Commande SET prixHTtotal = (SELECT SUM(PUC.prixHTtotal) FROM alizon.ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_calcul_prixTotalHTCom
-AFTER INSERT OR UPDATE ON ProdUnitCommande
+AFTER INSERT OR UPDATE ON alizon.ProdUnitCommande
 FOR EACH ROW
 EXECUTE FUNCTION calcul_prixTotalHTCom();
 -- Date création/Modification Panier
@@ -419,7 +414,26 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+CREATE OR REPLACE FUNCTION calcul_tarifs()
+RETURNS TRIGGER AS
+$$
+BEGIN
+    SELECT NEW.prixHT + tarif.tauxTarif 
+    INTO new.prixHT
+    FROM alizon.Tarification tarif where tarif.nomTarif = NEW.nomTarif;
+    
+    SELECT NEW.prixHT * (1 + (tva.tauxTVA / 100)) 
+    INTO NEW.prixTTC
+    FROM alizon.TVA tva WHERE tva.nomTVA = NEW.nomTVA;
+    RETURN NEW;
+    END;
+$$
+LANGUAGE plpgsql;
 
+CREATE TRIGGER trg_calcul_tarifs
+AFTER INSERT OR UPDATE ON Produit
+FOR EACH ROW
+EXECUTE FUNCTION calcul_tarifs();
 
 CREATE TRIGGER trg_dateCrea_Avis
 BEFORE INSERT ON alizon.Avis
