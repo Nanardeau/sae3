@@ -1,2 +1,142 @@
 @use "./styleCom" as *;
 @use "../tools/vFront" as *;
+@use '../tools/mixin/com' as *;
+
+h4{
+    margin: 0px;
+}
+main{
+    
+    display:flex;
+    justify-content: center;
+}
+
+main>div{
+    background-color: $colS;
+    border-radius: $radius;
+    display:flex;
+    flex-direction: column;
+    justify-items: center;
+    padding: 20px;
+    width: 45%;
+    height: 45%;
+    margin: 15px;
+}
+div>div{
+    display:flex;
+    justify-self: center;
+    align-items: center;
+    flex-direction: column;
+}
+div>div>div{
+    display:flex;
+    flex-direction: row;
+    width: 300px;
+}
+div>div>div>div{
+    display:flex;
+    flex-direction: column;
+    width: 300px;
+}
+p{
+    width: 300px;
+}
+figcaption{
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#retour{
+    display: none;
+}
+
+.label-retour{
+    cursor: pointer;
+    font-family: $Poltext;
+    width: 120px;
+    display: flex;
+    align-items: end;
+    text-decoration:underline;
+    margin:$marg;
+    margin-top: 20px;
+    color:#A1A1A1;
+    font-size: $PetTitle;
+}
+
+.btn-retour{
+    display: flex;
+    align-items: end;
+    text-decoration:underline;
+    margin:$marg;
+    color:#A1A1A1;
+    font-size: $PetTitle;
+}
+
+.btnJaune{
+        @include bouton;
+        background-color:$eleOrange;
+        padding:1em; 
+        color:black;
+        width:100%;
+        height:1em;
+        margin:5px;
+}
+
+.compteur {
+        //min-width: 150%;
+        grid-area: 1 / 3 / 2 / 4;
+        height: 20%;
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: end ;
+        
+        @media #{$mobile} {
+            height: 50%;
+            width: 100%;
+            
+        }
+        button{
+            margin: 0;
+            padding: 5px;
+            background-color: $blanc;
+            border: 2px solid $noir;
+            min-width: 10%;
+            cursor: pointer;
+            &:first-child {
+                border-radius: $radius 0 0 $radius;
+            }
+
+            &:last-child {
+                border-radius: 0 $radius $radius 0;
+            }
+            svg{
+                
+                @media #{$mobile} {
+                    width: 14px;
+                    height: 14px;
+                }
+            }
+
+            @media #{$mobile} {
+                
+                padding: 3px;
+                min-width: 0;
+                
+            }
+
+        }
+
+        p {
+            padding: 5px $pad;
+            background-color: $blanc;
+            align-content: center;
+            border-top: 2px solid $noir;
+            border-bottom: 2px solid $noir;
+            @media #{$mobile} {
+                padding: 2.5px 7.5px;
+                
+            }
+        }
+        
+    }
