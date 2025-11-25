@@ -46,6 +46,7 @@ $bdd->query('set schema \'alizon\'');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/style/modifier_info_produit.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="img/favicon_alizon.png" type="image/x-icon">
     <title>Alizon Back Office - Modifier la fiche produit</title>
 </head>
 <body>

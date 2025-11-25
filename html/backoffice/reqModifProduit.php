@@ -27,13 +27,38 @@ try {
 $codeProduit = $_GET["codeproduit"];
 $nomProd = $_POST["nom"];
 $descProd = $_POST["description"];
-$catProd = $_POST["categorie"];
+if(isset($_POST["categorie"])){
+    $catProd = $_POST["categorie"];
+}
+else{
+    $catProd = $bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit = '".$codeProduit."'")->fetch();
+    $catProd = $catProd["libellecat"];
+}
 $qteProd = $_POST["qteStock"] ? $_POST["qteStock"] : NULL ;
-$tvaProd = $_POST["TVA"];
+if(isset($_POST["TVA"])){
+    $tvaProd = $_POST["TVA"];
+}
+else{
+    $tvaProd = $bdd->query("SELECT nomTVA FROM alizon.Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
+    $tvaProd = $tvaProd["nomtva"];
+}
 $seuilProd = $_POST["seuil"];
 $prixProd = $_POST["prix"];
-$origine = $_POST["origine"];
-$tarif = $_POST["tarif"];
+if($_POST["origine"]==='Breizh' || $_POST["origine"]==='France' || $_POST["origine"]==='Étranger'){
+    $origine = $_POST["origine"];
+}
+else{
+    $origine = $bdd->query("SELECT Origine FROM alizon.Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
+    $origine = $origine["origine"];
+}
+if(isset($_POST["tarif"])){
+    $tarif = $_POST["tarif"];
+}
+else{
+    $tarif = $bdd->query("SELECT nomTarif FROM alizon.Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
+    $tarif = $tarif["nomtarif"];
+}
+//$tarif = $_POST["tarif"];
 
 // TAILLE 
 $tailleH = $_POST["tailleHaut"] ? $_POST["tailleHaut"] : NULL;
@@ -70,7 +95,7 @@ else{
 
     
 
-    $stmtP = $bdd->prepare("UPDATE alizon.Produit SET libelleProd = :libelleProd, descriptionProd = :descriptionProd, prixHT = :prixHT , seuilAlerte = :seuilAlerte , nomTarif= :nomTarif, nomTVA = :nomTVA, urlPhoto = :photo,Origine = :origine, codeCompteVendeur = :codeCompteVendeur WHERE codeProduit=:codeProduit");
+    $stmtP = $bdd->prepare("UPDATE alizon.Produit SET libelleProd = :libelleProd, descriptionProd = :descriptionProd, prixHT = :prixHT , seuilAlerte = :seuilAlerte , nomTarif= :nomTarif, nomTVA = :nomTVA, urlPhoto = :photo, Origine = :origine, codeCompteVendeur = :codeCompteVendeur WHERE codeProduit=:codeProduit");
     
     $stmtC = $bdd->prepare("UPDATE alizon.Categoriser SET libelleCat = :libelleCat, codeProduit =:codeProduit)");
     
