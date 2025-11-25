@@ -721,6 +721,25 @@ article {
   grid-area: 2/3/3/4;
   text-align: end;
 }
+.articlePanier .btn-supprimer {
+  font-family: "Mulish";
+  width: 100%;
+  margin-top: 20px;
+  min-width: 8rem;
+  height: 2rem;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: larger;
+  background-color: #FCB66B;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+  width: 30%;
+  align-self: end;
+  justify-self: end;
+  grid-area: 3/3/3/4;
+}
 .articlePanier img {
   grid-area: 1/1/3/4;
   border-radius: 1em;
