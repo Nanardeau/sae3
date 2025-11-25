@@ -116,61 +116,6 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: medium;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../..fonts/baloo2-medium-webfont.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-} 
 .btn-retour {
   display: flex;
   align-items: end;
@@ -329,100 +274,155 @@ header a .user {
 }
 
 main {
-  margin-left: 80px;
-  margin-right: 80px;
-}
-main h1, main h2 {
-  font-family: "Baloo";
-}
-main p {
-  font-family: "Mulish";
-}
-main .image_prod {
-  border: black 2px solid;
-  margin: 0;
-  margin-top: 50px;
-}
-main .img_etoile {
-  padding-left: 20px;
-}
-main h1 {
-  margin-top: 80px;
-  margin-bottom: 0;
-  padding-left: 20px;
-}
-main h2, main p {
-  margin: 0;
-  padding-left: 20px;
-}
-main input {
-  margin: 20px;
-}
-main input:hover {
-  border-color: #A1A1A1;
-}
-main .buton_commentaire {
-  width: 250px;
-  height: 60px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #FCB66B;
-  border-radius: 8px;
-  border: none;
-}
-main .buton_modif, main .buton_ret_cat {
-  width: 200px;
-  height: 70px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 8px;
-  border: none;
-}
-main .buton_modif {
-  background-color: #FCB66B;
-}
-main .buton_ret_cat {
-  background-color: #6CA6E9;
-}
-main .alignement_space_betwen {
+  margin-top: 2em;
+  padding-bottom: 2em;
   display: flex;
-  justify-content: space-between;
-  align-items: top;
-}
-main .alignemnt_droite_gauche {
-  display: flex;
+  flex-direction: column;
   align-items: center;
 }
-main hr {
-  margin-top: 60px;
-  margin-left: 10px;
-  width: 800px;
-}
-main div + h2 {
-  padding-top: 20px;
-}
-main p {
-  font-size: 20px;
-}
-main .catego {
-  margin-top: 50px;
+
+form {
+  border: #A1A1A1 solid 0.01em;
+  border-radius: 1em;
   display: flex;
-  height: auto;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 50em;
+  margin-top: 1em;
+  align-self: center;
+  padding: 2em;
 }
-main .caract {
-  background-color: #FFD6C2;
-  margin-right: 50px;
-  padding: 20px;
-  padding-bottom: 50px;
-  border-radius: 16px;
-  width: 20em;
-  height: auto;
+form span {
+  color: #6e6e6e;
+  font-size: small;
 }
-main .caract p {
-  padding-top: 1em;
-  padding-left: 2em;
-  font-size: 22px;
+form textarea {
+  border: solid 1px;
+  border-radius: 1em;
+  height: 10em;
+  margin: 10px 0;
+  padding: 10px;
+  resize: none;
 }
-main .caract h2 {
-  font-size: 32px;
-}/*# sourceMappingURL=consulter_fiche_produit_vendeur.css.map */
+form select {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #CD4B22;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  border-radius: 1em;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  font-size: 1em;
+  max-width: 225px;
+}
+form select:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+form select:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
+}
+form input {
+  border: solid 1px;
+  border-radius: 1em;
+  height: 3em;
+  margin: 10px 0;
+  padding: 10px;
+}
+form input::file-selector-button {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #CD4B22;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  border: none;
+}
+form input::file-selector-button:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+form input::file-selector-button:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
+}
+form input#photoProd {
+  border: none;
+  font-size: 0.8em;
+}
+form input .bouton {
+  height: 5em;
+  font-size: 24px;
+}
+form h2 {
+  margin: 0;
+}
+form label::after {
+  content: "*";
+  color: red;
+}
+form .taille label::after {
+  content: "";
+  color: none;
+}
+form .pObl::after {
+  content: "";
+  color: none;
+}
+
+.taille {
+  display: flex;
+}
+
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2em;
+}
+
+.button {
+  font-family: "Mulish";
+  background-color: #6CA6E9;
+  border-radius: 1em;
+  height: 3em;
+  margin: 10px 0;
+  padding: 10px;
+  width: 25%;
+  text-align: center;
+  color: black;
+  text-decoration: none;
+}
+
+.bouton {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #CD4B22;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+}
+.bouton:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+.bouton:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
+}
+.bouton:hover {
+  background-color: rgb(174.9790794979, 64.0167364017, 29.0209205021);
+}
+.bouton:active {
+  background-color: rgb(43.7447698745, 16.0041841004, 7.2552301255);
+}
+
+.btn-retour {
+  margin-left: 25%;
+}/*# sourceMappingURL=ajoutProd.css.map */

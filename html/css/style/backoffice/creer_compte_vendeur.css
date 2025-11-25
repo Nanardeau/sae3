@@ -116,61 +116,15 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
-  font-weight: medium;
-  font-style: normal;
+.btn-retour {
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
 }
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-extrabold-webfont.woff") format("woff"), url("../../fonts/baloo2-extrabold-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Baloo";
-  src: url("../../fonts/baloo2-medium-webfont.woff") format("woff"), url("../..fonts/baloo2-medium-webfont.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-black-webfont.woff") format("woff"), url("../../fonts/mulish-black-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-blackitalic-webfont.woff") format("woff"), url("../../fonts/mulish-blackitalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bolditalic-webfont.woff") format("woff"), url("../../fonts/mulish-bolditalic-webfont.woff2") format("woff2");
-  font-weight: bolder;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-bold-webfont.woff") format("woff"), url("../../fonts/mulish-bold-webfont.woff2") format("woff2");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Mulish";
-  src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
-  font-weight: normal;
-} 
+
 body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
@@ -211,8 +165,6 @@ label {
 #            HEADER             #
 ###############################*/
 header {
-  transition: transform 0.3s ease;
-  z-index: 998;
   display: flex;
   flex-direction: row;
   background-color: #CD4B22;
@@ -321,38 +273,104 @@ header a .user {
   display: flex;
 }
 
+header {
+  background-color: white;
+}
+
 main {
-  margin-top: 2em;
-  padding-bottom: 2em;
+  padding: 150px;
+  margin: auto;
+  width: 1140px;
+}
+main .header {
+  padding-left: 50px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+main h1 {
+  margin-left: 20px;
+}
+main span {
+  display: none;
+  color: #6e6e6e;
+  padding-top: 2px;
+}
+main input:user-invalid, main input.invalid {
+  border-color: red;
+}
+main input:user-invalid + span, main input.invalid + span {
+  display: block;
+}
+main .main {
+  border: black 2px solid;
+  border-radius: 16px;
+  display: flex;
+}
+main .main section {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 65px;
+  width: 480px;
+  padding-top: 0;
+}
+main .main section h2, main .main section h3 {
+  text-align: center;
+}
+main .main section label {
+  font-size: 16px;
+  padding-bottom: 10px;
+  font-family: "Baloo";
+}
+main .main section input {
+  background-color: white;
+  border-radius: 8px;
+  height: 20px;
+  font-size: 16px;
+  padding: 10px;
+  border: black 1px solid;
+  font-family: "Baloo";
+  border-color: black;
+}
+main .main section .label {
+  padding-left: 35px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-right: 60px;
+}
+main .main section .labelaligner {
+  padding-left: 0;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-right: 60px;
+}
+main .main section .alignementdesentrer {
+  display: flex;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+main .main section .grandinput {
+  width: 400px;
+}
+main .main section .moyeninput {
+  width: 160px;
+}
+main .main section .petitinput {
+  width: 110px;
+}
+main .main :nth-child(3) h3 {
+  padding-top: 78px;
+}
+main .boutton {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 50px;
+  text-align: center;
 }
-
-form {
-  border: #A1A1A1 solid 0.01em;
-  border-radius: 1em;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 50em;
-  margin-top: 1em;
-  align-self: center;
-  padding: 2em;
-}
-form span {
-  color: #6e6e6e;
-  font-size: small;
-}
-form textarea {
-  border: solid 1px;
-  border-radius: 1em;
-  height: 10em;
-  margin: 10px 0;
-  padding: 10px;
-  resize: none;
-}
-form select {
+main .boutton button {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
@@ -362,115 +380,35 @@ form select {
   color: white;
   border-radius: 1em;
   cursor: pointer;
-  border-radius: 1em;
-  margin: 10px 0;
-  padding: 10px;
+  height: 55px;
+  width: 430px;
   border: none;
-  font-size: 1em;
-  max-width: 225px;
-}
-form select:hover {
-  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
-}
-form select:active {
-  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
-}
-form input {
-  border: solid 1px;
-  border-radius: 1em;
-  height: 3em;
-  margin: 10px 0;
-  padding: 10px;
-}
-form input::file-selector-button {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #CD4B22;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
-  border: none;
-}
-form input::file-selector-button:hover {
-  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
-}
-form input::file-selector-button:active {
-  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
-}
-form input#photoProd {
-  border: none;
-  font-size: 0.8em;
-}
-form input .bouton {
-  height: 5em;
+  margin-bottom: 1em;
   font-size: 24px;
 }
-form h2 {
-  margin: 0;
+main .boutton button:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
 }
-form label::after {
-  content: "*";
-  color: red;
+main .boutton button:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
 }
-form .taille label::after {
-  content: "";
-  color: none;
-}
-form .pObl::after {
-  content: "";
-  color: none;
-}
-
-.taille {
-  display: flex;
-}
-
-.labelInput {
-  display: flex;
-  flex-direction: column;
-  margin-right: 2em;
-}
-
-.button {
-  font-family: "Mulish";
-  background-color: #6CA6E9;
-  border-radius: 1em;
-  height: 3em;
-  margin: 10px 0;
-  padding: 10px;
-  width: 25%;
-  text-align: center;
-  color: black;
-  text-decoration: none;
-}
-
-.bouton {
+main .bouton {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
   text-size: 20px;
   text-decoration: none;
-  background-color: #CD4B22;
+  background-color: #6CA6E9;
   color: white;
   border-radius: 1em;
   cursor: pointer;
+  padding: 2em;
+  color: black;
+  width: 200px;
 }
-.bouton:hover {
-  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+main .bouton:hover {
+  background-color: rgb(19.9171597633, 72.426035503, 133.0828402367);
 }
-.bouton:active {
-  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
-}
-.bouton:hover {
-  background-color: rgb(174.9790794979, 64.0167364017, 29.0209205021);
-}
-.bouton:active {
-  background-color: rgb(43.7447698745, 16.0041841004, 7.2552301255);
-}
-
-.btn-retour {
-  margin-left: 25%;
-}/*# sourceMappingURL=ajoutProd.css.map */
+main .bouton:active {
+  background-color: rgb(13.2781065089, 48.2840236686, 88.7218934911);
+}/*# sourceMappingURL=creer_compte_vendeur.css.map */

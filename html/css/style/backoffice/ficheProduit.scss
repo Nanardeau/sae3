@@ -1,5 +1,7 @@
-@use "../tools/vback" as *;
-@use "../style/backoffice/styleComB" as *;
+@use "../../tools/vback" as *;
+@use "../../tools/vFront" as *;
+@use "./styleComB" as *;
+
 
 main {
     h1, h2 {
@@ -17,6 +19,9 @@ main {
     }
     .img_etoile{
         padding-left: 20px;
+        svg:last-child{
+            margin-right: 20px;
+        }
     }
     h1{
         margin-top: 80px;
@@ -43,22 +48,36 @@ main {
         background-color: #FCB66B;
         border-radius: 8px;
         border: none;
-        
+        cursor: pointer;
     }
-    .buton_modif, .buton_ret_cat {
+    .buton_modif, .buton_ret_cat, .buton_ajt_cat {
         width: 200px;
         height: 70px;
         font-size: 16px;
         font-weight: bold;
         border-radius: 8px;
         border: none;
-        
+        cursor: pointer;
     }
     .buton_modif {
+        display: inline-flex;
+        text-decoration: none;
         background-color: #FCB66B;
+        div{
+            display: flex;
+            justify-content: center;
+            color: $noir;
+            align-items: center;
+            flex-grow: 1;
+        }
+        width: 200px;
+        height: 70px;
+    }
+    .buton_ajt_cat{
+        background-color: $eleBleu;
     }
     .buton_ret_cat {
-        background-color: $eleBleu;
+        background-color: $inverse;
     }
     .alignement_space_betwen {
         display: flex;
@@ -85,26 +104,29 @@ main {
         margin-top: 50px;
         display: flex;
         height: auto;
+        .caract{
+            background-color: $colS;
+            margin-right: 50px;
+            padding: 20px;
+            padding-bottom: 50px;
+            border-radius: 16px;
+            width: 20em;
+            height: auto;
+            p {
+                padding-top: 1em;
+                padding-left: 2em;
+                font-size: 22px;
+                
+            }
+            ul li{
+                list-style-type: none;
+                
+            }
+        
+        }
     }
 
-    .caract {
-        background-color: $colS;
-        margin-right: 50px;
-        padding: 20px;
-        padding-bottom: 50px;
-        border-radius: 16px;
-        width: 20em;
-        height: auto;
-        p {
-            padding-top: 1em;
-            padding-left: 2em;
-            font-size: 22px;
-            
-        }
-        h2 {
-            font-size: $GdTitle;
-        }
-    }
+
 
 
 }
