@@ -1939,6 +1939,14 @@ input[type=file] {
   margin-right: 1em;
 }
 
+.btnRetour {
+  align-self: flex-start;
+  margin-left: 10em;
+  font-size: 32px;
+  color: black;
+  cursor: pointer;
+}
+
 .bouton {
   font-family: "Mulish";
   font-weight: bold;
@@ -2053,4 +2061,12 @@ nav button {
 }
 [popover]:popover-open form input {
   width: 100%;
+}
+
+#overlayMdp {
+  height: auto;
+}
+
+.centre {
+  margin-left: 30%;
 }/*# sourceMappingURL=infosCompteVendeur.css.map */

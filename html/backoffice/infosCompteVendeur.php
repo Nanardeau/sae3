@@ -205,7 +205,9 @@
             document.querySelectorAll("h2")[1].removeAttribute("hidden");
             document.querySelectorAll("h2")[0].setAttribute("hidden", null);
             document.getElementById("valider").removeAttribute("hidden");
+            document.getElementById("annuler").classList.add("centre");
             document.getElementById("annuler").removeAttribute("hidden");
+
 
             document.getElementById("modifInfos").setAttribute("hidden", null);
 
