@@ -62,6 +62,7 @@
                         <path d="M26.5 1.5L1.5 26.5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M1.5 1.5L26.5 26.5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <?php if(!isset($_SESSION["codeCompte"])):?>
                     <div class="user-ident">
                         <a href="#">Identifiez-vous</a>
                         <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-user">
@@ -69,6 +70,16 @@
                             <path d="M19.6667 21.9998C19.6667 19.5245 18.6833 17.1505 16.933 15.4002C15.1826 13.6498 12.8087 12.6665 10.3333 12.6665C7.85798 12.6665 5.48401 13.6498 3.73367 15.4002C1.98333 17.1505 1 19.5245 1 21.9998" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
+                    <?php endif?>
+                    <?php if(isset($_SESSION["codeCompte"])):?>
+                    <div class="user-ident">
+                        <a href="infosCompte.php">Mon Compte</a>
+                        <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-user">
+                            <path d="M10.3333 12.6667C13.555 12.6667 16.1667 10.055 16.1667 6.83333C16.1667 3.61167 13.555 1 10.3333 1C7.11167 1 4.5 3.61167 4.5 6.83333C4.5 10.055 7.11167 12.6667 10.3333 12.6667Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M19.6667 21.9998C19.6667 19.5245 18.6833 17.1505 16.933 15.4002C15.1826 13.6498 12.8087 12.6665 10.3333 12.6665C7.85798 12.6665 5.48401 13.6498 3.73367 15.4002C1.98333 17.1505 1 19.5245 1 21.9998" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <?php endif?>
                     <div class="parcourir-alizon">
                         <p>Parcourir</p>
                         <h3>Alizon</h3>
@@ -92,7 +103,7 @@
                             $catCurr = $libcat['libcat'];
                         ?>
 
-                        <li><a href="#"><?php echo $catCurr;?></a></li>
+                        <li><a href="Categorie.php?cat=<?php echo $catCurr?>"><?php echo $catCurr;?></a></li>
                         <?php
 
                         $listSousCats = $bdd->query("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = '" . $catCurr . "'");
@@ -101,7 +112,7 @@
                             echo "<ul>";
                             foreach ($listSousCats as $libSousCat) {
                                 $sousCatCurr = $libSousCat['libsouscat'];
-                                echo "<li><a href='#'>" . $sousCatCurr . "</a></li>";
+                                echo "<li><a href='Categorie.php?cat=".$catCurr."'>" . $sousCatCurr . "</a></li>";
                             }
                             echo "</ul>";
                         }
