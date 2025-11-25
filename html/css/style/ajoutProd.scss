@@ -89,10 +89,15 @@ form{
         
         
 }
+.taille{
+    display: flex;
+    
+}
 
 .labelInput{
     display:flex;
     flex-direction: column;
+    margin-right:2em;
     
 }
 .button{
