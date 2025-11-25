@@ -172,6 +172,15 @@
   src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
 } 
+.btn-retour {
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
 body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
