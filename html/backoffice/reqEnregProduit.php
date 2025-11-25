@@ -43,7 +43,7 @@ $tailleLarg = $_POST["tailleLarg"] ? $_POST["tailleLarg"] : NULL;
 
 $res = $bdd->query("SELECT * FROM alizon.Produit WHERE libelleProd = '".$nomProd."'")->fetch();
 if($res){
-        header('location:ajouterproduit.php?erreur=produit');
+        header('location:ajouterProduit.php?erreur=produit');
 }
 else{
     

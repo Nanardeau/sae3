@@ -809,7 +809,6 @@ main {
   cursor: pointer;
   color: transparent;
   -webkit-text-stroke: 2px #f5b301;
-  -webkit-text-stroke: 2px #f5b301;
   transition: 0.2s;
 }
 .avis-section .noter span.full {
@@ -924,9 +923,6 @@ input[type=file] {
   max-height: 350px;
   overflow-y: auto;
   padding-right: 10px;
-  max-height: 350px;
-  overflow-y: auto;
-  padding-right: 10px;
   gap: 15px;
 }
 .liste-avis p {
@@ -968,7 +964,6 @@ input[type=file] {
 .note .star {
   font-size: 1rem;
   color: transparent;
-  -webkit-text-stroke: 1px #f5b301;
   -webkit-text-stroke: 1px #f5b301;
   margin: 0;
   padding: 0;

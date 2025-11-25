@@ -63,7 +63,7 @@ try {
                     echo '<img src="../'.htmlspecialchars($row['urlphoto']).'" alt="Photo de '.htmlspecialchars($row['libelleprod']).'"> </a>';
                     echo '<p class="nomArticle">'.htmlspecialchars($row['libelleprod']).'</p>';
                     echo '<div>';
-                        echo '<p class="prixReduc">'.round(htmlspecialchars($row['prixttc'], 2)).'€</p>';
+                        echo '<p class="prixReduc">'.round(htmlspecialchars($row['prixttc'])).'€</p>';
                         echo '<a href="modifProduit.php?codeProduit='.$row['codeproduit'].'" class="btnModifReduc">'?>
                             <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="15.0422" cy="15.0422" r="15.0422" fill="#6CA6E9"/>
@@ -140,7 +140,7 @@ try {
                 </div>
             </section>
             <section class="btnAccueil">
-                    <a href="ajouterproduit.php">Ajouter un produit</a>
+                    <a href="ajouterProduit.php">Ajouter un produit</a>
                     <a href="Stock.php">Consulter la liste des produits</a>
             </section>
             <section class="btnAccueil">

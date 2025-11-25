@@ -54,14 +54,14 @@ $bdd->query('set schema \'alizon\'');
 
 <main>
     <?php if($erreur == "succes"){
-                echo "<h2 style=\"color:green\">Produit modifier avec succès</h2>";
+                echo "<h2 style=\"color:green\">Produit modifié avec succès</h2>";
             }
             else if($erreur == "image"){
-                echo "<h2 style=\"color:red\">Produit image avec erreur</h2>";
+                echo "<h2 style=\"color:red\">ERREUR : Image indisponible</h2>";
             }
     ?>
 
-<form action="enregProduit.php?codeproduit=<?php echo $_GET["codeProduit"] ?>" method="post" enctype="multipart/form-data">
+<form action="reqModifProduit.php?codeproduit=<?php echo $_GET["codeProduit"] ?>" method="post" enctype="multipart/form-data">
     <h2>Modifier Produit</h2>
     
     <label for="nom">Intitulé</label>
@@ -102,16 +102,26 @@ $bdd->query('set schema \'alizon\'');
     </select>
     <label for="origine">Origine</label>
     <span>Provenance du produit</span>
+    <?php
+        $info = $bdd->query("SELECT origine FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
+        $res=$info["origine"];
+
+    ?>
     <select name="origine" id="origine" required>
-        <option value="" disabled selected>Choisir l'origine</option>
+        <option value="<?php echo $res; ?>" disabled selected><?php echo $res; ?></option>
         <option value="Étranger">Étranger</option>
         <option value="France">France</option>
         <option value="Breizh">Breizh</option>
     </select>
     <label for="tarif">Tarification</label>
     <span>Ajout du coût de livraison au prix HT du produit</span>
-    <select name="tarif" id="tarif" required>
-        <option value="" disabled selected>Choisir la tarification</option>
+    <?php
+        $info = $bdd->query("SELECT grilletarification FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
+        $res=$info["grilletarification"];
+
+    ?>
+    <select name="origine" id="origine" required>
+        <option value="<?php echo $res; ?>" disabled selected><?php echo $res; ?></option>
         <option value="tarif1">Tarification 1 - 2,00€</option>
         <option value="tarif2">Tarification 2 - 5,00€</option>
         <option value="tarif3">Tarification 3 - 8,00€</option>
@@ -173,7 +183,7 @@ $bdd->query('set schema \'alizon\'');
             </div>
     </div>
     <label for="prix">Prix</label>
-    <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" value="<?php echo $prix; ?>.00" id="prix" pattern="[0-9]{2}.[0-9]{2}" required/> 
+    <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" value="<?php echo $prix; ?>" id="prix" pattern="[0-9]{1,}.[0-9]{2}" required/> 
     <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
 </form>
         

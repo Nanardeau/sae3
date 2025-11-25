@@ -60,6 +60,8 @@ $bdd->query('set schema \'alizon\'');
 </head>
 <body>
     <?php include("../includes/backoffice/header.php"); ?>
+        <a href="index.php" class="btn-retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</a>
+
 <main>
     <?php if($erreur == "succes"){
                 echo "<h2 style=\"color:green\">Produit créé avec succès</h2>";
@@ -68,7 +70,7 @@ $bdd->query('set schema \'alizon\'');
                 echo "<h2 style=\"color:red\">Produit image avec erreur</h2>";
             }
     ?>
-<form action="enregProduit.php" method="post" enctype="multipart/form-data">
+<form action="reqEnregProduit.php" method="post" enctype="multipart/form-data">
     <h2>Ajouter Produit</h2>
     
     <label for="nom">Intitulé</label>
@@ -152,7 +154,6 @@ $bdd->query('set schema \'alizon\'');
     <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" id="prix" pattern="[.0-9]" required/> 
     <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
 </form>
-        <a class="button" href="./accueil.php">Retour</a>
     </main>
     <?php include('../includes/backoffice/footer.php');?>
 </body>
