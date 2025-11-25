@@ -25,6 +25,24 @@ try {
     // "❌ Erreur de connexion : " . $e->getMessage();
 }
 $bdd->query('set schema \'alizon\'');
+
+
+$sqlAvis = "SELECT A.*, C.prenom, C.nom,
+        ARRAY(
+            SELECT J.urlPhoto
+            FROM JustifierAvis J
+            WHERE J.numAvis = A.numAvis
+        ) AS photos
+    FROM Avis A
+    LEFT JOIN Client C ON C.codeCompte = A.codeCompteCli
+    WHERE A.codeProduit = :id
+    ORDER BY A.datePublication DESC
+";
+
+
+$stmtAvis = $bdd->prepare($sqlAvis);
+$stmtAvis->execute(['id' => $id]);
+$avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <html lang="fr">
@@ -124,6 +142,25 @@ $bdd->query('set schema \'alizon\'');
                                 <figcaption><?php echo $libArt ?></figcaption>
                             </figure>
                             <p class="prix"><?php  echo $prix ?> €</p>
+                            <div class="note">
+                                <?php
+
+                                    $totalAvis = count($avisList);
+                                    $sommeNotes = 0;
+                                    $noteCounts = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0]; 
+
+                                    foreach ($avisList as $avis) {
+                                        $note = (int)$avis['noteprod'];
+                                        $sommeNotes += $note;
+                                        $noteCounts[$note]++;
+                                    }
+
+                                    $moyenneNote = $totalAvis > 0 ? round($sommeNotes / $totalAvis, 2) : 0;
+                                ?>
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <span class="etoile <?= $i <= round($moyenneNote) ? 'pleine' : '' ?>">★</span>
+                                <?php endfor; ?>
+                            </div>
                             <div>
                                 <a href="Panier.php"><svg width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.37531 4.25298C1.13169 4.5778 1 4.97288 1 5.3789V17.8889C1 18.3865 1.19771 18.8639 1.54963 19.2158C1.90155 19.5677 2.37885 19.7654 2.87654 19.7654H16.0123C16.51 19.7654 16.9873 19.5677 17.3392 19.2158C17.6912 18.8639 17.8889 18.3865 17.8889 17.8889V5.3789C17.8889 4.97288 17.7572 4.5778 17.5135 4.25298L15.637 1.75062C15.4622 1.51756 15.2356 1.3284 14.975 1.19811C14.7144 1.06783 14.4271 1 14.1358 1H4.75308C4.46176 1 4.17443 1.06783 3.91387 1.19811C3.6533 1.3284 3.42664 1.51756 3.25185 1.75062L1.37531 4.25298Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

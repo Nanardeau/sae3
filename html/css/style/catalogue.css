@@ -783,6 +783,11 @@ h2 {
   border-radius: 1em;
   cursor: pointer;
 }
+.card .note {
+  grid-area: 1/2/2/3;
+  flex-direction: row;
+  justify-content: end;
+}
 
 article {
   overflow-x: scroll;

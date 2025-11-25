@@ -77,6 +77,11 @@ h2 {
         cursor:pointer;
         
     }
+    .note{
+        grid-area: 1/2/2/3;
+        flex-direction: row;
+        justify-content: end;
+    }
     
 }
 
