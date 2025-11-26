@@ -138,7 +138,7 @@
             <h1>Back Office</h1>
 
         </div>
-        <form action="creer_compte_vendeur.php" method="post">
+        <form action="creerCompteVendeur.php" method="post">
             <div class="main">
                 <section>
                     <h2>

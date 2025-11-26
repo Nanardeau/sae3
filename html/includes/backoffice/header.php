@@ -22,7 +22,13 @@
                         <path d="M19.6667 24.3333C26.11 24.3333 31.3333 19.11 31.3333 12.6667C31.3333 6.22334 26.11 1 19.6667 1C13.2233 1 8 6.22334 8 12.6667C8 19.11 13.2233 24.3333 19.6667 24.3333Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M38.3333 43C38.3333 38.0493 36.3667 33.3013 32.866 29.8007C29.3653 26.3 24.6174 24.3333 19.6667 24.3333C14.716 24.3333 9.96802 26.3 6.46734 29.8007C2.96666 33.3013 1 38.0493 1 43" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg><h2>Mon Compte</h2></a>
-                        <a href="connexionVendeur.php?deconnexion"><img src="../../img/icon_déconnexion.svg" alt="deconnexion" title="deconnexion" id="deconnexionHeader"/></a>
+                        <a href="connexionVendeur.php?deconnexion"><svg width="32" height="29" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.2105 4.50781L1 14.7181L11.2105 24.9283" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M1.99609 14.9531H20.2307" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M30.9023 27.1591V1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M30.9023 1L18.5039 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M30.9023 27.1582L18.5039 27.1582" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg></a>
                 </div>
         <script src="/js/script.js"></script>
         
