@@ -10,15 +10,30 @@
 //   document.body.style.overflow = ""; 
 // }
 
+
+
 function openOverlayCompte() {
   const overlayCpt = document.getElementById("overlayCompte");
   overlayCpt.style.display = "block";
+  document.body.style.overflow = "hidden"; 
 }
 
-
 function closeOverlayCompte() {
-  const overlayCpt = document.getElementById("overlayCompte");
-  overlayCpt.style.display = "none";
+  const overlay = document.getElementById("overlayMenuCat");
+  overlay.style.display = "none";
+  document.body.style.overflow = ""; 
+}
+
+function openOverlayBack() {
+  const overlayCpt = document.getElementById("overlayCompteBack");
+  overlayCpt.style.display = "block";
+  document.body.style.overflow = "hidden"; 
+}
+
+function closeOverlayBack() {
+  const overlay = document.getElementById("overlayMenuCompteBack");
+  overlay.style.display = "none";
+  document.body.style.overflow = ""; 
 }
 
 function openOverlayMobile() {
@@ -26,7 +41,23 @@ function openOverlayMobile() {
   overlay.style.display = "block";
   document.body.style.overflow = "hidden";
 }
+function ouvrirOverlayAchat(){
+  const achat = document.getElementById("overlayAchat");
+  achat.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
 
+function fermerOverlayAchat(){
+  const achat = document.getElementById("overlayAchat");
+  achat.style.display = "none";
+  document.body.style.overflow = ""; 
+}
+window.onclick = function(event){
+  const achat = document.getElementById("overlayAchat");
+  if(event.target === achat){
+    fermerOverlayAchat();
+  }
+}
 function closeOverlayMobile() {
   const overlay = document.getElementById("overlayMenuCatMob");
   overlay.style.display = "none";
@@ -47,11 +78,16 @@ window.onclick = function(event) {
     closeOverlayMobile();
   }
 };
-
 window.onclick = function(event) {
-  const overlayCpt = document.getElementById("overlayCompte");
-  if (event.target === overlayCpt) {
+  const overlay = document.getElementById("overlayCompte");
+  if (event.target === overlay) {
     closeOverlayCompte();
+  }
+};
+window.onclick = function(event) {
+  const overlay = document.getElementById("overlayCompte");
+  if (event.target === overlay) {
+    closeOverlayCompteBack();
   }
 };
 
@@ -71,42 +107,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let lastScroll = 0;
-let ticking = false;
 const header = document.querySelector("header");
+const navbar = document.getElementsByClassName("nav-cat");
 
-function onScroll() {
+window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset;
-
-    if (currentScroll <= 0) {
-        header.style.transform = "translateY(0)";
-        lastScroll = 0;
-        return;
-    }
-
-    if (Math.abs(currentScroll - lastScroll) < 5) {
-        return;
-    }
 
     if (currentScroll > lastScroll) {
         header.style.transform = "translateY(-100%)";
-        closeOverlayCompte();
+        //navbar.style.transform = "translateY(-100%)";
     } else {
         header.style.transform = "translateY(0)";
+        //navbar.style.transform = "translateY(0)";
     }
 
     lastScroll = currentScroll;
-}
-
-window.addEventListener("scroll", () => {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            onScroll();
-            ticking = false;
-        });
-        ticking = true;
-    }
 });
-
 
 
 const stars = document.querySelectorAll('#stars span');
@@ -149,13 +165,6 @@ function nextSlide() {
 }
 
 setInterval(nextSlide, 4000);
-
-
-//photo overlay avis 
-
-
-
-
 
 
 

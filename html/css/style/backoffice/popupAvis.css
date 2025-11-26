@@ -276,124 +276,71 @@ header a .user {
   display: flex;
 }
 
-main {
-  padding-bottom: 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#popup-overlay {
+  position: fixed;
+  border: black 2px solid;
+  border-radius: 8px;
+  top: 5%;
+  left: 10%;
+  width: 80%;
+  height: 90%;
+  background: white;
+  display: none;
+  z-index: 999;
 }
-main h2 {
-  font-family: "baloo";
+#popup-overlay h2 {
+  margin-top: 0.5em;
 }
-main div {
-  margin-top: 20px;
+#popup-overlay a {
+  text-decoration: none;
+  color: black;
+}
+#popup-overlay .avis-item {
+  border: black 1px solid;
+  border-radius: 8px;
+  margin: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 20px;
 }
-main div a {
-  margin-right: 5px;
+#popup-overlay img {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
 }
-main div h2 {
-  margin-left: 5px;
-}
-
-form {
-  border: #A1A1A1 solid 0.01em;
-  border-radius: 1em;
+#popup-overlay .nomNote {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 35em;
-  margin-top: 1em;
-  justify-self: center;
-  padding: 2em;
-  font-family: "mulish";
+  flex-direction: row;
+  align-items: center;
+  height: 1.5em;
 }
-form input {
-  border: solid 1px;
-  border-radius: 1em;
-  height: 3em;
-  margin: 10px 0;
-  padding: 10px;
-}
-form .bouton {
-  font-family: "Mulish";
+#popup-overlay .nomNote p {
+  font-family: "Mulish", sans-serif;
+  font-size: 20px;
+  color: black;
   font-weight: bold;
-  text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #CD4B22;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
-  height: 4em;
-  color: white;
-  font-family: "mulish";
-  font-size: 16px;
-  width: 100%;
+  margin-right: 0.25em;
 }
-form .bouton:hover {
-  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
-}
-form .bouton:active {
-  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
-}
-form label {
-  font-weight: bold;
-}
-form > h2 {
-  margin: 0;
-  font-family: baloo;
-}
-form p {
-  color: darkred;
-}
-form h4 {
-  font-family: baloo;
-  margin: 0 0 10px;
-}
-
-aside {
+#popup-overlay .nomNote .note {
   display: flex;
-  flex-direction: column;
-  justify-self: center;
-  font-family: "mulish";
-}
-aside figure {
-  display: flex;
-  justify-content: center;
-}
-aside figure img {
-  margin: 0 5px;
-  width: 100px;
-}
-
-.bouton {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #CD4B22;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
-  padding: 1em;
-  width: 80%;
-}
-.bouton:hover {
-  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
-}
-.bouton:active {
-  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
-}
-
-nav {
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
-nav a {
-  text-decoration: none;
-  color: white;
-}/*# sourceMappingURL=ConnexionVendeur.css.map */
+#popup-overlay .btnFermer {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
+#popup-overlay .btnFermer:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#popup-overlay.open {
+  display: block !important;
+}/*# sourceMappingURL=popupAvis.css.map */

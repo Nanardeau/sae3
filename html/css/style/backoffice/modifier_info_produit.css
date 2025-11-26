@@ -282,41 +282,56 @@ main {
   flex-direction: column;
   align-items: center;
 }
-main h2 {
-  font-family: "baloo";
-}
-main div {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-}
-main div a {
-  margin-right: 5px;
-}
-main div h2 {
-  margin-left: 5px;
-}
-
-form {
+main form {
   border: #A1A1A1 solid 0.01em;
   border-radius: 1em;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 35em;
+  width: 50em;
   margin-top: 1em;
-  justify-self: center;
+  align-self: center;
   padding: 2em;
-  font-family: "mulish";
 }
-form input {
+main form textarea {
+  border: solid 1px;
+  border-radius: 1em;
+  height: 10em;
+  margin: 10px 0;
+  padding: 10px;
+  resize: none;
+}
+main form select {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #CD4B22;
+  color: white;
+  border-radius: 1em;
+  cursor: pointer;
+  border-radius: 1em;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  font-size: 1em;
+  max-width: 225px;
+}
+main form select:hover {
+  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+}
+main form select:active {
+  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
+}
+main form input {
   border: solid 1px;
   border-radius: 1em;
   height: 3em;
   margin: 10px 0;
   padding: 10px;
 }
-form .bouton {
+main form input::file-selector-button {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
@@ -326,49 +341,46 @@ form .bouton {
   color: white;
   border-radius: 1em;
   cursor: pointer;
-  height: 4em;
-  color: white;
-  font-family: "mulish";
-  font-size: 16px;
-  width: 100%;
+  border: none;
 }
-form .bouton:hover {
+main form input::file-selector-button:hover {
   background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
 }
-form .bouton:active {
+main form input::file-selector-button:active {
   background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
 }
-form label {
-  font-weight: bold;
+main form input#photoProd {
+  border: none;
+  font-size: 0.8em;
 }
-form > h2 {
+main form input .bouton {
+  height: 5em;
+  font-size: 24px;
+}
+main form h2 {
   margin: 0;
-  font-family: baloo;
 }
-form p {
-  color: darkred;
+main form label::after {
+  content: " *";
+  color: red;
 }
-form h4 {
-  font-family: baloo;
-  margin: 0 0 10px;
+main form .taille label::after {
+  content: "";
+  color: none;
 }
-
-aside {
+main form .pObl::after {
+  content: "";
+  color: none;
+}
+main .taille {
+  display: flex;
+}
+main .labelInput {
   display: flex;
   flex-direction: column;
-  justify-self: center;
-  font-family: "mulish";
+  margin-right: 2em;
 }
-aside figure {
-  display: flex;
-  justify-content: center;
-}
-aside figure img {
-  margin: 0 5px;
-  width: 100px;
-}
-
-.bouton {
+main .bouton {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
@@ -378,22 +390,20 @@ aside figure img {
   color: white;
   border-radius: 1em;
   cursor: pointer;
-  padding: 1em;
-  width: 80%;
 }
-.bouton:hover {
+main .bouton:hover {
   background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
 }
-.bouton:active {
+main .bouton:active {
   background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
 }
-
-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+main .bouton:hover {
+  background-color: rgb(174.9790794979, 64.0167364017, 29.0209205021);
 }
-nav a {
-  text-decoration: none;
-  color: white;
-}/*# sourceMappingURL=ConnexionVendeur.css.map */
+main .bouton:active {
+  background-color: rgb(43.7447698745, 16.0041841004, 7.2552301255);
+}
+
+.btn-retour {
+  margin-left: 25%;
+}/*# sourceMappingURL=modifier_info_produit.css.map */

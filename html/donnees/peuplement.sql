@@ -1,4 +1,3 @@
-
 set schema 'alizon';
 INSERT INTO TVA(nomTVA,tauxTVA) 
 VALUES
@@ -120,7 +119,7 @@ INSERT INTO Photo(urlPhoto) VALUES
 INSERT INTO Client(pseudo, dateCreation, dateNaissance, nom, prenom, email, mdp, numTel, cmtBlq, cmtBlqMod) VALUES
 ('test0','2025-09-25', '2003-04-03','Mulish','Isigor','isizou@gmail.com','test0','0605040608',false,false),
 ('test1','2025-10-26', '2006-05-08', 'Pilup','Eude','Eudeux@gmail.com','test1','0704090506',true, false),
-('test2','2025-10-26','2001-09-11','test','test','test@gmail.com','test2','0701480506',false, true),
+('test2','2025-10-26','2001-09-11','test','test','test@gmail.com','test2','0701480506',false, false),
 ('Nanardeau','2025-10-29','2006-12-29','Bernel','michar','moviestar@gmail.com','oupala!','0704090506',false, false);
 
 

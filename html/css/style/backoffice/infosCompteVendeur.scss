@@ -3,10 +3,15 @@
 
 
 @use 'sass:color';
-@import '../_styleComB'; 
+@import './_styleComB'; 
 @import "../infosCompte.scss";
+
+.logo {
+    display : flex;
+}
 .bouton{
     @include bouton($colP);
+    
 
 }
 .btnJaune{
@@ -47,7 +52,8 @@ form{
     #valider{
         padding:2em;
         border:none;
-        width:10em;
+        width: 30%;
+        max-width: 40em;
         margin-top:2em;
     }
 .containerForm{
@@ -64,6 +70,7 @@ nav{
         padding:2em;
         width:40%;
         border:none;
+        
 
     }
 }
@@ -97,6 +104,8 @@ nav{
 #overlayMdp{
     height:auto;
 }
-.centre{
-    margin-left:30%;
+.annuler{
+    margin: auto ;
+    max-width: 40em;
+    width: 100%;
 }

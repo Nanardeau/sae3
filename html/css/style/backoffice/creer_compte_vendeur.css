@@ -276,99 +276,104 @@ header a .user {
   display: flex;
 }
 
+header {
+  background-color: white;
+}
+
 main {
-  padding-bottom: 2em;
+  padding: 150px;
+  margin: auto;
+  width: 1140px;
+}
+main .header {
+  padding-left: 50px;
+  padding-bottom: 10px;
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
-main h2 {
-  font-family: "baloo";
+main h1 {
+  margin-left: 20px;
 }
-main div {
-  margin-top: 20px;
+main span {
+  display: none;
+  color: #6e6e6e;
+  padding-top: 2px;
+}
+main input:user-invalid, main input.invalid {
+  border-color: red;
+}
+main input:user-invalid + span, main input.invalid + span {
+  display: block;
+}
+main .main {
+  border: black 2px solid;
+  border-radius: 16px;
   display: flex;
-  flex-direction: row;
 }
-main div a {
-  margin-right: 5px;
+main .main section {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 65px;
+  width: 480px;
+  padding-top: 0;
 }
-main div h2 {
-  margin-left: 5px;
-}
-
-form {
-  border: #A1A1A1 solid 0.01em;
-  border-radius: 1em;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 35em;
-  margin-top: 1em;
-  justify-self: center;
-  padding: 2em;
-  font-family: "mulish";
-}
-form input {
-  border: solid 1px;
-  border-radius: 1em;
-  height: 3em;
-  margin: 10px 0;
-  padding: 10px;
-}
-form .bouton {
-  font-family: "Mulish";
-  font-weight: bold;
+main .main section h2, main .main section h3 {
   text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #CD4B22;
-  color: white;
-  border-radius: 1em;
-  cursor: pointer;
-  height: 4em;
-  color: white;
-  font-family: "mulish";
+}
+main .main section label {
   font-size: 16px;
-  width: 100%;
+  padding-bottom: 10px;
+  font-family: "Baloo";
 }
-form .bouton:hover {
-  background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
+main .main section input {
+  background-color: white;
+  border-radius: 8px;
+  height: 20px;
+  font-size: 16px;
+  padding: 10px;
+  border: black 1px solid;
+  font-family: "Baloo";
+  border-color: black;
 }
-form .bouton:active {
-  background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
-}
-form label {
-  font-weight: bold;
-}
-form > h2 {
-  margin: 0;
-  font-family: baloo;
-}
-form p {
-  color: darkred;
-}
-form h4 {
-  font-family: baloo;
-  margin: 0 0 10px;
-}
-
-aside {
+main .main section .label {
+  padding-left: 35px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
-  justify-self: center;
-  font-family: "mulish";
+  padding-right: 60px;
 }
-aside figure {
+main .main section .labelaligner {
+  padding-left: 0;
+  padding-top: 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding-right: 60px;
 }
-aside figure img {
-  margin: 0 5px;
-  width: 100px;
+main .main section .alignementdesentrer {
+  display: flex;
+  padding-left: 0;
+  padding-bottom: 0;
 }
-
-.bouton {
+main .main section .grandinput {
+  width: 400px;
+}
+main .main section .moyeninput {
+  width: 160px;
+}
+main .main section .petitinput {
+  width: 110px;
+}
+main .main :nth-child(3) h3 {
+  padding-top: 78px;
+}
+main .boutton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  text-align: center;
+}
+main .boutton button {
   font-family: "Mulish";
   font-weight: bold;
   text-align: center;
@@ -378,22 +383,35 @@ aside figure img {
   color: white;
   border-radius: 1em;
   cursor: pointer;
-  padding: 1em;
-  width: 80%;
+  height: 55px;
+  width: 430px;
+  border: none;
+  margin-bottom: 1em;
+  font-size: 24px;
 }
-.bouton:hover {
+main .boutton button:hover {
   background-color: rgb(131.2343096234, 48.0125523013, 21.7656903766);
 }
-.bouton:active {
+main .boutton button:active {
   background-color: rgb(87.489539749, 32.0083682008, 14.510460251);
 }
-
-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-nav a {
+main .bouton {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
   text-decoration: none;
+  background-color: #6CA6E9;
   color: white;
-}/*# sourceMappingURL=ConnexionVendeur.css.map */
+  border-radius: 1em;
+  cursor: pointer;
+  padding: 2em;
+  color: black;
+  width: 200px;
+}
+main .bouton:hover {
+  background-color: rgb(19.9171597633, 72.426035503, 133.0828402367);
+}
+main .bouton:active {
+  background-color: rgb(13.2781065089, 48.2840236686, 88.7218934911);
+}/*# sourceMappingURL=creer_compte_vendeur.css.map */

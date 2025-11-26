@@ -1,12 +1,13 @@
 <?php
-/*if(!array_key_exists("codeCompte", $_SESSION) || $_SESSION["codecompte"] == null){
+session_start();
+if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
     header('location: connexionVendeur.php');
     
 }else{
 
-    $codeCompte = $_SESSION["codecompte"];
+    $codeCompte = $_SESSION["codeCompte"];
     
-}*/
+}
 if(isset($_GET["erreur"])){
         $erreur = $_GET["erreur"];
 }
@@ -14,7 +15,6 @@ else{
         $erreur = NULL;
     }
 
-session_start();
 //Connexion à la base de données.
 require_once('../_env.php');
 loadEnv('../.env');
@@ -38,13 +38,13 @@ try {
 } catch (PDOException $e) {
     //"❌ Erreur de connexion : " . $e->getMessage();
 
-        header('Location: http://localhost:8888/index.php');
+        header('Location: index.php');
         
 }
 //$_SESSION["codeCompte"] = 5; //ligne temporaire, en attendant d"avoir le système de connexion 
 
 if(!isset($_SESSION["codeCompte"])){
-       exit(header('Location: http://localhost:8888/backoffice/ConnexionVendeur.php'));
+       exit(header('Location: connexionVendeur.php'));
         
     }
 $bdd->query('set schema \'alizon\'');
@@ -54,13 +54,20 @@ $bdd->query('set schema \'alizon\'');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/style/ajoutProd.css" rel="stylesheet" type="text/css">
+    <link href="../css/style/backoffice/ajoutProd.css" rel="stylesheet" type="text/css">
+    <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
     <!--<link href="../bootstrap-5.3.8-dist/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">-->
     <title>Alizon BACK</title>
 </head>
 <body>
     <?php include("../includes/backoffice/header.php"); ?>
-        <a href="index.php" class="btn-retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</a>
+        <a href="index.php" class="btn-retour">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left">
+                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                <path d="m14 16-4-4 4-4"/>
+            </svg>
+            Retour
+        </a>
 
 <main>
     <?php if($erreur == "succes"){

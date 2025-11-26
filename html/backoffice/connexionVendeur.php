@@ -22,6 +22,9 @@ try {
 } catch (PDOException $e) {
     //echo "❌ Erreur de connexion : " . $e->getMessage();
 }
+if(isset($_GET["deconnexion"])){
+    session_destroy();
+}
 $bdd->query('set schema \'alizon\'');
 $error_msg = "";
 if($_POST){

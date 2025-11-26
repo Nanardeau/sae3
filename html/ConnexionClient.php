@@ -24,7 +24,7 @@ try {
 }
 $bdd->query('set schema \'alizon\'');
 $error_msg = "";
-
+$debloq_msg = "";
 session_start();
 
 if($_POST){
@@ -38,8 +38,8 @@ if($_POST){
         $blq = $rep["cmtblq"];
         //bon id mais verif si bloqué
         if($blq==true){
-            $error_msg="Vous avez décidé de bloquer votre compte.";
-            $debloq_msg="Pour le débloquer, cliquez ici.";
+            $error_msg="Vous avez décidé de bloquer votre compte. Vous ne pouvez pas vous connecter.";
+            //$debloq_msg="Pour le débloquer, cliquez ici.";
         }else{
             $blqMod=$rep["cmtblqmod"];
             //si compte pas bloqué, vérif si compte bloqué par modo
@@ -58,6 +58,8 @@ if($_POST){
                     $stmt->execute();
                 }
                 exit(header("location: index.php"));
+                    
+                
                 die();
 
             }
@@ -91,7 +93,7 @@ if($_POST){
                 if($error_msg != ""):
             ?>
                     <p> <?php echo($error_msg); ?><br/>
-                    <a href="debloquer.php"><?php echo ($debloq_msg);?></a>
+                    <a><?php echo ($debloq_msg);?></a>
                     
             <?php
                 endif

@@ -41,10 +41,12 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alizon BackOffice</title>
-    <link rel="stylesheet" href="../css/style/accueilBack.css" type="text/css">
+    <link rel="stylesheet" href="../css/style/backoffice/accueilBack.css" type="text/css">
+    <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <?php include '../includes/backoffice/header.php';
+    <?php include '../includes/backoffice/header.php';?>
+    <main><?php
     $bdd->query("SET SCHEMA 'alizon'"); ?>
     <div class="content-wrapper"> 
         <aside>
@@ -141,13 +143,14 @@ try {
             </section>
             <section class="btnAccueil">
                     <a href="ajouterProduit.php">Ajouter un produit</a>
-                    <a href="Stock.php">Consulter la liste des produits</a>
+                    <a href="stock.php">Consulter la liste des produits</a>
             </section>
             <section class="btnAccueil">
-                <a href="Commandes.php">Consulter la liste des commandes</a>
+                <a href="commandes.php">Consulter la liste des commandes</a>
             </section>
         </div>
     </div>
     <?php include '../includes/backoffice/footer.php'; ?>
+    </main>
 </body>
 </html>
