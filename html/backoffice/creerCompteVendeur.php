@@ -33,7 +33,7 @@
         }
         
         //initialisation des variables
-        $identifiant = $_POST["identifiant"];
+        $pseudo = $_POST["pseudo"];
         $nom = $_POST["nom"];
         $prenom = $_POST["prenom"];
         $email = $_POST["email"];
@@ -68,7 +68,7 @@
 
 
         //check si identifiant / raison sociale / mail n'est pas déjà utilisé
-        $requete = $pdo->query("SELECT * FROM alizon.Vendeur WHERE identifiant = '".$_POST["identifiant"]."'")->fetch();
+        $requete = $pdo->query("SELECT * FROM alizon.Vendeur WHERE pseudo = '".$_POST["pseudo"]."'")->fetch();
         $requeteRaiSoc = $pdo->query("SELECT * FROM alizon.Vendeur WHERE raisonSociale ='".$_POST["raison_soc"]."'")->fetch();
         $requeteMail = $pdo->query("SELECT * FROM alizon.Vendeur WHERE email = '".$_POST["email"]."'")->fetch();
         if($requete != NULL){
@@ -87,13 +87,13 @@
 
         if($erreur == ""){
             //insertion d'un vendeur dans la base de données
-            $stmt = $pdo->prepare('INSERT INTO alizon.Vendeur(nom, prenom, numTel, SIREN, email, identifiant, raisonSociale, idAdresseSiege, mdp) VALUES (:nom, :prenom, :numtel, :siren, :mail, :id, :raisonsoc, :idAdresseSiege, :mdp)');
+            $stmt = $pdo->prepare('INSERT INTO alizon.Vendeur(nom, prenom, numTel, SIREN, email, pseudo, raisonSociale, idAdresseSiege, mdp) VALUES (:nom, :prenom, :numtel, :siren, :mail, :id, :raisonsoc, :idAdresseSiege, :mdp)');
             $stmt->execute(array(
                 ":nom" => $nom,
                 ":prenom" => $prenom,
                 ":numtel" => $num_tel,
                 ":siren" => $num_siren,
-                ":id" => $identifiant,
+                ":id" => $pseudo,
                 ":raisonsoc" => $raison_soc,
                 ":idAdresseSiege" => $idAdresse, //insertion de l'id associé au vendeur
                 ":mail" => $email,
@@ -150,27 +150,27 @@
                     </h3>
                     <div class="label">
                         <label>
-                            Identifiant * :
+                            Identifiant* :
                         </label>
                         <?php 
                             if($erreur == "pseudo"){
                                 echo "<p style=\"color:red\">Pseudonyme déjà utilisé</p>";
                             }
                         ?>
-                        <input type="text" name="identifiant" id="identifiant" pattern="[A-Za-z._0-9]{2,20}" class="moyeninput" required>
+                        <input type="text" name="pseudo" id="pseudo" pattern="[A-Za-z._0-9]{2,20}" class="moyeninput" required>
                         <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
                     </div>
                     <div class="alignementdesentrer">
                         <div class="label">
                             <label>
-                                Nom * :
+                                Nom* :
                             </label>
                             <input type="text" name="nom" id="nom" class="moyeninput" required>
                             <span>Le nom doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
                         </div>
                         <div class="labelaligner">
                             <label>
-                                Prenom * :
+                                Prenom* :
                             </label>
                             <input type="text" name="prenom" id="prenom" class="moyeninput"  class="dimension_petit" required>
                             <span>Le prénom doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
@@ -178,7 +178,7 @@
                     </div>
                     <div class="label">
                         <label>
-                            Adresse e-mail * :
+                            Adresse e-mail* :
                         </label>
                         <?php 
                             if($erreur == "mail"){
@@ -190,7 +190,7 @@
                     </div>
                     <div class="label">
                         <label>
-                            Confirmer adresse e-mail * :
+                            Confirmer adresse e-mail* :
                         </label>
                         <input type="text" name="email_conf" id="email_conf" class="grandinput" required>
                         <span>Les deux adresses e-mail doivent être identiques</span>
@@ -204,14 +204,14 @@
                     </div>
                     <div class="label">
                         <label>
-                            Mot de passe * :
+                            Mot de passe* :
                         </label>
                         <input type="password" name="mdp" id="mdp" class="moyeninput" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required>
                         <span>Le mot de passe doit contenir au minimum 2 caractères et au maximum 20.</span>
                     </div>
                     <div class="label">
                         <label>
-                            Confirmer mot de passe * :
+                            Confirmer mot de passe* :
                         </label>
                         <input type="password" name="mdp_conf" class="moyeninput" id="mdp_conf" required>
                         <span>Les deux mots de passe doivent être identiques</span>
@@ -224,26 +224,26 @@
                     </h3>
                     <div class="label">
                         <label>
-                            Numéro SIREN * :
+                            Numéro SIREN* :
                         </label>
                         <input type="text" name="num_siren" class="moyeninput" id="num_siren" pattern="[0-9]{9}" placeholder="ex: 021021021" required>
                         <span>Le numéro de SIREN doit faire 9 chiffres de suites</span>
                     </div>
                     <div class="label">
                         <label>
-                            Raison sociale * :
+                            Raison sociale* :
                         </label>
                         <input type="text" name="raison_soc" class="moyeninput" id="raison_soc" required>
                     </div>
                     <div class="label">
                         <label>
-                            Numéro d'adresse * :
+                            Numéro d'adresse* :
                         </label>
                         <input type="text" name="num_adresse1" class="moyeninput" id="num_adresse1" pattern="[0-9]{1,9}" required>
                     </div>
                     <div class="label">
                         <label>
-                            Rue * :
+                            Rue* :
                         </label>
                         <input type="text" name="rue_adresse1" class="grandinput" id="rue_adresse1" required>
                     </div>
@@ -255,14 +255,14 @@
                     </div>
                     <div class="label">
                         <label>
-                            Code postal * :
+                            Code postal* :
                         </label>
                         <input type="text" name="code_post" id="code_post" class="moyeninput" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" required>
                         <span>Le code postal ne doit être constitué que de 5 chiffres</span>
                     </div>
                     <div class="label">
                         <label>
-                            Ville * :
+                            Ville* :
                         </label>
                         <input type="text" name="ville" id="ville" class="moyeninput" pattern="^(?:[A-ZÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ][a-zàâäéèêëîïôöùûüç’']*\.?\s?)+(?:[A-ZÀÂÄÉÈÊËÎÏÔÖÙÛÜÇa-zàâäéèêëîïôöùûüç’'\- ]*)$" required>
                         <span>La ville ne doit pas commencer par une majuscule et ne doit pas contenir de chiffres.</span>
