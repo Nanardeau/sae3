@@ -22,6 +22,8 @@ try {
 } catch (PDOException $e) {
     //echo "❌ Erreur de connexion : " . $e->getMessage();
 }
+session_start();
+
 if(isset($_GET["deconnexion"])){
     session_destroy();
 }
@@ -35,7 +37,6 @@ if($_POST){
     $rep= $req->fetch();
 
     if($rep!=null){
-        session_start();
         $_SESSION["codeCompte"] = $rep["codecompte"];
         header("location: index.php");
         //print_r($_SESSION['codeCompte']);
