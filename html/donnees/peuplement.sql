@@ -1,3 +1,7 @@
+
+
+
+
 set schema 'alizon';
 INSERT INTO TVA(nomTVA,tauxTVA) 
 VALUES
@@ -120,13 +124,13 @@ INSERT INTO Photo(urlPhoto) VALUES
 ('../img/photosProduit/imgErr.jpg');
 
 INSERT INTO Client(pseudo, dateCreation, dateNaissance, nom, prenom, email, mdp, numTel, cmtBlq, cmtBlqMod) VALUES
-('test0','2025-09-25', '2003-04-03','Mulish','Isigor','isizou@gmail.com','test0','0605040608',false,false),
-('test1','2025-10-26', '2006-05-08', 'Pilup','Eude','Eudeux@gmail.com','test1','0704090506',true, false),
-('test2','2025-10-26','2001-09-11','test','test','test@gmail.com','test2','0701480506',false, false),
+('Bernard','2025-09-25', '2003-04-03','Mulish','Isigor','isizou@gmail.com','1234','0605040608',false,false),
+('Constance','2025-10-26', '2006-05-08', 'Pilup','Eude','Eudeux@gmail.com','1234','0704090506',false, false),
+('Titouan','2025-10-26','2001-09-11','test','test','test@gmail.com','1234','0701480506',false, false),
 ('Nanardeau','2025-10-29','2006-12-29','Bernel','michar','moviestar@gmail.com','oupala!','0704090506',false, false);
 
 INSERT INTO Vendeur(dateCreation, nom, prenom, pseudo, email, mdp, numTel, siren, raisonSociale) VALUES
-('2025-10-23','test','test', 'test','email@gmail.com','admin','0204826759','000000000','admin'),
+('2025-10-23','admin','Correc', 'Luhan','email@gmail.com','admin','0204826759','000000000','admin'),
 ('2025-10-23', 'Dupont', 'Martin', 'mdupont', 'martin.dupont@gmail.com', 'Password123', '0612345678', '812345678', 'Dupont & Fils SARL'),
 ('2025-09-15', 'Moreau', 'Léa', 'lmoreau', 'lea.moreau@gmail.com', 'L3a!Secure', '0678912345', '352000799', 'Moreau Boutique'),
 ('2025-11-01', 'Nguyen', 'tnguyen', 'Thierry', 'thierry.nguyen@techsolutions.fr', 'TnG!2025', '0780554433', '489765432', 'Tech Solutions');
@@ -475,12 +479,27 @@ insert into Avis(codeproduit,codecomptecli,noteprod,commentaire,datepublication)
 
 insert into Carte(numCarte,nomTit,prenomTit,CVC,dateExp) VALUES
 ('1234 5678 9123 4567','test','adalbert','890','2026-01-01'),
-('4567 1234 5678 9123','Bernard','Constance','980','2026-02-01');
+('4567 1234 5678 9123','Bernard','Constance','980','2026-02-01'),
+('7890 1234 5678 9012','Louennig','frouad','890','2026-01-01'),
+('1357 9246 8014 7036','Benoit','Dubois','980','2026-02-01'),
+('0987 6543 2109 8765','Johan','titouan','890','2026-01-01'),
+('2567 2789 3688 2987','vista','dupond','980','2026-02-01'),
+('0789 6567 3456 2469','Johan','Chenonceau','890','2026-01-01'),
+('4356 8767 2590 3569','Jean-christophe','luhan','980','2026-02-01'),
+('3567 4790 3748 4789','Gabin','michel','890','2026-01-01'),
+('9876 7545 4345 2567','cash','visa','980','2026-02-01');
 
 insert into Commande(codeCompte,idCarte,dateCom) VALUES
-(3,1,'2025-11-23'),
-(3,2,'2025-11-24'),
-(2,2,'2025-11-25');
+(2,2,'2025-11-23'),
+(1,3,'2025-11-24'),
+(1,1,'2025-11-25'),
+(1,7, '2025-11-21'),
+(4,8, '2025-11-19'),
+(4,9,'2025-11-02'),
+(3,6,'2025-11-06'),
+(2,4, '2025-11-10'),
+(3,5, '2025-11-15'),
+(2,10, '2025-11-04');
 
 insert into ProdUnitCommande(numCom,codeProduit,qteProd) VALUES
 (1,1,2),
@@ -489,13 +508,40 @@ insert into ProdUnitCommande(numCom,codeProduit,qteProd) VALUES
 (1,5,1),
 (2,6,1),
 (2,8,2),
-(3,2,2),
-(3,4,1),
-(3,9,1);
+(3,19,2),
+(4,76,2),
+(4,56,2),
+(4,34,1),
+(5,98,2),
+(5,34,2),
+(5,42,1),
+(6,23,1),
+(6,2,1),
+(6,92,2),
+(7,1,2),
+(7,53,1),
+(7,65,1),
+(8,1,2),
+(8,19,1),
+(8,94,1),
+(9,4,2),
+(9,3,1),
+(9,18,1),
+(10,23,2),
+(10,40,1),
+(10,67,1);
 
 insert into AdrLiv(numCom,idAdresse) VALUES
 (1,1),
-(2,4);
+(2,4),
+(3,2),
+(4,3),
+(5,5),
+(6,8),
+(7,7),
+(8,5),
+(9,3),
+(10,6);
 
 select * from ProdUnitCommande;
 select * from Commande;
