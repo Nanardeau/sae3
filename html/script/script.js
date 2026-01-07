@@ -84,7 +84,8 @@ function onScroll() {
     }
 
     if (Math.abs(currentScroll - lastScroll) < 5) {
-        return;
+        
+      return;
     }
 
     if (currentScroll > lastScroll) {

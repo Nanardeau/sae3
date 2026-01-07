@@ -166,6 +166,9 @@ label {
 ###############################*/
 header {
   display: flex;
+  top: 0;
+  z-index: 1000;
+  position: sticky;
   flex-direction: row;
   background-color: #CD4B22;
   align-items: center;
@@ -209,6 +212,12 @@ header a .user {
   width: 2em;
   height: auto;
   margin: 0 0.5em 0 2em;
+  flex-direction: row;
+}
+header a .deco {
+  width: 2em;
+  height: auto;
+  margin: 0 2em 0 0.5em;
   flex-direction: row;
 }
 
