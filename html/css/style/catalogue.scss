@@ -59,6 +59,7 @@ h2 {
 .card{
     background-color: $colS;
     flex: 0 0 auto;
+    margin-top: $marg;
     .button{
         display :flex;
         justify-content: center;
@@ -79,14 +80,20 @@ h2 {
     }
     
 }
-
-article{
+.scroll{
     overflow-x: scroll;
-    
     min-width: 100%;
     display: flex;
     flex-direction: row;
     margin-bottom: $marg;  
+}
+article{
+    flex-wrap: wrap;
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: $marg;
+        
 }
 
 .nav-cat{

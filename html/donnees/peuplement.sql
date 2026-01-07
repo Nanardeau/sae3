@@ -1,7 +1,4 @@
 
-
-
-
 set schema 'alizon';
 INSERT INTO TVA(nomTVA,tauxTVA) 
 VALUES
@@ -547,6 +544,7 @@ select * from ProdUnitCommande;
 select * from Commande;
 select * from AdrLiv;
 select * from adresse;
+select * from Produit;
 SELECT codeProduit FROM ProdUnitCommande WHERE numCom = 1 ORDER BY codeProduit LIMIT 2;
 --SELECT PUC.codeProduit FROM ProdUnitCommande PUC WHERE;
 SELECT DISTINCT puc.numCom FROM Produit p INNER JOIN ProdUnitCommande puc ON p.codeProduit = puc.codeProduit where  CodeCompteVendeur = 5 ORDER BY numCom  ;
@@ -557,6 +555,7 @@ SELECT * FROM alizon.Vendeur;
 SELECT * FROM alizon.Panier;
 INSERT INTO alizon.Panier (prixTTCtotal) VALUES (0);
 SELECT * FROM alizon.ProdUnitPanier;
+SELECT * FROM Produit WHERE unaccent(libelleProd) ILIKE unaccent('%pat%');
 --SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) ORDER BY avis.codeproduit;
 --select SUM(prixttctotal) FROM ProdUnitPanier INTO Panier.prixTTCtotal;
 --select * from ProdUnitPanier where idPanier = 1;

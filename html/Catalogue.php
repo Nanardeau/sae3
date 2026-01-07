@@ -25,6 +25,20 @@ try {
     // "❌ Erreur de connexion : " . $e->getMessage();
 }
 $bdd->query('set schema \'alizon\'');
+
+    if(isset($_POST["q"])){
+        $recherche = "%" . $_POST["q"] . "%" ; // formatage pour la requette sql
+        $nomRecherche = $_POST["q"];
+        $stmt = $bdd->prepare("
+            SELECT codeproduit,libelleProd,urlphoto,prixttc
+            FROM Produit 
+            WHERE unaccent(libelleProd) 
+            ILIKE unaccent('$recherche')
+            AND Disponible = true 
+        ");
+        $stmt->execute();
+        $resRecherche =  $stmt->fetchAll();
+    }
 ?>
 
 <html lang="fr">
@@ -46,76 +60,29 @@ $bdd->query('set schema \'alizon\'');
         include 'includes/header.php';
     }
     ?>
+    
 
     <main>
-        <?php
-            include 'includes/menu_cat.php';
-            include 'includes/menuCompte.php';
-        ?>
-    
-        <?php if(isset($_GET["ajout"])):?>
-        <div class="ajoutPanierFait">
-            <div class="partieGauche" onclick="fermerPopUpPanier()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
-            </div>
-            <div class="partieDroite">
-                <p>Produit ajouté au panier</p>
-                <a href="Panier.php" class="bouton">Aller au panier</a>
-            </div>
-        </div>
-        <?php endif?>
-        <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
-        <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
-
-        <h1>Toutes les catégories</h1>
-
-
-        <?php
-        
-        $catCurr = null;
-        $ArtDispo = $bdd->query('SELECT codeProduit FROM Produit where Disponible = true');
-        //print_r($infoArt->fetchAll());
-        
-         
-        $listCat = $bdd->query("SELECT DISTINCT libCat FROM SousCat ORDER BY libCat"); //Nom de la catégorie
- 
-        foreach($listCat as $lib){
-            $catCurr = $lib['libcat'];
-            $stmt = $bdd->prepare("SELECT p.codeProduit, p.libelleProd, p.prixTTC, p.urlPhoto
-                                FROM Produit p
-                                INNER JOIN Categoriser c ON p.codeProduit = c.codeProduit
-                                WHERE p.disponible = TRUE
-                                AND c.libelleCat = :categorie"
-                                );
-            $stmt->execute(['categorie' => $catCurr]);
-            $articles = $stmt->fetchAll();
-            $catCurr = $lib['libcat'];
-            //print_r($articles);
-        
-            if($articles != null){
-                
-        ?>
-            <div class="separateur"></div>
+    <?php
+        if(isset($resRecherche) && $resRecherche){
+            //print_r($resRecherche);
+            ?>
+            
             <div class="titre-cat">
-                <h2><a href="Categorie.php?cat=<?php echo $catCurr?>">
-                    <?php echo $catCurr; ?>
-                    </a>
-                </h2>
+                <h2>Résultat pour "<?php echo $nomRecherche ?>":</h2>
                 <div class="separateur2"></div>
             </div>
-            <?php
-            
-            ?><article><?php
-                        foreach($articles as $article){
+            <div class="separateur" style="margin-bottom:1em"></div>
+            <article>
+                <?php
+                    foreach($resRecherche as $article){
 
-                            $codeProduit = $article["codeproduit"];
-
-                            
-                                //print_r($article);
-                                $img = $article['urlphoto'];
-                                $libArt = $article['libelleprod'];
-                                $prix = $article['prixttc'];
-                                $prix = round($prix, 2); // Arrondir à 2 chiffre après la virgule 
+                        $codeProduit = $article["codeproduit"];    
+                        //print_r($article);
+                        $img = $article['urlphoto'];
+                        $libArt = $article['libelleprod'];
+                        $prix = $article['prixttc'];
+                        $prix = round($prix, 2); // Arrondir à 2 chiffre après la virgule 
                         ?>
 
                         <div class="card">
@@ -144,11 +111,74 @@ $bdd->query('set schema \'alizon\'');
                             
                         } ?>
             </article>
+        <?php } 
+        else if(isset($resRecherche) && !$resRecherche) { 
+            ?>
+            <div class="vide">
+                <h1> Aucun article trouvé </h1>
+                <a href="index.php">Revenir à l'accueil<a>
+            </div>
+       <?php } ?>
+       <h1>Catalogue</h1>
+        
+        <div class="separateur"></div>
         <?php
-            } 
-           }
+        
+        $listArtTmp = $bdd->query('SELECT codeProduit, libelleProd, prixTTC, urlPhoto FROM Produit where Disponible = true');
+        $articles = $listArtTmp->fetchAll();
+            ?>
+        <article>
+            <?php    
+                foreach ($articles as $article) {
+                    //print_r($article);
+                    $codeProduit = $article['codeproduit'];
+                    $img = $article['urlphoto'];
+                    $libArt = $article['libelleprod'];
+                    $prix = $article['prixttc'];
+                    $prix = round($prix, 2); // Arrondir à 2 chiffre après la virgule 
+            ?>
+
+            <div class="card">
+                <figure>
+                        <a href="./ficheProduit.php?Produit=<?php echo $codeProduit; ?>"><img src="<?php echo $img ?>" /></a>
+                    <figcaption><?php echo $libArt ?></figcaption>
+                </figure>
+                <p class="prix"><?php echo $prix ?> €</p>
+                <div>
+                    <a class="button" href="modifProduit.php?codeProduit=<?php echo $codeProduit?>">Modifier</a>
+                    <a class="button" href="./ficheProduit.php?Produit=<?php echo $codeProduit ?>">Détails</a>
+                </div>
+
+            </div>
+
+            <?php
+            }
         ?>
 
+        </article>
+        <?php
+            include 'includes/menu_cat.php';
+            include 'includes/menuCompte.php';
+        ?>
+    
+        <?php if(isset($_GET["ajout"])):?>
+        <div class="ajoutPanierFait">
+            <div class="partieGauche" onclick="fermerPopUpPanier()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <div class="partieDroite">
+                <p>Produit ajouté au panier</p>
+                <a href="Panier.php" class="bouton">Aller au panier</a>
+            </div>
+        </div>
+        <?php endif?>
+        <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
+        <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
+
+        <?php
+        
+            
+        ?>
     </main>
     <?php include 'includes/footer.php';?>
     <script>

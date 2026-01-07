@@ -17,7 +17,16 @@
         </a>
         
         <!--<img src="" alt="logo front">-->
-        <!--<input type="text" placeholder="Rechercher">-->
+        
+        <form action="Catalogue.php" method="post" enctype="multipart/form-data">
+            <input type="search" id="search" name="q" placeholder="Rechercher" data-search>
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search">
+                    <path d="m21 21-4.34-4.34"/>
+                    <circle cx="11" cy="11" r="8"/>
+                </svg>
+            </button>
+        </form>
         <nav>
             <a href="ConnexionClient.php" ">
                 <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,4 +47,5 @@
 
         <!--<input type="button" name="button" value="Se connecter">
         <input type="button" name="button" value="Mon Panier">-->
+        <script src="../js/searchBar.js"></script>
 </header>
