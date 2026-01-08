@@ -1,8 +1,15 @@
 @use "./styleCom" as *;
 @use "../tools/vFront" as *;
 @use "../components/carte";
+@use "../tools/mixin/com" as *;
 @import url("bootstrap/scss/utilities/api");
 
+.grid-main{
+    align-items: stretch;
+    display: grid;
+    column-gap: 16px;
+    grid: 284px minmax(0px, 1fr);
+}
 a {
     text-decoration: none;
 }
@@ -101,4 +108,57 @@ article{
 }
 a{
     color:black;
+}
+.filtres{
+    padding: $pad;
+    display: none;
+    @media screen and (max-width: 100em) {
+        display: flex;
+        flex-direction: column;
+    }
+    button{
+        @include bouton;
+        border:none;
+        max-width: 100px;
+
+    }
+}
+aside{
+    @media screen and (max-width: 100em) {
+        display: none;
+    }
+    display:flex;
+    flex-direction: column;
+    grid-area: 1 / 1;
+    width: 25%;
+    min-width: 250px;
+    max-height: 600px;
+    div{
+        border: 1px solid black;
+        border-radius: $radius;
+        background-color: #EFEFEF;
+    }
+    
+    hr{
+        width: 90%;
+
+    }
+}
+.vide {
+    padding: $pad;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 40%;
+
+    a {
+        color: grey;
+        text-decoration: none;
+        font-weight: lighter;
+        font-style: italic;
+    }
+}
+main > div{
+    grid-area: 1 / 2 / 2 / 3;
 }

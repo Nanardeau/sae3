@@ -310,6 +310,7 @@ main form select {
   background-color: #CD4B22;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   border-radius: 1em;
   margin: 10px 0;
@@ -340,6 +341,7 @@ main form input::file-selector-button {
   background-color: #CD4B22;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   border: none;
 }
@@ -389,6 +391,7 @@ main .bouton {
   background-color: #CD4B22;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
 }
 main .bouton:hover {
