@@ -7,7 +7,8 @@
             <div>
             <?php
                 $catCurr = null;
-                $listCat = $bdd->query('SELECT DISTINCT libCat FROM alizon.SousCat'); //Nom de la catégorie  
+                $listCat = $bdd->prepare('SELECT DISTINCT libCat FROM alizon.SousCat'); //Nom de la catégorie  
+                $listCat->execute();
 
                 foreach ($listCat as $libcat) {
 
@@ -21,40 +22,6 @@
             </div>
             <h2>></h2>
         </nav>
-        <div id="overlayMenuCat" class="overlayMenuCat tab-only">
-            <div class="overlayContentCat">
-                
-                <ul>
-                    <?php
-                    $catCurr = null;
-                    $listCat = $bdd->query('SELECT DISTINCT libCat FROM alizon.SousCat'); 
-
-                    foreach ($listCat as $libcat) {
-
-                        $catCurr = $libcat['libcat'];
-                    ?>
-
-                    <li><a href="#"><?php echo $catCurr;?></a></li>
-                    <?php
-
-                    $listSousCats = $bdd->query("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = '" . $catCurr . "'");
-
-                    if ($listSousCats->rowCount() > 0) {
-                        echo "<ul>";
-                        foreach ($listSousCats as $libSousCat) {
-                            $sousCatCurr = $libSousCat['libsouscat'];
-                            echo "<li><a href='#'>" . $sousCatCurr . "</a></li>";
-                        }
-                        echo "</ul>";
-                    }
-
-                    echo "</li>";
-                    }
-                    ?>
-                </ul>
-            </div>
-        </div>
-
         <div id="overlayMenuCatMob" class="overlayMenuCatMob mob-only">
             <div class="overlayContentCatMob">
                 <div class="identification">

@@ -18,7 +18,7 @@
         
         <!--<img src="" alt="logo front">-->
         <!--<input type="text" placeholder="Rechercher">-->
-        <nav>
+        <div class="connexion-panier">
             <a href="ConnexionClient.php" ">
                 <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.3333 12.6667C13.555 12.6667 16.1667 10.055 16.1667 6.83333C16.1667 3.61167 13.555 1 10.3333 1C7.11167 1 4.5 3.61167 4.5 6.83333C4.5 10.055 7.11167 12.6667 10.3333 12.6667Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -34,7 +34,7 @@
                 </svg>
                 <p class="tab-only">Mon Panier</p>
             </a>
-        </nav>
+        </div>
 
         <!--<input type="button" name="button" value="Se connecter">
         <input type="button" name="button" value="Mon Panier">-->

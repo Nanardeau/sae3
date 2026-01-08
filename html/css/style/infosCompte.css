@@ -151,12 +151,12 @@ header .logo_alizon_front {
   padding-left: 80px;
   left: 0;
 }
-header nav {
+header .connexion-panier {
   margin-left: auto;
   display: flex;
   align-items: center;
 }
-header nav a {
+header .connexion-panier a {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -164,7 +164,7 @@ header nav a {
   color: white;
   text-decoration: none;
 }
-header nav svg {
+header .connexion-panier svg {
   padding-right: 10px;
 }
 @media screen and (max-width : 428px) {
@@ -290,7 +290,7 @@ header nav svg {
 /*###############################
 #        Menu Categorie         #
 ################################*/
-.nav-cat {
+nav {
   transition: transform 0.3s ease;
   width: 100%;
   background-color: #6CA6E9;
@@ -299,19 +299,19 @@ header nav svg {
   display: none;
   flex-direction: row;
 }
-.nav-cat div {
+nav div {
   display: flex;
   flex-direction: row;
   overflow-x: auto;
   scrollbar-width: none;
 }
-.nav-cat h2 {
+nav h2 {
   margin: 0;
   margin-left: 10px;
   margin-right: 10px;
   align-self: center;
 }
-.nav-cat svg, .nav-cat a {
+nav svg, nav a {
   z-index: 1000;
   align-self: center;
   color: black;
@@ -324,17 +324,23 @@ header nav svg {
   padding-right: 30px;
   cursor: pointer;
 }
-.nav-cat svg {
+nav svg {
   overflow: visible;
 }
 @media screen and (max-width: 428px) {
-  .nav-cat {
+  nav {
     display: none;
   }
 }
 
 .burger-menu {
   margin-left: 20px;
+  display: none;
+}
+@media screen and (max-width: 428px) {
+  .burger-menu {
+    display: inline-block;
+  }
 }
 
 .overlayMenuCat {
@@ -781,13 +787,13 @@ header .logo_alizon_front {
   left: 0;
 }
 
-header nav {
+header .connexion-panier {
   margin-left: auto;
   display: flex;
   align-items: center;
 }
 
-header nav a {
+header .connexion-panier a {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -796,7 +802,7 @@ header nav a {
   text-decoration: none;
 }
 
-header nav svg {
+header .connexion-panier svg {
   padding-right: 10px;
 }
 
@@ -934,7 +940,7 @@ header nav svg {
 /*###############################
 #        Menu Categorie         #
 ################################*/
-.nav-cat {
+nav {
   transition: transform 0.3s ease;
   width: 100%;
   background-color: #6CA6E9;
@@ -944,21 +950,21 @@ header nav svg {
   flex-direction: row;
 }
 
-.nav-cat div {
+nav div {
   display: flex;
   flex-direction: row;
   overflow-x: auto;
   scrollbar-width: none;
 }
 
-.nav-cat h2 {
+nav h2 {
   margin: 0;
   margin-left: 10px;
   margin-right: 10px;
   align-self: center;
 }
 
-.nav-cat svg, .nav-cat a {
+nav svg, nav a {
   z-index: 1000;
   align-self: center;
   color: black;
@@ -972,19 +978,25 @@ header nav svg {
   cursor: pointer;
 }
 
-.nav-cat svg {
+nav svg {
   overflow: visible;
 }
 
 @media screen and (max-width: 428px) {
-  .nav-cat {
+  nav {
     display: none;
   }
 }
 .burger-menu {
   margin-left: 20px;
+  display: none;
 }
 
+@media screen and (max-width: 428px) {
+  .burger-menu {
+    display: inline-block;
+  }
+}
 .overlayMenuCat {
   z-index: 998;
   display: none;

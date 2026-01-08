@@ -80,15 +80,15 @@ session_start();
         <section class="anonnces_produits">
             <div class="annonce_produit">
                 <img src="img/ban_nouv.png" alt="Image voir les nouveautés">
-                <a class="boutton" href="#nouveautes">Voir les nouveautés</a>
+                <a class="bouton" href="#nouveautes">Voir les nouveautés</a>
             </div>
             <!-- <div class="annonce_produit">
                 <img src="" alt="Image voir les articles en vedettes">
-                <a class="boutton" href="">Voir les articles en vedettes</a>
+                <a class="bouton" href="">Voir les articles en vedettes</a>
             </div> -->
             <div class="annonce_produit ">
                 <img src="img/ban_catalogue.png" alt="Image voir les evenement en cours">
-                <a class="boutton" href="Catalogue.php">Accèder au catalogue</a>
+                <a class="bouton" href="Catalogue.php">Accèder au catalogue</a>
             </div>
 
         </section>

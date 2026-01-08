@@ -80,7 +80,7 @@ header{
         left: 0;
     }
 
-    nav{
+    .connexion-panier{
         margin-left: auto;
         display: flex;
         align-items: center;
@@ -251,7 +251,7 @@ header{
 #        Menu Categorie         #
 ################################*/
 
-.nav-cat{
+nav{
     transition: transform 0.3s ease;
     width: 100%;
     background-color: $eleBleu;
@@ -303,6 +303,10 @@ header{
 
 .burger-menu{
     margin-left: 20px;
+    display : none;
+    @media screen and (max-width: 428px){
+        display: inline-block;
+    }
 }
 
 .overlayMenuCat{
