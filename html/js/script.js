@@ -51,6 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
     selectQte.addEventListener('change', updatePrice);
 });
 
+
+
 let lastScroll = 0;
 let ticking = false;
 const header = document.querySelector("header");

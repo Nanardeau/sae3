@@ -161,15 +161,30 @@ label {
   font-weight: bold;
 }
 
+main {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 80px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
 /*###############################
 #            HEADER             #
 ###############################*/
 header {
-  display: flex;
+  z-index: 1000;
+  position: fixed;
+  display: inline-flex;
   flex-direction: row;
   background-color: #CD4B22;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 header .logo_alizon_back {
   width: 118px;
@@ -210,6 +225,10 @@ header a .user {
   height: auto;
   margin: 0 0.5em 0 2em;
   flex-direction: row;
+}
+header .svg-deconnexion {
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 /*###############################
@@ -276,8 +295,64 @@ header a .user {
   display: flex;
 }
 
+/*#################################
+#          NAV                    #   
+#################################*/
+.nav-btn {
+  width: 300px;
+  min-width: 300px;
+  z-index: 999;
+  position: sticky;
+  top: 130px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 20px 0;
+}
+.nav-btn .btnacc {
+  background-color: white;
+  display: flex;
+  gap: 1em;
+  margin: 10px;
+  padding: 20px;
+  text-decoration: none;
+  color: black;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  font-size: 1.5em;
+  margin-top: 0;
+}
+.nav-btn .btnacc svg {
+  align-self: center;
+  margin-right: 10px;
+  min-width: 28px;
+  min-height: 28px;
+  stroke-width: 2px;
+}
+.nav-btn .btnacc:visited {
+  color: black;
+}
+.nav-btn .btnacc:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.nav-btn .orange {
+  background-color: #FCB66B;
+}
+
+.right-content {
+  margin-top: 2em;
+  padding-bottom: 2em;
+  height: auto;
+  display: flex;
+}
+
 main {
-  margin-left: 3em;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
 }
 main h1 {
   font-family: "Baloo", sans-serif;
@@ -290,34 +365,33 @@ main p {
   color: black;
 }
 
-aside {
+.mes-produits {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   gap: 1.25em;
-  box-sizing: border-box;
-  margin-left: 4em;
-  background-color: #FFD6C2;
-  width: 55em;
-  height: 50em;
-  border-radius: 24px;
+  margin-left: 1em;
+  margin-right: 1em;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
-aside div {
-  display: grid;
-  grid-template-columns: repeat(2, 11.75em);
+.mes-produits div {
+  display: flex;
   gap: 1.25em;
-  justify-content: center;
+  justify-content: left;
+  flex-wrap: wrap;
 }
-aside h1 {
+.mes-produits h1 {
   font-family: "Baloo", sans-serif;
   font-size: 2em;
   color: black;
-  text-align: center;
+  text-align: left;
   margin-top: 1em;
   padding-left: 0;
 }
 
 body {
+  background-color: #fffefa;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -329,18 +403,18 @@ body {
   color: inherit;
   display: flex;
   flex-direction: column;
-  align-items: left;
   background-color: white;
-  border-radius: 24px;
-  width: 11.75em;
-  height: 11.75em;
+  border-radius: 8px;
+  width: 17em;
+  height: 25.25em;
   text-decoration: none;
-  position: relative;
   box-sizing: border-box;
   gap: 0.1em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding-top: 10px;
 }
 .produit > svg {
-  position: absolute;
+  position: fixed;
   top: 5px;
   left: 5px;
   z-index: 2;
@@ -354,10 +428,10 @@ body {
 .produit img {
   position: static;
   z-index: 1;
-  width: 5.5em;
-  height: 5.5em;
+  width: 90%;
+  height: 90%;
   border-color: black;
-  border-radius: 24px;
+  border-radius: 8px;
   border: 2px solid;
   margin-left: 10px;
 }
@@ -370,7 +444,6 @@ body {
   font-size: 1em;
   color: black;
   text-align: left;
-  margin-top: 0.25em;
 }
 .produit .prixBase {
   padding-left: 10px;
@@ -405,19 +478,21 @@ body {
   padding-right: 20px;
   color: #FF4444;
 }
-.produit div .btnModifReduc {
+.produit .btnModifReduc {
+  padding: 0.25em;
   display: flex;
+  align-self: flex-end;
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
 }
-.produit div .btnModifReduc svg {
+.produit .btnModifReduc svg {
   width: 30px;
   height: 100%;
 }
-.produit div .btnModifReduc:hover svg circle {
-  fill: rgb(63.6390532544, 139.1420118343, 226.3609467456);
+.produit .btnModifReduc:hover svg circle {
+  fill: rgb(250.9867549669, 157.3443708609, 57.0132450331);
 }
 
 .lesAvis {
@@ -598,9 +673,7 @@ body {
   text-align: center;
 }
 
-.content-wrapper {
-  margin-top: 2em;
-  display: flex;
+.right-content {
   flex-direction: row;
-  width: 100%;
+  flex-wrap: wrap;
 }/*# sourceMappingURL=accueilBack.css.map */

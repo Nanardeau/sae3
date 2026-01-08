@@ -4,7 +4,9 @@
 @use "../../tools/mixin/com" as *;
 
 
-
+h1{
+    padding-left: 20px;
+}
 .separateur {
     display: block;
     
@@ -113,4 +115,11 @@ table{
         border: 1px solid $colP;
         padding: 12px 15px;
     }
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
 }

@@ -297,7 +297,7 @@ header nav svg {
   background-color: #6CA6E9;
   position: fixed;
   z-index: 999;
-  display: none;
+  display: flex;
   flex-direction: row;
 }
 .nav-cat div {

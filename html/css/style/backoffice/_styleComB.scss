@@ -19,7 +19,7 @@ body{
         color: $blanc;
     }
     color : $noir;
-    margin: 0;
+    margin: 0
 }
 
 h1{
@@ -40,16 +40,35 @@ p, label, input{
 label{
     font-weight:bold;
 }
+
+main{
+    display: flex;
+    align-items: flex-start;
+    padding: {
+        top: 80px;
+        bottom: $pad;
+        right:$pad;
+        left :$pad;
+    } 
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+}
+
 /*###############################
 #            HEADER             #
 ###############################*/
 
 header{
-    display: flex;
+    z-index: 1000;;
+    position: fixed;
+    display: inline-flex;
     flex-direction: row;
     background-color: $colP;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+
     .logo_alizon_back{
         width: 118px;
         height: auto;
@@ -92,6 +111,11 @@ header{
             margin: 0 0.5em 0 2em;
             flex-direction: row;
         }
+    }
+
+    .svg-deconnexion{
+        margin-right: 20px;
+        cursor: pointer;
     }
     
 }
@@ -176,4 +200,62 @@ header{
         display: flex;
         
     }
+}
+
+/*#################################
+#          NAV                    #   
+#################################*/
+
+.nav-btn{
+    width: 300px;
+    min-width: 300px;
+    z-index: 999;
+    position: sticky;
+    top: 130px;
+    display: flex;
+    flex-direction: column;
+    padding:0 0 20px 0;
+    .btnacc{
+        background-color: $blanc;
+        display: flex;
+        gap: 1em;
+        margin: 10px;
+        padding: 20px;
+        text-decoration: none;
+        color: $noir;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        font-size: 1.5em;
+        margin-top: 0;
+
+        svg{
+            align-self: center;
+            margin-right: 10px;
+            min-width: 28px;
+            min-height: 28px;
+            stroke-width: 2px;
+        }
+        
+    }
+    .btnacc:visited{
+        color: $noir;
+    }
+
+    .btnacc:hover{
+        //border: 2px solid $colP;
+        transform: translateY(-5px);
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+    .orange{
+        background-color: $eleOrange;
+    }
+}
+
+.right-content {
+    margin-top: 2em;
+    padding-bottom: 2em;
+    height: auto;
+    display: flex;
 }
