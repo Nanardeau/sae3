@@ -67,7 +67,7 @@ else{
     }
     
 
-    $stmtP = $bdd->prepare("INSERT INTO alizon.Produit(libelleProd, descriptionProd, prixHT, seuilAlerte, nomTarif, nomTVA, urlPhoto,Origine, codeCompteVendeur) VALUES (:libelleProd, :descriptionProd, :prixHT, :seuilAlerte,:nomTarif, :nomTVA, :photo, :origine, :codeCompteVendeur)");
+    $stmtP = $bdd->prepare("INSERT INTO alizon.Produit(libelleProd, descriptionProd, prixHT, qteStock, seuilAlerte, nomTarif, nomTVA, urlPhoto,Origine, codeCompteVendeur) VALUES (:libelleProd, :descriptionProd, :prixHT, :qteStock, :seuilAlerte,:nomTarif, :nomTVA, :photo, :origine, :codeCompteVendeur)");
     
     $stmtC = $bdd->prepare("INSERT INTO alizon.Categoriser(libelleCat,codeProduit) VALUES (:libelleCat,:codeProduit)");
     
@@ -77,6 +77,7 @@ else{
             ":libelleProd" => $nomProd,
             ":descriptionProd" => $descProd,
             ":prixHT" => $prixProd,
+            ":qteStock" => $qteProd,
             ":seuilAlerte" => $seuilProd,
             ":nomTarif" => $tarif,
             ":nomTVA" => $tvaProd,
