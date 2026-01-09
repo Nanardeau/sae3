@@ -40,6 +40,7 @@ body{
 .carousel {
     position: relative;
     width: 50%;
+    z-index:1;
     overflow: hidden;
     border-radius: 8px;
     @media screen and (max-width: 428px){

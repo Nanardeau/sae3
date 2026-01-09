@@ -58,11 +58,11 @@ $bdd->query('set schema \'alizon\'');
     }else{
         include 'includes/header.php';
     }
+    include 'includes/menu_cat.php';
     ?>
 
     <main>
         <?php
-            include 'includes/menu_cat.php';
             include 'includes/menuCompte.php';
         ?>
         <?php //Si le client n'a rien dans so panier afficher -> panier vide 

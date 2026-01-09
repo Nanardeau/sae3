@@ -46,13 +46,15 @@
             
         //     $_SESSION["adrModif"] = 0;
 
-                    $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+                    $infosAdresse = $bdd->prepare("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+                    $infosAdresse->execute();
                    
 
           
         // }
 
-    $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
+    $panier = $bdd->prepare("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
+    $panier->execute();
     $idPanier = $panier["idpanier"];
 
    ?>
@@ -75,11 +77,12 @@
     }else{
         include 'includes/header.php';
     }
+    include 'includes/menu_cat.php';
     ?>
 
     <main>
         <?php
-            include 'includes/menu_cat.php';
+            
             include 'includes/menuCompte.php';
         ?>
 
@@ -174,7 +177,8 @@
                 <section id="secRecap">
                     <?php 
 
-                    $nbProd = ($bdd->query("SELECT ALL SUM(qteProd) somme from alizon.ProdUnitPanier where idPanier = '".$idPanier."'")->fetch())["somme"];
+                    $nbProd = ($bdd->prepare("SELECT ALL SUM(qteProd) somme from alizon.ProdUnitPanier where idPanier = '".$idPanier."'")->fetch())["somme"];
+                    $nbProd->execute();
                     ?>
                     <h2>Récapitulatif ( <?php echo number_format((int)$nbProd, 0, '.', '')?> articles ) </h2>
                     <article id="recapitulatif">
@@ -182,11 +186,12 @@
                             <?php 
                             $i = 1;
 
-                            $produits = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
-                            
+                            $produits = $bdd->prepare("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
+                            $produits->execute();
                             foreach($produits as $prodUnit){
                                 ?><div class="libelleProdRecap"><?php
-                                $detailProd = $bdd->query("SELECT * FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
+                                $detailProd = $bdd->prepare("SELECT * FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
+                                $detailProd->execute();
                                 echo "<p>Article ".$i." (".$detailProd["libelleprod"]. ") : ( x ". number_format((int)$prodUnit["qteprod"], 0, '.', '')." )</p><p class=\"prixAffiche\">".number_format((float)$prodUnit["prixhttotal"], 2, '.', '')."€</p>";
                                 $i++;
                                 ?></div><?php
@@ -212,12 +217,15 @@
 
                             
                                 <?php
-                                    $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
+                                    $panier = $bdd->prepare("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
+                                    $panier->execute();
                                     $idPanier = $panier["idpanier"];
-                                    $produits = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
+                                    $produits = $bdd->prepare("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
+                                    $produits->execute();
                                     foreach($produits as $prodUnit){
                                         echo "<div class=\"ligne\">";
-                                        $detailProd = $bdd->query("SELECT * FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
+                                        $detailProd = $bdd->prepare("SELECT * FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
+                                        $detailProd->execute();
                                         echo "<div>".$detailProd["libelleprod"] . "</div>";
                                         ?>
                                         <div class="prixPoub">

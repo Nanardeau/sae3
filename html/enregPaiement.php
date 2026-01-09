@@ -50,7 +50,8 @@ if(!isset($_GET["adresse"])){
         if($_SESSION["modifAdr"] != 1){
 
             #$idAdresseFact = $_SESSION["idAdresse"]/*($bdd->query("SELECT * FROM alizon.AdrFactCli WHERE codeCompte = '".$codeCompte."'")->fetch())["idAdresse"]*/;
-            $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+            $adresse = $bdd->prepare("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+            $adresse->execute();
             $idAdresse = $adresse["idadresse"];
         }
 
@@ -82,10 +83,11 @@ if(array_key_exists("banque", $_GET)){
     ));
 
     $numCom = $bdd->lastInsertId();
-    $prodUnitPan = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
+    $prodUnitPan = $bdd->prepare("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
+    $prodUnitPan->execute();
     foreach($prodUnitPan as $prodUnit){
-        $prixTTCProd = $bdd->query("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
-
+        $prixTTCProd = $bdd->prepare("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
+        $prixTTCProd->execute();
         $stmt = $bdd->prepare("INSERT INTO alizon.ProdUnitCommande (codeProduit, numCom, qteProd) VALUES (:codeProduit, :numCom, :qteProd)");
         $stmt->execute(array(
             ":codeProduit" => $prodUnit["codeproduit"],

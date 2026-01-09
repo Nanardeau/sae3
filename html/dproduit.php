@@ -102,6 +102,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         include 'includes/header.php';
         include 'includes/menu_cat.php';
     }
+    include 'includes/menu_cat.php';
     ?>
     
 
@@ -109,7 +110,6 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 
     <main>
         <?php 
-            include 'includes/menu_cat.php';
             include 'includes/menuCompte.php';
         ?>
     <nav class="ariane">

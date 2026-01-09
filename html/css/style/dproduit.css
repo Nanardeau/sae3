@@ -173,19 +173,12 @@ header .connexion-panier svg {
     padding-left: 30px;
     width: 100px;
   }
-  header nav a {
-    padding-right: 10px;
-    font-size: 12px;
-  }
   header .tab-only {
     display: none;
   }
   header .mobile-only {
     display: block;
     padding-left: 20px;
-  }
-  header nav svg {
-    padding-right: 30px;
   }
 }
 
@@ -292,46 +285,76 @@ header .connexion-panier svg {
 #        Menu Categorie         #
 ################################*/
 nav {
-  transition: transform 0.3s ease;
   width: 100%;
+  margin: 0 auto;
   background-color: #6CA6E9;
-  position: fixed;
-  z-index: 999;
-  display: none;
-  flex-direction: row;
-}
-nav div {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-nav h2 {
-  margin: 0;
-  margin-left: 10px;
-  margin-right: 10px;
-  align-self: center;
-}
-nav svg, nav a {
+  position: sticky;
+  top: 80px;
   z-index: 1000;
-  align-self: center;
-  color: black;
-  font-size: 18px;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-  background-color: #6CA6E9;
-  padding: 15px;
-  padding-right: 30px;
-  cursor: pointer;
-}
-nav svg {
-  overflow: visible;
 }
 @media screen and (max-width: 428px) {
   nav {
     display: none;
   }
+}
+nav ul {
+  list-style-type: none;
+  text-indent: none;
+}
+nav ul li {
+  float: left;
+  width: 16em;
+  text-align: center;
+  position: relative;
+}
+nav ul::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+nav a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  border-bottom: 2px solid transparent;
+  padding: 10px 0;
+}
+nav a:hover {
+  border-bottom: 2px solid #064082;
+  color: black;
+}
+
+.souscat-ul {
+  z-index: 1000;
+  display: none;
+  box-shadow: 0px 1px 2px #ccc;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+.souscat-ul li {
+  float: none;
+  width: 100%;
+  text-align: left;
+}
+.souscat-ul a {
+  padding: 10px;
+  border-bottom: none;
+}
+.souscat-ul a:hover {
+  border-bottom: none;
+  background-color: #D1ECF8;
+}
+
+.deroulant a:hover {
+  content: "▼";
+  font-size: 12px;
+  color: black;
+}
+
+nav div > ul li:hover .souscat-ul {
+  display: block;
 }
 
 .burger-menu {

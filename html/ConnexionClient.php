@@ -32,8 +32,8 @@ if($_POST){
     $mdp = $_POST["mdp"];
     $_SESSION["pseudo"] = $id;
     $_SESSION["mdp"] = $mdp;
-    $req= $bdd->query ("SELECT * FROM Client WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
-    $rep= $req->fetch();
+    $req= $bdd->prepare("SELECT * FROM Client WHERE pseudo = '".$id."' AND mdp = '".$mdp."'")->fetch();
+    $rep->execute();
     if($rep!=null){
         $blq = $rep["cmtblq"];
         //bon id mais verif si bloqué
@@ -49,7 +49,8 @@ if($_POST){
                 $_SESSION["id"] = "";
                 $_SESSION["mdp"] = "";
                 $_SESSION["codeCompte"] = $rep["codecompte"];
-                $panierExiste = $bdd->query("SELECT idPanier FROM alizon.Panier WHERE codeCompte = '".$rep["codecompte"]."'")->fetch();
+                $panierExiste = $bdd->prepare("SELECT idPanier FROM alizon.Panier WHERE codeCompte = '".$rep["codecompte"]."'")->fetch();
+                $panierExiste->execute();
                 if($panierExiste){
                     $_SESSION["idPanier"] = $panierExiste["idpanier"];
                 }

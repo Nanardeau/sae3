@@ -49,8 +49,8 @@ $bdd->query('set schema \'alizon\'');
 
     $codeProduit = $_GET["codeProd"];
 
-    $req= $bdd->query ("SELECT * FROM Produit WHERE codeProduit = '".$codeProduit."'");
-    $rep= $req->fetch();
+    $req= $bdd->prepare("SELECT * FROM Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
+    $rep-execute();
 
     $img = $rep["urlphoto"];
     $libelProduit = $rep["libelleprod"];

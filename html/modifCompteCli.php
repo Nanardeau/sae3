@@ -21,10 +21,11 @@
     }
 
     $codeCompte = $_SESSION["codeCompte"];
-    $infosCompte = $bdd->query("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
+    $infosCompte = $bdd->prepare("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
+    $infosCompte->execute();
 
-    $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-    
+    $infosAdresse = $bdd->prepare("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+    $infosAdresse->execute();
     if(isset($_GET["traitement"])){
         switch($_GET["traitement"]){
             case "bloquer":
@@ -57,7 +58,8 @@
             if($valeur != $infosCompte[$item]){
                 //Vérifier qu'un pseudo n'est pas déjà pris
                 if($item == "pseudo"){
-                    $verifPseudo = $bdd->query("SELECT * FROM alizon.Client WHERE pseudo = '".$valeur."'")->fetch();
+                    $verifPseudo = $bdd->prepare("SELECT * FROM alizon.Client WHERE pseudo = '".$valeur."'")->fetch();
+                    $verifPseudo->execute();
                     if($verifPseudo == NULL || $verifPseudo["pseudo"] == $value){
                         $stmt = $bdd->prepare("UPDATE alizon.Client SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
                         $stmt->execute();                        
@@ -68,7 +70,8 @@
                 }  
                 //Vérifier qu'un mail n'est pas déjà pris
                 if($item == "email"){
-                    $verifMail = $bdd->query("SELECT * FROM alizon.Client WHERE email = '".$valeur."'")->fetch();
+                    $verifMail = $bdd->prepare("SELECT * FROM alizon.Client WHERE email = '".$valeur."'")->fetch();
+                    $verifMail->execute();
                     if($verifMail == NULL || $verifMail["email"] == $value){
                         $stmt = $bdd->prepare("UPDATE alizon.Client SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
                         $stmt->execute();                        
