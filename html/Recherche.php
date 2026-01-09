@@ -66,8 +66,11 @@ $bdd->query('set schema \'alizon\'');
     }
     ?>
 
-<main>
+<main style="display:block;">
+    
+    <div>
     <?php
+
     if(isset($resRecherche) && $resRecherche){
             //print_r($resRecherche);
             ?>
@@ -125,10 +128,10 @@ $bdd->query('set schema \'alizon\'');
             <div class="separateur" style="margin-bottom:1em"></div>
             <div class="vide">
                 <h1> Aucun article trouvé </h1>
-                <a href="Catalogue.php">Revenir au catalogue<a>
+                <a href="Catalogue.php">Revenir au catalogue</a>
             </div>
        <?php } ?>
-      
+      </div>
 </main>
 <?php include 'includes/footer.php';?>
 <script>
