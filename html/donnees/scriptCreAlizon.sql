@@ -70,6 +70,7 @@ CREATE TABLE Produit(
     prixHT  NUMERIC NOT NULL,
     nomTVA VARCHAR(20) REFERENCES TVA(nomTVA),--LIEN AVEC TVA
     prixTTC  NUMERIC,
+	noteMoy FLOAT DEFAULT 0,
     hauteur FLOAT, --en mètre
     longueur FLOAT, --en mètre
     largeur FLOAT, --en mètre
@@ -466,6 +467,7 @@ CREATE TRIGGER trg_dateCrea_Avis
 BEFORE INSERT ON alizon.Avis
 FOR EACH ROW
 EXECUTE FUNCTION alizon.dateCreationAvis();
+
 -- Date de création et modif d'un avis
 CREATE OR REPLACE FUNCTION alizon.dateCreationProduit()
 RETURNS TRIGGER AS $$
@@ -497,3 +499,19 @@ CREATE TRIGGER trg_dateModif_Produit
 BEFORE INSERT OR UPDATE  ON alizon.Produit
 FOR EACH ROW
 EXECUTE FUNCTION alizon.dateModificationProduit();
+
+-- Moyenne d'un produit 
+CREATE OR REPLACE FUNCTION alizon.MoyenneProduit()
+RETURNS TRIGGER AS $$
+BEGIN
+	UPDATE alizon.Produit p SET noteMoy = 
+		(SELECT AVG(noteProd) from Avis a where a.codeproduit = NEW.codeproduit) 
+			where p.codeProduit = NEW.codeProduit;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_moyenne_Produit
+AFTER INSERT OR UPDATE ON alizon.Avis
+FOR EACH ROW
+EXECUTE FUNCTION alizon.MoyenneProduit();

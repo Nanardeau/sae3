@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 //Connexion à la base de données.
 require_once( __DIR__ . '/_env.php');
 loadEnv(__DIR__ . '/.env');
@@ -39,6 +40,17 @@ $bdd->query('set schema \'alizon\'');
         $stmt->execute();
         $resRecherche =  $stmt->fetchAll();
     }
+
+
+    //Liste des recherches SQL 
+    $base= 'SELECT codeProduit, libelleProd, prixTTC, urlPhoto,noteMoy FROM Produit where Disponible = true' ;
+    $pxCrois = ' ORDER BY prixTTC';
+    $pxDecrois = ' ORDER BY prixTTC DESC';
+    $ntCrois= ' ORDER BY noteMoy';
+    $ntDecrois= ' ORDER BY noteMoy DESC';
+    $note = ' AND noteMoy >= ';
+    //TODO faire avec le js, selon ce qui est séléctionner pour le tri, 
+
 ?>
 
 <html lang="fr">
@@ -70,7 +82,7 @@ $bdd->query('set schema \'alizon\'');
                 <div>
                     <h1>Tris</h1>
                     <select name="tri" id="tris" required>
-                        <option value="" disabled selected>Choisir l'origine</option>
+                        <option value="" disabled selected>Trier par :</option>
                         <option value="pxCroissant">Prix : ordre croissant</option>
                         <option value="pxDecroissant">Prix : ordre décroissant</option>
                         <option value="ntCroissant">Note : ordre croissant</option>
@@ -107,7 +119,7 @@ $bdd->query('set schema \'alizon\'');
                 <h1>Catalogue</h1>
                 <div class="separateur"></div>
                 <?php
-                    $stmt = $bdd->prepare('SELECT codeProduit, libelleProd, prixTTC, urlPhoto FROM Produit where Disponible = true');
+                    $stmt = $bdd->prepare($sql);
                     $stmt->execute();
                     $articles = $stmt->fetchAll();
                 ?>

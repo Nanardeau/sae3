@@ -243,10 +243,13 @@ aside{
         -webkit-text-stroke: 2px #f5b301;
     }
     select{
+        appearance: base-select;
         width: 90%;
         border: unset;
-        margin: 0 auto;
+        margin: 0 12px;
+        background-color: #EFEFEF;
         &, &::picker{
+            
             padding:1em;
             border:none;
             border-radius:$radius;

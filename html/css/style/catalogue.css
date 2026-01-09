@@ -1019,9 +1019,13 @@ aside .noter span.full {
   -webkit-text-stroke: 2px #f5b301;
 }
 aside select {
+  -webkit-appearance: base-select;
+     -moz-appearance: base-select;
+          appearance: base-select;
   width: 90%;
   border: unset;
-  margin: 0 auto;
+  margin: 0 12px;
+  background-color: #EFEFEF;
 }
 aside select, aside select::picker {
   padding: 1em;

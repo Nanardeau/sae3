@@ -553,9 +553,15 @@ SELECT DISTINCT puc.numCom FROM Produit p INNER JOIN ProdUnitCommande puc ON p.c
 SELECT * FROM alizon.Client;
 SELECT * FROM alizon.Vendeur;
 SELECT * FROM alizon.Panier;
+select * from produit limit 1;
+(SELECT AVG(noteProd) from Avis a where a.codeproduit = 5); 
+select noteProd from avis where codeproduit = 5;
+SELECT codeProduit, libelleProd, prixTTC, urlPhoto, noteMoy FROM Produit where Disponible = true ORDER BY noteMoy DESC;
+select * from avis where codeproduit = 1;
 INSERT INTO alizon.Panier (prixTTCtotal) VALUES (0);
 SELECT * FROM alizon.ProdUnitPanier;
-SELECT * FROM Produit WHERE unaccent(libelleProd) ILIKE unaccent('%pat%');
+SELECT codeProduit, libelleProd, prixTTC, urlPhoto FROM Produit where Disponible = true ORDER BY prixTTC DESC;
+--SELECT * FROM Produit WHERE unaccent(libelleProd) ILIKE unaccent('%pat%');
 --SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) ORDER BY avis.codeproduit;
 --select SUM(prixttctotal) FROM ProdUnitPanier INTO Panier.prixTTCtotal;
 --select * from ProdUnitPanier where idPanier = 1;
