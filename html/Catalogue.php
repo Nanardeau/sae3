@@ -50,6 +50,25 @@ $bdd->query('set schema \'alizon\'');
     $ntDecrois= ' ORDER BY noteMoy DESC';
     $note = ' AND noteMoy >= ';
     //TODO faire avec le js, selon ce qui est séléctionner pour le tri, 
+    
+    $tri = $_POST["tri"] ?? null;
+    switch ($tri){
+        case 'pxCrois':
+            $sql = $base.$pxCrois;
+            break;
+        case 'pxDecrois':
+            $sql = $base.$pxDecrois;
+            break;
+        case 'ntCrois':
+            $sql = $base.$ntCrois;
+            break;
+        case 'ntDecrois':
+            $sql = $base.$ntDecrois;
+            break;
+        default:
+            $sql = $base;
+            break;
+    }
 
 ?>
 
@@ -81,13 +100,16 @@ $bdd->query('set schema \'alizon\'');
                 <input id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
                 <div>
                     <h1>Tris</h1>
-                    <select name="tri" id="tris" required>
-                        <option value="" disabled selected>Trier par :</option>
-                        <option value="pxCroissant">Prix : ordre croissant</option>
-                        <option value="pxDecroissant">Prix : ordre décroissant</option>
-                        <option value="ntCroissant">Note : ordre croissant</option>
-                        <option value="ntDecroissant">Note : ordre décroissant</option>
-                    </select>
+                    <form method="POST" action="Catalogue.php">    
+                        <select name="tri" id="tris" required>
+                            <option value="" disabled>Trier par :</option> 
+                            <!--Selon la variable tri du post, cela selected le bon-->
+                            <option value="pxCrois" <?= ($tri === 'pxCrois') ? 'selected' : '' ?>>Prix : ordre croissant</option> 
+                            <option value="pxDecrois" <?= ($tri === 'pxDecrois') ? 'selected' : '' ?>>Prix : ordre décroissant</option>
+                            <option value="ntCrois" <?= ($tri === 'ntCrois') ? 'selected' : '' ?>>Note : ordre croissant</option>
+                            <option value="ntDecrois" <?= ($tri === 'ntDecrois') ? 'selected' : '' ?>>Note : ordre décroissant</option>
+                        </select>
+                    </form>
                     <hr/>
                     <div class="separateur"></div>
                     <h1>Filtres</h1>
@@ -124,7 +146,7 @@ $bdd->query('set schema \'alizon\'');
                     $articles = $stmt->fetchAll();
                 ?>
                 
-                <article>
+                <article class="catalogue">
                 <?php    
                     foreach ($articles as $article) {
                         //print_r($article);
@@ -181,6 +203,12 @@ $bdd->query('set schema \'alizon\'');
         function fermerPopUpPanier(){
             window.location.href = "Catalogue.php";
         }
+        const opt = document.querySelector("select option")
+        document.getElementById("tris").addEventListener("change", function () {
+            
+            
+            this.form.submit();
+        })
     </script>
 </body>
 
