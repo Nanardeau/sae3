@@ -56,7 +56,7 @@ $prodsCat = $bdd->query("SELECT ALL * FROM alizon.Categoriser WHERE libelleCat =
     }
     ?>
 
-    <main>
+    <main style="display:flex;flex-direction:column">
         <?php
             include 'includes/menu_cat.php';
             include 'includes/menuCompte.php';
