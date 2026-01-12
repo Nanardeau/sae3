@@ -1,6 +1,7 @@
 DROP SCHEMA IF EXISTS alizon CASCADE;
 CREATE SCHEMA alizon;
 SET SCHEMA 'alizon';
+CREATE EXTENSION IF NOT EXISTS unaccent;
 
 CREATE TABLE Photo(
     urlPhoto VARCHAR(40) PRIMARY KEY NOT NULL
@@ -8,7 +9,6 @@ CREATE TABLE Photo(
 
 CREATE TABLE Compte(
     codeCompte SERIAL PRIMARY KEY NOT NULL,
-    pseudo VARCHAR(20) NOT NULL,
     dateCreation DATE,
     nom VARCHAR(20),
     prenom VARCHAR(20),
@@ -27,6 +27,7 @@ CREATE TABLE Adresse(
 );
 
 CREATE TABLE Client(
+    pseudo VARCHAR(20) NOT NULL,
     cmtBlq BOOLEAN,
     cmtBlqMod BOOLEAN,
 	dateNaissance DATE,
@@ -57,7 +58,6 @@ CREATE TABLE TVA(
     nomTVA VARCHAR(20) PRIMARY KEY NOT NULL CHECK (nomTVA IN ('normale', 'réduite', 'super-réduite')),
     tauxTVA FLOAT 
 );
-
 CREATE TABLE Tarification(
     nomTarif VARCHAR(20) PRIMARY KEY NOT NULL CHECK (nomTarif IN ('tarif1', 'tarif2', 'tarif3', 'tarif4', 'tarif5')),
     tauxTarif FLOAT 
@@ -66,19 +66,20 @@ CREATE TABLE Tarification(
 CREATE TABLE Produit(
     codeProduit SERIAL PRIMARY KEY NOT NULL,
     libelleProd VARCHAR(200) NOT NULL,
-    descriptionProd VARCHAR(200) NOT NULL,
+    descriptionProd VARCHAR(500) NOT NULL,
     prixHT  NUMERIC NOT NULL,
     nomTVA VARCHAR(20) REFERENCES TVA(nomTVA),--LIEN AVEC TVA
     prixTTC  NUMERIC,
+	noteMoy FLOAT DEFAULT 0,
     hauteur FLOAT, --en mètre
     longueur FLOAT, --en mètre
     largeur FLOAT, --en mètre
-    qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
-    Origine VARCHAR(20) NOT NULL check (Origine IN ('Breizh','France','Étranger')),
     dateCreaProduit TEXT NOT NULL, 
     dateModifProduit TEXT NOT NULL,
+    qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
+    Origine VARCHAR(20) NOT NULL check (Origine IN ('Breizh','France','Étranger')),
     Disponible BOOLEAN DEFAULT TRUE,
-    nomTarif VARCHAR(20) REFERENCES Tarification(nomTarif),  -- LIEN AVEC TARIFICATION 
+	nomTarif VARCHAR(20) REFERENCES Tarification(nomTarif),
     seuilAlerte NUMERIC(10,2) NOT NULL,
     urlPhoto VARCHAR(40) REFERENCES Photo(urlPhoto),
     codeCompteVendeur INTEGER REFERENCES Vendeur(codeCompte)	
@@ -122,11 +123,12 @@ CREATE TABLE Facture(
     idAdresseFact INTEGER REFERENCES Adresse(idAdresse)
 );
 CREATE TABLE Carte(
-    numCarte VARCHAR(20) PRIMARY KEY NOT NULL,
+	idCarte SERIAL PRIMARY KEY NOT NULL,
+    numCarte VARCHAR(20) NOT NULL,
     nomTit VARCHAR(20),
     prenomTit VARCHAR(20),
-    CVC NUMERIC(3,0),
-    dateExp DATE
+    CVC TEXT NOT NULL,
+    dateExp TEXT NOT NULL
 );
 
 CREATE TABLE Panier(
@@ -141,20 +143,26 @@ CREATE TABLE Panier(
 
 CREATE TABLE Commande(
     numCom SERIAL PRIMARY KEY NOT NULL,
+	codeCompte INTEGER NOT NULL REFERENCES Client(codeCompte),
     dateCom DATE,
-    prixTTCtotal FLOAT, 
-    prixHTtotal FLOAT,
-    numCarte VARCHAR(20) REFERENCES Carte(numCarte)
+    prixTTCtotal NUMERIC DEFAULT 0, 
+    prixHTtotal NUMERIC DEFAULT 0,
+    idCarte INTEGER REFERENCES Carte(idCarte)
 );
 CREATE TABLE Livraison(
     idLivraison SERIAL PRIMARY KEY NOT NULL,
+	--numCom INTEGER REFERENCES Commande(numCom),
     dateCommande DATE,
     dateEncaissement DATE,
     datePreparation DATE,
     dateExpedition DATE,
     statutLiv VARCHAR(20)
 );
-
+CREATE TABLE AdrLiv(
+	--idLivraison INTEGER NOT NULL REFERENCES Livraison(idLivraison),
+	numCom INTEGER NOT NULL REFERENCES Commande(numCom),
+	idAdresse INTEGER NOT NULL REFERENCES Adresse(idAdresse)
+);
 CREATE TABLE Avis(
     numAvis SERIAL PRIMARY KEY NOT NULL,
 	codeProduit INTEGER REFERENCES Produit(codeProduit),
@@ -187,14 +195,14 @@ CREATE TABLE FaireSignalement(
 CREATE TABLE ProdUnitCommande(
     codeProduit INTEGER REFERENCES Produit(codeProduit),
     numCom INTEGER REFERENCES Commande(numCom),
-    prixUnitTTC NUMERIC(20,2),
-    prixUnitHT NUMERIC(20,2),
+    prixTTCtotal NUMERIC(20,2),
+    prixHTtotal NUMERIC(20,2),
     qteProd NUMERIC(20,2),
     PRIMARY KEY(codeProduit,numCom)
 );
 CREATE TABLE ProdUnitPanier(
     codeProduit INTEGER REFERENCES Produit(codeProduit),
-    idPanier INTEGER REFERENCES Panier(idPanier),    
+    idPanier INTEGER REFERENCES Panier(idPanier) ON DELETE CASCADE,    
     qteProd NUMERIC(20,2),
 	prixTTCtotal NUMERIC(20,2),
 	prixHTtotal NUMERIC(20,2),
@@ -241,30 +249,9 @@ CREATE TABLE Profil(
 );
 
 --FONCTIONS--
-CREATE OR REPLACE FUNCTION calcul_tarifs()
-RETURNS TRIGGER AS
-$$
-BEGIN
-    SELECT NEW.prixHT + tarif.tauxTarif 
-	INTO new.prixHT
-    FROM alizon.Tarification tarif where tarif.nomTarif = NEW.nomTarif;
-	
-	SELECT NEW.prixHT * (1 + (tva.tauxTVA / 100)) 
-	INTO NEW.prixTTC
-	FROM alizon.TVA tva WHERE tva.nomTVA = NEW.nomTVA;
-    RETURN NEW;
-    END;
-$$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER trg_calcul_tarifs
-BEFORE INSERT OR UPDATE ON Produit
-FOR EACH ROW
-EXECUTE FUNCTION calcul_tarifs();
-
 
 --PrixTTC = prixHT * tauxTVA--
-/*CREATE OR REPLACE FUNCTION calcul_prixTTC()
+CREATE OR REPLACE FUNCTION calcul_prixTTC()
 RETURNS TRIGGER AS 
 $$
 	BEGIN
@@ -277,9 +264,8 @@ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_calcul_prixTTC
 BEFORE INSERT OR UPDATE ON Produit
-FOLLOWS trg_calcul_tarifHT
 FOR EACH ROW
-EXECUTE FUNCTION calcul_prixTTC();*/
+EXECUTE FUNCTION calcul_prixTTC();
 --ProdUnitCommande.PrixTTC = produit.prixTTC--
 
 CREATE FUNCTION duplique_prixTTC()
@@ -326,7 +312,7 @@ EXECUTE FUNCTION duplique_prixTTC();
 
 
 
-CREATE FUNCTION PanierFinalTestTTC()
+CREATE FUNCTION PanierFinalTTC()
 RETURNS TRIGGER AS $$
 BEGIN 
 	UPDATE alizon.Panier SET prixTTCtotal = (SELECT SUM(PUP.prixTTCtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = NEW.idPanier ) WHERE Panier.idPanier = NEW.idPanier;
@@ -335,11 +321,24 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_panier_finTTC
-AFTER INSERT OR UPDATE OR DELETE ON ProdUnitPanier
+AFTER INSERT OR UPDATE OR DELETE ON alizon.ProdUnitPanier
 FOR EACH ROW
-EXECUTE FUNCTION PanierFinalTestTTC();
+EXECUTE FUNCTION PanierFinalTTC();
 
-CREATE FUNCTION PanierFinalTestHT()
+CREATE FUNCTION PanierFinalDeleteTTC()
+RETURNS TRIGGER AS $$
+BEGIN 
+	UPDATE alizon.Panier SET prixTTCtotal = (SELECT SUM(PUP.prixTTCtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = OLD.idPanier ) WHERE Panier.idPanier = OLD.idPanier;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_panier_deleteTTC
+AFTER DELETE ON alizon.ProdUnitPanier
+FOR EACH ROW
+EXECUTE FUNCTION PanierFinalDeleteTTC();
+
+CREATE FUNCTION PanierFinalHT()
  
 RETURNS TRIGGER AS $$
 BEGIN 
@@ -351,7 +350,21 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER trg_panier_finHT
 AFTER INSERT OR UPDATE OR DELETE ON ProdUnitPanier
 FOR EACH ROW
-EXECUTE FUNCTION PanierFinalTestHT();
+EXECUTE FUNCTION PanierFinalHT();
+
+CREATE FUNCTION PanierFinalDeleteHT()
+ 
+RETURNS TRIGGER AS $$
+BEGIN 
+	UPDATE alizon.Panier SET prixHTtotal = (SELECT SUM(PUP.prixHTtotal) FROM ProdUnitPanier PUP WHERE PUP.idPanier = OLD.idPanier) WHERE Panier.idPanier = OLD.idPanier;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_panier_deleteHT
+AFTER DELETE ON alizon.ProdUnitPanier
+FOR EACH ROW
+EXECUTE FUNCTION PanierFinalDeleteHT();
 --PrixHTPanier = Somme(PrixHT * qtProd)--
 
 
@@ -362,17 +375,29 @@ EXECUTE FUNCTION PanierFinalTestHT();
 CREATE FUNCTION calcul_prixTotalTTCCom()
 RETURNS TRIGGER AS $$
 BEGIN
-	UPDATE alizon.Commande SET prixTTCtotal = (SELECT SUM(PUC.prixTTCtotal * PUC.qteProd) 
-	FROM alizon.ProdUnitCommande PUC WHERE PUC.numCom = Commande.numCom);
-	RETURN NEW;
+    UPDATE alizon.Commande SET prixTTCtotal = (SELECT SUM(PUC.prixTTCtotal) FROM alizon.ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_calcul_prixTotalTTCCom
-BEFORE INSERT OR UPDATE ON ProdUnitCommande
+AFTER INSERT OR UPDATE ON alizon.ProdUnitCommande
 FOR EACH ROW
 EXECUTE FUNCTION calcul_prixTotalTTCCom();
 
+--prixTotalTTC dans commande = somme(prixUnitHT * qteProd)--
+CREATE FUNCTION calcul_prixTotalHTCom()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE alizon.Commande SET prixHTtotal = (SELECT SUM(PUC.prixHTtotal) FROM alizon.ProdUnitCommande PUC WHERE PUC.numCom = NEW.numCom) WHERE Commande.numCom = NEW.numCom;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_calcul_prixTotalHTCom
+AFTER INSERT OR UPDATE ON alizon.ProdUnitCommande
+FOR EACH ROW
+EXECUTE FUNCTION calcul_prixTotalHTCom();
 -- Date création/Modification Panier
 
 CREATE OR REPLACE FUNCTION alizon.dateModificationPanier()
@@ -417,7 +442,26 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+CREATE OR REPLACE FUNCTION calcul_tarifs()
+RETURNS TRIGGER AS
+$$
+BEGIN
+    SELECT NEW.prixHT + tarif.tauxTarif 
+    INTO new.prixHT
+    FROM alizon.Tarification tarif where tarif.nomTarif = NEW.nomTarif;
+    
+    SELECT NEW.prixHT * (1 + (tva.tauxTVA / 100)) 
+    INTO NEW.prixTTC
+    FROM alizon.TVA tva WHERE tva.nomTVA = NEW.nomTVA;
+    RETURN NEW;
+    END;
+$$
+LANGUAGE plpgsql;
 
+CREATE TRIGGER trg_calcul_tarifs
+AFTER INSERT OR UPDATE ON Produit
+FOR EACH ROW
+EXECUTE FUNCTION calcul_tarifs();
 
 CREATE TRIGGER trg_dateCrea_Avis
 BEFORE INSERT ON alizon.Avis
@@ -455,3 +499,19 @@ CREATE TRIGGER trg_dateModif_Produit
 BEFORE INSERT OR UPDATE  ON alizon.Produit
 FOR EACH ROW
 EXECUTE FUNCTION alizon.dateModificationProduit();
+
+-- Moyenne d'un produit 
+CREATE OR REPLACE FUNCTION alizon.MoyenneProduit()
+RETURNS TRIGGER AS $$
+BEGIN
+	UPDATE alizon.Produit p SET noteMoy = 
+		(SELECT AVG(noteProd) from Avis a where a.codeproduit = NEW.codeproduit) 
+			where p.codeProduit = NEW.codeProduit;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_moyenne_Produit
+AFTER INSERT OR UPDATE ON alizon.Avis
+FOR EACH ROW
+EXECUTE FUNCTION alizon.MoyenneProduit();
