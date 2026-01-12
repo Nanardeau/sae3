@@ -59,6 +59,7 @@ input{
 
 header{
     transition: transform 0.3s ease;
+    top : 0;
     .mobile-only{
         display: none;
     }
@@ -244,6 +245,7 @@ header{
 ################################*/
 
 nav{
+    transition: transform 0.3s ease;
     width: 100%;
     margin: 0 auto;
     background-color: $eleBleu;
@@ -289,6 +291,7 @@ nav{
     position:absolute;
     width: 100%;
     z-index: 1000;
+    padding-left:0;
     li{
         float:none;
         width:100%;

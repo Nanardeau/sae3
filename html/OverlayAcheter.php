@@ -44,16 +44,22 @@ $bdd->query('set schema \'alizon\'');
         $codeCompte = $_SESSION['codeCompte'];
     }else{
         include 'includes/header.php';
-        include 'includes/menu_cat.php';
     }
 
     $codeProduit = $_GET["codeProd"];
 
-    $req= $bdd->prepare("SELECT * FROM Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
-    $rep-execute();
+    $req= $bdd->prepare("SELECT * FROM Produit WHERE codeProduit = :codeproduit");
+    $req->execute([':codeproduit'=> $codeProduit]);
+    $rep = $req->fetch(PDO::FETCH_ASSOC);
 
-    $img = $rep["urlphoto"];
-    $libelProduit = $rep["libelleprod"];
+    if (!$rep) {
+        // produit non trouvé — définir des valeurs par défaut pour éviter les erreurs
+        $img = '';
+        $libelProduit = 'Produit introuvable';
+    } else {
+        $img = $rep["urlphoto"];
+        $libelProduit = $rep["libelleprod"];
+    }
     
     ?>
 

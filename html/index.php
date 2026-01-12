@@ -42,12 +42,10 @@ session_start();
     }else{
         include 'includes/header.php';
     }
-    include 'includes/menu_cat.php';
     ?>
     
     <main>
         <?php
-            
             include 'includes/menuCompte.php';
         ?>
 
@@ -81,7 +79,7 @@ session_start();
         <section class="anonnces_produits">
             <div class="annonce_produit">
                 <img src="img/ban_nouv.png" alt="Image voir les nouveautés">
-                <a class="bouton" href="#nouveautes">Voir les nouveautés</a>
+                <a class="bouton" href="#nouveautes">Voir les promotions</a>
             </div>
             <!-- <div class="annonce_produit">
                 <img src="" alt="Image voir les articles en vedettes">

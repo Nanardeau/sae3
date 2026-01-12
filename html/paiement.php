@@ -77,7 +77,6 @@
     }else{
         include 'includes/header.php';
     }
-    include 'includes/menu_cat.php';
     ?>
 
     <main>

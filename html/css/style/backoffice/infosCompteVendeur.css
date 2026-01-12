@@ -543,6 +543,7 @@ input:user-invalid + span, input.invalid + span {
 ###############################*/
 header {
   transition: transform 0.3s ease;
+  top: 0;
   z-index: 1000;
   position: fixed;
   display: inline-flex;
@@ -710,6 +711,7 @@ header .connexion-panier svg {
 #        Menu Categorie         #
 ################################*/
 nav {
+  transition: transform 0.3s ease;
   width: 100%;
   margin: 0 auto;
   background-color: #6CA6E9;
@@ -762,6 +764,7 @@ nav a:hover {
   position: absolute;
   width: 100%;
   z-index: 1000;
+  padding-left: 0;
 }
 
 .souscat-ul li {
@@ -1255,6 +1258,7 @@ input:user-invalid + span, input.invalid + span {
 ###############################*/
 header {
   transition: transform 0.3s ease;
+  top: 0;
   z-index: 1000;
   position: fixed;
   display: inline-flex;
@@ -1422,6 +1426,7 @@ header .connexion-panier svg {
 #        Menu Categorie         #
 ################################*/
 nav {
+  transition: transform 0.3s ease;
   width: 100%;
   margin: 0 auto;
   background-color: #6CA6E9;
@@ -1474,6 +1479,7 @@ nav a:hover {
   position: absolute;
   width: 100%;
   z-index: 1000;
+  padding-left: 0;
 }
 
 .souscat-ul li {

@@ -22,12 +22,12 @@
                 }
                 echo "</ul>";
             }
-
             echo "</li>";
         }
-                ?>
+        ?>
     </ul>
     </div>
+</nav>
     <div id="overlayMenuCatMob" class="overlayMenuCatMob mob-only">
         <div class="overlayContentCatMob">
             <div class="identification">
@@ -79,8 +79,8 @@
                         <li><a href="Categorie.php?cat=<?php echo $catCurr?>"><?php echo $catCurr;?></a></li>
                         <?php
 
-                        $listSousCats = $bdd->query("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = '" . $catCurr . "'");
-
+                        $listSousCats = $bdd->prepare("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = '" . $catCurr . "'");
+                        $listSousCats->execute();
                         if ($listSousCats->rowCount() > 0) {
                             echo "<ul>";
                             foreach ($listSousCats as $libSousCat) {
@@ -97,4 +97,3 @@
             </div>
         </div>
     </div>
-</nav>
