@@ -362,6 +362,16 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         </section>        
     </main>
     <?php include 'includes/footer.php'; ?>
+    <script>
+
+        function openOverlay(src) {
+            document.querySelector("#overlay").src = src;
+            document.getElementById("overlay").style.display = "block";
+        }
+        function fermerOverlay() {
+            document.getElementById("overlay").style.display = "none";
+        } 
+    </script>
     <script src="js/achat.js"></script>
 </body>
 </html>
