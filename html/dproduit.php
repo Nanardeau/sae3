@@ -46,7 +46,6 @@ $sqlAvis = "SELECT A.*, C.prenom, C.nom,
     ORDER BY A.datePublication DESC
 ";
 
-
 $stmtAvis = $bdd->prepare($sqlAvis);
 $stmtAvis->execute(['id' => $id]);
 $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
@@ -150,8 +149,13 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
 
+
+
                 <?php
-                $commander = $bdd->query('Select * from alizon.ProdUnitCommande natural join alizon.Commande where alizon.Commande.codeCompte = '.$_SESSION["codeCompte"].' and alizon.ProdUnitCommande.codeProduit = '.$produit['codeproduit'].'')->fetch();
+                if (isset($_SESSION["codeCompte"])){
+                    $commande='SELECT * FROM alizon.ProdUnitCommande NATURAL JOIN alizon.Commande WHERE alizon.Commande.codeCompte = '.$_SESSION["codeCompte"].' AND alizon.ProdUnitCommande.codeProduit = '.$produit['codeproduit'].'';
+                    $commander = $bdd->query($commande)->fetch();
+                }
                 ?>
                 <?php if(isset($_SESSION["codeCompte"]) and $commander!=NULL):   // && $commander!=NULL Si l'utilisateur est connecté, afficher le formulaire d'avis?>
                 <form class="avis-section" method="POST" action="ajout_avis.php" enctype="multipart/form-data">
@@ -179,9 +183,8 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                         <button type="submit" class="submit">Publier</button>
                     </div>
 
-                    <input type="hidden" name="codeProduit" value="<?= $produit['codeproduit'] ?>">
+                    <input type="hidden" name="codeProduit" value="<?php echo $produit['codeproduit'] ?>">
                     <input type="hidden" name="noteProd" id="noteProd" value="0">
-
                 </form>
             <?php endif?>
 
@@ -232,10 +235,8 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 
             </div>
         </section>
-
         <section class="avis-produits">
             <h1>Les avis</h1>
-
             <div class="liste-avis">
                 <?php if (empty($avisList)): ?>
                     <p>Aucun avis pour ce produit.</p>
@@ -250,14 +251,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                     echo "$prenom $nom";
                                     ?>
                                 </strong>
-                                <!-- <strong>
-                                    <?php
-                                    $prenom = htmlspecialchars($avis['prenom']);
-                                    $nom = strtoupper(htmlspecialchars($avis['nom']));
-                                    echo "$prenom $nom";
-                                    ?>
-
-                                </strong> -->
+                                
                                 <span class="date">
                                     <?= date("d/m/Y", strtotime($avis['datepublication'])) ?>
                                 </span>
