@@ -578,5 +578,12 @@ SELECT codeProduit, libelleProd, prixTTC, urlPhoto FROM Produit where Disponible
 --select all * from ProdUnitPanier where idPanier = 1;
 --delete from ProdUnitPanier where idPanier = 1;
 --delete from  Panier where idPanier = 1;
---SELECT * FROM Categoriser;
+SELECT codeProduit FROM Categoriser where libelleCat = 'Alimentaire';
+SELECT p.codeProduit, p.libelleProd, p.prixTTC, p.urlPhoto, p.noteMoy
+                FROM Produit p
+                JOIN Categoriser c ON p.codeProduit = c.codeProduit
+                WHERE c.libelleCat = 'Alimentaire'
+                AND p.Disponible = true;
+SELECT codeProduit, libelleProd, prixTTC, urlPhoto,noteMoy FROM Produit where Disponible = true and prixTTC > 0 and prixTTC < 7;
+
 --SELECT * FROM Categoriser where libelleCat = 'Alimentaire';

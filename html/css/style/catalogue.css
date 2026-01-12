@@ -1031,4 +1031,66 @@ aside select, aside select::picker {
   padding: 1em;
   border: none;
   border-radius: 1em;
+}
+aside input[type=range]::-webkit-slider-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 70%;
+  background: #555;
+  pointer-events: auto;
+  -webkit-appearance: none;
+}
+aside .slider-container {
+  margin: 20px;
+  transition: transform 0.2s;
+}
+aside .slider-container:hover {
+  transform: scale(1.05);
+}
+aside .price-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+aside input[type=number] {
+  background-color: inherit;
+  text-align: center;
+  border: none;
+  width: 40px;
+}
+aside .slider {
+  width: 100%;
+  height: 8px;
+  position: relative;
+  border-radius: 5px;
+}
+aside .slider .price-slider {
+  height: 100%;
+  left: 0%;
+  right: 0%;
+  position: absolute;
+  border-radius: 5px;
+  background: #064082;
+}
+aside input::-webkit-outer-spin-button,
+aside input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+aside .range-input {
+  position: relative;
+}
+aside .range-input input {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background: none;
+  top: -7px;
+  pointer-events: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+aside .reset {
+  color: #555;
 }/*# sourceMappingURL=catalogue.css.map */
