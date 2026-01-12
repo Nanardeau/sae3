@@ -157,7 +157,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     $commander = $bdd->query($commande)->fetch();
                 }
                 ?>
-                <?php if(isset($_SESSION["codeCompte"]) and $commander!=NULL):   // && $commander!=NULL Si l'utilisateur est connecté, afficher le formulaire d'avis?>
+                <?php if(isset($_SESSION["codeCompte"]) and $commander!=NULL):   // && $commander!=NULL Si l'utilisateur a comandé le produit, afficher le formulaire d'avis?>
                 <form class="avis-section" method="POST" action="ajout_avis.php" enctype="multipart/form-data">
 
                     <h2>Votre avis</h2>
@@ -184,7 +184,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     </div>
 
                     <input type="hidden" name="codeProduit" value="<?php echo $produit['codeproduit'] ?>">
-                    <input type="hidden" name="noteProd" id="noteProd" value="0">
+                    <input type="hidden" name="noteProd" id="noteProd" value="1">
                 </form>
             <?php endif?>
 
