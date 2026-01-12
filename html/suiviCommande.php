@@ -30,8 +30,6 @@ try {
         header('Location: http://localhost:8888/index.php');
         exit();
 }
-//$_SESSION["codeCompte"] = 3; //ligne temporaire, en attendant d"avoir le système de connexion 
-
 
 $bdd->query('set schema \'alizon\'');
 ?>
@@ -43,9 +41,9 @@ $bdd->query('set schema \'alizon\'');
     <meta name="viewport" content="width=
     , initial-scale=1.0">
     <title>Alizon</title>
-    <link href="./css/style/panier.css" rel="stylesheet" type="text/css">
+    <link href="./css/style/suiviCommande.css" rel="stylesheet" type="text/css">
     
-    <script src="js/Panier.js"></script>
+    <!-- <script src="js/truc.js"></script> -->
 </head>
 
 <body>
@@ -58,9 +56,36 @@ $bdd->query('set schema \'alizon\'');
     }else{
         include 'includes/header.php';
     }
+
+    $numCommande = $_GET['numCommande']; #recuperer num de commande
+    $req = $bdd->prepare('SELECT * from Panier where numCom = :numCom');
+    $rep= $bdd->execute(array(
+        ":numCom" => $numCommande
+    ));
+    $dateCom = $rep["dateCom"];
+
+    $req2 = $bdd->prepare('SELECT * from Client where codeCompte = :idUser');
+    $rep2= $bdd->execute(array(
+        ":idUser" => $idUser
+    ));
+    
+    $nomCli=$rep2[""];
+    $prenomCli=$rep2[""];
+    
     ?>
     <main>
+        <h2>Suivi de la commande</h2>
+        <div>
+            <div>
+                <p>Numéro de commande : <?php echo "$numCommande"?></p>
+                <p>Date de commande : </p>
+            </div>
+            
+        </div>
+        
+        <h3>Avancement</h3>
 
+        <h3>Récapitulatif</h3>
 
     </main>
 </body>
