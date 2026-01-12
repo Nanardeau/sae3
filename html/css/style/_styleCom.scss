@@ -471,6 +471,7 @@ nav div > ul li:hover .souscat-ul{
 .overlayContentCompte{
     z-index:100;
     position:fixed;
+    top:80px;
     right:125px;
     @media #{$mobile}{
         right:70px;
@@ -478,7 +479,7 @@ nav div > ul li:hover .souscat-ul{
     height:15em;
     background-color:$colS;
     border:solid $colP;
-    nav{
+    div{
         height:90%;
 
         display:flex;

@@ -21,16 +21,18 @@
     }
 
     $codeCompte = $_SESSION["codeCompte"];
-    $infosCompte = $bdd->prepare("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
-    $infosCompte->execute();
+    $infosCompte = $bdd->prepare("SELECT * FROM alizon.Client WHERE codeCompte = :codeCompte");
+    $infosCompte->execute([":codeCompte" => $codeCompte]);
+    $infosCompte = $infosCompte->fetch();
+    $infosAdresse = $bdd->prepare("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = :codeCompte");
+    $infosAdresse->execute([":codeCompte" => $codeCompte]);
+    $infosAdresse = $infosAdresse->fetch();
 
-    $infosAdresse = $bdd->prepare("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-    $infosAdresse->execute();
     if(isset($_GET["traitement"])){
         switch($_GET["traitement"]){
             case "bloquer":
-                    $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = TRUE WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
-                    $stmt->execute();
+                    $stmt = $bdd->prepare("UPDATE alizon.Client SET cmtBlq = TRUE WHERE codeCompte = :codeCompte");
+                    $stmt->execute([":codeCompte" => $_SESSION["codeCompte"]]);
                     session_destroy();
             case "deconnecter":
                 session_destroy();
@@ -40,8 +42,9 @@
 
     if(isset($_GET["modif"])){
         if( $_GET["modif"] == "mdp"){
-            $stmt = $bdd->prepare("UPDATE alizon.Client SET mdp = '".$_SESSION["nouveauMdp"]."' WHERE codeCompte = '".$_SESSION["codeCompte"]."'");
-            $stmt->execute();
+            $stmt = $bdd->prepare("UPDATE alizon.Client SET mdp = :newmdp WHERE codeCompte = :codeCompte");
+            $stmt->execute([":newmdp" => $_SESSION["nouveauMdp"]
+            , ":codeCompte" => $_SESSION["codeCompte"]]);
             $_SESSION["nouveauMdp"] = "";
         }
 
@@ -58,11 +61,15 @@
             if($valeur != $infosCompte[$item]){
                 //Vérifier qu'un pseudo n'est pas déjà pris
                 if($item == "pseudo"){
-                    $verifPseudo = $bdd->prepare("SELECT * FROM alizon.Client WHERE pseudo = '".$valeur."'")->fetch();
-                    $verifPseudo->execute();
+                    $verifPseudo = $bdd->prepare("SELECT * FROM alizon.Client WHERE pseudo = :pseudo");
+                    $verifPseudo->execute([":pseudo" => $valeur]);
+                    $verifPseudo = $verifPseudo->fetch();
                     if($verifPseudo == NULL || $verifPseudo["pseudo"] == $value){
-                        $stmt = $bdd->prepare("UPDATE alizon.Client SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
-                        $stmt->execute();                        
+                        $stmt = $bdd->prepare("UPDATE alizon.Client SET :item = :valeur WHERE codeCompte = :codeCompte");
+                        $stmt->execute([":codeCompte" => $codeCompte,
+                        ":item" => $item,
+                        ":valeur" => $valeur
+                        ]);                        
                     }
                     else{
                         header('location:infosCompte.php?erreur=pseudo');
@@ -70,19 +77,26 @@
                 }  
                 //Vérifier qu'un mail n'est pas déjà pris
                 if($item == "email"){
-                    $verifMail = $bdd->prepare("SELECT * FROM alizon.Client WHERE email = '".$valeur."'")->fetch();
-                    $verifMail->execute();
+                    $verifMail = $bdd->prepare("SELECT * FROM alizon.Client WHERE email = :valeur");
+                    $verifMail->execute([":valeur" => $valeur]);
+                    $verifMail = $verifMail->fetch();
                     if($verifMail == NULL || $verifMail["email"] == $value){
-                        $stmt = $bdd->prepare("UPDATE alizon.Client SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
-                        $stmt->execute();                        
+                        $stmt = $bdd->prepare("UPDATE alizon.Client SET :item = :valeur WHERE codeCompte = :codeCompte");
+                        $stmt->execute([":codeCompte" => $codeCompte,
+                        ":item" => $item,
+                        ":valeur" => $valeur
+                        ]);                       
                     }
                     else{
                         header('location:infosCompte.php?erreur=email');
                     }
                 }                 
                 else{
-                    $stmt = $bdd->prepare("UPDATE alizon.Client SET ".$item." = '".$valeur."' WHERE codeCompte = '".$codeCompte."'");
-                    $stmt->execute();
+                    $stmt = $bdd->prepare("UPDATE alizon.Client SET :item = :valeur WHERE codeCompte = :codeCompte");
+                        $stmt->execute([":codeCompte" => $codeCompte,
+                        ":item" => $item,
+                        ":valeur" => $valeur
+                        ]); 
                 }
 
             }
@@ -91,8 +105,12 @@
 
         else if(array_key_exists($item, $infosAdresse)){
             if($valeur != $infosAdresse[$item]){
-                $stmt = $bdd->prepare("UPDATE alizon.Adresse SET ".$item." = '".$valeur."' WHERE idAdresse = '".$infosAdresse["idadresse"]."'");
-                $stmt->execute();
+                $stmt = $bdd->prepare("UPDATE alizon.Adresse SET :item = :valeur WHERE idAdresse = :infoadr");
+                $stmt->execute([
+                    ":item" => $item,
+                    ":valeur" => $valeur,
+                    ":infoadr" => $infosAdresse["idadresse"]
+                ]);
             }
 
         }
@@ -115,7 +133,7 @@ if($_FILES["photo"]["name"] != ""){
     $stmt = $bdd->prepare("UPDATE alizon.Profil SET urlPhoto = :urlPhoto WHERE codeClient = :codeCompte");
     $stmt->execute(array(
         ":urlPhoto" => $chemin,
-        "codeCompte" => $codeCompte
+        ":codeCompte" => $codeCompte
     ));
 
     $_SESSION["mdpValide"] = 0;

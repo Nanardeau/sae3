@@ -936,6 +936,7 @@ nav div > ul li:hover .souscat-ul {
 .overlayContentCompte {
   z-index: 100;
   position: fixed;
+  top: 80px;
   right: 125px;
   height: 15em;
   background-color: #D1ECF8;
@@ -947,7 +948,7 @@ nav div > ul li:hover .souscat-ul {
     right: 70px;
   }
 }
-.overlayContentCompte nav {
+.overlayContentCompte div {
   height: 90%;
   display: flex;
   flex-direction: column;
@@ -955,17 +956,17 @@ nav div > ul li:hover .souscat-ul {
   align-items: center;
 }
 
-.overlayContentCompte nav hr {
+.overlayContentCompte div hr {
   width: 95%;
 }
 
-.overlayContentCompte nav a {
+.overlayContentCompte div a {
   padding: 1.5em;
   color: black;
   text-decoration: none;
 }
 
-.overlayContentCompte nav a:hover {
+.overlayContentCompte div a:hover {
   color: #6CA6E9;
 }
 
@@ -1715,6 +1716,7 @@ nav div > ul li:hover .souscat-ul {
 .overlayContentCompte {
   z-index: 100;
   position: fixed;
+  top: 80px;
   right: 125px;
   height: 15em;
   background-color: #D1ECF8;
@@ -1726,7 +1728,7 @@ nav div > ul li:hover .souscat-ul {
     right: 70px;
   }
 }
-.overlayContentCompte nav {
+.overlayContentCompte div {
   height: 90%;
   display: flex;
   flex-direction: column;
@@ -1734,17 +1736,17 @@ nav div > ul li:hover .souscat-ul {
   align-items: center;
 }
 
-.overlayContentCompte nav hr {
+.overlayContentCompte div hr {
   width: 95%;
 }
 
-.overlayContentCompte nav a {
+.overlayContentCompte div a {
   padding: 1.5em;
   color: black;
   text-decoration: none;
 }
 
-.overlayContentCompte nav a:hover {
+.overlayContentCompte div a:hover {
   color: #6CA6E9;
 }
 
