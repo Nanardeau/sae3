@@ -50,7 +50,7 @@ $bdd->query('set schema \'alizon\'');
     $ntDecrois= ' ORDER BY noteMoy DESC';
     $note = ' AND noteMoy >= ';
     //TODO faire avec le js, selon ce qui est séléctionner pour le tri, 
-
+    $sql=$base; 
 ?>
 
 <html lang="fr">

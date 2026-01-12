@@ -149,7 +149,11 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <a class="add-to-cart" href="OverlayAcheter.php?codeProd=<?php echo $id?>">Ajouter au panier</a>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
-                <?php if(isset($_SESSION["codeCompte"])):?>
+
+                <?php
+                $commander = $bdd->query('Select * from alizon.ProdUnitCommande natural join alizon.Commande where alizon.Commande.codeCompte = '.$_SESSION["codeCompte"].' and alizon.ProdUnitCommande.codeProduit = '.$produit['codeproduit'].'')->fetch();
+                ?>
+                <?php if(isset($_SESSION["codeCompte"]) and $commander!=NULL):   // && $commander!=NULL Si l'utilisateur est connecté, afficher le formulaire d'avis?>
                 <form class="avis-section" method="POST" action="ajout_avis.php" enctype="multipart/form-data">
 
                     <h2>Votre avis</h2>
