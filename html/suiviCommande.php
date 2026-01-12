@@ -41,9 +41,9 @@ $bdd->query('set schema \'alizon\'');
     <meta name="viewport" content="width=
     , initial-scale=1.0">
     <title>Alizon</title>
-    <link href="./css/style/suiviCommande.css" rel="stylesheet" type="text/css">
+    <!--<link href="./css/style/suiviCommande.css" rel="stylesheet" type="text/css">
     
-    <!-- <script src="js/truc.js"></script> -->
+     <script src="js/truc.js"></script> -->
 </head>
 
 <body>
@@ -58,14 +58,15 @@ $bdd->query('set schema \'alizon\'');
     }
 
     $numCommande = $_GET['numCommande']; #recuperer num de commande
-    $req = $bdd->prepare('SELECT * from Panier where numCom = :numCom');
-    $rep= $bdd->execute(array(
-        ":numCom" => $numCommande
-    ));
-    $rep = $rep->fetch();
+    $req = $bdd->prepare("SELECT dateCom from Commande where numCom = 1");
+    $rep= $req->execute(
+        
+    );
+    $truc = $rep->fetch();
+    
     $dateCom = $rep["datecom"];
 
-    $req2 = $bdd->prepare('SELECT * from Compte where codeCompte = :idUser'); #recuperer info client
+    $req2 = $bdd->prepare('SELECT nom,prenom,numtel from Compte where codeCompte = :idUser'); #recuperer info client
     $rep2= $bdd->execute(array(
         ":idUser" => $idUser
     ));
