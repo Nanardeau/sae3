@@ -121,6 +121,7 @@ input:user-invalid + span, input.invalid + span {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
 }
 .bouton:hover {
@@ -147,11 +148,42 @@ header {
 header .mobile-only {
   display: none;
 }
+header form {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  margin-left: auto;
+}
+header form input[type=search] {
+  padding: 1em;
+  border-radius: 40px;
+  border: none;
+  max-width: 700px;
+  width: 80%;
+  min-width: none;
+  font-size: "Mulish";
+}
+header form input[type=search]::-webkit-search-cancel-button {
+  position: relative;
+  left: -40px;
+}
+header form button {
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  height: 32px;
+  border-radius: 40px;
+  border: none;
+  background-color: rgba(128, 128, 128, 0.2);
+  position: relative;
+  left: -40px;
+}
 header .logo_alizon_front {
   width: 118px;
   height: auto;
   padding-left: 80px;
   left: 0;
+  margin: 20px;
 }
 header .connexion-panier {
   margin-left: auto;
@@ -180,6 +212,13 @@ header .connexion-panier svg {
   header .mobile-only {
     display: block;
     padding-left: 20px;
+  }
+  header button {
+    background: none;
+    border: none;
+  }
+  header nav svg {
+    padding-right: 30px;
   }
 }
 
@@ -290,74 +329,61 @@ nav {
   width: 100%;
   margin: 0 auto;
   background-color: #6CA6E9;
-  position: sticky;
-  top: 80px;
+  position: fixed;
+  z-index: 999;
+  display: none;
+  flex-direction: row;
+}
+.nav-cat div {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-cat h2 {
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-self: center;
+}
+.nav-cat svg, .nav-cat a {
   z-index: 1000;
+  align-self: center;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: #6CA6E9;
+  padding: 15px;
+  padding-right: 30px;
+  cursor: pointer;
+}
+.nav-cat svg {
+  overflow: visible;
 }
 @media screen and (max-width: 428px) {
-  nav {
+  .nav-cat {
     display: none;
   }
 }
-nav ul {
-  list-style-type: none;
-  text-indent: none;
+
+.src-tel {
+  position: absolute;
+  bottom: 60%;
+  background: none;
+  border: none;
+  width: auto;
+  overflow: hidden;
 }
-nav ul li {
-  float: left;
-  width: 16em;
-  text-align: center;
+.src-tel form {
+  margin: 0 auto;
+  width: 100%;
+  left: 30px;
   position: relative;
 }
-nav ul::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-nav a {
-  display: block;
-  text-decoration: none;
-  color: black;
-  border-bottom: 2px solid transparent;
-  padding: 10px 0;
-}
-nav a:hover {
-  border-bottom: 2px solid #064082;
-  color: black;
-}
-
-.souscat-ul {
-  z-index: 1000;
-  display: none;
-  box-shadow: 0px 1px 2px #ccc;
-  background-color: white;
-  position: absolute;
-  width: 100%;
-  z-index: 1000;
-  padding-left: 0;
-}
-.souscat-ul li {
-  float: none;
-  width: 100%;
-  text-align: left;
-}
-.souscat-ul a {
-  padding: 10px;
-  border-bottom: none;
-}
-.souscat-ul a:hover {
-  border-bottom: none;
-  background-color: #D1ECF8;
-}
-
-.deroulant a:hover {
-  content: "▼";
-  font-size: 12px;
-  color: black;
-}
-
-nav div > ul li:hover .souscat-ul {
-  display: block;
+.src-tel::backdrop {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .burger-menu {
@@ -473,6 +499,7 @@ nav div > ul li:hover .souscat-ul {
   background-color: #FCB66B;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   border: 0px;
   color: black;
@@ -712,6 +739,7 @@ form input::file-selector-button {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
 }
 form input::file-selector-button:hover {
@@ -763,6 +791,7 @@ form .btnSec {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
 }
 .bouton:hover {
@@ -827,6 +856,7 @@ aside nav {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   background-color: #FCB66B;
   border: 0px;

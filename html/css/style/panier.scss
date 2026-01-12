@@ -38,7 +38,7 @@ $McardH : 230px;
     border-radius: $radius;
     cursor: pointer;
 }
-input{
+input[type=button]{
     @include btn;
 }
 

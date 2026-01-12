@@ -122,6 +122,7 @@ input:user-invalid + span, input.invalid + span {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
 }
 .bouton:hover {
@@ -148,11 +149,42 @@ header {
 header .mobile-only {
   display: none;
 }
+header form {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  margin-left: auto;
+}
+header form input[type=search] {
+  padding: 1em;
+  border-radius: 40px;
+  border: none;
+  max-width: 700px;
+  width: 80%;
+  min-width: none;
+  font-size: "Mulish";
+}
+header form input[type=search]::-webkit-search-cancel-button {
+  position: relative;
+  left: -40px;
+}
+header form button {
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  height: 32px;
+  border-radius: 40px;
+  border: none;
+  background-color: rgba(128, 128, 128, 0.2);
+  position: relative;
+  left: -40px;
+}
 header .logo_alizon_front {
   width: 118px;
   height: auto;
   padding-left: 80px;
   left: 0;
+  margin: 20px;
 }
 header .connexion-panier {
   margin-left: auto;
@@ -181,6 +213,13 @@ header .connexion-panier svg {
   header .mobile-only {
     display: block;
     padding-left: 20px;
+  }
+  header button {
+    background: none;
+    border: none;
+  }
+  header nav svg {
+    padding-right: 30px;
   }
 }
 
@@ -291,74 +330,61 @@ nav {
   width: 100%;
   margin: 0 auto;
   background-color: #6CA6E9;
-  position: sticky;
-  top: 80px;
+  position: fixed;
+  z-index: 999;
+  display: none;
+  flex-direction: row;
+}
+.nav-cat div {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-cat h2 {
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-self: center;
+}
+.nav-cat svg, .nav-cat a {
   z-index: 1000;
+  align-self: center;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: #6CA6E9;
+  padding: 15px;
+  padding-right: 30px;
+  cursor: pointer;
+}
+.nav-cat svg {
+  overflow: visible;
 }
 @media screen and (max-width: 428px) {
-  nav {
+  .nav-cat {
     display: none;
   }
 }
-nav ul {
-  list-style-type: none;
-  text-indent: none;
+
+.src-tel {
+  position: absolute;
+  bottom: 60%;
+  background: none;
+  border: none;
+  width: auto;
+  overflow: hidden;
 }
-nav ul li {
-  float: left;
-  width: 16em;
-  text-align: center;
+.src-tel form {
+  margin: 0 auto;
+  width: 100%;
+  left: 30px;
   position: relative;
 }
-nav ul::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-nav a {
-  display: block;
-  text-decoration: none;
-  color: black;
-  border-bottom: 2px solid transparent;
-  padding: 10px 0;
-}
-nav a:hover {
-  border-bottom: 2px solid #064082;
-  color: black;
-}
-
-.souscat-ul {
-  z-index: 1000;
-  display: none;
-  box-shadow: 0px 1px 2px #ccc;
-  background-color: white;
-  position: absolute;
-  width: 100%;
-  z-index: 1000;
-  padding-left: 0;
-}
-.souscat-ul li {
-  float: none;
-  width: 100%;
-  text-align: left;
-}
-.souscat-ul a {
-  padding: 10px;
-  border-bottom: none;
-}
-.souscat-ul a:hover {
-  border-bottom: none;
-  background-color: #D1ECF8;
-}
-
-.deroulant a:hover {
-  content: "▼";
-  font-size: 12px;
-  color: black;
-}
-
-nav div > ul li:hover .souscat-ul {
-  display: block;
+.src-tel::backdrop {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .burger-menu {
@@ -474,6 +500,7 @@ nav div > ul li:hover .souscat-ul {
   background-color: #FCB66B;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   border: 0px;
   color: black;
@@ -737,6 +764,14 @@ nav div > ul li:hover .souscat-ul {
   }
 }
 
+main {
+  align-items: stretch;
+  display: grid;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+  grid: 284px minmax(0px, 1fr);
+}
+
 a {
   text-decoration: none;
 }
@@ -753,6 +788,7 @@ a {
   width: auto;
   height: 10px;
   border-radius: 1em;
+  border: none;
 }
 @media screen and (max-width : 428px) {
   .separateur {
@@ -798,6 +834,7 @@ h2 {
 .card {
   background-color: #D1ECF8;
   flex: 0 0 auto;
+  margin-top: 20px;
 }
 .card .button {
   display: flex;
@@ -817,8 +854,16 @@ h2 {
   cursor: pointer;
 }
 
-article {
+.scroll {
   overflow-x: scroll;
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+article {
+  flex-wrap: wrap;
   min-width: 100%;
   display: flex;
   flex-direction: row;
@@ -831,4 +876,164 @@ article {
 
 a {
   color: black;
+}
+
+.filtres {
+  padding: 20px;
+  display: none;
+}
+@media screen and (max-width: 100em) {
+  .filtres {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.filtres button {
+  font-family: "Mulish";
+  font-weight: bold;
+  text-align: center;
+  text-size: 20px;
+  text-decoration: none;
+  background-color: #064082;
+  color: white;
+  border-radius: 1em;
+  border: none;
+  cursor: pointer;
+  border: none;
+  max-width: 100px;
+}
+.filtres button:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.filtres button:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
+
+.vide {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 40%;
+}
+.vide a {
+  color: grey;
+  text-decoration: none;
+  font-weight: lighter;
+  font-style: italic;
+}
+
+main > div {
+  grid-area: 1/2/2/3;
+}
+
+/*
+TRIS & Filtres
+*/
+.tri {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  grid-area: 1/1;
+  width: 25%;
+  min-width: 250px;
+  max-height: 600px;
+}
+@media screen and (max-width: 100em) {
+  aside {
+    display: none;
+  }
+}
+aside div {
+  border-radius: 1em;
+  background-color: #EFEFEF;
+}
+aside .separateur {
+  width: 90%;
+  margin: 0 auto;
+}
+aside hr {
+  width: 90%;
+}
+aside h3 {
+  margin: 20px;
+}
+aside input[type=radio] {
+  width: 1px !important;
+  height: 1px !important;
+  border: 0 !important;
+  padding: 0;
+  position: absolute !important;
+  overflow: hidden;
+}
+aside label {
+  display: inline-flex;
+  align-items: center;
+  color: gray;
+}
+aside .label-retour::before {
+  content: "";
+  display: none;
+}
+aside label::before {
+  content: "";
+  display: block;
+  width: 1.25em;
+  height: 1.25em;
+  border: solid 1px #ccc;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  transition: border ease-in 150ms, box-shadow ease-in 150ms;
+}
+aside input[type=radio]:checked + label,
+aside input[type=radio]:focus + label {
+  color: black;
+}
+aside input[type=radio]:checked + label::before {
+  background: radial-gradient(0.75em circle at center, currentColor 50%, transparent 55%);
+  box-shadow: 0 0 1em 0 rgba(10, 150, 255, 0.75);
+  border-color: currentColor;
+}
+aside input[type=radio]:focus + label::before {
+  box-shadow: 0 0 1em 0 rgba(252, 182, 107, 0.75);
+  border-color: currentColor;
+}
+aside .noter {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+aside .noter span {
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: transparent;
+  -webkit-text-stroke: 2px #f5b301;
+  transition: 0.2s;
+}
+aside .noter span.full {
+  color: #f5b301;
+  -webkit-text-stroke: 2px #f5b301;
+}
+aside select {
+  -webkit-appearance: base-select;
+     -moz-appearance: base-select;
+          appearance: base-select;
+  width: 90%;
+  border: unset;
+  margin: 0 12px;
+  background-color: #EFEFEF;
+}
+aside select, aside select::picker {
+  padding: 1em;
+  border: none;
+  border-radius: 1em;
 }/*# sourceMappingURL=catalogue.css.map */
