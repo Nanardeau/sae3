@@ -270,7 +270,13 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                     <?php foreach ($avis['photos'] as $photo): ?>
                                         <img src="<?= htmlspecialchars($photo) ?>" 
                                             alt="Photo de l'avis" 
-                                            class="photo-avis">
+                                            class="photo-avis"
+                                            onclick="openOverlay(this.src)">
+                                        <img src="<?= htmlspecialchars($photo) ?>" 
+                                            alt="Photo de l'avis" 
+                                            class="photo-avis"
+                                            id="overlay"
+                                            onclick="fermerOverlay()">
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
@@ -284,6 +290,15 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
     </main>
 
     <?php include 'includes/footer.php'; ?>
+    <script>
 
+        function openOverlay(src) {
+            document.querySelector("#overlay").src = src;
+            document.getElementById("overlay").style.display = "block";
+        }
+        function fermerOverlay() {
+            document.getElementById("overlay").style.display = "none";
+        } 
+    </script>
 </body>
 </html>

@@ -558,5 +558,15 @@ input[type="file"] {
 /* ----photo zoom avis ---------- */
 /*################################*/
 
-
+#overlay{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50em;
+    height: 50em;
+    padding: 100%;
+    background: rgba(0,0,0,0.8);
+    transform: translate(-50%, -50%);
+    display: none;
+}
 
