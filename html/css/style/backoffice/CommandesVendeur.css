@@ -536,6 +536,7 @@ input {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   height: 4em;
   align-content: center;

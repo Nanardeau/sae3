@@ -175,6 +175,7 @@ input:user-invalid + span, input.invalid + span {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
 }
 .bouton:hover {
@@ -200,11 +201,42 @@ header {
 header .mobile-only {
   display: none;
 }
+header form {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  margin-left: auto;
+}
+header form input[type=search] {
+  padding: 1em;
+  border-radius: 40px;
+  border: none;
+  max-width: 700px;
+  width: 80%;
+  min-width: none;
+  font-size: "Mulish";
+}
+header form input[type=search]::-webkit-search-cancel-button {
+  position: relative;
+  left: -40px;
+}
+header form button {
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  height: 32px;
+  border-radius: 40px;
+  border: none;
+  background-color: rgba(128, 128, 128, 0.2);
+  position: relative;
+  left: -40px;
+}
 header .logo_alizon_front {
   width: 118px;
   height: auto;
   padding-left: 80px;
   left: 0;
+  margin: 20px;
 }
 header nav {
   margin-left: auto;
@@ -237,6 +269,10 @@ header nav svg {
   header .mobile-only {
     display: block;
     padding-left: 20px;
+  }
+  header button {
+    background: none;
+    border: none;
   }
   header nav svg {
     padding-right: 30px;
@@ -388,6 +424,24 @@ header nav svg {
   }
 }
 
+.src-tel {
+  position: absolute;
+  bottom: 60%;
+  background: none;
+  border: none;
+  width: auto;
+  overflow: hidden;
+}
+.src-tel form {
+  margin: 0 auto;
+  width: 100%;
+  left: 30px;
+  position: relative;
+}
+.src-tel::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
 .burger-menu {
   margin-left: 20px;
 }
@@ -495,6 +549,7 @@ header nav svg {
   background-color: #FCB66B;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   border: 0px;
   color: black;

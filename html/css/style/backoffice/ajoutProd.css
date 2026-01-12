@@ -393,6 +393,7 @@ form select {
   background-color: #CD4B22;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   border-radius: 1em;
   margin: 10px 0;
@@ -423,6 +424,7 @@ form input::file-selector-button {
   background-color: #CD4B22;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   border: none;
 }
@@ -488,6 +490,7 @@ form .pObl::after {
   background-color: #CD4B22;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
 }
 .bouton:hover {
