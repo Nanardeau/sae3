@@ -82,13 +82,13 @@ $bdd->query('set schema \'alizon\'');
     $adresse = $rep3["num"] . $rep3["nomrue"] . $rep3["codepostal"] . $rep3["nomville"]; #recuperer adresse de livraison
 
 
-    $stmProd = $bdd->prepare('SELECT ALL codeProduit,qteprod from ProdUnitCommande where numCom = :numCommande ORDER BY codeProduit');
-    $ProdCommande= $bdd->execute(array( 
+    $reqCommande = $bdd->prepare('SELECT ALL codeProduit,qteprod from ProdUnitCommande where numCom = :numCommande ORDER BY codeProduit');
+    $produitsCommande= $bdd->execute(array( 
         ":numCommande" => $numCommande
     ));
-    $ProdCommande = $stmProd->fetchAll(); #recuperer les produits dans la commande
+    $produitsCommande = $produitsCommande->fetchAll(); #recuperer les produits dans la commande
     ?>
-
+=
     <main>
         <h2>Suivi de la commande</h2>
         <div>
@@ -157,39 +157,37 @@ $bdd->query('set schema \'alizon\'');
             </thead>
             <tbody>
                 <?php
-                foreach($ProdCommande as $liste){
-                    $stmInfoProd = $bdd->query('SELECT libelleProd,codecomptevendeur from Produit where codeProduit = '.$liste["codeproduit"] );
-                    $infoProd = $stmInfoProd->fetch();
-                    //print_r($infoProd);
-                    $codeVendeur = $infoProd["codecomptevendeur"];
+                foreach($ProduitsCommande as $liste){ #pour afficher dans le tableau recap chaque prod
+                    $reqProduit = $bdd->prepare('SELECT libelleProd,codecomptevendeur from Produit where codeProduit = :liste["codeproduit"]' );
+                    $infoProduit= $bdd->execute(array( 
+                        ":liste" => $liste
+                    ));
+                    $infoProduit = $infoProduit->fetch();
+
+                    $codeVendeur = $infoProduit ["codecomptevendeur"];
                     
-                    $stmInfoVend = $bdd->query('SELECT nom from Vendeur where codecompte = '. $codeVendeur);
-                    $infoVendeur = $stmInfoVend->fetch();
-                    }
-                    //print_r($infoVendeur);
+                    $reqInfoVendeur = $bdd->prepare('SELECT nom from Vendeur where codecompte = :codeVendeur');
+                    $infoVendeur= $bdd ->execute(array("codeVendeur"=> $codeVendeur));
+                    $infoVendeur = $infoVendeur->fetch();
+
+                    $codeProduit = $liste["codeproduit"];
+                    $nomProd = $infoProd["libelleprod"];
+                    $vendeur = $infoVendeur["nom"];
+                    $qteProd = $liste["qteprod"];
+                    $qteProd = round($qteProd);
+                    
+                    ?>
                 <tr>
-                <th scope="row">Chris</th>
-                <td>HTML tables</td>
-                <td>22</td>
+                    <th scope="row"><?php echo $nomProd?></th>
+                    <td><?php echo $codeProduit?></td>
+                    <td><?php echo $qteProd?></td>
+                    <td><?php echo $vendeur?></td>
                 </tr>
-                ?>
-                <tr>
-                <th scope="row">Dennis</th>
-                <td>Web accessibility</td>
-                <td>45</td>
-                </tr>
-                <tr>
-                <th scope="row">Sarah</th>
-                <td>JavaScript frameworks</td>
-                <td>29</td>
-                </tr>
-                <tr>
-                <th scope="row">Karen</th>
-                <td>Web performance</td>
-                <td>36</td>
-                </tr>
+                <?php 
+                } ?>
             </tbody>
         </table>
+
 
     </main>
     <?php include 'includes/footer.php'?>
