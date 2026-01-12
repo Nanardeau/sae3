@@ -3,8 +3,12 @@
 @use "../../tools/mixin/com" as *;
 @use 'sass:color';
 
+body{
+    background-color: #eaeaea;
+}
 
 main{
+    padding-top: 110px;
     padding-bottom:2em;
     display:flex;
     flex-direction:column;
@@ -12,6 +16,7 @@ main{
     
 
     form{
+        background-color: $blanc;
         border:#A1A1A1 solid 0.01em;
         border-radius:$radius;
         display:flex;
@@ -105,5 +110,7 @@ main{
 
 }
 .btn-retour{
-    margin-left:25%;
+    position: fixed;
+    top: 100px;
+    left: 25px;
 }

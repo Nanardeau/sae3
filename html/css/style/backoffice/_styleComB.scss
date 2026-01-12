@@ -10,13 +10,18 @@
     color:#A1A1A1;
     font-size: $PetTitle;
 }
+
+body{
+    background-color: #eaeaea;
+}
+
 body{
     font: {
         family: $Poltext,$Poltitle,"sans-serif";
         size: $txtSize;
     }
     background: {
-        color: $blanc;
+        color: #eaeaea;
     }
     color : $noir;
     margin: 0
@@ -42,8 +47,6 @@ label{
 }
 
 main{
-    display: flex;
-    align-items: flex-start;
     padding: {
         top: 80px;
         bottom: $pad;
@@ -258,4 +261,8 @@ header{
     padding-bottom: 2em;
     height: auto;
     display: flex;
+}
+
+body{
+    background-color: #eaeaea;
 }

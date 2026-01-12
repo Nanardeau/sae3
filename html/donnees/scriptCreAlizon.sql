@@ -74,11 +74,11 @@ CREATE TABLE Produit(
     largeur FLOAT, --en mètre
     dateCreaProduit TEXT NOT NULL, 
     dateModifProduit TEXT NOT NULL,
-    qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
+    qteStock INTEGER NOT NULL DEFAULT 0,
     Origine VARCHAR(20) NOT NULL check (Origine IN ('Breizh','France','Étranger')),
     Disponible BOOLEAN DEFAULT TRUE,
 	nomTarif VARCHAR(20) REFERENCES Tarification(nomTarif),
-    seuilAlerte NUMERIC(10,2) NOT NULL,
+    seuilAlerte INTEGER NOT NULL,
     urlPhoto VARCHAR(40) REFERENCES Photo(urlPhoto),
     codeCompteVendeur INTEGER REFERENCES Vendeur(codeCompte)	
 );

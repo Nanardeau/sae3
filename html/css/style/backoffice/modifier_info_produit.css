@@ -126,9 +126,13 @@
 }
 
 body {
+  background-color: #eaeaea;
+}
+
+body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
-  background-color: white;
+  background-color: #eaeaea;
   color: black;
   margin: 0;
 }
@@ -162,8 +166,6 @@ label {
 }
 
 main {
-  display: flex;
-  align-items: flex-start;
   padding-top: 80px;
   padding-bottom: 20px;
   padding-right: 20px;
@@ -347,13 +349,23 @@ header .svg-deconnexion {
   display: flex;
 }
 
+body {
+  background-color: #eaeaea;
+}
+
+body {
+  background-color: #eaeaea;
+}
+
 main {
+  padding-top: 110px;
   padding-bottom: 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 main form {
+  background-color: white;
   border: #A1A1A1 solid 0.01em;
   border-radius: 1em;
   display: flex;
@@ -476,5 +488,7 @@ main .bouton:active {
 }
 
 .btn-retour {
-  margin-left: 25%;
+  position: fixed;
+  top: 100px;
+  left: 25px;
 }/*# sourceMappingURL=modifier_info_produit.css.map */

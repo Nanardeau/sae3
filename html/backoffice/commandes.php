@@ -83,7 +83,9 @@ $bdd->query('set schema \'alizon\'');
             <?php
             foreach($lesCommandes as $commande){
                 $idCom = $commande["numcom"];
-                $lesProduits = $bdd->query('SELECT DISTINCT p.codeProduit,puc.qteProd FROM Produit p INNER JOIN ProdUnitCommande puc ON p.codeProduit = puc.codeProduit where numCom =\''.$idCom.'\' AND CodeCompteVendeur =\''. $codeCompte.'\' ');
+                $stmt = $bdd->prepare('SELECT DISTINCT p.codeProduit,puc.qteProd FROM Produit p INNER JOIN ProdUnitCommande puc ON p.codeProduit = puc.codeProduit where numCom =\''.$idCom.'\' AND CodeCompteVendeur =\''. $codeCompte.'\' ');
+                $stmt->execute();
+                $lesProduits = $stmt->fetchAll();
                 //print_r($lesProduits);
                 ?>
                 <div class="separateur"></div>
@@ -92,6 +94,7 @@ $bdd->query('set schema \'alizon\'');
                     <table>
                 <thead>
                     <tr>
+                        <th>Image</th>
                         <th>Nom produit</th>
                         <th>Code Produit</th>
                         <th>Quantité</th>
@@ -103,11 +106,19 @@ $bdd->query('set schema \'alizon\'');
                     foreach($lesProduits as $prod){
                         $idProd = $prod['codeproduit'];
                         $qteprod =$prod['qteprod'];
-                        $nomProd = $bdd->query('SELECT libelleProd FROM Produit where codeProduit = '. $idProd)->fetch();
+                        $stmt = $bdd->prepare('SELECT libelleProd FROM Produit where codeProduit =:idProd');
+                        $stmt->execute(array("idProd"=>$idProd));
+                        $nomProd = $stmt->fetch();
+                        //nomProd = $bdd->query('SELECT libelleProd FROM Produit where codeProduit = '. $idProd)->fetch();
+                        $stmt = $bdd->prepare('SELECT urlPhoto FROM Produit where codeProduit =:idProd');
+                        $stmt->execute(array("idProd"=>$idProd));
+                        $imgProd = $stmt->fetch();
+                        //$imgProd = $bdd->query("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit'])->fetch();
                         
                         ?>
                         
                         <tr>
+                            <td><?php echo "<img src='../".$imgProd['urlphoto']."' alt='Image du produit' class='imgCmd'>" ; ?></td>
                             <td><?php echo $nomProd['libelleprod'];?></td>
                             <td><?php echo $idProd ; ?></td>
                             <td><?php echo $qteprod ;?></td>
@@ -118,18 +129,6 @@ $bdd->query('set schema \'alizon\'');
                     ?>
                 </tbody>
             </table>
-                    <div >
-                    <?php foreach($lesProduits as $prod){
-                        $imgProd = $bdd->query("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit'])->fetch();
-                        
-                        ?>
-                        
-                    <?php }?>
-                    </div>
-                    <div class='info'>
-                        <p>
-                        
-                    </div>
                     
                 </article>
                 <?php

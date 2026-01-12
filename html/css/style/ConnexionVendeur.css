@@ -126,9 +126,13 @@
 }
 
 body {
+  background-color: #eaeaea;
+}
+
+body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
-  background-color: white;
+  background-color: #eaeaea;
   color: black;
   margin: 0;
 }
@@ -162,8 +166,6 @@ label {
 }
 
 main {
-  display: flex;
-  align-items: flex-start;
   padding-top: 80px;
   padding-bottom: 20px;
   padding-right: 20px;
@@ -345,6 +347,10 @@ header .svg-deconnexion {
   padding-bottom: 2em;
   height: auto;
   display: flex;
+}
+
+body {
+  background-color: #eaeaea;
 }
 
 main {

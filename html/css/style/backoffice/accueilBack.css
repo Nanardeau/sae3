@@ -126,9 +126,13 @@
 }
 
 body {
+  background-color: #eaeaea;
+}
+
+body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
-  background-color: white;
+  background-color: #eaeaea;
   color: black;
   margin: 0;
 }
@@ -162,8 +166,6 @@ label {
 }
 
 main {
-  display: flex;
-  align-items: flex-start;
   padding-top: 80px;
   padding-bottom: 20px;
   padding-right: 20px;
@@ -347,6 +349,10 @@ header .svg-deconnexion {
   display: flex;
 }
 
+body {
+  background-color: #eaeaea;
+}
+
 main {
   display: flex;
   align-items: flex-start;
@@ -391,7 +397,10 @@ main p {
 }
 
 body {
-  background-color: #fffefa;
+  background-color: #eaeaea;
+}
+
+body {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -402,19 +411,20 @@ body {
 .produit {
   color: inherit;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   background-color: white;
   border-radius: 8px;
   width: 17em;
-  height: 25.25em;
+  height: 24.25em;
   text-decoration: none;
   box-sizing: border-box;
   gap: 0.1em;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding-top: 10px;
 }
 .produit > svg {
-  position: fixed;
+  position: absolute;
   top: 5px;
   left: 5px;
   z-index: 2;
@@ -427,21 +437,23 @@ body {
 }
 .produit img {
   position: static;
+  justify-self: center;
   z-index: 1;
-  width: 90%;
-  height: 90%;
+  width: 200px;
+  height: 200px;
   border-color: black;
   border-radius: 8px;
   border: 2px solid;
-  margin-left: 10px;
+  margin-top: 10px;
+  margin-left: -10px;
 }
 .produit p {
   margin: 0;
 }
 .produit .nomArticle {
-  padding-left: 10px;
   font-family: "Mulish", sans-serif;
-  font-size: 1em;
+  font-size: 1.2em;
+  font-weight: bold;
   color: black;
   text-align: left;
 }
@@ -467,7 +479,6 @@ body {
 .produit div .prixReduc {
   font-family: "Mulish", sans-serif;
   font-size: 1.25em;
-  padding-left: 10px;
   margin-right: 0.25em;
   color: black;
   font-weight: bold;
@@ -479,20 +490,29 @@ body {
   color: #FF4444;
 }
 .produit .btnModifReduc {
+  position: absolute;
   padding: 0.25em;
   display: flex;
   align-self: flex-end;
+  justify-self: left;
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
 }
 .produit .btnModifReduc svg {
-  width: 30px;
+  width: 35px;
   height: 100%;
 }
 .produit .btnModifReduc:hover svg circle {
-  fill: rgb(250.9867549669, 157.3443708609, 57.0132450331);
+  fill: rgb(63.6390532544, 139.1420118343, 226.3609467456);
+}
+.produit .infoProduit {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .lesAvis {
@@ -676,4 +696,11 @@ body {
 .right-content {
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.bvn-vendeur {
+  font-family: "Baloo", sans-serif;
+  font-size: 2em;
+  color: black;
+  margin-left: 10px;
 }/*# sourceMappingURL=accueilBack.css.map */

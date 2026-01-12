@@ -59,8 +59,11 @@ main{
     
 }
 
+body{
+    background-color: #eaeaea;
+}
+
 body {
-    background-color: #fffefa;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -72,19 +75,20 @@ body {
 .produit {
     color: inherit;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     background-color: $blanc;
     border-radius: 8px;
     width: 17em;
-    height: 25.25em;
+    height: 24.25em;
     text-decoration: none;
     box-sizing: border-box;
     gap: 0.10em;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding-top: 10px;
 
     > svg {
-        position: fixed;
+        position:absolute;
         top: 5px;
         left: 5px;
         z-index: 2;
@@ -99,13 +103,15 @@ body {
 
     img {
         position: static; 
+        justify-self: center;
         z-index: 1;
-        width: 90%;
-        height: 90%;
+        width: 200px;
+        height: 200px;
         border-color: $noir;
         border-radius: 8px;
         border: 2px solid;
-        margin-left: 10px;
+        margin-top: 10px;
+        margin-left: -10px;
     }
 
     p {
@@ -113,9 +119,9 @@ body {
     }
 
     .nomArticle {
-        padding-left: 10px;
         font-family: $Poltext , sans-serif;
-        font-size: 1em;
+        font-size: 1.2em;
+        font-weight: bold;
         color: $noir;
         text-align: left;
     }
@@ -143,7 +149,7 @@ body {
         .prixReduc {
             font-family: $Poltext , sans-serif;
             font-size: 1.25em;
-            padding-left: 10px;
+            //padding-left: 10px;
             margin-right: 0.25em;
             color: $noir;
             font-weight: bold;
@@ -158,22 +164,33 @@ body {
         
     }
     .btnModifReduc {
+        position: absolute;
         padding: 0.25em;
         display: flex;
         align-self: flex-end;
+        justify-self: left;
         background-color: transparent;
         border: none;
         outline: none;
         cursor: pointer;
+
         svg {
-            width: 30px;
+            width: 35px;
             height: 100%;
         }
         &:hover {
             svg circle {
-                fill: color.adjust($eleOrange, $lightness: -10%);
+                fill: color.adjust($eleBleu, $lightness: -10%);
             }
         }
+    }
+
+    .infoProduit{
+        padding-left: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
     }
 }
 
@@ -371,4 +388,11 @@ body {
 .right-content{
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.bvn-vendeur{
+    font-family: $Poltitle , sans-serif;
+    font-size: 2em;
+    color: $noir;
+    margin-left: 10px;
 }

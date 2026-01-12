@@ -239,21 +239,21 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <?php foreach ($avisList as $avis): ?>
                         <div class="avis">
                             <div class="avis-header">
-                                <strong>
+                                <!-- <strong>
                                     <?php
                                     $prenom = htmlspecialchars($avis['prenom'] ?? 'Anonyme');
                                     $nom = strtoupper(htmlspecialchars($avis['nom'] ?? 'Utilisateur'));
                                     echo "$prenom $nom";
                                     ?>
-                                </strong>
-                                <!-- <strong>
+                                </strong> -->
+                                <strong>
                                     <?php
                                     $prenom = htmlspecialchars($avis['prenom']);
                                     $nom = strtoupper(htmlspecialchars($avis['nom']));
                                     echo "$prenom $nom";
                                     ?>
 
-                                </strong> -->
+                                </strong>
                                 <span class="date">
                                     <?= date("d/m/Y", strtotime($avis['datepublication'])) ?>
                                 </span>
