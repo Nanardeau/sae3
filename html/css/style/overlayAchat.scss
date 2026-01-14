@@ -6,7 +6,6 @@ h4{
     margin: 0px;
 }
 main{
-    
     display:flex;
     justify-content: center;
 }
@@ -21,10 +20,8 @@ main>section{
     width: 45%;
     height: 45%;
     margin: 15px;
-    @media #{$mobile} {
-            height: 90%;
+        @media #{$mobile} {
             width: 90%;
-            
         }
 }
 main>section>.content{
@@ -131,3 +128,4 @@ main>section>.content>figure>figcaption{
         }
         
     }
+

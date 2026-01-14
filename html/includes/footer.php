@@ -47,7 +47,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>@Cobrec - 2025 &nbsp;|&nbsp; Site appartenant à la Cobrec - Tous droits réservés</p>
+            <p>©Cobrec - 2025 &nbsp;|&nbsp; Site appartenant à la Cobrec - Tous droits réservés</p>
         </div>
     </footer>
-    <script src="script/script.js"></script>
+    <script src="js/script.js"></script>

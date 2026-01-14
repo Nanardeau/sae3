@@ -38,7 +38,7 @@ $McardH : 230px;
     border-radius: $radius;
     cursor: pointer;
 }
-input{
+input[type=button]{
     @include btn;
 }
 
@@ -60,7 +60,7 @@ article {
 .articlePanier {
     display: grid;
     gap: .5em;
-    grid-template-columns: repeat(2,1fr) 2fr ;
+    grid-template-columns: repeat(2,2fr) 2fr ;
     grid-template-rows: .5fr 2fr 1fr;
     background-color: $colS;
     padding: $pad;
@@ -99,6 +99,13 @@ article {
         
         text-align: end;
         
+    }
+    .btn-supprimer{
+        @include btn;
+        width: 30%;
+        align-self: end;
+        justify-self: end;
+        grid-area: 3/ 3 / 3 / 4
     }
 
 

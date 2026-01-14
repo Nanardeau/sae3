@@ -29,25 +29,28 @@
             echo "Erreur de connexion : " . $e->getMessage();
         }
         $nomPrenom = $bdd->query("SELECT nom, prenom FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
-        if(array_key_exists("adrModif", $_SESSION)){
-            if($_SESSION["adrModif"] == 1){
-                $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse  WHERE idAdresse = '".$_SESSION["idAdresse"]."'")->fetch();
-                $_SESSION["adrModif"] = 0;
+        // if(array_key_exists("adrModif", $_SESSION)){
+        //     if($_SESSION["adrModif"] == 1){
+        //         $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse  WHERE idAdresse = '".$_SESSION["idAdresse"]."'")->fetch();
+        //         $_SESSION["adrModif"] = 0;
                 
-            }
+        //     }
 
-            else{
-                $_SESSION["adrModif"] = 0;
-                $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-                $_SESSION["idAdresse"] = $infosAdresse["idadresse"];
-            }
-        }
-        else{
+        //     else{
+        //         $_SESSION["adrModif"] = 0;
+        //         $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+        //         $_SESSION["idAdresse"] = $infosAdresse["idadresse"];
+        //     }
+        // }
+        // else{
             
-            $_SESSION["adrModif"] = 0;
-            $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-            $_SESSION["idAdresse"] = $infosAdresse["idadresse"];            
-        }
+        //     $_SESSION["adrModif"] = 0;
+
+                    $infosAdresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
+                   
+
+          
+        // }
 
     $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
     $idPanier = $panier["idpanier"];
@@ -64,10 +67,21 @@
 <body>
 
 
+    <?php
 
-<?php include "./includes/headerCon.php"?>
+    if(isset( $_SESSION["codeCompte"])){
+        $idUser =  $_SESSION["codeCompte"];
+        include 'includes/headerCon.php' ;
+    }else{
+        include 'includes/header.php';
+    }
+    ?>
 
-<main>
+    <main>
+        <?php
+            include 'includes/menu_cat.php';
+            include 'includes/menuCompte.php';
+        ?>
 
     <?php   
     if($_POST){
@@ -82,6 +96,9 @@
         ]);
     }
     ?>
+    <nav class="ariane">
+        <a class="arianeItem" href="index.php">Accueil > </a><a class="arianeItem" href="Catalogue.php">Catalogue > </a><a class="arianeItem" href="Panier.php">Panier</a>
+    </nav>
     <div class="conteneur">
         <div class="ligneSection">
             <div class="colonne">
@@ -143,7 +160,7 @@
                             <div class="labelInput">
                                 <label for="complement">Complément d'adresse</label>
                                 <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse["complementadresse"]?>" disabled />
-                                <input type="submit" class="btnJaune" value="Valider" hidden/>
+                                <p class="btnJaune" value="Valider" onclick="validerAdresse()" id="validerAdr" hidden>Valider</p>
                             </div>
                         </div>
                     </form>
@@ -294,6 +311,7 @@
         window.location = "Panier.php";
     }
     function validerPaiement(evt){
+
         let adrValide = true;
         let banqueValide = true;
         let champsAdresse = document.querySelectorAll("#adresseLivraison :required");
@@ -306,6 +324,10 @@
 
             }
         }
+        //Il faut que les champs soient modifiables pour être pris en compte dans le $_POST
+        for(let i = 0 ; i < champsAdresse.length ; i++){
+            champsAdresse[i].removeAttribute("disabled");
+        }
         for(let i = 0 ; i < champsBanque.length ; i++){
             if(champsBanque[i].value == ""){
                 banqueValide = false;
@@ -317,7 +339,7 @@
             console.log("non");
         }
         else{
-            document.getElementById("formulaireBanque").submit();           
+            document.getElementById("formulaireAdr").submit();           
            
         }
 
@@ -329,6 +351,13 @@
         }
         btnValiderAdr.removeAttribute("hidden");
         
+    }
+    function validerAdresse(){
+        let champsAdresse = document.querySelectorAll("#adresseLivraison input");
+        for(let i = 0 ; i < champsAdresse.length ; i++){
+            champsAdresse[i].setAttribute("disabled", null);
+        }
+        btnValiderAdr.setAttribute("hidden", null);        
     }
     /*
     function submitTout(){

@@ -17,9 +17,25 @@
         </a>
         
         <!--<img src="" alt="logo front">-->
-        <!--<input type="text" placeholder="Rechercher">-->
+        
+        <form action="Recherche.php" method="post" enctype="multipart/form-data" class="tab-only">
+            <input type="search" id="search" name="q" placeholder="Rechercher" data-search>
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search">
+                    <path d="m21 21-4.34-4.34"/>
+                    <circle cx="11" cy="11" r="8"/>
+                </svg>
+            </button>
+        </form>
         <nav>
-            <a href="ConnexionClient.php">
+            
+            <button popovertarget="Recherche" class="mobile-only">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search">
+                        <path d="m21 21-4.34-4.34"/>
+                        <circle cx="11" cy="11" r="8"/>
+                </svg>
+            </button>
+            <a href="ConnexionClient.php" ">
                 <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.3333 12.6667C13.555 12.6667 16.1667 10.055 16.1667 6.83333C16.1667 3.61167 13.555 1 10.3333 1C7.11167 1 4.5 3.61167 4.5 6.83333C4.5 10.055 7.11167 12.6667 10.3333 12.6667Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M19.6667 21.9998C19.6667 19.5245 18.6833 17.1505 16.933 15.4002C15.1826 13.6498 12.8087 12.6665 10.3333 12.6665C7.85798 12.6665 5.48401 13.6498 3.73367 15.4002C1.98333 17.1505 1 19.5245 1 21.9998" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -35,7 +51,21 @@
                 <p class="tab-only">Mon Panier</p>
             </a>
         </nav>
+
+        <div popover="auto" id="Recherche" class="src-tel">
+            
+                <form action="Recherche.php" method="post" enctype="multipart/form-data">
+                    <input type="search" id="search" name="q" placeholder="Rechercher" data-search>
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search">
+                            <path d="m21 21-4.34-4.34"/>
+                            <circle cx="11" cy="11" r="8"/>
+                        </svg>
+                    </button>
+                </form>
+        </div>
         
         <!--<input type="button" name="button" value="Se connecter">
         <input type="button" name="button" value="Mon Panier">-->
+        <script src="../js/searchBar.js"></script>
 </header>

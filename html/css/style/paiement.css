@@ -120,6 +120,7 @@ input:user-invalid + span, input.invalid + span {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
 }
 .bouton:hover {
@@ -145,11 +146,42 @@ header {
 header .mobile-only {
   display: none;
 }
+header form {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  margin-left: auto;
+}
+header form input[type=search] {
+  padding: 1em;
+  border-radius: 40px;
+  border: none;
+  max-width: 700px;
+  width: 80%;
+  min-width: none;
+  font-size: "Mulish";
+}
+header form input[type=search]::-webkit-search-cancel-button {
+  position: relative;
+  left: -40px;
+}
+header form button {
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  height: 32px;
+  border-radius: 40px;
+  border: none;
+  background-color: rgba(128, 128, 128, 0.2);
+  position: relative;
+  left: -40px;
+}
 header .logo_alizon_front {
   width: 118px;
   height: auto;
   padding-left: 80px;
   left: 0;
+  margin: 20px;
 }
 header nav {
   margin-left: auto;
@@ -182,6 +214,10 @@ header nav svg {
   header .mobile-only {
     display: block;
     padding-left: 20px;
+  }
+  header button {
+    background: none;
+    border: none;
   }
   header nav svg {
     padding-right: 30px;
@@ -333,6 +369,24 @@ header nav svg {
   }
 }
 
+.src-tel {
+  position: absolute;
+  bottom: 60%;
+  background: none;
+  border: none;
+  width: auto;
+  overflow: hidden;
+}
+.src-tel form {
+  margin: 0 auto;
+  width: 100%;
+  left: 30px;
+  position: relative;
+}
+.src-tel::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
 .burger-menu {
   margin-left: 20px;
 }
@@ -391,6 +445,46 @@ header nav svg {
   margin-left: 1rem;
 }
 
+.overlayCompte {
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.overlayContentCompte {
+  z-index: 100;
+  position: fixed;
+  right: 125px;
+  height: 15em;
+  background-color: #D1ECF8;
+  border: solid #064082;
+}
+@media screen and (max-width : 428px) {
+  .overlayContentCompte {
+    right: 70px;
+  }
+}
+.overlayContentCompte nav {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.overlayContentCompte nav hr {
+  width: 95%;
+}
+.overlayContentCompte nav a {
+  padding: 1.5em;
+  color: black;
+  text-decoration: none;
+}
+.overlayContentCompte nav a:hover {
+  color: #6CA6E9;
+}
+
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
@@ -400,6 +494,7 @@ header nav svg {
   background-color: #FCB66B;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   border: 0px;
   color: black;
@@ -427,6 +522,7 @@ header nav svg {
 }
 
 .overlayContentCatMob {
+  z-index: 100;
   position: fixed;
   background: white;
   text-align: left;
@@ -543,26 +639,42 @@ header nav svg {
   flex-direction: column;
 }
 
-/*###############################
-#        Overlay Achat          #
-################################*/
-[popover]:popover-open::backdrop {
-  background-color: rgba(0, 0, 0, 0.3);
+.ariane {
+  margin-top: 30px;
+  margin-left: 1em;
+}
+.ariane .arianeItem {
+  font-size: 20px;
+  color: rgb(122, 122, 122);
+}
+.ariane .arianeItem:active {
+  color: black;
 }
 
-[popover]:popover-open {
-  border-radius: 1em;
-  border-width: 0.1em;
-  width: 1000px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+#retour {
+  display: none;
 }
-@media screen and (max-width : 428px) {
-  [popover]:popover-open .bouton {
-    height: 2.5em;
-  }
+
+.label-retour {
+  cursor: pointer;
+  font-family: "Mulish";
+  width: 120px;
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  margin-top: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
+}
+
+.btn-retour {
+  display: flex;
+  align-items: end;
+  text-decoration: underline;
+  margin: 20px;
+  color: #A1A1A1;
+  font-size: 20px;
 }
 
 body {
@@ -811,6 +923,7 @@ div.row {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  border: none;
   cursor: pointer;
   background-color: #FF4444;
   padding: 1.5rem;

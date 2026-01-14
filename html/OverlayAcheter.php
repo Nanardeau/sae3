@@ -92,7 +92,6 @@ $bdd->query('set schema \'alizon\'');
                         <button class="btnJaune" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $codeProduit ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&page=Catalogue.php';">Ajouter au panier</button>
                     </div>
                 </div>
-                
             </div>
         </section>
     </main>
@@ -100,9 +99,9 @@ $bdd->query('set schema \'alizon\'');
     <script>
         function fermerPopUpPanier(){
             window.location.href = "index.php";
-        }
-
+        }   
     </script>
+
 </body>
 
 </html>

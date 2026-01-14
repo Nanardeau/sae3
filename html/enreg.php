@@ -47,11 +47,11 @@
     $res = $bdd->query("SELECT * FROM alizon.Client WHERE pseudo = '".$pseudo."'")->fetch();
     $resMail = $bdd->query("SELECT * FROM alizon.Client WHERE email = '".$mail."'")->fetch();
     if($res){
-        header('location:CreerCompte.php?erreur=pseudo');
+        exit(header('location:CreerCompte.php?erreur=pseudo'));
         die();
     }
     else if($resMail){
-        header('location:CreerCompte.php?erreur=mail');
+        exit(header('location:CreerCompte.php?erreur=mail'));
         die();
     }
     else{
@@ -77,6 +77,7 @@
                 ":complement" => $complement,
                 ":numAppart" => $numApt
             ));
+            $idAdresse = $bdd->lastInsertId();
         }
         else{
             $idAdresse = -1;
@@ -87,8 +88,6 @@
         $res = ($bdd->query("SELECT codeCompte FROM alizon.Client WHERE pseudo = '".$pseudo."'")->fetch());
         $codeCompte = $res["codecompte"];
         if($idAdresse > 0){
-            $res = ($bdd->query("SELECT idAdresse FROM alizon.Adresse ORDER BY idAdresse DESC LIMIT 1")->fetch());
-            $idAdresse = $res["idadresse"];
 
             $stmt = $bdd->prepare("INSERT INTO alizon.AdrFactCli(codeCompte, idAdresse) VALUES (:codeCompte, :idAdresse)");
             $stmt->execute(array(
@@ -121,7 +120,7 @@
             ":photo" => $chemin,
             ":client" => $codeCompte
         ));
-        $_SESSION["connecte"] = 1;
+
         $_SESSION["codeCompte"] = $codeCompte;
     }
 
