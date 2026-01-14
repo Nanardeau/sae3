@@ -58,9 +58,9 @@ $bdd->query('set schema \'alizon\'');
     }
 
     $numCommande = $_GET['numCommande']; #recuperer num de commande
-    $req = $bdd->prepare("SELECT dateCom from Commande where numCom = 1");
+    $req = $bdd->prepare("SELECT dateCom from Commande where numCom = :numCom");
     $rep= $req->execute(
-        
+        [":numCom" => $numCommande]
     );
     $truc = $rep->fetch();
     
