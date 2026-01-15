@@ -3,9 +3,9 @@
 @use "../tools/mixin/com" as *;
 @use 'sass:color';
 
-body{
-    padding:0;
-    margin:0;
+main{
+    display:flex;
+    justify-content: center;
 }
 
 article{
@@ -20,12 +20,18 @@ article{
 }
 .ligneSection{
     display:flex;
+    justify-content:center;
+    
     padding:1rem;
     @media #{$mobile}{
         flex-direction:column;
         justify-content: flex-start;
         align-items:flex-start;
     }
+    #adresseLivraison{
+        width:100%;
+    }
+
     section{
         width:100%;
         margin: 5rem 0;
@@ -36,7 +42,11 @@ article{
     }
     section:nth-child(1){
         article{
+            width:100%;
             padding:3em;
+            .conteneur{
+                width:100%;
+            }
         }
     }
     section:nth-child(2){
@@ -54,12 +64,14 @@ article{
 .ligneInput{
 
     display:flex;
+
     margin-bottom:1em;
     .labelInput:nth-child(1){
         margin-right:2em;
+        width:30%;
     }
     .labelInput:nth-child(2){
-        width:60%;
+        width:100%;
     }
     #codePostal{
         width:6em;
@@ -67,6 +79,7 @@ article{
     #numApt{
         width:6em;
     }
+
 
 }
 
@@ -278,4 +291,17 @@ div {
     &:hover{
         background-color: color.change($noir, $lightness: 70%) ;
     }
+}
+.conteneur{
+    width:60%;
+}
+.ariane {
+    display:flex;
+    justify-content: center;
+    .arianeItem{
+        font-size:0;
+    }
+    align-self:flex-start;
+
+
 }
