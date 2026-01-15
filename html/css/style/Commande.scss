@@ -139,3 +139,10 @@ section{ //pour les svg de l'avancement commande
     }
     
 }
+.statut p, .statut img, .statut h2{
+    margin-left:20px;
+}
+.statut p{
+    font-size:$PetTitle;
+
+}

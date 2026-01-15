@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"]) || $_GET['numCom'] == null){
-            header("location:index.php");
-}
+// if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"]) || $_GET['numCom'] == null){
+//             header("location:index.php");
+// }
+$socket = fsockopen("127.0.0.1", 8080);
 
 $codeCompte = $_SESSION["codeCompte"];
 $numCom = $_GET['numCom'];
@@ -18,7 +19,6 @@ $port = getenv('PGPORT');
 $dbname = getenv('PGDATABASE');
 $user = getenv('PGUSER');
 $password = getenv('PGPASSWORD');
-
 
 // Connexion à PostgreSQL
 
@@ -38,8 +38,47 @@ try {
         header('Location: http://localhost:8888/index.php');
         exit();
 }
+
 $bdd->query('set schema \'alizon\'');
+$data = '';
+$res = $bdd->query("SELECT bordereau FROM alizon.Commande WHERE numCom = ".$numCom)->fetch();
+$bordereau = $res["bordereau"];
+fwrite($socket, "CONN test0 mdp0\n");
+while (($data = fread($socket, 24 )) == '\n' ) {
+    $data .= fread($socket, 24 );
+}
+
+$data = '';
+fwrite($socket, "SETBDR ".$bordereau);
+
+
+$data = fread($socket, 1024);
+
+$final = fread($socket, 1024);
+//var_dump($etape);
+$etape = substr($final, strlen("Étape "), 1);
+
+//fwrite($socket, "GETETAPE\n");
+//$etape = fread($socket, 1024);
+
+//if($data == "CONNECTÉ"){
+
+//echo $bordereau;
+    //fwrite($socket, "SETBDR ".$bordereau. "\n");
+    // while (($data = fread($socket, 1024 )) == '\n' ) {
+    //     $data .= fread($socket, 1024 );
+    // }
+
+    //fwrite($socket, "BYE BYE\n");
+//fclose($socket);
+    // fwrite($socket, "GETETAPE\n");
+    // $etape = fread($socket, 64);
+    // $etape = substr($etape, strlen("Étape "), 1);
+ //   var_dump($etape);
+//}
 ?>
+
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -112,7 +151,7 @@ $bdd->query('set schema \'alizon\'');
         </div>
         <section>
             <?php
-            $etape = 9; 
+            
             switch ($etape) { #en fonction de l'étape recue par delivraptor, afficher l'avancement
                 case 1:
                     ?>
@@ -697,6 +736,76 @@ $bdd->query('set schema \'alizon\'');
                 }
             ?>
         </section>
+        <?php if($etape == 9){
+            $statutColis = trim(substr($final, strlen("Étape 9 STATUT COLIS : " ),strlen($final) - strlen("Étape 9 STATUT COLIS : ")));
+            
+            ?>
+            <div class="statut">
+                <?php if($statutColis == "COLOK" || $statutColis == "COLOKABS"){?>
+                <h2>Votre commande a été livrée</h2> 
+                <?php
+                }
+                else{?>
+                <h2 style="color:red">Votre commande n'a pas été livrée</h2>
+
+                <?php
+                }
+            
+            
+
+            //echo $statutColis;
+            switch($statutColis){
+            
+            case "COLOK":
+                    ?><p>Colis remis en mains propres.</p>
+                    <?php
+                    break;
+            case "COLOKABS":
+                ?><p>Colis remis en votre absence, votre livreur a pris une photo.</p><?php
+                fwrite($socket, "GETPHOTO\r\n");
+                //RÉCUP IMAGE   
+                exec("rm ./img/boitelettre2.png");  
+                $fin = false;
+                while($fin == false){
+                    $data = fread($socket, 8192);
+                    if(strlen($data) == 8192){
+                        //$tailleTot += strlen($data);
+                        //echo strlen($data);
+                        //$_SESSION["boucle"] = $_SESSION["boucle"] + 1;
+                        //var_dump($data);
+                        file_put_contents("./img/boitelettre2.png", $data, FILE_APPEND);
+                        $data = '';
+                    }
+                    else{
+                        $fin = true;
+                        file_put_contents("./img/boitelettre2.png", $data, FILE_APPEND);
+                        fclose($socket);
+                    }
+                    
+
+                }
+                echo '<img src="data:image/png;base64,'.base64_encode(file_get_contents("./img/boitelettre2.png")).'" />';
+                break;
+            case "COLDMG":
+                ?><p>Votre colis a été endommagé, vous avez décidé de le refuser. Contactez votre livreur pour faire un recours.</p>
+                <?php
+                break;
+            case "COLJSP":
+                ?><p>Vous avez refusé votre colis, contactez votre livreur pour faire un recours.</p><?php
+                break;
+            case "COLADR":
+                ?><p>L'adresse de livraison indiquée était erronnée. Contactez votre livreur pour choisir un point de dépôt.</p><?php
+                break;
+            case "COLCMD":
+                ?><p>Vous avez refusé votre colis car il ne correspondait pas à la commande, veuillez contacter le support pour faire un recours.</p><?php
+                break;
+
+                
+        }
+            
+            ?>
+        </div>
+        <?php }?>
         <div class="titre-cat">
             <h1>Produits</h1>
             <div class="separateur"></div>
@@ -742,6 +851,7 @@ $bdd->query('set schema \'alizon\'');
                 ?>
             </tbody>
         </table>
+        <?php fwrite($socket, "BYE BYE\n"); fclose($socket)?>
     </main>
     <?php include "includes/footer.php"?>
 </body>

@@ -82,6 +82,7 @@ if(array_key_exists("banque", $_GET)){
     ));
 
     $numCom = $bdd->lastInsertId();
+    $_SESSION["numCom"] = $numCom;
     $prodUnitPan = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
     foreach($prodUnitPan as $prodUnit){
         $prixTTCProd = $bdd->query("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
@@ -101,6 +102,19 @@ if(array_key_exists("banque", $_GET)){
     $stmt = $bdd->prepare("DELETE FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'");
     $stmt->execute();
     unset($_SESSION["idPanier"]);
+    
+    //LIEN DELIVRAPTOR
+    
+    $socket = fsockopen("127.0.0.1", 8080);
+    fwrite($socket, "CONN test0 mdp0");
+    $data = fread($socket, 1024);
+    var_dump($data);
+    fwrite($socket, "INIT ".$_SESSION["numCom"]);
+    $bordereau = fread($socket, 100);
+    echo $bordereau;
+    $stmt = $bdd->prepare("UPDATE alizon.Commande SET bordereau = ".$bordereau." WHERE numCom = ".$numCom);
+    $stmt->execute();
+    fclose($socket);
     exit(header("location:paiementFini.php"));
 
 
