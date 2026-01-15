@@ -18,7 +18,7 @@
                 echo "<ul class='souscat-ul'>";
                 foreach ($listSousCats as $libSousCat) {
                     $sousCatCurr = $libSousCat['libsouscat'];
-                    echo "<li><a href='Categorie.php?cat=".$catCurr."'>" . $sousCatCurr . "</a></li>";
+                    echo "<li><a href='Categorie.php?cat=".$sousCatCurr."'>" . $sousCatCurr . "</a></li>";
                 }
                 echo "</ul>";
             }

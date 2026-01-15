@@ -52,7 +52,7 @@ else{
     echo "ya un panier";
 }
 
-
+echo "Salut : " . $_GET["codeProd"];
 #Vérifier si il y a déjà un exemplaire dans le panier
 $prodPanier = $bdd->query("SELECT codeProduit, qteProd FROM alizon.ProdUnitPanier WHERE idPanier = '".$_SESSION["idPanier"]."' AND codeProduit = '".$_GET["codeProd"]."'")->fetch();
 if($prodPanier != false){

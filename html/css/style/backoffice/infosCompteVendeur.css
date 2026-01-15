@@ -521,8 +521,8 @@ input:user-invalid + span, input.invalid + span {
 .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #064082;
   color: white;
@@ -973,8 +973,8 @@ nav div > ul li:hover .souscat-ul {
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #FCB66B;
   color: white;
@@ -1301,8 +1301,8 @@ input:user-invalid + span, input.invalid + span {
 .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #064082;
   color: white;
@@ -1753,8 +1753,8 @@ nav div > ul li:hover .souscat-ul {
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #FCB66B;
   color: white;
@@ -2015,8 +2015,8 @@ form input {
 form input::file-selector-button {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #064082;
   color: white;
@@ -2067,8 +2067,8 @@ form .btnSec {
 .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #064082;
   color: white;
@@ -2132,8 +2132,8 @@ aside nav {
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #064082;
   color: white;
@@ -2296,8 +2296,8 @@ input[type=file] {
 .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #CD4B22;
   color: white;
@@ -2315,8 +2315,8 @@ input[type=file] {
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #6CA6E9;
   color: white;

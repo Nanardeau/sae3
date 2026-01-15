@@ -385,8 +385,8 @@ main .boutton {
 main .boutton button {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #CD4B22;
   color: white;
@@ -408,8 +408,8 @@ main .boutton button:active {
 main .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #6CA6E9;
   color: white;

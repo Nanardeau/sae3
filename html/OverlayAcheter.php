@@ -46,14 +46,14 @@ $bdd->query('set schema \'alizon\'');
         include 'includes/header.php';
     }
 
-    $codeProduit = $_GET["codeProd"];
+    $codeProduit = isset($_GET["codeProd"]) ? $_GET["codeProd"] : null;
 
-    $req= $bdd->prepare("SELECT * FROM Produit WHERE codeProduit = :codeproduit");
-    $req->execute([':codeproduit'=> $codeProduit]);
+    $req = $bdd->prepare("SELECT * FROM Produit WHERE codeProduit = :codeproduit");
+    $req->execute([':codeproduit' => $codeProduit]);
     $rep = $req->fetch(PDO::FETCH_ASSOC);
 
     if (!$rep) {
-        // produit non trouvé — définir des valeurs par défaut pour éviter les erreurs
+        // produit introuvable — définir des valeurs par défaut pour éviter les erreurs
         $img = '';
         $libelProduit = 'Produit introuvable';
     } else {
@@ -93,7 +93,7 @@ $bdd->query('set schema \'alizon\'');
                     <div class="boutons">
                         
                         <?php if(isset($_SESSION["codeCompte"])):?>
-                        <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</a>
+                        <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</button>
                         <?php endif?>
                         <button class="btnJaune" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $codeProduit ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&page=Catalogue.php';">Ajouter au panier</button>
                     </div>

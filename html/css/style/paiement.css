@@ -115,8 +115,8 @@ input:user-invalid + span, input.invalid + span {
 .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #064082;
   color: white;
@@ -525,8 +525,8 @@ nav div > ul li:hover .souscat-ul {
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #FCB66B;
   color: white;
@@ -954,8 +954,8 @@ div.row {
 .ligneArtPaye .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #064082;
   color: white;

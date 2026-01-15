@@ -33,6 +33,7 @@ if ($id <= 0) die("Produit introuvable.");
 $produit = $bdd->query("SELECT * FROM Produit WHERE codeProduit = $id")->fetch(PDO::FETCH_ASSOC);
 if (!$produit) die("Produit introuvable !");
 
+$codeProduit = $_GET['id'];
 
 $sqlAvis = "SELECT A.*, C.prenom, C.nom,
         ARRAY(
@@ -145,8 +146,8 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                 <option value="1000000">1000000</option>
                         </select>
                     </div>
-                    <a class="add-to-cart" href="OverlayAcheter.php?codeProd=<?php echo $id?>">Ajouter au panier</a>
-                    <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</a>
+                    <button class="btnJaune" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $codeProduit ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&page=Catalogue.php';">Ajouter au panier</button>
+                    <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</button>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
                 <?php if(isset($_SESSION["codeCompte"])):?>
@@ -286,6 +287,6 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
     </main>
 
     <?php include 'includes/footer.php'; ?>
-
+    <script src="js/achat.js"></script>
 </body>
 </html>

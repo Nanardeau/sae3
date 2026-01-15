@@ -1,8 +1,8 @@
 @use "../tools/vFront" as *;
 @use "sass:math";
 
-$wCard:240px;
-$hCard: 390px;
+$wCard:230px;
+$hCard: 500px;
 $hCard-mob: 300px;
 
 .card{
@@ -22,29 +22,47 @@ $hCard-mob: 300px;
         
         height: $hCard-mob;
     }
+    .description{
+        grid-area: 2/1/2/4;
+        font-size: 0.9rem;
+        color: black;
+        @media #{$mobile}{
+            display:none;
+        }
+    }
     figure{
         grid-area: 1/1/2/3;
         
         margin:0;
         img{
-            width: 100%;
-            
+            width: $wCard - 5px;
             background-color: white;
             //max-height: 180px;
-            height: 180px;
+            height: $wCard - 5px;
             object-fit: cover;
             border-radius: math.div($radius,2);
         }
         figcaption{
             margin-top : 10px;
-            
+            font-size:large;
+            font-weight: bold;
         }
         
+    }
+    .etoiles {
+        position: relative;
+        margin-top: 5px;
+        display:flex;
+        flex-direction: row;
+        grid-area: 1/2/1/1;
+        top: 35px;
     }
     .prix{
         grid-area: 2/1/3/2;
         align-content: flex-end;
         margin:0;
+        font-weight: bold;
+        font-size: 16px;
         
     }
     div{
@@ -87,4 +105,14 @@ $hCard-mob: 300px;
             }
         }
     }
+}
+
+
+.etoile {
+    color: #ccc;
+    font-size: 1.5rem;
+}
+
+.etoile.pleine {
+    color: #f5b301;
 }

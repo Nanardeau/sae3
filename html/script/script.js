@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let lastScroll = 0;
 let ticking = false;
+
 const header = document.querySelector("header");
 const navbar = document.querySelector("nav");
 
