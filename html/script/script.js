@@ -34,6 +34,7 @@ function closeOverlayMobile() {
 }
 
 
+
 window.onclick = function(event) {
   const overlay = document.getElementById("overlayMenuCat");
   if (event.target === overlay) {
@@ -54,6 +55,7 @@ window.onclick = function(event) {
     closeOverlayCompte();
   }
 };
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -127,7 +129,14 @@ function updateStars(note) {
 stars.forEach(star => {
 
     star.addEventListener('click', () => {
-        noteInput.value = star.dataset.value;
+        const valeurCliquee = star.dataset.value;
+
+        // Si on clique sur la même note → reset
+        if (noteInput.value === valeurCliquee) {
+            noteInput.value = 0;
+        } else {
+            noteInput.value = valeurCliquee;
+        }
         updateStars(noteInput.value);
     });
 
@@ -159,6 +168,25 @@ setInterval(nextSlide, 4000);
 
 
 
+//Preview des images avant upload d'un produit
+document.getElementById('photoProd').addEventListener('change', function (e) {
+    const preview = document.getElementById('preview');
+    preview.innerHTML = ''; // reset
 
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+        alert('Le fichier doit être une image');
+        e.target.value = '';
+        return;
+    }
+
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.onload = () => URL.revokeObjectURL(img.src); // nettoyage mémoire
+
+    preview.appendChild(img);
+});
 
 

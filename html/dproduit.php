@@ -176,7 +176,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     </div>
 
                     <input type="hidden" name="codeProduit" value="<?= $produit['codeproduit'] ?>">
-                    <input type="hidden" name="noteProd" id="noteProd" value="0">
+                    <input type="hidden" name="noteProd" id="noteProd" value="1">
 
                 </form>
             <?php endif?>
@@ -207,6 +207,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <div class="etoiles">
                         <?php for ($i = 1; $i <= 5; $i++): ?>
                             <span class="etoile <?= $i <= round($moyenneNote) ? 'pleine' : '' ?>">★</span>
+                            
                         <?php endfor; ?>
                     </div>
                     <div class="total">

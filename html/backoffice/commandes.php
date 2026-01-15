@@ -39,6 +39,10 @@ try {
 }
 $bdd->query('set schema \'alizon\'');
 
+$sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
+$stmt = $bdd->query($sql);
+$vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
 ?>
 <html lang="fr">
@@ -53,6 +57,7 @@ $bdd->query('set schema \'alizon\'');
     <?php include("../includes/backoffice/header.php"); ?>
     <main>
     <?php include '../includes/backoffice/menu.php'; ?>
+    <?php include '../includes/backoffice/menuCompteVendeur.php'; ?>
     <div class="right-content">
         <h1>Vos commandes</h1>
         
@@ -140,5 +145,6 @@ $bdd->query('set schema \'alizon\'');
     </div>
     </main>
     <?php include "../includes/backoffice/footer.php"?>
+    <script src="../js/overlayCompteVendeur.js"></script>
 </body>
 </html>

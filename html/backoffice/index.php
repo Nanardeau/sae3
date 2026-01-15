@@ -35,6 +35,10 @@ try {
     echo "❌ Erreur de connexion : " . $e->getMessage();
 }
 
+$sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
+$stmt = $bdd->query($sql);
+$vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <html lang="fr">
 <head>
@@ -47,6 +51,7 @@ try {
 <body>
     <?php include '../includes/backoffice/header.php';?>
     <main><?php
+        include '../includes/backoffice/menuCompteVendeur.php';
     $bdd->query("SET SCHEMA 'alizon'"); ?>
     <?php include '../includes/backoffice/menu.php'; ?>
     <div class="right-content"> 
@@ -198,5 +203,7 @@ try {
     </div>
     </main>
     <?php include '../includes/backoffice/footer.php'; ?>
+    <!-- <script src="../js/preview-img.js"></script> -->
+    <script src="../js/overlayCompteVendeur.js"></script>
 </body>
 </html>

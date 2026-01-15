@@ -37,6 +37,12 @@ if(!isset($_SESSION["codeCompte"])){
            
 }
 $bdd->query('set schema \'alizon\'');
+
+$codeCompte = $_SESSION["codeCompte"];
+
+$sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
+$stmt = $bdd->query($sql);
+$vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <html lang="fr">
@@ -53,7 +59,10 @@ $bdd->query('set schema \'alizon\'');
         $code_produit=$_GET["codeProduit"];?>
     
 <main>
-    <a href="index.php" class="btn-retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</a>
+    <?php include '../includes/backoffice/menuCompteVendeur.php'; ?>
+    <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
+    <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
+    <!-- <a href="#" onclick="history.back(); class="btn-retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</a> -->
     <?php if($erreur == "succes"){
                 echo "<h2 style=\"color:green\">Produit modifié avec succès</h2>";
             }
@@ -153,34 +162,46 @@ $bdd->query('set schema \'alizon\'');
     $info = $bdd->query("SELECT * FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
     $res=$info["qtestock"];
     ?>
-    <input type="number" name="qteStock" placeholder="Nombre de produit en stock" value="<?php echo $res; ?>" id="qteStock"/> 
+    <input type="number" name="qteStock" min="0" placeholder="Nombre de produit en stock" value="<?php echo $res; ?>" id="qteStock"/> 
+    <span class="cache">La quantité de stock ne peut pas être négative</span>
     <label for="prix">Seuil d'alerte</label>
     <?php
     $res=$info["seuilalerte"];
     
     ?>
-    <input type="number" name="seuil" placeholder="Seuil d'alerte du produit" value="<?php echo $res; ?>" id="seuil" required/>
+    <input type="number" name="seuil" min="0" placeholder="Seuil d'alerte du produit" value="<?php echo $res; ?>" id="seuil" required/>
+    <span class="cache">Le seuil d'alerte ne peut pas être négatif</span>
     <label for="photoProd" class="pObl">Photo du Produit</label>
-    <input type="file" name="photo" id="photoProd" accept="image/*"/>
+    <div id="dropZone">
+        <span>Glissez une image ici ou cliquez</span>
+        <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
+    </div>
+    <!-- <input type="file" name="photo" id="photoProd" accept="image/*"/> -->
+    <div id="preview">
+
+    </div>
     <?php
-    $hauteur=$info["hauteur"];
-    $largeur=$info["largeur"];
-    $longueur=$info["longueur"];
+    $spe1=$info["spe1"];
+    $spe2=$info["spe2"];
+    $spe3=$info["spe3"];
     $prix=$info["prixht"];
     ?>
-    <h3> Taille Produit </h3>
+    <h3> Spécificités du Produit </h3>
     <div class="taille">
             <div class="labelInput">
-                <label for="tailleHaut">Hauteur</label>
-                <input type="text" name="tailleHaut" placeholder="en mètre" value="<?php echo $hauteur; ?>" id="tailleHaut"/>
+                <label for="spe1">Spécificité 1</label>
+                <input type="text" name="spe1" placeholder="nomenclature a respecter : NOMDELASPE:Descritption" value="<?php echo $spe1; ?>" id="spe1"/>
+                <span class="cache">La spécificité 1 doit être au format NOMDELASPE:Description</span>
             </div>
             <div class="labelInput">
-                <label for="tailleLarg">Largeur</label>
-                <input type="text" name="tailleLarg" placeholder="en mètre" value="<?php echo $largeur; ?>" id="tailleLarg"/>
+                <label for="spe2">Spécificité 2</label>
+                <input type="text" name="spe2" placeholder="nomenclature a respecter : NOMDELASPE:Descritption" value="<?php echo $spe2; ?>" id="spe2"/>
+                <span class="cache">La spécificité 2 doit être au format NOMDELASPE:Description</span>
             </div>
             <div class="labelInput">
-                <label for="tailleLong">Longueur</label>
-                <input type="text" name="tailleLong" placeholder="en mètre" value="<?php echo $longueur; ?>" id="tailleLong"/>
+                <label for="spe3">Spécificité 3</label>
+                <input type="text" name="spe3" placeholder="nomenclature a respecter : NOMDELASPE:Descritption" value="<?php echo $spe3; ?>" id="spe3"/>
+                <span class="cache">La spécificité 3 doit être au format NOMDELASPE:Description</span>
             </div>
     </div>
     <label for="prix">Prix</label>
@@ -190,5 +211,66 @@ $bdd->query('set schema \'alizon\'');
         
 </main>
 <?php include("../includes/backoffice/footer.php"); ?>
+<script src="../js/preview-img.js"></script>
+<script>
+    let qtestock = document.getElementById("qteStock");
+    let seuil = document.getElementById("seuil");
+
+    qtestock.addEventListener("focusout", verfifQte);
+    seuil.addEventListener("focusout", verfifQte);
+
+    function verfifQte(evt){
+        if(evt.type === "focusout"){
+            if(parseInt(evt.target.value) < 0){
+                evt.target.classList.add("invalid");
+            }else{
+                evt.target.classList.remove("invalid");
+        }
+    }
+
+    let spe1 = document.getElementById("spe1");
+    let spe2 = document.getElementById("spe2");
+    let spe3 = document.getElementById("spe3");
+    let formatSpe = /^([A-Za-zÀ-ÖØ-öø-ÿ0-9\s-]{1,}):([A-Za-zÀ-ÖØ-öø-ÿ0-9\s,.-]{1,})$/;
+    spe1.addEventListener("focusout", verifFormatSpe);
+    spe2.addEventListener("focusout", verifFormatSpe);
+    spe3.addEventListener("focusout", verifFormatSpe);
+
+    let validationForm = document.getElementById("creerProduit");
+    validationForm.addEventListener("click", fullverif);
+
+    function verifFormatSpe(evt){
+        if(evt.type === "focusout"){
+            if((!formatSpe.test(evt.target.value)) && evt.target.value !== ""){
+                // alert("Le format de la spécificité 1 n'est pas respecté. Veuillez respecter le format NOMDELASPE:Description");
+                // spe1.value = NULL;
+                evt.target.classList.add("invalid");
+            }else{
+                evt.target.classList.remove("invalid");
+            }
+        }
+    }
+
+    function fullverif(evt){
+        if(spe1.value !== "" && !formatSpe.test(spe1.value)){
+            evt.preventDefault();
+            spe1.classList.add("invalid");
+        }
+        if(spe2.value !== "" && !formatSpe.test(spe2.value)){
+            evt.preventDefault();
+            spe2.classList.add("invalid");
+        }
+        if(spe3.value !== "" && !formatSpe.test(spe3.value)){
+            evt.preventDefault();
+            spe3.classList.add("invalid");
+        }else{
+            spe1.classList.remove("invalid");
+            spe2.classList.remove("invalid");
+            spe3.classList.remove("invalid");
+
+        }
+    }
+</script>
+<script src="../js/overlayCompteVendeur.js"></script>
 </body>
 </html>

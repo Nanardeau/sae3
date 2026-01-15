@@ -39,6 +39,10 @@
         $_SESSION["mdpValide"] = 0;
     }
 
+$sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
+$stmt = $bdd->query($sql);
+$vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <html lang="fr">
@@ -292,5 +296,6 @@
 
 
     </script>
+    <script src="../js/overlayCompteVendeur.js"></script>
 </body>
 </html>

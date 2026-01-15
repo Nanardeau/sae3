@@ -37,9 +37,9 @@ $origine = $_POST["origine"];
 $tarif = $_POST["tarif"];
 
 // TAILLE 
-$tailleH = $_POST["tailleHaut"] ? $_POST["tailleHaut"] : NULL;
-$tailleLong = $_POST["tailleLong"] ? $_POST["tailleLong"] : NULL;
-$tailleLarg = $_POST["tailleLarg"] ? $_POST["tailleLarg"] : NULL;
+$spe1 = $_POST["spe1"] ? $_POST["spe1"] : NULL;
+$spe2 = $_POST["spe2"] ? $_POST["spe2"] : NULL;
+$spe3 = $_POST["spe3"] ? $_POST["spe3"] : NULL;
 
 $res = $bdd->query("SELECT * FROM alizon.Produit WHERE libelleProd = '".$nomProd."'")->fetch();
 if($res){
@@ -67,7 +67,7 @@ else{
     }
     
 
-    $stmtP = $bdd->prepare("INSERT INTO alizon.Produit(libelleProd, descriptionProd, prixHT, qteStock, seuilAlerte, nomTarif, nomTVA, urlPhoto,Origine, codeCompteVendeur) VALUES (:libelleProd, :descriptionProd, :prixHT, :qteStock, :seuilAlerte,:nomTarif, :nomTVA, :photo, :origine, :codeCompteVendeur)");
+    $stmtP = $bdd->prepare("INSERT INTO alizon.Produit(libelleProd, descriptionProd, prixHT, spe1, spe2, spe3, qteStock, seuilAlerte, nomTarif, nomTVA, urlPhoto,Origine, codeCompteVendeur) VALUES (:libelleProd, :descriptionProd, :prixHT, :spe1, :spe2, :spe3, :qteStock, :seuilAlerte,:nomTarif, :nomTVA, :photo, :origine, :codeCompteVendeur)");
     
     $stmtC = $bdd->prepare("INSERT INTO alizon.Categoriser(libelleCat,codeProduit) VALUES (:libelleCat,:codeProduit)");
     
@@ -77,6 +77,9 @@ else{
             ":libelleProd" => $nomProd,
             ":descriptionProd" => $descProd,
             ":prixHT" => $prixProd,
+            ":spe1" => $spe1,
+            ":spe2" => $spe2,
+            ":spe3" => $spe3,
             ":qteStock" => $qteProd,
             ":seuilAlerte" => $seuilProd,
             ":nomTarif" => $tarif,
