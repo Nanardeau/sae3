@@ -91,6 +91,7 @@ $bdd->query('set schema \'alizon\'');
                         $prix = $article['prixttc'];
                         $prix = round($prix, 2); // Arrondir à 2 chiffre après la virgule 
                         $id = $article['codeproduit'];
+                        $p = $article;
                         $desc = $article['descriptionprod'];
 
                         include 'includes/card.php';

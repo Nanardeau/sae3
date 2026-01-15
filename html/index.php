@@ -75,22 +75,6 @@ session_start();
                 </div>
             </div>
         </section>
-
-        <section class="anonnces_produits">
-            <div class="annonce_produit">
-                <img src="img/ban_nouv.png" alt="Image voir les nouveautés">
-                <a class="bouton" href="#nouveautes">Voir les promotions</a>
-            </div>
-            <!-- <div class="annonce_produit">
-                <img src="" alt="Image voir les articles en vedettes">
-                <a class="bouton" href="">Voir les articles en vedettes</a>
-            </div> -->
-            <div class="annonce_produit ">
-                <img src="img/ban_catalogue.png" alt="Image voir les evenement en cours">
-                <a class="bouton" href="Catalogue.php">Accèder au catalogue</a>
-            </div>
-
-        </section>
         <!--
     
          <section id="Promotion" class="aff_prod">
@@ -123,7 +107,31 @@ session_start();
                 } ?>
             </article>
         </section>
-        
+
+        <section id="promotion" class="aff_prod">
+            <h1>Promotions</h1>
+                <?php
+                $produits = $bdd->query("
+                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd
+                    FROM Produit
+                    ORDER BY codeProduit DESC
+                    LIMIT 7
+                ");
+                ?>
+
+            <article class="grid-produits">
+                <?php
+                foreach ($produits as $p) {
+                    $img = $p['urlphoto'];
+                    $libArt = $p['libelleprod'];
+                    $prix = number_format($p['prixttc'], 2, ',', '');
+                    $desc = $p['descriptionprod'];
+                    $id = $p['codeproduit'];
+                    include 'includes/card.php';
+
+                } ?>
+            </article>
+        </section>
 
 
 
