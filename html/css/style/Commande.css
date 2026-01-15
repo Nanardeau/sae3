@@ -848,4 +848,13 @@ table a {
   display: flex;
   align-items: end;
   color: black;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+section div {
+  display: flex;
+  flex-direction: row;
 }/*# sourceMappingURL=Commande.css.map */

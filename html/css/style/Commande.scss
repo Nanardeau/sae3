@@ -3,6 +3,7 @@
 @use "../components/carte" as *;
 @use "../tools/mixin/com" as *;
 
+
 .titre-cat{
     display: flex;
     flex-direction: row;
@@ -92,4 +93,12 @@ table{
     align-items: end;
     color:$noir;
     
+}
+section{
+    display: flex;
+    justify-content: center;
+    div{
+        display: flex;
+        flex-direction: row;
+    }
 }
