@@ -71,9 +71,9 @@ CREATE TABLE Produit(
     nomTVA VARCHAR(20) REFERENCES TVA(nomTVA),--LIEN AVEC TVA
     prixTTC  NUMERIC,
 	noteMoy FLOAT DEFAULT 0,
-    hauteur FLOAT, --en mètre
-    longueur FLOAT, --en mètre
-    largeur FLOAT, --en mètre
+    spe1 VARCHAR(200), --en mètre
+    spe2 VARCHAR(200), --en mètre
+    spe3 VARCHAR(200), --en mètre
     dateCreaProduit TEXT NOT NULL, 
     dateModifProduit TEXT NOT NULL,
     qteStock INTEGER NOT NULL DEFAULT 0,
@@ -221,6 +221,7 @@ CREATE TABLE Vote(
 CREATE TABLE FairePromotion(
 	codeProduit INTEGER REFERENCES Produit(codeProduit),
 	idPromotion INTEGER REFERENCES Promotion(idPromotion),
+	urlPhoto VARCHAR REFERENCES Photo(urlPhoto),
 	PRIMARY KEY(codeProduit, idPromotion)
 );
 
