@@ -1,3 +1,14 @@
+function openOverlayCompte() {
+  const overlayCpt = document.getElementById("overlayCompte");
+  overlayCpt.style.display = "block";
+}
+
+
+function closeOverlayCompte() {
+  const overlayCpt = document.getElementById("overlayCompte");
+  overlayCpt.style.display = "none";
+}
+
 function openOverlay() {
   const overlay = document.getElementById("overlayMenuCat");
   overlay.style.display = "block";
@@ -92,6 +103,7 @@ window.addEventListener("scroll", () => {
 const stars = document.querySelectorAll('#stars span');
 const noteInput = document.getElementById('noteProd');
 
+
 function updateStars(note) {
     stars.forEach(s => {
         if (s.dataset.value <= note) {
@@ -105,8 +117,15 @@ function updateStars(note) {
 stars.forEach(star => {
 
     star.addEventListener('click', () => {
-        noteInput.value = star.dataset.value;
+        const valeurCliquee = star.dataset.value;
+
+        if (noteInput.value === valeurCliquee) {
+            noteInput.value = 0;
+        } else {
+            noteInput.value = valeurCliquee;
+        }
         updateStars(noteInput.value);
+        form.submit();
     });
 
     star.addEventListener('mouseover', () => {
@@ -117,6 +136,7 @@ stars.forEach(star => {
         updateStars(noteInput.value);
     });
 });
+
 
 
 const track = document.querySelector('.carousel-track');

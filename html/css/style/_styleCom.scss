@@ -612,8 +612,12 @@ header{
 
     }
 }
-.ajoutPanierFait{
-    display:flex;
+#ajoutPanierFait.open{
+    display: flex !important;
+}
+#ajoutPanierFait{
+    display: none;
+    //display:flex;
     justify-content: space-between;
     align-items:center;
     z-index:1000;

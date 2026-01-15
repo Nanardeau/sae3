@@ -9,7 +9,8 @@ MySearch.addEventListener("input", e => {
 
 
 
-// Slider -> 
+// Slider provient de
+// https://www.geeksforgeeks.org/javascript/price-range-slider-with-min-max-input-using-html-css-and-javascript/
 // Script.js
 
 const rangevalue = document.querySelector(".slider .price-slider");
@@ -17,6 +18,17 @@ const rangeInputvalue = document.querySelectorAll(".range-input input");
 
 // Set the price gap
 let priceGap = 10;
+
+// Function pour mettre à jour le slider
+function updateSlider() {
+    let minVal = parseInt(rangeInputvalue[0].value);
+    let maxVal = parseInt(rangeInputvalue[1].value);
+    rangevalue.style.left = `${(minVal / rangeInputvalue[0].max) * 100}%`;
+    rangevalue.style.right = `${100 - (maxVal / rangeInputvalue[1].max) * 100}%`;
+}
+
+// au chargement du fichier, ça initialise le slider
+updateSlider();
 
 // Adding event listeners to price input elements
 const priceInputvalue = document.querySelectorAll(".price-input input");
@@ -81,25 +93,3 @@ for (let i = 0; i < priceInputvalue.length; i++) {
     }
 }
 
-// mise a jour de la barre
-document.addEventListener("DOMContentLoaded", () => {
-    const rangeMin = document.querySelector("range-min");
-    const rangeMax = document.querySelector("range-max");
-    const priceSlider = document.querySelector(".price-slider");
-
-    const min = rangeMin.min;
-    const max = rangeMin.max;
-
-    function updateSlider() {
-        const minPercent = ((rangeMin.value - min) / (max - min)) * 100;
-        const maxPercent = ((rangeMax.value - min) / (max - min)) * 100;
-
-        priceSlider.style.left = minPercent + "%";
-        priceSlider.style.right = (100 - maxPercent) + "%";
-    }
-
-    rangeMin.addEventListener("input", updateSlider);
-    rangeMax.addEventListener("input", updateSlider);
-    // init au chargement
-    updateSlider();
-});

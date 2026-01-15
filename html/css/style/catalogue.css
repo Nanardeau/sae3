@@ -615,8 +615,12 @@ header nav svg {
   padding-left: 1rem;
 }
 
-.ajoutPanierFait {
-  display: flex;
+#ajoutPanierFait.open {
+  display: flex !important;
+}
+
+#ajoutPanierFait {
+  display: none;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
@@ -629,13 +633,13 @@ header nav svg {
   margin-top: 1em;
   margin-left: 2em;
 }
-.ajoutPanierFait svg {
+#ajoutPanierFait svg {
   color: green;
 }
-.ajoutPanierFait .bouton {
+#ajoutPanierFait .bouton {
   padding: 0.3em;
 }
-.ajoutPanierFait .partieDroite {
+#ajoutPanierFait .partieDroite {
   display: flex;
   flex-direction: column;
 }
@@ -760,11 +764,16 @@ header nav svg {
 }
 
 main {
-  align-items: stretch;
   display: grid;
   -moz-column-gap: 16px;
        column-gap: 16px;
-  grid: 284px minmax(0px, 1fr);
+  grid-template-columns: 284px minmax(0, 1fr);
+  min-height: 650px;
+}
+@media screen and (max-width : 428px) {
+  main {
+    display: flex;
+  }
 }
 
 a {
@@ -958,7 +967,7 @@ aside hr {
   width: 90%;
 }
 aside h3 {
-  margin: 20px;
+  margin: 0 20px;
 }
 aside input[type=radio] {
   width: 1px !important;
@@ -1022,8 +1031,9 @@ aside select {
   -webkit-appearance: base-select;
      -moz-appearance: base-select;
           appearance: base-select;
+  font-size: 16px;
+  border: 1px solid #064082;
   width: 90%;
-  border: unset;
   margin: 0 12px;
   background-color: #EFEFEF;
 }
@@ -1092,5 +1102,11 @@ aside .range-input input {
   -webkit-appearance: none;
 }
 aside .reset {
+  display: flex;
+  padding: 20px;
+  justify-content: end;
+}
+aside .reset a {
   color: #555;
+  font-weight: bolder;
 }/*# sourceMappingURL=catalogue.css.map */

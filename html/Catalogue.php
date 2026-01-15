@@ -27,8 +27,11 @@ try {
 }
 $bdd->query('set schema \'alizon\'');
 
-    $pmin = $_GET['pmin'] ??  0; 
-    $pmax = $_GET['pmax'] ?? 400; 
+    $pmin = $_GET['pmin'] ??  null; 
+    $pmax = $_GET['pmax'] ?? null; 
+    $vendeur = $_GET['vendeur'] ?? null;
+    
+    $nt = isset($_GET['nt']) ? (int)$_GET['nt'] : null;
 
     $categorie = $_GET["cat"] ?? $_POST["cat"] ?? null;
     // traitement de catégorie.
@@ -49,10 +52,24 @@ $bdd->query('set schema \'alizon\'');
     $pxDecrois = ' ORDER BY prixTTC DESC';
     $ntCrois= ' ORDER BY noteMoy';
     $ntDecrois= ' ORDER BY noteMoy DESC';
+    $cVend = ' AND codeCompteVendeur = ';
     $note = ' AND noteMoy >= ';
-    $prixMin = ' AND prixTTC > '.$pmin;
-    $prixMax = ' AND prixTTC < '.$pmax;
-    $base = $base.$prixMin.$prixMax;
+    $prixMin = ' AND prixTTC > '. $pmin;
+    $prixMax = ' AND prixTTC < '. $pmax ;
+    if($pmin !==null && $pmax !== null){
+        $base = $base.$prixMin.$prixMax;
+    }else if($pmin !==null && $pmax === null){
+       $base = $base.$prixMin; 
+    }else if($pmin ===null && $pmax !== null){
+       $base = $base.$prixMax; 
+    }
+    
+    if($nt !== null){
+        $base = $base.$note.$nt;
+    }
+    if($vendeur !== null){
+        $base = $base.$cVend.$vendeur;
+    }
 
     //TODO faire avec le js, selon ce qui est séléctionner pour le tri, 
     
@@ -75,6 +92,7 @@ $bdd->query('set schema \'alizon\'');
             break;
     }
     
+    //echo $sql;
     
 
 ?>
@@ -102,90 +120,19 @@ $bdd->query('set schema \'alizon\'');
 
     <main>
         
-            <aside>
-                <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
-                <input id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
-                <div>
-                    
-                    <a class="reset" href="Catalogue.php">Réinitialiser</a>
-                    <form method="GET" action="Catalogue.php" id="filtreForm">
-                    <h1>Tris</h1>
-                        
-                        
-                        <select name="tri" id="tris" required>
-                            <option value="" disabled>Trier par :</option> 
-                            <!--Selon la variable tri du post, cela selected le bon-->
-                            <option value="pxCrois" <?= ($tri === 'pxCrois') ? 'selected' : '' ?>>Prix : ordre croissant</option> 
-                            <option value="pxDecrois" <?= ($tri === 'pxDecrois') ? 'selected' : '' ?>>Prix : ordre décroissant</option>
-                            <option value="ntCrois" <?= ($tri === 'ntCrois') ? 'selected' : '' ?>>Note : ordre croissant</option>
-                            <option value="ntDecrois" <?= ($tri === 'ntDecrois') ? 'selected' : '' ?>>Note : ordre décroissant</option>
-                        </select>
-                    
-                    <hr/>
-                    <div class="separateur"></div>
-                    <h1>Filtres</h1>
-                    
-                    <h3>Note</h3>
-                    <hr/>
-                    <div class="noter" id="stars">
-                        <span data-value="1">★</span>
-                        <span data-value="2">★</span>
-                        <span data-value="3">★</span>
-                        <span data-value="4">★</span>
-                        <span data-value="5">★</span>
-                    </div>
-                    <span id="note-value" style="display:none;">0</span>
-                    <!-- Pour toute catégorie , pouvoir choisir laquelle on veut regarder.-->
-                    
-                    <h3> Catégorie </h3>
-                    <hr/>
-                     <div style="display:flex;flex-direction:column;padding:10px;gap:5px;">
-                        <?php 
-
-                        $stmt = $bdd->prepare("SELECT DISTINCT libCat FROM SousCat ORDER BY libCat");
-                        $stmt->execute();
-                        $libCats = $stmt->fetchAll();
-                        //print_r($libCats);
-                        ?>
-                        <select name="cat" id="cats" required>
-                            <option value="" disabled>Choisir une catégorie :</option> 
-                        <?php
-                        foreach($libCats as $libCat){
-                             ?>
-                            <option value="<?php echo $libCat["libcat"] ?>" <?= ($cat === $libCat["libcat"]) ? 'selected' : '' ?>><?php echo $libCat["libcat"] ?></option>
-                       <?php }
-                        ?>
-                        </select>
-                        
-                    </div> 
-                    <h3>Prix</h3>
-                        <hr/>
-                        <!-- Slider -->
-                         <div class="slider-container">
-                            <div class="price-input-container">
-                                <div class="price-input">
-                                    <div class="price-field">
-                                        
-                                        <input type="number" class="min-input" value="<?php echo $pmin?>" disabled>
-                                    </div>
-                                    <div class="price-field">
-                                        <input type="number" class="max-input" value="<?php echo $pmax?>" disabled>
-                                    </div>
-                                </div>
-                            <div class="slider">
-                                <div class="price-slider"></div>
-                            </div>
-                            <div class="range-input">
-                                <input type="range" class="min-range" min="0" max="400" value="<?php echo $pmin?>" step="1" name="pmin">
-                                <input type="range" class="max-range" min="0" max="400" value="<?php echo $pmax?>" step="1" name="pmax">
-                            </div>
-                        </div>
-                        
-                </div>  
-                 
-            </aside>
-            
+            <?php include('filtretri.php'); ?>
             <div>
+                
+                <div id="ajoutPanierFait">
+                    <div class="partieGauche" onclick="fermerPopUpPanier()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                    </div>
+                    <div class="partieDroite">
+                        <p>Produit ajouté au panier</p>
+                        <a href="Panier.php" class="bouton">Aller au panier</a>
+                    </div>
+                </div>
+                
                 <div>
                     <div class="filtres">
                         <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
@@ -194,6 +141,7 @@ $bdd->query('set schema \'alizon\'');
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-horizontal-icon lucide-sliders-horizontal"><path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/></svg>
                             Filtres
                         </button>
+                        
                     </div>
                 </div>
                 <?php if(!$categorie) {  
@@ -243,12 +191,12 @@ $bdd->query('set schema \'alizon\'');
                 <?php }else { 
                     
                     
-                    $stmtProd = $bdd->prepare("SELECT codeProduit FROM Categoriser where libelleCat = :cat");
-                    $stmtProd->execute(array(
-                        ":cat"=>$cat
-                    ));
-                    $numProd = $stmtProd->fetchAll();
-                            //print_r($numProd) ;
+                    $stmt = $bdd->prepare($sql);
+                        $stmt->execute(array(
+                            ":cat"=> $cat
+                        ));
+                    $prodUnit = $stmt->fetchAll();
+                            //print_r($prodUnit) ;
                     
                     ?>
                     <div class="titre-cat">
@@ -258,15 +206,15 @@ $bdd->query('set schema \'alizon\'');
                         <div class="separateur2"></div>
                     </div>
                     <div class="separateur"></div>
-            
-                    <article class="catalogue"> 
-                    <?php if($numProd == null){ ?>
+                    <?php if($prodUnit == null){ ?>
+                    <article class="catalogue" style="justify-content: center"> 
+                    
                             <div class="vide">
                                 <h1> Aucun article trouvé </h1>
                                 <a href="Catalogue.php">Revenir au catalogue</a>
                             </div>
                    <?php } else{
-                    
+                    echo "<article class='catalogue'>";
                     $stmt = $bdd->prepare($sql);
                         $stmt->execute(array(
                             ":cat"=> $cat
@@ -305,33 +253,35 @@ $bdd->query('set schema \'alizon\'');
             include 'includes/menuCompte.php';
         ?>
     
-        <?php if(isset($_GET["ajout"])):?>
-            <div class="ajoutPanierFait">
-                <div class="partieGauche" onclick="fermerPopUpPanier()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
-                </div>
-                <div class="partieDroite">
-                    <p>Produit ajouté au panier</p>
-                    <a href="Panier.php" class="bouton">Aller au panier</a>
-                </div>
-            </div>
-            <?php endif?>
+        
         </div>
     </main>
     <?php include 'includes/footer.php';?>
     <script src="./js/Catalogue.js"></script>
     <script>
+        <?php if(isset($_GET["ajout"])):?>
+            document.getElementById("ajoutPanierFait").classList.toggle("open");
+            console.log("salut");
+            setTimeout(function() { fermerPopUpPanier(); }, 5000);
+        <?php endif?>
+
+        const form = document.getElementById('filtreForm');
+        const etoiles = document.querySelectorAll('#stars span');
+        const ntInput = document.getElementById('nt-input');
+        
         function fermerPopUpPanier(){
-            window.location.href = "Catalogue.php";
+            document.getElementById("ajoutPanierFait").classList.remove("open");
         }
         
-        const form = document.getElementById('filtreForm');
-
+        
         document.getElementById('tris').addEventListener('change', () => {
             form.submit(); // Si changement, ça envoie le formulaire.
         });
         
         document.getElementById('cats').addEventListener('change', function () {
+                form.submit();
+            });
+        document.getElementById('vend').addEventListener('change', function () {
                 form.submit();
             });
         const minRange = document.querySelector('.min-range');
@@ -341,8 +291,22 @@ $bdd->query('set schema \'alizon\'');
         })
         maxRange.addEventListener("change",function (){
             form.submit();
-        })
+        });
 
+        etoiles.forEach(star => {
+            star.addEventListener("click", function(){
+                const valeur = star.dataset.value;
+                if (ntInput.value === valeur) {
+                    ntInput.value = 0;
+                } else {
+                    ntInput.value = valeur;
+                }
+                form.submit();
+                
+            });
+        });
+        updateStars(<?php echo $nt ?>);
+        
     </script>
 </body>
 

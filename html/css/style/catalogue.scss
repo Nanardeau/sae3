@@ -3,12 +3,15 @@
 @use "../components/carte";
 @use "../tools/mixin/com" as *;
 @import url("bootstrap/scss/utilities/api");
-
 main{
-    align-items: stretch;
     display: grid;
     column-gap: 16px;
-    grid: 284px minmax(0px, 1fr);
+    grid-template-columns: 284px minmax(0, 1fr);
+    min-height: 650px;
+    @media #{$mobile} {
+        display:flex;
+        
+    }
 }
 a {
     text-decoration: none;
@@ -173,7 +176,7 @@ aside{
 
     }
     h3{
-        margin: $marg;
+        margin: 0 $marg;
     }
 
     input[type="radio"]{ // Code ytb "How to make radio buttons cool again"
@@ -244,8 +247,10 @@ aside{
     }
     select{
         appearance: base-select;
+        font-size: 16px;
+        border: 1px solid $colP;
+
         width: 90%;
-        border: unset;
         margin: 0 12px;
         background-color: #EFEFEF;
         &, &::picker{
@@ -325,8 +330,15 @@ aside{
         -webkit-appearance: none;
     }
     .reset{
-        color:#555;
-        
+        display: flex;
+        padding: $pad;
+
+        justify-content: end;
+        a{
+            color: #555;
+            font-weight: bolder;
+            
+        }
         
         
     }
