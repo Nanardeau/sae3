@@ -35,7 +35,7 @@ try {
         ":commentaire" => $commentaire,
         ":noteProd"    => $noteProd,
         ":cli"         => $codeCompteCli,
-        ":prod"        => $codeProduit
+        ":prod"        => $codeProduit,
     ]);
 
     $numAvis = $pdo->lastInsertId();

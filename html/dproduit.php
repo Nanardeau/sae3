@@ -247,6 +247,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 
             </div>
         </section>
+        
         <section class="avis-produits">
             <h1>Les avis</h1>
             <div class="liste-avis">
@@ -362,6 +363,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         </section>        
     </main>
     <?php include 'includes/footer.php'; ?>
+
     <script>
 
         function openOverlay(src) {
@@ -371,6 +373,12 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         function fermerOverlay() {
             document.getElementById("overlay").style.display = "none";
         } 
+        function openOverlayModifier() {
+            document.querySelector(".overlayModifierAvis").style.display = "block";
+        }
+        function fermerOverlayModifier() {
+            document.querySelector(".overlayModifierAvis").style.display = "none";
+        }
     </script>
     <script src="js/achat.js"></script>
 </body>
