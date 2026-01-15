@@ -32,6 +32,7 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
 $sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
 $stmt = $bdd->query($sql);
 $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -125,11 +126,27 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                                     
                                     ?>
                                 </h1>
-                                <?php $qtestock = $bdd->query("SELECT qtestock FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch(); 
-                                    echo "<p class=\"stock\">Stock disponible : " . $qtestock["qtestock"] . "</p>";
-                                ?>
+                                <div class = stock>
+                                    <?php $qtestock = $bdd->query("SELECT qtestock FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch(); 
+                                        echo "<p class=\"stock\">Stock disponible : " . $qtestock["qtestock"] . "</p>";
+                                    ?>
+                                    <button popovertarget="my-popover"> 
+                                        <svg width="37" height="37" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="22.5" cy="22.5" r="22.5" fill="#FCB66B"/>
+                                            <path d="M22.272 7.94113V38.4851" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7.56873 23.2131H38.1127" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                 </div>
+
+                                <div popover id="my-popover">
+                                    <h3>Réapprovisionnement</h3>
+                                    <label for="qteStock" class="pObl">Quelle quantité voulez-vous ajouter?</label>
+                                    <input type="number" name="qteStock" min="0" placeholder="Nombre de produit en stock" id="qteStock"/> 
+                                    <button onclick=validerStock()> Valider </button>
+                                </div>
+
                                 <div class="alignemnt_droite_gauche">
-                                    
 
                                     <div class="etoiles">
                                         <?php
@@ -423,5 +440,22 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
         <?php include '../includes/backoffice/footer.php';?>
         <script src="/js/popupAvis.js"></script>
         <script src="../js/overlayCompteVendeur.js"></script>
+        <script>
+            function validerStock(){
+                let qte = document.getElementById("qteStock").value;
+                document.cookie = "qteStock = " + qte;
+            }
+
+        </script>
+        <?php
+            if(isset($_COOKIE["qteStock"])){
+                $ajoutQte = $_COOKIE["qteStock"];
+                $req = $bdd->prepare("Update alizon.produit SET qteStock= :ajoutQte + qteStock WHERE codeProduit=:code_produit");
+                $req = $bdd->execute(array(
+                ":ajoutQte" => $ajoutQte,
+                ":code_produit" => $code_produit
+                ));
+            }
+        ?>
     </body>
 </html>

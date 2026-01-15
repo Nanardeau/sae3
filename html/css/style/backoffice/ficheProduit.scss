@@ -228,6 +228,15 @@ body{
     padding-left: 20px;
 }
 
+.stock{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    a{
+        margin: 10px;
+    }
+}
+
 /*################################*/
 /*-------- affichage avis --------*/
 /*################################*/
