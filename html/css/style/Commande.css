@@ -857,4 +857,14 @@ section {
 section div {
   display: flex;
   flex-direction: row;
+}
+section div div {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+section > div > div > p {
+  text-align: center;
+  justify-self: center;
 }/*# sourceMappingURL=Commande.css.map */

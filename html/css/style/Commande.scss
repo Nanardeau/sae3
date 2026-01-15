@@ -94,11 +94,21 @@ table{
     color:$noir;
     
 }
-section{
+section{ //pour les svg de l'avancement commande
     display: flex;
     justify-content: center;
     div{
         display: flex;
         flex-direction: row;
+        div{
+            display:flex;
+            flex-direction: column;
+            
+            justify-items: center;
+        }
     }
+}
+section>div>div>p{
+    text-align: center;
+    justify-self: center;
 }

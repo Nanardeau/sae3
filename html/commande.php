@@ -112,7 +112,7 @@ $bdd->query('set schema \'alizon\'');
         </div>
         <section>
             <?php
-            $etape = 1; 
+            $etape = 5; 
             switch ($etape) { #en fonction de l'étape recue par delivraptor, afficher l'avancement
                 case 1:
                     ?>
@@ -122,28 +122,43 @@ $bdd->query('set schema \'alizon\'');
                                 <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
                                 <circle cx="106" cy="25" r="25" fill="#064082"/>
                             </svg>
-                            <p>Création borderau de livraison</p>
+                            <p>Création bordereau  <br>de livraison</p>
                         </div>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
-                        <svg width="213" height="50" viewBox="0 0 213 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M210 27C211.381 27 212.5 25.8807 212.5 24.5C212.5 23.1193 211.381 22 210 22V24.5V27ZM0 24.5L0 27L210 27V24.5V22L0 22L0 24.5Z" fill="#FCB66B"/>
-                        <circle cx="103.5" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Prise en charge <br> Alizon</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Prise en charge  <br> transporteur</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme régionale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme locale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Livrée</p>
+                        </div>
 
                     </div>
                     <?php 
@@ -151,31 +166,48 @@ $bdd->query('set schema \'alizon\'');
                 case 2:
                     ?>
                     <div>
-                    
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
-                        <svg width="213" height="50" viewBox="0 0 213 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M210 27C211.381 27 212.5 25.8807 212.5 24.5C212.5 23.1193 211.381 22 210 22V24.5V27ZM0 24.5L0 27L210 27V24.5V22L0 22L0 24.5Z" fill="#FCB66B"/>
-                        <circle cx="103.5" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
+                    <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Création bordereau  <br>de livraison</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> Alizon</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Prise en charge  <br> transporteur</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme régionale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme locale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Livrée</p>
+                        </div>
 
                     </div>
                     <?php
@@ -184,30 +216,48 @@ $bdd->query('set schema \'alizon\'');
                 case 4:
                     ?>
                     <div>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
-                        <svg width="213" height="50" viewBox="0 0 213 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M210 27C211.381 27 212.5 25.8807 212.5 24.5C212.5 23.1193 211.381 22 210 22V24.5V27ZM0 24.5L0 27L210 27V24.5V22L0 22L0 24.5Z" fill="#FCB66B"/>
-                        <circle cx="103.5" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
+                    <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Création bordereau  <br>de livraison</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> Alizon</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge  <br> transporteur</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme régionale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme locale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Livrée</p>
+                        </div>
 
                     </div>
                     <?php
@@ -216,30 +266,49 @@ $bdd->query('set schema \'alizon\'');
                 case 6:
                     ?>
                     <div>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
-                        <svg width="213" height="50" viewBox="0 0 213 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M210 27C211.381 27 212.5 25.8807 212.5 24.5C212.5 23.1193 211.381 22 210 22V24.5V27ZM0 24.5L0 27L210 27V24.5V22L0 22L0 24.5Z" fill="#FCB66B"/>
-                        <circle cx="103.5" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
+                    <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Création bordereau  <br>de livraison</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> Alizon</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge  <br> transporteur</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme régionale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme locale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Livrée</p>
+                        </div>
+
 
                     </div>
                     <?php
@@ -248,30 +317,48 @@ $bdd->query('set schema \'alizon\'');
                 case 8:
                     ?>
                     <div>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                        <svg width="213" height="50" viewBox="0 0 213 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M210 27C211.381 27 212.5 25.8807 212.5 24.5C212.5 23.1193 211.381 22 210 22V24.5V27ZM0 24.5L0 27L210 27V24.5V22L0 22L0 24.5Z" fill="#FCB66B"/>
-                        <circle cx="103.5" cy="25" r="25" fill="#FCB66B"/>
-                    </svg>
+                    <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Création bordereau  <br>de livraison</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> Alizon</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge  <br> transporteur</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme régionale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme locale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#FCB66B" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#FCB66B"/>
+                            </svg>
+                            <p>Livrée</p>
+                        </div>
 
                     </div>
                     <?php
@@ -279,30 +366,48 @@ $bdd->query('set schema \'alizon\'');
                 case 9: 
                     ?>
                     <div>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                    <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                        <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
-                        <circle cx="106" cy="25" r="25" fill="#064082"/>
-                    </svg>
-                        <svg width="213" height="50" viewBox="0 0 213 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M210 27C211.381 27 212.5 25.8807 212.5 24.5C212.5 23.1193 211.381 22 210 22V24.5V27ZM0 24.5L0 27L210 27V24.5V22L0 22L0 24.5Z" fill="#064082"/>
-                        <circle cx="103.5" cy="25" r="25" fill="#064082"/>
-                    </svg>
+                    <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Création bordereau  <br>de livraison</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> Alizon</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge  <br> transporteur</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme régionale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> plateforme locale</p>
+                        </div>
+                        <div>
+                            <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 24.5L212.5 24.5" stroke="#064082" stroke-width="5" stroke-linecap="square"/>
+                                <circle cx="106" cy="25" r="25" fill="#064082"/>
+                            </svg>
+                            <p>Livrée</p>
+                        </div>
 
                     </div>
                     <?php 
