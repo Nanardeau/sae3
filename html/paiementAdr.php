@@ -70,7 +70,7 @@
 
     <main id="mainAdr">
         <?php
-            include 'includes/menu_cat.php';
+           
             include 'includes/menuCompte.php';
         ?>
 
