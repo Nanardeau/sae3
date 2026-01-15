@@ -784,137 +784,144 @@ span {
     font-size: 12px;
   }
 }
-
-article {
+.asideSec main {
+  display: flex;
+  justify-content: center;
+}
+.asideSec article {
   background-color: white;
   width: 100%;
   height: 30%;
   border-radius: 1em;
 }
-
-#navMobile {
+.asideSec #navMobile {
   display: none;
 }
 @media screen and (max-width : 428px) {
-  #navMobile {
+  .asideSec #navMobile {
     display: flex;
   }
 }
-
-#navTablette {
+.asideSec #navTablette {
   display: flex;
 }
 @media screen and (max-width : 428px) {
-  #navTablette {
+  .asideSec #navTablette {
     display: none;
   }
 }
-
-.labelInput {
+.asideSec .labelInput {
   display: flex;
   flex-direction: column;
 }
-
-.ligneSection {
+.asideSec .ligneSection {
+  display: flex;
+  justify-content: center;
   padding: 1rem;
 }
 @media screen and (max-width : 428px) {
-  .ligneSection {
+  .asideSec .ligneSection {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
   }
 }
-.ligneSection #adresseLivraison {
+.asideSec .ligneSection #adresseLivraison {
   width: 100%;
   justify-self: center;
 }
-.ligneSection #adresseLivraison article, .ligneSection #adresseLivraison h2 {
+.asideSec .ligneSection #adresseLivraison article,
+.asideSec .ligneSection #adresseLivraison h2 {
   justify-self: center;
   width: 80%;
 }
-.ligneSection section {
+.asideSec .ligneSection section {
   width: 100%;
   margin: 5rem 0;
 }
 @media screen and (max-width : 428px) {
-  .ligneSection section {
+  .asideSec .ligneSection section {
     margin-left: 0;
   }
 }
-.ligneSection section:nth-child(1) article {
+.asideSec .ligneSection section:nth-child(1) article {
   width: 100%;
   padding: 3em;
 }
 @media screen and (max-width : 428px) {
-  .ligneSection section:nth-child(1) article {
+  .asideSec .ligneSection section:nth-child(1) article {
     padding: 2em;
   }
 }
-.ligneSection section:nth-child(1) article .conteneur {
+.asideSec .ligneSection section:nth-child(1) article .conteneur {
   width: 100%;
 }
-.ligneSection section:nth-child(2) {
+.asideSec .ligneSection section:nth-child(2) {
   margin-left: 20%;
   margin-right: 10%;
 }
 @media screen and (max-width : 428px) {
-  .ligneSection section:nth-child(2) {
+  .asideSec .ligneSection section:nth-child(2) {
     margin: 0;
   }
 }
-
-.ligneInput {
+.asideSec .ligneInput {
   display: flex;
   margin-bottom: 1em;
 }
 @media screen and (max-width : 428px) {
-  .ligneInput {
+  .asideSec .ligneInput {
     flex-direction: column;
   }
 }
-.ligneInput .labelInput:nth-child(1) {
+.asideSec .ligneInput .labelInput:nth-child(1) {
   margin-right: 2em;
   width: 20%;
 }
 @media screen and (max-width : 428px) {
-  .ligneInput .labelInput:nth-child(1) {
+  .asideSec .ligneInput .labelInput:nth-child(1) {
     width: 100%;
   }
 }
-.ligneInput .labelInput:nth-child(2) {
+.asideSec .ligneInput .labelInput:nth-child(2) {
   width: 100%;
 }
 @media screen and (max-width : 428px) {
-  .ligneInput #divNom, .ligneInput #prenom, .ligneInput #codePostal {
+  .asideSec .ligneInput #divNom,
+  .asideSec .ligneInput #prenom,
+  .asideSec .ligneInput #codePostal {
     width: 100%;
   }
 }
-.ligneInput #divNom {
+.asideSec .ligneInput #divNom {
   width: 55%;
 }
-.ligneInput #prenom {
+.asideSec .ligneInput #prenom {
   width: 60%;
+  width: 30%;
 }
-.ligneInput #codePostal {
+.asideSec .ligneInput .labelInput:nth-child(2) {
+  width: 100%;
+}
+.asideSec .ligneInput #codePostal {
   width: 7em;
 }
-.ligneInput #numApt {
+.asideSec .ligneInput #numApt {
   width: 7em;
 }
-.ligneInput input:disabled {
+.asideSec .ligneInput input:disabled {
   background-color: rgba(192, 192, 192, 0.438);
 }
-
-#numRue {
+.asideSec #numRue {
   width: 5em;
 }
-
-main input, label, p, button {
+.asideSec main input,
+.asideSec label,
+.asideSec p,
+.asideSec button {
   font-size: 18px;
 }
-
-input {
+.asideSec input {
   border: solid 1px;
   border-radius: 1em;
   height: 3em;
@@ -922,11 +929,10 @@ input {
   padding: 1em;
   width: 100%;
 }
-input .btnJaune {
+.asideSec input .btnJaune {
   padding-top: 8px;
 }
-
-section:nth-child(1) .bouton {
+.asideSec section:nth-child(1) .bouton {
   padding: 10px 20px;
   margin-top: 3em;
   margin-right: 2em;
@@ -934,21 +940,19 @@ section:nth-child(1) .bouton {
   height: 4em;
 }
 @media screen and (max-width : 428px) {
-  section:nth-child(1) .bouton {
+  .asideSec section:nth-child(1) .bouton {
     width: 35%;
   }
 }
-
-aside + section {
+.asideSec aside + section {
   width: -moz-fit-content;
   width: fit-content;
   margin-right: 5%;
 }
-
-section {
+.asideSec section {
   width: 40%;
 }
-section article {
+.asideSec section article {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -959,23 +963,21 @@ section article {
   padding: 20px;
 }
 @media screen and (max-width : 428px) {
-  section article {
+  .asideSec section article {
     width: -moz-fit-content;
     width: fit-content;
   }
-  section article .labelInput {
+  .asideSec section article .labelInput {
     flex-direction: column;
   }
-  section article form {
+  .asideSec section article form {
     width: 100%;
   }
 }
-
-div.row {
+.asideSec div.row {
   margin: 1em 0;
 }
-
-.ligne {
+.asideSec .ligne {
   border: solid 2px;
   border-radius: 10px;
   margin: 10px 0;
@@ -986,38 +988,34 @@ div.row {
   width: 100%;
   font-weight: bold;
 }
-.ligne div {
+.asideSec .ligne div {
   padding: 0.5em;
 }
-.ligne .prixPoub {
+.asideSec .ligne .prixPoub {
   display: flex;
   align-items: center;
 }
-
-.prixAffiche {
+.asideSec .prixAffiche {
   color: #064082;
 }
-
-#articles {
+.asideSec #articles {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-
-aside {
+.asideSec aside {
   margin: 0;
   height: 100%;
 }
-aside section, aside article {
+.asideSec aside section,
+.asideSec aside article {
   height: 100%;
 }
-
-#secRecap {
+.asideSec #secRecap {
   width: 100%;
 }
-
-#recapitulatif {
+.asideSec #recapitulatif {
   width: 40em;
   height: 50em;
   display: flex;
@@ -1027,15 +1025,15 @@ aside section, aside article {
   border-right: solid;
   border-radius: 0;
 }
-#recapitulatif #recap {
+.asideSec #recapitulatif #recap {
   height: 100%;
 }
-#recapitulatif #prixTTCRecap {
+.asideSec #recapitulatif #prixTTCRecap {
   justify-self: flex-end;
   font-weight: bold;
   font-size: 24px;
 }
-#recapitulatif .libelleProdRecap {
+.asideSec #recapitulatif .libelleProdRecap {
   display: flex;
   justify-content: space-between;
   background-color: #D1ECF8;
@@ -1043,86 +1041,79 @@ aside section, aside article {
   padding: 1em;
   width: 90%;
 }
-
-.dateCVC {
+.asideSec .dateCVC {
   display: flex;
 }
-.dateCVC .labelInput:nth-child(1) input {
+.asideSec .dateCVC .labelInput:nth-child(1) input {
   width: 6rem;
   margin-right: 5rem;
 }
-.dateCVC .labelInput:nth-child(2) input {
+.asideSec .dateCVC .labelInput:nth-child(2) input {
   width: 5rem;
 }
-
-#poubelle {
+.asideSec #poubelle {
   border: none;
   border-radius: 10px;
   background-color: #D1ECF8;
 }
-#poubelle img {
+.asideSec #poubelle img {
   width: 30px;
 }
-#poubelle:hover {
+.asideSec #poubelle:hover {
   background-color: rgb(108.75, 174, 248.25);
 }
-
-.conteneur {
+.asideSec .conteneur {
   width: 60%;
 }
 @media screen and (max-width : 428px) {
-  .conteneur {
+  .asideSec .conteneur {
     width: 100%;
   }
 }
-
-.ariane {
+.asideSec .ariane {
   display: flex;
   justify-content: center;
   align-self: flex-start;
 }
-.ariane .arianeItem {
+.asideSec .ariane .arianeItem {
   font-size: 0;
 }
-
-.checkboxCGV {
+.asideSec .checkboxCGV {
   display: flex;
   flex-direction: row;
 }
-.checkboxCGV input {
+.asideSec .checkboxCGV input {
   width: 1.5em;
   height: 1.5em;
   margin-right: 1em;
 }
-.checkboxCGV label {
+.asideSec .checkboxCGV label {
   margin-top: 1em;
   height: 1em;
 }
-
-#btnAnnuler {
+.asideSec #btnAnnuler {
   margin-right: 3rem;
 }
-
-#infosPaiement {
+.asideSec #infosPaiement {
   display: flex;
   flex-direction: column;
 }
-#infosPaiement nav {
+.asideSec #infosPaiement nav {
   align-self: flex-start;
 }
-
-#btnPayer, #btnAnnuler {
+.asideSec #btnPayer,
+.asideSec #btnAnnuler {
   height: 3rem;
   padding: 0;
   width: 10rem;
 }
 @media screen and (max-width : 428px) {
-  #btnPayer, #btnAnnuler {
+  .asideSec #btnPayer,
+  .asideSec #btnAnnuler {
     margin-top: 2rem;
   }
 }
-
-#confirmation {
+.asideSec #confirmation {
   display: none;
   position: absolute;
   z-index: 10000;
@@ -1132,7 +1123,7 @@ aside section, aside article {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.205);
 }
-#confirmation article {
+.asideSec #confirmation article {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -1141,18 +1132,18 @@ aside section, aside article {
   border-radius: 2em;
   padding: 10%;
 }
-#confirmation article h1 {
+.asideSec #confirmation article h1 {
   align-self: center;
 }
-#confirmation article .bouton {
+.asideSec #confirmation article .bouton {
   height: 4rem;
   width: 10rem;
   font-size: 28px;
 }
-#confirmation article .bouton:nth-child(1) {
+.asideSec #confirmation article .bouton:nth-child(1) {
   margin-right: 2rem;
 }
-#confirmation article nav {
+.asideSec #confirmation article nav {
   display: flex;
   justify-content: center;
 }/*# sourceMappingURL=paiement.css.map */
