@@ -97,18 +97,45 @@ table{
 section{ //pour les svg de l'avancement commande
     display: flex;
     justify-content: center;
+}
+
+
+.suiviOrdi{
+    display: flex;
+    flex-direction: row;
+    @media #{$mobile} {
+        display: none;
+    }
     div{
-        display: flex;
-        flex-direction: row;
-        div{
-            display:flex;
-            flex-direction: column;
-            
-            justify-items: center;
+        display:flex;
+        flex-direction: column;
+        justify-items: center;
+        p{
+            text-align: center;
+            justify-self: center;
         }
     }
 }
-section>div>div>p{
-    text-align: center;
-    justify-self: center;
+
+.suiviTel{
+     @media #{$tablette} {
+         display: none;
+    }
+    @media #{$mobile}{
+    display: flex;
+    flex-direction: column;
+    div{
+        display:flex;
+        flex-direction: row;
+        justify-items: center;
+        align-items: center;
+        p{
+            text-align: center;
+            justify-self: center;
+            margin-left: 20px;
+           
+        }
+    }
+    }
+    
 }

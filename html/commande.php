@@ -112,11 +112,11 @@ $bdd->query('set schema \'alizon\'');
         </div>
         <section>
             <?php
-            $etape = 5; 
+            $etape = 1; 
             switch ($etape) { #en fonction de l'étape recue par delivraptor, afficher l'avancement
                 case 1:
                     ?>
-                    <div>
+                    <div class="suiviOrdi">
                         <div>
                             <svg width="215" height="50" viewBox="0 0 215 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.5 22C1.11929 22 0 23.1193 0 24.5C0 25.8807 1.11929 27 2.5 27L2.5 24.5L2.5 22ZM212.5 27L215 27V22L212.5 22V24.5V27ZM2.5 24.5L2.5 27L212.5 27V24.5V22L2.5 22L2.5 24.5Z" fill="#064082"/>
@@ -159,8 +159,55 @@ $bdd->query('set schema \'alizon\'');
                             </svg>
                             <p>Livrée</p>
                         </div>
-
                     </div>
+                    <div class = "suiviTel">
+                        <div>
+                            <svg width="24" height="70" viewBox="0 0 24 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.8984 2.5C14.8984 1.11929 13.7791 0 12.3984 0C11.0177 0 9.89844 1.11929 9.89844 2.5L12.3984 2.5L14.8984 2.5ZM9.89844 67.5V70H14.8984V67.5H12.3984H9.89844ZM12.3984 2.5L9.89844 2.5L9.89844 67.5H12.3984H14.8984L14.8984 2.5L12.3984 2.5Z" fill="#064082"/>
+                                <circle cx="12" cy="36.5259" r="12" transform="rotate(90 12 36.5259)" fill="#064082"/>
+                            </svg>
+                            <p>Création bordereau  <br>de livraison</p>
+                        </div>
+                        <div>
+                            <svg width="24" height="68" viewBox="0 0 24 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.89844 65V67.5H14.8984V65H12.3984H9.89844ZM12.3984 0L9.89844 0L9.89844 65H12.3984H14.8984L14.8984 0L12.3984 0Z" fill="#064082"/>
+                                <circle cx="12" cy="34.0259" r="12" transform="rotate(90 12 34.0259)" fill="#064082"/>
+                            </svg>
+                            <p>Prise en charge <br> Alizon</p>
+                        </div>
+                        <div>
+                            <svg width="24" height="68" viewBox="0 0 24 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.89844 65V67.5H14.8984V65H12.3984H9.89844ZM12.3984 0L9.89844 0L9.89844 65H12.3984H14.8984L14.8984 0L12.3984 0Z" fill="#064082"/>
+<circle cx="12" cy="34.0259" r="12" transform="rotate(90 12 34.0259)" fill="#064082"/>
+</svg>
+
+                            <p>Prise en charge  <br> transporteur</p>
+                        </div>
+                        <div>
+                           <svg width="24" height="68" viewBox="0 0 24 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.89844 65V67.5H14.8984V65H12.3984H9.89844ZM12.3984 0L9.89844 0L9.89844 65H12.3984H14.8984L14.8984 0L12.3984 0Z" fill="#064082"/>
+<circle cx="12" cy="34.0259" r="12" transform="rotate(90 12 34.0259)" fill="#064082"/>
+</svg>
+
+                            <p>Prise en charge <br> plateforme régionale</p>
+                        </div>
+                        <div>
+                            <svg width="24" height="68" viewBox="0 0 24 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.89844 65V67.5H14.8984V65H12.3984H9.89844ZM12.3984 0L9.89844 0L9.89844 65H12.3984H14.8984L14.8984 0L12.3984 0Z" fill="#064082"/>
+<circle cx="12" cy="34.0259" r="12" transform="rotate(90 12 34.0259)" fill="#064082"/>
+</svg>
+
+                            <p>Prise en charge <br> plateforme locale</p>
+                        </div>
+                        <div>
+                            <svg width="24" height="68" viewBox="0 0 24 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.89844 65C9.89844 66.3807 11.0177 67.5 12.3984 67.5C13.7791 67.5 14.8984 66.3807 14.8984 65H12.3984H9.89844ZM12.3984 0L9.89844 0L9.89844 65H12.3984H14.8984L14.8984 0L12.3984 0Z" fill="#064082"/>
+<circle cx="12" cy="34.0259" r="12" transform="rotate(90 12 34.0259)" fill="#064082"/>
+</svg>
+                            <p>Livrée</p>
+                        </div>
+                    </div>
+                    
                     <?php 
                     break;
                 case 2:
