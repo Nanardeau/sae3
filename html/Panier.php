@@ -64,7 +64,7 @@ $bdd->query('set schema \'alizon\'');
         <?php
             include 'includes/menuCompte.php';
         ?>
-        <?php //Si le client n'a rien dans so panier afficher -> panier vide 
+        <?php //Si le client n'a rien dans son panier afficher -> panier vide 
         //Sinon -> afficher les informations du panier.  
                 
         
