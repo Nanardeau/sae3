@@ -589,6 +589,24 @@ body {
   margin: 10px;
 }
 
+#popReapro {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #FCB66B;
+  border-radius: 1em;
+  padding: 0 20px 20px 20px;
+  align-items: center;
+}
+#popReapro button {
+  background-color: #CD4B22;
+  border-radius: 1em;
+  color: white;
+  width: 60%;
+}
+#popReapro h1 {
+  align-self: center;
+}
+
 /*################################*/
 /*-------- affichage avis --------*/
 /*################################*/

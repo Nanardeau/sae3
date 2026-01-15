@@ -237,6 +237,26 @@ body{
     }
 }
 
+
+#popReapro{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid $eleOrange;
+    border-radius: $radius;
+    padding: 0 20px 20px 20px;
+    align-items: center;
+    button{
+        background-color: $colP;
+        border-radius: $radius;
+        color: $blanc;
+        width: 60%;
+    }
+    h1{
+        align-self: center;
+    }
+}
+
+
 /*################################*/
 /*-------- affichage avis --------*/
 /*################################*/
