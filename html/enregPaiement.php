@@ -105,7 +105,7 @@ if(array_key_exists("banque", $_GET)){
     
     //LIEN DELIVRAPTOR
     
-    $socket = fsockopen("127.0.0.1", 8080);
+    $socket = fsockopen("10.253.5.102", 8080);
     fwrite($socket, "CONN test0 mdp0");
     $data = fread($socket, 1024);
     var_dump($data);

@@ -4,7 +4,7 @@ session_start();
 // if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"]) || $_GET['numCom'] == null){
 //             header("location:index.php");
 // }
-$socket = fsockopen("127.0.0.1", 8080);
+$socket = fsockopen("10.253.5.102", 8080);
 
 $codeCompte = $_SESSION["codeCompte"];
 $numCom = $_GET['numCom'];
