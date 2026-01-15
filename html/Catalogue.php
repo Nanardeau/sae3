@@ -46,12 +46,16 @@ $bdd->query('set schema \'alizon\'');
         $base= 'SELECT codeProduit, libelleProd, prixTTC, urlPhoto,noteMoy FROM Produit where Disponible = true' ;
         $cat = null;
     }
-
+    
     //Liste des recherches SQL 
     $pxCrois = ' ORDER BY prixTTC';
     $pxDecrois = ' ORDER BY prixTTC DESC';
     $ntCrois= ' ORDER BY noteMoy';
     $ntDecrois= ' ORDER BY noteMoy DESC';
+    /* pas  à implementer */
+    $dtCrois= ' ORDER BY dateModifProduit';
+    $dtDecrois= ' ORDER BY dateModifProduit DESC';
+
     $cVend = ' AND codeCompteVendeur = ';
     $note = ' AND noteMoy >= ';
     $prixMin = ' AND prixTTC > '. $pmin;
@@ -87,11 +91,19 @@ $bdd->query('set schema \'alizon\'');
         case 'ntDecrois':
             $sql = $base.$ntDecrois;
             break;
+        /*case 'dtCrois':
+            $sql = $base.$dtCrois;
+            break;
+        case 'dtDecrois':
+            $sql = $base.$dtDecrois;
+            break;
+        */
         default:
             $sql = $base;
             break;
     }
-    
+    $stmtMax = $bdd->query('SELECT MAX(prixTTC) from produit where disponible = true')->fetch();
+    $maxPrix = round($stmtMax['max'] + 1);
     //echo $sql;
     
 
@@ -119,8 +131,17 @@ $bdd->query('set schema \'alizon\'');
     
 
     <main>
-        
-            <?php include('filtretri.php'); ?>
+            <aside id="filtresAside">
+                <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
+                <input id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
+                <div>
+                <button class="btn-fermer-filtres" onclick="fermerFiltres()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+                    <?php include('filtretri.php') ;?> 
+                </div>
+            </aside>
+            
             <div>
                 
                 <div id="ajoutPanierFait">
@@ -137,11 +158,10 @@ $bdd->query('set schema \'alizon\'');
                     <div class="filtres">
                         <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
                         <input id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
-                        <button>
+                        <button onclick="ouvrirFiltres()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-horizontal-icon lucide-sliders-horizontal"><path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/></svg>
                             Filtres
                         </button>
-                        
                     </div>
                 </div>
                 <?php if(!$categorie) {  
@@ -214,7 +234,7 @@ $bdd->query('set schema \'alizon\'');
                                 <a href="Catalogue.php">Revenir au catalogue</a>
                             </div>
                    <?php } else{
-                    echo "<article class='catalogue'>";
+                    echo "<article class='catalogue'>"; // pour éviter de fermer & réouvrir php
                     $stmt = $bdd->prepare($sql);
                         $stmt->execute(array(
                             ":cat"=> $cat
@@ -268,29 +288,53 @@ $bdd->query('set schema \'alizon\'');
         const form = document.getElementById('filtreForm');
         const etoiles = document.querySelectorAll('#stars span');
         const ntInput = document.getElementById('nt-input');
+        const categorie = document.querySelectorAll('.cats');
+        const vendeur = document.querySelectorAll('.vend');
+        const tris = document.querySelectorAll('.tris');
         
         function fermerPopUpPanier(){
             document.getElementById("ajoutPanierFait").classList.remove("open");
         }
         
+        function ouvrirFiltres(){
+            document.getElementById("filtresAside").classList.add("mobile-open");
+        }
         
-        document.getElementById('tris').addEventListener('change', () => {
-            form.submit(); // Si changement, ça envoie le formulaire.
-        });
+        function fermerFiltres(){
+            document.getElementById("filtresAside").classList.remove("mobile-open");
+        }
         
-        document.getElementById('cats').addEventListener('change', function () {
-                form.submit();
-            });
-        document.getElementById('vend').addEventListener('change', function () {
-                form.submit();
-            });
+        categorie.forEach(cat => {
+                cat.addEventListener('change', function () {
+                    form.submit();
+                    fermerFiltres();
+                });
+            }
+        )
+        tris.forEach(tri => {
+                tri.addEventListener('change', function () {
+                    form.submit();
+                    fermerFiltres();
+                });
+            }
+        )
+        vendeur.forEach(vd => {
+                vd.addEventListener('change', function () {
+                    form.submit();
+                    fermerFiltres();
+                });
+            }
+        )
+
         const minRange = document.querySelector('.min-range');
         const maxRange = document.querySelector('.max-range');
         minRange.addEventListener("change",function (){
             form.submit();
+            fermerFiltres();
         })
         maxRange.addEventListener("change",function (){
             form.submit();
+            fermerFiltres();
         });
 
         etoiles.forEach(star => {
@@ -302,9 +346,11 @@ $bdd->query('set schema \'alizon\'');
                     ntInput.value = valeur;
                 }
                 form.submit();
-                
+                fermerFiltres();
             });
         });
+                
+        
         updateStars(<?php echo $nt ?>);
         
     </script>

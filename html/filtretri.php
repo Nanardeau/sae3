@@ -1,6 +1,3 @@
-<aside>
-                <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
-                <input id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
                 <div>
                     
                     <span class="reset">
@@ -9,13 +6,15 @@
                     <form method="GET" action="Catalogue.php" id="filtreForm">
                         <input type="hidden" name="nt" id="nt-input" value="<?php echo $nt ?>">
                         
-                        <select name="tri" id="tris" required>
-                            <option value="" disabled>Trier par :</option> 
+                        <select name="tri" id="tris" class="tris">
+                            <option value="" disabled <?= ($tri === null) ? 'selected' : '' ?>>Trier par :</option> 
                             <!--Selon la variable tri du post, cela selected le bon-->
                             <option value="pxCrois" <?= ($tri === 'pxCrois') ? 'selected' : '' ?>>Prix : ordre croissant</option> 
                             <option value="pxDecrois" <?= ($tri === 'pxDecrois') ? 'selected' : '' ?>>Prix : ordre décroissant</option>
                             <option value="ntCrois" <?= ($tri === 'ntCrois') ? 'selected' : '' ?>>Note : ordre croissant</option>
                             <option value="ntDecrois" <?= ($tri === 'ntDecrois') ? 'selected' : '' ?>>Note : ordre décroissant</option>
+                            <!--<option value="dtCrois" ($tri === 'dtCrois') ? 'selected' : '' >Date publication: ordre croissant</option>
+                            <option value="dtDecrois" ($tri === 'dtDecrois') ? 'selected' : '' >Date publication : ordre décroissant</option>-->
                         </select>
                     
                     
@@ -34,8 +33,8 @@
                         
                         //print_r($libCats);
                         ?>
-                        <select name="vendeur" id="vend" required>
-                                <option value="" disabled>Choisir un vendeur :</option> 
+                        <select name="vendeur" id="vend" class="vend">
+                                <option value="" disabled <?= ($vendeur === null) ? 'selected' : '' ?>>Choisir un vendeur :</option> 
                             <?php
                             foreach($pseudoVendeur as $pseudo){
                         
@@ -66,8 +65,8 @@
                         $libCats = $stmt->fetchAll();
                         //print_r($libCats);
                         ?>
-                            <select name="cat" id="cats" required>
-                                <option value="" disabled>Choisir une catégorie :</option> 
+                            <select name="cat" id="cats" class="cats">
+                                <option value="" disabled <?= ($cat === null) ? 'selected' : '' ?>>Choisir une catégorie :</option> 
                             <?php
                             foreach($libCats as $libCat){
                                 ?>
@@ -88,7 +87,7 @@
                                         <input type="number" class="min-input" value="<?php echo $pmin ? $pmin : 0 ?>" disabled>
                                     </div>
                                     <div class="price-field">
-                                        <input type="number" class="max-input" value="<?php echo $pmax ? $pmax : 400 ?>" disabled>
+                                        <input type="number" class="max-input" value="<?php echo $pmax ? $pmax : $maxPrix ?>" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -96,10 +95,10 @@
                                 <div class="price-slider"></div>
                             </div>
                             <div class="range-input">
-                                <input type="range" class="min-range" min="0" max="400" value="<?php echo $pmin ? $pmin : 0?>" step="1" name="pmin">
-                                <input type="range" class="max-range" min="0" max="400" value="<?php echo $pmax ? $pmax : 400?>" step="1" name="pmax">
+                                <input type="range" class="min-range" min="0" max="<?php echo $maxPrix?>" value="<?php echo $pmin ? $pmin : 0?>" step="1" name="pmin">
+                                <input type="range" class="max-range" min="0" max="<?php echo $maxPrix?>" value="<?php echo $pmax ? $pmax : $maxPrix?>" step="1" name="pmax">
                             </div>
+                        </div>
                     </form>
                 </div>
-</aside>
             

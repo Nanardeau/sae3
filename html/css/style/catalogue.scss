@@ -156,13 +156,54 @@ TRIS & Filtres
     flex-direction: column;
     gap: 1em;
 }
+
 aside{
     @media screen and (max-width: 100em) {
-        display: none;
+        display: none !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        height: 100vh;
+        background: white;
+        z-index: 1000;
+        overflow-y: auto;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
+        transform: translateX(-100%);
+        &.mobile-open {
+            display: flex !important;
+            transform: translateX(25%);
+            
+        }
+        
     }
+    
+    .btn-fermer-filtres {
+        display: none;
+        @media screen and (max-width: 100em) {
+            display: block;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+    }
+    
+    .filtres-desktop {
+        @media screen and (max-width: 100em) {
+            display: none !important;
+        }
+    }
+    grid-area: 1 / 1;
     display:flex;
     flex-direction: column;
-    grid-area: 1 / 1;
+}
+aside{
+    
     width: 25%;
     min-width: 250px;
     max-height: 600px;
@@ -343,3 +384,18 @@ aside{
         
     }
 }
+
+.flr-tel{
+    border:none;
+    background: none;
+    width: 80%;
+    height: 100%;
+    overflow: hidden;
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.4);
+    }
+    > div{
+        height: 100%;
+    }
+}
+

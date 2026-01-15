@@ -141,7 +141,7 @@ VALUES
 -- Nourriture
 ('Thé noir', 'Qualité supérieure, fabrique de Carhaix', 5.60, 'réduite', NULL, NULL, NULL, 150, 'Étranger', true, 15, '/img/the.jpg', 6),
 ('Lait', '1L demi-écrémé', 1.50, 'réduite', NULL, NULL, NULL, 100, 'Breizh', true, 10, '/img/lait.jpg', 7),
-('Fromage', 'Camembert AOP', 3.80, 'réduite', NULL, NULL, NULL, 60, 'Breizh', true, 10, '/img/fromage.jpg', 8),
+('Fromage', 'Camembert AOP', 3.80, 'réduite', NULL, NULL, NULL, 60, 'Breizh', false, 10, '/img/fromage.jpg', 8),
 ('Café', 'Moulu 250g', 4.90, 'réduite', NULL, NULL, NULL, 80, 'Breizh', true, 10, '/img/cafe.jpg', 5);
 
 INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, hauteur, longueur, largeur, qteStock, Origine, seuilAlerte, urlPhoto, codeCompteVendeur, nomTarif)
@@ -586,4 +586,6 @@ SELECT p.codeProduit, p.libelleProd, p.prixTTC, p.urlPhoto, p.noteMoy
                 AND p.Disponible = true;
 SELECT codeProduit, libelleProd, prixTTC, urlPhoto,noteMoy FROM Produit where Disponible = true and prixTTC > 0 and prixTTC < 7;
 
+SELECT MAX(prixTTC) from produit where disponible = true;
+--select * from produit order by dateModifProduit;
 --SELECT * FROM Categoriser where libelleCat = 'Alimentaire';
