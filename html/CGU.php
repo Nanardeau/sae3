@@ -54,7 +54,7 @@
     <main>
         <section>
             <article>
-                <h1>Mentions légales</h1>
+                <h1 id="ML">Mentions légales</h1>
 
                 <div class="row">
                     <h3>Directeur de la publication</h3>
@@ -74,7 +74,7 @@
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis tenetur maxime dolorem suscipit ratione quibusdam error. Omnis, quos consequuntur odit eius repellat quis ut ipsum odio sint magnam, fugiat impedit.</p>
                 </div>
                 <div class="row">
-                    <h3>Données à caractère personnel</h3>
+                    <h3 id="DCP">Données à caractère personnel</h3>
                     <div class="separateur"></div>
                 </div>
                 <div class="pad">
