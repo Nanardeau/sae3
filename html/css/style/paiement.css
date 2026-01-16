@@ -816,8 +816,6 @@ article {
 }
 
 .ligneSection {
-  display: flex;
-  justify-content: center;
   padding: 1rem;
 }
 @media screen and (max-width : 428px) {
