@@ -766,13 +766,32 @@ nav div > ul li:hover .souscat-ul {
 main {
   display: flex;
   justify-content: center;
+  background-color: rgb(241, 241, 241);
 }
 
 article {
-  background-color: #D1ECF8;
+  background-color: white;
   width: 100%;
   height: 30%;
   border-radius: 1em;
+}
+
+#navMobile {
+  display: none;
+}
+@media screen and (max-width : 428px) {
+  #navMobile {
+    display: flex;
+  }
+}
+
+#navTablette {
+  display: flex;
+}
+@media screen and (max-width : 428px) {
+  #navTablette {
+    display: none;
+  }
 }
 
 .labelInput {
@@ -781,8 +800,6 @@ article {
 }
 
 .ligneSection {
-  display: flex;
-  justify-content: center;
   padding: 1rem;
 }
 @media screen and (max-width : 428px) {
@@ -794,6 +811,11 @@ article {
 }
 .ligneSection #adresseLivraison {
   width: 100%;
+  justify-self: center;
+}
+.ligneSection #adresseLivraison article, .ligneSection #adresseLivraison h2 {
+  justify-self: center;
+  width: 80%;
 }
 .ligneSection section {
   width: 100%;
@@ -807,6 +829,11 @@ article {
 .ligneSection section:nth-child(1) article {
   width: 100%;
   padding: 3em;
+}
+@media screen and (max-width : 428px) {
+  .ligneSection section:nth-child(1) article {
+    padding: 2em;
+  }
 }
 .ligneSection section:nth-child(1) article .conteneur {
   width: 100%;
@@ -825,18 +852,42 @@ article {
   display: flex;
   margin-bottom: 1em;
 }
+@media screen and (max-width : 428px) {
+  .ligneInput {
+    flex-direction: column;
+  }
+}
 .ligneInput .labelInput:nth-child(1) {
   margin-right: 2em;
-  width: 30%;
+  width: 20%;
+}
+@media screen and (max-width : 428px) {
+  .ligneInput .labelInput:nth-child(1) {
+    width: 100%;
+  }
 }
 .ligneInput .labelInput:nth-child(2) {
   width: 100%;
 }
+@media screen and (max-width : 428px) {
+  .ligneInput #divNom, .ligneInput #prenom, .ligneInput #codePostal {
+    width: 100%;
+  }
+}
+.ligneInput #divNom {
+  width: 55%;
+}
+.ligneInput #prenom {
+  width: 60%;
+}
 .ligneInput #codePostal {
-  width: 6em;
+  width: 7em;
 }
 .ligneInput #numApt {
-  width: 6em;
+  width: 7em;
+}
+.ligneInput input:disabled {
+  background-color: rgba(192, 192, 192, 0.438);
 }
 
 #numRue {
@@ -857,7 +908,15 @@ input .btnJaune {
 
 section:nth-child(1) .bouton {
   padding: 10px 20px;
-  margin-top: 1em;
+  margin-top: 3em;
+  margin-right: 2em;
+  width: 15%;
+  height: 4em;
+}
+@media screen and (max-width : 428px) {
+  section:nth-child(1) .bouton {
+    width: 35%;
+  }
 }
 
 section {
@@ -1055,6 +1114,11 @@ div.row {
 
 .conteneur {
   width: 60%;
+}
+@media screen and (max-width : 428px) {
+  .conteneur {
+    width: 100%;
+  }
 }
 
 .ariane {
