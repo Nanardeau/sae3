@@ -36,13 +36,20 @@ body{
 .bienvenue{
     padding: 0 50px;
     padding-top: 30px;
+    display:flex;
+    justify-content: center;
 }
 
 .carousel {
     position: relative;
-    width: 100%;
+    width: 65%;
+    z-index:1;
     overflow: hidden;
     border-radius: 8px;
+    @media screen and (max-width: 428px){
+        width: 100%;
+    }
+    margin-bottom: 80px;
 }
 
 .carousel-track {
@@ -67,50 +74,7 @@ body{
     }
 }
 
-
-
-.anonnces_produits {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
-    padding-top: 30px;
-
-    @media screen and (max-width: 428px){
-        padding-top: 40px;
-    }
-}
-
-.annonce_produit {
-
-    background-color: $colS;
-    border-radius: $radius;
-    width: 40%;
-    height: 150px;
-    padding: 1rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    img {
-        width: 80%;
-        height: 80px;
-        object-fit: cover;
-        background-color: rgb(217, 217, 217);
-        margin-bottom: 1rem;
-    }
-    @media screen and (max-width: 428px){
-        width: 100%;
-        img{
-            height: 100px;
-        }
-    }
-}
-
-.boutton {
+.bouton {
     background-color: $colP;
     color: white;
     font: {

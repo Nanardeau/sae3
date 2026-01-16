@@ -60,7 +60,7 @@ $bdd->query('set schema \'alizon\'');
 
     <main>
         <?php
-            include 'includes/menu_cat.php';
+            
             include 'includes/menuCompte.php';
         ?>
         <div class="titre-cat">

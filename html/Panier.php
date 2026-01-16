@@ -62,7 +62,6 @@ $bdd->query('set schema \'alizon\'');
 
     <main>
         <?php
-            include 'includes/menu_cat.php';
             include 'includes/menuCompte.php';
         ?>
         <?php //Si le client n'a rien dans so panier afficher -> panier vide 
@@ -148,14 +147,17 @@ $bdd->query('set schema \'alizon\'');
         ?>
         
         <div class="articlePanier">
-            <div>
-                <h3><?php echo $nomProd?></h3>
-                <p> Vendu par <strong><?php echo $vendeur?></strong></p>
+            <div class="infoProd">
+                <div>
+                    <h3><?php echo $nomProd?></h3>
+                    <p> Vendu par <strong><?php echo $vendeur?></strong></p>
+                    <div class="desc">
+                        <p><?php echo $descProd ?></p>
+                    </div>
+                </div>
             </div>
             <img src="<?php echo $urlImg?> " alt="Image produit"/>
-            <div class="desc">
-                <p><?php echo $descProd ?></p>
-            </div>
+                
             <div class="compteur">
                 <?php 
                     if($qteProd == 1){?>

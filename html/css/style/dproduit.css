@@ -115,8 +115,8 @@ input:user-invalid + span, input.invalid + span {
 .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #064082;
   color: white;
@@ -136,6 +136,7 @@ input:user-invalid + span, input.invalid + span {
 ###############################*/
 header {
   transition: transform 0.3s ease;
+  top: 0;
   z-index: 1000;
   position: fixed;
   display: inline-flex;
@@ -184,12 +185,12 @@ header .logo_alizon_front {
   left: 0;
   margin: 20px;
 }
-header nav {
+header .connexion-panier {
   margin-left: auto;
   display: flex;
   align-items: center;
 }
-header nav a {
+header .connexion-panier a {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -197,17 +198,13 @@ header nav a {
   color: white;
   text-decoration: none;
 }
-header nav svg {
+header .connexion-panier svg {
   padding-right: 10px;
 }
 @media screen and (max-width : 428px) {
   header .logo_alizon_front {
     padding-left: 30px;
     width: 100px;
-  }
-  header nav a {
-    padding-right: 10px;
-    font-size: 12px;
   }
   header .tab-only {
     display: none;
@@ -327,47 +324,79 @@ header nav svg {
 /*###############################
 #        Menu Categorie         #
 ################################*/
-.nav-cat {
+nav {
   transition: transform 0.3s ease;
   width: 100%;
+  margin: 0 auto;
   background-color: #6CA6E9;
-  position: fixed;
-  z-index: 999;
-  display: flex;
-  flex-direction: row;
-}
-.nav-cat div {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.nav-cat h2 {
-  margin: 0;
-  margin-left: 10px;
-  margin-right: 10px;
-  align-self: center;
-}
-.nav-cat svg, .nav-cat a {
+  position: sticky;
+  top: 80px;
   z-index: 1000;
-  align-self: center;
-  color: black;
-  font-size: 18px;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-  background-color: #6CA6E9;
-  padding: 15px;
-  padding-right: 30px;
-  cursor: pointer;
-}
-.nav-cat svg {
-  overflow: visible;
 }
 @media screen and (max-width: 428px) {
-  .nav-cat {
+  nav {
     display: none;
   }
+}
+nav ul {
+  list-style-type: none;
+  text-indent: none;
+}
+nav ul li {
+  float: left;
+  width: 16em;
+  text-align: center;
+  position: relative;
+}
+nav ul::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+nav a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  border-bottom: 2px solid transparent;
+  padding: 10px 0;
+}
+nav a:hover {
+  border-bottom: 2px solid #064082;
+  color: black;
+}
+
+.souscat-ul {
+  z-index: 1000;
+  display: none;
+  box-shadow: 0px 1px 2px #ccc;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  padding-left: 0;
+}
+.souscat-ul li {
+  float: none;
+  width: 100%;
+  text-align: left;
+}
+.souscat-ul a {
+  padding: 10px;
+  border-bottom: none;
+}
+.souscat-ul a:hover {
+  border-bottom: none;
+  background-color: #D1ECF8;
+}
+
+.deroulant a:hover {
+  content: "▼";
+  font-size: 12px;
+  color: black;
+}
+
+nav div > ul li:hover .souscat-ul {
+  display: block;
 }
 
 .src-tel {
@@ -390,6 +419,12 @@ header nav svg {
 
 .burger-menu {
   margin-left: 20px;
+  display: none;
+}
+@media screen and (max-width: 428px) {
+  .burger-menu {
+    display: inline-block;
+  }
 }
 
 .overlayMenuCat {
@@ -457,6 +492,7 @@ header nav svg {
 .overlayContentCompte {
   z-index: 100;
   position: fixed;
+  top: 80px;
   right: 125px;
   height: 15em;
   background-color: #D1ECF8;
@@ -467,30 +503,30 @@ header nav svg {
     right: 70px;
   }
 }
-.overlayContentCompte nav {
+.overlayContentCompte div {
   height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
-.overlayContentCompte nav hr {
+.overlayContentCompte div hr {
   width: 95%;
 }
-.overlayContentCompte nav a {
+.overlayContentCompte div a {
   padding: 1.5em;
   color: black;
   text-decoration: none;
 }
-.overlayContentCompte nav a:hover {
+.overlayContentCompte div a:hover {
   color: #6CA6E9;
 }
 
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #FCB66B;
   color: white;
@@ -733,10 +769,6 @@ header nav svg {
   src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
 }
-body {
-  margin: 0;
-}
-
 main {
   display: flex;
   flex-direction: column;

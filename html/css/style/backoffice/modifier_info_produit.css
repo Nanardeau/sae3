@@ -427,8 +427,8 @@ main form textarea {
 main form select {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #CD4B22;
   color: white;
@@ -459,8 +459,8 @@ main form input {
 main form input::file-selector-button {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #CD4B22;
   color: white;
@@ -497,8 +497,8 @@ main form input {
 main form input::file-selector-button {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #064082;
   color: white;
@@ -551,8 +551,8 @@ main .labelInput {
 main .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #CD4B22;
   color: white;

@@ -32,8 +32,9 @@ if($_POST){
     $mdp = $_POST["mdp"];
     $_SESSION["pseudo"] = $id;
     $_SESSION["mdp"] = $mdp;
-    $req= $bdd->query ("SELECT * FROM Client WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
-    $rep= $req->fetch();
+    $stmt = $bdd->prepare("SELECT * FROM Client WHERE pseudo = :pseudo AND mdp = :mdp");
+    $stmt->execute([':pseudo' => $id, ':mdp' => $mdp]);
+    $rep = $stmt->fetch(PDO::FETCH_ASSOC);
     if($rep!=null){
         $blq = $rep["cmtblq"];
         //bon id mais verif si bloqué
@@ -49,7 +50,9 @@ if($_POST){
                 $_SESSION["id"] = "";
                 $_SESSION["mdp"] = "";
                 $_SESSION["codeCompte"] = $rep["codecompte"];
-                $panierExiste = $bdd->query("SELECT idPanier FROM alizon.Panier WHERE codeCompte = '".$rep["codecompte"]."'")->fetch();
+                $panierExiste = $bdd->prepare("SELECT idPanier FROM alizon.Panier WHERE codeCompte = :codecompte");
+                $panierExiste->execute([':codecompte' => $rep["codecompte"]]);
+                $panierExiste = $panierExiste->fetch(PDO::FETCH_ASSOC);
                 if($panierExiste){
                     $_SESSION["idPanier"] = $panierExiste["idpanier"];
                 }
@@ -107,10 +110,10 @@ if($_POST){
                 <p>Pas encore de compte ?</p>
                 <img src="./img/line_1.svg"/>
             </figure>
-            <nav>
+            <div class="bouton-connexion">
                 <a href="CreerCompte.php" class="bouton">Créer un compte</a>
                 <a href="Catalogue.php" class="btnJaune">Retour</a>
-            <nav>
+            <div>
         </aside>
     
     </main>

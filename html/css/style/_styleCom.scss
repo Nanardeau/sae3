@@ -59,6 +59,7 @@ input{
 
 header{
     transition: transform 0.3s ease;
+    top : 0;
     .mobile-only{
         display: none;
     }
@@ -115,7 +116,7 @@ header{
         margin:$marg;
     }
 
-    nav{
+    .connexion-panier{
         margin-left: auto;
         display: flex;
         align-items: center;
@@ -137,10 +138,6 @@ header{
         .logo_alizon_front{
             padding-left: 30px;
             width: 100px;
-        }
-        nav a{
-            padding-right: 10px;
-            font-size: 12px;
         }
 
         .tab-only{
@@ -290,54 +287,84 @@ header{
 #        Menu Categorie         #
 ################################*/
 
-.nav-cat{
+nav{
     transition: transform 0.3s ease;
     width: 100%;
+    margin: 0 auto;
     background-color: $eleBleu;
-    position: fixed;
-    z-index: 999;
-    display: flex;
-    flex-direction: row;
-    
-
-    div{
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        scrollbar-width: none;
-    }
-
-    h2{
-        margin: 0;
-        margin-left: 10px;
-        margin-right: 10px;
-        align-self: center;
-    }
-
-    svg, a{
-        z-index: 1000;
-        align-self: center;
-        color: $noir;
-        font: {
-            size: 18px;
-            weight: 600;
-        }
-        text-decoration: none;
-        white-space: nowrap;
-        background-color: $eleBleu;
-        padding: 15px;
-        padding-right: 30px;
-        cursor: pointer;
-    }
-
-    svg{
-        overflow: visible;
-    }
-
-    @media screen and (max-width: 428px) {
+    position:sticky;
+    top:80px;
+    z-index: 1000;
+    @media screen and (max-width: 428px){
         display: none;
     }
+    ul{
+        list-style-type: none;
+        text-indent: none;
+        li{
+            float:left;
+            width:16em;
+            text-align: center;
+            position: relative;
+        }
+        &::after{
+            content: "";
+            clear: both;
+            display: table;
+        }
+    }
+    a{
+        display:block;
+        text-decoration: none;
+        color:black;
+        border-bottom:2px solid transparent;
+        padding: 10px 0;
+        &:hover{
+            border-bottom:2px solid $colP;
+            color: black;
+        }
+    }
+}
 
+.souscat-ul{
+    z-index: 1000;
+    display:none;
+    box-shadow: 0px 1px 2px #ccc;
+    background-color: white;
+    position:absolute;
+    width: 100%;
+    z-index: 1000;
+    padding-left:0;
+    li{
+        float:none;
+        width:100%;
+        text-align:left;
+    }
+    a{
+        padding: 10px;
+        border-bottom:none;
+        &:hover{
+            border-bottom:none;
+            background-color: $colS;
+        } 
+    }
+}
+
+.deroulant{
+    a{
+        &:hover{
+            content:"▼";
+            font-size:12px;
+            color: black;
+        }
+    }
+}
+
+
+
+nav div > ul li:hover .souscat-ul{
+    display:block;
+    
 }
 .src-tel{
     position: absolute;
@@ -362,6 +389,10 @@ header{
 
 .burger-menu{
     margin-left: 20px;
+    display : none;
+    @media screen and (max-width: 428px){
+        display: inline-block;
+    }
 }
 
 .overlayMenuCat{
@@ -440,6 +471,7 @@ header{
 .overlayContentCompte{
     z-index:100;
     position:fixed;
+    top:80px;
     right:125px;
     @media #{$mobile}{
         right:70px;
@@ -447,7 +479,7 @@ header{
     height:15em;
     background-color:$colS;
     border:solid $colP;
-    nav{
+    div{
         height:90%;
 
         display:flex;
