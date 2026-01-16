@@ -779,7 +779,7 @@ $etape = substr($final, strlen("Étape "), 1);
                     else{
                         $fin = true;
                         file_put_contents("./img/boitelettre2.png", $data, FILE_APPEND);
-                        fclose($socket);
+                        //fclose($socket);
                     }
                     
 
@@ -851,7 +851,7 @@ $etape = substr($final, strlen("Étape "), 1);
                 ?>
             </tbody>
         </table>
-        <?php fwrite($socket, "BYE BYE\n"); fclose($socket)?>
+        <?php fwrite($socket, "BYE BYE\n"); fclose($socket);?>
     </main>
     <?php include "includes/footer.php"?>
 </body>

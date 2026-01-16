@@ -122,7 +122,7 @@ $bdd->query('set schema \'alizon\'');
                 <h4>Récapitulatif ( <?php echo $infoPanier['nbProd']?> articles) </h4>
                 <div class='prix'><p>Prix HT :</p><p> <?php echo $infoPanier["prixHT"]?> €</p></div>
                 <div class='prix'><p style="font-weight : bold">Prix TTC :</p><p> <?php echo $infoPanier["prixTTC"]?> €</p></div>
-                <a class="btn-recap" href="./paiement.php">Commander</a>
+                <a class="btn-recap" href="./paiementAdr.php">Commander</a>
             </div>
                 <a href="Catalogue.php" class="btn-recap btn-retour">Retour</a>
         </aside>
