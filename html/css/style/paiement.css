@@ -769,159 +769,135 @@ nav div > ul li:hover .souscat-ul {
   background-color: rgb(241, 241, 241);
 }
 
-span {
-  display: none;
-  margin-bottom: 1em;
-}
-
-.asideSec {
-  display: flex;
-  justify-content: space-between;
-}
-@media screen and (max-width : 428px) {
-  .asideSec {
-    flex-direction: column-reverse;
-    font-size: 12px;
-  }
-}
-.asideSec main {
-  display: flex;
-  justify-content: center;
-}
-.asideSec article {
+article {
   background-color: white;
   width: 100%;
   height: 30%;
   border-radius: 1em;
 }
-.asideSec #navMobile {
+
+#navMobile {
   display: none;
 }
 @media screen and (max-width : 428px) {
-  .asideSec #navMobile {
+  #navMobile {
     display: flex;
   }
 }
-.asideSec #navTablette {
+
+#navTablette {
   display: flex;
 }
 @media screen and (max-width : 428px) {
-  .asideSec #navTablette {
+  #navTablette {
     display: none;
   }
 }
-.asideSec .labelInput {
+
+.labelInput {
   display: flex;
   flex-direction: column;
 }
-.asideSec .ligneSection {
-  display: flex;
-  justify-content: center;
+
+.ligneSection {
   padding: 1rem;
 }
 @media screen and (max-width : 428px) {
-  .asideSec .ligneSection {
+  .ligneSection {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
   }
 }
-.asideSec .ligneSection #adresseLivraison {
+.ligneSection #adresseLivraison {
   width: 100%;
   justify-self: center;
 }
-.asideSec .ligneSection #adresseLivraison article,
-.asideSec .ligneSection #adresseLivraison h2 {
+.ligneSection #adresseLivraison article,
+.ligneSection #adresseLivraison h2 {
   justify-self: center;
   width: 80%;
 }
-.asideSec .ligneSection section {
+.ligneSection section {
   width: 100%;
   margin: 5rem 0;
 }
 @media screen and (max-width : 428px) {
-  .asideSec .ligneSection section {
+  .ligneSection section {
     margin-left: 0;
   }
 }
-.asideSec .ligneSection section:nth-child(1) article {
+.ligneSection section:nth-child(1) article {
   width: 100%;
   padding: 3em;
 }
 @media screen and (max-width : 428px) {
-  .asideSec .ligneSection section:nth-child(1) article {
+  .ligneSection section:nth-child(1) article {
     padding: 2em;
   }
 }
-.asideSec .ligneSection section:nth-child(1) article .conteneur {
+.ligneSection section:nth-child(1) article .conteneur {
   width: 100%;
 }
-.asideSec .ligneSection section:nth-child(2) {
+.ligneSection section:nth-child(2) {
   margin-left: 20%;
   margin-right: 10%;
 }
 @media screen and (max-width : 428px) {
-  .asideSec .ligneSection section:nth-child(2) {
+  .ligneSection section:nth-child(2) {
     margin: 0;
   }
 }
-.asideSec .ligneInput {
+
+.ligneInput {
   display: flex;
   margin-bottom: 1em;
 }
 @media screen and (max-width : 428px) {
-  .asideSec .ligneInput {
+  .ligneInput {
     flex-direction: column;
   }
 }
-.asideSec .ligneInput .labelInput:nth-child(1) {
+.ligneInput .labelInput:nth-child(1) {
   margin-right: 2em;
   width: 20%;
 }
 @media screen and (max-width : 428px) {
-  .asideSec .ligneInput .labelInput:nth-child(1) {
+  .ligneInput .labelInput:nth-child(1) {
     width: 100%;
   }
 }
-.asideSec .ligneInput .labelInput:nth-child(2) {
+.ligneInput .labelInput:nth-child(2) {
   width: 100%;
 }
 @media screen and (max-width : 428px) {
-  .asideSec .ligneInput #divNom,
-  .asideSec .ligneInput #prenom,
-  .asideSec .ligneInput #codePostal {
+  .ligneInput #divNom,
+  .ligneInput #prenom,
+  .ligneInput #codePostal {
     width: 100%;
   }
 }
-.asideSec .ligneInput #divNom {
+.ligneInput #divNom {
   width: 55%;
 }
-.asideSec .ligneInput #prenom {
+.ligneInput #prenom {
   width: 60%;
-  width: 30%;
 }
-.asideSec .ligneInput .labelInput:nth-child(2) {
-  width: 100%;
-}
-.asideSec .ligneInput #codePostal {
+.ligneInput #codePostal {
   width: 7em;
 }
-.asideSec .ligneInput #numApt {
+.ligneInput #numApt {
   width: 7em;
 }
-.asideSec .ligneInput input:disabled {
+.ligneInput input:disabled {
   background-color: rgba(192, 192, 192, 0.438);
 }
-.asideSec #numRue {
+
+#numRue {
   width: 5em;
 }
-.asideSec main input,
-.asideSec label,
-.asideSec p,
-.asideSec button {
-  font-size: 18px;
-}
-.asideSec input {
+
+input {
   border: solid 1px;
   border-radius: 1em;
   height: 3em;
@@ -929,10 +905,11 @@ span {
   padding: 1em;
   width: 100%;
 }
-.asideSec input .btnJaune {
+input .btnJaune {
   padding-top: 8px;
 }
-.asideSec section:nth-child(1) .bouton {
+
+section:nth-child(1) .bouton {
   padding: 10px 20px;
   margin-top: 3em;
   margin-right: 2em;
@@ -940,19 +917,15 @@ span {
   height: 4em;
 }
 @media screen and (max-width : 428px) {
-  .asideSec section:nth-child(1) .bouton {
+  section:nth-child(1) .bouton {
     width: 35%;
   }
 }
-.asideSec aside + section {
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 5%;
-}
-.asideSec section {
+
+section {
   width: 40%;
 }
-.asideSec section article {
+section article {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -963,21 +936,23 @@ span {
   padding: 20px;
 }
 @media screen and (max-width : 428px) {
-  .asideSec section article {
+  section article {
     width: -moz-fit-content;
     width: fit-content;
   }
-  .asideSec section article .labelInput {
+  section article .labelInput {
     flex-direction: column;
   }
-  .asideSec section article form {
+  section article form {
     width: 100%;
   }
 }
-.asideSec div.row {
+
+div.row {
   margin: 1em 0;
 }
-.asideSec .ligne {
+
+.ligne {
   border: solid 2px;
   border-radius: 10px;
   margin: 10px 0;
@@ -988,34 +963,39 @@ span {
   width: 100%;
   font-weight: bold;
 }
-.asideSec .ligne div {
+.ligne div {
   padding: 0.5em;
 }
-.asideSec .ligne .prixPoub {
+.ligne .prixPoub {
   display: flex;
   align-items: center;
 }
-.asideSec .prixAffiche {
+
+.prixAffiche {
   color: #064082;
 }
-.asideSec #articles {
+
+#articles {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.asideSec aside {
+
+aside {
   margin: 0;
   height: 100%;
 }
-.asideSec aside section,
-.asideSec aside article {
+aside section,
+aside article {
   height: 100%;
 }
-.asideSec #secRecap {
+
+#secRecap {
   width: 100%;
 }
-.asideSec #recapitulatif {
+
+#recapitulatif {
   width: 40em;
   height: 50em;
   display: flex;
@@ -1025,15 +1005,15 @@ span {
   border-right: solid;
   border-radius: 0;
 }
-.asideSec #recapitulatif #recap {
+#recapitulatif #recap {
   height: 100%;
 }
-.asideSec #recapitulatif #prixTTCRecap {
+#recapitulatif #prixTTCRecap {
   justify-self: flex-end;
   font-weight: bold;
   font-size: 24px;
 }
-.asideSec #recapitulatif .libelleProdRecap {
+#recapitulatif .libelleProdRecap {
   display: flex;
   justify-content: space-between;
   background-color: #D1ECF8;
@@ -1041,79 +1021,88 @@ span {
   padding: 1em;
   width: 90%;
 }
-.asideSec .dateCVC {
+
+.dateCVC {
   display: flex;
 }
-.asideSec .dateCVC .labelInput:nth-child(1) input {
+.dateCVC .labelInput:nth-child(1) input {
   width: 6rem;
   margin-right: 5rem;
 }
-.asideSec .dateCVC .labelInput:nth-child(2) input {
+.dateCVC .labelInput:nth-child(2) input {
   width: 5rem;
 }
-.asideSec #poubelle {
+
+#poubelle {
   border: none;
   border-radius: 10px;
   background-color: #D1ECF8;
 }
-.asideSec #poubelle img {
+#poubelle img {
   width: 30px;
 }
-.asideSec #poubelle:hover {
+#poubelle:hover {
   background-color: rgb(108.75, 174, 248.25);
 }
-.asideSec .conteneur {
+
+.conteneur {
   width: 60%;
 }
 @media screen and (max-width : 428px) {
-  .asideSec .conteneur {
+  .conteneur {
     width: 100%;
   }
 }
-.asideSec .ariane {
+
+.ariane {
   display: flex;
   justify-content: center;
   align-self: flex-start;
 }
-.asideSec .ariane .arianeItem {
+.ariane .arianeItem {
   font-size: 0;
 }
-.asideSec .checkboxCGV {
+
+.checkboxCGV {
   display: flex;
   flex-direction: row;
 }
-.asideSec .checkboxCGV input {
+.checkboxCGV input {
   width: 1.5em;
   height: 1.5em;
   margin-right: 1em;
 }
-.asideSec .checkboxCGV label {
+.checkboxCGV label {
   margin-top: 1em;
   height: 1em;
 }
-.asideSec #btnAnnuler {
+
+#btnAnnuler {
   margin-right: 3rem;
 }
-.asideSec #infosPaiement {
+
+#infosPaiement {
   display: flex;
   flex-direction: column;
 }
-.asideSec #infosPaiement nav {
+#infosPaiement nav {
   align-self: flex-start;
 }
-.asideSec #btnPayer,
-.asideSec #btnAnnuler {
+
+#btnPayer,
+#btnAnnuler {
   height: 3rem;
   padding: 0;
   width: 10rem;
 }
 @media screen and (max-width : 428px) {
-  .asideSec #btnPayer,
-  .asideSec #btnAnnuler {
+  #btnPayer,
+  #btnAnnuler {
     margin-top: 2rem;
   }
 }
-.asideSec #confirmation {
+
+#confirmation {
   display: none;
   position: absolute;
   z-index: 10000;
@@ -1123,7 +1112,7 @@ span {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.205);
 }
-.asideSec #confirmation article {
+#confirmation article {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -1132,18 +1121,18 @@ span {
   border-radius: 2em;
   padding: 10%;
 }
-.asideSec #confirmation article h1 {
+#confirmation article h1 {
   align-self: center;
 }
-.asideSec #confirmation article .bouton {
+#confirmation article .bouton {
   height: 4rem;
   width: 10rem;
   font-size: 28px;
 }
-.asideSec #confirmation article .bouton:nth-child(1) {
+#confirmation article .bouton:nth-child(1) {
   margin-right: 2rem;
 }
-.asideSec #confirmation article nav {
+#confirmation article nav {
   display: flex;
   justify-content: center;
 }/*# sourceMappingURL=paiement.css.map */

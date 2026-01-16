@@ -10,502 +10,452 @@
     background-color: rgb(241, 241, 241);
 }
 
-span {
-    display: none;
-    margin-bottom: 1em;
+article {
+    background-color: white;
+    width: 100%;
+    height: 30%;
+    border-radius: 1em;
+
 }
 
-.asideSec {
-    display: flex;
-    justify-content: space-between;
+#navMobile {
+    display: none;
 
     @media #{$mobile} {
-        flex-direction: column-reverse;
-        font-size: 12px;
-    }
-
-    main {
         display: flex;
-        justify-content: center;
-
     }
+}
 
-    article {
-        background-color: white;
-        width: 100%;
-        height: 30%;
-        border-radius: 1em;
+#navTablette {
+    display: flex;
 
-    }
-
-    #navMobile {
+    @media #{$mobile} {
         display: none;
-
-        @media #{$mobile} {
-            display: flex;
-        }
     }
+}
 
-    #navTablette {
-        display: flex;
+.labelInput {
+    display: flex;
+    flex-direction: column;
+}
 
-        @media #{$mobile} {
-            display: none;
-        }
-    }
+.ligneSection {
+    //display:flex;
+    //justify-content:center;
 
-    .labelInput {
-        display: flex;
+    padding: 1rem;
+
+    @media #{$mobile} {
         flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 
-    .ligneSection {
-
-        //display:flex;
-        //justify-content:center;
-
-        display: flex;
-        justify-content: center;
-
-
-        padding: 1rem;
-
-        @media #{$mobile} {
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-        }
-
-        #adresseLivraison {
-            width: 100%;
-
-            justify-self: center;
-
-            article,
-            h2 {
-                justify-self: center;
-                width: 80%;
-            }
-
-        }
-
-        section {
-            width: 100%;
-            margin: 5rem 0;
-
-            @media #{$mobile} {
-                margin-left: 0;
-
-            }
-        }
-
-        section:nth-child(1) {
-            article {
-                width: 100%;
-                padding: 3em;
-
-                @media #{$mobile} {
-                    padding: 2em;
-                }
-
-                .conteneur {
-                    width: 100%;
-                }
-            }
-        }
-
-        section:nth-child(2) {
-            margin: {
-                left: 20%;
-                right: 10%;
-            }
-
-            @media #{$mobile} {
-                margin: 0;
-            }
-        }
-
-    }
-
-
-    .ligneInput {
-
-        display: flex;
-
-        @media #{$mobile} {
-            flex-direction: column;
-        }
-
-        margin-bottom:1em;
-
-        .labelInput:nth-child(1) {
-
-            margin-right: 2em;
-
-            width: 20%;
-
-            @media #{$mobile} {
-                width: 100%;
-            }
-        }
-
-        .labelInput:nth-child(2) {
-            width: 100%;
-        }
-
-        @media #{$mobile} {
-
-            #divNom,
-            #prenom,
-            #codePostal {
-                width: 100%;
-
-            }
-        }
-
-        #divNom {
-            width: 55%;
-        }
-
-        #prenom {
-
-            width: 60%;
-
-            width: 30%;
-        }
-
-        .labelInput:nth-child(2) {
-            width: 100%;
-
-        }
-
-        #codePostal {
-            width: 7em;
-        }
-
-        #numApt {
-            width: 7em;
-        }
-
-        input:disabled {
-            background-color: rgba(192, 192, 192, 0.438);
-        }
-
-
-
-    }
-
-
-    #numRue {
-        width: 5em;
-    }
-
-    main input,
-    label,
-    p,
-    button {
-
-        font-size: 18px;
-    }
-
-    input {
-        border: solid 1px;
-        border-radius: $radius;
-        height: 3em;
-        margin: 10px 0;
-        padding: 1em;
+    #adresseLivraison {
         width: 100%;
+        justify-self: center;
 
-        .btnJaune {
-            padding-top: 8px;
-
+        article,
+        h2 {
+            justify-self: center;
+            width: 80%;
         }
-
-
-    }
-
-    section:nth-child(1) {
-        .bouton {
-            padding: $pad/2 $pad;
-
-            margin: {
-                top: 3em;
-                right: 2em;
-            }
-
-            width:15%;
-
-            @media #{$mobile} {
-                width: 35%;
-            }
-
-            height:4em;
-        }
-    }
-
-    aside+section {
-        width: fit-content;
-        margin-right: 5%;
     }
 
     section {
-        width: 40%;
+        width: 100%;
+        margin: 5rem 0;
 
+        @media #{$mobile} {
+            margin-left: 0;
+
+        }
+    }
+
+    section:nth-child(1) {
         article {
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: max-content;
-            height: max-content;
-            padding: $pad;
+            width: 100%;
+            padding: 3em;
 
             @media #{$mobile} {
-                width: fit-content;
+                padding: 2em;
+            }
 
-                .labelInput {
-                    flex-direction: column;
-                }
-
-                form {
-                    width: 100%;
-                }
-
-
+            .conteneur {
+                width: 100%;
             }
         }
     }
 
-    div {
-        &.row {
-            margin: 1em 0;
+    section:nth-child(2) {
+        margin: {
+            left: 20%;
+            right: 10%;
+        }
+
+        @media #{$mobile} {
+            margin: 0;
         }
     }
 
-
-    .ligne {
-        border: solid 2px;
-        border-radius: 10px;
-
-        margin: 10px 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        font-weight: bold;
-
-        div {
-            padding: 0.5em;
-        }
-
-        .prixPoub {
-            display: flex;
-            align-items: center;
-        }
+}
 
 
+.ligneInput {
 
-    }
+    display: flex;
 
-    .prixAffiche {
-        color: $colP;
-    }
-
-    #articles {
-        width: 100%;
-        display: flex;
+    @media #{$mobile} {
         flex-direction: column;
-        align-items: flex-start;
     }
 
-    aside {
-        margin: 0;
+    margin-bottom:1em;
 
-        height: 100%;
+    .labelInput:nth-child(1) {
 
-        section,
-        article {
-            height: 100%;
-        }
-    }
-
-    #secRecap {
-        width: 100%;
-
-    }
-
-    #recapitulatif {
-
-        width: 40em;
-        height: 50em;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-between;
-
-        border: {
-            right: solid;
-            radius: 0;
-        }
-
-        #recap {
-            height: 100%;
-        }
-
-        #prixTTCRecap {
-            justify-self: flex-end;
-
-            font: {
-                weight: bold;
-                size: $MoyTitle;
-            }
-        }
-
-        .libelleProdRecap {
-            display: flex;
-            justify-content: space-between;
-            background-color: $colS;
-            border-radius: $radius;
-            padding: 1em;
-            width: 90%;
-
-        }
-
-    }
-
-    .dateCVC {
-        display: flex;
-
-        .labelInput:nth-child(1) input {
-            width: 6rem;
-            margin-right: 5rem;
-        }
-
-        .labelInput:nth-child(2) input {
-            width: 5rem;
-        }
-    }
-
-    #poubelle {
-        border: none;
-        border-radius: 10px;
-        background-color: $colS;
-
-        img {
-            width: 30px;
-        }
-
-        &:hover {
-            background-color: color.change($colP, $lightness: 70%);
-        }
-    }
-
-    .conteneur {
-        width: 60%;
+        margin-right: 2em;
+        width: 20%;
 
         @media #{$mobile} {
             width: 100%;
         }
-
     }
 
-    .ariane {
-        display: flex;
-        justify-content: center;
-
-        .arianeItem {
-            font-size: 0;
-        }
-
-        align-self:flex-start;
-
-
-
+    .labelInput:nth-child(2) {
+        width: 100%;
     }
 
-    .checkboxCGV {
-        input {
-            width: 1.5em;
-            height: 1.5em;
-            margin-right: 1em;
-        }
+    @media #{$mobile} {
 
-        label {
-            margin-top: 1em;
-            height: 1em;
-        }
+        #divNom,
+        #prenom,
+        #codePostal {
+            width: 100%;
 
-        display:flex;
-        flex-direction: row;
-
-    }
-
-    #btnAnnuler {
-        margin-right: 3rem;
-    }
-
-    #infosPaiement {
-        display: flex;
-        flex-direction: column;
-
-        nav {
-            align-self: flex-start;
         }
     }
 
-    #btnPayer,
-    #btnAnnuler {
+    #divNom {
+        width: 55%;
+    }
 
-        height: 3rem;
-        padding: 0;
-        width: 10rem;
+    #prenom {
+
+        width: 60%;
+
+    }
+
+    #codePostal {
+        width: 7em;
+    }
+
+    #numApt {
+        width: 7em;
+    }
+
+    input:disabled {
+        background-color: rgba(192, 192, 192, 0.438);
+    }
+
+
+}
+
+
+#numRue {
+    width: 5em;
+}
+
+input {
+    border: solid 1px;
+    border-radius: $radius;
+    height: 3em;
+    margin: 10px 0;
+    padding: 1em;
+    width: 100%;
+
+    .btnJaune {
+        padding-top: 8px;
+
+    }
+
+}
+
+section:nth-child(1) {
+    .bouton {
+        padding: $pad/2 $pad;
+
+        margin: {
+            top: 3em;
+            right: 2em;
+        }
+
+        width:15%;
 
         @media #{$mobile} {
-            margin-top: 2rem;
+            width: 35%;
+        }
+
+        height:4em;
+    }
+}
+
+section {
+    width: 40%;
+
+    article {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: max-content;
+        height: max-content;
+        padding: $pad;
+
+        @media #{$mobile} {
+            width: fit-content;
+
+            .labelInput {
+                flex-direction: column;
+            }
+
+            form {
+                width: 100%;
+            }
+
+
+        }
+    }
+}
+
+div {
+    &.row {
+        margin: 1em 0;
+    }
+}
+
+
+.ligne {
+    border: solid 2px;
+    border-radius: 10px;
+
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+
+    div {
+        padding: 0.5em;
+    }
+
+    .prixPoub {
+        display: flex;
+        align-items: center;
+    }
+
+
+
+}
+
+.prixAffiche {
+    color: $colP;
+}
+
+#articles {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+aside {
+    margin: 0;
+
+    height: 100%;
+
+    section,
+    article {
+        height: 100%;
+    }
+}
+
+#secRecap {
+    width: 100%;
+
+}
+
+#recapitulatif {
+
+    width: 40em;
+    height: 50em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    border: {
+        right: solid;
+        radius: 0;
+    }
+
+    #recap {
+        height: 100%;
+    }
+
+    #prixTTCRecap {
+        justify-self: flex-end;
+
+        font: {
+            weight: bold;
+            size: $MoyTitle;
         }
     }
 
-    #confirmation {
-        display: none;
-        position: absolute;
-        z-index: 10000;
-        justify-content: center;
-        align-items: center;
+    .libelleProdRecap {
+        display: flex;
+        justify-content: space-between;
+        background-color: $colS;
+        border-radius: $radius;
+        padding: 1em;
+        width: 90%;
+
+    }
+
+}
+
+.dateCVC {
+    display: flex;
+
+    .labelInput:nth-child(1) input {
+        width: 6rem;
+        margin-right: 5rem;
+    }
+
+    .labelInput:nth-child(2) input {
+        width: 5rem;
+    }
+}
+
+#poubelle {
+    border: none;
+    border-radius: 10px;
+    background-color: $colS;
+
+    img {
+        width: 30px;
+    }
+
+    &:hover {
+        background-color: color.change($colP, $lightness: 70%);
+    }
+}
+
+.conteneur {
+    width: 60%;
+
+    @media #{$mobile} {
         width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.205);
+    }
 
-        article {
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            width: 50%;
-            height: 30%;
-            border-radius: $radius * 2;
+}
 
-            h1 {
-                align-self: center;
-            }
+.ariane {
+    display: flex;
+    justify-content: center;
 
-            .bouton {
-                height: 4rem;
-                width: 10rem;
-                font-size: 28px;
+    .arianeItem {
+        font-size: 0;
+    }
 
-            }
+    align-self:flex-start;
 
-            .bouton:nth-child(1) {
-                margin-right: 2rem;
-            }
 
-            nav {
-                display: flex;
-                justify-content: center;
-            }
 
-            padding:10%;
+}
+
+.checkboxCGV {
+    input {
+        width: 1.5em;
+        height: 1.5em;
+        margin-right: 1em;
+    }
+
+    label {
+        margin-top: 1em;
+        height: 1em;
+    }
+
+    display:flex;
+    flex-direction: row;
+
+}
+
+#btnAnnuler {
+    margin-right: 3rem;
+}
+
+#infosPaiement {
+    display: flex;
+    flex-direction: column;
+
+    nav {
+        align-self: flex-start;
+    }
+}
+
+#btnPayer,
+#btnAnnuler {
+
+    height: 3rem;
+    padding: 0;
+    width: 10rem;
+
+    @media #{$mobile} {
+        margin-top: 2rem;
+    }
+}
+
+#confirmation {
+    display: none;
+    position: absolute;
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.205);
+
+    article {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        width: 50%;
+        height: 30%;
+        border-radius: $radius * 2;
+
+        h1 {
+            align-self: center;
+        }
+
+        .bouton {
+            height: 4rem;
+            width: 10rem;
+            font-size: 28px;
 
         }
+
+        .bouton:nth-child(1) {
+            margin-right: 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        padding:10%;
+
     }
 }
