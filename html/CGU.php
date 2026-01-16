@@ -159,7 +159,7 @@
             </article>
         </section>
         <section>
-            <h1>CGU</h1>
+            <h1 id="CGU">CGU</h1>
 
             <div class="row">
                 <h3>Article 1 - Accès au site</h3>

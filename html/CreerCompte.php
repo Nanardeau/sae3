@@ -91,6 +91,8 @@
             <label for="confMdpCli">Confirmer mot de passe *</label>
             <input type="password" name="confMdp" id="confMdpCli" required/>
             <span>Les deux mots de passe doivent être identiques</span>
+                </br>
+            <p>En continuant, vous acceptez <a href="CGU.php#CGU">les conditions d'utilisation</a> et de vente d'Alizon.</p>
             <input class="bouton" type="submit" id="creerCompte" value="Créer un compte"/>
         </form>   
         <aside>
@@ -99,10 +101,10 @@
                 <p>Déjà un compte ?</p>
                 <img src="../../img/line_1.svg"/>
             </figure>
-            <nav>
+            <div class="div-btn">
                 <a href="ConnexionClient.php" class="bouton">Se connecter</a>
                 <a href="Catalogue.php" class="btnJaune">Retour</a>
-            <nav>
+            </div>
         </aside>
 
     </main>
