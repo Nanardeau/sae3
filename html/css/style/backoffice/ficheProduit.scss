@@ -238,7 +238,7 @@ body{
 }
 
 
-#popReapro{
+.popupReappro{
     display: flex;
     flex-direction: column;
     border: 3px solid $eleOrange;
@@ -255,6 +255,8 @@ body{
         align-self: center;
     }
 }
+
+
 
 
 /*################################*/

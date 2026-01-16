@@ -130,7 +130,7 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                                     <?php $qtestock = $bdd->query("SELECT qtestock FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch(); 
                                         echo "<p class=\"stock\">Stock disponible : " . $qtestock["qtestock"] . "</p>";
                                     ?>
-                                    <button popovertarget="popReapro"> 
+                                    <button onclick="openReappro()"> 
                                         <svg width="37" height="37" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="22.5" cy="22.5" r="22.5" fill="#FCB66B"/>
                                             <path d="M22.272 7.94113V38.4851" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -139,11 +139,19 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                                     </button>
                                  </div>
 
-                                <div popover id="popReapro">
+                                <!-- <div popover id="popReapro">
                                     <h3>Réapprovisionnement</h3>
                                     <label for="qteStock" class="pObl">Quelle quantité voulez-vous ajouter?</label>
-                                    <input type="number" name="qteStock" min="0" placeholder="Quantité à ajouter" id="qteStock"/> 
+                                    <input type="number" name="qteStock" min="0" placeholder="Quantité à ajouteru" id="qteStock"/> 
                                     <button onclick=validerStock() id="validerQteStock"> Valider </button>
+                                </div> -->
+                                <div class="popupReapro" id="popupReappro">
+                                    <div class="popupContent">
+                                        <h3>Réapprovisionnement</h3>
+                                        <label for="qteStock" class="pObl">Quelle quantité voulez-vous ajouter?</label>
+                                        <input type="number" name="qteStock" min="0" placeholder="Quantité à ajouter" id="qteStock"/> 
+                                        <button onclick="closeReappro()" id="validerQteStock"> Valider </button>
+                                    </div>
                                 </div>
 
                                 <div class="alignemnt_droite_gauche">
@@ -440,6 +448,7 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
         <?php include '../includes/backoffice/footer.php';?>
         <script src="/js/popupAvis.js"></script>
         <script src="../js/overlayCompteVendeur.js"></script>
+        <script>src="../js/scripts.js"</script>
         <script>
             function validerStock(){
                 let qte = document.getElementById("qteStock").value;
