@@ -241,6 +241,7 @@ $idPanier = $panier["idpanier"];
                  <form action="enregPaiement.php" method="post" id="formulaireBanque">
                      <label for="nomTitulaireCB">Nom + Prénom figurant sur la carte *</label>
                      <input type="text" name="nomTitulaireCB" id="nomTitulaireCB" placeholder="ex: DUPONT Jean" pattern="\w{3,}\s\w{3,}" required/>
+                     <span>Format invalide (ex: DUPONT Jean)</span>
                      <label for="numCB">Numéro de carte *</label>
                      <input type="text" name="numCB" id="numCB" required/>
                      <span>Numéro de carte invalide</span>
@@ -253,6 +254,7 @@ $idPanier = $panier["idpanier"];
                          <div class="labelInput">
                              <label for="cvc">Cryptogramme visuel *</label>
                              <input type="text" name="cvc" id="cvc" pattern="\d{3}" required/>
+                            <span>Le cryptogramme visuel doit être composé d'exactement 3 chiffres</span>
                          </div>
                      </div>
                      <div class="checkboxCGV">
