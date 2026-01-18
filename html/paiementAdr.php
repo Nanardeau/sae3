@@ -280,7 +280,6 @@
                                 <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse["complementadresse"]?>" />
                             </div>
                         </div>
-                        <button class="bouton" id="modifAdr">Modifier</button>
                         <input type="submit" class="bouton" id="validerForm" value="Valider"/>
                     </div>
                 </article>
