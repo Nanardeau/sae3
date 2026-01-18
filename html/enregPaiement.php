@@ -1,7 +1,7 @@
 <?php 
     session_start();
     require_once __DIR__ . '/_env.php';
-
+    header("location:confirmerPaiement.php");
     loadEnv(__DIR__ . '/.env');
 
     $host = getenv('PGHOST');
@@ -44,18 +44,6 @@ if(isset($_GET["adresse"])){
 
     exit(header("location:paiement.php?adr=1"));
     die();
-}
-if(!isset($_GET["adresse"])){
-    if(isset($_SESSION["modifAdr"])){
-        if($_SESSION["modifAdr"] != 1){
-
-            #$idAdresseFact = $_SESSION["idAdresse"]/*($bdd->query("SELECT * FROM alizon.AdrFactCli WHERE codeCompte = '".$codeCompte."'")->fetch())["idAdresse"]*/;
-            $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.adrFactCli adrFact ON adresse.idAdresse = adrFact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
-            $idAdresse = $adresse["idadresse"];
-        }
-
-    }
-
 }
 
 if(array_key_exists("banque", $_GET)){

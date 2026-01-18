@@ -1,10 +1,6 @@
 <?php
         session_start(); 
 
-
-        
-
-
         if(!array_key_exists("codeCompte", $_SESSION)){
             header("location:index.php");
         }
@@ -60,7 +56,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paiement</title>
+    <title>Adresse de livraison</title>
     <link href="./css/style/paiement.css" rel="stylesheet" type="text/css">
     <link href="./css/components/fonts.css" rel="stylesheet" type="text/css">
 </head>
@@ -68,16 +64,11 @@
 
 
     <?php
-
-    if(isset( $_SESSION["codeCompte"])){
-        $idUser =  $_SESSION["codeCompte"];
-        include 'includes/headerCon.php' ;
-    }else{
-        include 'includes/header.php';
-    }
+    $idUser =  $_SESSION["codeCompte"];
+    include 'includes/headerCon.php' ;
     ?>
 
-    <main>
+    <main id="mainAdr">
         <?php
             include 'includes/menu_cat.php';
             include 'includes/menuCompte.php';
@@ -242,12 +233,12 @@
                         <div class="ligneInput">
                             <div class="labelInput" id="divNom">
                                 <label for="nom">Nom *</label>
-                                <input type="text" name="nom" id="nom" value="<?php echo $nomPrenom["nom"]?>" required disabled/>                    
+                                <input type="text" name="nom" id="nom" value="<?php echo $nomPrenom["nom"]?>" pattern="\w{3,}"required/>                    
                             </div>
                             <div class="labelInput">
                                 
                                 <label for="prenom">Prénom *</label>
-                                <input type="text" name="prenom" id="prenom" value="<?php echo $nomPrenom["prenom"]?>" required disabled/>
+                                <input type="text" name="prenom" id="prenom" value="<?php echo $nomPrenom["prenom"]?>"  pattern="\w{3,}" required/>
                                 
                             </div>
 
@@ -257,12 +248,12 @@
                         <div class="ligneInput">
                             <div class="labelInput">
                                 <label for="numRue">Numéro *</label>
-                                <input type="text" name="numRue" id="numRue" value="<?php echo $infosAdresse["num"]?>" required disabled/>
+                                <input type="text" name="numRue" id="numRue" value="<?php echo $infosAdresse["num"]?>" required/>
                             </div>
                         
                             <div class="labelInput">
                                 <label for="nomRue">Rue *</label>
-                                <input type="text" name="nomRue" id="nomRue" value="<?php echo $infosAdresse["nomrue"]?>" required disabled/>
+                                <input type="text" name="nomRue" id="nomRue" value="<?php echo $infosAdresse["nomrue"]?>" required/>
                             </div>
                             
 
@@ -271,25 +262,24 @@
                             <div class="labelInput">
                                 
                                 <label for="codePostal">Code postal *</label>
-                                <input type="text" name="codePostal" id="codePostal" value="<?php echo $infosAdresse["codepostal"]?>" required disabled/>
+                                <input type="text" name="codePostal" id="codePostal" value="<?php echo $infosAdresse["codepostal"]?>" pattern="\d{5}"required/>
+                                <span>Le code postal est incorrect</span>
                             </div>
                             <div class="labelInput">
                                 <label for="ville">Ville *</label>
-                                <input type="text" name="ville" id="ville" value="<?php echo $infosAdresse["nomville"]?>" required disabled/>
+                                <input type="text" name="ville" id="ville" value="<?php echo $infosAdresse["nomville"]?>" required/>
                             </div>
                         </div>
                         <div class="ligneInput">
                             <div class="labelInput">
                                 <label>N° appartement</label>
-                                <input type="text" name="numApt" id="numApt" value="<?php echo $infosAdresse["numappart"]?>" disabled/> 
+                                <input type="text" name="numApt" id="numApt" value="<?php echo $infosAdresse["numappart"]?>"/> 
                             </div>
                             <div class="labelInput">
                                 <label for="complement">Complément d'adresse</label>
-                                <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse["complementadresse"]?>" disabled />
-                                <p class="btnJaune" value="Valider" onclick="validerAdresse()" id="validerAdr" hidden>Valider</p>
+                                <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse["complementadresse"]?>" />
                             </div>
                         </div>
-                        <button class="bouton" id="modifAdr">Modifier</button>
                         <input type="submit" class="bouton" id="validerForm" value="Valider"/>
                     </div>
                 </article>
@@ -371,7 +361,20 @@
     let btnValiderAdr = document.querySelector("#adresseLivraison .btnJaune");
     //btnPayer.addEventListener("click", validerPaiement);
     btnModifAdr.addEventListener("click", modifierAdr);
+    let champCodeP = document.getElementById("codePostal");
+    let formatCodeP = /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/;
+    champCodeP.addEventListener("focusout", verifCodeP);
 
+    function verifCodeP(){
+        if(!formatCodeP.test(champCodeP)){
+            btnValiderAdr.setAttribute("disabled", 0);
+            champCodeP.classList.add("invalid");
+        }
+        else{
+            btnValiderAdr.removeAttribute("disabled");
+            champCodeP.classList.remove("invalid");
+        }
+    }
 
     // function sendGet(url, onSuccess, onError) {
     //     var xhr = new XMLHttpRequest();
@@ -438,21 +441,21 @@
     //     }
 
     // }
-    function modifierAdr(){
-        let champsAdresse = document.querySelectorAll("#adresseLivraison input");
-        for(let i = 0 ; i < champsAdresse.length ; i++){
-            champsAdresse[i].removeAttribute("disabled");
-        }
-        btnValiderAdr.removeAttribute("hidden");
+    // function modifierAdr(){
+    //     let champsAdresse = document.querySelectorAll("#adresseLivraison input");
+    //     for(let i = 0 ; i < champsAdresse.length ; i++){
+    //         champsAdresse[i].removeAttribute("disabled");
+    //     }
+    //     btnValiderAdr.removeAttribute("hidden");
         
-    }
-    function validerAdresse(){
-        let champsAdresse = document.querySelectorAll("#adresseLivraison input");
-        for(let i = 0 ; i < champsAdresse.length ; i++){
-            champsAdresse[i].setAttribute("disabled", null);
-        }
-        btnValiderAdr.setAttribute("hidden", null);        
-    }
+    // }
+    // function validerAdresse(){
+    //     let champsAdresse = document.querySelectorAll("#adresseLivraison input");
+    //     for(let i = 0 ; i < champsAdresse.length ; i++){
+    //         champsAdresse[i].setAttribute("disabled", null);
+    //     }
+    //     btnValiderAdr.setAttribute("hidden", null);        
+    // }
     
     // function submitTout(){
     //     const formulaireAdr = document.getElementById("formulaireAdr");
