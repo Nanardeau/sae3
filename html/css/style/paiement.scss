@@ -392,6 +392,13 @@ aside{
 #btnAnnuler{
     margin-right:3rem;
 }
+#infosPaiement{
+    display:flex;
+    flex-direction: column;
+    nav{
+        align-self:flex-start;
+    }
+}
 #btnPayer, #btnAnnuler{
 
     height:3rem;
@@ -399,5 +406,41 @@ aside{
     width:10rem;
     @media #{$mobile}{
         margin-top:2rem;
+    }
+}
+#confirmation{
+    display:none;
+    position:absolute;
+    z-index:10000;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:100%;
+    background-color:rgba(0, 0, 0, 0.205);
+    article{
+        display:flex;
+        flex-direction:column;
+        background-color:white;
+        width:50%;
+        height:30%;
+        border-radius:$radius * 2;
+        h1{
+            align-self:center;
+        }
+        .bouton{
+            height:4rem;
+            width:10rem;
+            font-size:28px;
+            
+        }
+        .bouton:nth-child(1){
+            margin-right:2rem;
+        }
+        nav{
+            display:flex;
+            justify-content: center;
+        }
+        padding:10%;
+        
     }
 }

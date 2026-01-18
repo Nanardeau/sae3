@@ -1,7 +1,7 @@
 <?php 
     session_start();
     require_once __DIR__ . '/_env.php';
-    header("location:confirmerPaiement.php");
+    header("location:paiementFini.php");
     loadEnv(__DIR__ . '/.env');
 
     $host = getenv('PGHOST');
