@@ -3,34 +3,42 @@
 @use "../tools/mixin/com" as *;
 @use 'sass:color';
 
-
-#mainAdr {
-    display: flex;
+#mainAdr{
+    display:flex;
     justify-content: center;
     background-color: rgb(241, 241, 241);
 }
-
-article {
-    background-color: white;
-    width: 100%;
-    height: 30%;
-    border-radius: 1em;
-
+span{
+    display:none;
+    margin-bottom:1em;
 }
-
-#navMobile {
-    display: none;
-
-    @media #{$mobile} {
-        display: flex;
+.asideSec{
+    display:flex;
+    justify-content: space-between;
+    @media #{$mobile}{
+        flex-direction: column-reverse;
+        font-size:12px;
     }
 }
 
-#navTablette {
-    display: flex;
+article{
+    background-color:white;
+    width:100%;
+    height:30%;
+    border-radius:1em;
+    
+}
 
-    @media #{$mobile} {
-        display: none;
+#navMobile{
+    display:none;
+    @media #{$mobile}{
+        display:flex;
+    }
+}
+#navTablette{
+    display:flex;
+    @media #{$mobile}{
+        display:none;
     }
 }
 
@@ -164,20 +172,23 @@ article {
 #numRue {
     width: 5em;
 }
+main input, label, p, button{
 
-input {
-    border: solid 1px;
-    border-radius: $radius;
-    height: 3em;
-    margin: 10px 0;
-    padding: 1em;
-    width: 100%;
-
-    .btnJaune {
-        padding-top: 8px;
-
+    font-size:18px;
+}
+input{
+    border:solid 1px;
+    border-radius:$radius;
+    height:3em;
+    margin:10px 0;
+    padding:1em;
+    width:100%;
+    .btnJaune{
+        padding-top:8px;
+        
     }
 
+    
 }
 
 section:nth-child(1) {
@@ -198,9 +209,12 @@ section:nth-child(1) {
         height:4em;
     }
 }
-
-section {
-    width: 40%;
+aside + section{
+    width:fit-content;
+    margin-right:5%;
+}
+section{
+    width:40%;
 
     article {
 
@@ -235,11 +249,11 @@ div {
 
 
 .ligne {
-    border: solid 2px;
-    border-radius: 10px;
+    border:solid 2px;
+    border-radius:10px;
 
-    margin: 10px 0;
-    display: flex;
+    margin:10px 0;
+    display:flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -262,46 +276,41 @@ div {
 .prixAffiche {
     color: $colP;
 }
-
-#articles {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.prixAffiche{
+    color:$colP;
 }
+#articles{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+aside{
+    margin:0;
 
-aside {
-    margin: 0;
-
-    height: 100%;
-
-    section,
-    article {
-        height: 100%;
+    height:100%;
+    section, article{
+        height:100%;
     }
 }
-
-#secRecap {
-    width: 100%;
+#secRecap{
+    width:100%;
 
 }
-
-#recapitulatif {
-
-    width: 40em;
-    height: 50em;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-
+#recapitulatif{
+    
+    width:40em;
+    height:50em;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:space-between;
     border: {
-        right: solid;
-        radius: 0;
+        right:solid;
+        radius:0;
     }
-
-    #recap {
-        height: 100%;
+    #recap{
+        height:100%;
     }
 
     #prixTTCRecap {
@@ -316,104 +325,41 @@ aside {
     .libelleProdRecap {
         display: flex;
         justify-content: space-between;
-        background-color: $colS;
-        border-radius: $radius;
-        padding: 1em;
-        width: 90%;
+        background-color:$colS;
+        border-radius:$radius;
+        padding:1em;
+        width:90%;
 
     }
 
 }
-
-.dateCVC {
-    display: flex;
-
-    .labelInput:nth-child(1) input {
-        width: 6rem;
-        margin-right: 5rem;
-    }
-
-    .labelInput:nth-child(2) input {
-        width: 5rem;
-    }
-}
-
-#poubelle {
-    border: none;
-    border-radius: 10px;
-    background-color: $colS;
-
-    img {
-        width: 30px;
-    }
-
-    &:hover {
-        background-color: color.change($colP, $lightness: 70%);
-    }
-}
-
-.conteneur {
-    width: 60%;
-
-    @media #{$mobile} {
-        width: 100%;
-    }
-
-}
-
-.ariane {
-    display: flex;
-    justify-content: center;
-
-    .arianeItem {
-        font-size: 0;
-    }
-
-    align-self:flex-start;
-
-
-
-}
-
-.checkboxCGV {
-    input {
-        width: 1.5em;
-        height: 1.5em;
-        margin-right: 1em;
-    }
-
-    label {
-        margin-top: 1em;
-        height: 1em;
-    }
-
+.dateCVC{
     display:flex;
-    flex-direction: row;
 
-}
-
-#btnAnnuler {
-    margin-right: 3rem;
-}
-
-#infosPaiement {
-    display: flex;
-    flex-direction: column;
-
-    nav {
-        align-self: flex-start;
+    .labelInput:nth-child(1) input{
+        width:6rem;
+        margin-right:5rem;
+    }
+    .labelInput:nth-child(2) input{
+        width:5rem;
     }
 }
 
-#btnPayer,
-#btnAnnuler {
-
-    height: 3rem;
-    padding: 0;
-    width: 10rem;
-
-    @media #{$mobile} {
-        margin-top: 2rem;
+#poubelle{
+    border:none;
+    border-radius:10px;
+    background-color: $colS;
+    img{
+        width:30px;
+    }
+    &:hover{
+        background-color: color.change($colP, $lightness: 70%) ;
+    }
+}
+.conteneur{
+    width:60%;
+    @media #{$mobile}{
+        width:100%;
     }
 }
 
@@ -422,40 +368,36 @@ aside {
     position: absolute;
     z-index: 10000;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.205);
+    .arianeItem{
+        font-size:0;
+    }
+    align-self:flex-start;
 
-    article {
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        width: 50%;
-        height: 30%;
-        border-radius: $radius * 2;
 
-        h1 {
-            align-self: center;
-        }
+}
+.checkboxCGV{
+    input{
+        width:1.5em;
+        height:1.5em;
+        margin-right:1em;
+    }
+    label{
+        margin-top:1em;
+        height:1em;
+    }
+    display:flex;
+    flex-direction: row;
 
-        .bouton {
-            height: 4rem;
-            width: 10rem;
-            font-size: 28px;
+}    
+#btnAnnuler{
+    margin-right:3rem;
+}
+#btnPayer, #btnAnnuler{
 
-        }
-
-        .bouton:nth-child(1) {
-            margin-right: 2rem;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-        }
-
-        padding:10%;
-
+    height:3rem;
+    padding:0;
+    width:10rem;
+    @media #{$mobile}{
+        margin-top:2rem;
     }
 }
