@@ -709,8 +709,12 @@ nav div > ul li:hover .souscat-ul {
   padding-left: 1rem;
 }
 
-.ajoutPanierFait {
-  display: flex;
+#ajoutPanierFait.open {
+  display: flex !important;
+}
+
+#ajoutPanierFait {
+  display: none;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
@@ -723,13 +727,13 @@ nav div > ul li:hover .souscat-ul {
   margin-top: 1em;
   margin-left: 2em;
 }
-.ajoutPanierFait svg {
+#ajoutPanierFait svg {
   color: green;
 }
-.ajoutPanierFait .bouton {
+#ajoutPanierFait .bouton {
   padding: 0.3em;
 }
-.ajoutPanierFait .partieDroite {
+#ajoutPanierFait .partieDroite {
   display: flex;
   flex-direction: column;
 }

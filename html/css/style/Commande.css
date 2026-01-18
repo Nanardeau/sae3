@@ -654,8 +654,12 @@ nav div > ul li:hover .souscat-ul {
   padding-left: 1rem;
 }
 
-.ajoutPanierFait {
-  display: flex;
+#ajoutPanierFait.open {
+  display: flex !important;
+}
+
+#ajoutPanierFait {
+  display: none;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
@@ -668,13 +672,13 @@ nav div > ul li:hover .souscat-ul {
   margin-top: 1em;
   margin-left: 2em;
 }
-.ajoutPanierFait svg {
+#ajoutPanierFait svg {
   color: green;
 }
-.ajoutPanierFait .bouton {
+#ajoutPanierFait .bouton {
   padding: 0.3em;
 }
-.ajoutPanierFait .partieDroite {
+#ajoutPanierFait .partieDroite {
   display: flex;
   flex-direction: column;
 }
@@ -946,4 +950,59 @@ table a {
   display: flex;
   align-items: end;
   color: black;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+.suiviOrdi {
+  display: flex;
+  flex-direction: row;
+}
+@media screen and (max-width : 428px) {
+  .suiviOrdi {
+    display: none;
+  }
+}
+.suiviOrdi div {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+.suiviOrdi div p {
+  text-align: center;
+  justify-self: center;
+}
+
+@media screen and (max-width:1920px) {
+  .suiviTel {
+    display: none;
+  }
+}
+@media screen and (max-width : 428px) {
+  .suiviTel {
+    display: flex;
+    flex-direction: column;
+  }
+  .suiviTel div {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+  }
+  .suiviTel div p {
+    text-align: center;
+    justify-self: center;
+    margin-left: 20px;
+  }
+}
+
+.statut p, .statut img, .statut h2 {
+  margin-left: 20px;
+}
+
+.statut p {
+  font-size: 20px;
 }/*# sourceMappingURL=Commande.css.map */

@@ -33,8 +33,8 @@
                 <h3>Informations légales :</h3>
                 <ul>
                     <li><a href="#">Plan du site</a></li>
-                    <li><a href="#">Mentions légales</a></li>
-                    <li><a href="#">Données personnelles</a></li>
+                    <li><a href="CGU.php#ML">Mentions légales</a></li>
+                    <li><a href="CGU.php#DCP">Données personnelles</a></li>
                     <li><a href="#">Gestion des cookies</a></li>
                 </ul>
             </div>
