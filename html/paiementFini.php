@@ -13,6 +13,7 @@
 <main>
     <h1>Votre commande a été enregistrée !</h1>
     <a href="index.php" class="bouton">Retour à l'accueil</a>
+    <a href="facture.php" class="bouton">Générer une facture</a>
     <a href="mesCommandes.php" class="bouton">Voir mes commandes</a>
 </main>
 <?php include "includes/footer.php"?>
