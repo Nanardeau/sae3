@@ -66,7 +66,7 @@ $bdd->query('set schema \'alizon\'');
     }
     ?>
 
-<main style="display:block;">
+<main>
     
     <div>
     <?php

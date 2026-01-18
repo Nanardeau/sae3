@@ -40,7 +40,14 @@ $totalAvis = count($avisList);
             <span class="etoile <?= $i <= round($moyenneNote) ? 'pleine' : '' ?>">★</span>
         <?php endfor; ?>
     </div>
-    <p class="description"><?php echo $desc ?></p>
+    <p class="description"><?php
+    $max = 175;
+    $descSafe = trim($desc ?? '');
+    if (strlen($descSafe) > $max) {
+        $descSafe = substr($descSafe, 0, $max - 3) . '...';
+    }
+    echo htmlspecialchars($descSafe, ENT_QUOTES, 'UTF-8');
+    ?></p>
     <p class="prix"><?php echo $prix ?> €TTC</p>
     <div>
         <button class="mobile-commande" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $p['codeproduit'] ?>&qteProd=1&page=index.php';">
