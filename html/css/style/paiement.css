@@ -1164,6 +1164,14 @@ aside section, aside article {
   margin-right: 3rem;
 }
 
+#infosPaiement {
+  display: flex;
+  flex-direction: column;
+}
+#infosPaiement nav {
+  align-self: flex-start;
+}
+
 #btnPayer, #btnAnnuler {
   height: 3rem;
   padding: 0;
@@ -1173,4 +1181,39 @@ aside section, aside article {
   #btnPayer, #btnAnnuler {
     margin-top: 2rem;
   }
+}
+
+#confirmation {
+  display: none;
+  position: absolute;
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.205);
+}
+#confirmation article {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 50%;
+  height: 30%;
+  border-radius: 2em;
+  padding: 10%;
+}
+#confirmation article h1 {
+  align-self: center;
+}
+#confirmation article .bouton {
+  height: 4rem;
+  width: 10rem;
+  font-size: 28px;
+}
+#confirmation article .bouton:nth-child(1) {
+  margin-right: 2rem;
+}
+#confirmation article nav {
+  display: flex;
+  justify-content: center;
 }/*# sourceMappingURL=paiement.css.map */
