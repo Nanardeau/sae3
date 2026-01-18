@@ -763,10 +763,69 @@ nav div > ul li:hover .souscat-ul {
   align-items: center;
 }
 
-main {
+.vide {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 40%;
+}
+.vide a {
+  color: grey;
+  text-decoration: none;
+  font-weight: lighter;
+  font-style: italic;
+}
+
+.separateur {
+  display: block;
+  background-color: #FCB66B;
+  width: 98%;
+  height: 10px;
+  border-radius: 1em;
+}
+
+.separateur2 {
+  display: none;
+  background-color: #FCB66B;
+  width: 100%;
+  height: 10px;
+  border-radius: 1em;
+}
+@media screen and (max-width : 428px) {
+  .separateur2 {
+    display: block;
+    margin-left: 20px;
+  }
+}
+
+.div-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#mainAdr {
   display: flex;
   justify-content: center;
   background-color: rgb(241, 241, 241);
+}
+
+span {
+  display: none;
+  margin-bottom: 1em;
+}
+
+.asideSec {
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width : 428px) {
+  .asideSec {
+    flex-direction: column-reverse;
+    font-size: 12px;
+  }
 }
 
 article {
@@ -894,6 +953,10 @@ article {
   width: 5em;
 }
 
+main input, label, p, button {
+  font-size: 18px;
+}
+
 input {
   border: solid 1px;
   border-radius: 1em;
@@ -917,6 +980,12 @@ section:nth-child(1) .bouton {
   section:nth-child(1) .bouton {
     width: 35%;
   }
+}
+
+aside + section {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 5%;
 }
 
 section {
@@ -968,6 +1037,10 @@ div.row {
   align-items: center;
 }
 
+.prixAffiche {
+  color: #064082;
+}
+
 #articles {
   width: 100%;
   display: flex;
@@ -975,18 +1048,27 @@ div.row {
   align-items: flex-start;
 }
 
+aside {
+  margin: 0;
+  height: 100%;
+}
+aside section, aside article {
+  height: 100%;
+}
+
 #secRecap {
   width: 100%;
 }
 
 #recapitulatif {
-  width: 100%;
-  height: -moz-fit-content;
-  height: fit-content;
+  width: 40em;
+  height: 50em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  border-right: solid;
+  border-radius: 0;
 }
 #recapitulatif #recap {
   height: 100%;
@@ -999,70 +1081,16 @@ div.row {
 #recapitulatif .libelleProdRecap {
   display: flex;
   justify-content: space-between;
+  background-color: #D1ECF8;
+  border-radius: 1em;
+  padding: 1em;
   width: 90%;
 }
 
-.ligneArtPaye {
+.dateCVC {
   display: flex;
-  padding-bottom: 3em;
 }
-@media screen and (max-width : 428px) {
-  .ligneArtPaye {
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 1rem;
-  }
-  .ligneArtPaye section {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-}
-.ligneArtPaye input {
-  width: auto;
-  border-radius: 10px;
-  height: 1em;
-  margin-bottom: 3rem;
-}
-.ligneArtPaye section:nth-child(2) {
-  margin-left: 13rem;
-  width: 40%;
-}
-@media screen and (max-width : 428px) {
-  .ligneArtPaye section:nth-child(2) {
-    margin: 0;
-    width: 100%;
-  }
-}
-.ligneArtPaye section:nth-child(2) article {
-  padding-left: 8em;
-  width: 80%;
-  height: auto;
-  justify-content: flex-start;
-}
-@media screen and (max-width : 428px) {
-  .ligneArtPaye section:nth-child(2) article {
-    padding: 1rem;
-    width: 100%;
-  }
-}
-.ligneArtPaye section:nth-child(2) form {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 100%;
-}
-@media screen and (max-width : 428px) {
-  .ligneArtPaye section:nth-child(2) form {
-    width: 100%;
-  }
-}
-.ligneArtPaye section:nth-child(2) .dateCVC {
-  display: flex;
-  justify-content: space-between;
-  width: 65%;
-}
-.ligneArtPaye section:nth-child(2) #expDate {
+.dateCVC .labelInput:nth-child(1) input {
   width: 6rem;
 }
 .ligneArtPaye section:nth-child(2) #cvc {
@@ -1071,13 +1099,12 @@ div.row {
 .ligneArtPaye .bouton {
   font-family: "Mulish";
   font-weight: bold;
-  font-size: 20px;
   text-align: center;
+  text-size: 20px;
   text-decoration: none;
   background-color: #064082;
   color: white;
   border-radius: 1em;
-  height: 2rem;
   border: none;
   cursor: pointer;
   background-color: #FF4444;
@@ -1085,31 +1112,20 @@ div.row {
   width: 10rem;
   border: none;
 }
-.ligneArtPaye .bouton:hover {
-  background-color: rgb(6.75, 72, 146.25);
-}
-.ligneArtPaye .bouton:active {
-  background-color: rgb(4.5, 48, 97.5);
-}
-.ligneArtPaye nav {
-  display: flex;
-  justify-content: space-between;
-  align-self: flex-end;
-}
-.ligneArtPaye nav button {
-  margin-right: 2em;
-  margin-top: 2em;
+.dateCVC .labelInput:nth-child(2) input {
+  width: 5rem;
 }
 
 #poubelle {
   border: none;
+  border-radius: 10px;
   background-color: #D1ECF8;
 }
 #poubelle img {
   width: 30px;
 }
 #poubelle:hover {
-  background-color: rgb(178.5, 178.5, 178.5);
+  background-color: rgb(108.75, 174, 248.25);
 }
 
 .conteneur {
@@ -1128,4 +1144,33 @@ div.row {
 }
 .ariane .arianeItem {
   font-size: 0;
+}
+
+.checkboxCGV {
+  display: flex;
+  flex-direction: row;
+}
+.checkboxCGV input {
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 1em;
+}
+.checkboxCGV label {
+  margin-top: 1em;
+  height: 1em;
+}
+
+#btnAnnuler {
+  margin-right: 3rem;
+}
+
+#btnPayer, #btnAnnuler {
+  height: 3rem;
+  padding: 0;
+  width: 10rem;
+}
+@media screen and (max-width : 428px) {
+  #btnPayer, #btnAnnuler {
+    margin-top: 2rem;
+  }
 }/*# sourceMappingURL=paiement.css.map */

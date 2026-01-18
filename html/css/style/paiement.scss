@@ -3,10 +3,22 @@
 @use "../tools/mixin/com" as *;
 @use 'sass:color';
 
-main{
+#mainAdr{
     display:flex;
     justify-content: center;
     background-color:rgb(241, 241, 241);
+}
+span{
+    display:none;
+    margin-bottom:1em;
+}
+.asideSec{
+    display:flex;
+    justify-content: space-between;
+    @media #{$mobile}{
+        flex-direction: column-reverse;
+        font-size:12px;
+    }
 }
 
 article{
@@ -135,7 +147,10 @@ article{
 #numRue{
     width:5em;
 }
+main input, label, p, button{
 
+    font-size:18px;
+}
 input{
     border:solid 1px;
     border-radius:$radius;
@@ -147,6 +162,7 @@ input{
         padding-top:8px;
         
     }
+
     
 }
 section:nth-child(1){
@@ -162,6 +178,10 @@ section:nth-child(1){
         }
         height:4em;
     }
+}
+aside + section{
+    width:fit-content;
+    margin-right:5%;
 }
 section{
     width:40%;
@@ -199,6 +219,7 @@ div {
 .ligne {
     border:solid 2px;
     border-radius:10px;
+
     margin:10px 0;
     display:flex;
     flex-direction: row;
@@ -217,12 +238,22 @@ div {
 
     
 }
-
+.prixAffiche{
+    color:$colP;
+}
 #articles{
     width:100%;
     display:flex;
     flex-direction:column;
     align-items:flex-start;
+}
+aside{
+    margin:0;
+
+    height:100%;
+    section, article{
+        height:100%;
+    }
 }
 #secRecap{
     width:100%;
@@ -230,12 +261,16 @@ div {
 }
 #recapitulatif{
     
-    width:100%;
-    height:fit-content;
+    width:40em;
+    height:50em;
     display:flex;
     flex-direction:column;
     align-items:flex-start;
     justify-content:space-between;
+    border: {
+        right:solid;
+        radius:0;
+    }
     #recap{
         height:100%;
     }
@@ -249,103 +284,35 @@ div {
     .libelleProdRecap{
         display:flex;
         justify-content: space-between;
-        
+        background-color:$colS;
+        border-radius:$radius;
+        padding:1em;
         width:90%;
 
     }
 
 }
-.ligneArtPaye{
+.dateCVC{
     display:flex;
-    
-    @media #{$mobile} {
-        flex-direction:column;
-        justify-content: flex-start;
-        padding:1rem;
-        section{
-            width:100%;
-            margin-bottom:1rem;
-        }
-    }
-    
-    input{
-        width:auto;
-        border-radius:10px;
-        height:1em;
-        margin-bottom:3rem;
-    }
-    section:nth-child(2){
 
-        margin-left:13rem;
-        width:40%;
-        @media #{$mobile}{
-            margin:0;
-            width:100%;
-        }
-        article{
-            padding-left:8em;
-            width:80%;
-            height:auto;
-            justify-content: flex-start;
-            @media #{$mobile}{
-                padding:1rem;
-                width:100%;
-            }
-
-        }
-        form{
-            width:80%;
-            display:flex;
-            flex-direction:column;
-            align-items: flex-start;
-            height:100%;
-            @media #{$mobile}{
-                width:100%;
-            }
-        }
-        .dateCVC{
-            display:flex;
-            justify-content: space-between;
-            width:65%;
-            
-        }
-        #expDate{
-            width:6rem;
-
-        }
-        #cvc{
-            width:6rem;
-        }
+    .labelInput:nth-child(1) input{
+        width:6rem;
+        margin-right:5rem;
     }
-    .bouton{
-        @include bouton;
-        background-color:$inverse;
-        padding:1.5rem;
-        width:10rem;
-        border:none;
+    .labelInput:nth-child(2) input{
+        width:5rem;
     }
-    nav{
-        display:flex;
-        justify-content: space-between;
-        button{
-            margin: {
-                right: 2em;
-                top:2em;
-            }
-        }
-        align-self:flex-end;
-    }
-    padding-bottom:3em;
-
 }
+
 #poubelle{
     border:none;
+    border-radius:10px;
     background-color: $colS;
     img{
         width:30px;
     }
     &:hover{
-        background-color: color.change($noir, $lightness: 70%) ;
+        background-color: color.change($colP, $lightness: 70%) ;
     }
 }
 .conteneur{
@@ -363,4 +330,30 @@ div {
     align-self:flex-start;
 
 
+}
+.checkboxCGV{
+    input{
+        width:1.5em;
+        height:1.5em;
+        margin-right:1em;
+    }
+    label{
+        margin-top:1em;
+        height:1em;
+    }
+    display:flex;
+    flex-direction: row;
+
+}    
+#btnAnnuler{
+    margin-right:3rem;
+}
+#btnPayer, #btnAnnuler{
+
+    height:3rem;
+    padding:0;
+    width:10rem;
+    @media #{$mobile}{
+        margin-top:2rem;
+    }
 }
