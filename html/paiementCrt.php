@@ -23,12 +23,6 @@ try {
 $bdd->query("SET SCHEMA 'alizon'");
 $codeCompte = $_SESSION["codeCompte"];
 
-$numRue = $_POST["numRue"];
-$nomRue = $_POST["nomRue"];
-$codePostal = $_POST["codePostal"];
-$nomVille = $_POST["ville"];
-$numApt = isset($_POST["numApt"]) ? $_POST["numApt"] : "";
-$complement = isset($_POST["comp"]) ? $_POST["comp"] : ""; 
 
 
 //À DÉCOMMENTER
@@ -61,7 +55,15 @@ $idPanier = $panier["idpanier"];
     $idUser =  $_SESSION["codeCompte"];
     include 'includes/headerCon.php' ;
     ?>
-
+        <div id="confirmation">
+            <article>
+                <h1>Vous allez payer <?php echo $panier["prixttctotal"]?> €, confirmer le paiement ?</h1>
+                <nav>
+                    <button class="bouton" onclick="annulerConf()" value="annuler">Annuler</button>
+                    <button class="bouton" onclick="confirmer()" value="confirmer">Confirmer</button>
+                </nav>
+            </article>
+        </div>
     <main id="mainCrt">
         <nav class="ariane" id="navTablette">
             <a class="arianeItem" href="panier.php">
@@ -189,6 +191,7 @@ $idPanier = $panier["idpanier"];
             </a>
 
         </nav>
+
         <div class="asideSec">
         <?php
             //include 'includes/menu_cat.php';
@@ -256,11 +259,12 @@ $idPanier = $panier["idpanier"];
                         <input type="checkbox" name="accepter" id="cgv" required/>
                         <label for="cgv">J'ai lu et accepté les Conditions Générales de Vente (CGV)</label>
                     </div>
-                     <button class="bouton" id="btnAnnuler" onclick="annuler()">Annuler</button>
-                     <input type="submit" class="btnJaune"  id="btnPayer" value="Payer"/>
-                 </form>
-    
-         </article>
+                </form>
+                <nav>
+                    <button class="bouton" id="btnAnnuler" onclick="annuler()">Annuler</button>
+                    <button type="submit" class="btnJaune" id="btnPayer" onclick="payer()">Payer</button>
+                </nav>
+            </article>
 
      </section>
     </div>
@@ -269,6 +273,8 @@ $idPanier = $panier["idpanier"];
         let champCarte = document.getElementById("numCB");
         let champDate = document.getElementById("expDate");
         let btnPayer = document.getElementById("btnPayer");
+        let divConfirmer = document.getElementById("confirmation");
+        let formulaePaiement = document.getElementById("formulaireBanque");
         champCarte.addEventListener("keyup", formaterCarte);
         champCarte.addEventListener("focusout", luhn);
         champDate.addEventListener("keydown", formaterDate);
@@ -347,13 +353,35 @@ $idPanier = $panier["idpanier"];
                 console.log(numCb.length);
                 champCarte.value = numCb + " ";
             } 
+    }
+    function formaterDate(){
+        let date = champDate.value;
+        if(date.length == 2){
+            champDate.value = date + "/";
         }
-        function formaterDate(){
-            let date = champDate.value;
-            if(date.length == 2){
-                champDate.value = date + "/";
+    }
+    function payer(){
+        divConfirmer.style = "display:flex";
+    }
+    function annulerConf(){
+        divConfirmer.style = "display:none";
+    }
+    function confirmer(){
+        divConfirmer.style = "display:none";
+        let valide = true;
+        for(let i = 0 ; i < 4 ; i++){
+            if (document.querySelectorAll("input")[i].classList.contains("invalid")){
+                divConfirmer.style = "display:none";
+                valide = false;
             }
+
         }
+        if(valide){
+
+            formulaireBanque.submit();
+        }
+
+    }
     </script>
      <?php include("./includes/footer.php")?>
     
