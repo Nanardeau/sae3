@@ -19,34 +19,12 @@
         echo "Erreur de connexion : " . $e->getMessage();
     }
     $bdd->query("SET SCHEMA 'alizon'");
-    $codeCompte = $_SESSION["codeCompte"];
-if(isset($_GET["adresse"])){
+
     #Modification de l'adresse
 
-    $numRue = $_POST["numRue"];
-    $nomRue = $_POST["nomRue"];
-    $codePostal = $_POST["codePostal"];
-    $nomVille = $_POST["ville"];
-    $numApt = isset($_POST["numApt"]) ? $_POST["numApt"] : "";
-    $complement = isset($_POST["comp"]) ? $_POST["comp"] : ""; 
-    $stmt = $bdd->prepare("INSERT INTO alizon.Adresse (num, nomRue, codePostal, nomVille, numAppart, complementAdresse) VALUES (:num, :nomRue, :codePostal, :nomVille, :numAppart, :complementAdresse)");
-    $stmt->execute(array(
-        ":num" => $numRue,
-        ":nomRue" => $nomRue,
-        ":codePostal" => $codePostal,
-        ":nomVille" => $nomVille,
-        ":numAppart" => $numApt,
-        ":complementAdresse" => $complement
-    ));
-    $idAdresse = $bdd->lastInsertId();
-    $_SESSION["idAdresse"] = $idAdresse;
-    $_SESSION["adrModif"] = 1;
+    $codeCompte = $_SESSION["codeCompte"];
 
-    exit(header("location:paiement.php?adr=1"));
-    die();
-}
 
-if(array_key_exists("banque", $_GET)){
     $nom = $_POST["nomTitulaireCB"];
     $numCarte = $_POST["numCB"];
     $expDate = $_POST["expDate"];
@@ -88,13 +66,14 @@ if(array_key_exists("banque", $_GET)){
         ":idAdresse" => $_SESSION["idAdresse"],
         ":numCom" => $numCom
     ));
+    $_SESSION["numCom"] = $numCom;
     $stmt = $bdd->prepare("DELETE FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'");
     $stmt->execute();
     unset($_SESSION["idPanier"]);
     
     //LIEN DELIVRAPTOR
     
-    $socket = fsockopen("10.253.5.102", 8080);
+    $socket = fsockopen("127.0.0.1", 8080);
     fwrite($socket, "CONN test0 mdp0");
     $data = fread($socket, 1024);
     var_dump($data);
@@ -107,7 +86,7 @@ if(array_key_exists("banque", $_GET)){
     exit(header("location:paiementFini.php"));
 
 
-}
+
 
 
 ?>
