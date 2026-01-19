@@ -244,7 +244,6 @@ $bdd->query('set schema \'alizon\'');
                 </div>
         <?php
                 }
-            include 'includes/menu_cat.php';
             include 'includes/menuCompte.php';
         ?>
     
