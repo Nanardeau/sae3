@@ -140,7 +140,7 @@
 
         </form>   
 
-        <nav>
+        <div class="div-btn">
 
             <button class="bouton" id="modifInfos" popovertarget="mdpValider" onclick="modifierInfos()">Modifier informations</button>
             <div popover="auto" id="mdpValider">
@@ -169,7 +169,7 @@
             <button class="bouton" id="annuler" onclick="annuler()" hidden>Annuler</button>
             <button class="bouton" id="blocageCompte" onclick="bloquerCompte()">Bloquer compte</button>
             
-        </nav>
+            </div>
         </div>
         <button class="btnJaune" id="deconnexion" onclick="deconnecter()"><img src="./img/icon_déconnexion.svg"/>Se déconnecter</button>
 

@@ -121,7 +121,7 @@ input:user-invalid + span, input.invalid + span {
   background-color: #064082;
   color: white;
   border-radius: 1em;
-  height: 3em;
+  height: 2rem;
   border: none;
   cursor: pointer;
 }
@@ -532,7 +532,7 @@ nav div > ul li:hover .souscat-ul {
   background-color: #FCB66B;
   color: white;
   border-radius: 1em;
-  height: 3em;
+  height: 2rem;
   border: none;
   cursor: pointer;
   border: 0px;
@@ -735,6 +735,34 @@ nav div > ul li:hover .souscat-ul {
   font-style: italic;
 }
 
+.separateur {
+  display: block;
+  background-color: #FCB66B;
+  width: 98%;
+  height: 10px;
+  border-radius: 1em;
+}
+
+.separateur2 {
+  display: none;
+  background-color: #FCB66B;
+  width: 100%;
+  height: 10px;
+  border-radius: 1em;
+}
+@media screen and (max-width : 428px) {
+  .separateur2 {
+    display: block;
+    margin-left: 20px;
+  }
+}
+
+.div-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card {
   margin: 0 20px;
   color: black;
@@ -883,7 +911,7 @@ input[type=button] {
   background-color: #FCB66B;
   color: white;
   border-radius: 1em;
-  height: 3em;
+  height: 2rem;
   border: none;
   cursor: pointer;
 }
@@ -962,7 +990,7 @@ article {
   background-color: #FCB66B;
   color: white;
   border-radius: 1em;
-  height: 3em;
+  height: 2rem;
   border: none;
   cursor: pointer;
   width: 30%;
@@ -1053,20 +1081,20 @@ aside {
   display: flex;
   flex-direction: column;
 }
+aside .btn-retour {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
 aside .btn-recap {
   background-color: #FCB66B;
   text-decoration: none;
   color: black;
   padding: 10px;
   border-radius: 1em;
-  width: 50%;
+  width: 95%;
   text-align: center;
   display: block;
-}
-aside .btn-retour {
-  display: flex;
-  justify-content: center;
-  align-self: center;
 }
 aside .recap {
   background-color: #D1ECF8;
@@ -1078,12 +1106,6 @@ aside .recap {
 aside .recap h4 {
   margin: 0;
 }
-@media screen and (max-width : 428px) {
-  aside .recap {
-    float: none;
-    width: 90%;
-  }
-}
 aside .recap .prix {
   display: flex;
   flex-direction: row;
@@ -1092,8 +1114,11 @@ aside .recap .prix {
 aside .recap .prix p {
   margin-top: 0;
 }
-aside .recap .btn-recap {
-  width: 95%;
+@media screen and (max-width : 428px) {
+  aside .recap {
+    float: none;
+    width: 90%;
+  }
 }
 @media screen and (max-width : 428px) {
   aside {
@@ -1111,7 +1136,7 @@ aside .recap .btn-recap {
   background-color: #FCB66B;
   color: white;
   border-radius: 1em;
-  height: 3em;
+  height: 2rem;
   border: none;
   cursor: pointer;
   height: 3rem;

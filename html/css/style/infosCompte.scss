@@ -120,6 +120,10 @@ input[type="file"]{
 .btnJaune{
     margin-top:2em;
     width:30%;
+
+
+    
+    height: 3em;
     @media #{$mobile}{
         width:60%;
     }

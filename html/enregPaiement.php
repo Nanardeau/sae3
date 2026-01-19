@@ -86,8 +86,9 @@ if(array_key_exists("banque", $_GET)){
     $_SESSION["numCom"] = $numCom;
     $prodUnitPan = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
     foreach($prodUnitPan as $prodUnit){
-        $prixTTCProd = $bdd->prepare("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
+        $prixTTCProd = $bdd->prepare("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'");
         $prixTTCProd->execute();
+        $prixTTCProd = $prixTTCProd->fetch();
         $stmt = $bdd->prepare("INSERT INTO alizon.ProdUnitCommande (codeProduit, numCom, qteProd) VALUES (:codeProduit, :numCom, :qteProd)");
         $stmt->execute(array(
             ":codeProduit" => $prodUnit["codeproduit"],

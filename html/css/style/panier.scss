@@ -163,62 +163,58 @@ article {
     }
 }
 aside{
-
-
     float: right;
     width: 25%;
     display:flex;
     flex-direction: column;
+    .btn-retour{
+            display: flex;
+            justify-content: center;
+            align-self: center;
+        }
     .btn-recap{
         background-color: $eleOrange;
         text-decoration: none;
         color:$noir;
         padding: 10px;
         border-radius: $radius;
-        width: 50%;
+        width: 95%;
         text-align: center;
         display: block;
         
     }
-    .btn-retour{
+    .recap {
+        background-color: $colS;
+        align-content: center;
+        border-radius: $radius;
+        padding: $pad;
+        margin: $marg 0;
+        h4{
+            margin:0;
+        }
+        
+        .prix{
             display: flex;
-            justify-content: center;
-            align-self: center;
+            flex-direction: row;
+            justify-content: space-between;
+            p{
+                margin-top:0;
+            }
         }
-.recap {
-    background-color: $colS;
-    align-content: center;
-    border-radius: $radius;
-    padding: $pad;
-    margin: $marg 0;
-    h4{
-        margin:0;
-    }
-    @media #{$mobile}{
-        float:none;
-        width: 90%;
-    }
-    .prix{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        p{
-            margin-top:0;
+        @media #{$mobile}{
+            float:none;
+            width: 90%;
         }
-    }
-    .btn-recap{
-        width: 95%;
-
-
-    }
     
-}
-@media #{$mobile} {
+    
+    }
+    @media #{$mobile} {
         float:none;
         width: 100%;
         
     }
 }
+
 .btn-vider {
     @include bouton($eleOrange);
     height: 3rem;
