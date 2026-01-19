@@ -277,7 +277,7 @@ $idPanier = $panier["idpanier"];
                      </div>
                      <div class="checkboxCGV">
                         <input type="checkbox" name="accepter" id="cgv" required/>
-                        <label for="cgv">J'ai lu et accepté les Conditions Générales de Vente (CGV)</label>
+                        <label for="cgv">J'ai lu et accepté les <a href="CGV.php">Conditions Générales de Vente (CGV)</a></label>
                     </div>
                 </form>
                 <nav>
