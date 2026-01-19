@@ -787,6 +787,7 @@ span {
 
 article {
   background-color: white;
+  background-color: white;
   width: 100%;
   height: 30%;
   border-radius: 1em;
@@ -913,7 +914,10 @@ article {
   width: 5em;
 }
 
-main input, label, p, button {
+main input,
+label,
+p,
+button {
   font-size: 18px;
 }
 
@@ -940,6 +944,12 @@ section:nth-child(1) .bouton {
   section:nth-child(1) .bouton {
     width: 35%;
   }
+}
+
+aside + section {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 5%;
 }
 
 aside + section {
@@ -1005,6 +1015,10 @@ div.row {
   color: #064082;
 }
 
+.prixAffiche {
+  color: #064082;
+}
+
 #articles {
   width: 100%;
   display: flex;
@@ -1016,7 +1030,17 @@ aside {
   margin: 0;
   height: 100%;
 }
-aside section, aside article {
+aside section,
+aside article {
+  height: 100%;
+}
+
+aside {
+  margin: 0;
+  height: 100%;
+}
+aside section,
+aside article {
   height: 100%;
 }
 
@@ -1027,10 +1051,14 @@ aside section, aside article {
 #recapitulatif {
   width: 40em;
   height: 50em;
+  width: 40em;
+  height: 50em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  border-right: solid;
+  border-radius: 0;
   border-right: solid;
   border-radius: 0;
 }
@@ -1048,90 +1076,87 @@ aside section, aside article {
   background-color: #D1ECF8;
   border-radius: 1em;
   padding: 1em;
+  background-color: #D1ECF8;
+  border-radius: 1em;
+  padding: 1em;
   width: 90%;
 }
 
-.dateCVC {
+.dateCVC .dateCVC {
   display: flex;
 }
-.dateCVC .labelInput:nth-child(1) input {
+.dateCVC .dateCVC .labelInput:nth-child(1) input {
   width: 6rem;
   margin-right: 5rem;
 }
-.dateCVC .labelInput:nth-child(2) input {
+.dateCVC .dateCVC .labelInput:nth-child(2) input {
   width: 5rem;
 }
-
-#poubelle {
+.dateCVC #poubelle {
   border: none;
   border-radius: 10px;
   background-color: #D1ECF8;
 }
-#poubelle img {
+.dateCVC #poubelle img {
   width: 30px;
 }
-#poubelle:hover {
+.dateCVC #poubelle:hover {
   background-color: rgb(108.75, 174, 248.25);
 }
-
-.conteneur {
+.dateCVC .conteneur {
   width: 60%;
 }
 @media screen and (max-width : 428px) {
-  .conteneur {
+  .dateCVC .conteneur {
     width: 100%;
   }
 }
-
-#confirmation {
+.dateCVC #confirmation {
   display: none;
   position: absolute;
   z-index: 10000;
   justify-content: center;
   align-self: flex-start;
 }
-#confirmation .arianeItem {
+.dateCVC #confirmation .arianeItem {
   font-size: 0;
 }
-
-.checkboxCGV {
+.dateCVC .checkboxCGV {
   display: flex;
   flex-direction: row;
 }
-.checkboxCGV input {
+.dateCVC .checkboxCGV input {
   width: 1.5em;
   height: 1.5em;
   margin-right: 1em;
 }
-.checkboxCGV label {
+.dateCVC .checkboxCGV label {
   margin-top: 1em;
   height: 1em;
 }
-
-#btnAnnuler {
+.dateCVC #btnAnnuler {
   margin-right: 3rem;
 }
-
-#infosPaiement {
+.dateCVC #infosPaiement {
   display: flex;
   flex-direction: column;
 }
-#infosPaiement nav {
+.dateCVC #infosPaiement nav {
   align-self: flex-start;
 }
-
-#btnPayer, #btnAnnuler {
+.dateCVC #btnPayer,
+.dateCVC #btnAnnuler {
   height: 3rem;
   padding: 0;
   width: 10rem;
 }
 @media screen and (max-width : 428px) {
-  #btnPayer, #btnAnnuler {
+  .dateCVC #btnPayer,
+  .dateCVC #btnAnnuler {
     margin-top: 2rem;
   }
 }
-
-#confirmation {
+.dateCVC #confirmation {
   display: none;
   position: absolute;
   z-index: 10000;
@@ -1141,7 +1166,7 @@ aside section, aside article {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.205);
 }
-#confirmation article {
+.dateCVC #confirmation article {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -1150,18 +1175,18 @@ aside section, aside article {
   border-radius: 2em;
   padding: 10%;
 }
-#confirmation article h1 {
+.dateCVC #confirmation article h1 {
   align-self: center;
 }
-#confirmation article .bouton {
+.dateCVC #confirmation article .bouton {
   height: 4rem;
   width: 10rem;
   font-size: 28px;
 }
-#confirmation article .bouton:nth-child(1) {
+.dateCVC #confirmation article .bouton:nth-child(1) {
   margin-right: 2rem;
 }
-#confirmation article nav {
+.dateCVC #confirmation article nav {
   display: flex;
   justify-content: center;
 }/*# sourceMappingURL=paiement.css.map */

@@ -26,7 +26,7 @@
 
     $mdpBase = ($bdd->query("SELECT mdp FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch())["mdp"];
 
-    if($mdpBase == $_POST["mdpPourValider"]){
+    if($mdpBase == md5($_POST["mdpPourValider"])){
         $_SESSION["mdpValide"] = 1;
         if(isset($_GET["modifMdp"])){
             if($_GET["modifMdp"] == 1){
