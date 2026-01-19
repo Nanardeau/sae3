@@ -22,30 +22,9 @@
 
     #Modification de l'adresse
 
-    $numRue = $_POST["numRue"];
-    $nomRue = $_POST["nomRue"];
-    $codePostal = $_POST["codePostal"];
-    $nomVille = $_POST["ville"];
-    $numApt = isset($_POST["numApt"]) ? $_POST["numApt"] : "";
-    $complement = isset($_POST["comp"]) ? $_POST["comp"] : ""; 
-    $stmt = $bdd->prepare("INSERT INTO alizon.Adresse (num, nomRue, codePostal, nomVille, numAppart, complementAdresse) VALUES (:num, :nomRue, :codePostal, :nomVille, :numAppart, :complementAdresse)");
-    $stmt->execute(array(
-        ":num" => $numRue,
-        ":nomRue" => $nomRue,
-        ":codePostal" => $codePostal,
-        ":nomVille" => $nomVille,
-        ":numAppart" => $numApt,
-        ":complementAdresse" => $complement
-    ));
-    $idAdresse = $bdd->lastInsertId();
-    $_SESSION["idAdresse"] = $idAdresse;
-    $_SESSION["adrModif"] = 1;
+    $codeCompte = $_SESSION["codeCompte"];
 
-    exit(header("location:paiement.php?adr=1"));
-    die();
-}
 
-if(array_key_exists("banque", $_GET)){
     $nom = $_POST["nomTitulaireCB"];
     $numCarte = $_POST["numCB"];
     $expDate = $_POST["expDate"];
