@@ -115,7 +115,12 @@ a{
 .aff_prod{
     margin-left: 30px;
 }
-
+.a-cat{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
 // .grid-produits {
 //     display: grid;
 //     grid-template-columns: 1fr 1fr 1fr 1fr;

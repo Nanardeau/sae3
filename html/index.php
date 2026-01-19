@@ -153,7 +153,9 @@ session_start();
         }        
         ?>
         </article>
-        <a href="Catalogue.php" class="button">Accéder au catalogue complet</a>
+        <div class="a-cat">
+        <a href="Catalogue.php" class="bouton">Accéder au catalogue complet</a>
+        </div>
     </main>
     <?php
         include 'includes/footer.php';
