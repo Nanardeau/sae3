@@ -422,7 +422,7 @@ main p {
 }
 .mes-produits div {
   display: flex;
-  gap: 1.25em;
+  gap: 0.5em;
   justify-content: left;
   flex-wrap: wrap;
 }

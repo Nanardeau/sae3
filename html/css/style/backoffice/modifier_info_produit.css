@@ -605,15 +605,6 @@ main .bouton:active {
   font-size: 20px;
 }
 
-#preview img {
-  max-width: 200px;
-  max-height: 200px;
-  margin-top: 10px;
-  border-radius: 6px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
 #dropZone {
   width: 250px;
   height: 150px;
@@ -631,6 +622,15 @@ main .bouton:active {
 #dropZone.dragover {
   border-color: #000;
   background: #f5f5f5;
+}
+
+#preview img {
+  max-width: 200px;
+  max-height: 200px;
+  margin-top: 10px;
+  border-radius: 6px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #preview {
@@ -659,4 +659,12 @@ main .bouton:active {
 
 .overlayContentCompte {
   top: -20px;
+}
+
+.dropreview {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  align-items: center;
+  padding-bottom: 20px;
 }/*# sourceMappingURL=modifier_info_produit.css.map */

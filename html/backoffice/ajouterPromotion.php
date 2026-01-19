@@ -43,6 +43,27 @@ $codeCompte = $_SESSION["codeCompte"];
 $sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
 $stmt = $bdd->query($sql);
 $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+$codeProduit = $_GET['Produit'];
+
+$sql2 = "
+SELECT p.idPromotion, p.dateDebut, p.dateFin, ph.urlPhoto
+FROM Promotion p
+JOIN FairePromotion fp ON fp.idPromotion = p.idPromotion
+LEFT JOIN Photo ph ON ph.urlPhoto = fp.urlPhoto
+WHERE fp.codeProduit = :codeProduit
+LIMIT 1
+";
+
+$stmt = $bdd->prepare($sql2);
+$stmt->execute(['codeProduit' => $codeProduit]);
+$promo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$hasPromo = ($promo !== false);
+
+
+
 ?>
 
 <html lang="fr">
@@ -80,22 +101,29 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>
             Retour au produit
         </a>
-        <a class="btnacc" href="modifProduit.php?codeProduit=<?php echo $code_produit?>">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen-line-icon lucide-pen-line"><path d="M13 21h8"/><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg>
-            Modifier le produit
-        </a>
-        <a href="#avis-produits" class="btnacc">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-icon lucide-message-circle"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>
-            Voir les avis
-        </a>
-        <a class="btnacc" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone-icon lucide-megaphone"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>
-            Ajouter une promotion
-        </a>
-        <a class="btnacc" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ticket-percent-icon lucide-ticket-percent"><path d="M2 9a3 3 0 1 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 1 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M9 9h.01"/><path d="m15 9-6 6"/><path d="M15 15h.01"/></svg>
-            Ajouter une remise
-        </a>
+        <!-- <?php 
+            $stmt = $bdd->prepare("SELECT * FROM alizon.FairePromotion WHERE codeProduit = :id");
+            $stmt->execute(['id' => $code_produit]);
+            $hasPromo = $stmt->rowCount() > 0;
+
+            $stmtSuppr = $bdd->prepare("DELETE FROM alizon.FairePromotion WHERE codeProduit = :id");
+
+            if ($hasPromo){
+        ?>
+            <a href="delPromo.php?Produit=<?php echo $code_produit?>&page=create" class="btnacc">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>   
+                Supprimer la Promotion
+            </a>
+            <a class="btnacc" href="ajouterPromotion.php?Produit=<?php echo $code_produit?>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone-icon lucide-megaphone"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>
+                Modifier la promotion
+            </a>
+            <?php } else { ?>
+            <a class="btnacc" href="ajouterPromotion.php?Produit=<?php echo $code_produit?>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone-icon lucide-megaphone"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>
+                Ajouter une promotion
+            </a> -->
+        <?php } ?>
     </section>
     <div class="right-content">
         <?php if($erreur == "succes"){
@@ -104,15 +132,105 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                 else if($erreur == "image"){
                     echo "<h2 style=\"color:red\">Produit image avec erreur</h2>";
                 }
+
+            $sql = "SELECT count(*) as total FROM alizon.FairePromotion";
+            $stmt = $bdd->prepare($sql);
+            $stmt->execute();
+            $total = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+
+            if(($total < 2) || $hasPromo){
         ?>
-        <form action="reqAjouterPromotion.php" method="post" enctype="multipart/form-data">
-            <h2>Ajouter une promotion</h2>
+        <form action="reqModifierPromotion.php"
+            method="post"
+            enctype="multipart/form-data"
+            class="form-promo">
+
+            <h2>
+                <?= $hasPromo ? "Modifier la promotion" : "Créer une promotion" ?>
+            </h2>
+
+            <!-- Toujours envoyé -->
+            <input type="hidden" name="codeProduit" value="<?= $codeProduit ?>">
+
+            <!-- Seulement si promo existante -->
+            <?php if ($hasPromo): ?>
+                <input type="hidden" name="idPromotion" value="<?= $promo['idpromotion'] ?>">
+            <?php endif; ?>
+
+            
+
+            <!-- DATE DE DÉBUT -->
+            <label for="dateD">Date de début</label>
+            <input type="date"
+                id="dateD"
+                name="dateD"
+                value="<?= $hasPromo ? $promo['datedebut'] : '' ?>"
+                required>
+            <span class="cache">La date de début ne peut pas être antèrieur à aujourd'hui</span>
+
+            <!-- DATE DE FIN -->
+            <label for="dateF">Date de fin</label>
+            <input type="date"
+                id="dateF"
+                name="dateF"
+                value="<?= $hasPromo ? $promo['datefin'] : '' ?>"
+                required>
+            <span class="cache" id="errorDate">La date de fin doit être postérieure à la date de début.</span>
+
+            <!-- IMAGE ACTUELLE -->
+            <!-- <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
+                <div class="promo-image">
+                    <p>Image actuelle :</p>
+                    <img src="<?= $promo['urlphoto'] ?>" alt="Image promo" width="160">
+                    <input type="hidden"
+                        name="ancienneImage"
+                        value="<?= $promo['urlphoto'] ?>">
+                </div>
+            <?php endif; ?> -->
+
+            <!-- NOUVELLE IMAGE -->
+            <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
+                <input type="hidden"
+                    name="ancienneImage"
+                    value="<?= $promo['urlphoto'] ?>">
+            <?php endif; ?>
+
             <div class="dropreview">
                 <div id="dropZone">
                     <span>Glissez une image ici ou cliquez</span>
                     <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
                 </div>
                 <!-- <input type="file" name="photo" id="photoProd" accept="image/*"/> -->
+                <div id="preview">
+                    <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
+                        <!-- <p><?= $promo['urlphoto'] ?></p> -->
+                        <img src="../<?= $promo['urlphoto'] ?>"
+                            alt="Image promo actuelle"
+                            class="preview-img">
+                    <?php endif; ?>
+                </div>
+
+            </div>
+            <label for="photo">
+                <?= $hasPromo ? "Changer l’image (optionnel)" : "Image de la promotion" ?>
+            </label>
+
+            <!-- SUBMIT -->
+            <input type="submit" value="<?= $hasPromo ? "Mettre à jour la promotion" : "Créer la promotion" ?>" class="bouton"/>
+    </form>
+        <?php } else { ?>
+            <h2>Limite de promotions atteinte</h2>
+            <p>Vous avez atteint la limite de 2 promotions simultanées. Veuillez supprimer une promotion existante avant d'en ajouter une nouvelle.</p>
+        <?php } ?>
+
+        <!-- <form action="reqAjouterPromotion.php" method="post" enctype="multipart/form-data">
+            <h2>Ajouter une promotion</h2>
+            <div class="dropreview">
+                <div id="dropZone">
+                    <span>Glissez une image ici ou cliquez</span>
+                    <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
+                </div>
+                <!-- <input type="file" name="photo" id="photoProd" accept="image/*"/>
                 <div id="preview">
 
                 </div>
@@ -123,70 +241,32 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
 
             <label for="dateF">Date de fin de la promotion</label>
             <input type="date" name="dateF" placeholder="" id="dateF" required/>
+            <input type="hidden" name="idproduit" value="<?php echo $code_produit; ?>">
 
             <input class="bouton" type="submit" id="creerPromo" value="Créer la promotion"/>
-        </form>
+        </form> -->
     </div>
 </main>
     <?php include('../includes/backoffice/footer.php');?>
     <script src="../js/preview-img.js"></script>
     <script>
 
-    let qtestock = document.getElementById("qteStock");
-    let seuil = document.getElementById("seuil");
+    let dateD = document.getElementById("dateD");
+    let dateF = document.getElementById("dateF");
+    let dateToday = new Date().toISOString().split('T')[0];
 
-    qtestock.addEventListener("focusout", verfifQte);
-    seuil.addEventListener("focusout", verfifQte);
+    dateD.addEventListener("focusout", verifDate);
+    dateF.addEventListener("focusout", verifDate);
 
-    function verfifQte(evt){
+    function verifDate(evt){
         if(evt.type === "focusout"){
-            if(parseInt(evt.target.value) < 0){
+            if(dateF.value <= dateD.value){
                 evt.target.classList.add("invalid");
-            }else{
-                evt.target.classList.remove("invalid");
-        }
-    }
-
-    let spe1 = document.getElementById("spe1");
-    let spe2 = document.getElementById("spe2");
-    let spe3 = document.getElementById("spe3");
-    let formatSpe = /^([A-Za-zÀ-ÖØ-öø-ÿ0-9\s-]{1,}):([A-Za-zÀ-ÖØ-öø-ÿ0-9\s,.-]{1,})$/;
-    spe1.addEventListener("focusout", verifFormatSpe);
-    spe2.addEventListener("focusout", verifFormatSpe);
-    spe3.addEventListener("focusout", verifFormatSpe);
-
-    let validationForm = document.getElementById("creerProduit");
-    validationForm.addEventListener("click", fullverif);
-
-    function verifFormatSpe(evt){
-        if(evt.type === "focusout"){
-            if((!formatSpe.test(evt.target.value)) && evt.target.value !== ""){
-                // alert("Le format de la spécificité 1 n'est pas respecté. Veuillez respecter le format NOMDELASPE:Description");
-                // spe1.value = NULL;
+            }if(dateD.value < dateToday){
                 evt.target.classList.add("invalid");
             }else{
                 evt.target.classList.remove("invalid");
             }
-        }
-    }
-
-    function fullverif(evt){
-        if(spe1.value !== "" && !formatSpe.test(spe1.value)){
-            evt.preventDefault();
-            spe1.classList.add("invalid");
-        }
-        if(spe2.value !== "" && !formatSpe.test(spe2.value)){
-            evt.preventDefault();
-            spe2.classList.add("invalid");
-        }
-        if(spe3.value !== "" && !formatSpe.test(spe3.value)){
-            evt.preventDefault();
-            spe3.classList.add("invalid");
-        }else{
-            spe1.classList.remove("invalid");
-            spe2.classList.remove("invalid");
-            spe3.classList.remove("invalid");
-
         }
     }
 </script>

@@ -33,3 +33,32 @@ body{
 .nav-btn{
     margin-top: 28px;
 }
+
+
+
+.btnSupprReduc{
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 8px;
+    display: flex;
+    justify-self: left;
+    background-color: rgb(255, 0, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(255, 67, 67);
+    }
+}
+
+.produit{
+    height: 27em;
+    width: 18em;
+
+    .infoPromo{
+        color: red;
+        padding: 0 10px;
+    }
+}
