@@ -707,6 +707,7 @@ nav div > ul li:hover .souscat-ul {
   position: absolute;
   top: 90px;
   padding-left: 1rem;
+  margin-bottom: 80px;
 }
 
 #ajoutPanierFait.open {

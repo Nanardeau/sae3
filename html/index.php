@@ -87,7 +87,7 @@ session_start();
             <h1>Nouveautés</h1>
                 <?php
                 $produits = $bdd->query("
-                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd
+                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd, noteMoy
                     FROM Produit
                     ORDER BY codeProduit DESC
                     LIMIT 7
@@ -102,6 +102,7 @@ session_start();
                     $prix = number_format($p['prixttc'], 2, ',', '');
                     $desc = $p['descriptionprod'];
                     $id = $p['codeproduit'];
+                    $moyennenote = $p['notemoy'];
                     include 'includes/card.php';
 
                 } ?>

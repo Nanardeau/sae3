@@ -1,33 +1,3 @@
-<?php 
-$sqlAvis = "SELECT A.*, C.prenom, C.nom,
-        ARRAY(
-            SELECT J.urlPhoto
-            FROM JustifierAvis J
-            WHERE J.numAvis = A.numAvis
-        ) AS photos
-    FROM Avis A
-    LEFT JOIN Client C ON C.codeCompte = A.codeCompteCli
-    WHERE A.codeProduit = :id
-    ORDER BY A.datePublication DESC
-    ";
-
-$stmtAvis = $bdd->prepare($sqlAvis);
-$stmtAvis->execute(['id' => $id]);
-$avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
-
-$totalAvis = count($avisList);
-                $sommeNotes = 0;
-                $noteCounts = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0]; 
-
-                foreach ($avisList as $avis) {
-                    $note = (int)$avis['noteprod'];
-                    $sommeNotes += $note;
-                    $noteCounts[$note]++;
-                }
-
-                $moyenneNote = $totalAvis > 0 ? round($sommeNotes / $totalAvis, 2) : 0;
-                
-?>
 <div class="card">
     <figure>
         <a href="dproduit.php?id=<?= $p['codeproduit'] ?>">

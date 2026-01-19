@@ -15,12 +15,13 @@
             $listSousCats = $bdd->prepare("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = '" . $catCurr . "'");
             $listSousCats->execute();
             if ($listSousCats->rowCount() > 0) {
-                echo "<ul class='souscat-ul'>";
-                foreach ($listSousCats as $libSousCat) {
-                    $sousCatCurr = $libSousCat['libsouscat'];
-                    echo "<li><a href='Categorie.php?cat=".$sousCatCurr."'>" . $sousCatCurr . "</a></li>";
-                }
-                echo "</ul>";
+                // Système de sous-menu désactivé car non implementation des sous-catégories, reste fonctionnel si besoin
+                //echo "<ul class='souscat-ul'>";
+                //foreach ($listSousCats as $libSousCat) {
+                    //$sousCatCurr = $libSousCat['libsouscat'];
+                    //echo "<li><a href='Categorie.php?cat=".$sousCatCurr."'>" . $sousCatCurr . "</a></li>";
+                //}
+                //echo "</ul>";
             }
             echo "</li>";
         }
@@ -28,6 +29,7 @@
     </ul>
     </div>
 </nav>
+    <!--Menu burger mobile-->
     <div id="overlayMenuCatMob" class="overlayMenuCatMob mob-only">
         <div class="overlayContentCatMob">
             <div class="identification">
@@ -78,19 +80,17 @@
 
                         <li><a href="Categorie.php?cat=<?php echo $catCurr?>"><?php echo $catCurr;?></a></li>
                         <?php
-
-                        $listSousCats = $bdd->prepare("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = '" . $catCurr . "'");
-                        $listSousCats->execute();
-                        if ($listSousCats->rowCount() > 0) {
-                            echo "<ul>";
-                            foreach ($listSousCats as $libSousCat) {
-                                $sousCatCurr = $libSousCat['libsouscat'];
-                                echo "<li><a href='Categorie.php?cat=".$catCurr."'>" . $sousCatCurr . "</a></li>";
-                            }
-                            echo "</ul>";
-                        }
-
-                        echo "</li>";
+                        // Système de sous-menu désactivé car non implementation des sous-catégories, reste fonctionnel si besoin
+                        //$listSousCats = $bdd->prepare("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = '" . $catCurr . "'");
+                        //$listSousCats->execute();
+                        //if ($listSousCats->rowCount() > 0) {
+                        //   echo "<ul>";
+                        //    foreach ($listSousCats as $libSousCat) {
+                        //        $sousCatCurr = $libSousCat['libsouscat'];
+                        //        echo "<li><a href='Categorie.php?cat=".$catCurr."'>" . $sousCatCurr . "</a></li>";
+                        //    }
+                        //    echo "</ul>";
+                        //}
                     }
                         ?>
                 </ul>
