@@ -253,7 +253,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                 </strong>
                                 
                                 <span class="date">
-                                    <?= date("d/m/Y", strtotime($avis['datepublication'])) ?>
+                                    <?php echo htmlspecialchars($avis['datepublication']) ?>
                                 </span>
                             </div>
                             <span class="note">
@@ -263,7 +263,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                             </span>
 
                             <p class="commentaire">
-                                <?= htmlspecialchars($avis['commentaire']) ?>
+                                <?php echo htmlspecialchars($avis['commentaire']) ?>
                             </p>
                             <?php if (!empty($avis['photos'])): ?>
                                 <div id="overlay-photos-avis" class="photos-avis">
@@ -280,18 +280,59 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
+                            <div class="actions-avis">
+                                <a onclick="openOverlayModif(<?php echo $avis['noteprod'] ?>)">Modifier</a>
+                                <div class="overlaymodifier">
+                                    <form class="avis-section" method="POST" action="modifier_avis.php" enctype="multipart/form-data">
+
+                                        <h2>Modifier votre avis</h2>
+
+                                        <div class="noter" id="stars">
+                                            <span data-value="1">★</span>
+                                            <span data-value="2">★</span>
+                                            <span data-value="3">★</span>
+                                            <span data-value="4">★</span>
+                                            <span data-value="5">★</span>
+                                        </div>
+
+                                        <span id="note-value" style="display:none;">0</span>
+
+                                        <textarea name="commentaire" maxlength="255" placeholder="Rédiger un commentaire..." required><?php echo $avis['commentaire'] ?></textarea>
+
+                                        <div class="plein-buttons">
+                                            <?php if (!empty($avis['photos'])): ?>
+                                                <p>La photo est prise en compte</p>
+                                            <?php endif; ?>
+                                            <label class="photo" for="contact_upload">Ajouter des photos</label>
+                                            <input type="file" name="contact_upload" id="contact_upload" /><?php if(isset($contact_upload)) echo $contact_upload; ?></textarea>
+                                            <button type="reset" class="cancel" onclick="closeOverlayModif()">Annuler</button>
+                                            <button type="submit" class="submit">Modifier</button>
+                                        </div>
+                                        
+                                        <input type="hidden" name="contact_upload" value="<?php print_r($infosfichier) ?>">
+                                        <input type="hidden" name="photosavis" value="<?php print_r($avis['photo']) ?>">
+                                        <input type="hidden" name="noteProduit" value="<?php echo $avis['noteprod'] ?>">
+                                        <input type="hidden" name="codeProduit" value="<?php echo $avis['codeproduit'] ?>">
+                                        <input type="hidden" name="codeAvis" value="<?php echo $avis['numavis'] ?>">
+                                    </form>
+                                </div>
+                                <a href="supprimer_avis.php?codeavis=<?= $avis['numavis'] ?>&&codeproduit=<?= $avis['codeproduit'] ?>">Supprimer</a>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
-        </section>
-
-        
+        </section>        
     </main>
-
     <?php include 'includes/footer.php'; ?>
     <script>
-
+        function openOverlayModif(src) {
+            document.querySelector(".overlaymodifier").style.display = "flex";
+            updateStars(src);
+        }
+        function closeOverlayModif() {
+            document.querySelector(".overlaymodifier").style.display = "none";
+        }
         function openOverlay(src) {
             document.querySelector("#overlay").src = src;
             document.getElementById("overlay").style.display = "block";
