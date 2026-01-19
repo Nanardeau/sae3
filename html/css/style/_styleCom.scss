@@ -471,6 +471,20 @@ nav div > ul li:hover .souscat-ul{
 
 
 }
+
+.catalogue{
+    justify-content: space-around;
+    flex-wrap: wrap;
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: $marg;
+    .card{
+        margin-top: 50px;
+    }
+        
+}
+
 .overlayContentCompte{
     z-index:100;
     position:fixed;

@@ -110,7 +110,9 @@ session_start();
         </section>
 
         <section id="promotion" class="aff_prod">
-            <h1>Promotions</h1>
+        <div class="separateur"></div>    
+        <h1>Promotions</h1>
+            
                 <?php
                 $produits = $bdd->query("
                     SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd
@@ -129,13 +131,29 @@ session_start();
                     $desc = $p['descriptionprod'];
                     $id = $p['codeproduit'];
                     include 'includes/card.php';
-
                 } ?>
             </article>
         </section>
-
-
-
+        <div class="separateur"></div>
+        <h1 class="aff_prod">Les produits</h1>
+        <article class="catalogue">
+        <?php
+        $base= 'SELECT codeProduit, libelleProd, prixTTC, urlPhoto, noteMoy, descriptionProd FROM Produit where Disponible = true LIMIT 30' ;
+        $req= $bdd->prepare($base);
+        $req->execute();
+        $produits= $req->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($produits as $p) {
+            $img = $p['urlphoto'];
+            $libArt = $p['libelleprod'];
+            $prix = number_format($p['prixttc'], 2, ',', '');
+            $desc = $p['descriptionprod'];
+            $id = $p['codeproduit'];
+            $moyennenote = $p['notemoy'];
+            include 'includes/card.php';
+        }        
+        ?>
+        </article>
+        <a href="Catalogue.php" class="button">Accéder au catalogue complet</a>
     </main>
     <?php
         include 'includes/footer.php';

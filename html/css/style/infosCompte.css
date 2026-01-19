@@ -492,6 +492,18 @@ nav div > ul li:hover .souscat-ul {
   height: 100%;
 }
 
+.catalogue {
+  justify-content: space-around;
+  flex-wrap: wrap;
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+.catalogue .card {
+  margin-top: 50px;
+}
+
 .overlayContentCompte {
   z-index: 100;
   position: fixed;
@@ -1252,6 +1264,19 @@ nav div > ul li:hover .souscat-ul {
   position: fixed;
   width: 100%;
   height: 100%;
+}
+
+.catalogue {
+  justify-content: space-around;
+  flex-wrap: wrap;
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.catalogue .card {
+  margin-top: 50px;
 }
 
 .overlayContentCompte {
