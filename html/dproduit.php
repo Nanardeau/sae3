@@ -288,11 +288,11 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                         <h2>Modifier votre avis</h2>
 
                                         <div class="noter" id="stars">
-                                            <span data-value="1">★</span>
-                                            <span data-value="2">★</span>
-                                            <span data-value="3">★</span>
-                                            <span data-value="4">★</span>
-                                            <span data-value="5">★</span>
+                                            <span data-value="1" onclick="selectStar(1)">★</span>
+                                            <span data-value="2" onclick="selectStar(2)">★</span>
+                                            <span data-value="3" onclick="selectStar(3)">★</span>
+                                            <span data-value="4" onclick="selectStar(4)">★</span>
+                                            <span data-value="5" onclick="selectStar(5)">★</span>
                                         </div>
 
                                         <span id="note-value" style="display:none;">0</span>
@@ -309,11 +309,11 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                             <button type="submit" class="submit">Modifier</button>
                                         </div>
                                         
-                                        <input type="hidden" name="contact_upload" value="<?php print_r($infosfichier) ?>">
-                                        <input type="hidden" name="photosavis" value="<?php print_r($avis['photo']) ?>">
-                                        <input type="hidden" name="noteProduit" value="<?php echo $avis['noteprod'] ?>">
+
+                                        
                                         <input type="hidden" name="codeProduit" value="<?php echo $avis['codeproduit'] ?>">
                                         <input type="hidden" name="codeAvis" value="<?php echo $avis['numavis'] ?>">
+                                        <input type="hidden" name="noteProduit" id="noteProduit" value="1">
                                     </form>
                                 </div>
                                 <a href="supprimer_avis.php?codeavis=<?= $avis['numavis'] ?>&&codeproduit=<?= $avis['codeproduit'] ?>">Supprimer</a>
@@ -340,6 +340,9 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         function fermerOverlay() {
             document.getElementById("overlay").style.display = "none";
         } 
+        function selectStar(value) {
+            document.getElementById('noteProduit').value = value;
+        }
     </script>
 </body>
 </html>
