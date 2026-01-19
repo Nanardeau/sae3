@@ -391,6 +391,7 @@ main .boutton button {
   background-color: #CD4B22;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
   height: 55px;
@@ -414,6 +415,7 @@ main .bouton {
   background-color: #6CA6E9;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
   padding: 2em;

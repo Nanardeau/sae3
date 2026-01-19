@@ -319,6 +319,7 @@ main form select {
   background-color: #CD4B22;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
   border-radius: 1em;
@@ -350,6 +351,7 @@ main form input::file-selector-button {
   background-color: #CD4B22;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
   border: none;
@@ -400,6 +402,7 @@ main .bouton {
   background-color: #CD4B22;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
 }

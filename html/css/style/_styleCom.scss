@@ -78,7 +78,7 @@ header{
             min-width: none;
             font-size: $Poltext;
         }
-        input[type="search"]::-webkit-search-cancel-button {
+        input[type=search]::-webkit-search-cancel-button {
                 position: relative;
                 left: -40px;
                 
@@ -476,6 +476,7 @@ nav div > ul li:hover .souscat-ul{
     @media #{$mobile}{
         right:70px;
     }
+    
     height:15em;
     background-color:$colS;
     border:solid $colP;
@@ -714,4 +715,20 @@ nav div > ul li:hover .souscat-ul{
     margin:$marg;
     color:#A1A1A1;
     font-size: $PetTitle;
+}
+
+.vide {
+            padding: $pad;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 40%;
+
+        a {
+            color: grey;
+            text-decoration: none;
+            font-weight: lighter;
+            font-style: italic;
+        }
 }

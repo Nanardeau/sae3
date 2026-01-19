@@ -121,6 +121,7 @@ input:user-invalid + span, input.invalid + span {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
 }
@@ -531,6 +532,7 @@ nav div > ul li:hover .souscat-ul {
   background-color: #FCB66B;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
   border: 0px;
@@ -718,6 +720,21 @@ nav div > ul li:hover .souscat-ul {
   font-size: 20px;
 }
 
+.vide {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 40%;
+}
+.vide a {
+  color: grey;
+  text-decoration: none;
+  font-weight: lighter;
+  font-style: italic;
+}
+
 header {
   justify-self: center;
   margin: 1em 0;
@@ -775,6 +792,7 @@ form input::file-selector-button {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
 }
@@ -827,6 +845,7 @@ form .btnSec {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
 }
@@ -892,6 +911,7 @@ aside .div-btn {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
   background-color: #FCB66B;

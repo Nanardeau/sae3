@@ -121,6 +121,7 @@ input:user-invalid + span, input.invalid + span {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
 }
@@ -531,6 +532,7 @@ nav div > ul li:hover .souscat-ul {
   background-color: #FCB66B;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
   border: 0px;
@@ -718,6 +720,21 @@ nav div > ul li:hover .souscat-ul {
   font-size: 20px;
 }
 
+.vide {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 40%;
+}
+.vide a {
+  color: grey;
+  text-decoration: none;
+  font-weight: lighter;
+  font-style: italic;
+}
+
 .card {
   margin: 0 20px;
   color: black;
@@ -871,37 +888,6 @@ nav div > ul li:hover .souscat-ul {
   }
 }
 
-.vide {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 40%;
-}
-.vide a {
-  color: grey;
-  text-decoration: none;
-  font-weight: lighter;
-  font-style: italic;
-}
-
-input {
-  font-family: "Mulish";
-  width: 100%;
-  margin-top: 20px;
-  min-width: 8rem;
-  height: 2rem;
-  text-align: center;
-  color: black;
-  font-weight: bold;
-  font-size: larger;
-  background-color: #FCB66B;
-  border: none;
-  border-radius: 1em;
-  cursor: pointer;
-}
-
 .cmd {
   display: flex;
   justify-content: center;
@@ -947,9 +933,9 @@ input {
   background-color: #064082;
   color: white;
   border-radius: 1em;
+  height: 3em;
   border: none;
   cursor: pointer;
-  height: 4em;
   align-content: center;
 }
 .cmd article .button:hover {
