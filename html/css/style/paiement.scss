@@ -3,43 +3,49 @@
 @use "../tools/mixin/com" as *;
 @use 'sass:color';
 
-#mainAdr{
-    display:flex;
+#mainAdr {
+    display: flex;
     justify-content: center;
     background-color: rgb(241, 241, 241);
 }
-span{
-    display:none;
-    margin-bottom:1em;
+
+span {
+    display: none;
+    margin-bottom: 1em;
 }
-.asideSec{
-    display:flex;
+
+.asideSec {
+    display: flex;
     justify-content: space-between;
-    @media #{$mobile}{
+
+    @media #{$mobile} {
         flex-direction: column-reverse;
-        font-size:12px;
+        font-size: 12px;
     }
 }
 
-article{
-    background-color:white;
-    background-color:white;
-    width:100%;
-    height:30%;
-    border-radius:1em;
-    
+article {
+    background-color: white;
+    background-color: white;
+    width: 100%;
+    height: 30%;
+    border-radius: 1em;
+
 }
 
-#navMobile{
-    display:none;
-    @media #{$mobile}{
-        display:flex;
+#navMobile {
+    display: none;
+
+    @media #{$mobile} {
+        display: flex;
     }
 }
-#navTablette{
-    display:flex;
-    @media #{$mobile}{
-        display:none;
+
+#navTablette {
+    display: flex;
+
+    @media #{$mobile} {
+        display: none;
     }
 }
 
@@ -173,24 +179,30 @@ article{
 #numRue {
     width: 5em;
 }
-main input, label, p, button{
 
-    font-size:18px;
+main input,
+label,
+p,
+button {
+
+    font-size: 18px;
 }
-input{
-    border:solid 1px;
-    border-radius:$radius;
-    height:3em;
-    margin:10px 0;
-    padding:1em;
-    width:100%;
-    .btnJaune{
-        padding-top:8px;
-        
+
+input {
+    border: solid 1px;
+    border-radius: $radius;
+    height: 3em;
+    margin: 10px 0;
+    padding: 1em;
+    width: 100%;
+
+    .btnJaune {
+        padding-top: 8px;
+
     }
 
 
-    
+
 }
 
 section:nth-child(1) {
@@ -211,16 +223,19 @@ section:nth-child(1) {
         height:4em;
     }
 }
-aside + section{
-    width:fit-content;
-    margin-right:5%;
+
+aside+section {
+    width: fit-content;
+    margin-right: 5%;
 }
-aside + section{
-    width:fit-content;
-    margin-right:5%;
+
+aside+section {
+    width: fit-content;
+    margin-right: 5%;
 }
-section{
-    width:40%;
+
+section {
+    width: 40%;
 
     article {
 
@@ -255,12 +270,12 @@ div {
 
 
 .ligne {
-    border:solid 2px;
-    border-radius:10px;
+    border: solid 2px;
+    border-radius: 10px;
 
 
-    margin:10px 0;
-    display:flex;
+    margin: 10px 0;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -283,58 +298,72 @@ div {
 .prixAffiche {
     color: $colP;
 }
-.prixAffiche{
-    color:$colP;
-}
-.prixAffiche{
-    color:$colP;
-}
-#articles{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-}
-aside{
-    margin:0;
 
-    height:100%;
-    section, article{
-        height:100%;
+.prixAffiche {
+    color: $colP;
+}
+
+.prixAffiche {
+    color: $colP;
+}
+
+#articles {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+aside {
+    margin: 0;
+
+    height: 100%;
+
+    section,
+    article {
+        height: 100%;
     }
 }
-aside{
-    margin:0;
 
-    height:100%;
-    section, article{
-        height:100%;
+aside {
+    margin: 0;
+
+    height: 100%;
+
+    section,
+    article {
+        height: 100%;
     }
 }
-#secRecap{
-    width:100%;
+
+#secRecap {
+    width: 100%;
 
 }
-#recapitulatif{
-    
-    width:40em;
-    height:50em;
-    width:40em;
-    height:50em;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    justify-content:space-between;
+
+#recapitulatif {
+
+    width: 40em;
+    height: 50em;
+    width: 40em;
+    height: 50em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
     border: {
-        right:solid;
-        radius:0;
+        right: solid;
+        radius: 0;
     }
+
     border: {
-        right:solid;
-        radius:0;
+        right: solid;
+        radius: 0;
     }
-    #recap{
-        height:100%;
+
+    #recap {
+        height: 100%;
     }
 
     #prixTTCRecap {
@@ -349,126 +378,151 @@ aside{
     .libelleProdRecap {
         display: flex;
         justify-content: space-between;
-        background-color:$colS;
-        border-radius:$radius;
-        padding:1em;
-        background-color:$colS;
-        border-radius:$radius;
-        padding:1em;
-        width:90%;
+        background-color: $colS;
+        border-radius: $radius;
+        padding: 1em;
+        background-color: $colS;
+        border-radius: $radius;
+        padding: 1em;
+        width: 90%;
 
     }
 
 }
-.dateCVC{
-.dateCVC{
-    display:flex;
 
-    .labelInput:nth-child(1) input{
-        width:6rem;
-        margin-right:5rem;
-    }
-    .labelInput:nth-child(2) input{
-        width:5rem;
-    }
-}
+.dateCVC {
+    .dateCVC {
+        display: flex;
 
-#poubelle{
-    border:none;
-    border-radius:10px;
-    background-color: $colS;
-    img{
-        width:30px;
-    }
-    &:hover{
-        background-color: color.change($colP, $lightness: 70%) ;
-    }
-}
-.conteneur{
-    width:60%;
-    @media #{$mobile}{
-        width:100%;
-    }
-}
+        .labelInput:nth-child(1) input {
+            width: 6rem;
+            margin-right: 5rem;
+        }
 
-#confirmation {
-    display: none;
-    position: absolute;
-    z-index: 10000;
-    justify-content: center;
-    .arianeItem{
-        font-size:0;
+        .labelInput:nth-child(2) input {
+            width: 5rem;
+        }
     }
-    align-self:flex-start;
 
+    #poubelle {
+        border: none;
+        border-radius: 10px;
+        background-color: $colS;
 
-}
-.checkboxCGV{
-    input{
-        width:1.5em;
-        height:1.5em;
-        margin-right:1em;
+        img {
+            width: 30px;
+        }
+
+        &:hover {
+            background-color: color.change($colP, $lightness: 70%);
+        }
     }
-    label{
-        margin-top:1em;
-        height:1em;
-    }
-    display:flex;
-    flex-direction: row;
 
-}    
-#btnAnnuler{
-    margin-right:3rem;
-}
-#infosPaiement{
-    display:flex;
-    flex-direction: column;
-    nav{
+    .conteneur {
+        width: 60%;
+
+        @media #{$mobile} {
+            width: 100%;
+        }
+    }
+
+    #confirmation {
+        display: none;
+        position: absolute;
+        z-index: 10000;
+        justify-content: center;
+
+        .arianeItem {
+            font-size: 0;
+        }
+
         align-self:flex-start;
-    }
-}
-#btnPayer, #btnAnnuler{
 
-    height:3rem;
-    padding:0;
-    width:10rem;
-    @media #{$mobile}{
-        margin-top:2rem;
+
     }
-}
-#confirmation{
-    display:none;
-    position:absolute;
-    z-index:10000;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-    height:100%;
-    background-color:rgba(0, 0, 0, 0.205);
-    article{
+
+    .checkboxCGV {
+        input {
+            width: 1.5em;
+            height: 1.5em;
+            margin-right: 1em;
+        }
+
+        label {
+            margin-top: 1em;
+            height: 1em;
+        }
+
         display:flex;
-        flex-direction:column;
-        background-color:white;
-        width:50%;
-        height:30%;
-        border-radius:$radius * 2;
-        h1{
-            align-self:center;
+        flex-direction: row;
+
+    }
+
+    #btnAnnuler {
+        margin-right: 3rem;
+    }
+
+    #infosPaiement {
+        display: flex;
+        flex-direction: column;
+
+        nav {
+            align-self: flex-start;
         }
-        .bouton{
-            height:4rem;
-            width:10rem;
-            font-size:28px;
-            
+    }
+
+    #btnPayer,
+    #btnAnnuler {
+
+        height: 3rem;
+        padding: 0;
+        width: 10rem;
+
+        @media #{$mobile} {
+            margin-top: 2rem;
         }
-        .bouton:nth-child(1){
-            margin-right:2rem;
+    }
+
+    #confirmation {
+        display: none;
+        position: absolute;
+        z-index: 10000;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.205);
+
+        article {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            width: 50%;
+            height: 30%;
+            border-radius: $radius * 2;
+
+            h1 {
+                align-self: center;
+            }
+
+            .bouton {
+                height: 4rem;
+                width: 10rem;
+                font-size: 28px;
+
+            }
+
+            .bouton:nth-child(1) {
+                margin-right: 2rem;
+            }
+
+            nav {
+                display: flex;
+                justify-content: center;
+            }
+
+            padding:10%;
+
         }
-        nav{
-            display:flex;
-            justify-content: center;
-        }
-        padding:10%;
-        
     }
 }
