@@ -4,7 +4,8 @@
     if(!array_key_exists("codeCompte", $_SESSION)){
         header("location:connexionVendeur.php");
     }
-
+    print_r($_POST);
+    print_r($_SESSION);
     $codeCompte = $_SESSION["codeCompte"];
     if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
