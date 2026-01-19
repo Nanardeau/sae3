@@ -240,7 +240,7 @@ INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, hauteur, long
 VALUES
 -- Vêtements
 ('T-shirt armor lux', 'Coton blanc M', 15.00, 'super-réduite', NULL, NULL, NULL, 50, 'Breizh', 10, '/img/tshirt.jpg', 6),
-('T-shirt crabe', 'synthétique XXL', 18.00, 'super-réduite', NULL, NULL, NULL, 30, 'Étranger', 5, '/img/tshirtcrabe.jpg', 7),
+('T-shirt crabe', 'synthétique XXL', 18.00, 'super-réduite', NULL, NULL, NULL, 30, 'Étranger', 5, '/img/tshirtcrabe.webp', 7),
 ('T-shirt à la vie, à la mer', 'synthétique L', 18.00, 'super-réduite', NULL, NULL, NULL, 40, 'Étranger', 15, '/img/tshirtalamer.jpg', 7),
 ('Jean à motif', 'denim 42', 45.00, 'super-réduite', NULL, NULL, NULL, 40, 'Étranger', 5, '/img/pantalon.jpg', 7),
 ('Veste papillon', 'Noire homme L', 70.00, 'super-réduite', NULL, NULL, NULL, 25, 'France', 5, '/img/veste.jpg', 8),
