@@ -153,7 +153,7 @@ $bdd->query('set schema \'alizon\'');
                 
                 <article class="catalogue">
                 <?php    
-                    foreach ($articles as $article) {
+                    foreach ($articles as $p) {
                         //print_r($article);
                         $codeProduit = $article['codeproduit'];
                         $img = $article['urlphoto'];
@@ -205,7 +205,15 @@ $bdd->query('set schema \'alizon\'');
                         $prodUnit = $stmt->fetchAll();
                          //print_r($prodUnit);
                     foreach($prodUnit as $produit){
-                        
+                        $codeProduit = $produit['codeproduit'];
+                        $img = $produit['urlphoto'];
+                        $libArt = $produit['libelleprod'];
+                        $prix = $produit['prixttc'];
+                        $prix = round($prix, 2); // Arrondir à 2 chiffre après la virgule 
+                        $id = $produit['codeproduit'];
+                        $desc = $produit['descriptionprod'];
+                        $moyennenote = $produit['notemoy'];
+                        $madein = $produit['origine'];
                         include 'includes/card.php' ;
                         
                         } } ?>
