@@ -1138,13 +1138,14 @@ aside article {
   background-color: rgba(0, 0, 0, 0.205);
 }
 #confirmation article {
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   background-color: white;
   width: 50%;
   height: 30%;
   border-radius: 2em;
-  padding: 10%;
+  padding: 5%;
 }
 #confirmation article h1 {
   align-self: center;
@@ -1160,6 +1161,15 @@ aside article {
 #confirmation article nav {
   display: flex;
   justify-content: center;
+  background-color: white;
+}
+#confirmation article h3 {
+  border-bottom: solid;
+}
+#confirmation article p {
+  background-color: rgb(224, 224, 224);
+  padding: 2em;
+  border-radius: 2em;
 }
 
 .prixNormalbarre {

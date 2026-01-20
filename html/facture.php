@@ -2,6 +2,16 @@
     session_start();
     require_once __DIR__ . '/_env.php';
     loadEnv(__DIR__ . '/.env');
+    $estClient = false;
+    $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+    foreach($clients as $client){
+        if($client["codecompte"] == $_SESSION["codeCompte"]){
+            $estClient = true;
+        }
+    }
+    if(!$estClient || !isset($_SESSION["codeCompte"])){
+        exit(header("location:index.php"));
+    }
 
     $host = getenv('PGHOST');
     $port = getenv('PGPORT');

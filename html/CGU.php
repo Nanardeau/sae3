@@ -44,7 +44,15 @@
 
 <body>
     <?php
-    if (isset($_SESSION["codeCompte"])) {
+        
+    $estClient = false;
+    $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+    foreach($clients as $client){
+        if($client["codecompte"] == $_SESSION["codeCompte"]){
+            $estClient = true;
+        }
+    }
+    if (isset($_SESSION["codeCompte"]) && $estClient) {
         $idUser =  $_SESSION["codeCompte"];
         include 'includes/headerCon.php';
     } else {
@@ -52,6 +60,7 @@
     }
     ?>
     <main>
+        <?php include 'includes/menuCompte.php'?>
         <section>
             <article>
                 <h1 id="ML">Mentions légales</h1>

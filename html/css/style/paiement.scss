@@ -448,8 +448,9 @@ aside {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.205);
-
+    
     article {
+        overflow-y:scroll;
         display: flex;
         flex-direction: column;
         background-color: white;
@@ -475,9 +476,18 @@ aside {
         nav {
             display: flex;
             justify-content: center;
+            background-color: white;
+        }
+        h3{
+            border-bottom:solid;
+        }
+        p{
+            background-color:rgb(224, 224, 224);
+            padding:2em;
+            border-radius:$radius * 2;
         }
 
-        padding:10%;
+        padding:5%;
 
     }
 }

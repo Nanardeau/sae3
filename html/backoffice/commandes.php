@@ -1,12 +1,9 @@
 <?php
+
 session_start();
 //$_SESSION["codeCompte"] = 5 ; 
 
-if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
-            header("location:index.php");
-        }
 
-$codeCompte = $_SESSION["codeCompte"];
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv('../.env');
@@ -38,8 +35,18 @@ try {
         exit();
 }
 $bdd->query('set schema \'alizon\'');
-
-$sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
+    $estVendeur = false;
+    $vendeurs = $bdd->query("SELECT ALL codeCompte FROM alizon.Vendeur")->fetchAll();
+    foreach($vendeurs as $vendeur){
+        if($vendeur["codecompte"] == $_SESSION["codeCompte"]){
+            $estVendeur= true;
+        }
+    }
+    if(!$estVendeur || !isset($_SESSION["codeCompte"])){
+        exit(header("location:connexionVendeur.php"));
+    }
+    $codeCompte = $_SESSION["codeCompte"];
+    $sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
 $stmt = $bdd->query($sql);
 $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
 

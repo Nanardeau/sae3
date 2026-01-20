@@ -54,6 +54,10 @@
         $prixTTCProd = $bdd->prepare("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'");
         $prixTTCProd->execute();
         $prixTTCProd = $prixTTCProd->fetch();
+        $stmt = $bdd->prepare("UPDATE alizon.Produit SET qteStock = qteStock - 1 WHERE codeProduit = :codeProd");
+        $stmt->execute(array(
+            "codeProd" => $prodUnit["codeproduit"]
+        ));
         $stmt = $bdd->prepare("INSERT INTO alizon.ProdUnitCommande (codeProduit, numCom, qteProd) VALUES (:codeProduit, :numCom, :qteProd)");
         $stmt->execute(array(
             ":codeProduit" => $prodUnit["codeproduit"],
@@ -69,6 +73,7 @@
     $_SESSION["numCom"] = $numCom;
     $stmt = $bdd->prepare("DELETE FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'");
     $stmt->execute();
+    
     unset($_SESSION["idPanier"]);
     
     //LIEN DELIVRAPTOR

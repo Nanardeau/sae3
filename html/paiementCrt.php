@@ -3,8 +3,7 @@
 #Modification de l'adresse
 session_start();
 require_once __DIR__ . '/_env.php';
-
-loadEnv(__DIR__ . '/.env');
+    loadEnv(__DIR__ . '/.env');
 
 $host = getenv('PGHOST');
 $port = getenv('PGPORT');
@@ -21,43 +20,53 @@ try {
     echo "Erreur de connexion : " . $e->getMessage();
 }
 $bdd->query("SET SCHEMA 'alizon'");
+$estClient = false;
+$clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+foreach($clients as $client){
+    if($client["codecompte"] == $_SESSION["codeCompte"]){
+        $estClient = true;
+    }
+}
+if(!$estClient || !isset($_SESSION["codeCompte"])){
+    exit(header("location:index.php"));
+}
 $codeCompte = $_SESSION["codeCompte"];
-    $numRue = $_POST["numRue"];
-    $nomRue = $_POST["nomRue"];
-    $codePostal = $_POST["codePostal"];
-    $nomVille = $_POST["ville"];
-    $numApt = isset($_POST["numApt"]) ? $_POST["numApt"] : "";
-    $complement = isset($_POST["comp"]) ? $_POST["comp"] : ""; 
-    $stmt = $bdd->prepare("INSERT INTO alizon.Adresse (num, nomRue, codePostal, nomVille, numAppart, complementAdresse) VALUES (:num, :nomRue, :codePostal, :nomVille, :numAppart, :complementAdresse)");
-    $stmt->execute(array(
-        ":num" => $numRue,
-        ":nomRue" => $nomRue,
-        ":codePostal" => $codePostal,
-        ":nomVille" => $nomVille,
-        ":numAppart" => $numApt,
-        ":complementAdresse" => $complement
-    ));
-    $idAdresse = $bdd->lastInsertId();
-    $_SESSION["idAdresse"] = $idAdresse;
-    $_SESSION["adrModif"] = 1;
-
+$numRue = $_POST["numRue"];
+$nomRue = $_POST["nomRue"];
+$codePostal = $_POST["codePostal"];
+$nomVille = $_POST["ville"];
+$numApt = isset($_POST["numApt"]) ? $_POST["numApt"] : "";
+$complement = isset($_POST["comp"]) ? $_POST["comp"] : ""; 
+$stmt = $bdd->prepare("INSERT INTO alizon.Adresse (num, nomRue, codePostal, nomVille, numAppart, complementAdresse) VALUES (:num, :nomRue, :codePostal, :nomVille, :numAppart, :complementAdresse)");
+$stmt->execute(array(
+    ":num" => $numRue,
+    ":nomRue" => $nomRue,
+    ":codePostal" => $codePostal,
+    ":nomVille" => $nomVille,
+    ":numAppart" => $numApt,
+    ":complementAdresse" => $complement
+));
+$idAdresse = $bdd->lastInsertId();
+$_SESSION["idAdresse"] = $idAdresse;
 
 
 //À DÉCOMMENTER
-$idPanier = 1;
+
 // $stmt = $bdd->prepare("INSERT INTO alizon.Adresse (num, nomRue, codePostal, nomVille, numAppart, complementAdresse) VALUES (:num, :nomRue, :codePostal, :nomVille, :numAppart, :complementAdresse)");
 // $stmt->execute(array(
-//     ":num" => $numRue,
-//     ":nomRue" => $nomRue,
-//     ":codePostal" => $codePostal,
-//     ":nomVille" => $nomVille,
-//     ":numAppart" => $numApt,
-//     ":complementAdresse" => $complement
-// ));
-// $idAdresse = $bdd->lastInsertId();
-// $_SESSION["idAdresse"] = $idAdresse;
-$panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
-$idPanier = $panier["idpanier"];
+    //     ":num" => $numRue,
+    //     ":nomRue" => $nomRue,
+    //     ":codePostal" => $codePostal,
+    //     ":nomVille" => $nomVille,
+    //     ":numAppart" => $numApt,
+    //     ":complementAdresse" => $complement
+    // ));
+    // $idAdresse = $bdd->lastInsertId();
+    // $_SESSION["idAdresse"] = $idAdresse;
+    $_SESSION["vendeur"] = "";
+    $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
+    $idPanier = $panier["idpanier"];
+    $produits = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier INNER JOIN alizon.Produit ON ProdUnitPanier.codeProduit = Produit.codeProduit WHERE idPanier = '".$idPanier."' ORDER BY codeCompteVendeur")->fetchAll();
 // $produits = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
 ?>
 <html lang="fr">
@@ -75,6 +84,19 @@ $idPanier = $panier["idpanier"];
     ?>
         <div id="confirmation">
             <article>
+                <?php foreach($produits as $produit):?>
+                    <?php $prodUnit = $bdd->query("SELECT * FROM alizon.Produit WHERE codeproduit = ".$produit["codeproduit"])->fetch();
+                    $vendeur = ($bdd->query("SELECT raisonSociale FROM alizon.Vendeur WHERE codeCompte =".$prodUnit["codecomptevendeur"])->fetch())["raisonsociale"];
+                    ?>
+                <?php if(($_SESSION["vendeur"] == "" || $_SESSION["vendeur"] != $vendeur)):?>
+                <h3>Vendeur : <?php echo $vendeur?></h3>
+                <?php endif?>
+                <?php $_SESSION["vendeur"] = $vendeur;?>
+                <p>
+                    <?php echo $prodUnit["libelleprod"] . " x " . $produit["qteprod"] . " = " . $produit["prixttctotal"]?>  €                  
+                </p>
+
+                <?php endforeach?>
                 <h1>Vous allez payer <?php echo $panier["prixttctotal"]?> €, confirmer le paiement ?</h1>
                 <nav>
                     <button class="bouton" onclick="annulerConf()" value="annuler">Annuler</button>
@@ -83,6 +105,7 @@ $idPanier = $panier["idpanier"];
             </article>
         </div>
     <main id="mainCrt">
+        <?php include 'includes/menuCompte.php'?>
         <div class="ariane" id="navTablette">
             <a class="arianeItem" href="panier.php">
                 <svg width="358" height="80" viewBox="0 0 358 80" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -227,7 +250,6 @@ $idPanier = $panier["idpanier"];
                         <?php 
                         $i = 1;
             
-                        $produits = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
                         
                         foreach($produits as $prodUnit){
                             ?><div class="libelleProdRecap"><?php
@@ -273,7 +295,6 @@ $idPanier = $panier["idpanier"];
                  <form action="enregPaiement.php" method="post" id="formulaireBanque">
                      <label for="nomTitulaireCB">Nom + Prénom figurant sur la carte *</label>
                      <input type="text" name="nomTitulaireCB" id="nomTitulaireCB" placeholder="ex: DUPONT Jean" pattern="\w{3,}\s\w{3,}" required/>
-                     <span>Format invalide (ex: DUPONT Jean)</span>
                      <label for="numCB">Numéro de carte *</label>
                      <input type="text" name="numCB" id="numCB" required/>
                      <span>Numéro de carte invalide</span>
@@ -291,7 +312,7 @@ $idPanier = $panier["idpanier"];
                      </div>
                      <div class="checkboxCGV">
                         <input type="checkbox" name="accepter" id="cgv" required/>
-                        <label for="cgv">J'ai lu et accepté les <a href="CGV.php">Conditions Générales de Vente (CGV)</a></label>
+                        <label for="cgv">J'ai lu et accepté les <a target="_blank" href="CGV.php">Conditions Générales de Vente (CGV)</a></label>
                     </div>
                 </form>
                 <div>

@@ -1,10 +1,19 @@
 <?php 
     session_start();
-    if(!array_key_exists("codeCompte", $_SESSION)){
-        header("location:index.php");
+    $estClient = false;
+    $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+    foreach($clients as $client){
+        if($client["codecompte"] == $_SESSION["codeCompte"]){
+            $estClient = true;
+        }
     }
+    if(!$estClient || !isset($_SESSION["codeCompte"])){
+        exit(header("location:index.php"));
+    }
+    else{
 
-    $codeCompte = $_SESSION["codeCompte"];
+        $codeCompte = $_SESSION["codeCompte"];
+    }
     if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
 

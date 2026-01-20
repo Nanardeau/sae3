@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
-            header("location:index.php");
-        }
 
-$codeCompte = $_SESSION["codeCompte"];
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
@@ -37,7 +33,19 @@ try {
         exit();
 }
 $bdd->query('set schema \'alizon\'');
-
+    $estClient = false;
+    $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+    foreach($clients as $client){
+        if($client["codecompte"] == $_SESSION["codeCompte"]){
+            $estClient = true;
+        }
+    }
+    if(!$estClient || !isset($_SESSION["codeCompte"])){
+        exit(header("location:index.php"));
+    }
+    else{
+        $codeCompte = $_SESSION["codeCompte"];
+    }
 
 ?>
 <html lang="fr">
