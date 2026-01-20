@@ -652,8 +652,12 @@ nav div > ul li:hover .souscat-ul {
   padding-left: 1rem;
 }
 
-.ajoutPanierFait {
-  display: flex;
+#ajoutPanierFait.open {
+  display: flex !important;
+}
+
+#ajoutPanierFait {
+  display: none;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
@@ -666,13 +670,13 @@ nav div > ul li:hover .souscat-ul {
   margin-top: 1em;
   margin-left: 2em;
 }
-.ajoutPanierFait svg {
+#ajoutPanierFait svg {
   color: green;
 }
-.ajoutPanierFait .bouton {
+#ajoutPanierFait .bouton {
   padding: 0.3em;
 }
-.ajoutPanierFait .partieDroite {
+#ajoutPanierFait .partieDroite {
   display: flex;
   flex-direction: column;
 }
@@ -855,11 +859,16 @@ nav div > ul li:hover .souscat-ul {
 }
 
 main {
-  align-items: stretch;
   display: grid;
   -moz-column-gap: 16px;
        column-gap: 16px;
-  grid: 284px minmax(0px, 1fr);
+  grid-template-columns: 284px minmax(0, 1fr);
+  min-height: 650px;
+}
+@media screen and (max-width : 428px) {
+  main {
+    display: flex;
+  }
 }
 
 a {
@@ -1029,17 +1038,55 @@ TRIS & Filtres
 }
 
 aside {
+  grid-area: 1/1;
   display: flex;
   flex-direction: column;
-  grid-area: 1/1;
-  width: 25%;
-  min-width: 250px;
-  max-height: 600px;
 }
 @media screen and (max-width: 100em) {
   aside {
-    display: none;
+    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100vh;
+    background: white;
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
   }
+  aside.mobile-open {
+    display: flex !important;
+    transform: translateX(25%);
+  }
+}
+aside .btn-fermer-filtres {
+  display: none;
+}
+@media screen and (max-width: 100em) {
+  aside .btn-fermer-filtres {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+}
+@media screen and (max-width: 100em) {
+  aside .filtres-desktop {
+    display: none !important;
+  }
+}
+
+aside {
+  width: 25%;
+  min-width: 250px;
+  max-height: 600px;
 }
 aside div {
   border-radius: 1em;
@@ -1053,7 +1100,7 @@ aside hr {
   width: 90%;
 }
 aside h3 {
-  margin: 20px;
+  margin: 0 20px;
 }
 aside input[type=radio] {
   width: 1px !important;
@@ -1117,8 +1164,9 @@ aside select {
   -webkit-appearance: base-select;
      -moz-appearance: base-select;
           appearance: base-select;
+  font-size: 16px;
+  border: 1px solid #064082;
   width: 90%;
-  border: unset;
   margin: 0 12px;
   background-color: #EFEFEF;
 }
@@ -1126,4 +1174,86 @@ aside select, aside select::picker {
   padding: 1em;
   border: none;
   border-radius: 1em;
+}
+aside input[type=range]::-webkit-slider-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 70%;
+  background: #555;
+  pointer-events: auto;
+  -webkit-appearance: none;
+}
+aside .slider-container {
+  margin: 20px;
+  transition: transform 0.2s;
+}
+aside .slider-container:hover {
+  transform: scale(1.05);
+}
+aside .price-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+aside input[type=number] {
+  background-color: inherit;
+  text-align: center;
+  border: none;
+  width: 40px;
+}
+aside .slider {
+  width: 100%;
+  height: 8px;
+  position: relative;
+  border-radius: 5px;
+}
+aside .slider .price-slider {
+  height: 100%;
+  left: 0%;
+  right: 0%;
+  position: absolute;
+  border-radius: 5px;
+  background: #064082;
+}
+aside input::-webkit-outer-spin-button,
+aside input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+aside .range-input {
+  position: relative;
+}
+aside .range-input input {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background: none;
+  top: -7px;
+  pointer-events: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+aside .reset {
+  display: flex;
+  padding: 20px;
+  justify-content: end;
+}
+aside .reset a {
+  color: #555;
+  font-weight: bolder;
+}
+
+.flr-tel {
+  border: none;
+  background: none;
+  width: 80%;
+  height: 100%;
+  overflow: hidden;
+}
+.flr-tel::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+.flr-tel > div {
+  height: 100%;
 }/*# sourceMappingURL=catalogue.css.map */

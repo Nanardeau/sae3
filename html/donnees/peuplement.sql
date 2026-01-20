@@ -1,140 +1,283 @@
-
 set schema 'alizon';
-INSERT INTO TVA(nomTVA,tauxTVA) 
-VALUES
-('super-réduite',5.5),
-('réduite',10),
-('normale',20);
 
-INSERT INTO Tarification(nomTarif,tauxTarif) 
-VALUES
-('tarif1',2),
-('tarif2',5),
-('tarif3',8),
-('tarif4',10),
-('tarif5',15);
+INSERT INTO
+    TVA (nomTVA, tauxTVA)
+VALUES ('super-réduite', 5.5),
+    ('réduite', 10),
+    ('normale', 20);
 
-INSERT INTO Photo(urlPhoto) VALUES
-('/img/fromage2.jpg'),
-('/img/fromageTourteau.jpg'),
-('/img/madameLoik.jpg'),
-('/img/pulljaune.jpg'),
-('/img/short2.jpg'),
-('/img/tasseBretonne.jpg'),
-('/img/t-shirt.jpg'),
-('/img/t-shirt2.jpg'),
-('/img/t-shirtbleu.jpg'),
+INSERT INTO
+    Tarification (nomTarif, tauxTarif)
+VALUES ('tarif1', 2),
+    ('tarif2', 5),
+    ('tarif3', 8),
+    ('tarif4', 10),
+    ('tarif5', 15);
 
-('/img/Boiteasucrebreton.jpg'),
-('/img/boitebigoudenne.jpg'),
-('/img/boitebretonne.jpg'),
-('/img/boitegalette.jpg'),
-('/img/boitegalette2.jpg'),
-('/img/botte.jpg'),
-('/img/botte2.jpg'),
-('/img/botte3.jpg'),
-('/img/bougiebateau.jpg'),
-('/img/bougiephare.jpg'),
-('/img/bougietriskel.jpg'),
-('/img/coussin.jpg'),
-('/img/echarpebleugris.jpg'),
-('/img/echarpebretagne.jpg'),
-('/img/galette.jpg'),
-('/img/gourdebretagne.jpg'),
-('/img/horloge.jpg'),
-('/img/horloge2.jpg'),
-('/img/moulin2.jpg'),
-('/img/robebretonne.jpg'),
-('/img/robemarinière.jpg'),
-('/img/robemarinière2.jpg'),
-('/img/savon2.jpg'),
-('/img/serviette3.jpg'),
-('/img/serviette2.jpg'),
-('/img/shortBretagne.jpg'),
-('/img/tapisbreton2.jpg'),
-('/img/tapisbreton.jpg'),
-('/img/tapis.jpg'),
-('/img/tapissouris.jpg'),
-('/img/trousse5.jpg'),
-('/img/trousse2.jpg'),
-('/img/trousse3.jpg'),
-('/img/trousse4.jpg'),
-('/img/tshirt6.jpg'),
-('/img/tshirt2.jpg'),
-('/img/tshirt3.jpg'),
-('/img/tshirt4.jpg'),
-('/img/tshirt5.jpg'),
-('/img/tshirt7.jpg'),
-('/img/tshirt8.jpg'),
-('/img/the.jpg'),
-('/img/lait.jpg'),
-('/img/fromage.jpg'),
-('/img/cafe.jpg'),
-('/img/tshirt.jpg'),
-('/img/pantalon.jpg'), --
-('/img/veste.jpg'), --
-('/img/mocassins.jpg'),
-('/img/chapeau.jpg'),
-('/img/gourde.jpg'),
-('/img/tasse.jpg'),
-('/img/sac.jpg'), --
-('/img/lunettes.jpg'),
-('/img/stylo.jpg'), --
-('/img/pommes.jpg'),
-('/img/miel.jpg'),
-('/img/chocolat.jpg'),
-('/img/confiture.jpg'),
-('/img/huile.jpg'),
-('/img/biscottes.jpg'),
-('/img/pull.jpg'), --
-('/img/parka.jpg'), --
-('/img/sweat.jpg'),
-('/img/sandales.jpg'),
-('/img/echarpe.jpg'),
-('/img/gants.jpg'), --
-('/img/short.jpg'),
-('/img/robe.jpg'),
-('/img/bougie.jpg'),
-('/img/boite.jpg'),
-('/img/plaid.jpg'),
-('/img/moulin.jpg'),
-('/img/iris.jpg'),
-('/img/argent.jpg'),
-('/img/soleil.jpg'),
-('/img/luxe.jpg'),
-('/img/savon.jpg'),
-('/img/trousse.jpg'),
-('/img/serviette.jpg'),
-('/img/peignoir.jpg'),
-('/img/cristal.jpg'),
-('/img/yoga.jpg'),
-('/img/carafe.jpg'),
-('/img/bouteille.jpg'),
-('/img/tente.jpg'),
-('/img/couchage.jpg'),
-('/img/boussole.jpg'),
-('/img/torche.jpg'),
-('/img/thermos.jpg'),
-('/img/bottes.jpg'),
-('/img/tshirtalamer.jpg'),
-('/img/tshirtcrabe.jpg'),
-('../img/photosProduit/imgErr.jpg');
+INSERT INTO
+    Photo (urlPhoto)
+VALUES ('/img/fromage2.jpg'),
+    ('/img/fromageTourteau.jpg'),
+    ('/img/madameLoik.jpg'),
+    ('/img/pulljaune.jpg'),
+    ('/img/short2.jpg'),
+    ('/img/tasseBretonne.jpg'),
+    ('/img/t-shirt.jpg'),
+    ('/img/t-shirt2.jpg'),
+    ('/img/t-shirtbleu.jpg'),
+    ('/img/Boiteasucrebreton.jpg'),
+    ('/img/boitebigoudenne.jpg'),
+    ('/img/boitebretonne.jpg'),
+    ('/img/boitegalette.jpg'),
+    ('/img/boitegalette2.jpg'),
+    ('/img/botte.jpg'),
+    ('/img/botte2.jpg'),
+    ('/img/botte3.jpg'),
+    ('/img/bougiebateau.jpg'),
+    ('/img/bougiephare.jpg'),
+    ('/img/bougietriskel.jpg'),
+    ('/img/coussin.jpg'),
+    ('/img/echarpebleugris.jpg'),
+    ('/img/echarpebretagne.jpg'),
+    ('/img/galette.jpg'),
+    ('/img/gourdebretagne.jpg'),
+    ('/img/horloge.jpg'),
+    ('/img/horloge2.jpg'),
+    ('/img/moulin2.jpg'),
+    ('/img/robebretonne.jpg'),
+    ('/img/robemarinière.jpg'),
+    ('/img/robemarinière2.jpg'),
+    ('/img/savon2.jpg'),
+    ('/img/serviette3.jpg'),
+    ('/img/serviette2.jpg'),
+    ('/img/shortBretagne.jpg'),
+    ('/img/tapisbreton2.jpg'),
+    ('/img/tapisbreton.jpg'),
+    ('/img/tapis.jpg'),
+    ('/img/tapissouris.jpg'),
+    ('/img/trousse5.jpg'),
+    ('/img/trousse2.jpg'),
+    ('/img/trousse3.jpg'),
+    ('/img/trousse4.jpg'),
+    ('/img/tshirt6.jpg'),
+    ('/img/tshirt2.jpg'),
+    ('/img/tshirt3.jpg'),
+    ('/img/tshirt4.jpg'),
+    ('/img/tshirt5.jpg'),
+    ('/img/tshirt7.jpg'),
+    ('/img/tshirt8.jpg'),
+    ('/img/the.jpg'),
+    ('/img/lait.jpg'),
+    ('/img/fromage.jpg'),
+    ('/img/cafe.jpg'),
+    ('/img/tshirt.jpg'),
+    ('/img/pantalon.jpg'), --
+    ('/img/veste.jpg'), --
+    ('/img/mocassins.jpg'),
+    ('/img/chapeau.jpg'),
+    ('/img/gourde.jpg'),
+    ('/img/tasse.jpg'),
+    ('/img/sac.jpg'), --
+    ('/img/lunettes.jpg'),
+    ('/img/stylo.jpg'), --
+    ('/img/pommes.jpg'),
+    ('/img/miel.jpg'),
+    ('/img/chocolat.jpg'),
+    ('/img/confiture.jpg'),
+    ('/img/huile.jpg'),
+    ('/img/biscottes.jpg'),
+    ('/img/pull.jpg'), --
+    ('/img/parka.jpg'), --
+    ('/img/sweat.jpg'),
+    ('/img/sandales.jpg'),
+    ('/img/echarpe.jpg'),
+    ('/img/gants.jpg'), --
+    ('/img/short.jpg'),
+    ('/img/robe.jpg'),
+    ('/img/bougie.jpg'),
+    ('/img/boite.jpg'),
+    ('/img/plaid.jpg'),
+    ('/img/moulin.jpg'),
+    ('/img/iris.jpg'),
+    ('/img/argent.jpg'),
+    ('/img/soleil.jpg'),
+    ('/img/luxe.jpg'),
+    ('/img/savon.jpg'),
+    ('/img/trousse.jpg'),
+    ('/img/serviette.jpg'),
+    ('/img/peignoir.jpg'),
+    ('/img/cristal.jpg'),
+    ('/img/yoga.jpg'),
+    ('/img/carafe.jpg'),
+    ('/img/bouteille.jpg'),
+    ('/img/tente.jpg'),
+    ('/img/couchage.jpg'),
+    ('/img/boussole.jpg'),
+    ('/img/torche.jpg'),
+    ('/img/thermos.jpg'),
+    ('/img/bottes.jpg'),
+    ('/img/tshirtalamer.jpg'),
+    ('/img/tshirtcrabe.jpg'),
+    (
+        '../img/photosProduit/imgErr.jpg'
+    );
 
-INSERT INTO Client(pseudo, dateCreation, dateNaissance, nom, prenom, email, mdp, numTel, cmtBlq, cmtBlqMod) VALUES
-('Bernard','2025-09-25', '2003-04-03','Mulish','Isigor','isizou@gmail.com','1234','0605040608',false,false),
-('Constance','2025-10-26', '2006-05-08', 'Pilup','Eude','Eudeux@gmail.com','1234','0704090506',false, false),
-('Titouan','2025-10-26','2001-09-11','test','test','test@gmail.com','1234','0701480506',false, false),
-('Nanardeau','2025-10-29','2006-12-29','Bernel','michar','moviestar@gmail.com','oupala!','0704090506',false, false);
+INSERT INTO
+    Client (
+        pseudo,
+        dateCreation,
+        dateNaissance,
+        nom,
+        prenom,
+        email,
+        mdp,
+        numTel,
+        cmtBlq,
+        cmtBlqMod
+    )
+VALUES (
+        'Bernard',
+        '2025-09-25',
+        '2003-04-03',
+        'Mulish',
+        'Isigor',
+        'isizou@gmail.com',
+        MD5('1234'),
+        '0605040608',
+        false,
+        false
+    ),
+    (
+        'Constance',
+        '2025-10-26',
+        '2006-05-08',
+        'Pilup',
+        'Eude',
+        'Eudeux@gmail.com',
+        MD5('1234'),
+        '0704090506',
+        false,
+        false
+    ),
+    (
+        'Titouan',
+        '2025-10-26',
+        '2001-09-11',
+        'test',
+        'test',
+        'test@gmail.com',
+        MD5('1234'),
+        '0701480506',
+        false,
+        false
+    ),
+    (
+        'Nanardeau',
+        '2025-10-29',
+        '2006-12-29',
+        'Bernel',
+        'michar',
+        'moviestar@gmail.com',
+        MD5('oupala!'),
+        '0704090506',
+        false,
+        false
+    );
 
-INSERT INTO Vendeur(dateCreation, nom, prenom, pseudo, email, mdp, numTel, siren, raisonSociale) VALUES
-('2025-10-23','admin','Correc', 'Luhan','email@gmail.com','admin','0204826759','000000000','admin'),
-('2025-10-23', 'Dupont', 'Martin', 'mdupont', 'martin.dupont@gmail.com', 'Password123', '0612345678', '812345678', 'Dupont & Fils SARL'),
-('2025-09-15', 'Moreau', 'Léa', 'lmoreau', 'lea.moreau@gmail.com', 'L3a!Secure', '0678912345', '352000799', 'Moreau Boutique'),
-('2025-11-01', 'Nguyen', 'tnguyen', 'Thierry', 'thierry.nguyen@techsolutions.fr', 'TnG!2025', '0780554433', '489765432', 'Tech Solutions');
+INSERT INTO
+    Vendeur (
+        dateCreation,
+        nom,
+        prenom,
+        pseudo,
+        email,
+        mdp,
+        numTel,
+        siren,
+        raisonSociale
+    )
+VALUES (
+        '2025-10-23',
+        'admin',
+        'Correc',
+        'Luhan',
+        'email@gmail.com',
+        MD5('admin'),
+        '0204826759',
+        '000000000',
+        'admin'
+    ),
+    (
+        '2025-10-23',
+        'Dupont',
+        'Martin',
+        'mdupont',
+        'martin.dupont@gmail.com',
+        MD5('Password123'),
+        '0612345678',
+        '812345678',
+        'Dupont & Fils SARL'
+    ),
+    (
+        '2025-09-15',
+        'Moreau',
+        'Léa',
+        'lmoreau',
+        'lea.moreau@gmail.com',
+        MD5('L3a!Secure'),
+        '0678912345',
+        '352000799',
+        'Moreau Boutique'
+    ),
+    (
+        '2025-11-01',
+        'Nguyen',
+        'tnguyen',
+        'Thierry',
+        'thierry.nguyen@techsolutions.fr',
+        MD5('TnG!2025'),
+        '0780554433',
+        '489765432',
+        'Tech Solutions'
+    );
 
-INSERT INTO Client(pseudo, dateCreation, dateNaissance, nom, prenom, email, mdp, numTel, cmtBlq, cmtBlqMod) VALUES
-('Camille','2025-11-21','1999-03-03','Guillou','Camille','camille@gmail.com','camille1','0649786246', false, false),
-('AudreyM','2025-11-21','1989-09-04','Asma','Audrey','audrey3@gmail.com','Audrey3','0748956215', false, false);
+INSERT INTO
+    Client (
+        pseudo,
+        dateCreation,
+        dateNaissance,
+        nom,
+        prenom,
+        email,
+        mdp,
+        numTel,
+        cmtBlq,
+        cmtBlqMod
+    )
+VALUES (
+        'Camille',
+        '2025-11-21',
+        '1999-03-03',
+        'Guillou',
+        'Camille',
+        'camille@gmail.com',
+        MD5('camille1'),
+        '0649786246',
+        false,
+        false
+    ),
+    (
+        'AudreyM',
+        '2025-11-21',
+        '1989-09-04',
+        'Asma',
+        'Audrey',
+        'audrey3@gmail.com',
+        MD5('Audrey3'),
+        '0748956215',
+        false,
+        false
+    );
 
 INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, spe1, spe2, spe3, qteStock, Origine, Disponible, seuilAlerte, urlPhoto, codeCompteVendeur)
 VALUES
@@ -146,21 +289,217 @@ VALUES
 
 INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, spe1, spe2, spe3, qteStock, Origine, seuilAlerte, urlPhoto, codeCompteVendeur, nomTarif)
 VALUES
--- Nouriture
-('Miel de sarrasin', 'Un miel sombre et puissant produit dans des ruches installées au cœur des campagnes bretonnes. Sa saveur boisée et son parfum profond le rendent particulièrement apprécié des amateurs de produits authentiques. Parfait pour sucrer tisane, desserts ou tartines.', 8.90, 'réduite', NULL, NULL, NULL, 90, 'Breizh', 8, '/img/miel.jpg', 8, 'tarif1'),
-('Chocolat noir 80%', 'Un chocolat intense fabriqué avec du cacao issu de plantations équitables. Ses arômes profonds et sa légère amertume le rendent parfait pour les connaisseurs ou pour la pâtisserie. Chaque tablette est travaillée pour garantir une fondance idéale.', 3.10, 'réduite', NULL, NULL, NULL, 150, 'France', 6, '/img/chocolat.jpg', 8, 'tarif1'),
-('Confiture de fraise', 'Confiture préparée avec des fraises mûries au soleil et cuites en petite quantité pour garantir une saveur fruitée intense. Sa texture onctueuse et son goût authentique la rendent parfaite pour les tartines, les crêpes ou les desserts faits maison.', 4.80, 'réduite', NULL, NULL, NULL, 85, 'Breizh', 8, '/img/confiture.jpg', 6, 'tarif1'),
-('Huile d’olive', 'Huile extra vierge issue d’une première pression à froid. Son parfum fruité et sa saveur équilibrée en font un ingrédient essentiel pour la cuisine du quotidien. Idéale pour assaisonnement, cuisson douce ou marinade.', 7.50, 'réduite', NULL, NULL, NULL, 100, 'Étranger', 8, '/img/huile.jpg', 8, 'tarif1'),
-('Biscottes complètes', 'Des biscottes croustillantes élaborées avec de la farine complète pour un petit-déjeuner nutritif. Leur texture légère et leur goût délicat en font une alternative saine au pain traditionnel. Elles se conservent longtemps sans perdre leur croquant.', 2.40, 'réduite', NULL, NULL, NULL, 130, 'France', 15, '/img/biscottes.jpg', 8, 'tarif1'),
-('Boite à sucre', 'Une charmante boîte à sucre bretonne qui allie tradition et authenticité. Ornée de motifs inspirés de la Bretagne, elle apporte une touche régionale à votre cuisine tout en conservant parfaitement votre sucre. Idéale comme souvenir ou objet déco au style breton.', 7.40, 'réduite', NULL, NULL, NULL, 180, 'Breizh', 15, '/img/Boiteasucrebreton.jpg', 6, 'tarif2'),
-('Boite bigoudenne à galette', 'Une jolie boîte Bigoudène décorée de motifs typiquement bretons, rendant hommage à la culture et aux traditions du pays Bigouden. Pratique et esthétique, elle est parfaite pour ranger sucre, biscuits ou petits trésors tout en apportant une touche d’authenticité à votre intérieur.', 9.40, 'réduite', NULL, NULL, NULL, 180, 'Breizh', 15, '/img/boitebigoudenne.jpg', 7, 'tarif2'),
-('Boite bretonne à galette', 'Une boîte bretonne au charme authentique, décorée de symboles et motifs inspirés de la Bretagne. Idéale pour conserver sucre, biscuits ou petits objets, elle allie praticité et esprit régional pour une touche bretonne dans votre cuisine ou votre maison.', 10.00, 'réduite', NULL, NULL, NULL, 180, 'Breizh', 15, '/img/boitebretonne.jpg', 8, 'tarif2'),
-('Boite à galette', 'Une belle boîte à galettes bretonnes, décorée avec soin et pensée pour conserver toute la fraîcheur et le croquant des biscuits. Parfaite pour ajouter une touche régionale et gourmande à votre cuisine', 14.99, 'réduite', NULL, NULL, NULL, 180, 'Breizh', 15, '/img/boitegalette.jpg', 5, 'tarif2'),
-('Boite à galette', 'Une boîte à galettes inspirée du savoir-faire breton, ornée de motifs rappelant la mer et les terres de Bretagne. Un objet à la fois utile et décoratif, symbole d’authenticité et de convivialité.', 11.99, 'réduite', NULL, NULL, NULL, 180, 'Breizh', 15, '/img/boitegalette2.jpg', 6, 'tarif2'),
-('Boite à galette', 'Boîte à galettes bretonnes pratique et décorative, parfaite pour conserver vos biscuits avec style.', 9.00, 'réduite', NULL, NULL, NULL, 180, 'Breizh', 15, '/img/galette.jpg', 8, 'tarif2'),
-('Le Manicamp', 'un fromage de vache français originaire des environs de Manicamp, dans le département de l Aisne. ', 3.40, 'réduite', NULL, NULL, NULL, 180, 'Breizh', 15, '/img/fromage2.jpg', 5, 'tarif2'),
-('Le Touteau', 'Un fromage créer exclusivement en bretagne', 5.40, 'réduite', NULL, NULL, NULL, 180, 'Breizh', 15, '/img/fromageTourteau.jpg', 6, 'tarif1'),
-('Madame Loik', 'Très agréable en bouche et donnant une vraie sensation de goût frais, cette texture unique est devenue une référence au rayon des fromages et ne cesse de séduire', 6.99, 'réduite', NULL, NULL, NULL, 180, 'Breizh', 15, '/img/madameLoik.jpg', 7, 'tarif1'),
+    -- Nouriture
+    (
+        'Miel de sarrasin',
+        'Un miel sombre et puissant produit dans des ruches installées au cœur des campagnes bretonnes. Sa saveur boisée et son parfum profond le rendent particulièrement apprécié des amateurs de produits authentiques. Parfait pour sucrer tisane, desserts ou tartines.',
+        8.90,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        90,
+        'Breizh',
+        8,
+        '/img/miel.jpg',
+        8,
+        'tarif1'
+    ),
+    (
+        'Chocolat noir 80%',
+        'Un chocolat intense fabriqué avec du cacao issu de plantations équitables. Ses arômes profonds et sa légère amertume le rendent parfait pour les connaisseurs ou pour la pâtisserie. Chaque tablette est travaillée pour garantir une fondance idéale.',
+        3.10,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        150,
+        'France',
+        6,
+        '/img/chocolat.jpg',
+        8,
+        'tarif1'
+    ),
+    (
+        'Confiture de fraise',
+        'Confiture préparée avec des fraises mûries au soleil et cuites en petite quantité pour garantir une saveur fruitée intense. Sa texture onctueuse et son goût authentique la rendent parfaite pour les tartines, les crêpes ou les desserts faits maison.',
+        4.80,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        85,
+        'Breizh',
+        8,
+        '/img/confiture.jpg',
+        6,
+        'tarif1'
+    ),
+    (
+        'Huile d’olive',
+        'Huile extra vierge issue d’une première pression à froid. Son parfum fruité et sa saveur équilibrée en font un ingrédient essentiel pour la cuisine du quotidien. Idéale pour assaisonnement, cuisson douce ou marinade.',
+        7.50,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        100,
+        'Étranger',
+        8,
+        '/img/huile.jpg',
+        8,
+        'tarif1'
+    ),
+    (
+        'Biscottes complètes',
+        'Des biscottes croustillantes élaborées avec de la farine complète pour un petit-déjeuner nutritif. Leur texture légère et leur goût délicat en font une alternative saine au pain traditionnel. Elles se conservent longtemps sans perdre leur croquant.',
+        2.40,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        130,
+        'France',
+        15,
+        '/img/biscottes.jpg',
+        8,
+        'tarif1'
+    ),
+    (
+        'Boite à sucre',
+        'Une charmante boîte à sucre bretonne qui allie tradition et authenticité. Ornée de motifs inspirés de la Bretagne, elle apporte une touche régionale à votre cuisine tout en conservant parfaitement votre sucre. Idéale comme souvenir ou objet déco au style breton.',
+        7.40,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        180,
+        'Breizh',
+        15,
+        '/img/Boiteasucrebreton.jpg',
+        6,
+        'tarif2'
+    ),
+    (
+        'Boite bigoudenne à galette',
+        'Une jolie boîte Bigoudène décorée de motifs typiquement bretons, rendant hommage à la culture et aux traditions du pays Bigouden. Pratique et esthétique, elle est parfaite pour ranger sucre, biscuits ou petits trésors tout en apportant une touche d’authenticité à votre intérieur.',
+        9.40,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        180,
+        'Breizh',
+        15,
+        '/img/boitebigoudenne.jpg',
+        7,
+        'tarif2'
+    ),
+    (
+        'Boite bretonne à galette',
+        'Une boîte bretonne au charme authentique, décorée de symboles et motifs inspirés de la Bretagne. Idéale pour conserver sucre, biscuits ou petits objets, elle allie praticité et esprit régional pour une touche bretonne dans votre cuisine ou votre maison.',
+        10.00,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        180,
+        'Breizh',
+        15,
+        '/img/boitebretonne.jpg',
+        8,
+        'tarif2'
+    ),
+    (
+        'Boite à galette',
+        'Une belle boîte à galettes bretonnes, décorée avec soin et pensée pour conserver toute la fraîcheur et le croquant des biscuits. Parfaite pour ajouter une touche régionale et gourmande à votre cuisine',
+        14.99,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        180,
+        'Breizh',
+        15,
+        '/img/boitegalette.jpg',
+        5,
+        'tarif2'
+    ),
+    (
+        'Boite à galette',
+        'Une boîte à galettes inspirée du savoir-faire breton, ornée de motifs rappelant la mer et les terres de Bretagne. Un objet à la fois utile et décoratif, symbole d’authenticité et de convivialité.',
+        11.99,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        180,
+        'Breizh',
+        15,
+        '/img/boitegalette2.jpg',
+        6,
+        'tarif2'
+    ),
+    (
+        'Boite à galette',
+        'Boîte à galettes bretonnes pratique et décorative, parfaite pour conserver vos biscuits avec style.',
+        9.00,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        180,
+        'Breizh',
+        15,
+        '/img/galette.jpg',
+        8,
+        'tarif2'
+    ),
+    (
+        'Le Manicamp',
+        'un fromage de vache français originaire des environs de Manicamp, dans le département de l Aisne. ',
+        3.40,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        180,
+        'Breizh',
+        15,
+        '/img/fromage2.jpg',
+        5,
+        'tarif2'
+    ),
+    (
+        'Le Touteau',
+        'Un fromage créer exclusivement en bretagne',
+        5.40,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        180,
+        'Breizh',
+        15,
+        '/img/fromageTourteau.jpg',
+        6,
+        'tarif1'
+    ),
+    (
+        'Madame Loik',
+        'Très agréable en bouche et donnant une vraie sensation de goût frais, cette texture unique est devenue une référence au rayon des fromages et ne cesse de séduire',
+        6.99,
+        'réduite',
+        NULL,
+        NULL,
+        NULL,
+        180,
+        'Breizh',
+        15,
+        '/img/madameLoik.jpg',
+        7,
+        'tarif1'
+    ),
 
 -- Vetement
 ('Short de sport', 'Short léger conçu pour une pratique sportive régulière. Son tissu respirant et sa coupe ergonomique offrent un confort optimal, même lors d’efforts intenses. Idéal pour course à pied, fitness ou activités extérieures grâce à sa grande liberté de mouvement.', 18.00, 'super-réduite', NULL, NULL, NULL, 45, 'France', 5, '/img/short.jpg', 8, 'tarif1'),
@@ -238,14 +577,105 @@ VALUES
 
 INSERT INTO Produit (libelleProd, descriptionProd, prixHT, nomTVA, spe1, spe2, spe3, qteStock, Origine, seuilAlerte, urlPhoto, codeCompteVendeur)
 VALUES
--- Vêtements
-('T-shirt armor lux', 'Coton blanc M', 15.00, 'super-réduite', NULL, NULL, NULL, 50, 'Breizh', 10, '/img/tshirt.jpg', 6),
-('T-shirt crabe', 'synthétique XXL', 18.00, 'super-réduite', NULL, NULL, NULL, 30, 'Étranger', 5, '/img/tshirtcrabe.jpg', 7),
-('T-shirt à la vie, à la mer', 'synthétique L', 18.00, 'super-réduite', NULL, NULL, NULL, 40, 'Étranger', 15, '/img/tshirtalamer.jpg', 7),
-('Jean à motif', 'denim 42', 45.00, 'super-réduite', NULL, NULL, NULL, 40, 'Étranger', 5, '/img/pantalon.jpg', 7),
-('Veste papillon', 'Noire homme L', 70.00, 'super-réduite', NULL, NULL, NULL, 25, 'France', 5, '/img/veste.jpg', 8),
-('Derbies', 'Cuir marron 40', 90.00, 'super-réduite', NULL, NULL, NULL, 35, 'Breizh', 5, '/img/mocassins.jpg', 5),
-('Casquette Cobrec', 'Bleue ajustable', 12.00, 'super-réduite', NULL, NULL, NULL, 60, 'Breizh', 5, '/img/chapeau.jpg', 6),
+    -- Vêtements
+    (
+        'T-shirt armor lux',
+        'Coton blanc M',
+        15.00,
+        'super-réduite',
+        NULL,
+        NULL,
+        NULL,
+        50,
+        'Breizh',
+        10,
+        '/img/tshirt.jpg',
+        6
+    ),
+    (
+        'T-shirt crabe',
+        'synthétique XXL',
+        18.00,
+        'super-réduite',
+        NULL,
+        NULL,
+        NULL,
+        30,
+        'Étranger',
+        5,
+        '/img/tshirtcrabe.jpg',
+        7
+    ),
+    (
+        'T-shirt à la vie, à la mer',
+        'synthétique L',
+        18.00,
+        'super-réduite',
+        NULL,
+        NULL,
+        NULL,
+        40,
+        'Étranger',
+        15,
+        '/img/tshirtalamer.jpg',
+        7
+    ),
+    (
+        'Jean à motif',
+        'denim 42',
+        45.00,
+        'super-réduite',
+        NULL,
+        NULL,
+        NULL,
+        40,
+        'Étranger',
+        5,
+        '/img/pantalon.jpg',
+        7
+    ),
+    (
+        'Veste papillon',
+        'Noire homme L',
+        70.00,
+        'super-réduite',
+        NULL,
+        NULL,
+        NULL,
+        25,
+        'France',
+        5,
+        '/img/veste.jpg',
+        8
+    ),
+    (
+        'Derbies',
+        'Cuir marron 40',
+        90.00,
+        'super-réduite',
+        NULL,
+        NULL,
+        NULL,
+        35,
+        'Breizh',
+        5,
+        '/img/mocassins.jpg',
+        5
+    ),
+    (
+        'Casquette Cobrec',
+        'Bleue ajustable',
+        12.00,
+        'super-réduite',
+        NULL,
+        NULL,
+        NULL,
+        60,
+        'Breizh',
+        5,
+        '/img/chapeau.jpg',
+        6
+    ),
 
 -- Intérieur
 ('Tasse Bretagne', 'Céramique blanche', 8.00, 'super-réduite', 'MATIERE:Céramique', 'VOLUME/CONTENANCE:25cl', NULL, 80, 'Breizh', 8, '/img/tasse.jpg', 6),
@@ -255,312 +685,643 @@ VALUES
 ('Sac à dos', 'Noir imperméable', 35.00, 'super-réduite', NULL, NULL, NULL, 20, 'France', 3, '/img/sac.jpg', 7),
 
 -- Vêtements
-('Lunettes Sandrine', 'Soleil noires', 60.00, 'normale', NULL, NULL, NULL, 25, 'Breizh', 3, '/img/lunettes.jpg', 7),
-('T-shirt Breton', 'T-shirt moderne et stylé, idéal pour affirmer un look simple et tendance au quotidien.', 12.00, 'super-réduite', NULL, NULL, NULL, 50, 'Breizh', 10, '/img/tshirt7.jpg', 5),
-('T-shirt', 'T-shirt conçu avec soin à partir de coton de qualité, doux et respirant. Allie confort, durabilité et authenticité pour un style intemporel.', 14.99, 'super-réduite', NULL, NULL, NULL, 50, 'Breizh', 10, '/img/tshirt8.jpg', 6),
+(
+    'Lunettes Sandrine',
+    'Soleil noires',
+    60.00,
+    'normale',
+    NULL,
+    NULL,
+    NULL,
+    25,
+    'Breizh',
+    3,
+    '/img/lunettes.jpg',
+    7
+),
+(
+    'T-shirt Breton',
+    'T-shirt moderne et stylé, idéal pour affirmer un look simple et tendance au quotidien.',
+    12.00,
+    'super-réduite',
+    NULL,
+    NULL,
+    NULL,
+    50,
+    'Breizh',
+    10,
+    '/img/tshirt7.jpg',
+    5
+),
+(
+    'T-shirt',
+    'T-shirt conçu avec soin à partir de coton de qualité, doux et respirant. Allie confort, durabilité et authenticité pour un style intemporel.',
+    14.99,
+    'super-réduite',
+    NULL,
+    NULL,
+    NULL,
+    50,
+    'Breizh',
+    10,
+    '/img/tshirt8.jpg',
+    6
+),
 
 -- Papetrie
-('Stylo à bille', 'thème Océan, haut de gamme', 40.00, 'normale', NULL, NULL, NULL, 30, 'Breizh', 3, '/img/stylo.jpg', 8);
+(
+    'Stylo à bille',
+    'thème Océan, haut de gamme',
+    40.00,
+    'normale',
+    NULL,
+    NULL,
+    NULL,
+    30,
+    'Breizh',
+    3,
+    '/img/stylo.jpg',
+    8
+);
 
-INSERT INTO Categorie (libelleCat) VALUES
-('Alimentaire'),
-('Vêtements'),
-('Hygiène'),
-('Beauté'),
-('Intérieur'),
-('Papeterie'),
-('Boissons'),
-('Fruits & Légumes'),
-('Epicerie sucrée'),
-('Epicerie salée'),
-('Accessoire'),
-('Chaussures'),
-('Haut'),
-('Bas'),
-('Douche'),
-('Décoration'),
-('Cuisine'),
-('Salle de bain'),
-('Rangements'),
-('Bien-être'),
-('Electronique'),
-('Stylo'),
-('Sport'),
-('Extérieur'),
-('Activités');
+INSERT INTO
+    Categorie (libelleCat)
+VALUES ('Alimentaire'),
+    ('Vêtements'),
+    ('Hygiène'),
+    ('Beauté'),
+    ('Intérieur'),
+    ('Papeterie'),
+    ('Boissons'),
+    ('Fruits & Légumes'),
+    ('Epicerie sucrée'),
+    ('Epicerie salée'),
+    ('Accessoire'),
+    ('Chaussures'),
+    ('Haut'),
+    ('Bas'),
+    ('Douche'),
+    ('Décoration'),
+    ('Cuisine'),
+    ('Salle de bain'),
+    ('Rangements'),
+    ('Bien-être'),
+    ('Electronique'),
+    ('Stylo'),
+    ('Sport'),
+    ('Extérieur'),
+    ('Activités');
 
-INSERT INTO SousCat(libCat,libSousCat) VALUES
-('Alimentaire', 'Boissons'),
-('Alimentaire', 'Fruits & Légumes'),
-('Alimentaire', 'Epicerie sucrée'),
-('Alimentaire', 'Epicerie salée'),
-('Vêtements', 'Accessoire'),
-('Vêtements', 'Chaussures'),
-('Vêtements', 'Haut'),
-('Vêtements', 'Bas'),
-('Hygiène','Beauté'),
-('Hygiène','Douche'),
-('Intérieur', 'Décoration'),
-('Intérieur', 'Cuisine'),
-('Intérieur', 'Rangements'),
-('Intérieur', 'Bien-être'),
-('Intérieur', 'Salle de bain'),
-('Intérieur', 'Electronique'),
-('Intérieur', 'Sport'),
-('Papeterie', 'Stylo'),
-('Extérieur','Activités');
+INSERT INTO
+    SousCat (libCat, libSousCat)
+VALUES ('Alimentaire', 'Boissons'),
+    (
+        'Alimentaire',
+        'Fruits & Légumes'
+    ),
+    (
+        'Alimentaire',
+        'Epicerie sucrée'
+    ),
+    (
+        'Alimentaire',
+        'Epicerie salée'
+    ),
+    ('Vêtements', 'Accessoire'),
+    ('Vêtements', 'Chaussures'),
+    ('Vêtements', 'Haut'),
+    ('Vêtements', 'Bas'),
+    ('Hygiène', 'Beauté'),
+    ('Hygiène', 'Douche'),
+    ('Intérieur', 'Décoration'),
+    ('Intérieur', 'Cuisine'),
+    ('Intérieur', 'Rangements'),
+    ('Intérieur', 'Bien-être'),
+    ('Intérieur', 'Salle de bain'),
+    ('Intérieur', 'Electronique'),
+    ('Intérieur', 'Sport'),
+    ('Papeterie', 'Stylo'),
+    ('Extérieur', 'Activités');
 
+INSERT INTO
+    Categoriser (codeProduit, libelleCat)
+VALUES (1, 'Alimentaire'),
+    (2, 'Alimentaire'),
+    (3, 'Alimentaire'),
+    (4, 'Alimentaire'),
+    (5, 'Alimentaire'),
+    (6, 'Alimentaire'),
+    (7, 'Alimentaire'),
+    (8, 'Alimentaire'),
+    (9, 'Alimentaire'),
+    (10, 'Alimentaire'),
+    (11, 'Alimentaire'),
+    (12, 'Alimentaire'),
+    (13, 'Alimentaire'),
+    (14, 'Alimentaire'),
+    (15, 'Alimentaire'),
+    (16, 'Alimentaire'),
+    (17, 'Alimentaire'),
+    (18, 'Alimentaire'),
+    (19, 'Vêtements'),
+    (20, 'Vêtements'),
+    (21, 'Vêtements'),
+    (22, 'Vêtements'),
+    (23, 'Vêtements'),
+    (24, 'Vêtements'),
+    (25, 'Vêtements'),
+    (26, 'Vêtements'),
+    (27, 'Vêtements'),
+    (28, 'Vêtements'),
+    (29, 'Vêtements'),
+    (30, 'Vêtements'),
+    (31, 'Vêtements'),
+    (32, 'Vêtements'),
+    (33, 'Vêtements'),
+    (34, 'Vêtements'),
+    (35, 'Vêtements'),
+    (36, 'Vêtements'),
+    (37, 'Vêtements'),
+    (38, 'Vêtements'),
+    (39, 'Vêtements'),
+    (40, 'Vêtements'),
+    (41, 'Vêtements'),
+    (42, 'Vêtements'),
+    (43, 'Vêtements'),
+    (44, 'Vêtements'),
+    (45, 'Intérieur'),
+    (46, 'Intérieur'),
+    (47, 'Intérieur'),
+    (48, 'Intérieur'),
+    (49, 'Intérieur'),
+    (50, 'Intérieur'),
+    (51, 'Intérieur'),
+    (52, 'Intérieur'),
+    (53, 'Intérieur'),
+    (54, 'Intérieur'),
+    (55, 'Intérieur'),
+    (56, 'Intérieur'),
+    (57, 'Intérieur'),
+    (58, 'Intérieur'),
+    (59, 'Intérieur'),
+    (60, 'Intérieur'),
+    (61, 'Intérieur'),
+    (62, 'Intérieur'),
+    (63, 'Intérieur'),
+    (64, 'Intérieur'),
+    (65, 'Intérieur'),
+    (66, 'Intérieur'),
+    (67, 'Intérieur'),
+    (68, 'Intérieur'),
+    (69, 'Intérieur'),
+    (70, 'Intérieur'),
+    (71, 'Intérieur'),
+    (72, 'Intérieur'),
+    (73, 'Intérieur'),
+    (74, 'Intérieur'),
+    (75, 'Intérieur'),
+    (76, 'Intérieur'),
+    (77, 'Intérieur'),
+    (78, 'Extérieur'),
+    (79, 'Extérieur'),
+    (80, 'Extérieur'),
+    (81, 'Extérieur'),
+    (82, 'Extérieur'),
+    (83, 'Extérieur'),
+    (84, 'Extérieur'),
+    (85, 'Extérieur'),
+    (86, 'Extérieur'),
+    (87, 'Vêtements'),
+    (89, 'Vêtements'),
+    (90, 'Vêtements'),
+    (91, 'Vêtements'),
+    (92, 'Vêtements'),
+    (93, 'Vêtements'),
+    (94, 'Intérieur'),
+    (95, 'Extérieur'),
+    (96, 'Extérieur'),
+    (97, 'Vêtements'),
+    (98, 'Vêtements'),
+    (99, 'Vêtements'),
+    (100, 'Papeterie');
 
-INSERT INTO Categoriser(codeProduit, libelleCat) VALUES
-(1,'Alimentaire'),
-(2, 'Alimentaire'),
-(3, 'Alimentaire'),
-(4, 'Alimentaire'),
-(5, 'Alimentaire'),
-(6, 'Alimentaire'),
-(7, 'Alimentaire'),
-(8, 'Alimentaire'),
-(9, 'Alimentaire'),
-(10, 'Alimentaire'),
-(11, 'Alimentaire'),
-(12, 'Alimentaire'),
-(13, 'Alimentaire'),
-(14, 'Alimentaire'),
-(15, 'Alimentaire'),
-(16, 'Alimentaire'),
-(17, 'Alimentaire'),
-(18, 'Alimentaire'),
-(19, 'Vêtements'),
-(20, 'Vêtements'),
-(21, 'Vêtements'),
-(22, 'Vêtements'),
-(23, 'Vêtements'),
-(24, 'Vêtements'),
-(25, 'Vêtements'),
-(26, 'Vêtements'),
-(27, 'Vêtements'),
-(28, 'Vêtements'),
-(29, 'Vêtements'),
-(30, 'Vêtements'),
-(31, 'Vêtements'),
-(32, 'Vêtements'),
-(33, 'Vêtements'),
-(34, 'Vêtements'),
-(35, 'Vêtements'),
-(36, 'Vêtements'),
-(37, 'Vêtements'),
-(38, 'Vêtements'),
-(39, 'Vêtements'),
-(40, 'Vêtements'),
-(41, 'Vêtements'),
-(42, 'Vêtements'),
-(43, 'Vêtements'),
-(44, 'Vêtements'),
-(45, 'Intérieur'),
-(46, 'Intérieur'),
-(47, 'Intérieur'),
-(48, 'Intérieur'),
-(49, 'Intérieur'),
-(50, 'Intérieur'),
-(51, 'Intérieur'),
-(52, 'Intérieur'),
-(53, 'Intérieur'),
-(54, 'Intérieur'),
-(55, 'Intérieur'),
-(56, 'Intérieur'),
-(57, 'Intérieur'),
-(58, 'Intérieur'),
-(59, 'Intérieur'),
-(60, 'Intérieur'),
-(61, 'Intérieur'),
-(62, 'Intérieur'),
-(63, 'Intérieur'),
-(64, 'Intérieur'),
-(65, 'Intérieur'),
-(66, 'Intérieur'),
-(67, 'Intérieur'),
-(68, 'Intérieur'),
-(69, 'Intérieur'),
-(70, 'Intérieur'),
-(71, 'Intérieur'),
-(72, 'Intérieur'),
-(73, 'Intérieur'),
-(74, 'Intérieur'),
-(75, 'Intérieur'),
-(76, 'Intérieur'),
-(77, 'Intérieur'),
-(78, 'Extérieur'),
-(79, 'Extérieur'),
-(80, 'Extérieur'),
-(81, 'Extérieur'),
-(82, 'Extérieur'),
-(83, 'Extérieur'),
-(84, 'Extérieur'),
-(85, 'Extérieur'),
-(86, 'Extérieur'),
-(87, 'Vêtements'),
-(89, 'Vêtements'),
-(90, 'Vêtements'),
-(91, 'Vêtements'), 
-(92, 'Vêtements'),
-(93, 'Vêtements'),
-(94, 'Intérieur'),
-(95, 'Extérieur'),
-(96, 'Extérieur'),
-(97, 'Vêtements'),
-(98, 'Vêtements'),
-(99, 'Vêtements'),
-(100, 'Papeterie');
+INSERT INTO
+    Adresse (
+        num,
+        codePostal,
+        nomVille,
+        nomRue
+    )
+VALUES (
+        10,
+        '75001',
+        'Paris',
+        'Prad-land'
+    ),
+    (
+        04,
+        '69003',
+        'Lyon',
+        'Kergaradec'
+    ),
+    (
+        22,
+        '13001',
+        'Marseille',
+        'Plougastel'
+    ),
+    (
+        01,
+        '59000',
+        'Lille',
+        'Rue la bienfaisance'
+    ),
+    (
+        07,
+        '06000',
+        'Nice',
+        'Avenue de la libération'
+    ),
+    (
+        15,
+        '33000',
+        'Bordeaux',
+        'Rue de la forêt'
+    ),
+    (
+        02,
+        '33000',
+        'Bordeaux',
+        'Rue Edouard Branly'
+    ),
+    (
+        19,
+        '33000',
+        'Bordeaux',
+        'Le Quedel'
+    ),
+    (
+        16,
+        '22300',
+        'Lannion',
+        'Rue Jeanne d''Arc'
+    ),
+    (
+        02,
+        '29300',
+        'Baye',
+        'Rue du Saule'
+    );
 
+INSERT INTO
+    AdrFactCli (codeCompte, idAdresse)
+VALUES (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (9, 9),
+    (10, 10);
 
-INSERT INTO Adresse(num,codePostal, nomVille, nomRue) VALUES
-(10, '75001', 'Paris', 'Prad-land'),
-(04,  '69003', 'Lyon', 'Kergaradec'),
-(22, '13001', 'Marseille', 'Plougastel'),
-(01,  '59000', 'Lille','Rue la bienfaisance'),
-(07,  '06000', 'Nice','Avenue de la libération'),
-(15, '33000', 'Bordeaux','Rue de la forêt'),
-(02, '33000', 'Bordeaux','Rue Edouard Branly'),
-(19, '33000', 'Bordeaux','Le Quedel'),
-(16, '22300', 'Lannion', 'Rue Jeanne d''Arc'),
-(02, '29300', 'Baye', 'Rue du Saule');
+INSERT INTO
+    AdrSiegeSocial (codeCompte, idAdresse)
+VALUES (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8);
 
-INSERT INTO AdrFactCli(codeCompte, idAdresse) VALUES 
-(1,1),
-(2,2),
-(3,3),
-(4,4),
-(9,9),
-(10,10);
-INSERT INTO AdrSiegeSocial(codeCompte, idAdresse) VALUES
-(5,5),
-(6,6),
-(7,7),
-(8,8);
+insert into Panier (codeCompte, dateCreaP) VALUES (3, null);
 
+insert into
+    ProdUnitPanier (
+        idPanier,
+        codeProduit,
+        qteProd
+    )
+VALUES (1, 1, 2),
+    (1, 2, 2),
+    (1, 4, 1),
+    (1, 3, 1);
 
+INSERT INTO
+    Photo (urlPhoto)
+VALUES (
+        './img/photosProfil/Cunty.png'
+    ),
+    (
+        './img/photosProfil/PDP_EU2.jpeg'
+    ),
+    (
+        './img/photosProfil/PDP_tst.jpeg'
+    ),
+    (
+        './img/photosProfil/PDP_BBl.jpeg'
+    );
 
+INSERT INTO
+    Profil (urlPhoto, codeClient)
+VALUES (
+        './img/photosProfil/Cunty.png',
+        1
+    ),
+    (
+        './img/photosProfil/PDP_EU2.jpeg',
+        2
+    ),
+    (
+        './img/photosProfil/PDP_tst.jpeg',
+        3
+    ),
+    (
+        './img/photosProfil/PDP_BBl.jpeg',
+        4
+    );
 
-insert into Panier(codeCompte,dateCreaP) VALUES
-(3,null);
+insert into
+    Avis (
+        codeproduit,
+        codecomptecli,
+        noteprod,
+        commentaire,
+        datepublication
+    )
+VALUES (
+        1,
+        1,
+        5,
+        'J adore ce produit, il est vraiment bien, il est arrivé vite en plus',
+        null
+    ),
+    (
+        2,
+        2,
+        4,
+        'Produit conforme à la description, satisfait de mon achat',
+        null
+    ),
+    (
+        5,
+        3,
+        2,
+        'Le café n est pas à mon goût, je ne le rachèterai pas',
+        null
+    ),
+    (
+        4,
+        3,
+        1,
+        'Aucune protection du produit dans le colis, il est arrivé abimé, je ne recommande pas ce vendeur',
+        null
+    ),
+    (
+        6,
+        1,
+        2,
+        'Le produit est moyen',
+        null
+    ),
+    (
+        3,
+        4,
+        4,
+        'Bon rapport qualité prix',
+        null
+    ),
+    (
+        5,
+        2,
+        5,
+        'Excellent café, je le recommande vivement',
+        null
+    ),
+    (
+        7,
+        3,
+        3,
+        'Le jean est correct mais la taille est un peu grande',
+        null
+    ),
+    (
+        10,
+        4,
+        4,
+        'Casquette confortable et de bonne qualité',
+        null
+    ),
+    (
+        15,
+        1,
+        5,
+        'Sac à dos super solide, très satisfait de mon achat',
+        null
+    ),
+    (
+        2,
+        2,
+        3,
+        'J aime bien mais c est pas mon truc non plus',
+        null
+    );
 
-insert into ProdUnitPanier(idPanier,codeProduit,qteProd) VALUES
-(1,1,2),
-(1,2,2),
-(1,4,1),
-(1,3,1);
+insert into
+    Carte (
+        numCarte,
+        nomTit,
+        prenomTit,
+        CVC,
+        dateExp
+    )
+VALUES (
+        '1234 5678 9123 4567',
+        'test',
+        'adalbert',
+        '890',
+        '2026-01-01'
+    ),
+    (
+        '4567 1234 5678 9123',
+        'Bernard',
+        'Constance',
+        '980',
+        '2026-02-01'
+    ),
+    (
+        '7890 1234 5678 9012',
+        'Louennig',
+        'frouad',
+        '890',
+        '2026-01-01'
+    ),
+    (
+        '1357 9246 8014 7036',
+        'Benoit',
+        'Dubois',
+        '980',
+        '2026-02-01'
+    ),
+    (
+        '0987 6543 2109 8765',
+        'Johan',
+        'titouan',
+        '890',
+        '2026-01-01'
+    ),
+    (
+        '2567 2789 3688 2987',
+        'vista',
+        'dupond',
+        '980',
+        '2026-02-01'
+    ),
+    (
+        '0789 6567 3456 2469',
+        'Johan',
+        'Chenonceau',
+        '890',
+        '2026-01-01'
+    ),
+    (
+        '4356 8767 2590 3569',
+        'Jean-christophe',
+        'luhan',
+        '980',
+        '2026-02-01'
+    ),
+    (
+        '3567 4790 3748 4789',
+        'Gabin',
+        'michel',
+        '890',
+        '2026-01-01'
+    ),
+    (
+        '9876 7545 4345 2567',
+        'cash',
+        'visa',
+        '980',
+        '2026-02-01'
+    );
 
-INSERT INTO Photo(urlPhoto) VALUES 
-('./img/photosProfil/Cunty.png'),
-('./img/photosProfil/PDP_EU2.jpeg'),
-('./img/photosProfil/PDP_tst.jpeg'),
-('./img/photosProfil/PDP_BBl.jpeg');
-INSERT INTO Profil(urlPhoto, codeClient) VALUES 
-('./img/photosProfil/Cunty.png' , 1),
-('./img/photosProfil/PDP_EU2.jpeg' , 2),
-('./img/photosProfil/PDP_tst.jpeg' , 3),
-('./img/photosProfil/PDP_BBl.jpeg' , 4);
+insert into
+    Commande (codeCompte, idCarte, dateCom)
+VALUES (2, 2, '2025-11-23'),
+    (1, 3, '2025-11-24'),
+    (1, 1, '2025-11-25'),
+    (1, 7, '2025-11-21'),
+    (4, 8, '2025-11-19'),
+    (4, 9, '2025-11-02'),
+    (3, 6, '2025-11-06'),
+    (2, 4, '2025-11-10'),
+    (3, 5, '2025-11-15'),
+    (2, 10, '2025-11-04');
 
-insert into Avis(codeproduit,codecomptecli,noteprod,commentaire,datepublication) VALUES
-(1,1,5,'J adore ce produit, il est vraiment bien, il est arrivé vite en plus',null),
-(2,2,4,'Produit conforme à la description, satisfait de mon achat',null),
-(5,3,2,'Le café n est pas à mon goût, je ne le rachèterai pas',null),
-(4,3,1,'Aucune protection du produit dans le colis, il est arrivé abimé, je ne recommande pas ce vendeur',null),
-(6,1,2,'Le produit est moyen',null),
-(3,4,4,'Bon rapport qualité prix',null),
-(5,2,5,'Excellent café, je le recommande vivement',null),
-(7,3,3,'Le jean est correct mais la taille est un peu grande',null),
-(10,4,4,'Casquette confortable et de bonne qualité',null),
-(15,1,5,'Sac à dos super solide, très satisfait de mon achat',null),
-(2,2,3,'J aime bien mais c est pas mon truc non plus',null);
+insert into
+    ProdUnitCommande (numCom, codeProduit, qteProd)
+VALUES (1, 1, 2),
+    (1, 2, 2),
+    (1, 4, 1),
+    (1, 5, 1),
+    (2, 6, 1),
+    (2, 8, 2),
+    (3, 19, 2),
+    (4, 76, 2),
+    (4, 56, 2),
+    (4, 34, 1),
+    (5, 98, 2),
+    (5, 34, 2),
+    (5, 42, 1),
+    (6, 23, 1),
+    (6, 2, 1),
+    (6, 92, 2),
+    (7, 1, 2),
+    (7, 53, 1),
+    (7, 65, 1),
+    (8, 1, 2),
+    (8, 19, 1),
+    (8, 94, 1),
+    (9, 4, 2),
+    (9, 3, 1),
+    (9, 18, 1),
+    (10, 23, 2),
+    (10, 40, 1),
+    (10, 67, 1);
 
-insert into Carte(numCarte,nomTit,prenomTit,CVC,dateExp) VALUES
-('1234 5678 9123 4567','test','adalbert','890','2026-01-01'),
-('4567 1234 5678 9123','Bernard','Constance','980','2026-02-01'),
-('7890 1234 5678 9012','Louennig','frouad','890','2026-01-01'),
-('1357 9246 8014 7036','Benoit','Dubois','980','2026-02-01'),
-('0987 6543 2109 8765','Johan','titouan','890','2026-01-01'),
-('2567 2789 3688 2987','vista','dupond','980','2026-02-01'),
-('0789 6567 3456 2469','Johan','Chenonceau','890','2026-01-01'),
-('4356 8767 2590 3569','Jean-christophe','luhan','980','2026-02-01'),
-('3567 4790 3748 4789','Gabin','michel','890','2026-01-01'),
-('9876 7545 4345 2567','cash','visa','980','2026-02-01');
-
-insert into Commande(codeCompte,idCarte,dateCom) VALUES
-(2,2,'2025-11-23'),
-(1,3,'2025-11-24'),
-(1,1,'2025-11-25'),
-(1,7, '2025-11-21'),
-(4,8, '2025-11-19'),
-(4,9,'2025-11-02'),
-(3,6,'2025-11-06'),
-(2,4, '2025-11-10'),
-(3,5, '2025-11-15'),
-(2,10, '2025-11-04');
-
-insert into ProdUnitCommande(numCom,codeProduit,qteProd) VALUES
-(1,1,2),
-(1,2,2),
-(1,4,1),
-(1,5,1),
-(2,6,1),
-(2,8,2),
-(3,19,2),
-(4,76,2),
-(4,56,2),
-(4,34,1),
-(5,98,2),
-(5,34,2),
-(5,42,1),
-(6,23,1),
-(6,2,1),
-(6,92,2),
-(7,1,2),
-(7,53,1),
-(7,65,1),
-(8,1,2),
-(8,19,1),
-(8,94,1),
-(9,4,2),
-(9,3,1),
-(9,18,1),
-(10,23,2),
-(10,40,1),
-(10,67,1);
-
-insert into AdrLiv(numCom,idAdresse) VALUES
-(1,1),
-(2,4),
-(3,2),
-(4,3),
-(5,5),
-(6,8),
-(7,7),
-(8,5),
-(9,3),
-(10,6);
+insert into
+    AdrLiv (numCom, idAdresse)
+VALUES (1, 1),
+    (2, 4),
+    (3, 2),
+    (4, 3),
+    (5, 5),
+    (6, 8),
+    (7, 7),
+    (8, 5),
+    (9, 3),
+    (10, 6);
 
 select * from ProdUnitCommande;
+
 select * from Commande;
+
 select * from AdrLiv;
+
 select * from adresse;
+
 select * from Produit;
-SELECT codeProduit FROM ProdUnitCommande WHERE numCom = 1 ORDER BY codeProduit LIMIT 2;
+
+SELECT codeProduit
+FROM ProdUnitCommande
+WHERE
+    numCom = 1
+ORDER BY codeProduit
+LIMIT 2;
 --SELECT PUC.codeProduit FROM ProdUnitCommande PUC WHERE;
-SELECT DISTINCT puc.numCom FROM Produit p INNER JOIN ProdUnitCommande puc ON p.codeProduit = puc.codeProduit where  CodeCompteVendeur = 5 ORDER BY numCom  ;
-                              
+SELECT DISTINCT
+    puc.numCom
+FROM
+    Produit p
+    INNER JOIN ProdUnitCommande puc ON p.codeProduit = puc.codeProduit
+where
+    CodeCompteVendeur = 5
+ORDER BY numCom;
 
 SELECT * FROM alizon.Client;
+
 SELECT * FROM alizon.Vendeur;
+
 SELECT * FROM alizon.Panier;
+
 select * from produit limit 1;
-(SELECT AVG(noteProd) from Avis a where a.codeproduit = 5); 
+
+( SELECT AVG(noteProd) from Avis a where a.codeproduit = 5 );
+
 select noteProd from avis where codeproduit = 5;
-SELECT codeProduit, libelleProd, prixTTC, urlPhoto, noteMoy FROM Produit where Disponible = true ORDER BY noteMoy DESC;
+
+SELECT
+    codeProduit,
+    libelleProd,
+    prixTTC,
+    urlPhoto,
+    noteMoy
+FROM Produit
+where
+    Disponible = true
+ORDER BY noteMoy DESC;
+
 select * from avis where codeproduit = 1;
+
 INSERT INTO alizon.Panier (prixTTCtotal) VALUES (0);
+
 SELECT * FROM alizon.ProdUnitPanier;
-SELECT codeProduit, libelleProd, prixTTC, urlPhoto FROM Produit where Disponible = true ORDER BY prixTTC DESC;
+
+SELECT
+    codeProduit,
+    libelleProd,
+    prixTTC,
+    urlPhoto
+FROM Produit
+where
+    Disponible = true
+ORDER BY prixTTC DESC;
 --SELECT * FROM Produit WHERE unaccent(libelleProd) ILIKE unaccent('%pat%');
 --SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) ORDER BY avis.codeproduit;
 --select SUM(prixttctotal) FROM ProdUnitPanier INTO Panier.prixTTCtotal;

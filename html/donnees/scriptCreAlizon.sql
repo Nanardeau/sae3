@@ -13,7 +13,7 @@ CREATE TABLE Compte(
     nom VARCHAR(20),
     prenom VARCHAR(20),
     email VARCHAR(50) NOT NULL,
-    mdp VARCHAR(20) NOT NULL,
+    mdp VARCHAR(32) NOT NULL,
     numTel VARCHAR(20)
 );
 CREATE TABLE Adresse(
@@ -147,7 +147,8 @@ CREATE TABLE Commande(
     dateCom DATE,
     prixTTCtotal NUMERIC DEFAULT 0, 
     prixHTtotal NUMERIC DEFAULT 0,
-    idCarte INTEGER REFERENCES Carte(idCarte)
+    idCarte INTEGER REFERENCES Carte(idCarte),
+	bordereau INTEGER
 );
 CREATE TABLE Livraison(
     idLivraison SERIAL PRIMARY KEY NOT NULL,
@@ -533,3 +534,4 @@ CREATE TRIGGER trg_moyenne_Produit
 AFTER INSERT OR UPDATE ON alizon.Avis
 FOR EACH ROW
 EXECUTE FUNCTION alizon.MoyenneProduit();
+SELECT * FROM alizon.Commande;

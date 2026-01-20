@@ -33,7 +33,7 @@ if($_POST){
     $id = $_POST["pseudo"];
     $mdp = $_POST["mdp"];
 
-    $req= $bdd->query("SELECT * FROM Vendeur WHERE pseudo = '".$id."' AND mdp = '".$mdp."'");
+    $req= $bdd->query("SELECT * FROM Vendeur WHERE pseudo = '".$id."' AND mdp = MD5('".$mdp."')");
     $rep= $req->fetch();
 
     if($rep!=null){

@@ -87,7 +87,7 @@
 
         if($erreur == ""){
             //insertion d'un vendeur dans la base de données
-            $stmt = $pdo->prepare('INSERT INTO alizon.Vendeur(nom, prenom, numTel, SIREN, email, pseudo, raisonSociale, idAdresseSiege, mdp) VALUES (:nom, :prenom, :numtel, :siren, :mail, :id, :raisonsoc, :idAdresseSiege, :mdp)');
+            $stmt = $pdo->prepare('INSERT INTO alizon.Vendeur(nom, prenom, numTel, SIREN, email, pseudo, raisonSociale, idAdresseSiege, mdp) VALUES (:nom, :prenom, :numtel, :siren, :mail, :id, :raisonsoc, :idAdresseSiege, MD5(:mdp))');
             $stmt->execute(array(
                 ":nom" => $nom,
                 ":prenom" => $prenom,

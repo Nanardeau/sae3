@@ -3,12 +3,15 @@
 @use "../components/carte";
 @use "../tools/mixin/com" as *;
 @import url("bootstrap/scss/utilities/api");
-
 main{
-    align-items: stretch;
     display: grid;
     column-gap: 16px;
-    grid: 284px minmax(0px, 1fr);
+    grid-template-columns: 284px minmax(0, 1fr);
+    min-height: 650px;
+    @media #{$mobile} {
+        display:flex;
+        
+    }
 }
 a {
     text-decoration: none;
@@ -153,13 +156,54 @@ TRIS & Filtres
     flex-direction: column;
     gap: 1em;
 }
+
 aside{
     @media screen and (max-width: 100em) {
-        display: none;
+        display: none !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        height: 100vh;
+        background: white;
+        z-index: 1000;
+        overflow-y: auto;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
+        transform: translateX(-100%);
+        &.mobile-open {
+            display: flex !important;
+            transform: translateX(25%);
+            
+        }
+        
     }
+    
+    .btn-fermer-filtres {
+        display: none;
+        @media screen and (max-width: 100em) {
+            display: block;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+    }
+    
+    .filtres-desktop {
+        @media screen and (max-width: 100em) {
+            display: none !important;
+        }
+    }
+    grid-area: 1 / 1;
     display:flex;
     flex-direction: column;
-    grid-area: 1 / 1;
+}
+aside{
+    
     width: 25%;
     min-width: 250px;
     max-height: 600px;
@@ -173,7 +217,7 @@ aside{
 
     }
     h3{
-        margin: $marg;
+        margin: 0 $marg;
     }
 
     input[type="radio"]{ // Code ytb "How to make radio buttons cool again"
@@ -244,8 +288,10 @@ aside{
     }
     select{
         appearance: base-select;
+        font-size: 16px;
+        border: 1px solid $colP;
+
         width: 90%;
-        border: unset;
         margin: 0 12px;
         background-color: #EFEFEF;
         &, &::picker{
@@ -257,5 +303,99 @@ aside{
         }
         
     }
-    
+    // Slider 
+    input[type="range"]::-webkit-slider-thumb {
+        height: 20px;
+        width: 20px;
+        border-radius: 70%;
+        background: #555;
+        pointer-events: auto;
+        -webkit-appearance: none;
+    }
+    .slider-container{
+        //background-color: #fff;
+        margin: $marg;
+        transition: transform 0.2s;
+    }
+    .slider-container:hover {
+        transform: scale(1.05);
+    }
+    .price-input{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    input[type=number]{
+        background-color: inherit;
+        text-align: center;
+        border: none;
+        width: 40px;
+    }
+
+
+    .slider {
+        width: 100%;
+        height: 8px;
+        position: relative;
+        border-radius: 5px;
+    }
+
+    .slider .price-slider {
+        height: 100%;
+        left: 0%;
+        right: 0%;
+        position: absolute;
+        border-radius: 5px;
+        background: $colP;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .range-input {
+        position: relative;
+    }
+
+    .range-input input {
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: none;
+        top: -7px;
+        
+        pointer-events: none;
+        cursor: pointer;
+        -webkit-appearance: none;
+    }
+    .reset{
+        display: flex;
+        padding: $pad;
+
+        justify-content: end;
+        a{
+            color: #555;
+            font-weight: bolder;
+            
+        }
+        
+        
+    }
 }
+
+.flr-tel{
+    border:none;
+    background: none;
+    width: 80%;
+    height: 100%;
+    overflow: hidden;
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.4);
+    }
+    > div{
+        height: 100%;
+    }
+}
+
