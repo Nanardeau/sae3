@@ -978,26 +978,7 @@ h2 {
 }
 
 .card {
-  background-color: #D1ECF8;
-  flex: 0 0 auto;
-  margin-top: 20px;
-}
-.card .button {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  font-family: "Mulish";
-  width: 100%;
-  margin-top: 20px;
-  min-width: 8rem;
-  background-color: #6CA6E9;
-  height: 2rem;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 1em;
-  cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .scroll {

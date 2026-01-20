@@ -1015,6 +1015,7 @@ body {
 .carousel {
   position: relative;
   width: 65%;
+  height: auto;
   z-index: 1;
   overflow: hidden;
   border-radius: 8px;

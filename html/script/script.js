@@ -194,5 +194,7 @@ document.getElementById('photoProd').addEventListener('change', function (e) {
 
     preview.appendChild(img);
 });
-
+function retour(){
+        history.back();
+    }
 

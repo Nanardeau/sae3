@@ -46,28 +46,7 @@ h2 {
 
 }
 .card{
-    background-color: $colS;
-    flex: 0 0 auto;
-    margin-top: $marg;
-    .button{
-        display :flex;
-        justify-content: center;
-        align-content: center;
-        font-family: $Poltext;
-        width: 100%;
-        margin-top : $marg;
-        min-width: 8rem;
-        background-color: $eleBleu;
-        height: 2rem;
-        text-align: center;
-        color : $blanc;
-        font-weight: bold;
-        border:none;
-        border-radius: $radius;
-        cursor:pointer;
-        
-    }
-    
+    margin-bottom: 20px;
 }
 .scroll{
     overflow-x: scroll;

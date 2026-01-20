@@ -12,8 +12,8 @@
     ?>
             <li><a class="deroulant" href="Categorie.php?cat=<?php echo $catCurr?>"><?php echo $catCurr;?></a>
         <?php
-            $listSousCats = $bdd->prepare("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = '" . $catCurr . "'");
-            $listSousCats->execute();
+            $listSousCats = $bdd->prepare("SELECT DISTINCT libSousCat FROM alizon.SousCat WHERE libCat = :catcurr");
+            $listSousCats->execute([":catcurr" => $catCurr]);
             if ($listSousCats->rowCount() > 0) {
                 // Système de sous-menu désactivé car non implementation des sous-catégories, reste fonctionnel si besoin
                 //echo "<ul class='souscat-ul'>";
