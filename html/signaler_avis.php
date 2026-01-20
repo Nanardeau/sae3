@@ -30,7 +30,7 @@ echo $signalement;
 echo $codeAvis;
 echo $codeproduit;
 
-$insert = $pdo->prepare("INSERT INTO Signalement (raison, numavis) VALUES (:signalement, :codeAvis)");
+$insert = $pdo->prepare("INSERT INTO Signalement (motif, numAvis, dateSignalement) VALUES (:signalement, :codeAvis, NOW())");
 $insert->execute([
     ':signalement' => $signalement,
     ':codeAvis' => $codeAvis
