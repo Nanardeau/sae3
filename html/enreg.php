@@ -57,7 +57,7 @@
         die();
     }
     else{
-        $stmt = $bdd->prepare("INSERT INTO alizon.Client(pseudo, dateCreation, dateNaissance, nom, prenom, email, mdp, numTel) VALUES (:pseudo, :dateCreation, :dateNaissance, :nom, :prenom, :email, :mdp, :numTel)");
+        $stmt = $bdd->prepare("INSERT INTO alizon.Client(pseudo, dateCreation, dateNaissance, nom, prenom, email, mdp, numTel) VALUES (:pseudo, :dateCreation, :dateNaissance, :nom, :prenom, :email, MD5(:mdp), :numTel)");
         $stmt->execute(array(
             ":pseudo" => $pseudo,
             ":dateCreation" => date("Y-m-d H:i:s"),
