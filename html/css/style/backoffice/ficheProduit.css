@@ -589,7 +589,7 @@ body {
   margin: 10px;
 }
 
-#popReapro {
+.popupReappro {
   display: flex;
   flex-direction: column;
   border: 3px solid #FCB66B;
@@ -597,13 +597,51 @@ body {
   padding: 0 20px 20px 20px;
   align-items: center;
 }
-#popReapro button {
+.popupReappro button {
   background-color: #CD4B22;
   border-radius: 1em;
   color: white;
   width: 60%;
 }
-#popReapro h1 {
+.popupReappro h1 {
+  align-self: center;
+}
+
+#ouvrirReappro {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#divReappro {
+  display: none;
+  position: absolute;
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.205);
+}
+#divReappro article {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #FCB66B;
+  border-radius: 1em;
+  padding: 0 20px 20px 20px;
+  align-items: center;
+  background-color: white;
+}
+#divReappro article button {
+  background-color: #CD4B22;
+  border-radius: 1em;
+  color: white;
+  width: 60%;
+}
+#divReappro article h1 {
   align-self: center;
 }
 

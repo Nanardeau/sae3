@@ -34,7 +34,6 @@ $stmt = $bdd->query($sql);
 $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
-<!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
@@ -43,7 +42,43 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
         <link rel="stylesheet" type="text/css" href="../css/style/backoffice/popupAvis.css" >
         <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
         <script src="../js/FicheProd.js"></script>
+        <script>
+            // function validerStock(){
+            //     let qte = document.getElementById("qteStock").value;
+            //     document.cookie = "qteStock = " + qte;
+
+            // }
+
+
+            // const popover = document.getElementById("popReapro");
+            // let btnValider = document.getElementById("validerQteStock");
+            // btnValider.addEventListener("click", closePopOver(event));
+
+            // document.addEventListener("keydown", closePopOver(event));
+            // function closePopOver(event){
+            //     popover.hidePopover();
+            // }
+        ;
+        const btnReappro = document.getElementById("btnReappro");
+        //btnReappro.addEventListener("click", ouvrirReappro());
+
+        function ouvrirReappro() {
+            document.getElementById("divReappro").classList.add("Rea-open");
+        };
+        function annulerReappro(){
+            document.getElementById("divReappro").classList.remove("Rea-open");
+        }
+        function validerReappro(){
+            document.getElementById("divReappro").classList.remove("Rea-open");
+        }
+    
+        </script>
         <title>alizon</title>
+        <style>
+            .Rea-open {
+                display:flex !important;
+            }
+            </style>
     </head>
     <body>
         <?php include '../includes/backoffice/header.php';
@@ -130,11 +165,11 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                                     <?php $qtestock = $bdd->query("SELECT qtestock FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch(); 
                                         echo "<p class=\"stock\">Stock disponible : " . $qtestock["qtestock"] . "</p>";
                                     ?>
-                                    <button onclick="openReappro()"> 
-                                        <svg width="37" height="37" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="22.5" cy="22.5" r="22.5" fill="#FCB66B"/>
-                                            <path d="M22.272 7.94113V38.4851" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M7.56873 23.2131H38.1127" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <button onclick="ouvrirReappro()" id="ouvrirReappro"> 
+                                       <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="22.5" cy="22.5" r="22.5" fill="#FCB66B"/>
+                                        <path d="M22.272 7.94113V38.4851" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7.56873 23.2131H38.1127" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                     </button>
                                  </div>
@@ -145,13 +180,14 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                                     <input type="number" name="qteStock" min="0" placeholder="Quantité à ajouteru" id="qteStock"/> 
                                     <button onclick=validerStock() id="validerQteStock"> Valider </button>
                                 </div> -->
-                                <div class="popupReapro" id="popupReappro">
-                                    <div class="popupContent">
+                                <div id="divReappro">
+                                    <article>
                                         <h3>Réapprovisionnement</h3>
                                         <label for="qteStock" class="pObl">Quelle quantité voulez-vous ajouter?</label>
                                         <input type="number" name="qteStock" min="0" placeholder="Quantité à ajouter" id="qteStock"/> 
-                                        <button onclick="closeReappro()" id="validerQteStock"> Valider </button>
-                                    </div>
+                                        <button onclick="validerReappro()" id="annulerReappro"> Annuler </button>
+                                        <button onclick="annulerReappro()" id="validerReappro"> Valider </button>
+                                    </article>
                                 </div>
 
                                 <div class="alignemnt_droite_gauche">
@@ -445,28 +481,12 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
 
             </div>
         </main>
+        
         <?php include '../includes/backoffice/footer.php';?>
         <script src="/js/popupAvis.js"></script>
         <script src="../js/overlayCompteVendeur.js"></script>
         <script>src="../js/scripts.js"</script>
-        <script>
-            function validerStock(){
-                let qte = document.getElementById("qteStock").value;
-                document.cookie = "qteStock = " + qte;
-
-            }
-
-
-            const popover = document.getElementById("popReapro");
-            let btnValider = document.getElementById("validerQteStock");
-            btnValider.addEventListener("click", closePopOver(event));
-
-            document.addEventListener("keydown", closePopOver(event));
-            function closePopOver(event){
-                popover.hidePopover();
-            }
- 
-        </script>
+        
         <?php
             if(isset($_COOKIE["qteStock"])){
                 $ajoutQte = $_COOKIE["qteStock"];
