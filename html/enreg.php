@@ -115,7 +115,7 @@
 
         }
         else{
-            $chemin = "./img/photosProfil/photoBase.jpg";
+            $chemin = "./img/photosProfil/Default_pfp.svg";
         }
 
         $stmt = $bdd->prepare("INSERT INTO alizon.Profil(urlPhoto, codeClient) VALUES(:photo, :client)");
