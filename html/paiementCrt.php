@@ -294,7 +294,7 @@ $idPanier = $panier["idpanier"];
         let champDate = document.getElementById("expDate");
         let btnPayer = document.getElementById("btnPayer");
         let divConfirmer = document.getElementById("confirmation");
-        let formulaePaiement = document.getElementById("formulaireBanque");
+        let formulairePaiement = document.getElementById("formulaireBanque");
         champCarte.addEventListener("keyup", formaterCarte);
         champCarte.addEventListener("focusout", luhn);
         champDate.addEventListener("keydown", formaterDate);

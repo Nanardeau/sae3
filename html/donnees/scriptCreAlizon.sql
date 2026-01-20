@@ -13,7 +13,7 @@ CREATE TABLE Compte(
     nom VARCHAR(20),
     prenom VARCHAR(20),
     email VARCHAR(50) NOT NULL,
-    mdp VARCHAR(20) NOT NULL,
+    mdp VARCHAR(32) NOT NULL,
     numTel VARCHAR(20)
 );
 CREATE TABLE Adresse(

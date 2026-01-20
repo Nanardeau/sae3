@@ -32,7 +32,7 @@ if($_POST){
     $mdp = $_POST["mdp"];
     $_SESSION["pseudo"] = $id;
     $_SESSION["mdp"] = $mdp;
-    $stmt = $bdd->prepare("SELECT * FROM Client WHERE pseudo = :pseudo AND mdp = :mdp");
+    $stmt = $bdd->prepare("SELECT * FROM Client WHERE pseudo = :pseudo AND mdp = MD5(:mdp)");
     $stmt->execute([':pseudo' => $id, ':mdp' => $mdp]);
     $rep = $stmt->fetch(PDO::FETCH_ASSOC);
     if($rep!=null){
@@ -57,8 +57,13 @@ if($_POST){
                     $_SESSION["idPanier"] = $panierExiste["idpanier"];
                 }
                 else if(isset($_SESSION["idPanier"])){
-                    $stmt = $bdd->prepare("UPDATE alizon.Panier SET codeCompte = '".$_SESSION["codeCompte"]."' WHERE idPanier = '".$_SESSION["idPanier"]."'");
-                    $stmt->execute();
+                    $codeCompte = $_SESSION["codeCompte"];
+                    $idPanier = $_SESSION["idPanier"];
+                    $stmt = $bdd->prepare("UPDATE alizon.Panier SET codeCompte = :codeCompte WHERE idPanier = :idPanier");
+                    $stmt->execute(array(
+                        ":codeCompte" => $codeCompte,
+                        ":idPanier" => $idPanier,
+                    ));
                 }
                 exit(header("location: index.php"));
                     
