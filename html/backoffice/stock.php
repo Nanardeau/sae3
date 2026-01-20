@@ -1,15 +1,6 @@
 <?php
 session_start();
 
-if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
-    header('location: connexionVendeur.php');
-    
-}else{
-
-    $codeCompte = $_SESSION["codeCompte"];
-    //print_r($_SESSION);
-    
-}
 
 
 
@@ -37,6 +28,22 @@ try {
     // "❌ Erreur de connexion : " . $e->getMessage();
 }
 $bdd->query('set schema \'alizon\'');
+    $estVendeur = false;
+    if(isset($_SESSION["codeCompte"])){
+
+        $vendeurs = $bdd->query("SELECT ALL codeCompte FROM alizon.Vendeur")->fetchAll();
+        foreach($vendeurs as $vendeur){
+            if($vendeur["codecompte"] == $_SESSION["codeCompte"]){
+                $estVendeur = true;
+            }
+        }
+    }
+    if(!$estVendeur || !isset($_SESSION["codeCompte"])){
+        exit(header("location:connexionVendeur.php"));
+    }
+    else{
+        $codeCompte = $_SESSION["codeCompte"];
+    }
 ?>
 
 <html lang="fr">

@@ -88,8 +88,17 @@ $etape = substr($final, strlen("Étape "), 1);
 </head>
 <body>
     <?php
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
 
-    if(isset( $_SESSION["codeCompte"])){
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(isset( $_SESSION["codeCompte"]) && $estClient){
         $idUser =  $_SESSION["codeCompte"];
         include 'includes/headerCon.php' ;
     }else{

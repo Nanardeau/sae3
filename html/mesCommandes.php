@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
-            header("location:index.php");
-        }
 
-$codeCompte = $_SESSION["codeCompte"];
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
@@ -37,7 +33,22 @@ try {
         exit();
 }
 $bdd->query('set schema \'alizon\'');
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
 
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(!$estClient || !isset($_SESSION["codeCompte"])){
+        exit(header("location:index.php"));
+    }
+    else{
+        $codeCompte = $_SESSION["codeCompte"];
+    }
 
 ?>
 <html lang="fr">
@@ -57,8 +68,9 @@ $bdd->query('set schema \'alizon\'');
     
     <?php 
      
-    $lesCommandes = $bdd->prepare('SELECT * FROM Commande WHERE codeCompte =\''. $codeCompte .'\'')->fetchAll();
+    $lesCommandes = $bdd->prepare('SELECT * FROM Commande WHERE codeCompte =\''. $codeCompte .'\'');
     $lesCommandes->execute();
+    $lesCommandes = $lesCommandes->fetchAll();
     //print_r($lesCommandes);
     // Si ne possède pas des commandes -> Pas de commandes
     // Sinon afficher son nb de commandes
@@ -88,8 +100,9 @@ $bdd->query('set schema \'alizon\'');
             <article>
                 <div >
                 <?php foreach($lesProduits as $prod){
-                    $imgProd = $bdd->prepare("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit'])->fetch();
+                    $imgProd = $bdd->prepare("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit']);
                     $imgProd->execute();
+                    $imgProd = $imgProd->fetch();
                     
                     ?>
                 

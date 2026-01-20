@@ -62,9 +62,9 @@ else{
 //$tarif = $_POST["tarif"];
 
 // TAILLE 
-$tailleH = $_POST["tailleHaut"] ? $_POST["tailleHaut"] : NULL;
-$tailleLong = $_POST["tailleLong"] ? $_POST["tailleLong"] : NULL;
-$tailleLarg = $_POST["tailleLarg"] ? $_POST["tailleLarg"] : NULL;
+$spe1 = $_POST["spe1"] ? $_POST["spe1"] : NULL;
+$spe2 = $_POST["spe2"] ? $_POST["spe2"] : NULL;
+$spe3 = $_POST["spe3"] ? $_POST["spe3"] : NULL;
 
 $res = $bdd->query("SELECT * FROM alizon.Produit WHERE libelleProd = '".$nomProd."'")->fetch();
 $nomOldProd = $bdd->query("SELECT libelleProd FROM alizon.Produit WHERE codeProduit = '".$codeProduit."'")->fetch();
@@ -95,7 +95,7 @@ else{
 
     
 
-    $stmtP = $bdd->prepare("UPDATE alizon.Produit SET libelleProd = :libelleProd, descriptionProd = :descriptionProd, prixHT = :prixHT , seuilAlerte = :seuilAlerte , nomTarif= :nomTarif, nomTVA = :nomTVA, urlPhoto = :photo, Origine = :origine, codeCompteVendeur = :codeCompteVendeur WHERE codeProduit=:codeProduit");
+    $stmtP = $bdd->prepare("UPDATE alizon.Produit SET libelleProd = :libelleProd, descriptionProd = :descriptionProd, prixHT = :prixHT , spe1 = :spe1, spe2 = :spe2, spe3 = :spe3, qteStock = :qteStock, seuilAlerte = :seuilAlerte , nomTarif= :nomTarif, nomTVA = :nomTVA, urlPhoto = :photo, Origine = :origine, codeCompteVendeur = :codeCompteVendeur WHERE codeProduit=:codeProduit");
     
     $stmtC = $bdd->prepare("UPDATE alizon.Categoriser SET libelleCat = :libelleCat, codeProduit =:codeProduit)");
     
@@ -104,6 +104,10 @@ else{
             ":libelleProd" => $nomProd,
             ":descriptionProd" => $descProd,
             ":prixHT" => $prixProd,
+            ":spe1" => $spe1,
+            ":spe2" => $spe2,
+            ":spe3" => $spe3,
+            ":qteStock" => $qteProd,
             ":seuilAlerte" => $seuilProd,
             ":nomTarif" => $tarif,
             ":nomTVA" => $tvaProd,

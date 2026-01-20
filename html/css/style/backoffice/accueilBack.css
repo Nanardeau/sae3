@@ -126,9 +126,13 @@
 }
 
 body {
+  background-color: #eaeaea;
+}
+
+body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
-  background-color: white;
+  background-color: #eaeaea;
   color: black;
   margin: 0;
 }
@@ -161,18 +165,28 @@ label {
   font-weight: bold;
 }
 
+main {
+  padding-top: 80px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
 /*###############################
 #            HEADER             #
 ###############################*/
 header {
-  display: flex;
-  top: 0;
   z-index: 1000;
-  position: sticky;
+  position: fixed;
+  display: inline-flex;
   flex-direction: row;
   background-color: #CD4B22;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 header .logo_alizon_back {
   width: 118px;
@@ -214,11 +228,9 @@ header a .user {
   margin: 0 0.5em 0 2em;
   flex-direction: row;
 }
-header a .deco {
-  width: 2em;
-  height: auto;
-  margin: 0 2em 0 0.5em;
-  flex-direction: row;
+header .svg-deconnexion {
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 /*###############################
@@ -285,6 +297,108 @@ header a .deco {
   display: flex;
 }
 
+/*#################################
+#          NAV                    #   
+#################################*/
+.nav-btn {
+  width: 300px;
+  min-width: 300px;
+  z-index: 999;
+  position: sticky;
+  top: 130px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 20px 0;
+}
+.nav-btn .btnacc {
+  background-color: white;
+  display: flex;
+  gap: 1em;
+  margin: 10px;
+  padding: 20px;
+  text-decoration: none;
+  color: black;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  font-size: 1.5em;
+  margin-top: 0;
+}
+.nav-btn .btnacc svg {
+  align-self: center;
+  margin-right: 10px;
+  min-width: 28px;
+  min-height: 28px;
+  stroke-width: 2px;
+}
+.nav-btn .btnacc:visited {
+  color: black;
+}
+.nav-btn .btnacc:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.nav-btn .orange {
+  background-color: #FCB66B;
+}
+
+.right-content {
+  margin-top: 2em;
+  padding-bottom: 2em;
+  height: auto;
+  display: flex;
+}
+
+body {
+  background-color: #eaeaea;
+}
+
+.overlayCompte {
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.overlayContentCompte {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 15em;
+  width: 230px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0 0 0 10px;
+  border: solid #CD4B22;
+}
+.overlayContentCompte nav {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.overlayContentCompte nav hr {
+  width: 95%;
+}
+.overlayContentCompte nav a {
+  padding: 1.5em;
+  color: black;
+  text-decoration: none;
+}
+.overlayContentCompte nav a:hover {
+  color: #6CA6E9;
+}
+
+main {
+  display: flex;
+  align-items: flex-start;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
 main h1 {
   font-family: "Baloo", sans-serif;
   font-size: 2em;
@@ -296,31 +410,33 @@ main p {
   color: black;
 }
 
-aside {
+.mes-produits {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   gap: 1.25em;
-  box-sizing: border-box;
-  margin-left: 4em;
-  background-color: #FFD6C2;
-  width: 55em;
-  height: 50em;
-  border-radius: 24px;
+  margin-left: 1em;
+  margin-right: 1em;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
-aside div {
-  display: grid;
-  grid-template-columns: repeat(2, 11.75em);
-  gap: 1.25em;
-  justify-content: center;
+.mes-produits div {
+  display: flex;
+  gap: 0.5em;
+  justify-content: left;
+  flex-wrap: wrap;
 }
-aside h1 {
+.mes-produits h1 {
   font-family: "Baloo", sans-serif;
   font-size: 2em;
   color: black;
-  text-align: center;
+  text-align: left;
   margin-top: 1em;
   padding-left: 0;
+}
+
+body {
+  background-color: #eaeaea;
 }
 
 body {
@@ -334,16 +450,17 @@ body {
 .produit {
   color: inherit;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  align-items: left;
   background-color: white;
-  border-radius: 24px;
-  width: 11.75em;
-  height: 11.75em;
+  border-radius: 8px;
+  width: 17em;
+  height: 24.25em;
   text-decoration: none;
-  position: relative;
   box-sizing: border-box;
   gap: 0.1em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .produit > svg {
   position: absolute;
@@ -359,24 +476,25 @@ body {
 }
 .produit img {
   position: static;
+  justify-self: center;
   z-index: 1;
-  width: 5.5em;
-  height: 5.5em;
+  width: 200px;
+  height: 200px;
   border-color: black;
-  border-radius: 24px;
+  border-radius: 8px;
   border: 2px solid;
-  margin-left: 10px;
+  margin-top: 10px;
+  margin-left: -10px;
 }
 .produit p {
   margin: 0;
 }
 .produit .nomArticle {
-  padding-left: 10px;
   font-family: "Mulish", sans-serif;
-  font-size: 1em;
+  font-size: 1.2em;
+  font-weight: bold;
   color: black;
   text-align: left;
-  margin-top: 0.25em;
 }
 .produit .prixBase {
   padding-left: 10px;
@@ -400,7 +518,6 @@ body {
 .produit div .prixReduc {
   font-family: "Mulish", sans-serif;
   font-size: 1.25em;
-  padding-left: 10px;
   margin-right: 0.25em;
   color: black;
   font-weight: bold;
@@ -411,19 +528,30 @@ body {
   padding-right: 20px;
   color: #FF4444;
 }
-.produit div .btnModifReduc {
+.produit .btnModifReduc {
+  position: absolute;
+  padding: 0.25em;
   display: flex;
+  align-self: flex-end;
+  justify-self: left;
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
 }
-.produit div .btnModifReduc svg {
-  width: 30px;
+.produit .btnModifReduc svg {
+  width: 35px;
   height: 100%;
 }
-.produit div .btnModifReduc:hover svg circle {
+.produit .btnModifReduc:hover svg circle {
   fill: rgb(63.6390532544, 139.1420118343, 226.3609467456);
+}
+.produit .infoProduit {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .lesAvis {
@@ -604,9 +732,25 @@ body {
   text-align: center;
 }
 
-.content-wrapper {
-  margin-top: 2em;
-  display: flex;
+.right-content {
   flex-direction: row;
-  width: 100%;
+  flex-wrap: wrap;
+}
+
+.bvn-vendeur {
+  font-family: "Baloo", sans-serif;
+  font-size: 2em;
+  color: black;
+  margin-left: 10px;
+}
+
+.prixNormalbarre {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.prixReducRed {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
 }/*# sourceMappingURL=accueilBack.css.map */

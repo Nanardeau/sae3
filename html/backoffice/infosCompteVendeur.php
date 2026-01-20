@@ -4,8 +4,6 @@
     if(!array_key_exists("codeCompte", $_SESSION)){
         header("location:connexionVendeur.php");
     }
-    print_r($_POST);
-    print_r($_SESSION);
     $codeCompte = $_SESSION["codeCompte"];
     if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
@@ -32,6 +30,21 @@
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
+
+    $estVendeur = false;
+    if(isset($_SESSION["codeCompte"])){
+
+        $vendeurs = $bdd->query("SELECT ALL codeCompte FROM alizon.Vendeur")->fetchAll();
+        foreach($vendeurs as $vendeur){
+            if($vendeur["codecompte"] == $_SESSION["codeCompte"]){
+                $estVendeur = true;
+            }
+        }
+    }
+    if(!$estVendeur || !isset($_SESSION["codeCompte"])){
+        exit(header("location:connexionVendeur.php"));
+    }
+    $codeCompte = $_SESSION["codeCompte"];
     //$codeCompte = 1;
     $compte = $bdd->query("SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'")->fetch();
     
@@ -39,6 +52,10 @@
     if(!isset($_SESSION["mdpValide"])){
         $_SESSION["mdpValide"] = 0;
     }
+
+$sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
+$stmt = $bdd->query($sql);
+$vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -73,92 +90,99 @@
         <div class="containerForm">
   
         <form action="modifCompteVendeur.php" method="post" enctype="multipart/form-data">
+            <details open>
+                <summary><h3>Profil responsable V</h3></summary>
 
-
-        
-            <div id="profResp">
-                <h3>Profil responsable</h3>
-                <div class="labelInput">
-                    <label for="identifiant">Identifiant</label>
-                    <?php if($erreur == "pseudo"):?>
-                        <p class="erreur">Pseudonyme déjà utilisé</p>
-                    <?php endif?>
-                    <input type="text" name="pseudo" id="identifiant" pattern="[A-Za-z._0-9]{2,20}" value="<?php echo $compte["pseudo"]?>" required disabled/> 
-                </div>
-                <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
-                <div id="nomPrenomVendeur">
-                    <div class="labelInput">
-                        <label for="nomVendeur">Nom</label>
-                        <input type="text" name="nom" id="nomVendeur" value="<?php echo $compte["nom"] ?>" required disabled/>
-                    </div>
-                    <div class="labelInput">
-                        <label for="prenomVendeur">Prénom</label>
-                        <input type="text" name="prenom" id="prenomVendeur" value="<?php echo $compte["prenom"]?>" required disabled/>
-                    </div>
-                </div>
-                <div class="labelInput">
-                <label for="mailVendeur">Adresse e-mail</label>
-                <?php if($erreur == "email"):?>
-                    <p class="erreur">Adresse e-mail déjà utilisée</p>
-                <?php endif?>
-                <input type="text" name="email" id="mailVendeur" value="<?php echo "mail"?>" required disabled/>
+                <div id="profResp">
                 
-                <span>Le mail doit être de la forme "abc@def.gh"</span>
-                <span>Les deux adresses e-mail doivent être identiques</span>
-                </div>
-                <div class="labelInput">
-                <label for="numTelVendeur">Numéro de téléphone</label>
-                <input type="text" name="numTel" id="numTelVendeur" pattern="\d{10}" value="<?php echo $compte["numtel"]?>"disabled/>
-                <span>Le numéro doit être dans le format suivant : 0102030405</span>
-                </div>
-
-            </div>
-            <hr>
-            <div id="entreprise" class="container-fluid">
-                    <h3>Informations entreprise</h3>
                     <div class="labelInput">
-                        <label for="siren">Numéro de SIREN</label>
-                        <input type="text" name="siren" id="siren" value="<?php echo $compte["siren"]?>"disabled/>
-                    </div>
-                    <div class="labelInput">
-                        <label for="raisonSoc">Raison sociale</label>
-                        <?php if($erreur == "raisonSoc"):?>
-                            <p class="erreur">Raison sociale déjà utilisée</p>
+                        <label for="identifiant">Identifiant</label>
+                        <?php if($erreur == "pseudo"):?>
+                            <p class="erreur">Pseudonyme déjà utilisé</p>
                         <?php endif?>
-                        <input type="text" name="raisonSoc" id="raisonSoc" value="<?php echo $compte["raisonsociale"]?>" disabled/>
+                        <input type="text" name="pseudo" id="identifiant" pattern="[A-Za-z._0-9]{2,20}" value="<?php echo $compte["pseudo"]?>" required disabled/> 
                     </div>
-
- 
+                    <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
+                    <div id="nomPrenomVendeur">
+                        <div class="labelInput">
+                            <label for="nomVendeur">Nom</label>
+                            <input type="text" name="nom" id="nomVendeur" value="<?php echo $compte["nom"] ?>" required disabled/>
+                        </div>
+                        <div class="labelInput">
+                            <label for="prenomVendeur">Prénom</label>
+                            <input type="text" name="prenom" id="prenomVendeur" value="<?php echo $compte["prenom"]?>" required disabled/>
+                        </div>
+                    </div>
+                    <div class="labelInput">
+                    <label for="mailVendeur">Adresse e-mail</label>
+                    <?php if($erreur == "email"):?>
+                        <p class="erreur">Adresse e-mail déjà utilisée</p>
+                    <?php endif?>
+                    <input type="text" name="email" id="mailVendeur" value="<?php echo "mail"?>" required disabled/>
                     
-                        <div id="numNomRue">
-                            <div class="labelInput">
-                                <label for="numRueVendeur">Numéro</label>
-                                <input type="text" name="num" id="numRueVendeur" value="<?php echo $adresse["num"]?>"disabled/>
-                            </div>
-                            <div class="labelInput">
-                                <label for="nomRueVendeur">Nom de la rue, voie</label>
-                                <input type="text" name="nomRue" id="nomRueVendeur" value="<?php echo $adresse["nomrue"]?>"disabled/>
-                            </div>
-                        </div>
-                        <div id="cpVille">
-                            <div class="labelInput">
-                                <label for="codePostalVendeur">Code postal</label>
-                                <input type="text" name="codePostal" id="codePostalVendeur" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" value="<?php echo $adresse["codepostal"]?>" disabled/>
-                            </div>
-                            <div class="labelInput">
-                                <label for="villeVendeur">Ville</label>
-                                <input type="text" name="nomVille" id="villeVendeur" value="<?php echo $adresse["nomville"]?>" disabled/>
-                            </div>
-                        </div>
-                            <div class="labelInput">
-                                <label for="compAdrVendeur">Complément</label>
-                                <input type="text" name="complementAdresse" id="compAdrVendeur" value="<?php if($adresse["complementadresse"]){echo $adresse["complementadresse"];}else{echo "";}?>" disabled/>
-                            </div>
-                        
-                        
+                    <span>Le mail doit être de la forme "abc@def.gh"</span>
+                    <span>Les deux adresses e-mail doivent être identiques</span>
+                    </div>
+                    <div class="labelInput">
+                    <label for="numTelVendeur">Numéro de téléphone</label>
+                    <input type="text" name="numTel" id="numTelVendeur" pattern="\d{10}" value="<?php echo $compte["numtel"]?>"disabled/>
+                    <span>Le numéro doit être dans le format suivant : 0102030405</span>
                     </div>
 
-            </div>
+                </div>
+            </details>
+            
+            <hr>
+            <details>
+                <summary><h3>Informations entreprise V</h3></summary>
+
+                    <div id="entreprise" class="container-fluid">
+                        
+                        <div class="labelInput">
+                            <label for="siren">Numéro de SIREN</label>
+                            <input type="text" name="siren" id="siren" value="<?php echo $compte["siren"]?>"disabled/>
+                        </div>
+                        <div class="labelInput">
+                            <label for="raisonSoc">Raison sociale</label>
+                            <?php if($erreur == "raisonSoc"):?>
+                                <p class="erreur">Raison sociale déjà utilisée</p>
+                            <?php endif?>
+                            <input type="text" name="raisonSoc" id="raisonSoc" value="<?php echo $compte["raisonsociale"]?>" disabled/>
+                        </div>
+
+    
+                        
+                            <div id="numNomRue">
+                                <div class="labelInput">
+                                    <label for="numRueVendeur">Numéro</label>
+                                    <input type="text" name="num" id="numRueVendeur" value="<?php echo $adresse["num"]?>"disabled/>
+                                </div>
+                                <div class="labelInput">
+                                    <label for="nomRueVendeur">Nom de la rue, voie</label>
+                                    <input type="text" name="nomRue" id="nomRueVendeur" value="<?php echo $adresse["nomrue"]?>"disabled/>
+                                </div>
+                            </div>
+                            <div id="cpVille">
+                                <div class="labelInput">
+                                    <label for="codePostalVendeur">Code postal</label>
+                                    <input type="text" name="codePostal" id="codePostalVendeur" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" value="<?php echo $adresse["codepostal"]?>" disabled/>
+                                </div>
+                                <div class="labelInput">
+                                    <label for="villeVendeur">Ville</label>
+                                    <input type="text" name="nomVille" id="villeVendeur" value="<?php echo $adresse["nomville"]?>" disabled/>
+                                </div>
+                            </div>
+                                <div class="labelInput">
+                                    <label for="compAdrVendeur">Complément</label>
+                                    <input type="text" name="complementAdresse" id="compAdrVendeur" value="<?php if($adresse["complementadresse"]){echo $adresse["complementadresse"];}else{echo "";}?>" disabled/>
+                                </div>
+                            
+                            
+                        </div>
+
+                </div>
+            </details>
+            
 
             <!--<label for="mdpVendeur">Mot de passe</label>
             <input type="password" name="mdp" id="mdpVendeur" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required disabled/>
@@ -168,7 +192,7 @@
 
         </form>   
 
-        <nav>
+        <div class="boutonsCompte">
 
             <button class="bouton" id="modifInfos" popovertarget="mdpValider" onclick="modifierInfos()">Modifier informations</button>
             <div popover="auto" id="mdpValider">
@@ -198,7 +222,7 @@
             </div>
             <button class="bouton" id="annuler" onclick="annuler()" hidden>Annuler</button>
             
-        </nav>
+        </div>
         </div>
         <button class="btnJaune" id="deconnexion" onclick="deconnecter()">Se déconnecter</button>
 
@@ -293,5 +317,6 @@
 
 
     </script>
+    <script src="../js/overlayCompteVendeur.js"></script>
 </body>
 </html>

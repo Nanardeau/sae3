@@ -22,7 +22,20 @@ try {
     // "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
     //"❌ Erreur de connexion : " . $e->getMessage();
-    ?>
+$estClient = false;
+if(isset($_SESSION["codeCompte"])){
+
+    $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+    foreach($clients as $client){
+        if($client["codecompte"] == $_SESSION["codeCompte"]){
+            $estClient = true;
+        }
+    }
+}
+if(!$estClient || !isset($_SESSION["codeCompte"])){
+    exit(header("location:index.php"));
+}   
+?>
     <script>
         alert("Erreur lors du chargement");
     </script>
@@ -33,6 +46,10 @@ try {
 
 
 $bdd->query('set schema \'alizon\'');
+
+
+
+                       
 ?>
 
 <html lang="fr">
@@ -120,7 +137,7 @@ $bdd->query('set schema \'alizon\'');
             <div class="recap">
                 <h4>Récapitulatif ( <?php echo $infoPanier['nbProd']?> articles) </h4>
                 <div class='prix'><p>Prix HT :</p><p> <?php echo $infoPanier["prixHT"]?> €</p></div>
-                <div class='prix'><p style="font-weight : bold">Prix TTC :</p><p> <?php echo $infoPanier["prixTTC"]?> €</p></div>
+                <div class='prix'><p style="font-weight : bold">Prix TTC :</p><p> <?php echo round($infoPanier["prixTTC"],2)?> €</p></div>
                 <a class="btn-recap" href="./paiementAdr.php">Commander</a>
             </div>
                 <a href="Catalogue.php" class="btn-recap btn-retour">Retour</a>
@@ -128,7 +145,10 @@ $bdd->query('set schema \'alizon\'');
         <article>
         <?php
         foreach($ListeProdPanier as $liste){
-            $stmInfoProd = $bdd->query('SELECT libelleProd,descriptionProd,urlphoto,codecomptevendeur from Produit where codeProduit = '.$liste["codeproduit"] );
+            $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
+            
+            $stmInfoProd = $bdd->prepare('SELECT libelleProd,descriptionProd,urlphoto,codecomptevendeur,prixTTC from Produit where codeProduit = :id');
+            $stmInfoProd->execute(["id" => $liste["codeproduit"]]);
             $infoProd = $stmInfoProd->fetch();
             //print_r($infoProd);
             $codeVendeur = $infoProd["codecomptevendeur"];
@@ -143,7 +163,11 @@ $bdd->query('set schema \'alizon\'');
             $vendeur = $infoVendeur["nom"];
             $qteProd = $liste["qteprod"];
             $qteProd = round($qteProd);
-            $prixTTC = $liste["prixttctotal"];
+            $prixTTC = $infoProd["prixttc"];
+
+            $stmt->execute(['id' => $liste["codeproduit"] ]);
+            $infoRemise = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $hasRemise = $stmt->rowCount() > 0;
         ?>
         
         <div class="articlePanier">
@@ -172,7 +196,23 @@ $bdd->query('set schema \'alizon\'');
                 <p class="nbArt"><?php echo $qteProd?></p>
                 <button class="btn-plus" onclick="modifProduit(this,<?php echo $infoPanier['idpanier']?>,<?php echo $liste['codeproduit']?>)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
             </div>
-            <p class="prix"><?php echo $prixTTC?> €</p>
+            <div class="prix">
+            <?php 
+            if ($hasRemise != false){
+                $stmtRem = $bdd->prepare("SELECT prixTTCtotal from ProdUnitPanier where idPanier = :id and codeProduit = :codeproduit");
+                $stmtRem->execute(array(
+                    "id"=>$infoPanier['idpanier'],
+                    "codeproduit"=>$liste["codeproduit"]));
+                $Remise = $stmtRem->fetch();
+                echo '<p class="prixNormalbarre">'.$prixTTC*$qteProd.'€</p>';
+                echo '<p class="prixReducRed">'.$Remise['prixttctotal'].'€ <span class="remise"> - '.$infoRemise[0]['remise'].'%</span></p>';
+                //echo '<p class="prixReduc">'.$prixTTC.'€</p>';
+            } else {
+                echo '<p class="prixReduc">'.$prixTTC*$qteProd.'€</p>';
+            }
+            ?>
+            </div>
+            <!--<p class="prix">// echo $prixTTC?> €</p>-->
             
             <button class="btn-supprimer" onclick="supprimerPanier(<?php echo $infoPanier['idpanier']?>,<?php echo $liste['codeproduit']?>)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button> 
         </div>

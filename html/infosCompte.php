@@ -1,13 +1,8 @@
 <?php 
     session_start();
-    if(!array_key_exists("codeCompte", $_SESSION)){
-        header("location:index.php");
-    }
-
-    $codeCompte = $_SESSION["codeCompte"];
     if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
-
+        
     }
     else{
         $erreur = "";
@@ -31,6 +26,23 @@
         echo "Erreur de connexion : " . $e->getMessage();
     }
     //$codeCompte = 1;
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
+
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(!$estClient || !isset($_SESSION["codeCompte"])){
+        exit(header("location:index.php"));
+    }
+    else{
+        
+        $codeCompte = $_SESSION["codeCompte"];
+    }
     $compte = $bdd->query("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
     
     $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
@@ -59,7 +71,6 @@
         <a href="index.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
 
         <div class="containerForm">
-
         <form action="modifCompteCli.php" method="post" enctype="multipart/form-data">
             <div class="crayonPhoto">
                 <img src="<?php echo $photo["urlphoto"]?>" alt="photoProfil" title="photoProfil"/>
@@ -103,34 +114,34 @@
             <span>Le numéro doit être dans le format suivant : 0102030405</span>
             <label for="dateNaiss">Date de naissance</label>
             <input type="date" name="dateNaissance" class="boutonSec" id="dateNaiss" onChange="verifDate(event)" value="<?php echo $compte["datenaissance"]?>"required disabled/>
-
             <h3>Adresse</h3> 
             <div class="container-fluid p-0">
                 <div class="row ">                      
                     <div class="col-3 labelInput">
                         <label for="numRueCli">Numéro</label>
-                        <input type="text" name="num" id="numRueCli" value="<?php echo $adresse["num"]?>"disabled/>
+                        <input type="text" name="num" id="numRueCli" value="<?php echo $adresse ? $adresse["num"] : ""?>"disabled/>
                     </div>
                     <div class="col-9 labelInput">
                         <label for="nomRueCli">Nom de la rue, voie</label>
-                        <input type="text" name="nomRue" id="nomRueCli" value="<?php echo $adresse["nomrue"]?>"disabled/>
+                        <input type="text" name="nomRue" id="nomRueCli" value="<?php echo $adresse ? $adresse["nomrue"] : ""?>"disabled/>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-4 labelInput">
                         <label for="codePostalCli">Code postal</label>
-                        <input type="text" name="codePostal" id="codePostalCli" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" value="<?php echo $adresse["codepostal"]?>" disabled/>
+                        <input type="text" name="codePostal" id="codePostalCli" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" value="<?php echo $adresse ? $adresse["codepostal"] : ""?>" disabled/>
                     </div>
                     <div class="col-8 labelInput">
                         <label for="villeCli">Ville</label>
-                        <input type="text" name="nomVille" id="villeCli" value="<?php echo $adresse["nomville"]?>" disabled/>
+                        <input type="text" name="nomVille" id="villeCli" value="<?php echo $adresse ? $adresse["nomville"] : ""?>" disabled/>
                     </div>
                 </div>
             </div>
             <label for="numAptCli">Numéro d'appartement</label>
-            <input type="text" name="numAppart" id="numAptCli" value="<?php if($adresse["numappart"]){echo $adresse["numappart"];}else{echo "";}?>" disabled/>
+            <input type="text" name="numAppart" id="numAptCli" value="<?php if($adresse){if($adresse["numappart"]){echo $adresse["numappart"];}}else{echo "";}?>" disabled/>
             <label for="compAdrCli">Complément</label>
-            <input type="text" name="complementAdresse" id="compAdrCli" value="<?php if($adresse["complementadresse"]){echo $adresse["complementadresse"];}else{echo "";}?>" disabled/>
+            
+            <input type="text" name="complementAdresse" id="compAdrCli" value="<?php if($adresse){if($adresse["complementadresse"]){echo $adresse["complementadresse"];}}else{echo "";}?>" disabled/>
 
             <!--<label for="mdpCli">Mot de passe</label>
             <input type="password" name="mdp" id="mdpCli" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required disabled/>
@@ -140,7 +151,7 @@
 
         </form>   
 
-        <nav>
+        <div class="div-btn">
 
             <button class="bouton" id="modifInfos" popovertarget="mdpValider" onclick="modifierInfos()">Modifier informations</button>
             <div popover="auto" id="mdpValider">
@@ -169,7 +180,7 @@
             <button class="bouton" id="annuler" onclick="annuler()" hidden>Annuler</button>
             <button class="bouton" id="blocageCompte" onclick="bloquerCompte()">Bloquer compte</button>
             
-        </nav>
+            </div>
         </div>
         <button class="btnJaune" id="deconnexion" onclick="deconnecter()"><img src="./img/icon_déconnexion.svg"/>Se déconnecter</button>
 

@@ -83,43 +83,11 @@ form{
     }
 
 }
-.bouton{
-    @include bouton;
 
+#nomCli{
+    width:100%;
 }
-aside{
-    display:flex;
-    flex-direction: column;
-    
-    figure{
-        display:flex;
-        justify-content: center;
-        flex-direction: row;
-        align-items:center; 
-        img{
-            margin: 0 10px;
-            height:1px;
-            @media #{$mobile}{
-                width:20%;
-                height:20px;  
-            }
-        }
-    }
 
-    .bouton{
-
-        padding:1em;
-        width:80%;
-        margin-bottom:1em;
-
-    }
-
-    .div-btn{
-        display:flex;
-        flex-direction: column;
-        align-items:center;
-    }
-}
 
 .labelInput{
     display:flex;
@@ -130,15 +98,49 @@ aside{
     }
 }
 
-#nomCli{
-    width:100%;
-}
-.btnJaune{
-    @include bouton;
-    background-color:$eleOrange;
-    border:0px;
-    color:black;
-    width:50%;
-    padding:1em;
-    
-}
+
+aside{
+    display:flex;
+    flex-direction: column;
+    justify-self:center;
+    font-family: 'mulish';
+    figure{
+        display:flex;
+        img{
+            margin: 0 5px;
+            width: 100px;
+            @media screen and ($mobile){
+                width: 17%;
+                height:50px;
+            }
+        }
+       
+        }
+    }
+
+    .bouton{
+        @include bouton;
+        height: 4rem;
+        padding:1em;
+        width:100%;
+        margin-bottom:1em;
+        
+    }
+
+    .btnJaune{
+        @include bouton($eleOrange);
+        height: 4rem;
+        padding:1em; 
+        width:70%;
+    }
+
+    .bouton-connexion{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        a{
+            text-decoration:none;
+        }
+    }
+
+

@@ -51,8 +51,13 @@
     $_SESSION["numCom"] = $numCom;
     $prodUnitPan = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
     foreach($prodUnitPan as $prodUnit){
-        $prixTTCProd = $bdd->prepare("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
+        $prixTTCProd = $bdd->prepare("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'");
         $prixTTCProd->execute();
+        $prixTTCProd = $prixTTCProd->fetch();
+        $stmt = $bdd->prepare("UPDATE alizon.Produit SET qteStock = qteStock - 1 WHERE codeProduit = :codeProd");
+        $stmt->execute(array(
+            "codeProd" => $prodUnit["codeproduit"]
+        ));
         $stmt = $bdd->prepare("INSERT INTO alizon.ProdUnitCommande (codeProduit, numCom, qteProd) VALUES (:codeProduit, :numCom, :qteProd)");
         $stmt->execute(array(
             ":codeProduit" => $prodUnit["codeproduit"],
@@ -68,11 +73,12 @@
     $_SESSION["numCom"] = $numCom;
     $stmt = $bdd->prepare("DELETE FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'");
     $stmt->execute();
+    
     unset($_SESSION["idPanier"]);
     
     //LIEN DELIVRAPTOR
     
-    $socket = fsockopen("127.0.0.1", 8080);
+    $socket = fsockopen("10.253.5.102", 8080);
     fwrite($socket, "CONN test0 mdp0");
     $data = fread($socket, 1024);
     var_dump($data);

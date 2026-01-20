@@ -95,8 +95,17 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 <body>
 
     <?php 
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
 
-    if(isset($_SESSION['codeCompte'])){
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(isset($_SESSION['codeCompte']) && $estClient){
         include 'includes/headerCon.php' ;
         $codeCompte = $_SESSION['codeCompte'];
     }else{
@@ -177,7 +186,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     </div>
 
                     <input type="hidden" name="codeProduit" value="<?= $produit['codeproduit'] ?>">
-                    <input type="hidden" name="noteProd" id="noteProd" value="0">
+                    <input type="hidden" name="noteProd" id="noteProd" value="1">
 
                 </form>
             <?php endif?>
@@ -208,6 +217,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <div class="etoiles">
                         <?php for ($i = 1; $i <= 5; $i++): ?>
                             <span class="etoile <?= $i <= round($moyenneNote) ? 'pleine' : '' ?>">★</span>
+                            
                         <?php endfor; ?>
                     </div>
                     <div class="total">
@@ -240,21 +250,21 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <?php foreach ($avisList as $avis): ?>
                         <div class="avis">
                             <div class="avis-header">
-                                <strong>
+                                <!-- <strong>
                                     <?php
                                     $prenom = htmlspecialchars($avis['prenom'] ?? 'Anonyme');
                                     $nom = strtoupper(htmlspecialchars($avis['nom'] ?? 'Utilisateur'));
                                     echo "$prenom $nom";
                                     ?>
-                                </strong>
-                                <!-- <strong>
+                                </strong> -->
+                                <strong>
                                     <?php
                                     $prenom = htmlspecialchars($avis['prenom']);
                                     $nom = strtoupper(htmlspecialchars($avis['nom']));
                                     echo "$prenom $nom";
                                     ?>
 
-                                </strong> -->
+                                </strong>
                                 <span class="date">
                                     <?= date("d/m/Y", strtotime($avis['datepublication'])) ?>
                                 </span>
