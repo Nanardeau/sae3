@@ -39,6 +39,10 @@ try {
 }
 $bdd->query('set schema \'alizon\'');
 
+$sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
+$stmt = $bdd->query($sql);
+$vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
 ?>
 <html lang="fr">
@@ -52,99 +56,95 @@ $bdd->query('set schema \'alizon\'');
 <body>
     <?php include("../includes/backoffice/header.php"); ?>
     <main>
-    <a href="index.php" class="btn-retour">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left">
-            <rect width="18" height="18" x="3" y="3" rx="2"/>
-            <path d="m14 16-4-4 4-4"/>
-        </svg>
-        Retour
-    </a>
-    <h1>Vos commandes</h1>
-    
-    
-    <?php  
-    $sql = "SELECT DISTINCT puc.numCom FROM Produit p 
-    INNER JOIN ProdUnitCommande puc ON p.codeProduit = puc.codeProduit 
-    where  CodeCompteVendeur = :codeCompte ORDER BY numCom
-    ";
-    $stmt = $bdd->prepare($sql);
-    $stmt->execute(array("codeCompte"=>$codeCompte));
-    $lesCommandes = $stmt->fetchAll();
-    //print_r($lesCommandes);
-    // Si ne possède pas des commandes -> Pas de commandes
-    // Sinon afficher son nb de commandes
-    if($lesCommandes == null){
-        ?>
-        <div class="separateur"></div>
-        <div class="vide">
-                <h1> Vous n'avez reçu aucune commande</h1>
-                <a href="index.php">Revenir à l'accueil<a>
-            </div>
-        <?php
-    }
-    else {
-        ?>
-        <div class="cmd">
-        <?php
-        foreach($lesCommandes as $commande){
-            $idCom = $commande["numcom"];
-            $lesProduits = $bdd->query('SELECT DISTINCT p.codeProduit,puc.qteProd FROM Produit p INNER JOIN ProdUnitCommande puc ON p.codeProduit = puc.codeProduit where numCom =\''.$idCom.'\' AND CodeCompteVendeur =\''. $codeCompte.'\' ');
-            //print_r($lesProduits);
+    <?php include '../includes/backoffice/menu.php'; ?>
+    <?php include '../includes/backoffice/menuCompteVendeur.php'; ?>
+    <div class="right-content">
+        <h1>Vos commandes</h1>
+        
+        
+        <?php  
+        $sql = "SELECT DISTINCT puc.numCom FROM Produit p 
+        INNER JOIN ProdUnitCommande puc ON p.codeProduit = puc.codeProduit 
+        where  CodeCompteVendeur = :codeCompte ORDER BY numCom
+        ";
+        $stmt = $bdd->prepare($sql);
+        $stmt->execute(array("codeCompte"=>$codeCompte));
+        $lesCommandes = $stmt->fetchAll();
+        //print_r($lesCommandes);
+        // Si ne possède pas des commandes -> Pas de commandes
+        // Sinon afficher son nb de commandes
+        if($lesCommandes == null){
             ?>
             <div class="separateur"></div>
-            <article>
-                <h2>Commande n°<?php echo $idCom ?></h2>
-                <table>
-            <thead>
-                <tr>
-                    <th>Nom produit</th>
-                    <th>Code Produit</th>
-                    <th>Quantité</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                //print_r($lesProduits);
-                foreach($lesProduits as $prod){
-                    $idProd = $prod['codeproduit'];
-                    $qteprod =$prod['qteprod'];
-                    $nomProd = $bdd->query('SELECT libelleProd FROM Produit where codeProduit = '. $idProd)->fetch();
-                    
-                    ?>
-                    
-                     <tr>
-                        <td><?php echo $nomProd['libelleprod'];?></td>
-                        <td><?php echo $idProd ; ?></td>
-                        <td><?php echo $qteprod ;?></td>
-                     </tr>
-                   
-                     <?php
-                }
-                ?>
-            </tbody>
-        </table>
-                <div >
-                <?php foreach($lesProduits as $prod){
-                    $imgProd = $bdd->query("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit'])->fetch();
-                    
-                    ?>
-                    
-                <?php }?>
+            <div class="vide">
+                    <h1> Vous n'avez reçu aucune commande</h1>
+                    <a href="index.php">Revenir à l'accueil<a>
                 </div>
-                <div class='info'>
-                    <p>
-                    
-                </div>
-                
-            </article>
             <?php
         }
-    }
-    ?>
+        else {
+            ?>
+            <div class="cmd">
+            <?php
+            foreach($lesCommandes as $commande){
+                $idCom = $commande["numcom"];
+                $stmt = $bdd->prepare('SELECT DISTINCT p.codeProduit,puc.qteProd FROM Produit p INNER JOIN ProdUnitCommande puc ON p.codeProduit = puc.codeProduit where numCom =\''.$idCom.'\' AND CodeCompteVendeur =\''. $codeCompte.'\' ');
+                $stmt->execute();
+                $lesProduits = $stmt->fetchAll();
+                //print_r($lesProduits);
+                ?>
+                <div class="separateur"></div>
+                <article>
+                    <h2>Commande n°<?php echo $idCom ?></h2>
+                    <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Nom produit</th>
+                        <th>Code Produit</th>
+                        <th>Quantité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    //print_r($lesProduits);
+                    foreach($lesProduits as $prod){
+                        $idProd = $prod['codeproduit'];
+                        $qteprod =$prod['qteprod'];
+                        $stmt = $bdd->prepare('SELECT libelleProd FROM Produit where codeProduit =:idProd');
+                        $stmt->execute(array("idProd"=>$idProd));
+                        $nomProd = $stmt->fetch();
+                        //nomProd = $bdd->query('SELECT libelleProd FROM Produit where codeProduit = '. $idProd)->fetch();
+                        $stmt = $bdd->prepare('SELECT urlPhoto FROM Produit where codeProduit =:idProd');
+                        $stmt->execute(array("idProd"=>$idProd));
+                        $imgProd = $stmt->fetch();
+                        //$imgProd = $bdd->query("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit'])->fetch();
+                        
+                        ?>
+                        
+                        <tr>
+                            <td><?php echo "<img src='../".$imgProd['urlphoto']."' alt='Image du produit' class='imgCmd'>" ; ?></td>
+                            <td><?php echo $nomProd['libelleprod'];?></td>
+                            <td><?php echo $idProd ; ?></td>
+                            <td><?php echo $qteprod ;?></td>
+                        </tr>
+                    
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+                    
+                </article>
+                <?php
+            }
+        }
+        ?>
+        </div>
+        
     </div>
-    
-
     </main>
     <?php include "../includes/backoffice/footer.php"?>
+    <script src="../js/overlayCompteVendeur.js"></script>
 </body>
 </html>

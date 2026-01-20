@@ -4,7 +4,7 @@ SET SCHEMA 'alizon';
 CREATE EXTENSION IF NOT EXISTS unaccent;
 
 CREATE TABLE Photo(
-    urlPhoto VARCHAR(40) PRIMARY KEY NOT NULL
+    urlPhoto VARCHAR(100) PRIMARY KEY NOT NULL
 );
 
 CREATE TABLE Compte(
@@ -13,7 +13,7 @@ CREATE TABLE Compte(
     nom VARCHAR(20),
     prenom VARCHAR(20),
     email VARCHAR(50) NOT NULL,
-    mdp VARCHAR(32) NOT NULL,
+    mdp VARCHAR(20) NOT NULL,
     numTel VARCHAR(20)
 );
 CREATE TABLE Adresse(
@@ -71,16 +71,16 @@ CREATE TABLE Produit(
     nomTVA VARCHAR(20) REFERENCES TVA(nomTVA),--LIEN AVEC TVA
     prixTTC  NUMERIC,
 	noteMoy FLOAT DEFAULT 0,
-    hauteur FLOAT, --en mètre
-    longueur FLOAT, --en mètre
-    largeur FLOAT, --en mètre
+    spe1 VARCHAR(200), --en mètre
+    spe2 VARCHAR(200), --en mètre
+    spe3 VARCHAR(200), --en mètre
     dateCreaProduit TEXT NOT NULL, 
     dateModifProduit TEXT NOT NULL,
-    qteStock NUMERIC(10,2) NOT NULL DEFAULT 0,
+    qteStock INTEGER NOT NULL DEFAULT 0,
     Origine VARCHAR(20) NOT NULL check (Origine IN ('Breizh','France','Étranger')),
     Disponible BOOLEAN DEFAULT TRUE,
 	nomTarif VARCHAR(20) REFERENCES Tarification(nomTarif),
-    seuilAlerte NUMERIC(10,2) NOT NULL,
+    seuilAlerte INTEGER NOT NULL,
     urlPhoto VARCHAR(40) REFERENCES Photo(urlPhoto),
     codeCompteVendeur INTEGER REFERENCES Vendeur(codeCompte)	
 );
@@ -147,8 +147,7 @@ CREATE TABLE Commande(
     dateCom DATE,
     prixTTCtotal NUMERIC DEFAULT 0, 
     prixHTtotal NUMERIC DEFAULT 0,
-    idCarte INTEGER REFERENCES Carte(idCarte),
-	bordereau INTEGER
+    idCarte INTEGER REFERENCES Carte(idCarte)
 );
 CREATE TABLE Livraison(
     idLivraison SERIAL PRIMARY KEY NOT NULL,
@@ -222,6 +221,7 @@ CREATE TABLE Vote(
 CREATE TABLE FairePromotion(
 	codeProduit INTEGER REFERENCES Produit(codeProduit),
 	idPromotion INTEGER REFERENCES Promotion(idPromotion),
+	urlPhoto VARCHAR REFERENCES Photo(urlPhoto),
 	PRIMARY KEY(codeProduit, idPromotion)
 );
 
@@ -270,32 +270,49 @@ EXECUTE FUNCTION calcul_prixTTC();
 --ProdUnitCommande.PrixTTC = produit.prixTTC--
 
 CREATE FUNCTION duplique_prixTTC()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER AS $$ 
+declare
+    idRemiseExists INTEGER;
+    tauxRemise float;
+    prodTauxTVA float;
+    prodNomTVA VARCHAR;
 BEGIN
-	SELECT Produit.prixTTC * NEW.qteProd INTO NEW.prixTTCtotal
-	FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
-	RETURN NEW;
+    idRemiseExists = (SELECT idReduction from alizon.FaireReduction WHERE codeProduit = NEW.codeProduit);
+    prodNomTVA = (SELECT nomTVA from produit where codeProduit = NEW.codeProduit);
+    IF idRemiseExists IS NOT NULL THEN
+        prodTauxTVA = (SELECT tauxTVA from TVA where nomTVA = prodNomTVA);
+        tauxRemise = (SELECT remise FROM Reduction WHERE idReduction = idRemiseExists);
+
+        SELECT ((Produit.prixHT * (1 - tauxRemise / 100)) * (1 + prodTauxTVA / 100)) * NEW.qteProd INTO NEW.prixTTCtotal 
+        FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
+    else
+        SELECT Produit.prixTTC * NEW.qteProd INTO NEW.prixTTCtotal
+        FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
+    end if;
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-CREATE TRIGGER trg_dupli_prixTTC
-BEFORE INSERT OR UPDATE ON ProdUnitCommande
-FOR EACH ROW
-EXECUTE FUNCTION duplique_prixTTC();
 
 --ProdUnitCommande.PrixHT = produit.prixHT--
 
 CREATE FUNCTION duplique_prixHT()
 RETURNS TRIGGER AS $$
+declare
+    idRemiseExists INTEGER;
+    tauxRemise float;
 BEGIN
-	SELECT Produit.prixHT * NEW.qteProd INTO NEW.prixHTtotal
-	FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
-	RETURN NEW;
+    idRemiseExists = (SELECT idReduction from alizon.FaireReduction WHERE codeProduit = NEW.codeProduit);
+    IF idRemiseExists IS NOT NULL THEN
+        tauxRemise = (SELECT remise FROM Reduction WHERE idReduction = idRemiseExists);
+        SELECT (Produit.prixHT * (1 - tauxRemise / 100)) * NEW.qteProd INTO NEW.prixHTtotal 
+        FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
+    ELSE
+        SELECT Produit.prixHT * NEW.qteProd INTO NEW.prixHTtotal
+        FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
+    END IF;
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-CREATE TRIGGER trg_dupli_prixHT
-BEFORE INSERT OR UPDATE ON ProdUnitCommande
-FOR EACH ROW
-EXECUTE FUNCTION duplique_prixHT();
 
 --Triggers prixHT et prixTTC--
 
@@ -516,4 +533,3 @@ CREATE TRIGGER trg_moyenne_Produit
 AFTER INSERT OR UPDATE ON alizon.Avis
 FOR EACH ROW
 EXECUTE FUNCTION alizon.MoyenneProduit();
-SELECT * FROM alizon.Commande;
