@@ -114,7 +114,6 @@
             <span>Le numéro doit être dans le format suivant : 0102030405</span>
             <label for="dateNaiss">Date de naissance</label>
             <input type="date" name="dateNaissance" class="boutonSec" id="dateNaiss" onChange="verifDate(event)" value="<?php echo $compte["datenaissance"]?>"required disabled/>
-            <?php if($adresse):?>
             <h3>Adresse</h3> 
             <div class="container-fluid p-0">
                 <div class="row ">                      
@@ -142,7 +141,6 @@
             <input type="text" name="numAppart" id="numAptCli" value="<?php if($adresse["numappart"]){echo $adresse["numappart"];}else{echo "";}?>" disabled/>
             <label for="compAdrCli">Complément</label>
             <input type="text" name="complementAdresse" id="compAdrCli" value="<?php if($adresse["complementadresse"]){echo $adresse["complementadresse"];}else{echo "";}?>" disabled/>
-            <?php endif?>
 
             <!--<label for="mdpCli">Mot de passe</label>
             <input type="password" name="mdp" id="mdpCli" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required disabled/>
