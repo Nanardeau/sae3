@@ -83,7 +83,7 @@ $idPanier = $panier["idpanier"];
             </article>
         </div>
     <main id="mainCrt">
-        <nav class="ariane" id="navTablette">
+        <div class="ariane" id="navTablette">
             <a class="arianeItem" href="panier.php">
                 <svg width="358" height="80" viewBox="0 0 358 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_2882_8044)">
@@ -144,8 +144,8 @@ $idPanier = $panier["idpanier"];
                 </defs>
                 </svg>
             </a>
-        </nav>
-        <nav class="ariane" id="navMobile">
+        </div>
+        <div class="ariane" id="navMobile">
             <a class="arianeItem" href="panier.php">
                 <svg width="128" height="58" viewBox="0 0 128 58" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_2903_8087)">
@@ -208,7 +208,7 @@ $idPanier = $panier["idpanier"];
                 </svg>
             </a>
 
-        </nav>
+        </div>
 
         <div class="asideSec">
         <?php
@@ -231,8 +231,22 @@ $idPanier = $panier["idpanier"];
                         
                         foreach($produits as $prodUnit){
                             ?><div class="libelleProdRecap"><?php
+                            $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
+                            $stmt->execute(['id' => $prodUnit["codeproduit"] ]);
+                            $infoRemise = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $hasRemise = $stmt->rowCount() > 0;
+
                             $detailProd = $bdd->query("SELECT * FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
-                            echo "<p>Article ".$i." (".$detailProd["libelleprod"]. ") : ( x ". number_format((int)$prodUnit["qteprod"], 0, '.', '')." )</p><p class=\"prixAffiche\">".number_format((float)$prodUnit["prixhttotal"], 2, '.', '')."€</p>";
+                            if($hasRemise){
+                                $stmtRem = $bdd->prepare("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = :id");
+                                $stmtRem->execute(['id' => $prodUnit["codeproduit"] ]);
+                                $prixBase = $stmtRem->fetch();
+                                echo "<p>Article ".$i." (".$detailProd["libelleprod"]. ") : ( x ". number_format((int)$prodUnit["qteprod"], 0, '.', '')." )</p><p class=\"prixReducRed\">".number_format((float)$prodUnit["prixhttotal"], 2, '.', '')."€ <span class=\"remise\"> - ".$infoRemise[0]['remise']."%</span></p><p class=\"prixNormalbarre\">".$prixBase['prixttc']*$prodUnit["qteprod"]."€ ";
+                            }else{
+                                echo "<p>Article ".$i." (".$detailProd["libelleprod"]. ") : ( x ". number_format((int)$prodUnit["qteprod"], 0, '.', '')." )</p><p class=\"prixAffiche\">".number_format((float)$prodUnit["prixhttotal"], 2, '.', '')."€</p>";
+                            }
+
+                            
                             ?><div><button id="poubelle" onclick="supprimerProd(<?php echo $idPanier ?> , <?php echo $prodUnit['codeproduit']?>)"><img src="img/Icon_poubelle.svg" alt="poubelle" title="poubelle"/></button></div><?php
 
                             $i++;
@@ -280,10 +294,10 @@ $idPanier = $panier["idpanier"];
                         <label for="cgv">J'ai lu et accepté les <a href="CGV.php">Conditions Générales de Vente (CGV)</a></label>
                     </div>
                 </form>
-                <nav>
+                <div>
                     <button class="bouton" id="btnAnnuler" onclick="annuler()">Annuler</button>
                     <button type="submit" class="btnJaune" id="btnPayer" onclick="payer()">Payer</button>
-                </nav>
+                </div>
             </article>
 
      </section>

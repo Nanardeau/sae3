@@ -1,9 +1,10 @@
 @use '../components/fonts.scss';
 @use '../tools/vFront' as *;
 @use './styleCom' as *;
+@use '../tools/mixin/com' as *;
 
 .bouton{
-    padding:$pad * 2 2em;
+    @include bouton;
     font-size:large;
     margin-bottom:1em;
     

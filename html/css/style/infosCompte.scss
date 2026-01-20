@@ -1,7 +1,7 @@
 @use './styleCom' as *;
 @use '../tools/vFront' as *;
 @use "../tools/mixin/com" as *;
-@import "./creerCompteFront.scss";
+@use "./creerCompteFront.scss";
 
 form{
     input{
@@ -120,6 +120,10 @@ input[type="file"]{
 .btnJaune{
     margin-top:2em;
     width:30%;
+
+
+    
+    height: 4em;
     @media #{$mobile}{
         width:60%;
     }
