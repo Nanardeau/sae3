@@ -1,6 +1,13 @@
 <?php
 session_start();
+if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
+    header('location: connexionVendeur.php');
+    
+}else{
 
+    $codeCompte = $_SESSION["codeCompte"];
+    
+}
 
     require_once('../_env.php');
     
@@ -22,22 +29,7 @@ session_start();
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 
-    $estVendeur = false;
-    if(isset($_SESSION["codeCompte"])){
 
-        $vendeurs = $bdd->query("SELECT ALL codeCompte FROM alizon.Vendeur")->fetchAll();
-        foreach($vendeurs as $vendeur){
-            if($vendeur["codecompte"] == $_SESSION["codeCompte"]){
-                $estVendeur = true;
-            }
-        }
-    }
-    if(!$estVendeur || !isset($_SESSION["codeCompte"])){
-        exit(header("location:connexionVendeur.php"));
-    }
-    else{
-        $codeCompte = $_SESSION["codeCompte"];
-    }
 $sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
 $stmt = $bdd->query($sql);
 $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -65,6 +57,30 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
             </style>
     </head>
     <body>
+        <script>
+ 
+        document.cookie = "qteAjout = " + 0;
+        
+        const btnReappro = document.getElementById("btnReappro");
+
+        function ouvrirReappro() {
+            document.getElementById("divReappro").classList.add("Rea-open");
+        };
+        function annulerReappro(){
+            document.getElementById("divReappro").classList.remove("Rea-open");
+        }
+        function validerReappro(){
+            let qte = document.getElementById("qteAjout").value;
+            if (isNaN(qte) || qte < 0) {
+                alert("Veuillez entrer une quantité positive");
+            return;
+            }
+            document.getElementById("divReappro").classList.remove("Rea-open");
+            document.cookie = "qteAjout = " + qte;
+            window.location.reload();
+        }
+    
+        </script>
         <?php include '../includes/backoffice/header.php';
         $bdd->query("SET SCHEMA 'alizon'");?>
         <main>
@@ -103,7 +119,6 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                     Ajouter au catalogue
                 </a>
                 <?php } ?>
-                
                 </a>
                 <?php 
                     $stmt = $bdd->prepare("SELECT * FROM alizon.FairePromotion WHERE codeProduit = :id");
@@ -140,10 +155,6 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                     Ajouter une remise
                 </a>
                 <?php } ?>
-                <a class="btnacc rouge" href="#" onclick="event.preventDefault(); supprimerCatalogue(<?php echo $code_produit?>)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                    Supprimer le produit
-                </a>
             </section>
             <div class="right-content">
                 <!-- <a href="index.php" class="btn-retour">
@@ -527,27 +538,6 @@ if(isset($_COOKIE["qteAjout"])){
     
 }
 ?>
-        <script>
- 
-        document.cookie = "qteAjout = " + 0;
         
-        const btnReappro = document.getElementById("btnReappro");
-        //btnReappro.addEventListener("click", ouvrirReappro());
-
-        function ouvrirReappro() {
-            document.getElementById("divReappro").classList.add("Rea-open");
-        };
-        function annulerReappro(){
-            document.getElementById("divReappro").classList.remove("Rea-open");
-        }
-        function validerReappro(){
-            let qte = document.getElementById("qteAjout").value;
-            document.getElementById("divReappro").classList.remove("Rea-open");
-            document.cookie = "qteAjout = " + qte;
-            window.location.reload();
-            
-        }
-    
-        </script>
     </body>
 </html>
