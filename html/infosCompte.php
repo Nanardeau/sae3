@@ -120,21 +120,21 @@
                 <div class="row ">                      
                     <div class="col-3 labelInput">
                         <label for="numRueCli">Numéro</label>
-                        <input type="text" name="num" id="numRueCli" value="<?php echo $adresse["num"]?>"disabled/>
+                        <input type="text" name="num" id="numRueCli" value="<?php echo $adresse ? $adresse["num"] : ""?>"disabled/>
                     </div>
                     <div class="col-9 labelInput">
                         <label for="nomRueCli">Nom de la rue, voie</label>
-                        <input type="text" name="nomRue" id="nomRueCli" value="<?php echo $adresse["nomrue"]?>"disabled/>
+                        <input type="text" name="nomRue" id="nomRueCli" value="<?php echo $adresse ? $adresse["nomrue"] : ""?>"disabled/>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-4 labelInput">
                         <label for="codePostalCli">Code postal</label>
-                        <input type="text" name="codePostal" id="codePostalCli" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" value="<?php echo $adresse["codepostal"]?>" disabled/>
+                        <input type="text" name="codePostal" id="codePostalCli" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" value="<?php echo $adresse ? $adresse["codepostal"] : ""?>" disabled/>
                     </div>
                     <div class="col-8 labelInput">
                         <label for="villeCli">Ville</label>
-                        <input type="text" name="nomVille" id="villeCli" value="<?php echo $adresse["nomville"]?>" disabled/>
+                        <input type="text" name="nomVille" id="villeCli" value="<?php echo $adresse ? $adresse["nomville"] : ""?>" disabled/>
                     </div>
                 </div>
             </div>
