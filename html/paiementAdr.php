@@ -261,12 +261,12 @@
                         <div class="ligneInput">
                             <div class="labelInput">
                                 <label for="numRue">Numéro *</label>
-                                <input type="text" name="numRue" id="numRue" value="<?php echo $infosAdresse["num"]?>" required/>
+                                <input type="text" name="numRue" id="numRue" value="<?php echo $infosAdresse ? $infosAdresse["num"] : ""?>" required/>
                             </div>
                         
                             <div class="labelInput">
                                 <label for="nomRue">Rue *</label>
-                                <input type="text" name="nomRue" id="nomRue" value="<?php echo $infosAdresse["nomrue"]?>" required/>
+                                <input type="text" name="nomRue" id="nomRue" value="<?php echo $infosAdresse ? $infosAdresse["nomrue"] : ""?>" required/>
                             </div>
                             
 
@@ -275,7 +275,7 @@
                             <div class="labelInput">
                                 
                                 <label for="codePostal">Code postal *</label>
-                                <input type="text" name="codePostal" id="codePostal" value="<?php echo $infosAdresse["codepostal"]?>" pattern="\d{5}"required/>
+                                <input type="text" name="codePostal" id="codePostal" value="<?php echo $infosAdresse ? $infosAdresse["codepostal"] : ""?>" pattern="\d{5}"required/>
                                 <span>Le code postal est incorrect</span>
                             </div>
                             <div class="labelInput">
