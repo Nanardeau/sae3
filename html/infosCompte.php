@@ -59,7 +59,6 @@
         <a href="index.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
 
         <div class="containerForm">
-
         <form action="modifCompteCli.php" method="post" enctype="multipart/form-data">
             <div class="crayonPhoto">
                 <img src="<?php echo $photo["urlphoto"]?>" alt="photoProfil" title="photoProfil"/>

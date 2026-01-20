@@ -70,7 +70,7 @@
 
     <main id="mainAdr">
         <?php
-            include 'includes/menu_cat.php';
+            //include 'includes/menu_cat.php';
             include 'includes/menuCompte.php';
         ?>
 
@@ -88,7 +88,7 @@
     }
     ?>
     <div class="conteneur">
-    <nav class="ariane" id="navTablette">
+    <div class="ariane" id="navTablette">
         <a class="arianeItem" href="panier.php">
             <svg width="358" height="80" viewBox="0 0 358 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d_2882_8044)">
@@ -151,9 +151,9 @@
             </svg>
         </a>
         
-    </nav>
+        </div>
 
-    <nav class="ariane" id="navMobile">
+    <div class="ariane" id="navMobile">
         <a class="arianeItem" href="panier.php">
             <svg width="128" height="58" viewBox="0 0 128 58" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d_2903_8087)">
@@ -216,7 +216,7 @@
             </svg>
         </a>
 
-    </nav>
+    </div>
         <div class="ligneSection">
             <div class="colonne">
                 <section id="adresseLivraison">

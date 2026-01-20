@@ -83,7 +83,7 @@ $idPanier = $panier["idpanier"];
             </article>
         </div>
     <main id="mainCrt">
-        <nav class="ariane" id="navTablette">
+        <div class="ariane" id="navTablette">
             <a class="arianeItem" href="panier.php">
                 <svg width="358" height="80" viewBox="0 0 358 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_2882_8044)">
@@ -144,8 +144,8 @@ $idPanier = $panier["idpanier"];
                 </defs>
                 </svg>
             </a>
-        </nav>
-        <nav class="ariane" id="navMobile">
+        </div>
+        <div class="ariane" id="navMobile">
             <a class="arianeItem" href="panier.php">
                 <svg width="128" height="58" viewBox="0 0 128 58" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_2903_8087)">
@@ -208,7 +208,7 @@ $idPanier = $panier["idpanier"];
                 </svg>
             </a>
 
-        </nav>
+        </div>
 
         <div class="asideSec">
         <?php
@@ -280,10 +280,10 @@ $idPanier = $panier["idpanier"];
                         <label for="cgv">J'ai lu et accepté les <a href="CGV.php">Conditions Générales de Vente (CGV)</a></label>
                     </div>
                 </form>
-                <nav>
+                <div>
                     <button class="bouton" id="btnAnnuler" onclick="annuler()">Annuler</button>
                     <button type="submit" class="btnJaune" id="btnPayer" onclick="payer()">Payer</button>
-                </nav>
+                </div>
             </article>
 
      </section>
