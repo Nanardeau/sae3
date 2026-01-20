@@ -132,6 +132,8 @@ function updateStars(note) {
     });
 }
 
+updateStars(1);
+
 stars.forEach(star => {
 
     star.addEventListener('click', () => {

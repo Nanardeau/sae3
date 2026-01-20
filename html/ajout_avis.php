@@ -25,7 +25,7 @@ try {
     $codeProduit = $_POST['codeProduit'] ?? null;
     $commentaire = $_POST['commentaire'] ?? null;
     $noteProd     = $_POST['noteProd'] ?? null;
-    $codeCompteCli = $_POST['codeCompteCli'] ?? null;
+    $codeCompteCli = $_SESSION['codeCompte'] ?? null;
 
     $sql = "INSERT INTO Avis (commentaire, noteProd, codeCompteCli, codeProduit, datePublication)
             VALUES (:commentaire, :noteProd, :cli, :prod, null)";

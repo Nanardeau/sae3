@@ -47,7 +47,6 @@ $sqlAvis = "SELECT A.*, C.prenom, C.nom,
     ORDER BY A.datePublication DESC
 ";
 
-
 $stmtAvis = $bdd->prepare($sqlAvis);
 $stmtAvis->execute(['id' => $id]);
 $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
@@ -159,7 +158,16 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</button>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
-                <?php if(isset($_SESSION["codeCompte"])):?>
+
+
+
+                <?php
+                if (isset($_SESSION["codeCompte"])){
+                    $commande='SELECT * FROM alizon.ProdUnitCommande NATURAL JOIN alizon.Commande WHERE alizon.Commande.codeCompte = '.$_SESSION["codeCompte"].' AND alizon.ProdUnitCommande.codeProduit = '.$produit['codeproduit'].'';
+                    $commander = $bdd->query($commande)->fetch();
+                }
+                ?>
+                <?php if(isset($_SESSION["codeCompte"]) and $commander!=NULL):   // && $commander!=NULL Si l'utilisateur a comandé le produit, afficher le formulaire d'avis?>
                 <form class="avis-section" method="POST" action="ajout_avis.php" enctype="multipart/form-data">
 
                     <h2>Votre avis</h2>
@@ -239,10 +247,8 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 
             </div>
         </section>
-
         <section class="avis-produits">
             <h1>Les avis</h1>
-
             <div class="liste-avis">
                 <?php if (empty($avisList)): ?>
                     <p>Aucun avis pour ce produit.</p>
@@ -266,7 +272,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 
                                 </strong>
                                 <span class="date">
-                                    <?= date("d/m/Y", strtotime($avis['datepublication'])) ?>
+                                    <?php echo htmlspecialchars($avis['datepublication']) ?>
                                 </span>
                             </div>
                             <span class="note">
@@ -276,26 +282,85 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                             </span>
 
                             <p class="commentaire">
-                                <?= htmlspecialchars($avis['commentaire']) ?>
+                                <?php echo htmlspecialchars($avis['commentaire']) ?>
                             </p>
                             <?php if (!empty($avis['photos'])): ?>
                                 <div id="overlay-photos-avis" class="photos-avis">
                                     <?php foreach ($avis['photos'] as $photo): ?>
                                         <img src="<?= htmlspecialchars($photo) ?>" 
                                             alt="Photo de l'avis" 
-                                            class="photo-avis">
+                                            class="photo-avis"
+                                            onclick="openOverlay(this.src)">
+                                        <img src="<?= htmlspecialchars($photo) ?>" 
+                                            alt="Photo de l'avis" 
+                                            class="photo-avis"
+                                            id="overlay"
+                                            onclick="fermerOverlay()">
                                     <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php 
+                            if ($_SESSION && $_SESSION["codeCompte"]==$avis["codecomptecli"]):
+                            ?>
+                                <div class="actions-avis">
+                                    <a id="btnModifierAvis" onclick="openOverlayModif(<?php echo $avis['noteprod'] ?>, <?php echo $avis['numavis'] ?>, <?php echo $avis['codeproduit'] ?>, '<?php echo $avis['commentaire'] ?>')">Modifier</a>
+                                    <div class="overlaymodifier" id="<?php echo $avis['numavis'] ?>">
+                                        
+                                        <form class="avis-section" method="POST" action="modifier_avis.php?noteprod=<?php echo $avis['noteprod'] ?>&codeAvis=<?php echo $avis['numavis'] ?>&codeProduit=<?php echo $avis['codeproduit'] ?>" enctype="multipart/form-data">
+                                            <h2>Modifier votre avis</h2>
+
+                                            <div class="noter" id="stars">
+                                                <span data-value="1" onclick="selectStar(1, <?php echo $avis['numavis'] ?>)">★</span>
+                                                <span data-value="2" onclick="selectStar(2, <?php echo $avis['numavis'] ?>)">★</span>
+                                                <span data-value="3" onclick="selectStar(3, <?php echo $avis['numavis'] ?>)">★</span>
+                                                <span data-value="4" onclick="selectStar(4, <?php echo $avis['numavis'] ?>)">★</span>
+                                                <span data-value="5" onclick="selectStar(5, <?php echo $avis['numavis'] ?>)">★</span>
+                                            </div>
+                                            
+                                            <span id="note-value" style="display:none;">0</span>
+
+                                            <textarea name="commentaire" maxlength="255" placeholder="Rédiger un commentaire..." required><?php echo $avis['commentaire'] ?></textarea>
+                                            
+                                            <div class="plein-buttons">
+                                                <?php if (!empty($avis['photos'])): ?>
+                                                    <p>La photo est prise en compte</p>
+                                                <?php endif; ?>
+                                                <label class="photo" for="contact_upload">Ajouter des photos</label>
+                                                <input type="file" name="contact_upload" id="contact_upload" /><?php if(isset($contact_upload)) echo $contact_upload; ?></textarea>
+                                                
+                                                <button type="reset" class="cancel" onclick="closeOverlayModif(<?php echo $avis['numavis'] ?>)">Annuler</button>
+                                                <button type="submit" class="submit">Modifier</button>
+                                                
+                                                
+                                            </div>                                        
+                                            <!--<input type="hidden" name="commentaire" value="<?php echo $avis['commentaire'] ?>">-->
+                                            <!--<input type="hidden" name="codeProduit" value="<?php echo $produit['codeproduit'] ?>">-->
+                                            <input type="hidden" name="noteprod" id="noteprod<?php echo $avis['numavis'] ?>" value=1>
+                                        </form>
+                                    </div>
+                                    <a href="supprimer_avis.php?codeavis=<?= $avis['numavis'] ?>&codeproduit=<?= $avis['codeproduit'] ?>">Supprimer</a>
+                                </div>
+                            <?php elseif ($_SESSION): ?>
+                                <div class="signalement-avis">
+                                    <a id="btnSignalerAvis" onclick="openOverlaySignaler()">Signaler</a>
+                                    <div class="overlaysignaler" id="overlaysignaler">
+                                        <form class="avis-section" method="POST" action="signaler_avis.php?codeavis=<?= $avis['numavis'] ?>&codeproduit=<?= $avis['codeproduit'] ?>" enctype="multipart/form-data">
+                                            <h2>Signaler cet avis</h2>
+                                            <textarea name="raison" maxlength="255" placeholder="Rédiger la raison du signalement..." required></textarea>
+                                            <div class="bouttonSignalement" id="bouttonSignalement">
+                                                <button type="reset" class="cancel" onclick="closeOverlaySignaler()">Annuler</button>
+                                                <button type="submit" class="submit">Signaler</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
-        </section>
-
-        
+        </section>        
     </main>
-
     <?php include 'includes/footer.php'; ?>
     <script src="js/achat.js"></script>
 </body>
