@@ -217,3 +217,11 @@ form{
     height: 24px;
     cursor: pointer;
 }
+
+.dropreview{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    align-items: center;
+    padding-bottom: 20px;
+}

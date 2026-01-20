@@ -1,8 +1,8 @@
 @use "../tools/vFront" as *;
 @use "sass:math";
 
-$wCard:240px;
-$hCard: 390px;
+$wCard:230px;
+$hCard: 500px;
 $hCard-mob: 300px;
 
 .card{
@@ -22,49 +22,67 @@ $hCard-mob: 300px;
         
         height: $hCard-mob;
     }
+    .description{
+        grid-area: 2/1/2/4;
+        font-size: 0.9rem;
+        padding-right: 15px;
+        color: black;
+        @media #{$mobile}{
+            display:none;
+        }
+    }
     figure{
         grid-area: 1/1/2/3;
         
         margin:0;
         img{
-            width: 100%;
-            
+            width: $wCard - 5px;
             background-color: white;
             //max-height: 180px;
-            height: 180px;
+            height: $wCard - 5px;
             object-fit: cover;
             border-radius: math.div($radius,2);
         }
         figcaption{
             margin-top : 10px;
-            
+            font-size:large;
+            font-weight: bold;
         }
         
     }
+    .etoiles {
+        position: relative;
+        margin-top: 5px;
+        display:flex;
+        flex-direction: row;
+        height: auto;
+        grid-area: 1/2/1/1;
+        top: 35px;
+        @media #{$mobile} {
+            top:28px;
+        }
+    }
     .prix{
-        grid-area: 2/1/3/2;
+        grid-area: 2/1/3/1;
         align-content: flex-end;
-        margin:0;
-        
+        font-weight: bold;
+        font-size: 16px;
+        @media #{$mobile} {
+            margin-top: 10px;
+        }
     }
     div{
-        grid-area: 2/2/3/3;
+        grid-area: 2/2/2/2;
         display: flex;
         flex-direction: column-reverse;
         align-items: end;
         float: right;
         height: auto;
-        a svg{
-            display: none;
-            @media #{$mobile} {
-                display: block;
-                fill: $eleOrange;
-                stoke : $noir;
-                
-                
-            }
+        @media #{$mobile} {
+            height: 30px;
         }
         .button{
+            right: 20px;
             display : flex;
             align-items: center;
             align-content: center;
@@ -86,5 +104,32 @@ $hCard-mob: 300px;
                 
             }
         }
+    }
+}
+
+.etoile {
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+.etoile.pleine {
+    color: #f5b301;
+}
+
+.mobile-commande {
+    display: none;
+    background-color: transparent;
+    border: none;
+    color: transparent;
+    @media #{$mobile} {
+        display: block;
+        position: relative;
+        top:-15px;
+    }
+    svg {
+        fill: $eleOrange;
+        stroke : $noir;
+        width: 30px;
+        height: auto;
     }
 }

@@ -422,9 +422,18 @@ main input:user-invalid + span, main input.invalid + span {
   display: block;
 }
 main .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: black 2px solid;
+  background-color: white;
   border-radius: 16px;
   display: flex;
+  padding-bottom: 20px;
+}
+main .main h3 {
+  align-self: center;
+  text-decoration: underline;
 }
 main .main section {
   padding-left: 40px;
@@ -442,7 +451,7 @@ main .main section label {
   font-family: "Baloo";
 }
 main .main section input {
-  background-color: white;
+  background-color: #eaeaea;
   border-radius: 8px;
   height: 20px;
   font-size: 16px;
@@ -492,8 +501,8 @@ main .boutton {
 main .boutton button {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #CD4B22;
   color: white;
@@ -515,8 +524,8 @@ main .boutton button:active {
 main .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #6CA6E9;
   color: white;
@@ -532,4 +541,22 @@ main .bouton:hover {
 }
 main .bouton:active {
   background-color: rgb(13.2781065089, 48.2840236686, 88.7218934911);
+}
+
+details summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary h3 {
+  margin: 0;
+  text-align: left;
+}
+
+h3 {
+  text-align: center;
 }/*# sourceMappingURL=creer_compte_vendeur.css.map */

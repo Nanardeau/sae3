@@ -421,4 +421,43 @@ body {
 
 .nav-btn {
   margin-top: 28px;
+}
+
+.btnSupprReduc {
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 8px;
+  display: flex;
+  justify-self: left;
+  background-color: rgb(255, 0, 0);
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.btnSupprReduc:hover {
+  background-color: rgb(255, 67, 67);
+}
+
+.produit {
+  height: 27em;
+  width: 18em;
+}
+.produit .infoPromo {
+  color: red;
+  padding: 0 10px;
+}
+
+.produit-remise {
+  height: 30em;
+}
+
+.remise {
+  color: red;
+  margin-left: 10px;
+}
+
+.prixNormal {
+  text-decoration: line-through;
+  color: grey;
 }/*# sourceMappingURL=promotion.css.map */

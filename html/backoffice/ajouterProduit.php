@@ -150,12 +150,15 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
     <span class="cache">Le seuil d'alerte ne peut pas être négatif</span>
     <label for="photoProd" class="pObl">Photo du Produit</label>
     <!-- <input type="file" name="photo" id="photoProd" accept="image/*"/> -->
-    <div id="dropZone">
-        <span>Glissez une image ici ou cliquez</span>
-        <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
+    <div class="dropreview">
+        <div id="dropZone">
+            <span>Glissez une image ici ou cliquez</span>
+            <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
+        </div>
+        <div id="preview">
+        </div>
     </div>
-    <div id="preview">
-    </div>
+    
     <h3> Spécificitées du produit </h3>
     <div class="taille">
             <div class="labelInput">
@@ -196,6 +199,7 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                 evt.target.classList.add("invalid");
             }else{
                 evt.target.classList.remove("invalid");
+            }
         }
     }
 

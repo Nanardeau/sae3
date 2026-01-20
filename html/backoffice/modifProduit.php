@@ -172,13 +172,15 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
     <input type="number" name="seuil" min="0" placeholder="Seuil d'alerte du produit" value="<?php echo $res; ?>" id="seuil" required/>
     <span class="cache">Le seuil d'alerte ne peut pas être négatif</span>
     <label for="photoProd" class="pObl">Photo du Produit</label>
-    <div id="dropZone">
-        <span>Glissez une image ici ou cliquez</span>
-        <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
-    </div>
-    <!-- <input type="file" name="photo" id="photoProd" accept="image/*"/> -->
-    <div id="preview">
+    <div class="dropreview">
+        <div id="dropZone">
+            <span>Glissez une image ici ou cliquez</span>
+            <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
+        </div>
+        <!-- <input type="file" name="photo" id="photoProd" accept="image/*"/> -->
+        <div id="preview">
 
+        </div>
     </div>
     <?php
     $spe1=$info["spe1"];
@@ -225,6 +227,7 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                 evt.target.classList.add("invalid");
             }else{
                 evt.target.classList.remove("invalid");
+            }
         }
     }
 

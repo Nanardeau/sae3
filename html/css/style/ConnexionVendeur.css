@@ -437,8 +437,8 @@ form input {
 form .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #CD4B22;
   color: white;
@@ -490,8 +490,8 @@ aside figure img {
 .bouton {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
   background-color: #CD4B22;
   color: white;

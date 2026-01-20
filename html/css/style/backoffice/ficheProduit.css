@@ -845,4 +845,15 @@ body {
 
 .overlayContentCompte hr {
   margin: 4.95px 7px;
+}
+
+.prixNormalbarre {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.prixReduc {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
 }/*# sourceMappingURL=ficheProduit.css.map */

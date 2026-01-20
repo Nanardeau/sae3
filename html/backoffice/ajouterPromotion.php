@@ -43,207 +43,236 @@ $codeCompte = $_SESSION["codeCompte"];
 $sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
 $stmt = $bdd->query($sql);
 $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+$codeProduit = $_GET['Produit'];
+
+$sql2 = "
+SELECT p.idPromotion, p.dateDebut, p.dateFin, ph.urlPhoto
+FROM Promotion p
+JOIN FairePromotion fp ON fp.idPromotion = p.idPromotion
+LEFT JOIN Photo ph ON ph.urlPhoto = fp.urlPhoto
+WHERE fp.codeProduit = :codeProduit
+LIMIT 1
+";
+
+$stmt = $bdd->prepare($sql2);
+$stmt->execute(['codeProduit' => $codeProduit]);
+$promo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$hasPromo = ($promo !== false);
+
+
+
 ?>
 
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/style/backoffice/modifier_info_produit.css" rel="stylesheet" type="text/css">
+    <link href="../css/style/backoffice/ajouterPromotion.css" rel="stylesheet" type="text/css">
+    <link href="../css/style/backoffice/ficheProduit.css" rel="stylesheet" type="text/css">
     <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="img/favicon_alizon.png" type="image/x-icon">
     <title>Alizon Back Office - Modifier la fiche produit</title>
 </head>
+
 <body>
-    <?php include("../includes/backoffice/header.php"); 
-        $code_produit=$_GET["codeProduit"];?>
-    
+    <?php include("../includes/backoffice/header.php"); ?>
+        <!-- <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
+        <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();"> -->
+        <!-- <a href="index.php" class="btn-retour">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left">
+                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                <path d="m14 16-4-4 4-4"/>
+            </svg>
+            Retour
+        </a> -->
+
 <main>
     <?php include '../includes/backoffice/menuCompteVendeur.php'; ?>
-    <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
-    <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
-    <!-- <a href="#" onclick="history.back(); class="btn-retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</a> -->
-    <?php if($erreur == "succes"){
-                echo "<h2 style=\"color:green\">Produit modifié avec succès</h2>";
-            }
-            else if($erreur == "image"){
-                echo "<h2 style=\"color:red\">ERREUR : Image indisponible</h2>";
-            }
-    ?>
+    <section class="nav-btn">
+        <?php $code_produit=$_GET["Produit"]; ?>
+        <a href="index.php" class="btnacc">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Accueil
+        </a>
+        <a class="btnacc" href="#" onclick="event.preventDefault(); history.back();" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>
+            Retour au produit
+        </a>
+        <!-- <?php 
+            $stmt = $bdd->prepare("SELECT * FROM alizon.FairePromotion WHERE codeProduit = :id");
+            $stmt->execute(['id' => $code_produit]);
+            $hasPromo = $stmt->rowCount() > 0;
 
-<form action="reqModifPromotion.php?codeproduit=<?php echo $_GET["codeProduit"] ?>" method="post" enctype="multipart/form-data">
-    <h2>Ajouter une Promotion</h2>
-    
-    <label for="nom">Intitulé</label>
-    <?php
+            $stmtSuppr = $bdd->prepare("DELETE FROM alizon.FairePromotion WHERE codeProduit = :id");
 
-    $info = $bdd->query("SELECT libelleProd FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
-    $res=$info["libelleprod"];
-    ?>
-    <input type="text" name="nom" placeholder="Intitulé..." value="<?php echo "$res"; ?>" id="nom" required/> 
-    <?php 
-    if($erreur == "produit"){
-        echo "<p style=\"color:red\">Produit déjà existant</p>";
-    }
-    $info = $bdd->query("SELECT descriptionProd FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
-                        
-    $res=$info["descriptionprod"];
-    ?>
-    
-    <label for="description">Description détaillée</label>
-    <textarea name="description" id="description" rows="5" cols="33" placeholder="Description détaillée..." required><?php echo $res; ?></textarea>
-    <label for="categorie">Catégorie</label>
-    <?php
-        
-        $info = $bdd->query("SELECT * FROM alizon.Categoriser WHERE codeproduit=$code_produit")->fetch();
-        $res=$info["libellecat"];
-    ?>
-    <select name="categorie" id="categorie" required>
-        <option value="Choisir une categorie" disabled selected><?php echo $res ?></option>
-        <?php 
-    $listCat = $bdd->query('SELECT DISTINCT libCat FROM SousCat'); //Nom de la catégorie  
-    
-    foreach ($listCat as $libcat) {
+            //if ($hasPromo){
         ?>
-    <option value="<?php echo $libcat['libcat']; ?>"><?php echo $libcat['libcat']; ?></option>
-    <?php
-    }
-    ?>
-    </select>
-    <label for="origine">Origine</label>
-    <span>Provenance du produit</span>
-    <?php
-        $info = $bdd->query("SELECT origine FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
-        $res=$info["origine"];
+            <a href="delPromo.php?Produit=<?php echo $code_produit?>&page=create" class="btnacc">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>   
+                Supprimer la Promotion
+            </a>
+            <a class="btnacc" href="ajouterPromotion.php?Produit=<?php echo $code_produit?>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone-icon lucide-megaphone"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>
+                Modifier la promotion
+            </a>
+            <?php// } else { ?>
+            <a class="btnacc" href="ajouterPromotion.php?Produit=<?php echo $code_produit?>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone-icon lucide-megaphone"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>
+                Ajouter une promotion
+            </a> -->
+        <?php //} ?>
+    </section>
+    <div class="right-content">
+        <?php if($erreur == "succes"){
+                    echo "<h2 style=\"color:green\">Produit créé avec succès</h2>";
+                }
+                else if($erreur == "image"){
+                    echo "<h2 style=\"color:red\">Produit image avec erreur</h2>";
+                }
 
-    ?>
-    <select name="origine" id="origine" required>
-        <option value="<?php echo $res; ?>" disabled selected><?php echo $res; ?></option>
-        <option value="Étranger">Étranger</option>
-        <option value="France">France</option>
-        <option value="Breizh">Breizh</option>
-    </select>
-    <label for="tarif">Tarification</label>
-    <span>Ajout du coût de livraison au prix HT du produit</span>
-    <?php
-        $info = $bdd->query("SELECT nomTarif FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
-        $res=$info["nomtarif"];
+            $sql = "SELECT count(*) as total FROM alizon.FairePromotion";
+            $stmt = $bdd->prepare($sql);
+            $stmt->execute();
+            $total = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
 
-    ?>
-    <select name="tarif" id="tarif" required>
-        <option value="<?php echo $res; ?>" disabled selected><?php echo $res; ?></option>
-        <option value="tarif1">Tarification 1 - 2,00€</option>
-        <option value="tarif2">Tarification 2 - 5,00€</option>
-        <option value="tarif3">Tarification 3 - 8,00€</option>
-        <option value="tarif4">Tarification 4 - 10,00€</option>
-        <option value="tarif5">Tarification 5 - 15,00€</option>
-    </select>
-    <label for="TVA">TVA</label>
-    <span>taux de TVA à appliquée au produit </span>
-    <?php
-        $info = $bdd->query("SELECT nomtva FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
-        $res=$info["nomtva"];
-
-    ?>
-    <select name="TVA" id="TVA" required>
-        <option value="<?php echo $res; ?>" disabled selected><?php echo $res; ?></option>
-        <?php 
-    $listTVA = $bdd->query('SELECT DISTINCT nomTVA FROM TVA'); //Nom de la catégorie  
-    foreach ($listTVA as $nomTVA) {
+            if(($total < 2) || $hasPromo){
         ?>
-    <option value="<?php echo $nomTVA['nomtva']; ?>"><?php echo $nomTVA['nomtva']; ?></option>
-    <?php
-    }
-    ?>
-    </select>
-    
-    <label for="qteStock" class="pObl">Quantité Stock</label>
-    <?php
-    $info = $bdd->query("SELECT * FROM alizon.Produit WHERE codeproduit=$code_produit")->fetch();
-    $res=$info["qtestock"];
-    ?>
-    <input type="number" name="qteStock" min="0" placeholder="Nombre de produit en stock" value="<?php echo $res; ?>" id="qteStock"/> 
-    <span class="cache">La quantité de stock ne peut pas être négative</span>
-    <label for="prix">Seuil d'alerte</label>
-    <?php
-    $res=$info["seuilalerte"];
-    
-    ?>
-    <input type="number" name="seuil" min="0" placeholder="Seuil d'alerte du produit" value="<?php echo $res; ?>" id="seuil" required/>
-    <span class="cache">Le seuil d'alerte ne peut pas être négatif</span>
-    <label for="photoProd" class="pObl">Photo du Produit</label>
-    <div id="dropZone">
-        <span>Glissez une image ici ou cliquez</span>
-        <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
-    </div>
-    <!-- <input type="file" name="photo" id="photoProd" accept="image/*"/> -->
-    <div id="preview">
+        <form action="reqModifierPromotion.php"
+            method="post"
+            enctype="multipart/form-data"
+            class="form-promo">
 
+            <h2>
+                <?= $hasPromo ? "Modifier la promotion" : "Créer une promotion" ?>
+            </h2>
+
+            <!-- Toujours envoyé -->
+            <input type="hidden" name="codeProduit" value="<?= $codeProduit ?>">
+
+            <!-- Seulement si promo existante -->
+            <?php if ($hasPromo): ?>
+                <input type="hidden" name="idPromotion" value="<?= $promo['idpromotion'] ?>">
+            <?php endif; ?>
+
+            
+
+            <!-- DATE DE DÉBUT -->
+            <label for="dateD">Date de début</label>
+            <input type="date"
+                id="dateD"
+                name="dateD"
+                value="<?= $hasPromo ? $promo['datedebut'] : '' ?>"
+                required>
+            <span class="cache">La date de début ne peut pas être antèrieur à aujourd'hui</span>
+
+            <!-- DATE DE FIN -->
+            <label for="dateF">Date de fin</label>
+            <input type="date"
+                id="dateF"
+                name="dateF"
+                value="<?= $hasPromo ? $promo['datefin'] : '' ?>"
+                required>
+            <span class="cache" id="errorDate">La date de fin doit être postérieure à la date de début.</span>
+
+            <!-- IMAGE ACTUELLE -->
+            <!-- <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
+                <div class="promo-image">
+                    <p>Image actuelle :</p>
+                    <img src="<?= $promo['urlphoto'] ?>" alt="Image promo" width="160">
+                    <input type="hidden"
+                        name="ancienneImage"
+                        value="<?= $promo['urlphoto'] ?>">
+                </div>
+            <?php endif; ?> -->
+
+            <!-- NOUVELLE IMAGE -->
+            <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
+                <input type="hidden"
+                    name="ancienneImage"
+                    value="<?= $promo['urlphoto'] ?>">
+            <?php endif; ?>
+
+            <div class="dropreview">
+                <div id="dropZone">
+                    <span>Glissez une image ici ou cliquez</span>
+                    <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
+                </div>
+                <!-- <input type="file" name="photo" id="photoProd" accept="image/*"/> -->
+                <div id="preview">
+                    <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
+                        <!-- <p><?= $promo['urlphoto'] ?></p> -->
+                        <img src="../<?= $promo['urlphoto'] ?>"
+                            alt="Image promo actuelle"
+                            class="preview-img">
+                    <?php endif; ?>
+                </div>
+
+            </div>
+            <label for="photo">
+                <?= $hasPromo ? "Changer l’image (optionnel)" : "Image de la promotion" ?>
+            </label>
+
+            <!-- SUBMIT -->
+            <input type="submit" value="<?= $hasPromo ? "Mettre à jour la promotion" : "Créer la promotion" ?>" class="bouton"/>
+    </form>
+        <?php } else { ?>
+            <h2>Limite de promotions atteinte</h2>
+            <p>Vous avez atteint la limite de 2 promotions simultanées. Veuillez supprimer une promotion existante avant d'en ajouter une nouvelle.</p>
+        <?php } ?>
+
+        <!-- <form action="reqAjouterPromotion.php" method="post" enctype="multipart/form-data">
+            <h2>Ajouter une promotion</h2>
+            <div class="dropreview">
+                <div id="dropZone">
+                    <span>Glissez une image ici ou cliquez</span>
+                    <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
+                </div>
+                <!-- <input type="file" name="photo" id="photoProd" accept="image/*"/>
+                <div id="preview">
+
+                </div>
+            </div>
+
+            <label for="dateD">Date de début de la promotion</label>
+            <input type="date" name="dateD" placeholder="" id="dateD" required/> 
+
+            <label for="dateF">Date de fin de la promotion</label>
+            <input type="date" name="dateF" placeholder="" id="dateF" required/>
+            <input type="hidden" name="idproduit" value="<?php echo $code_produit; ?>">
+
+            <input class="bouton" type="submit" id="creerPromo" value="Créer la promotion"/>
+        </form> -->
     </div>
-    <?php
-    $spe1=$info["spe1"];
-    $spe2=$info["spe2"];
-    $spe3=$info["spe3"];
-    $prix=$info["prixht"];
-    ?>
-    <h3> Spécificités du Produit </h3>
-    <div class="taille">
-            <div class="labelInput">
-                <label for="spe1">Spécificité 1</label>
-                <input type="text" name="spe1" placeholder="nomenclature a respecter : NOMDELASPE:Descritption" value="<?php echo $spe1; ?>" id="spe1"/>
-                <span class="cache">La spécificité 1 doit être au format NOMDELASPE:Description</span>
-            </div>
-            <div class="labelInput">
-                <label for="spe2">Spécificité 2</label>
-                <input type="text" name="spe2" placeholder="nomenclature a respecter : NOMDELASPE:Descritption" value="<?php echo $spe2; ?>" id="spe2"/>
-                <span class="cache">La spécificité 2 doit être au format NOMDELASPE:Description</span>
-            </div>
-            <div class="labelInput">
-                <label for="spe3">Spécificité 3</label>
-                <input type="text" name="spe3" placeholder="nomenclature a respecter : NOMDELASPE:Descritption" value="<?php echo $spe3; ?>" id="spe3"/>
-                <span class="cache">La spécificité 3 doit être au format NOMDELASPE:Description</span>
-            </div>
-    </div>
-    <label for="prix">Prix</label>
-    <input type="text" name="prix" placeholder="Prix Hors Taxe € (XX.XX)" value="<?php echo $prix; ?>" id="prix" pattern="[0-9]{1,}.[0-9]{2}" required/> 
-    <input class="bouton" type="submit" id="creerProduit" value="Valider le produit"/>
-</form>
-        
 </main>
-<?php include("../includes/backoffice/footer.php"); ?>
-<script src="../js/preview-img.js"></script>
-<script>
-    let qtestock = document.getElementById("qteStock");
-    let seuil = document.getElementById("seuil");
+    <?php include('../includes/backoffice/footer.php');?>
+    <script src="../js/preview-img.js"></script>
+    <script>
 
-    qtestock.addEventListener("focusout", verfifQte);
-    seuil.addEventListener("focusout", verfifQte);
+    let dateD = document.getElementById("dateD");
+    let dateF = document.getElementById("dateF");
+    let dateToday = new Date().toISOString().split('T')[0];
 
-    function verfifQte(evt){
+    console.log(dateToday);
+
+    dateD.addEventListener("focusout", verifDateD);
+    dateF.addEventListener("focusout", verifDateF);
+
+    function verifDateD(evt){
         if(evt.type === "focusout"){
-            if(parseInt(evt.target.value) < 0){
-                evt.target.classList.add("invalid");
+            if((dateF.value <= dateD.value) && (dateD.value < dateToday)){
+                dateD.classList.add("invalid");
             }else{
-                evt.target.classList.remove("invalid");
+                dateD.classList.remove("invalid");
+            }
         }
     }
 
-    let spe1 = document.getElementById("spe1");
-    let spe2 = document.getElementById("spe2");
-    let spe3 = document.getElementById("spe3");
-    let formatSpe = /^([A-Za-zÀ-ÖØ-öø-ÿ0-9\s-]{1,}):([A-Za-zÀ-ÖØ-öø-ÿ0-9\s,.-]{1,})$/;
-    spe1.addEventListener("focusout", verifFormatSpe);
-    spe2.addEventListener("focusout", verifFormatSpe);
-    spe3.addEventListener("focusout", verifFormatSpe);
-
-    let validationForm = document.getElementById("creerProduit");
-    validationForm.addEventListener("click", fullverif);
-
-    function verifFormatSpe(evt){
+    function verifDateF(evt){
         if(evt.type === "focusout"){
-            if((!formatSpe.test(evt.target.value)) && evt.target.value !== ""){
-                // alert("Le format de la spécificité 1 n'est pas respecté. Veuillez respecter le format NOMDELASPE:Description");
-                // spe1.value = NULL;
+            if(dateF.value <= dateD.value){
                 evt.target.classList.add("invalid");
             }else{
                 evt.target.classList.remove("invalid");
@@ -251,26 +280,16 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
         }
     }
 
-    function fullverif(evt){
-        if(spe1.value !== "" && !formatSpe.test(spe1.value)){
-            evt.preventDefault();
-            spe1.classList.add("invalid");
+    document.querySelector("form").addEventListener("submit", function(e){
+        if(document.querySelectorAll(".invalid").length > 0){
+            e.preventDefault();
         }
-        if(spe2.value !== "" && !formatSpe.test(spe2.value)){
-            evt.preventDefault();
-            spe2.classList.add("invalid");
-        }
-        if(spe3.value !== "" && !formatSpe.test(spe3.value)){
-            evt.preventDefault();
-            spe3.classList.add("invalid");
-        }else{
-            spe1.classList.remove("invalid");
-            spe2.classList.remove("invalid");
-            spe3.classList.remove("invalid");
+    });
 
-        }
-    }
+
+
 </script>
 <script src="../js/overlayCompteVendeur.js"></script>
+
 </body>
 </html>

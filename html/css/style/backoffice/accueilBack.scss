@@ -39,7 +39,7 @@ main{
 
     div{
         display: flex;
-        gap: 1.25em;
+        gap: 0.5em;
         justify-content: left;
         flex-wrap: wrap;
     }
@@ -395,4 +395,15 @@ body {
     font-size: 2em;
     color: $noir;
     margin-left: 10px;
+}
+
+.prixNormalbarre{
+    text-decoration: line-through;
+    color: grey;
+}
+
+.prixReducRed{
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
 }

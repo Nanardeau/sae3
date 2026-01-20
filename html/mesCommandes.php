@@ -57,7 +57,8 @@ $bdd->query('set schema \'alizon\'');
     
     <?php 
      
-    $lesCommandes = $bdd->query('SELECT * FROM Commande WHERE codeCompte =\''. $codeCompte .'\'')->fetchAll();
+    $lesCommandes = $bdd->prepare('SELECT * FROM Commande WHERE codeCompte =\''. $codeCompte .'\'')->fetchAll();
+    $lesCommandes->execute();
     //print_r($lesCommandes);
     // Si ne possède pas des commandes -> Pas de commandes
     // Sinon afficher son nb de commandes
@@ -79,14 +80,16 @@ $bdd->query('set schema \'alizon\'');
             $prixHT = $commande["prixhttotal"];
             $date = date( 'd/m/Y', strtotime($commande["datecom"]));
             $idCom = $commande["numcom"];
-            $lesProduits = $bdd->query('SELECT codeProduit FROM ProdUnitCommande WHERE numCom =\''.$idCom.'\' ORDER BY codeProduit LIMIT 3 ');
+            $lesProduits = $bdd->prepare('SELECT codeProduit FROM ProdUnitCommande WHERE numCom =\''.$idCom.'\' ORDER BY codeProduit LIMIT 3 ');
+            $lesProduits->execute();
             
             ?>
             <div class="separateur"></div>
             <article>
                 <div >
                 <?php foreach($lesProduits as $prod){
-                    $imgProd = $bdd->query("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit'])->fetch();
+                    $imgProd = $bdd->prepare("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit'])->fetch();
+                    $imgProd->execute();
                     
                     ?>
                 

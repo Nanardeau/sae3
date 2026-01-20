@@ -157,18 +157,6 @@ document.getElementById('photoProd').addEventListener('change', function (e) {
 });
 
 
-//overlay reapprovisionnement dans ficheProduit
-function openReappro() {
-  const overlay = document.getElementById("popupReappro");
-  overlay.style.display = "block";
-  document.body.style.overflow = "hidden";
-}
-
-function closeReappro() {
-  const overlay = document.getElementById("popupReappro");
-  overlay.style.display = "none";
-  document.body.style.overflow = ""; 
-}
 
 
 

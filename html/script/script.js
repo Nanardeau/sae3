@@ -76,26 +76,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let lastScroll = 0;
 let ticking = false;
+
 const header = document.querySelector("header");
+const navbar = document.querySelector("nav");
 
 function onScroll() {
     const currentScroll = window.pageYOffset;
 
     if (currentScroll <= 0) {
         header.style.transform = "translateY(0)";
+        navbar.style.transform = "translateY(0)";
         lastScroll = 0;
         return;
     }
 
     if (Math.abs(currentScroll - lastScroll) < 5) {
-        return;
+        
+      return;
     }
 
     if (currentScroll > lastScroll) {
         header.style.transform = "translateY(-100%)";
+        navbar.style.transform = "translateY(-300%)";
         closeOverlayCompte();
     } else {
         header.style.transform = "translateY(0)";
+        navbar.style.transform = "translateY(0)";
     }
 
     lastScroll = currentScroll;

@@ -33,6 +33,7 @@ if ($id <= 0) die("Produit introuvable.");
 $produit = $bdd->query("SELECT * FROM Produit WHERE codeProduit = $id")->fetch(PDO::FETCH_ASSOC);
 if (!$produit) die("Produit introuvable !");
 
+$codeProduit = $_GET['id'];
 
 $sqlAvis = "SELECT A.*, C.prenom, C.nom,
         ARRAY(
@@ -51,7 +52,7 @@ $stmtAvis = $bdd->prepare($sqlAvis);
 $stmtAvis->execute(['id' => $id]);
 $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($avisList as &$avis) {
+foreach ($avisList as $avis) {
 
     if (is_string($avis["photos"]) && $avis["photos"] !== "{}") {
 
@@ -100,7 +101,6 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         $codeCompte = $_SESSION['codeCompte'];
     }else{
         include 'includes/header.php';
-        include 'includes/menu_cat.php';
     }
     ?>
     
@@ -109,12 +109,11 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 
     <main>
         <?php 
-            include 'includes/menu_cat.php';
             include 'includes/menuCompte.php';
         ?>
-    <nav class="ariane">
+    <div class="ariane">
         <a class="arianeItem" href="index.php">Accueil > </a><a class="arianeItem" href="Catalogue.php">Catalogue > </a><a class="arianeItem" href="Categorie.php?cat=<?php echo $cat?>"><?php echo $cat?></a>
-    </nav>
+    </div>
         <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
         <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
         
@@ -127,7 +126,8 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <div class="info-produit">
                         <h1><?= $produit['libelleprod'] ?></h1>
                         <p><strong>Description :</strong> <?= $produit['descriptionprod'] ?></p>
-                        <p class="prix"><?= round($produit['prixttc'], 2) ?> €</p>
+                        <p class="prix">Prix HT : <?= round($produit['prixht'], 2) ?> €</p>
+                        <p>Prix TTC : <?= round($produit['prixttc'], 2) ?> €</p>
                     </div>
                         
                 </div>
@@ -146,7 +146,8 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                 <option value="1000000">1000000</option>
                         </select>
                     </div>
-                    <a class="add-to-cart" href="OverlayAcheter.php?codeProd=<?php echo $id?>">Ajouter au panier</a>
+                    <button class="btnJaune" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $codeProduit ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&page=Catalogue.php';">Ajouter au panier</button>
+                    <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</button>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
                 <?php if(isset($_SESSION["codeCompte"])):?>
@@ -287,6 +288,6 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
     </main>
 
     <?php include 'includes/footer.php'; ?>
-
+    <script src="js/achat.js"></script>
 </body>
 </html>

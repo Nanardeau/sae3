@@ -140,14 +140,16 @@
         </div>
         <form action="creerCompteVendeur.php" method="post">
             <div class="main">
-                <section>
-                    <h2>
-                        Création de compte
-                    </h2>
+                <h2>
+                    Création de compte
+                </h2>
+                <details open>
+                    <summary><h3>Profil responsable V</h3></summary>
 
-                    <h3>
-                        Profil Responsable
-                    </h3>
+                    <section>
+                    
+
+                    
                     <div class="label">
                         <label>
                             Identifiant* :
@@ -217,11 +219,12 @@
                         <span>Les deux mots de passe doivent être identiques</span>
                     </div>
                 </section>
+                </details>
+                
                 <hr>
-                <section>
-                    <h3>
-                        Information entreprise
-                    </h3>
+                <details>
+                    <summary><h3>Informations entreprise V</h3></summary>
+                    <section>
                     <div class="label">
                         <label>
                             Numéro SIREN* :
@@ -268,6 +271,8 @@
                         <span>La ville ne doit pas commencer par une majuscule et ne doit pas contenir de chiffres.</span>
                     </div>
                 </section>
+                </details>
+                
             </div>
             <div class="boutton">
                 <button type="submit" id="valider" >Créer le compte</button>
