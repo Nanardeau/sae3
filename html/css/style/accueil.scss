@@ -82,7 +82,7 @@ body{
 }
 
 .bouton {
-    @include bouton($colP);
+    @include bouton();
     /*background-color: $colP;
     color: white;
     font: {

@@ -93,18 +93,8 @@ $cat = strtoupper(substr($cat, 0, 1)) . substr($cat, 1, strlen($cat));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./css/style/catalogue.css" rel="stylesheet" type="text/css">
 
-    <title><?php echo $cat?></title>
+    <title>Alizon - <?php echo $cat?></title>
 </head>
-<style>
-
-    section{
-        display:flex;
-        flex-wrap:wrap;
-        .card{
-            margin-bottom:2em;
-        }
-    }
-</style>
 <body>
     <?php
 
@@ -117,11 +107,8 @@ $cat = strtoupper(substr($cat, 0, 1)) . substr($cat, 1, strlen($cat));
     ?>
     
     <main>
-        <?php
-            
-            include 'includes/menuCompte.php';
-        ?>
-    <aside id="filtresAside">
+        <?php include 'includes/menuCompte.php'; ?>
+        <aside id="filtresAside">
                 <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
                 <input id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
                 <div>
@@ -130,17 +117,14 @@ $cat = strtoupper(substr($cat, 0, 1)) . substr($cat, 1, strlen($cat));
                 </button>
                     <?php include('filtretri.php') ;?> 
                 </div>
-    </aside>
-    <h2><?php echo $cat?></h2>
+        </aside>
+    <div>     
+        <div class="titre-cat">
+            <h2><?php echo $cat?></h2>
+        </div>
             <div class="separateur"></div>
-            <div class="titre-cat">
-            <h2>
-            
-            </h2>
-                <div class="separateur2"></div>
-            </div>
-    
-    <section>        
+           
+    <section class="catalogue">        
     <?php 
     $res = $bdd->prepare($sql);
     $res->execute([':cat' => $cat]);
@@ -162,8 +146,8 @@ $cat = strtoupper(substr($cat, 0, 1)) . substr($cat, 1, strlen($cat));
     }
     ?>
     </section>
-    <button class="bouton" style="padding:2em 5em" onclick="retour()">Retour</button>
-</main>
+    </div>
+    </main>
 <?php include 'includes/footer.php';?>
 <script>
     function retour(){
