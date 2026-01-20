@@ -26,13 +26,12 @@ $signalement=$_POST['raison'];
 $codeAvis = $_GET['codeavis'];
 $codeproduit = $_GET['codeproduit'];
 
-echo $signalement;
-echo $codeAvis;
-echo $codeproduit;
 
 $insert = $pdo->prepare("INSERT INTO Signalement (motif, numAvis, dateSignalement) VALUES (:signalement, :codeAvis, NOW())");
 $insert->execute([
     ':signalement' => $signalement,
     ':codeAvis' => $codeAvis
 ]);
+    header("Location: dproduit.php?id=" . urlencode($codeProduit));
+    exit();
 ?>
