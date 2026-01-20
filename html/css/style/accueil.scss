@@ -1,6 +1,7 @@
 @use "sass:math";
 @use "./styleCom" as *;
 @use "../tools/vFront" as *;
+@use "../tools/mixin/com" as *;
 @use "../components/fonts" as *;
 @use "../components/carte" as *;
 //@use "../components/carte";
@@ -79,7 +80,7 @@ body{
 }
 
 .bouton {
-    @include bouton;
+    @include bouton();
     /*background-color: $colP;
     color: white;
     font: {
