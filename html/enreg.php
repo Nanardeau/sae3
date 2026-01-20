@@ -44,10 +44,12 @@
 
     $complement = $_POST["comp"] ? $_POST["comp"] : NULL;
     
-    $res = $bdd->prepare("SELECT * FROM alizon.Client WHERE pseudo = '".$pseudo."'")->fetch();
+    $res = $bdd->prepare("SELECT * FROM alizon.Client WHERE pseudo = '".$pseudo."'");
     $res->execute();
-    $resMail = $bdd->prepare("SELECT * FROM alizon.Client WHERE email = '".$mail."'")->fetch();
+    $res = $res->fetch();
+    $resMail = $bdd->prepare("SELECT * FROM alizon.Client WHERE email = '".$mail."'");
     $resMail->execute();
+    $resMail = $resMail->fetch();
     if($res){
         exit(header('location:CreerCompte.php?erreur=pseudo'));
         die();
@@ -87,8 +89,9 @@
 
             
     
-        $res = ($bdd->prepare("SELECT codeCompte FROM alizon.Client WHERE pseudo = '".$pseudo."'")->fetch());
+        $res = $bdd->prepare("SELECT codeCompte FROM alizon.Client WHERE pseudo = '".$pseudo."'");
         $res->execute();
+        $res = $res->fetch();
         $codeCompte = $res["codecompte"];
         if($idAdresse > 0){
 
