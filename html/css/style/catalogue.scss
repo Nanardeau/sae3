@@ -116,7 +116,7 @@ a{
 .filtres{
     padding: $pad;
     display: none;
-    @media screen and (max-width: 100em) {
+    @media #{$mobile} {
         display: flex;
         flex-direction: column;
     }

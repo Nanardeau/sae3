@@ -5,7 +5,9 @@ header{
     background-color: white;
 }
 main {
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 150px;
     margin : auto;
     width: 1140px;
@@ -33,6 +35,7 @@ main {
         }
     }
     .main {
+        padding: 20px 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -146,6 +149,10 @@ details summary::-webkit-details-marker {
 details summary h3 {
     margin: 0;
     text-align: left;
+}
+
+details:open summary h3{
+    text-align: center;
 }
 
 h3{

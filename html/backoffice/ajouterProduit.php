@@ -159,20 +159,20 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
     </div>
     
-    <h3> Spécificitées du produit </h3>
+    <h3> Spécificités du produit </h3>
     <div class="taille">
             <div class="labelInput">
-                <label for="spe1">Spécificitée 1</label>
+                <label for="spe1">Spécificité 1</label>
                 <input type="text" name="spe1" placeholder="nomenclature a respecter : NOMDELASPE:Descritption" id="spe1"/>
                 <span class="cache">La spécificité 1 doit être au format NOMDELASPE:Description</span>
             </div>
             <div class="labelInput">
-                <label for="spe2">Spécificitée 2</label>
+                <label for="spe2">Spécificité 2</label>
                 <input type="text" name="spe2" placeholder="nomenclature a respecter : NOMDELASPE:Descritption" id="spe2"/>
                 <span class="cache">La spécificité 2 doit être au format NOMDELASPE:Description</span>
             </div>
             <div class="labelInput">
-                <label for="spe3">Spécificitée 3</label>
+                <label for="spe3">Spécificité 3</label>
                 <input type="text" name="spe3" placeholder="nomenclature a respecter : NOMDELASPE:Descritption  " id="spe3"/>
                 <span class="cache">La spécificité 3 doit être au format NOMDELASPE:Description</span>
             </div>

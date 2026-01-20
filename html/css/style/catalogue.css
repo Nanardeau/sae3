@@ -981,7 +981,7 @@ a {
   padding: 20px;
   display: none;
 }
-@media screen and (max-width: 100em) {
+@media screen and (max-width : 428px) {
   .filtres {
     display: flex;
     flex-direction: column;
