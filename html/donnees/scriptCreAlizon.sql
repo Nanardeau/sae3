@@ -314,6 +314,34 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+CREATE FUNCTION duplique_prixTTC()
+RETURNS TRIGGER AS $$ 
+declare
+	idRemiseExists INTEGER;
+	tauxRemise float;
+	prodTauxTVA float;
+	prodNomTVA VARCHAR;
+BEGIN
+	idRemiseExists = (SELECT idReduction from alizon.FaireReduction WHERE codeProduit = NEW.codeProduit);
+	prodNomTVA = (SELECT nomTVA from produit where codeProduit = NEW.codeProduit);
+	IF idRemiseExists IS NOT NULL THEN
+		prodTauxTVA = (SELECT tauxTVA from TVA where nomTVA = prodNomTVA);
+		tauxRemise = (SELECT remise FROM Reduction WHERE idReduction = idRemiseExists);
+
+		SELECT ((Produit.prixHT * (1 - tauxRemise / 100)) * (1 + prodTauxTVA / 100)) * NEW.qteProd INTO NEW.prixTTCtotal 
+		FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
+	else
+		SELECT Produit.prixTTC * NEW.qteProd INTO NEW.prixTTCtotal
+		FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
+	end if;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER trg_dupli_prixTTC
+AFTER INSERT OR UPDATE ON ProdUnitCommande
+FOR EACH ROW
+EXECUTE FUNCTION duplique_prixTTC();
 --Triggers prixHT et prixTTC--
 
 CREATE TRIGGER trg_dupli_prixHT_Panier

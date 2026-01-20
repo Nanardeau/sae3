@@ -430,9 +430,10 @@ main form select {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #CD4B22;
   color: white;
+  background-color: #CD4B22;
   border-radius: 1em;
+  height: 2rem;
   border: none;
   cursor: pointer;
   border-radius: 1em;
@@ -462,9 +463,10 @@ main form input::file-selector-button {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #CD4B22;
   color: white;
+  background-color: #CD4B22;
   border-radius: 1em;
+  height: 2rem;
   border: none;
   cursor: pointer;
   border: none;
@@ -500,9 +502,10 @@ main form input::file-selector-button {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
+  height: 2rem;
   border: none;
   cursor: pointer;
 }
@@ -554,9 +557,10 @@ main .bouton {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #CD4B22;
   color: white;
+  background-color: #CD4B22;
   border-radius: 1em;
+  height: 2rem;
   border: none;
   cursor: pointer;
 }

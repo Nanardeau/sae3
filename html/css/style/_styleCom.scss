@@ -1,6 +1,7 @@
 @use "../tools/vFront" as *;
 @use "../tools/mixin/com" as m;
-
+@use "../components/footer" as *;
+@use "../components/header" as *;
 
 body{
     font: {
@@ -53,235 +54,11 @@ input{
 .bouton{
     @include m.bouton;
 }
-/*###############################
-#            HEADER             #
-###############################*/
 
-header{
-    transition: transform 0.3s ease;
-    top : 0;
-    .mobile-only{
-        display: none;
-    }
-    
-    form{
-        display: flex;
-        width: 60%;
-        align-items: center;
-        margin-left: auto;
-        input[type=search]{
-            padding: 1em;
-            border-radius: 40px;
-            border: none;
-            max-width: 700px;
-            width: 80%;
-            min-width: none;
-            font-size: $Poltext;
-        }
-        input[type="search"]::-webkit-search-cancel-button {
-                position: relative;
-                left: -40px;
-                
-            }
-        button{
-            display: flex;
-            z-index: 2;
-            align-items: center;
-            height: 32px;
-            border-radius: 40px;
-            border: none;
-            background-color: rgba(#808080,0.2);
-            position: relative;
-            left: -40px;
-        }
-    }
-    
-    
 
-    z-index: 1000;
-    position: fixed;
-    display: inline-flex;
-    background: {
-        color: $colP;
-    }
-    height: 80px;
-    width: 100%;
-    align-items: center;
 
-    .logo_alizon_front{
-        width: 118px;
-        height: auto;
-        padding-left: 80px;
-        left: 0;
-        margin:$marg;
-    }
 
-    .connexion-panier{
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-        a{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding-right: 20px;
-            color: $blanc;
-            text-decoration: none;
-        }
-        svg{
-            padding-right: 10px;
-        }
 
-    }
-
-    @media #{$mobile}{
-        .logo_alizon_front{
-            padding-left: 30px;
-            width: 100px;
-        }
-
-        .tab-only{
-            display: none;
-        }
-
-        .mobile-only{
-            display: block;
-            padding-left: 20px;
-            
-        }
-        button{
-            background: none;
-            border: none;
-        }
-        nav svg{
-            padding-right: 30px;
-        }
-    }
-}
-
-/*###############################
-#            FOOTER             #
-###############################*/
-
-.footer {
-    background-color: #f9f9fb;
-    border-top: 4px solid $eleOrange; 
-    color: #333;
-    font-family: $Poltext;
-    padding-top: 1rem;
-
-    .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 1.5rem 2rem;
-        padding-top: 0;
-        display: grid;
-        grid-template-columns: 1.4fr 1fr 1fr;
-        gap: 2rem;
-        align-items: start;
-
-        .footer-section {
-            h3 {
-                font-size: $MoyTitle;
-                font-weight: 600;
-                margin-bottom: 0.5rem;
-            }
-
-            p, li, a {
-                font-size: $txtSize;
-                color: #444;
-                text-decoration: none;
-
-            }
-
-            p{
-                margin: {
-                    bottom: 0.3rem;
-                    top:0;
-                }
-            }
-
-            ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-
-            li {
-                margin-bottom: 0.3rem;
-            }
-            }
-
-        }
-
-        .footer-map {
-            text-align: center;
-
-            img {
-                max-width: 100%;
-                height: auto;
-                opacity: 0.8;
-            }
-        }
-    }
-
-    .footer-bottom {
-        background-color: $colS;
-        text-align: center;
-        padding: 0.5rem;
-        font-size: $txtSize;
-        color: #333;
-        border-top: 1px solid #ccc;
-    }
-
-    .footer-logo{
-        align-self: center;
-    }
-
-    .logo-mobile-only-footer{
-        display: none;
-    }
-
-    .mobile-only{
-        display: none;
-    }
-
-    @media #{$mobile} {
-        display: flex;
-        flex-direction: column;
-
-        .footer-content {
-            grid-template-columns: 50% 50%;
-            text-align: left;
-
-            h3{
-                font-size: 13px;
-            }
-
-            .footer-logo{
-                display: none;
-            }
-        }
-
-        .footer-bottom{
-            font-size: 10px;
-        }
-
-        .logo-mobile-only-footer{
-            display: block;
-            align-self: center;
-        }
-
-        .mobile-only{
-            display: none;
-        }
-
-        .other-account{
-            align-self: center;
-            text-align: center;
-            margin-top: 10px;
-        }
-    }
-}
 
 /*###############################
 #        Menu Categorie         #
@@ -473,12 +250,14 @@ nav div > ul li:hover .souscat-ul{
     position:fixed;
     top:80px;
     right:125px;
-    @media #{$mobile}{
-        right:70px;
-    }
     height:15em;
     background-color:$colS;
     border:solid $colP;
+    @media #{$mobile}{
+        right:70px;
+    }
+    
+    
     div{
         height:90%;
 
@@ -715,3 +494,44 @@ nav div > ul li:hover .souscat-ul{
     color:#A1A1A1;
     font-size: $PetTitle;
 }
+
+.vide {
+            padding: $pad;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 40%;
+
+        a {
+            color: grey;
+            text-decoration: none;
+            font-weight: lighter;
+            font-style: italic;
+        }
+}
+.separateur {
+    display: block;
+    background-color: $eleOrange;
+    width: 98%;
+    height: 10px;
+    border-radius: $radius;
+    
+
+}
+.separateur2{
+    display: none;
+    background-color: $eleOrange;
+    width: 100%;
+    height: 10px;
+    border-radius: $radius;
+    @media #{$mobile}{
+        display : block;
+        margin-left: $marg;
+    }
+}
+.div-btn{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+    }

@@ -57,8 +57,9 @@ $bdd->query('set schema \'alizon\'');
     
     <?php 
      
-    $lesCommandes = $bdd->prepare('SELECT * FROM Commande WHERE codeCompte =\''. $codeCompte .'\'')->fetchAll();
+    $lesCommandes = $bdd->prepare('SELECT * FROM Commande WHERE codeCompte =\''. $codeCompte .'\'');
     $lesCommandes->execute();
+    $lesCommandes = $lesCommandes->fetchAll();
     //print_r($lesCommandes);
     // Si ne possède pas des commandes -> Pas de commandes
     // Sinon afficher son nb de commandes
@@ -88,8 +89,9 @@ $bdd->query('set schema \'alizon\'');
             <article>
                 <div >
                 <?php foreach($lesProduits as $prod){
-                    $imgProd = $bdd->prepare("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit'])->fetch();
+                    $imgProd = $bdd->prepare("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit']);
                     $imgProd->execute();
+                    $imgProd = $imgProd->fetch();
                     
                     ?>
                 

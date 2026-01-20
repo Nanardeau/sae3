@@ -3,8 +3,8 @@
 
 
 @use 'sass:color';
-@import './_styleComB'; 
-@import "../infosCompte.scss";
+@use './_styleComB'; 
+@use "../infosCompte.scss";
 
 .logo {
     display : flex;

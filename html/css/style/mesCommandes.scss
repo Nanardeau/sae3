@@ -6,53 +6,17 @@
 
 
 .separateur {
-    display: block;
-    
-    background-color: $eleOrange;
     width: 80%;
     margin: 1em auto 0 auto;
-    height: 10px;
-    border-radius: $radius;
     @media #{$mobile}{
         height: 5px;
     }
-
 }
 
-.vide {
-    padding: $pad;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 40%;
 
-    a {
-        color: grey;
-        text-decoration: none;
-        font-weight: lighter;
-        font-style: italic;
-    }
-}
 
-@mixin btn {
-    font-family: $Poltext;
-    width: 100%;
-    margin-top: $marg;
-    min-width: 8rem;
-    height: 2rem;
-    text-align: center;
-    color: $noir;
-    font-weight: bold;
-    font-size: larger;
-    background-color: $eleOrange;
-    border: none;
-    border-radius: $radius;
-    cursor: pointer;
-}
-input{
-    @include btn;
-}
+
+
 .cmd{
     display: flex;
     justify-content: center;
@@ -94,7 +58,6 @@ input{
         .button{
             
             @include bouton;
-            height: 4em;
             align-content: center;
         }
         

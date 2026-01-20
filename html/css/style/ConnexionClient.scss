@@ -90,10 +90,8 @@ aside{
     }
 
     .btnJaune{
-        @include bouton;
-        background-color:$eleOrange;
+        @include bouton($eleOrange);
         padding:1em; 
-        color:black;
         width:30%;
     }
 
@@ -103,7 +101,6 @@ aside{
         align-items:center;
         a{
             text-decoration:none;
-            color:white;
         }
     }
 
