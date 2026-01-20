@@ -31,16 +31,16 @@
             <label for="identifiant">Identifiant *</label>
 
 
-            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._0-9]{2,20}" required/> 
+            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._0-9]{4,20}" minlength="4" required/> 
             <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
             <div id="nomPrenomCli">
                 <div class="labelInput">
                     <label for="nomCli">Nom *</label>
-                    <input type="text" name="nom" placeholder="Nom..." id="nomCli" required/>
+                    <input type="text" name="nom" placeholder="Nom..." id="nomCli" pattern="[A-Za-z-]{3,40}" minlength="3" required/>
                 </div>
                 <div class="labelInput">
                     <label for="prenomCli">Prénom *</label>
-                    <input type="text" name="prenom" placeholder="Prénom..." id="prenomCli" required/>
+                    <input type="text" name="prenom" placeholder="Prénom..." pattern="[A-Za-z]{3,20}" id="prenomCli" minlength="3" required/>
                 </div>
             </div>
             <label for="photoCli">Photo de profil</label>
@@ -165,9 +165,15 @@
         function verifDate(evt){
             let elemDate = document.getElementById("dateNaiss");
             let date = document.getElementById("dateNaiss").value;
+            
             date = Date.parse(date);
             let mtn = Date.now();
+            // Date limite : aujourd'hui - 100 ans
+            const dateLimite = new Date();
+            dateLimite.setFullYear(mtn.getFullYear() - 120);
             if(date > mtn){
+                elemDate.classList.add("invalid");
+            }else if (date < dateLimite){
                 elemDate.classList.add("invalid");
             }
             else{

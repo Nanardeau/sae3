@@ -120,7 +120,8 @@ VALUES ('/img/fromage2.jpg'),
     ('/img/tshirtcrabe.jpg'),
     (
         '../img/photosProduit/imgErr.jpg'
-    );
+    ),
+    ('./img/photosProfil/Default_pfp.svg');
 
 INSERT INTO
     Client (
