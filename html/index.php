@@ -1,5 +1,6 @@
 <?php
 //Connexion à la base de données.
+session_start();
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
 
@@ -31,7 +32,6 @@ foreach($clients as $client){
 }
 
 $bdd->query('set schema \'alizon\'');
-session_start();
 ?>
 
 <html lang="fr">
