@@ -313,8 +313,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION duplique_prixTTC()
-RETURNS TRIGGER AS $$ 
+CREATE FUNCTION duplique_prixHT()
+RETURNS TRIGGER AS $$
 declare
 	idRemiseExists INTEGER;
 	tauxRemise float;

@@ -135,5 +135,23 @@ details summary h3 {
     margin: 0;
     text-align: left;
     text-decoration: underline;
+
+    
 }
+
+h3{
+    background-color: #eaeaea;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h3:hover{
+    background-color: #cbcbcb;
+}
+
+details:open summary h3{
+    text-align: center;
+}
+
 

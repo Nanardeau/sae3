@@ -95,6 +95,7 @@ a{
     padding: $pad;
     display: none;
     @media #{$mobile} {
+    @media #{$mobile} {
         display: flex;
         flex-direction: column;
     }

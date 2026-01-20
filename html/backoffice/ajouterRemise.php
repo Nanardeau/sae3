@@ -188,40 +188,40 @@ $hasRemise = ($remise !== false);
     <script src="../js/preview-img.js"></script>
     <script>
 
-    let dateD = document.getElementById("dateD");
-    let dateF = document.getElementById("dateF");
-    let dateToday = new Date().toISOString().split('T')[0];
+        let dateD = document.getElementById("dateD");
+        let dateF = document.getElementById("dateF");
+        let dateToday = new Date().toISOString().split('T')[0];
 
-    console.log(dateToday);
+        console.log(dateToday);
 
-    dateD.addEventListener("focusout", verifDateD);
-    dateF.addEventListener("focusout", verifDateF);
+        dateD.addEventListener("focusout", verifDateD);
+        dateF.addEventListener("focusout", verifDateF);
 
-    function verifDateD(evt){
-        if(evt.type === "focusout"){
-            if((dateF.value <= dateD.value) && (dateD.value < dateToday)){
-                dateD.classList.add("invalid");
-            }else{
-                dateD.classList.remove("invalid");
+        function verifDateD(evt){
+            if(evt.type === "focusout"){
+                if((dateF.value <= dateD.value) && (dateD.value < dateToday)){
+                    dateD.classList.add("invalid");
+                }else{
+                    dateD.classList.remove("invalid");
+                }
             }
         }
-    }
 
-    function verifDateF(evt){
-        if(evt.type === "focusout"){
-            if(dateF.value <= dateD.value){
-                evt.target.classList.add("invalid");
-            }else{
-                evt.target.classList.remove("invalid");
+        function verifDateF(evt){
+            if(evt.type === "focusout"){
+                if(dateF.value <= dateD.value){
+                    evt.target.classList.add("invalid");
+                }else{
+                    evt.target.classList.remove("invalid");
+                }
             }
         }
-    }
 
-    document.querySelector("form").addEventListener("submit", function(e){
-        if(document.querySelectorAll(".invalid").length > 0){
-            e.preventDefault();
-        }
-    });
+        document.querySelector("form").addEventListener("submit", function(e){
+            if(document.querySelectorAll(".invalid").length > 0){
+                e.preventDefault();
+            }
+        });
 </script>
 <script src="../js/overlayCompteVendeur.js"></script>
 
