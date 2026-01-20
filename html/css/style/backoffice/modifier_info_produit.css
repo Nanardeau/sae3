@@ -316,8 +316,8 @@ main form select {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #CD4B22;
   color: white;
+  background-color: #CD4B22;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -348,8 +348,8 @@ main form input::file-selector-button {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #CD4B22;
   color: white;
+  background-color: #CD4B22;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -399,8 +399,8 @@ main .bouton {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #CD4B22;
   color: white;
+  background-color: #CD4B22;
   border-radius: 1em;
   height: 2rem;
   border: none;

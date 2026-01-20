@@ -532,8 +532,8 @@ input:user-invalid + span, input.invalid + span {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -753,8 +753,8 @@ nav div > ul li:hover .souscat-ul {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
+  color: black;
   background-color: #FCB66B;
-  color: white;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -1041,8 +1041,8 @@ form input::file-selector-button {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -1094,8 +1094,8 @@ form .btnSec {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -1155,8 +1155,8 @@ aside .bouton {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -1321,8 +1321,8 @@ input[type=file] {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #CD4B22;
   color: white;
+  background-color: #CD4B22;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -1341,8 +1341,8 @@ input[type=file] {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #6CA6E9;
   color: white;
+  background-color: #6CA6E9;
   border-radius: 1em;
   height: 2rem;
   border: none;

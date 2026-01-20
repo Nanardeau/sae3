@@ -308,8 +308,8 @@ input:user-invalid + span, input.invalid + span {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -529,8 +529,8 @@ nav div > ul li:hover .souscat-ul {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
+  color: black;
   background-color: #FCB66B;
-  color: white;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -808,8 +808,8 @@ form .bouton {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -864,8 +864,8 @@ aside figure img {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -887,22 +887,20 @@ aside figure img {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
-  color: white;
+  color: black;
+  background-color: #FCB66B;
   border-radius: 1em;
   height: 2rem;
   border: none;
   cursor: pointer;
-  background-color: #FCB66B;
   padding: 1em;
-  color: black;
   width: 30%;
 }
 .btnJaune:hover {
-  background-color: rgb(6.75, 72, 146.25);
+  background-color: rgb(149.9602649007, 79.0331125828, 3.0397350993);
 }
 .btnJaune:active {
-  background-color: rgb(4.5, 48, 97.5);
+  background-color: rgb(99.9735099338, 52.6887417219, 2.0264900662);
 }
 
 .bouton-connexion {
@@ -912,5 +910,4 @@ aside figure img {
 }
 .bouton-connexion a {
   text-decoration: none;
-  color: white;
 }/*# sourceMappingURL=ConnexionClient.css.map */

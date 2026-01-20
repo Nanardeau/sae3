@@ -308,8 +308,8 @@ input:user-invalid + span, input.invalid + span {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -529,8 +529,8 @@ nav div > ul li:hover .souscat-ul {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
+  color: black;
   background-color: #FCB66B;
-  color: white;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -954,8 +954,8 @@ nav div > ul li:hover .souscat-ul {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
   height: 2rem;
   border: none;

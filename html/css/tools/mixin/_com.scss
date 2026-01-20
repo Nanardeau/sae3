@@ -19,9 +19,14 @@
         align:center;
         decoration:none;
     }
-
+    @if $couleur == $eleOrange{
+        color:$noir; 
+    }
+    @else {
+        color:$blanc; 
+    }
     background-color:$couleur;
-    color:$blanc; 
+    
     border-radius:$radius;
     height: 2rem;
     border:none;

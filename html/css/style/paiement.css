@@ -308,8 +308,8 @@ input:user-invalid + span, input.invalid + span {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -529,8 +529,8 @@ nav div > ul li:hover .souscat-ul {
   font-size: 20px;
   text-align: center;
   text-decoration: none;
+  color: black;
   background-color: #FCB66B;
-  color: white;
   border-radius: 1em;
   height: 2rem;
   border: none;
@@ -829,7 +829,8 @@ article {
   width: 100%;
   justify-self: center;
 }
-.ligneSection #adresseLivraison article, .ligneSection #adresseLivraison h2 {
+.ligneSection #adresseLivraison article,
+.ligneSection #adresseLivraison h2 {
   justify-self: center;
   width: 80%;
 }
@@ -886,7 +887,9 @@ article {
   width: 100%;
 }
 @media screen and (max-width : 428px) {
-  .ligneInput #divNom, .ligneInput #prenom, .ligneInput #codePostal {
+  .ligneInput #divNom,
+  .ligneInput #prenom,
+  .ligneInput #codePostal {
     width: 100%;
   }
 }
@@ -910,7 +913,10 @@ article {
   width: 5em;
 }
 
-main input, label, p, button {
+main input,
+label,
+p,
+button {
   font-size: 18px;
 }
 
@@ -931,12 +937,8 @@ section:nth-child(1) .bouton {
   padding: 10px 20px;
   margin-top: 3em;
   margin-right: 2em;
-  width: 15%;
-}
-@media screen and (max-width : 428px) {
-  section:nth-child(1) .bouton {
-    width: 95%;
-  }
+  margin-left: 1em;
+  width: 95%;
 }
 
 aside + section {
@@ -1009,7 +1011,8 @@ aside {
   margin: 0;
   height: 100%;
 }
-aside section, aside article {
+aside section,
+aside article {
   height: 100%;
 }
 
@@ -1111,13 +1114,15 @@ aside section, aside article {
   align-self: flex-start;
 }
 
-#btnPayer, #btnAnnuler {
+#btnPayer,
+#btnAnnuler {
   height: 3rem;
   padding: 0;
   width: 10rem;
 }
 @media screen and (max-width : 428px) {
-  #btnPayer, #btnAnnuler {
+  #btnPayer,
+  #btnAnnuler {
     margin-top: 2rem;
   }
 }
