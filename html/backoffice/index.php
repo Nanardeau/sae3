@@ -72,6 +72,7 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                 $rows = $liste_reduc;
                 for ($i = 0; $i < count($rows); $i++) {
                     $row = $rows[$i];
+                    $code_produit = $row['codeproduit'];
                 ?>
                 <div class="produit">
                 <?php
@@ -79,7 +80,19 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                     echo '<img src="../'.htmlspecialchars($row['urlphoto']).'" alt="Photo de '.htmlspecialchars($row['libelleprod']).'"> </a>';
                     echo '<p class="nomArticle">'.htmlspecialchars($row['libelleprod']).'</p>';
                     echo '<div class="infoProduit">';
-                        echo '<p class="prixReduc">'.$row['prixht'].'€</p>';
+
+                        $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
+                        $stmt->execute(['id' => $code_produit]);
+                        $infoRemise = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        $hasRemise = $stmt->rowCount() > 0;
+
+                        if ($hasRemise != false){
+                            echo '<p class="prixNormalbarre">'.$row['prixht'].'€</p>';
+                            echo '<p class="prixReducRed">'.round($row['prixht'] * (1 - $infoRemise[0]['remise']/100), 2).'€ <span class="remise"> - '.$infoRemise[0]['remise'].'%</span></p>';
+                        } else {
+                            echo '<p class="prixReduc">'.$row['prixht'].'€</p>';
+                        }
+
                         echo '<p class="qteStock">Stock : '.htmlspecialchars($row['qtestock']).'</p>';?>
                     </div>
                     <?php
@@ -97,7 +110,7 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
         </div>
         <div class="mes-produits">
-            <h1>Mes produits hors-catalogue</h1>
+            <h1>Mes produits au catalogue</h1>
             <?php 
             $stmt = $bdd->prepare('SELECT * FROM Produit where codeCompteVendeur =\'' . $codeCompte . '\' and Disponible = false');
             $stmt->execute();
@@ -107,6 +120,7 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                 $rows = $liste_reduc;
                 for ($i = 0; $i < count($rows); $i++) {
                     $row = $rows[$i];
+                    $code_produit = $row['codeproduit'];
                 ?>
                 <div class="produit">
                 <?php
@@ -114,7 +128,19 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                     echo '<img src="../'.htmlspecialchars($row['urlphoto']).'" alt="Photo de '.htmlspecialchars($row['libelleprod']).'"> </a>';
                     echo '<p class="nomArticle">'.htmlspecialchars($row['libelleprod']).'</p>';
                     echo '<div class="infoProduit">';
-                        echo '<p class="prixReduc">'.$row['prixht'].'€</p>';
+
+                        $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
+                        $stmt->execute(['id' => $code_produit]);
+                        $infoRemise = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        $hasRemise = $stmt->rowCount() > 0;
+
+                        if ($hasRemise != false){
+                            echo '<p class="prixNormalbarre">'.$row['prixht'].'€</p>';
+                            echo '<p class="prixReducRed">'.round($row['prixht'] * (1 - $infoRemise[0]['remise']/100), 2).'€ <span class="remise"> - '.$infoRemise[0]['remise'].'%</span></p>';
+                        } else {
+                            echo '<p class="prixReduc">'.$row['prixht'].'€</p>';
+                        }
+
                         echo '<p class="qteStock">Stock : '.htmlspecialchars($row['qtestock']).'</p>';?>
                     </div>
                     <?php

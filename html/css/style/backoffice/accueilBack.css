@@ -742,4 +742,15 @@ body {
   font-size: 2em;
   color: black;
   margin-left: 10px;
+}
+
+.prixNormalbarre {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.prixReducRed {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
 }/*# sourceMappingURL=accueilBack.css.map */

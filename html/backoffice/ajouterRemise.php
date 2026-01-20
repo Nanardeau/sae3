@@ -48,22 +48,18 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
 $codeProduit = $_GET['Produit'];
 
 $sql2 = "
-SELECT p.idPromotion, p.dateDebut, p.dateFin, ph.urlPhoto
-FROM Promotion p
-JOIN FairePromotion fp ON fp.idPromotion = p.idPromotion
-LEFT JOIN Photo ph ON ph.urlPhoto = fp.urlPhoto
-WHERE fp.codeProduit = :codeProduit
+SELECT r.idReduction, r.dateDebut, r.dateFin, r.remise
+FROM Reduction r
+JOIN FaireReduction fr ON fr.idReduction = r.idReduction
+WHERE fr.codeProduit = :codeProduit
 LIMIT 1
 ";
 
 $stmt = $bdd->prepare($sql2);
 $stmt->execute(['codeProduit' => $codeProduit]);
-$promo = $stmt->fetch(PDO::FETCH_ASSOC);
+$remise = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$hasPromo = ($promo !== false);
-
-
-
+$hasRemise = ($remise !== false);
 ?>
 
 <html lang="fr">
@@ -101,60 +97,23 @@ $hasPromo = ($promo !== false);
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>
             Retour au produit
         </a>
-        <!-- <?php 
-            $stmt = $bdd->prepare("SELECT * FROM alizon.FairePromotion WHERE codeProduit = :id");
-            $stmt->execute(['id' => $code_produit]);
-            $hasPromo = $stmt->rowCount() > 0;
-
-            $stmtSuppr = $bdd->prepare("DELETE FROM alizon.FairePromotion WHERE codeProduit = :id");
-
-            //if ($hasPromo){
-        ?>
-            <a href="delPromo.php?Produit=<?php echo $code_produit?>&page=create" class="btnacc">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>   
-                Supprimer la Promotion
-            </a>
-            <a class="btnacc" href="ajouterPromotion.php?Produit=<?php echo $code_produit?>">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone-icon lucide-megaphone"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>
-                Modifier la promotion
-            </a>
-            <?php// } else { ?>
-            <a class="btnacc" href="ajouterPromotion.php?Produit=<?php echo $code_produit?>">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone-icon lucide-megaphone"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>
-                Ajouter une promotion
-            </a> -->
-        <?php //} ?>
     </section>
     <div class="right-content">
-        <?php if($erreur == "succes"){
-                    echo "<h2 style=\"color:green\">Produit créé avec succès</h2>";
-                }
-                else if($erreur == "image"){
-                    echo "<h2 style=\"color:red\">Produit image avec erreur</h2>";
-                }
-
-            $sql = "SELECT count(*) as total FROM alizon.FairePromotion";
-            $stmt = $bdd->prepare($sql);
-            $stmt->execute();
-            $total = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
-
-            if(($total < 2) || $hasPromo){
-        ?>
-        <form action="reqModifierPromotion.php"
+        <form action="reqModifierRemise.php"
             method="post"
             enctype="multipart/form-data"
             class="form-promo">
 
             <h2>
-                <?= $hasPromo ? "Modifier la promotion" : "Créer une promotion" ?>
+                <?= $hasRemise ? "Modifier la Remise" : "Créer une Remise" ?>
             </h2>
 
             <!-- Toujours envoyé -->
             <input type="hidden" name="codeProduit" value="<?= $codeProduit ?>">
 
-            <!-- Seulement si promo existante -->
-            <?php if ($hasPromo): ?>
-                <input type="hidden" name="idPromotion" value="<?= $promo['idpromotion'] ?>">
+            <!-- Seulement si remise existante -->
+            <?php if ($hasRemise): ?>
+                <input type="hidden" name="idRemise" value="<?= $remise['idreduction'] ?>">
             <?php endif; ?>
 
             
@@ -164,7 +123,7 @@ $hasPromo = ($promo !== false);
             <input type="date"
                 id="dateD"
                 name="dateD"
-                value="<?= $hasPromo ? $promo['datedebut'] : '' ?>"
+                value="<?= $hasRemise ? $remise['datedebut'] : '' ?>"
                 required>
             <span class="cache">La date de début ne peut pas être antèrieur à aujourd'hui</span>
 
@@ -173,55 +132,23 @@ $hasPromo = ($promo !== false);
             <input type="date"
                 id="dateF"
                 name="dateF"
-                value="<?= $hasPromo ? $promo['datefin'] : '' ?>"
+                value="<?= $hasRemise ? $remise['datefin'] : '' ?>"
                 required>
             <span class="cache" id="errorDate">La date de fin doit être postérieure à la date de début.</span>
 
-            <!-- IMAGE ACTUELLE -->
-            <!-- <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
-                <div class="promo-image">
-                    <p>Image actuelle :</p>
-                    <img src="<?= $promo['urlphoto'] ?>" alt="Image promo" width="160">
-                    <input type="hidden"
-                        name="ancienneImage"
-                        value="<?= $promo['urlphoto'] ?>">
-                </div>
-            <?php endif; ?> -->
-
-            <!-- NOUVELLE IMAGE -->
-            <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
-                <input type="hidden"
-                    name="ancienneImage"
-                    value="<?= $promo['urlphoto'] ?>">
-            <?php endif; ?>
-
-            <div class="dropreview">
-                <div id="dropZone">
-                    <span>Glissez une image ici ou cliquez</span>
-                    <input type="file" name="photo" id="photoProd" accept="image/*" hidden>
-                </div>
-                <!-- <input type="file" name="photo" id="photoProd" accept="image/*"/> -->
-                <div id="preview">
-                    <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
-                        <!-- <p><?= $promo['urlphoto'] ?></p> -->
-                        <img src="../<?= $promo['urlphoto'] ?>"
-                            alt="Image promo actuelle"
-                            class="preview-img">
-                    <?php endif; ?>
-                </div>
-
-            </div>
-            <label for="photo">
-                <?= $hasPromo ? "Changer l’image (optionnel)" : "Image de la promotion" ?>
-            </label>
+            <label for="remise">Pourcentage de remise (%)</label>
+            <input type="number" 
+                id="remise" 
+                name="remise" 
+                min="1" 
+                max="99" 
+                value="<?= $hasRemise ? $remise['remise'] : '' ?>" 
+                required>
+            <span class="cache" id="errorRemise">La remise doit être comprise entre 1 et 99%.</span>
 
             <!-- SUBMIT -->
-            <input type="submit" value="<?= $hasPromo ? "Mettre à jour la promotion" : "Créer la promotion" ?>" class="bouton"/>
+            <input type="submit" value="<?= $hasRemise ? "Mettre à jour la remise" : "Créer la remise" ?>" class="bouton"/>
     </form>
-        <?php } else { ?>
-            <h2>Limite de promotions atteinte</h2>
-            <p>Vous avez atteint la limite de 2 promotions simultanées. Veuillez supprimer une promotion existante avant d'en ajouter une nouvelle.</p>
-        <?php } ?>
 
         <!-- <form action="reqAjouterPromotion.php" method="post" enctype="multipart/form-data">
             <h2>Ajouter une promotion</h2>
@@ -285,9 +212,6 @@ $hasPromo = ($promo !== false);
             e.preventDefault();
         }
     });
-
-
-
 </script>
 <script src="../js/overlayCompteVendeur.js"></script>
 

@@ -102,10 +102,23 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                 </a>
                 <?php } ?>
 
-                <a class="btnacc" href="#">
+                <?php 
+                    $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction WHERE codeProduit = :id");
+                    $stmt->execute(['id' => $code_produit]);
+                    $hasRemise = $stmt->rowCount() > 0;
+
+                    if ($hasRemise){
+                ?>
+                <a class="btnacc" href="ajouterRemise.php?Produit=<?php echo $code_produit?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ticket-percent-icon lucide-ticket-percent"><path d="M2 9a3 3 0 1 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 1 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M9 9h.01"/><path d="m15 9-6 6"/><path d="M15 15h.01"/></svg>
+                    Modifier la remise
+                </a>
+                <?php } else { ?>
+                <a class="btnacc" href="ajouterRemise.php?Produit=<?php echo $code_produit?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ticket-percent-icon lucide-ticket-percent"><path d="M2 9a3 3 0 1 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 1 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M9 9h.01"/><path d="m15 9-6 6"/><path d="M15 15h.01"/></svg>
                     Ajouter une remise
                 </a>
+                <?php } ?>
             </section>
             <div class="right-content">
                 <!-- <a href="index.php" class="btn-retour">
@@ -184,9 +197,22 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                         <div class="alignement_space_betwen">
                             <h2>
                                 <?php
-                                    $info = $bdd->query("SELECT prixHT FROM alizon.Produit WHERE codeProduit=$code_produit")->fetch();
-                                    $res=$info["prixht"];
-                                    echo "$res €";
+                                    $sql = "SELECT * FROM alizon.Produit JOIN alizon.FaireReduction ON alizon.Produit.codeProduit = alizon.FaireReduction.codeProduit JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.Produit.codeProduit=$code_produit";
+                                    $stmt = $bdd->prepare($sql);
+                                    $info = $stmt->execute();
+                                    $info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                    $sql2 = "SELECT * FROM alizon.Produit where alizon.Produit.codeProduit=$code_produit";
+                                    $stmt2 = $bdd->prepare($sql2);
+                                    $info2 = $stmt2->execute();
+                                    $info2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+                                    $res=$info2["prixht"];
+                                    if($hasRemise){
+                                        echo '<p class="prixNormalbarre">'.$info['prixht'].'€</p>';
+                                        echo '<p class="prixReduc">'.round($info['prixht'] * (1 - $info['remise']/100), 2).'€ <span class="remise"> - '.$info['remise'].'%</span></p>';
+                                    } else {
+                                        echo '<p class="prixNormal">'.$res.'€</p>';
+                                    }
                                 ?>
                             </h2>
                             <!--<div>

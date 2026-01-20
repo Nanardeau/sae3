@@ -396,3 +396,14 @@ body {
     color: $noir;
     margin-left: 10px;
 }
+
+.prixNormalbarre{
+    text-decoration: line-through;
+    color: grey;
+}
+
+.prixReducRed{
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+}
