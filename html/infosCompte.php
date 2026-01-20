@@ -138,11 +138,11 @@
                     </div>
                 </div>
             </div>
-            <?php endif?>
             <label for="numAptCli">Numéro d'appartement</label>
             <input type="text" name="numAppart" id="numAptCli" value="<?php if($adresse["numappart"]){echo $adresse["numappart"];}else{echo "";}?>" disabled/>
             <label for="compAdrCli">Complément</label>
             <input type="text" name="complementAdresse" id="compAdrCli" value="<?php if($adresse["complementadresse"]){echo $adresse["complementadresse"];}else{echo "";}?>" disabled/>
+            <?php endif?>
 
             <!--<label for="mdpCli">Mot de passe</label>
             <input type="password" name="mdp" id="mdpCli" pattern="[A-Za-z0-9?,.;:§!$£*µù%]{2,20}" required disabled/>
