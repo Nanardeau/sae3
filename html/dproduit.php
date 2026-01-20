@@ -281,10 +281,10 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                 </div>
                             <?php endif; ?>
                             <div class="actions-avis">
-                                <a onclick="openOverlayModif(<?php echo $avis['noteprod'] ?>)">Modifier</a>
-                                <div class="overlaymodifier">
-                                    <form class="avis-section" method="POST" action="modifier_avis.php" enctype="multipart/form-data">
-
+                                <a id="btnModifierAvis" onclick="openOverlayModif(<?php echo $avis['noteprod'] ?>, <?php echo $avis['numavis'] ?>, <?php echo $avis['codeproduit'] ?>, '<?php echo $avis['commentaire'] ?>')">Modifier</a>
+                                <div class="overlaymodifier" id="<?php echo $avis['numavis'] ?>">
+                                    
+                                    <form class="avis-section" method="POST" action="modifier_avis.php?noteprod=<?php  ?>&codeAvis=<?php echo $avis['numavis'] ?>&codeProduit=<?php echo $avis['codeproduit'] ?>" enctype="multipart/form-data">
                                         <h2>Modifier votre avis</h2>
 
                                         <div class="noter" id="stars">
@@ -294,29 +294,28 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                             <span data-value="4" onclick="selectStar(4)">★</span>
                                             <span data-value="5" onclick="selectStar(5)">★</span>
                                         </div>
-
+                                        
                                         <span id="note-value" style="display:none;">0</span>
 
                                         <textarea name="commentaire" maxlength="255" placeholder="Rédiger un commentaire..." required><?php echo $avis['commentaire'] ?></textarea>
-
+                                        
                                         <div class="plein-buttons">
                                             <?php if (!empty($avis['photos'])): ?>
                                                 <p>La photo est prise en compte</p>
                                             <?php endif; ?>
                                             <label class="photo" for="contact_upload">Ajouter des photos</label>
                                             <input type="file" name="contact_upload" id="contact_upload" /><?php if(isset($contact_upload)) echo $contact_upload; ?></textarea>
-                                            <button type="reset" class="cancel" onclick="closeOverlayModif()">Annuler</button>
+                                            <button type="reset" class="cancel" onclick="closeOverlayModif(<?php echo $avis['numavis'] ?>)">Annuler</button>
                                             <button type="submit" class="submit">Modifier</button>
                                         </div>
                                         
 
-                                        
-                                        <input type="hidden" name="codeProduit" value="<?php echo $avis['codeproduit'] ?>">
-                                        <input type="hidden" name="codeAvis" value="<?php echo $avis['numavis'] ?>">
-                                        <input type="hidden" name="noteProduit" id="noteProduit" value="1">
+                                        <!--<input type="hidden" name="commentaire" value="<?php echo $avis['commentaire'] ?>">-->
+                                        <!--<input type="hidden" name="codeProduit" value="<?php echo $produit['codeproduit'] ?>">-->
+                                        <input type="hidden" name="noteprod" id="noteprod" value=1>
                                     </form>
                                 </div>
-                                <a href="supprimer_avis.php?codeavis=<?= $avis['numavis'] ?>&&codeproduit=<?= $avis['codeproduit'] ?>">Supprimer</a>
+                                <a href="supprimer_avis.php?codeavis=<?= $avis['numavis'] ?>&codeproduit=<?= $avis['codeproduit'] ?>">Supprimer</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -325,13 +324,26 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         </section>        
     </main>
     <?php include 'includes/footer.php'; ?>
+    <?php
+    /*function definireAvisIndex($avisList, $numAvis) {
+        foreach ($avisList as $index => $avis) {
+            if ($avis['numavis'] == $numAvis) {
+                return $index;
+            }
+        }
+        return -1; // Retourne -1 si l'avis n'est pas trouvé
+    }*/
+    ?>
     <script>
-        function openOverlayModif(src) {
-            document.querySelector(".overlaymodifier").style.display = "flex";
+        function openOverlayModif(src, numAvis, codeProduit, avisCommentaire) {
+            document.getElementById(numAvis).style.display = "flex";
+            document.querySelector("form.avis-section").action = "modifier_avis.php?codeAvis=" + numAvis + "&codeProduit=" + codeProduit;
+            document.querySelector("form.avis-section textarea").value = document.querySelector(".avis .commentaire").innerText;
             updateStars(src);
         }
-        function closeOverlayModif() {
-            document.querySelector(".overlaymodifier").style.display = "none";
+
+        function closeOverlayModif(numAvis) {
+            document.getElementById(numAvis).style.display = "none";
         }
         function openOverlay(src) {
             document.querySelector("#overlay").src = src;
@@ -340,8 +352,10 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         function fermerOverlay() {
             document.getElementById("overlay").style.display = "none";
         } 
-        function selectStar(value) {
-            document.getElementById('noteProduit').value = value;
+        function selectStar(valeur) {
+            console.log(document.getElementById('noteprod').value);
+            console.log(document.getElementsByClassName('noteprod').value);
+            document.getElementById('noteprod').setAttribute('value', valeur);
         }
     </script>
 </body>

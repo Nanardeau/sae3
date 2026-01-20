@@ -1294,4 +1294,8 @@ input[type=file] {
   width: 40%;
   background-color: white;
   height: 40%;
+}
+
+#btnModifierAvis {
+  cursor: pointer;
 }/*# sourceMappingURL=dproduit.css.map */

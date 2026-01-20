@@ -23,10 +23,14 @@ try {
 $pdo->query("SET SCHEMA 'alizon'");
 
 $commentaire = $_POST['commentaire'];
-$noteProduit = $_POST['noteProduit'];
-$codeProduit = $_POST['codeProduit'];
-$codeAvis = $_POST['codeAvis'];
+$noteProduit = $_POST['noteprod'];
+$codeProduit = $_GET['codeProduit'];
+$codeAvis = $_GET['codeAvis'];
 $urlPhotos = "img/" . $_FILES['contact_upload']['full_path'];
+
+echo $_POST['noteProduitAvis'];
+echo $_POST['noteProd'];
+echo $_POST['noteprod'];
 
 $update = $pdo->prepare("UPDATE Avis SET commentaire = :commentaire, noteprod = :noteProduit WHERE numavis = :codeAvis");
 $update->execute([
@@ -57,40 +61,13 @@ if ($tmpName){
         ':codeAvis' => $codeAvis
     ]);
 }
+//echo $codeAvis;
+//echo $codeProduit;
+//echo $commentaire;
+echo $noteProduit;
+//header("Location: dproduit.php?id=" . urlencode($codeProduit));
 
+exit();
 ?>
 
-<div>
-    <?php
-        echo $urlPhotos;
 
-
-        echo '<br>';
-        echo $fileName;
-
-        echo '<br>';
-
-        echo $folder;
-        echo '<br>';
-
-        print_r($_POST);
-        
-        echo '<br>';
-
-        print_r($_FILES);
-
-        echo '<br>';
-
-        echo $_FILES['contact_upload']['full_path'];
-        
-        echo '<br>';
-
-        print_r($_SESSION);
-
-        print_r($_GET);
-
-        print_r($avis);
-
-        print_r($produit);
-?>
-</div>
