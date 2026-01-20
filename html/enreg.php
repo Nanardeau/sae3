@@ -103,7 +103,7 @@
         }
 
 
-        if($_FILES["photo"]){
+        if($_FILES["photo"]["size"]!= 0){
             
             $nomPhoto = $_FILES["photo"]["name"];
             $extension = $_FILES["photo"]["type"];
