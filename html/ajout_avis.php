@@ -10,14 +10,13 @@ $user = getenv('PGUSER');
 $password = getenv('PGPASSWORD');
 
 try {
-    $pdo = new PDO(
-        "pgsql:host=$host;port=$port;dbname=$dbname;",
-        $user,
-        $password,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    $ip = 'pgsql:host=' . $host . ';port=' . $port . ';dbname=' . $dbname . ';';
+    $pdo = new PDO($ip, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+    // "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
-    die("Erreur BDD : " . $e->getMessage());
+    // "❌ Erreur de connexion : " . $e->getMessage();
 }
 
 $pdo->query("SET SCHEMA 'alizon'");
