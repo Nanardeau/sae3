@@ -10,8 +10,9 @@
             <span class="etoile <?= $i <= round($moyenneNote) ? 'pleine' : '' ?>">★</span>
         <?php endfor; ?>
     </div>
+    <p class="madein">Made in <?php echo $madein ?></p>
     <p class="description"><?php
-    $max = 175;
+    $max = 100;
     $descSafe = trim($desc ?? '');
     if (strlen($descSafe) > $max) {
         $descSafe = substr($descSafe, 0, $max - 3) . '...';

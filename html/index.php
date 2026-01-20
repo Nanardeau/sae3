@@ -87,7 +87,7 @@ session_start();
             <h1>Nouveautés</h1>
                 <?php
                 $produits = $bdd->query("
-                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd, noteMoy
+                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd, noteMoy, origine, noteMoy
                     FROM Produit
                     ORDER BY codeProduit DESC
                     LIMIT 7
@@ -102,6 +102,7 @@ session_start();
                     $prix = number_format($p['prixttc'], 2, ',', '');
                     $desc = $p['descriptionprod'];
                     $id = $p['codeproduit'];
+                    $madein = $p['origine'];
                     $moyennenote = $p['notemoy'];
                     include 'includes/card.php';
 
@@ -115,7 +116,7 @@ session_start();
             
                 <?php
                 $produits = $bdd->query("
-                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd
+                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd, origine, noteMoy
                     FROM Produit
                     ORDER BY codeProduit DESC
                     LIMIT 7
@@ -130,6 +131,8 @@ session_start();
                     $prix = number_format($p['prixttc'], 2, ',', '');
                     $desc = $p['descriptionprod'];
                     $id = $p['codeproduit'];
+                    $madein = $p['origine'];
+                    $moyennenote = $p['notemoy'];
                     include 'includes/card.php';
                 } ?>
             </article>
@@ -138,7 +141,7 @@ session_start();
         <h1 class="aff_prod">Les produits</h1>
         <article class="catalogue">
         <?php
-        $base= 'SELECT codeProduit, libelleProd, prixTTC, urlPhoto, noteMoy, descriptionProd FROM Produit where Disponible = true LIMIT 30' ;
+        $base= 'SELECT codeProduit, libelleProd, prixTTC, urlPhoto, noteMoy, descriptionProd, origine, noteMoy FROM Produit where Disponible = true LIMIT 30' ;
         $req= $bdd->prepare($base);
         $req->execute();
         $produits= $req->fetchAll(PDO::FETCH_ASSOC);
@@ -148,6 +151,7 @@ session_start();
             $prix = number_format($p['prixttc'], 2, ',', '');
             $desc = $p['descriptionprod'];
             $id = $p['codeproduit'];
+            $madein = $p['origine'];
             $moyennenote = $p['notemoy'];
             include 'includes/card.php';
         }        
