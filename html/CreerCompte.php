@@ -101,7 +101,7 @@
                 <p>Déjà un compte ?</p>
                 <img src="../../img/line_1.svg"/>
             </figure>
-            <div class="div-btn">
+            <div class="bouton-connexion">
                 <a href="ConnexionClient.php" class="bouton">Se connecter</a>
                 <a href="Catalogue.php" class="btnJaune">Retour</a>
             </div>
@@ -171,9 +171,8 @@
             // Date limite : aujourd'hui - 100 ans
             const dateLimite = new Date();
             dateLimite.setFullYear(mtn.getFullYear() - 120);
+
             if(date > mtn){
-                elemDate.classList.add("invalid");
-            }else if (date < dateLimite){
                 elemDate.classList.add("invalid");
             }
             else{
