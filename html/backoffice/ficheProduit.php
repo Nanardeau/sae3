@@ -9,7 +9,6 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
     
 }
 
-print_r($_COOKIE);
     require_once('../_env.php');
     
 
@@ -36,15 +35,7 @@ $stmt = $bdd->query($sql);
 $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
         
         
-if(isset($_COOKIE["qteAjout"])){
-    $qteAjout = $_COOKIE["qteAjout"];
-    $req = $bdd->prepare("Update alizon.produit SET qteStock= :qteAjout + qteStock WHERE codeProduit=:code_produit");
-    $res = $req->execute(array(
-    ":qteAjout" => $qteAjout,
-    ":code_produit" => $code_produit
-    ));
-    unset($_COOKIE["qteAjout"]);
-}
+
 
 
         
@@ -57,40 +48,7 @@ if(isset($_COOKIE["qteAjout"])){
         <link rel="stylesheet" type="text/css" href="../css/style/backoffice/popupAvis.css" >
         <link href="../css/components/fonts.css" rel="stylesheet" type="text/css">
         <script src="../js/FicheProd.js"></script>
-        <script>
-            // function validerStock(){
-            //     let qte = document.getElementById("qteStock").value;
-            //     document.cookie = "qteStock = " + qte;
 
-            // }
-
-
-            // const popover = document.getElementById("popReapro");
-            // let btnValider = document.getElementById("validerQteStock");
-            // btnValider.addEventListener("click", closePopOver(event));
-
-            // document.addEventListener("keydown", closePopOver(event));
-            // function closePopOver(event){
-            //     popover.hidePopover();
-            // }
-        ;
-        const btnReappro = document.getElementById("btnReappro");
-        //btnReappro.addEventListener("click", ouvrirReappro());
-
-        function ouvrirReappro() {
-            document.getElementById("divReappro").classList.add("Rea-open");
-        };
-        function annulerReappro(){
-            document.getElementById("divReappro").classList.remove("Rea-open");
-        }
-        function validerReappro(){
-            let qte = document.getElementById("qteAjout").value;
-            document.getElementById("divReappro").classList.remove("Rea-open");
-            document.cookie = "qteAjout = " + qte;
-            
-        }
-    
-        </script>
         <title>alizon</title>
         <style>
             .Rea-open {
@@ -193,18 +151,13 @@ if(isset($_COOKIE["qteAjout"])){
                                     </button>
                                  </div>
 
-                                <!-- <div popover id="popReapro">
-                                    <h3>Réapprovisionnement</h3>
-                                    <label for="qteStock" class="pObl">Quelle quantité voulez-vous ajouter?</label>
-                                    <input type="number" name="qteStock" min="0" placeholder="Quantité à ajouteru" id="qteStock"/> 
-                                    <button onclick=validerStock() id="validerQteStock"> Valider </button>
-                                </div> -->
                                 <div id="divReappro">
                                     <article>
                                         <h3>Réapprovisionnement</h3>
                                         <label for="qteAjout" class="pObl">Quelle quantité voulez-vous ajouter?</label>
                                         <input type="number" name="qteAjout" min="0" placeholder="Quantité à ajouter" id="qteAjout"/> 
                                         <button onclick="annulerReappro()" id="annulerReappro"> Annuler </button>
+                                        <!-- il faut recharger manuellement une fois la page pour que l'ajout s'effectue -->
                                         <button onclick="validerReappro()" id="validerReappro"> Valider </button>
                                     </article>
                                 </div>
@@ -505,6 +458,43 @@ if(isset($_COOKIE["qteAjout"])){
         <script src="/js/popupAvis.js"></script>
         <script src="../js/overlayCompteVendeur.js"></script>
         <script>src="../js/scripts.js"</script>
+<?php
+if(isset($_COOKIE["qteAjout"])){
 
+    $qteAjout = $_COOKIE["qteAjout"];
+    
+    setcookie("qteAjout", '', time() - 4200, '/');
+    
+    print_r($_COOKIE);
+    $req = $bdd->prepare("Update alizon.produit SET qteStock= :qteAjout + qteStock WHERE codeProduit=:code_produit");
+    $res = $req->execute(array(
+    ":qteAjout" => $qteAjout,
+    ":code_produit" => $code_produit
+    ));
+    
+}
+?>
+        <script>
+ 
+        document.cookie = "qteAjout = " + 0;
+        
+        const btnReappro = document.getElementById("btnReappro");
+        //btnReappro.addEventListener("click", ouvrirReappro());
+
+        function ouvrirReappro() {
+            document.getElementById("divReappro").classList.add("Rea-open");
+        };
+        function annulerReappro(){
+            document.getElementById("divReappro").classList.remove("Rea-open");
+        }
+        function validerReappro(){
+            let qte = document.getElementById("qteAjout").value;
+            document.getElementById("divReappro").classList.remove("Rea-open");
+            document.cookie = "qteAjout = " + qte;
+            window.location.reload();
+            
+        }
+    
+        </script>
     </body>
 </html>
