@@ -40,9 +40,9 @@ function retirerCatalogue(idProd){
     }                       
 }
 function supprimerCatalogue(idProd){
-        if(confirm("Voulez vous retirer cet article du catalogue?")){
-        url = "/backoffice/statut.php?Action=retirer&Produit=" + encodeURIComponent(idProd);
-        url2 = "/backoffice/ficheProduit.php?Produit=" + encodeURIComponent(idProd);
+        if(confirm("Voulez vous supprimer cet article de la plateforme?")){
+        url = "/backoffice/statut.php?Action=supprimer&Produit=" + encodeURIComponent(idProd);
+        url2 = "/backoffice/index.php"
         sendGet(url,function() { 
             location.replace(url2); 
         },
