@@ -162,7 +162,7 @@ $bdd->query('set schema \'alizon\'');
                 
                 <article class="catalogue">
                 <?php    
-                    foreach ($articles as $p) {
+                    foreach ($articles as $article) {
                         //print_r($article);
                         $codeProduit = $article['codeproduit'];
                         $img = $article['urlphoto'];

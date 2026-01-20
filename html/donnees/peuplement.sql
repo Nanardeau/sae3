@@ -248,7 +248,7 @@ INSERT INTO
         dateNaissance,
         nom,
         prenom,
-        email
+        email,
         mdp,
         numTel,
         cmtBlq,
