@@ -42,7 +42,7 @@
 
     if(isset($_GET["modif"])){
         if( $_GET["modif"] == "mdp"){
-            $stmt = $bdd->prepare("UPDATE alizon.Client SET mdp = :newmdp WHERE codeCompte = :codeCompte");
+            $stmt = $bdd->prepare("UPDATE alizon.Client SET mdp = MD5(:newmdp) WHERE codeCompte = :codeCompte");
             $stmt->execute([":newmdp" => $_SESSION["nouveauMdp"]
             , ":codeCompte" => $_SESSION["codeCompte"]]);
             $_SESSION["nouveauMdp"] = "";

@@ -87,7 +87,7 @@
 
         if($erreur == ""){
             //insertion d'un vendeur dans la base de données
-            $stmt = $pdo->prepare('INSERT INTO alizon.Vendeur(nom, prenom, numTel, SIREN, email, pseudo, raisonSociale, idAdresseSiege, mdp) VALUES (:nom, :prenom, :numtel, :siren, :mail, :id, :raisonsoc, :idAdresseSiege, :mdp)');
+            $stmt = $pdo->prepare('INSERT INTO alizon.Vendeur(nom, prenom, numTel, SIREN, email, pseudo, raisonSociale, idAdresseSiege, mdp) VALUES (:nom, :prenom, :numtel, :siren, :mail, :id, :raisonsoc, :idAdresseSiege, MD5(:mdp))');
             $stmt->execute(array(
                 ":nom" => $nom,
                 ":prenom" => $prenom,
@@ -140,16 +140,14 @@
         </div>
         <form action="creerCompteVendeur.php" method="post">
             <div class="main">
-                <h2>
-                    Création de compte
-                </h2>
-                <details open>
-                    <summary><h3>Profil responsable V</h3></summary>
+                <section>
+                    <h2>
+                        Création de compte
+                    </h2>
 
-                    <section>
-                    
-
-                    
+                    <h3>
+                        Profil Responsable
+                    </h3>
                     <div class="label">
                         <label>
                             Identifiant* :
@@ -219,12 +217,11 @@
                         <span>Les deux mots de passe doivent être identiques</span>
                     </div>
                 </section>
-                </details>
-                
                 <hr>
-                <details>
-                    <summary><h3>Informations entreprise V</h3></summary>
-                    <section>
+                <section>
+                    <h3>
+                        Information entreprise
+                    </h3>
                     <div class="label">
                         <label>
                             Numéro SIREN* :
@@ -271,8 +268,6 @@
                         <span>La ville ne doit pas commencer par une majuscule et ne doit pas contenir de chiffres.</span>
                     </div>
                 </section>
-                </details>
-                
             </div>
             <div class="boutton">
                 <button type="submit" id="valider" >Créer le compte</button>

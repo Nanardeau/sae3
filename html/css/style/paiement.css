@@ -651,8 +651,12 @@ nav div > ul li:hover .souscat-ul {
   padding-left: 1rem;
 }
 
-.ajoutPanierFait {
-  display: flex;
+#ajoutPanierFait.open {
+  display: flex !important;
+}
+
+#ajoutPanierFait {
+  display: none;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
@@ -665,13 +669,13 @@ nav div > ul li:hover .souscat-ul {
   margin-top: 1em;
   margin-left: 2em;
 }
-.ajoutPanierFait svg {
+#ajoutPanierFait svg {
   color: green;
 }
-.ajoutPanierFait .bouton {
+#ajoutPanierFait .bouton {
   padding: 0.3em;
 }
-.ajoutPanierFait .partieDroite {
+#ajoutPanierFait .partieDroite {
   display: flex;
   flex-direction: column;
 }
@@ -714,16 +718,51 @@ nav div > ul li:hover .souscat-ul {
   font-size: 20px;
 }
 
-body {
-  padding: 0;
-  margin: 0;
+#mainAdr {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(241, 241, 241);
+}
+
+span {
+  display: none;
+  margin-bottom: 1em;
+}
+
+.asideSec {
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width : 428px) {
+  .asideSec {
+    flex-direction: column-reverse;
+    font-size: 12px;
+  }
 }
 
 article {
-  background-color: #D1ECF8;
+  background-color: white;
   width: 100%;
   height: 30%;
   border-radius: 1em;
+}
+
+#navMobile {
+  display: none;
+}
+@media screen and (max-width : 428px) {
+  #navMobile {
+    display: flex;
+  }
+}
+
+#navTablette {
+  display: flex;
+}
+@media screen and (max-width : 428px) {
+  #navTablette {
+    display: none;
+  }
 }
 
 .labelInput {
@@ -732,7 +771,6 @@ article {
 }
 
 .ligneSection {
-  display: flex;
   padding: 1rem;
 }
 @media screen and (max-width : 428px) {
@@ -741,6 +779,14 @@ article {
     justify-content: flex-start;
     align-items: flex-start;
   }
+}
+.ligneSection #adresseLivraison {
+  width: 100%;
+  justify-self: center;
+}
+.ligneSection #adresseLivraison article, .ligneSection #adresseLivraison h2 {
+  justify-self: center;
+  width: 80%;
 }
 .ligneSection section {
   width: 100%;
@@ -752,7 +798,16 @@ article {
   }
 }
 .ligneSection section:nth-child(1) article {
+  width: 100%;
   padding: 3em;
+}
+@media screen and (max-width : 428px) {
+  .ligneSection section:nth-child(1) article {
+    padding: 2em;
+  }
+}
+.ligneSection section:nth-child(1) article .conteneur {
+  width: 100%;
 }
 .ligneSection section:nth-child(2) {
   margin-left: 20%;
@@ -768,21 +823,50 @@ article {
   display: flex;
   margin-bottom: 1em;
 }
+@media screen and (max-width : 428px) {
+  .ligneInput {
+    flex-direction: column;
+  }
+}
 .ligneInput .labelInput:nth-child(1) {
   margin-right: 2em;
+  width: 20%;
+}
+@media screen and (max-width : 428px) {
+  .ligneInput .labelInput:nth-child(1) {
+    width: 100%;
+  }
 }
 .ligneInput .labelInput:nth-child(2) {
+  width: 100%;
+}
+@media screen and (max-width : 428px) {
+  .ligneInput #divNom, .ligneInput #prenom, .ligneInput #codePostal {
+    width: 100%;
+  }
+}
+.ligneInput #divNom {
+  width: 55%;
+}
+.ligneInput #prenom {
   width: 60%;
 }
 .ligneInput #codePostal {
-  width: 6em;
+  width: 7em;
 }
 .ligneInput #numApt {
-  width: 6em;
+  width: 7em;
+}
+.ligneInput input:disabled {
+  background-color: rgba(192, 192, 192, 0.438);
 }
 
 #numRue {
   width: 5em;
+}
+
+main input, label, p, button {
+  font-size: 18px;
 }
 
 input {
@@ -799,7 +883,21 @@ input .btnJaune {
 
 section:nth-child(1) .bouton {
   padding: 10px 20px;
-  margin-top: 1em;
+  margin-top: 3em;
+  margin-right: 2em;
+  width: 15%;
+  height: 4em;
+}
+@media screen and (max-width : 428px) {
+  section:nth-child(1) .bouton {
+    width: 35%;
+  }
+}
+
+aside + section {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 5%;
 }
 
 section {
@@ -851,6 +949,10 @@ div.row {
   align-items: center;
 }
 
+.prixAffiche {
+  color: #064082;
+}
+
 #articles {
   width: 100%;
   display: flex;
@@ -858,18 +960,27 @@ div.row {
   align-items: flex-start;
 }
 
+aside {
+  margin: 0;
+  height: 100%;
+}
+aside section, aside article {
+  height: 100%;
+}
+
 #secRecap {
   width: 100%;
 }
 
 #recapitulatif {
-  width: 100%;
-  height: -moz-fit-content;
-  height: fit-content;
+  width: 40em;
+  height: 50em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  border-right: solid;
+  border-radius: 0;
 }
 #recapitulatif #recap {
   height: 100%;
@@ -882,114 +993,121 @@ div.row {
 #recapitulatif .libelleProdRecap {
   display: flex;
   justify-content: space-between;
+  background-color: #D1ECF8;
+  border-radius: 1em;
+  padding: 1em;
   width: 90%;
 }
 
-.ligneArtPaye {
+.dateCVC {
   display: flex;
-  padding-bottom: 3em;
 }
-@media screen and (max-width : 428px) {
-  .ligneArtPaye {
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 1rem;
-  }
-  .ligneArtPaye section {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-}
-.ligneArtPaye input {
-  width: auto;
-  border-radius: 10px;
-  height: 1em;
-  margin-bottom: 3rem;
-}
-.ligneArtPaye section:nth-child(2) {
-  margin-left: 13rem;
-  width: 40%;
-}
-@media screen and (max-width : 428px) {
-  .ligneArtPaye section:nth-child(2) {
-    margin: 0;
-    width: 100%;
-  }
-}
-.ligneArtPaye section:nth-child(2) article {
-  padding-left: 8em;
-  width: 80%;
-  height: auto;
-  justify-content: flex-start;
-}
-@media screen and (max-width : 428px) {
-  .ligneArtPaye section:nth-child(2) article {
-    padding: 1rem;
-    width: 100%;
-  }
-}
-.ligneArtPaye section:nth-child(2) form {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 100%;
-}
-@media screen and (max-width : 428px) {
-  .ligneArtPaye section:nth-child(2) form {
-    width: 100%;
-  }
-}
-.ligneArtPaye section:nth-child(2) .dateCVC {
-  display: flex;
-  justify-content: space-between;
-  width: 65%;
-}
-.ligneArtPaye section:nth-child(2) #expDate {
+.dateCVC .labelInput:nth-child(1) input {
   width: 6rem;
+  margin-right: 5rem;
 }
-.ligneArtPaye section:nth-child(2) #cvc {
-  width: 6rem;
-}
-.ligneArtPaye .bouton {
-  font-family: "Mulish";
-  font-weight: bold;
-  font-size: 20px;
-  text-align: center;
-  text-decoration: none;
-  background-color: #064082;
-  color: white;
-  border-radius: 1em;
-  border: none;
-  cursor: pointer;
-  background-color: #FF4444;
-  padding: 1.5rem;
-  width: 10rem;
-  border: none;
-}
-.ligneArtPaye .bouton:hover {
-  background-color: rgb(6.75, 72, 146.25);
-}
-.ligneArtPaye .bouton:active {
-  background-color: rgb(4.5, 48, 97.5);
-}
-.ligneArtPaye nav {
-  display: flex;
-  justify-content: space-between;
-  align-self: flex-end;
-}
-.ligneArtPaye nav button {
-  margin-right: 2em;
-  margin-top: 2em;
+.dateCVC .labelInput:nth-child(2) input {
+  width: 5rem;
 }
 
 #poubelle {
   border: none;
+  border-radius: 10px;
   background-color: #D1ECF8;
 }
 #poubelle img {
   width: 30px;
 }
 #poubelle:hover {
-  background-color: rgb(178.5, 178.5, 178.5);
+  background-color: rgb(108.75, 174, 248.25);
+}
+
+.conteneur {
+  width: 60%;
+}
+@media screen and (max-width : 428px) {
+  .conteneur {
+    width: 100%;
+  }
+}
+
+.ariane {
+  display: flex;
+  justify-content: center;
+  align-self: flex-start;
+}
+.ariane .arianeItem {
+  font-size: 0;
+}
+
+.checkboxCGV {
+  display: flex;
+  flex-direction: row;
+}
+.checkboxCGV input {
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 1em;
+}
+.checkboxCGV label {
+  margin-top: 1em;
+  height: 1em;
+}
+
+#btnAnnuler {
+  margin-right: 3rem;
+}
+
+#infosPaiement {
+  display: flex;
+  flex-direction: column;
+}
+#infosPaiement nav {
+  align-self: flex-start;
+}
+
+#btnPayer, #btnAnnuler {
+  height: 3rem;
+  padding: 0;
+  width: 10rem;
+}
+@media screen and (max-width : 428px) {
+  #btnPayer, #btnAnnuler {
+    margin-top: 2rem;
+  }
+}
+
+#confirmation {
+  display: none;
+  position: absolute;
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.205);
+}
+#confirmation article {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 50%;
+  height: 30%;
+  border-radius: 2em;
+  padding: 10%;
+}
+#confirmation article h1 {
+  align-self: center;
+}
+#confirmation article .bouton {
+  height: 4rem;
+  width: 10rem;
+  font-size: 28px;
+}
+#confirmation article .bouton:nth-child(1) {
+  margin-right: 2rem;
+}
+#confirmation article nav {
+  display: flex;
+  justify-content: center;
 }/*# sourceMappingURL=paiement.css.map */
