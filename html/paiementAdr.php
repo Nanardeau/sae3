@@ -286,7 +286,7 @@
                         <div class="ligneInput">
                             <div class="labelInput">
                                 <label>N° appartement</label>
-                                <input type="text" name="numApt" id="numApt" value="<?php echo $infosadresse ? $infosAdresse["numappart"] : ""?>"/> 
+                                <input type="text" name="numApt" id="numApt" value="<?php echo $infosAdresse ? $infosAdresse["numappart"] : ""?>"/> 
                             </div>
                             <div class="labelInput">
                                 <label for="complement">Complément d'adresse</label>
