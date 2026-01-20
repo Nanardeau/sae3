@@ -1,24 +1,5 @@
 <?php
-    session_start(); 
-    require_once __DIR__ . '/_env.php';
-
-    loadEnv(__DIR__ . '/.env');
-
-    $host = getenv('PGHOST');
-    $port = getenv('PGPORT');
-    $dbname = getenv('PGDATABASE');
-    $user = getenv('PGUSER');
-    $password = getenv('PGPASSWORD');
-
-    try {
-        $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
-        $bdd = new PDO($dsn, $user, $password, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        ]);
-    } catch (PDOException $e) {
-        echo "Erreur de connexion : " . $e->getMessage();
-    }
-
+include('connDb.php');
 
 $cat = $_GET["cat"];
 $cat = strtoupper(substr($cat, 0, 1)) . substr($cat, 1, strlen($cat));
@@ -47,8 +28,18 @@ $prodsCat = $bdd->query("SELECT ALL * FROM alizon.Categoriser WHERE libelleCat =
 </style>
 <body>
     <?php
+    
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
 
-    if(isset( $_SESSION["codeCompte"])){
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(isset( $_SESSION["codeCompte"]) && $estClient){
         $idUser =  $_SESSION["codeCompte"];
         include 'includes/headerCon.php' ;
     }else{
@@ -56,9 +47,9 @@ $prodsCat = $bdd->query("SELECT ALL * FROM alizon.Categoriser WHERE libelleCat =
     }
     ?>
 
-    <main>
+    <main style="display:flex;flex-direction:column">
         <?php
-            include 'includes/menu_cat.php';
+            
             include 'includes/menuCompte.php';
         ?>
     <h2><?php echo $cat?></h2>

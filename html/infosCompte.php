@@ -1,13 +1,8 @@
 <?php 
     session_start();
-    if(!array_key_exists("codeCompte", $_SESSION)){
-        header("location:index.php");
-    }
-
-    $codeCompte = $_SESSION["codeCompte"];
     if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
-
+        
     }
     else{
         $erreur = "";
@@ -31,6 +26,23 @@
         echo "Erreur de connexion : " . $e->getMessage();
     }
     //$codeCompte = 1;
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
+
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(!$estClient || !isset($_SESSION["codeCompte"])){
+        exit(header("location:index.php"));
+    }
+    else{
+        
+        $codeCompte = $_SESSION["codeCompte"];
+    }
     $compte = $bdd->query("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
     
     $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
@@ -59,7 +71,6 @@
         <a href="index.php"><img src="../../img/logo_alizon_front.svg" alt="logo-alizon" title="logo-alizon"/></a>
 
         <div class="containerForm">
-
         <form action="modifCompteCli.php" method="post" enctype="multipart/form-data">
             <div class="crayonPhoto">
                 <img src="<?php echo $photo["urlphoto"]?>" alt="photoProfil" title="photoProfil"/>
@@ -140,7 +151,7 @@
 
         </form>   
 
-        <nav>
+        <div class="div-btn">
 
             <button class="bouton" id="modifInfos" popovertarget="mdpValider" onclick="modifierInfos()">Modifier informations</button>
             <div popover="auto" id="mdpValider">
@@ -169,7 +180,7 @@
             <button class="bouton" id="annuler" onclick="annuler()" hidden>Annuler</button>
             <button class="bouton" id="blocageCompte" onclick="bloquerCompte()">Bloquer compte</button>
             
-        </nav>
+            </div>
         </div>
         <button class="btnJaune" id="deconnexion" onclick="deconnecter()"><img src="./img/icon_déconnexion.svg"/>Se déconnecter</button>
 

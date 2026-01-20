@@ -90,20 +90,17 @@ aside{
     }
 
     .btnJaune{
-        @include bouton;
-        background-color:$eleOrange;
+        @include bouton($eleOrange);
         padding:1em; 
-        color:black;
         width:30%;
     }
 
-    nav{
+    .bouton-connexion{
         display:flex;
         flex-direction: column;
         align-items:center;
         a{
             text-decoration:none;
-            color:white;
         }
     }
 

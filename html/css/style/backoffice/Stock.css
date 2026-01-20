@@ -127,9 +127,13 @@
 }
 
 body {
+  background-color: #eaeaea;
+}
+
+body {
   font-family: "Mulish", "Baloo", "sans-serif";
   font-size: 14px;
-  background-color: white;
+  background-color: #eaeaea;
   color: black;
   margin: 0;
 }
@@ -162,15 +166,28 @@ label {
   font-weight: bold;
 }
 
+main {
+  padding-top: 80px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
 /*###############################
 #            HEADER             #
 ###############################*/
 header {
-  display: flex;
+  z-index: 1000;
+  position: fixed;
+  display: inline-flex;
   flex-direction: row;
   background-color: #CD4B22;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 header .logo_alizon_back {
   width: 118px;
@@ -211,6 +228,10 @@ header a .user {
   height: auto;
   margin: 0 0.5em 0 2em;
   flex-direction: row;
+}
+header .svg-deconnexion {
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 /*###############################
@@ -277,13 +298,108 @@ header a .user {
   display: flex;
 }
 
+/*#################################
+#          NAV                    #   
+#################################*/
+.nav-btn {
+  width: 300px;
+  min-width: 300px;
+  z-index: 999;
+  position: sticky;
+  top: 130px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 20px 0;
+}
+.nav-btn .btnacc {
+  background-color: white;
+  display: flex;
+  gap: 1em;
+  margin: 10px;
+  padding: 20px;
+  text-decoration: none;
+  color: black;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  font-size: 1.5em;
+  margin-top: 0;
+}
+.nav-btn .btnacc svg {
+  align-self: center;
+  margin-right: 10px;
+  min-width: 28px;
+  min-height: 28px;
+  stroke-width: 2px;
+}
+.nav-btn .btnacc:visited {
+  color: black;
+}
+.nav-btn .btnacc:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.nav-btn .orange {
+  background-color: #FCB66B;
+}
+
+.right-content {
+  margin-top: 2em;
+  padding-bottom: 2em;
+  height: auto;
+  display: flex;
+}
+
+body {
+  background-color: #eaeaea;
+}
+
+.overlayCompte {
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.overlayContentCompte {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 15em;
+  width: 230px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0 0 0 10px;
+  border: solid #CD4B22;
+}
+.overlayContentCompte nav {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.overlayContentCompte nav hr {
+  width: 95%;
+}
+.overlayContentCompte nav a {
+  padding: 1.5em;
+  color: black;
+  text-decoration: none;
+}
+.overlayContentCompte nav a:hover {
+  color: #6CA6E9;
+}
+
 .card {
   margin: 0 20px;
   color: black;
   width: auto;
   height: auto;
-  max-width: 240px;
-  max-height: 390px;
+  max-width: 230px;
+  max-height: 500px;
   border-radius: 0.5em;
   padding: 20px;
   display: grid;
@@ -296,45 +412,74 @@ header a .user {
     height: 300px;
   }
 }
+.card .description {
+  grid-area: 2/1/2/4;
+  font-size: 0.9rem;
+  padding-right: 15px;
+  color: black;
+}
+@media screen and (max-width : 428px) {
+  .card .description {
+    display: none;
+  }
+}
 .card figure {
   grid-area: 1/1/2/3;
   margin: 0;
 }
 .card figure img {
-  width: 100%;
+  width: 225px;
   background-color: white;
-  height: 180px;
+  height: 225px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 0.5em;
 }
 .card figure figcaption {
   margin-top: 10px;
+  font-size: large;
+  font-weight: bold;
+}
+.card .etoiles {
+  position: relative;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  grid-area: 1/2/1/1;
+  top: 35px;
+}
+@media screen and (max-width : 428px) {
+  .card .etoiles {
+    top: 28px;
+  }
 }
 .card .prix {
-  grid-area: 2/1/3/2;
+  grid-area: 2/1/3/1;
   align-content: flex-end;
-  margin: 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+@media screen and (max-width : 428px) {
+  .card .prix {
+    margin-top: 10px;
+  }
 }
 .card div {
-  grid-area: 2/2/3/3;
+  grid-area: 2/2/2/2;
   display: flex;
   flex-direction: column-reverse;
   align-items: end;
   float: right;
   height: auto;
 }
-.card div a svg {
-  display: none;
-}
 @media screen and (max-width : 428px) {
-  .card div a svg {
-    display: block;
-    fill: #FCB66B;
-    stoke: black;
+  .card div {
+    height: 30px;
   }
 }
 .card div .button {
+  right: 20px;
   display: flex;
   align-items: center;
   align-content: center;
@@ -356,6 +501,35 @@ header a .user {
   .card div .button {
     display: none;
   }
+}
+
+.etoile {
+  color: #ccc;
+  font-size: 1.1rem;
+}
+
+.etoile.pleine {
+  color: #f5b301;
+}
+
+.mobile-commande {
+  display: none;
+  background-color: transparent;
+  border: none;
+  color: transparent;
+}
+@media screen and (max-width : 428px) {
+  .mobile-commande {
+    display: block;
+    position: relative;
+    top: -15px;
+  }
+}
+.mobile-commande svg {
+  fill: #FCB66B;
+  stroke: black;
+  width: 30px;
+  height: auto;
 }
 
 .vide {

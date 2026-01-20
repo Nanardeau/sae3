@@ -26,11 +26,11 @@
 
     $mdpBase = ($bdd->query("SELECT mdp FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'")->fetch())["mdp"];
 
-    if($mdpBase == $_POST["mdpPourValider"]){
+    if($mdpBase == md5($_POST["mdpPourValider"])){
         $_SESSION["mdpValide"] = 1;
         if(isset($_GET["modifMdp"])){
             if($_GET["modifMdp"] == 1){
-                $_SESSION["nouveauMdp"] = $_POST["mdpModifVendeur"];
+                $_SESSION["nouveauMdp"] = md5($_POST["mdpModifVendeur"]);
                 $_SESSION["mdpValide"] = 0;
                 exit(header('location:modifCompteVendeur.php?modif=mdp'));
                 ;

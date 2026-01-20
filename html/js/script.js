@@ -1,3 +1,14 @@
+function openOverlayCompte() {
+  const overlayCpt = document.getElementById("overlayCompte");
+  overlayCpt.style.display = "block";
+}
+
+
+function closeOverlayCompte() {
+  const overlayCpt = document.getElementById("overlayCompte");
+  overlayCpt.style.display = "none";
+}
+
 function openOverlay() {
   const overlay = document.getElementById("overlayMenuCat");
   overlay.style.display = "block";
@@ -51,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
     selectQte.addEventListener('change', updatePrice);
 });
 
+
+
 let lastScroll = 0;
 let ticking = false;
 const header = document.querySelector("header");
@@ -92,6 +105,7 @@ window.addEventListener("scroll", () => {
 const stars = document.querySelectorAll('#stars span');
 const noteInput = document.getElementById('noteProd');
 
+
 function updateStars(note) {
     stars.forEach(s => {
         if (s.dataset.value <= note) {
@@ -101,12 +115,20 @@ function updateStars(note) {
         }
     });
 }
+updateStars(1);
 
 stars.forEach(star => {
 
     star.addEventListener('click', () => {
-        noteInput.value = star.dataset.value;
+        const valeurCliquee = star.dataset.value;
+
+        if (noteInput.value === valeurCliquee) {
+            noteInput.value = 0;
+        } else {
+            noteInput.value = valeurCliquee;
+        }
         updateStars(noteInput.value);
+        form.submit();
     });
 
     star.addEventListener('mouseover', () => {
@@ -116,7 +138,9 @@ stars.forEach(star => {
     star.addEventListener('mouseout', () => {
         updateStars(noteInput.value);
     });
+
 });
+
 
 
 const track = document.querySelector('.carousel-track');
@@ -129,6 +153,29 @@ function nextSlide() {
 }
 
 setInterval(nextSlide, 4000);
+
+//Preview des images avant upload d'un produit
+document.getElementById('photoProd').addEventListener('change', function (e) {
+    const preview = document.getElementById('preview');
+    preview.innerHTML = ''; // reset
+
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+        alert('Le fichier doit être une image');
+        e.target.value = '';
+        return;
+    }
+
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.onload = () => URL.revokeObjectURL(img.src); // nettoyage mémoire
+
+    preview.appendChild(img);
+});
+
+
 
 
 

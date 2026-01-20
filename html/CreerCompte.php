@@ -31,16 +31,16 @@
             <label for="identifiant">Identifiant *</label>
 
 
-            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._0-9]{2,20}" required/> 
+            <input type="text" name="pseudo" placeholder="Identifiant..." id="identifiant" pattern="[A-Za-z._0-9]{3,20}" minlength="3" required/> 
             <span>L'identifiant doit faire entre 2 et 20 caractères (lettres, ".", "_" acceptés)</span>
             <div id="nomPrenomCli">
                 <div class="labelInput">
                     <label for="nomCli">Nom *</label>
-                    <input type="text" name="nom" placeholder="Nom..." id="nomCli" required/>
+                    <input type="text" name="nom" placeholder="Nom..." id="nomCli" pattern="[A-Za-z-]{3,40}" minlength="3" required/>
                 </div>
                 <div class="labelInput">
                     <label for="prenomCli">Prénom *</label>
-                    <input type="text" name="prenom" placeholder="Prénom..." id="prenomCli" required/>
+                    <input type="text" name="prenom" placeholder="Prénom..." pattern="[A-Za-z]{3,20}" id="prenomCli" minlength="3" required/>
                 </div>
             </div>
             <label for="photoCli">Photo de profil</label>
@@ -91,6 +91,8 @@
             <label for="confMdpCli">Confirmer mot de passe *</label>
             <input type="password" name="confMdp" id="confMdpCli" required/>
             <span>Les deux mots de passe doivent être identiques</span>
+                </br>
+            <p>En continuant, vous acceptez <a href="CGU.php#CGU">les conditions d'utilisation</a> et de vente d'Alizon.</p>
             <input class="bouton" type="submit" id="creerCompte" value="Créer un compte"/>
         </form>   
         <aside>
@@ -99,10 +101,10 @@
                 <p>Déjà un compte ?</p>
                 <img src="../../img/line_1.svg"/>
             </figure>
-            <nav>
+            <div class="bouton-connexion">
                 <a href="ConnexionClient.php" class="bouton">Se connecter</a>
                 <a href="Catalogue.php" class="btnJaune">Retour</a>
-            <nav>
+            </div>
         </aside>
 
     </main>
@@ -163,8 +165,13 @@
         function verifDate(evt){
             let elemDate = document.getElementById("dateNaiss");
             let date = document.getElementById("dateNaiss").value;
+            
             date = Date.parse(date);
             let mtn = Date.now();
+            // Date limite : aujourd'hui - 100 ans
+            const dateLimite = new Date();
+            dateLimite.setFullYear(mtn.getFullYear() - 120);
+
             if(date > mtn){
                 elemDate.classList.add("invalid");
             }

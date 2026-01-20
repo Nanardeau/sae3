@@ -1,5 +1,5 @@
 <?php 
-    $_GET["codeProduit"]=1;
+    //$_GET["codeProduit"]=1;
     //include '../includes/backoffice/header.php';
     require_once('../_env.php');
     
@@ -45,6 +45,29 @@
             $stmt->execute([
             ':codeProduit' => $codeProduit
             ]);
+            break;
+        case 'supprimer':
+            
+            $stmt = $bdd->prepare("select urlPhoto from Produit where codeProduit = :codeProduit");
+            $stmt->execute([
+            ':codeProduit' => $codeProduit
+            ]);
+            $urlPhoto = $stmt->fetch();
+            $stmt = $bdd->prepare("delete from categoriser where codeProduit = :codeProduit");
+            $stmt->execute([
+            ':codeProduit' => $codeProduit
+            ]);
+            
+            $stmt = $bdd->prepare("delete from Produit where codeProduit = :codeProduit");
+            $stmt->execute([
+            ':codeProduit' => $codeProduit
+            ]);
+            
+            $stmt = $bdd->prepare("delete from Photo where urlPhoto = :urlPhoto");
+            $stmt->execute([
+            ':urlPhoto' => $urlPhoto['urlphoto']
+            ]);
+
             break;
     }
 ?>

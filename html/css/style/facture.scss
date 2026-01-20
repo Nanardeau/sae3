@@ -1,0 +1,42 @@
+@use './styleCom' as *;
+a{
+    padding:1em 3em;
+    
+}
+.ligneFacture, .groupeFact,hr, table, th, td{
+    display:none;
+}
+@media print{
+    hr{
+        display:block;
+    }
+    .ligneFacture{
+        display:flex;
+        justify-content: space-between;
+    }
+    .groupeFact{
+        display:flex;
+        flex-direction:column;
+        p{
+            margin:0;
+        }
+    }
+    table{
+        width:90%;
+        text-align:left;
+        margin-left:5%;
+    }
+    th,td{
+        border-bottom:solid;
+        height:3em;
+    
+    }
+    
+    .ligneFacture, .groupeFact, table{
+        font-size:14px;
+    }
+    a{
+        display:none;
+    }
+
+}

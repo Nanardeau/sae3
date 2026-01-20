@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Baloo";
   src: url("../../fonts/baloo2-regular-webfont.woff") format("woff"), url("../../fonts/baloo2-regular-webfont.woff2") format("woff2");
@@ -61,169 +62,6 @@
   font-style: normal;
   font-display: swap;
 }
-body {
-  font-family: "Mulish", "Baloo", "sans-serif";
-  font-size: 14px;
-  background-color: white;
-  color: black;
-  margin: 0;
-}
-
-main {
-  padding-top: 80px;
-  padding-bottom: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
-}
-
-h1 {
-  font-family: "Baloo";
-  font-size: 40px;
-}
-
-h2 {
-  font-family: "Baloo";
-  font-size: 32px;
-}
-
-h3 {
-  font-family: "Baloo";
-  font-size: 24px;
-}
-
-h4 {
-  font-family: "Baloo";
-  font-size: 20px;
-}
-
-p, label, input {
-  font-family: "Mulish";
-}
-
-label {
-  font-weight: bold;
-}
-
-input:user-invalid, input.invalid {
-  border-color: red;
-}
-input:user-invalid + span, input.invalid + span {
-  display: block;
-}
-
-.bouton {
-  font-family: "Mulish";
-  font-weight: bold;
-  text-align: center;
-  text-size: 20px;
-  text-decoration: none;
-  background-color: #064082;
-  color: white;
-  border-radius: 1em;
-  border: none;
-  cursor: pointer;
-}
-.bouton:hover {
-  background-color: rgb(6.75, 72, 146.25);
-}
-.bouton:active {
-  background-color: rgb(4.5, 48, 97.5);
-}
-
-/*###############################
-#            HEADER             #
-###############################*/
-header {
-  transition: transform 0.3s ease;
-  z-index: 1000;
-  position: fixed;
-  display: inline-flex;
-  background-color: #064082;
-  height: 80px;
-  width: 100%;
-  align-items: center;
-}
-header .mobile-only {
-  display: none;
-}
-header form {
-  display: flex;
-  width: 60%;
-  align-items: center;
-  margin-left: auto;
-}
-header form input[type=search] {
-  padding: 1em;
-  border-radius: 40px;
-  border: none;
-  max-width: 700px;
-  width: 80%;
-  min-width: none;
-  font-size: "Mulish";
-}
-header form input[type=search]::-webkit-search-cancel-button {
-  position: relative;
-  left: -40px;
-}
-header form button {
-  display: flex;
-  z-index: 2;
-  align-items: center;
-  height: 32px;
-  border-radius: 40px;
-  border: none;
-  background-color: rgba(128, 128, 128, 0.2);
-  position: relative;
-  left: -40px;
-}
-header .logo_alizon_front {
-  width: 118px;
-  height: auto;
-  padding-left: 80px;
-  left: 0;
-  margin: 20px;
-}
-header nav {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-}
-header nav a {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-right: 20px;
-  color: white;
-  text-decoration: none;
-}
-header nav svg {
-  padding-right: 10px;
-}
-@media screen and (max-width : 428px) {
-  header .logo_alizon_front {
-    padding-left: 30px;
-    width: 100px;
-  }
-  header nav a {
-    padding-right: 10px;
-    font-size: 12px;
-  }
-  header .tab-only {
-    display: none;
-  }
-  header .mobile-only {
-    display: block;
-    padding-left: 20px;
-  }
-  header button {
-    background: none;
-    border: none;
-  }
-  header nav svg {
-    padding-right: 30px;
-  }
-}
-
 /*###############################
 #            FOOTER             #
 ###############################*/
@@ -324,49 +162,242 @@ header nav svg {
 }
 
 /*###############################
-#        Menu Categorie         #
-################################*/
-.nav-cat {
+#            HEADER             #
+###############################*/
+header {
   transition: transform 0.3s ease;
-  width: 100%;
-  background-color: #6CA6E9;
+  top: 0;
+  z-index: 1000;
   position: fixed;
-  z-index: 999;
-  display: none;
-  flex-direction: row;
+  display: inline-flex;
+  background-color: #064082;
+  height: 80px;
+  width: 100%;
+  align-items: center;
 }
-.nav-cat div {
+header .mobile-only {
+  display: none;
+}
+header form {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  margin-left: auto;
+}
+header form input[type=search] {
+  padding: 1em;
+  border-radius: 40px;
+  border: none;
+  max-width: 700px;
+  width: 80%;
+  min-width: none;
+  font-size: "Mulish";
+}
+header form input[type=search]::-webkit-search-cancel-button {
+  position: relative;
+  left: -40px;
+}
+header form button {
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  height: 32px;
+  border-radius: 40px;
+  border: none;
+  background-color: rgba(128, 128, 128, 0.2);
+  position: relative;
+  left: -40px;
+}
+header .logo_alizon_front {
+  width: 118px;
+  height: auto;
+  padding-left: 80px;
+  left: 0;
+  margin: 20px;
+}
+header .connexion-panier {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+header .connexion-panier a {
   display: flex;
   flex-direction: row;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.nav-cat h2 {
-  margin: 0;
-  margin-left: 10px;
-  margin-right: 10px;
-  align-self: center;
-}
-.nav-cat svg, .nav-cat a {
-  z-index: 1000;
-  align-self: center;
-  color: black;
-  font-size: 18px;
-  font-weight: 600;
+  align-items: center;
+  padding-right: 20px;
+  color: white;
   text-decoration: none;
-  white-space: nowrap;
-  background-color: #6CA6E9;
-  padding: 15px;
-  padding-right: 30px;
-  cursor: pointer;
 }
-.nav-cat svg {
-  overflow: visible;
+header .connexion-panier svg {
+  padding-right: 10px;
 }
-@media screen and (max-width: 428px) {
-  .nav-cat {
+@media screen and (max-width : 428px) {
+  header .logo_alizon_front {
+    padding-left: 30px;
+    width: 100px;
+  }
+  header .tab-only {
     display: none;
   }
+  header .mobile-only {
+    display: block;
+    padding-left: 20px;
+  }
+  header button {
+    background: none;
+    border: none;
+  }
+  header nav svg {
+    padding-right: 30px;
+  }
+}
+
+body {
+  font-family: "Mulish", "Baloo", "sans-serif";
+  font-size: 14px;
+  background-color: white;
+  color: black;
+  margin: 0;
+}
+
+main {
+  padding-top: 80px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+h1 {
+  font-family: "Baloo";
+  font-size: 40px;
+}
+
+h2 {
+  font-family: "Baloo";
+  font-size: 32px;
+}
+
+h3 {
+  font-family: "Baloo";
+  font-size: 24px;
+}
+
+h4 {
+  font-family: "Baloo";
+  font-size: 20px;
+}
+
+p, label, input {
+  font-family: "Mulish";
+}
+
+label {
+  font-weight: bold;
+}
+
+input:user-invalid, input.invalid {
+  border-color: red;
+}
+input:user-invalid + span, input.invalid + span {
+  display: block;
+}
+
+.bouton {
+  font-family: "Mulish";
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #064082;
+  border-radius: 1em;
+  height: 2rem;
+  border: none;
+  cursor: pointer;
+}
+.bouton:hover {
+  background-color: rgb(6.75, 72, 146.25);
+}
+.bouton:active {
+  background-color: rgb(4.5, 48, 97.5);
+}
+
+/*###############################
+#        Menu Categorie         #
+################################*/
+nav {
+  transition: transform 0.3s ease;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #6CA6E9;
+  position: sticky;
+  top: 80px;
+  z-index: 1000;
+}
+@media screen and (max-width: 428px) {
+  nav {
+    display: none;
+  }
+}
+nav ul {
+  list-style-type: none;
+  text-indent: none;
+}
+nav ul li {
+  float: left;
+  width: 16em;
+  text-align: center;
+  position: relative;
+}
+nav ul::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+nav a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  border-bottom: 2px solid transparent;
+  padding: 10px 0;
+}
+nav a:hover {
+  border-bottom: 2px solid #064082;
+  color: black;
+}
+
+.souscat-ul {
+  z-index: 1000;
+  display: none;
+  box-shadow: 0px 1px 2px #ccc;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  padding-left: 0;
+}
+.souscat-ul li {
+  float: none;
+  width: 100%;
+  text-align: left;
+}
+.souscat-ul a {
+  padding: 10px;
+  border-bottom: none;
+}
+.souscat-ul a:hover {
+  border-bottom: none;
+  background-color: #D1ECF8;
+}
+
+.deroulant a:hover {
+  content: "▼";
+  font-size: 12px;
+  color: black;
+}
+
+nav div > ul li:hover .souscat-ul {
+  display: block;
 }
 
 .src-tel {
@@ -389,6 +420,12 @@ header nav svg {
 
 .burger-menu {
   margin-left: 20px;
+  display: none;
+}
+@media screen and (max-width: 428px) {
+  .burger-menu {
+    display: inline-block;
+  }
 }
 
 .overlayMenuCat {
@@ -456,6 +493,7 @@ header nav svg {
 .overlayContentCompte {
   z-index: 100;
   position: fixed;
+  top: 80px;
   right: 125px;
   height: 15em;
   background-color: #D1ECF8;
@@ -466,34 +504,35 @@ header nav svg {
     right: 70px;
   }
 }
-.overlayContentCompte nav {
+.overlayContentCompte div {
   height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
-.overlayContentCompte nav hr {
+.overlayContentCompte div hr {
   width: 95%;
 }
-.overlayContentCompte nav a {
+.overlayContentCompte div a {
   padding: 1.5em;
   color: black;
   text-decoration: none;
 }
-.overlayContentCompte nav a:hover {
+.overlayContentCompte div a:hover {
   color: #6CA6E9;
 }
 
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
+  color: black;
   background-color: #FCB66B;
-  color: white;
   border-radius: 1em;
+  height: 2rem;
   border: none;
   cursor: pointer;
   border: 0px;
@@ -614,8 +653,12 @@ header nav svg {
   padding-left: 1rem;
 }
 
-.ajoutPanierFait {
-  display: flex;
+#ajoutPanierFait.open {
+  display: flex !important;
+}
+
+#ajoutPanierFait {
+  display: none;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
@@ -628,13 +671,13 @@ header nav svg {
   margin-top: 1em;
   margin-left: 2em;
 }
-.ajoutPanierFait svg {
+#ajoutPanierFait svg {
   color: green;
 }
-.ajoutPanierFait .bouton {
+#ajoutPanierFait .bouton {
   padding: 0.3em;
 }
-.ajoutPanierFait .partieDroite {
+#ajoutPanierFait .partieDroite {
   display: flex;
   flex-direction: column;
 }
@@ -675,6 +718,49 @@ header nav svg {
   margin: 20px;
   color: #A1A1A1;
   font-size: 20px;
+}
+
+.vide {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 40%;
+}
+.vide a {
+  color: grey;
+  text-decoration: none;
+  font-weight: lighter;
+  font-style: italic;
+}
+
+.separateur {
+  display: block;
+  background-color: #FCB66B;
+  width: 98%;
+  height: 10px;
+  border-radius: 1em;
+}
+
+.separateur2 {
+  display: none;
+  background-color: #FCB66B;
+  width: 100%;
+  height: 10px;
+  border-radius: 1em;
+}
+@media screen and (max-width : 428px) {
+  .separateur2 {
+    display: block;
+    margin-left: 20px;
+  }
+}
+
+.div-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h4 {
@@ -762,12 +848,13 @@ main > section > .content > figure > figcaption {
 .btnJaune {
   font-family: "Mulish";
   font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  text-size: 20px;
   text-decoration: none;
-  background-color: #064082;
   color: white;
+  background-color: #064082;
   border-radius: 1em;
+  height: 2rem;
   border: none;
   cursor: pointer;
   background-color: #FCB66B;

@@ -7,7 +7,11 @@
 
 
 main{
-    margin-left : 3em;
+    display: flex;
+    align-items: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
     h1{
         font-family: $Poltitle , sans-serif;
         font-size: 2em;
@@ -22,26 +26,25 @@ main{
 }
 
 
-aside{
+.mes-produits{
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: column; 
     gap: 1.25em;
-    box-sizing: border-box;
+    margin-left : 1em;
+    margin-right: 1em;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 
 
     div{
-        display: grid;
-        grid-template-columns: repeat(2, 11.75em);
-        gap: 1.25em;
-        justify-content: center;
+        display: flex;
+        gap: 0.5em;
+        justify-content: left;
+        flex-wrap: wrap;
     }
 
-    margin-left : 4em;
-    background-color: $colS;
-    width: 55em;
-    height: 50em;
-    border-radius: 24px;
+
 
 
 
@@ -49,12 +52,17 @@ aside{
         font-family: $Poltitle , sans-serif;
         font-size: 2em;
         color: $noir;
-        text-align: center;
+        text-align: left;
         margin-top: 1em;
         padding-left: 0;
     }
     
 }
+
+body{
+    background-color: #eaeaea;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -62,22 +70,25 @@ body {
     max-width: 100vw; 
     box-sizing: border-box;
 }
+
+
 .produit {
     color: inherit;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    align-items: left; 
     background-color: $blanc;
-    border-radius: 24px;
-    width: 11.75em;
-    height: 11.75em;
+    border-radius: 8px;
+    width: 17em;
+    height: 24.25em;
     text-decoration: none;
-    position: relative;
     box-sizing: border-box;
     gap: 0.10em;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     > svg {
-        position: absolute;
+        position:absolute;
         top: 5px;
         left: 5px;
         z-index: 2;
@@ -92,13 +103,15 @@ body {
 
     img {
         position: static; 
+        justify-self: center;
         z-index: 1;
-        width: 5.5em;
-        height: 5.5em;
+        width: 200px;
+        height: 200px;
         border-color: $noir;
-        border-radius: 24px;
+        border-radius: 8px;
         border: 2px solid;
-        margin-left: 10px;
+        margin-top: 10px;
+        margin-left: -10px;
     }
 
     p {
@@ -106,12 +119,11 @@ body {
     }
 
     .nomArticle {
-        padding-left: 10px;
         font-family: $Poltext , sans-serif;
-        font-size: 1em;
+        font-size: 1.2em;
+        font-weight: bold;
         color: $noir;
         text-align: left;
-        margin-top: 0.25em; 
     }
 
     .prixBase {
@@ -137,7 +149,7 @@ body {
         .prixReduc {
             font-family: $Poltext , sans-serif;
             font-size: 1.25em;
-            padding-left: 10px;
+            //padding-left: 10px;
             margin-right: 0.25em;
             color: $noir;
             font-weight: bold;
@@ -149,22 +161,36 @@ body {
             padding-right: 20px;
             color: $inverse;
         }
-        .btnModifReduc {
-            display: flex;
-            background-color: transparent;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            svg {
-                width: 30px;
-                height: 100%;
-            }
-            &:hover {
-                svg circle {
-                    fill: color.adjust($eleBleu, $lightness: -10%);
-                }
+        
+    }
+    .btnModifReduc {
+        position: absolute;
+        padding: 0.25em;
+        display: flex;
+        align-self: flex-end;
+        justify-self: left;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+
+        svg {
+            width: 35px;
+            height: 100%;
+        }
+        &:hover {
+            svg circle {
+                fill: color.adjust($eleBleu, $lightness: -10%);
             }
         }
+    }
+
+    .infoProduit{
+        padding-left: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
     }
 }
 
@@ -359,9 +385,25 @@ body {
     }
 }
 
-.content-wrapper {
-    margin-top: 2em;
-    display: flex;
+.right-content{
     flex-direction: row;
-    width: 100%;
+    flex-wrap: wrap;
+}
+
+.bvn-vendeur{
+    font-family: $Poltitle , sans-serif;
+    font-size: 2em;
+    color: $noir;
+    margin-left: 10px;
+}
+
+.prixNormalbarre{
+    text-decoration: line-through;
+    color: grey;
+}
+
+.prixReducRed{
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
 }

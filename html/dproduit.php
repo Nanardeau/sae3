@@ -33,6 +33,7 @@ if ($id <= 0) die("Produit introuvable.");
 $produit = $bdd->query("SELECT * FROM Produit WHERE codeProduit = $id")->fetch(PDO::FETCH_ASSOC);
 if (!$produit) die("Produit introuvable !");
 
+$codeProduit = $_GET['id'];
 
 $sqlAvis = "SELECT A.*, C.prenom, C.nom,
         ARRAY(
@@ -50,7 +51,7 @@ $stmtAvis = $bdd->prepare($sqlAvis);
 $stmtAvis->execute(['id' => $id]);
 $avisList = $stmtAvis->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($avisList as &$avis) {
+foreach ($avisList as $avis) {
 
     if (is_string($avis["photos"]) && $avis["photos"] !== "{}") {
 
@@ -93,13 +94,21 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 <body>
 
     <?php 
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
 
-    if(isset($_SESSION['codeCompte'])){
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(isset($_SESSION['codeCompte']) && $estClient){
         include 'includes/headerCon.php' ;
         $codeCompte = $_SESSION['codeCompte'];
     }else{
         include 'includes/header.php';
-        include 'includes/menu_cat.php';
     }
     ?>
     
@@ -108,12 +117,11 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 
     <main>
         <?php 
-            include 'includes/menu_cat.php';
             include 'includes/menuCompte.php';
         ?>
-    <nav class="ariane">
+    <div class="ariane">
         <a class="arianeItem" href="index.php">Accueil > </a><a class="arianeItem" href="Catalogue.php">Catalogue > </a><a class="arianeItem" href="Categorie.php?cat=<?php echo $cat?>"><?php echo $cat?></a>
-    </nav>
+    </div>
         <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
         <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
         
@@ -126,7 +134,8 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <div class="info-produit">
                         <h1><?= $produit['libelleprod'] ?></h1>
                         <p><strong>Description :</strong> <?= $produit['descriptionprod'] ?></p>
-                        <p class="prix"><?= round($produit['prixttc'], 2) ?> €</p>
+                        <p class="prix">Prix HT : <?= round($produit['prixht'], 2) ?> €</p>
+                        <p>Prix TTC : <?= round($produit['prixttc'], 2) ?> €</p>
                     </div>
                         
                 </div>
@@ -145,7 +154,8 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                 <option value="1000000">1000000</option>
                         </select>
                     </div>
-                    <a class="add-to-cart" href="OverlayAcheter.php?codeProd=<?php echo $id?>">Ajouter au panier</a>
+                    <button class="btnJaune" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $codeProduit ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&page=Catalogue.php';">Ajouter au panier</button>
+                    <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</button>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
 
@@ -183,8 +193,9 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                         <button type="submit" class="submit">Publier</button>
                     </div>
 
-                    <input type="hidden" name="codeProduit" value="<?php echo $produit['codeproduit'] ?>">
+                    <input type="hidden" name="codeProduit" value="<?= $produit['codeproduit'] ?>">
                     <input type="hidden" name="noteProd" id="noteProd" value="1">
+
                 </form>
             <?php endif?>
 
@@ -214,6 +225,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <div class="etoiles">
                         <?php for ($i = 1; $i <= 5; $i++): ?>
                             <span class="etoile <?= $i <= round($moyenneNote) ? 'pleine' : '' ?>">★</span>
+                            
                         <?php endfor; ?>
                     </div>
                     <div class="total">
@@ -244,14 +256,21 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <?php foreach ($avisList as $avis): ?>
                         <div class="avis">
                             <div class="avis-header">
-                                <strong>
+                                <!-- <strong>
                                     <?php
                                     $prenom = htmlspecialchars($avis['prenom'] ?? 'Anonyme');
                                     $nom = strtoupper(htmlspecialchars($avis['nom'] ?? 'Utilisateur'));
                                     echo "$prenom $nom";
                                     ?>
+                                </strong> -->
+                                <strong>
+                                    <?php
+                                    $prenom = htmlspecialchars($avis['prenom']);
+                                    $nom = strtoupper(htmlspecialchars($avis['nom']));
+                                    echo "$prenom $nom";
+                                    ?>
+
                                 </strong>
-                                
                                 <span class="date">
                                     <?php echo htmlspecialchars($avis['datepublication']) ?>
                                 </span>
@@ -343,35 +362,6 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         </section>        
     </main>
     <?php include 'includes/footer.php'; ?>
-    <script>
-
-        function openOverlaySignaler() {
-            document.getElementById("overlaysignaler").style.display = "flex";
-        }
-        function closeOverlaySignaler() {
-            document.getElementById("overlaysignaler").style.display = "none";
-        }
-        function openOverlayModif(src, numAvis, codeProduit, avisCommentaire) {
-            document.getElementById(numAvis).style.display = "flex";
-            document.querySelector("form.avis-section").action = "modifier_avis.php?codeAvis=" + numAvis + "&codeProduit=" + codeProduit; //'&noteprod=' + document.getElementById('noteprod').value + 
-            document.querySelector("form.avis-section textarea").value = document.querySelector(".avis .commentaire").innerText;
-            updateStars(src);
-        }
-        function closeOverlayModif(numAvis) {
-            document.getElementById(numAvis).style.display = "none";
-        }
-        function openOverlay(src) {
-            document.querySelector("#overlay").src = src;
-            document.getElementById("overlay").style.display = "block";
-        }
-        function fermerOverlay() {
-            document.getElementById("overlay").style.display = "none";
-        } 
-        function selectStar(valeur, numAvis) {
-            console.log(document.getElementById('noteprod' + numAvis).value);
-            document.getElementById('noteprod' + numAvis).setAttribute('value', valeur);
-            console.log(document.getElementById('noteprod' + numAvis).value);
-        }
-    </script>
+    <script src="js/achat.js"></script>
 </body>
 </html>

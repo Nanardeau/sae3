@@ -3,8 +3,8 @@
 
 
 @use 'sass:color';
-@import './_styleComB'; 
-@import "../infosCompte.scss";
+@use './_styleComB'; 
+@use "../infosCompte.scss";
 
 .logo {
     display : flex;
@@ -20,7 +20,8 @@
 }
 form{
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     padding:0;
     width:100%;
@@ -32,7 +33,7 @@ form{
         margin: 3% 0;
     }
     #profResp, #entreprise{
-        width:40%;
+        width:100%;
     }
 
     #nomPrenomVendeur, #numNomRue, #cpVille{
@@ -47,12 +48,16 @@ form{
         @include inputDouble(40%, 50%);      
     }
 
+    #nomPrenomVendeur{
+        gap: 1em;
+    }
+
 
 }
     #valider{
-        padding:2em;
+        padding:1em;
         border:none;
-        width: 30%;
+        width: 20%;
         max-width: 40em;
         margin-top:2em;
     }
@@ -60,14 +65,14 @@ form{
     padding:3%;
     width:70%;
 }
-nav{
-    width:30%;
+.boutonsCompte{
+    width:50%;
     display:flex;
     justify-content: space-between;
     
     margin:2em 0 ;
     button{
-        padding:2em;
+        padding:1em;
         width:40%;
         border:none;
         
@@ -82,7 +87,7 @@ nav{
         radius:$radius;
         width:0.1em;
     }
-    padding:$pad * 5;
+    padding:$pad;
     width:50%;
 
     form{
@@ -109,3 +114,26 @@ nav{
     max-width: 40em;
     width: 100%;
 }
+
+.btn-retour{
+    position: fixed;
+    top: 1em;
+    left: 1em;
+}
+
+
+details summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary h3 {
+    margin: 0;
+    text-align: left;
+    text-decoration: underline;
+}
+

@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
-            header("location:index.php");
-        }
 
-$codeCompte = $_SESSION["codeCompte"];
 //Connexion à la base de données.
 require_once __DIR__ . '/_env.php';
 loadEnv(__DIR__ . '/.env');
@@ -37,7 +33,22 @@ try {
         exit();
 }
 $bdd->query('set schema \'alizon\'');
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
 
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(!$estClient || !isset($_SESSION["codeCompte"])){
+        exit(header("location:index.php"));
+    }
+    else{
+        $codeCompte = $_SESSION["codeCompte"];
+    }
 
 ?>
 <html lang="fr">
@@ -57,7 +68,9 @@ $bdd->query('set schema \'alizon\'');
     
     <?php 
      
-    $lesCommandes = $bdd->query('SELECT * FROM Commande WHERE codeCompte =\''. $codeCompte .'\'')->fetchAll();
+    $lesCommandes = $bdd->prepare('SELECT * FROM Commande WHERE codeCompte =\''. $codeCompte .'\'');
+    $lesCommandes->execute();
+    $lesCommandes = $lesCommandes->fetchAll();
     //print_r($lesCommandes);
     // Si ne possède pas des commandes -> Pas de commandes
     // Sinon afficher son nb de commandes
@@ -79,14 +92,17 @@ $bdd->query('set schema \'alizon\'');
             $prixHT = $commande["prixhttotal"];
             $date = date( 'd/m/Y', strtotime($commande["datecom"]));
             $idCom = $commande["numcom"];
-            $lesProduits = $bdd->query('SELECT codeProduit FROM ProdUnitCommande WHERE numCom =\''.$idCom.'\' ORDER BY codeProduit LIMIT 3 ');
+            $lesProduits = $bdd->prepare('SELECT codeProduit FROM ProdUnitCommande WHERE numCom =\''.$idCom.'\' ORDER BY codeProduit LIMIT 3 ');
+            $lesProduits->execute();
             
             ?>
             <div class="separateur"></div>
             <article>
                 <div >
                 <?php foreach($lesProduits as $prod){
-                    $imgProd = $bdd->query("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit'])->fetch();
+                    $imgProd = $bdd->prepare("SELECT urlPhoto FROM Produit WHERE codeProduit =" .$prod['codeproduit']);
+                    $imgProd->execute();
+                    $imgProd = $imgProd->fetch();
                     
                     ?>
                 
