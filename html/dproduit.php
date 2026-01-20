@@ -308,8 +308,11 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                                 <?php endif; ?>
                                                 <label class="photo" for="contact_upload">Ajouter des photos</label>
                                                 <input type="file" name="contact_upload" id="contact_upload" /><?php if(isset($contact_upload)) echo $contact_upload; ?></textarea>
+                                                
                                                 <button type="reset" class="cancel" onclick="closeOverlayModif(<?php echo $avis['numavis'] ?>)">Annuler</button>
                                                 <button type="submit" class="submit">Modifier</button>
+                                                
+                                                
                                             </div>                                        
                                             <!--<input type="hidden" name="commentaire" value="<?php echo $avis['commentaire'] ?>">-->
                                             <!--<input type="hidden" name="codeProduit" value="<?php echo $produit['codeproduit'] ?>">-->
@@ -318,8 +321,22 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                     </div>
                                     <a href="supprimer_avis.php?codeavis=<?= $avis['numavis'] ?>&codeproduit=<?= $avis['codeproduit'] ?>">Supprimer</a>
                                 </div>
-                            </div>
-                        <?php endif; ?>
+                            <?php elseif ($_SESSION): ?>
+                                <div class="signalement-avis">
+                                    <a id="btnSignalerAvis" onclick="openOverlaySignaler()">Signaler</a>
+                                    <div class="overlaysignaler" id="overlaysignaler">
+                                        <form class="avis-section" method="POST" action="signaler_avis.php?codeavis=<?= $avis['numavis'] ?>&codeproduit=<?= $avis['codeproduit'] ?>" enctype="multipart/form-data">
+                                            <h2>Signaler cet avis</h2>
+                                            <textarea name="raison" maxlength="255" placeholder="Rédiger la raison du signalement..." required></textarea>
+                                            <div class="bouttonSignalement" id="bouttonSignalement">
+                                                <button type="reset" class="cancel" onclick="closeOverlaySignaler()">Annuler</button>
+                                                <button type="submit" class="submit">Signaler</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
@@ -327,6 +344,13 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
     </main>
     <?php include 'includes/footer.php'; ?>
     <script>
+
+        function openOverlaySignaler() {
+            document.getElementById("overlaysignaler").style.display = "flex";
+        }
+        function closeOverlaySignaler() {
+            document.getElementById("overlaysignaler").style.display = "none";
+        }
         function openOverlayModif(src, numAvis, codeProduit, avisCommentaire) {
             document.getElementById(numAvis).style.display = "flex";
             document.querySelector("form.avis-section").action = "modifier_avis.php?codeAvis=" + numAvis + "&codeProduit=" + codeProduit; //'&noteprod=' + document.getElementById('noteprod').value + 

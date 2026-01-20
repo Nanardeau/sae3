@@ -1265,11 +1265,11 @@ input[type=file] {
   }
 }
 
-.actions-avis {
+.actions-avis, .signalement-avis {
   margin-bottom: 10px;
   text-align: right;
 }
-.actions-avis a {
+.actions-avis a, .signalement-avis a {
   padding: 10px 18px;
   border-radius: 8px;
   border: none;
@@ -1278,7 +1278,26 @@ input[type=file] {
   text-decoration: none;
 }
 
-.overlaymodifier {
+.bouttonSignalement {
+  padding-right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+}
+.bouttonSignalement button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  color: black;
+}
+.bouttonSignalement .cancel {
+  background-color: #FF4444;
+}
+.bouttonSignalement .submit {
+  background-color: #FCB66B;
+}
+
+.overlaymodifier, .overlaysignaler {
   display: none;
   position: fixed;
   top: 0;
@@ -1290,7 +1309,7 @@ input[type=file] {
   align-items: center;
   justify-content: center;
 }
-.overlaymodifier form {
+.overlaymodifier form, .overlaysignaler form {
   width: 40%;
   background-color: white;
   height: 40%;
