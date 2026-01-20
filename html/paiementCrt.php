@@ -69,8 +69,14 @@ $_SESSION["idAdresse"] = $idAdresse;
     $_SESSION["vendeur"] = "";
     $panier = $bdd->query("SELECT * FROM alizon.Panier WHERE codeCompte = '".$codeCompte."'")->fetch();
     $idPanier = $panier["idpanier"];
+    if(!isset($idPanier)){
+        exit(header("location:index.php"));
+    }
     $produits = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier INNER JOIN alizon.Produit ON ProdUnitPanier.codeProduit = Produit.codeProduit WHERE idPanier = '".$idPanier."' ORDER BY codeCompteVendeur")->fetchAll();
-// $produits = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
+    if($produits == []){
+        exit(header("location:index.php"));
+    }
+    // $produits = $bdd->query("SELECT ALL * FROM alizon.ProdUnitPanier WHERE idPanier = '".$idPanier."'")->fetchAll();
 ?>
 <html lang="fr">
 <head>
@@ -252,9 +258,7 @@ $_SESSION["idAdresse"] = $idAdresse;
             
                         <?php 
                         $i = 1;
-            
-                        
-                        foreach($produits as $prodUnit){
+                                    foreach($produits as $prodUnit){
                             ?><div class="libelleProdRecap"><?php
                             $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
                             $stmt->execute(['id' => $prodUnit["codeproduit"] ]);
@@ -440,6 +444,35 @@ $_SESSION["idAdresse"] = $idAdresse;
         }
 
     }
+    function sendGet(url, onSuccess, onError) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                if (typeof onSuccess === 'function') onSuccess(xhr);
+            } else {
+                if (typeof onError === 'function') onError(xhr);
+            }
+        };
+        xhr.onerror = function() {
+            if (typeof onError === 'function') onError(xhr);
+        };
+        xhr.send();
+    }
+    function supprimerProd(idPanier, codeProd){
+        if(confirm("Voulez vous supprimer cet article ?")){
+        url = "modifPanier.php?Action=supprimerProduit&Panier=" + encodeURIComponent(idPanier) + "&Produit=" + encodeURIComponent(codeProd);
+        sendGet(url,function() { 
+            location.reload(); 
+        },
+        function() { 
+            alert('Erreur côté serveur.');
+         }
+        )
+
+    }
+    }
+
     </script>
      <?php include("./includes/footer.php")?>
     
