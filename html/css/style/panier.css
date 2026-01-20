@@ -979,7 +979,15 @@ article {
 }
 .articlePanier .prix {
   grid-area: 2/3/3/4;
+  font-size: large;
   text-align: end;
+}
+.articlePanier .prix .prixNormalbarre {
+  color: gray;
+  text-decoration: line-through;
+}
+.articlePanier .prix .prixReducRed, .articlePanier .prix .remise {
+  color: #FF4444;
 }
 .articlePanier .btn-supprimer {
   font-family: "Mulish";

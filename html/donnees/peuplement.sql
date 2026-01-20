@@ -2328,7 +2328,13 @@ INSERT INTO FaireReduction (idReduction, codeProduit) VALUES (1,1);
 
 INSERT INTO ProdUnitPanier(idPanier, codeProduit, qteProd) VALUES (2,1, 1); 
 SELECT * FROM ProdUnitPanier WHERE idPanier = 2;
-SELECT prixHT from produit WHERE codeProduit = 1;
+SELECT prixHT, nomTVA from produit WHERE codeProduit = 1;
+select * from tva where nomtva = 'réduite';
+select * from FaireReduction;
+select * from Reduction;
+select * from Panier;
+select * from Produit where codeProduit = 1;
+select * from ProdUnitPanier where idPanier = 3;
 --SELECT * FROM Produit WHERE unaccent(libelleProd) ILIKE unaccent('%pat%');
 --SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) ORDER BY avis.codeproduit;
 --select SUM(prixttctotal) FROM ProdUnitPanier INTO Panier.prixTTCtotal;

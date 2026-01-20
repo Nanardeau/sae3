@@ -71,9 +71,15 @@ article {
     }
     .prix {
         grid-area: 2 / 3 / 3 / 4;
-        
+        font-size: large;
         text-align: end;
-        
+        .prixNormalbarre{
+            color: gray;
+            text-decoration:line-through; 
+        }
+        .prixReducRed,.remise{
+            color : $inverse;
+        }
     }
     .btn-supprimer{
         @include bouton($eleOrange);
