@@ -24,16 +24,19 @@
         } catch (PDOException $e) {
             echo "Erreur de connexion : " . $e->getMessage();
         }
-$estClient = false;
-$clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
-foreach($clients as $client){
-    if($client["codecompte"] == $_SESSION["codeCompte"]){
-        $estClient = true;
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
+
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
     }
-}
-if(!$estClient || !isset($_SESSION["codeCompte"])){
-    exit(header("location:index.php"));
-}
+    if(!$estClient || !isset($_SESSION["codeCompte"])){
+        exit(header("location:index.php"));
+    }
         $nomPrenom = $bdd->query("SELECT nom, prenom FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
         // if(array_key_exists("adrModif", $_SESSION)){
         //     if($_SESSION["adrModif"] == 1){

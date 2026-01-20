@@ -23,13 +23,16 @@ try {
 } catch (PDOException $e) {
     // "❌ Erreur de connexion : " . $e->getMessage();
 }
-$estClient = false;
-$clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
-foreach($clients as $client){
-    if($client["codecompte"] == $_SESSION["codeCompte"]){
-        $estClient = true;
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
+
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
     }
-}
 
 $bdd->query('set schema \'alizon\'');
 ?>

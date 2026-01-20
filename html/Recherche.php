@@ -19,10 +19,13 @@
         echo "Erreur de connexion : " . $e->getMessage();
     }
 $estClient = false;
-$clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
-foreach($clients as $client){
-    if($client["codecompte"] == $_SESSION["codeCompte"]){
-        $estClient = true;
+if(isset($_SESSION["codeCompte"])){
+
+    $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+    foreach($clients as $client){
+        if($client["codecompte"] == $_SESSION["codeCompte"]){
+            $estClient = true;
+        }
     }
 }
 

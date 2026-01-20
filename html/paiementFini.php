@@ -28,7 +28,21 @@ try {
 } catch (PDOException $e) {
     echo "Erreur de connexion : " . $e->getMessage();
 }
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
+
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(!isset($_SESSION["codeCompte"]) || !$estClient){
+        exit(header("location:index.php"));
+    }
 ?>
+
 <?php include "includes/headerCon.php"?>
 <main>
     <h1>Votre commande a été enregistrée !</h1>
