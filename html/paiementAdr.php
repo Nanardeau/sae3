@@ -280,17 +280,17 @@
                             </div>
                             <div class="labelInput">
                                 <label for="ville">Ville *</label>
-                                <input type="text" name="ville" id="ville" value="<?php echo $infosAdresse["nomville"]?>" required/>
+                                <input type="text" name="ville" id="ville" value="<?php echo $infosAdresse ? $infosAdresse["nomville"] : ""?>" required/>
                             </div>
                         </div>
                         <div class="ligneInput">
                             <div class="labelInput">
                                 <label>N° appartement</label>
-                                <input type="text" name="numApt" id="numApt" value="<?php echo $infosAdresse["numappart"]?>"/> 
+                                <input type="text" name="numApt" id="numApt" value="<?php echo $infosadresse ? $infosAdresse["numappart"] : ""?>"/> 
                             </div>
                             <div class="labelInput">
                                 <label for="complement">Complément d'adresse</label>
-                                <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse["complementadresse"]?>" />
+                                <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse ? $infosAdresse["complementadresse"] : ""?>" />
                             </div>
                         </div>
                         <input type="submit" class="bouton" id="validerForm" value="Valider"/>
