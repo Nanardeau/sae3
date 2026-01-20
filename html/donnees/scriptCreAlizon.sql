@@ -270,32 +270,49 @@ EXECUTE FUNCTION calcul_prixTTC();
 --ProdUnitCommande.PrixTTC = produit.prixTTC--
 
 CREATE FUNCTION duplique_prixTTC()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER AS $$ 
+declare
+    idRemiseExists INTEGER;
+    tauxRemise float;
+    prodTauxTVA float;
+    prodNomTVA VARCHAR;
 BEGIN
-	SELECT Produit.prixTTC * NEW.qteProd INTO NEW.prixTTCtotal
-	FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
-	RETURN NEW;
+    idRemiseExists = (SELECT idReduction from alizon.FaireReduction WHERE codeProduit = NEW.codeProduit);
+    prodNomTVA = (SELECT nomTVA from produit where codeProduit = NEW.codeProduit);
+    IF idRemiseExists IS NOT NULL THEN
+        prodTauxTVA = (SELECT tauxTVA from TVA where nomTVA = prodNomTVA);
+        tauxRemise = (SELECT remise FROM Reduction WHERE idReduction = idRemiseExists);
+
+        SELECT ((Produit.prixHT * (1 - tauxRemise / 100)) * (1 + prodTauxTVA / 100)) * NEW.qteProd INTO NEW.prixTTCtotal 
+        FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
+    else
+        SELECT Produit.prixTTC * NEW.qteProd INTO NEW.prixTTCtotal
+        FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
+    end if;
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-CREATE TRIGGER trg_dupli_prixTTC
-BEFORE INSERT OR UPDATE ON ProdUnitCommande
-FOR EACH ROW
-EXECUTE FUNCTION duplique_prixTTC();
 
 --ProdUnitCommande.PrixHT = produit.prixHT--
 
 CREATE FUNCTION duplique_prixHT()
 RETURNS TRIGGER AS $$
+declare
+    idRemiseExists INTEGER;
+    tauxRemise float;
 BEGIN
-	SELECT Produit.prixHT * NEW.qteProd INTO NEW.prixHTtotal
-	FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
-	RETURN NEW;
+    idRemiseExists = (SELECT idReduction from alizon.FaireReduction WHERE codeProduit = NEW.codeProduit);
+    IF idRemiseExists IS NOT NULL THEN
+        tauxRemise = (SELECT remise FROM Reduction WHERE idReduction = idRemiseExists);
+        SELECT (Produit.prixHT * (1 - tauxRemise / 100)) * NEW.qteProd INTO NEW.prixHTtotal 
+        FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
+    ELSE
+        SELECT Produit.prixHT * NEW.qteProd INTO NEW.prixHTtotal
+        FROM alizon.Produit WHERE Produit.codeProduit = NEW.codeProduit;
+    END IF;
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-CREATE TRIGGER trg_dupli_prixHT
-BEFORE INSERT OR UPDATE ON ProdUnitCommande
-FOR EACH ROW
-EXECUTE FUNCTION duplique_prixHT();
 
 --Triggers prixHT et prixTTC--
 
