@@ -191,11 +191,11 @@ $bdd->query('set schema \'alizon\'');
                     "id"=>$infoPanier['idpanier'],
                     "codeproduit"=>$liste["codeproduit"]));
                 $Remise = $stmtRem->fetch();
-                echo '<p class="prixNormalbarre">'.$prixTTC.'€</p>';
+                echo '<p class="prixNormalbarre">'.$prixTTC*$qteProd.'€</p>';
                 echo '<p class="prixReducRed">'.$Remise['prixttctotal'].'€ <span class="remise"> - '.$infoRemise[0]['remise'].'%</span></p>';
                 //echo '<p class="prixReduc">'.$prixTTC.'€</p>';
             } else {
-                echo '<p class="prixReduc">'.$prixTTC.'€</p>';
+                echo '<p class="prixReduc">'.$prixTTC*$qteProd.'€</p>';
             }
             ?>
             </div>

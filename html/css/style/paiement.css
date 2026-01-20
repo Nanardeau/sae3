@@ -1160,4 +1160,18 @@ aside article {
 #confirmation article nav {
   display: flex;
   justify-content: center;
+}
+
+.prixNormalbarre {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.prixReducRed, .remise {
+  display: block;
+  color: #FF4444;
+}
+
+.remise {
+  font-size: small;
 }/*# sourceMappingURL=paiement.css.map */

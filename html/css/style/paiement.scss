@@ -481,3 +481,16 @@ aside {
 
     }
 }
+.prixNormalbarre{
+            color: gray;
+            text-decoration:line-through;
+            
+        }
+.prixReducRed,.remise{
+    
+    display: block;
+    color : $inverse;
+}
+.remise{
+    font-size: small; 
+}

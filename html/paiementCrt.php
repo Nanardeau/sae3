@@ -231,8 +231,22 @@ $idPanier = $panier["idpanier"];
                         
                         foreach($produits as $prodUnit){
                             ?><div class="libelleProdRecap"><?php
+                            $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
+                            $stmt->execute(['id' => $prodUnit["codeproduit"] ]);
+                            $infoRemise = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $hasRemise = $stmt->rowCount() > 0;
+
                             $detailProd = $bdd->query("SELECT * FROM alizon.Produit WHERE codeProduit = '".$prodUnit["codeproduit"]."'")->fetch();
-                            echo "<p>Article ".$i." (".$detailProd["libelleprod"]. ") : ( x ". number_format((int)$prodUnit["qteprod"], 0, '.', '')." )</p><p class=\"prixAffiche\">".number_format((float)$prodUnit["prixhttotal"], 2, '.', '')."€</p>";
+                            if($hasRemise){
+                                $stmtRem = $bdd->prepare("SELECT prixTTC FROM alizon.Produit WHERE codeProduit = :id");
+                                $stmtRem->execute(['id' => $prodUnit["codeproduit"] ]);
+                                $prixBase = $stmtRem->fetch();
+                                echo "<p>Article ".$i." (".$detailProd["libelleprod"]. ") : ( x ". number_format((int)$prodUnit["qteprod"], 0, '.', '')." )</p><p class=\"prixReducRed\">".number_format((float)$prodUnit["prixhttotal"], 2, '.', '')."€ <span class=\"remise\"> - ".$infoRemise[0]['remise']."%</span></p><p class=\"prixNormalbarre\">".$prixBase['prixttc']*$prodUnit["qteprod"]."€ ";
+                            }else{
+                                echo "<p>Article ".$i." (".$detailProd["libelleprod"]. ") : ( x ". number_format((int)$prodUnit["qteprod"], 0, '.', '')." )</p><p class=\"prixAffiche\">".number_format((float)$prodUnit["prixhttotal"], 2, '.', '')."€</p>";
+                            }
+
+                            
                             ?><div><button id="poubelle" onclick="supprimerProd(<?php echo $idPanier ?> , <?php echo $prodUnit['codeproduit']?>)"><img src="img/Icon_poubelle.svg" alt="poubelle" title="poubelle"/></button></div><?php
 
                             $i++;
