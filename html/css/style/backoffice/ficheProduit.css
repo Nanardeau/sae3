@@ -589,28 +589,15 @@ body {
   margin: 10px;
 }
 
-.popupReappro {
-  display: flex;
-  flex-direction: column;
-  border: 3px solid #FCB66B;
-  border-radius: 1em;
-  padding: 0 20px 20px 20px;
-  align-items: center;
-}
-.popupReappro button {
-  background-color: #CD4B22;
-  border-radius: 1em;
-  color: white;
-  width: 60%;
-}
-.popupReappro h1 {
-  align-self: center;
-}
-
 #ouvrirReappro {
   background: none;
+  display: flex;
   border: none;
   cursor: pointer;
+  margin: 0 0 0 10px;
+  background-color: #FCB66B;
+  border-radius: 1em;
+  align-items: center;
 }
 
 #divReappro {

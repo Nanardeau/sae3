@@ -8,6 +8,8 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
     $codeCompte = $_SESSION["codeCompte"];
     
 }
+
+print_r($_COOKIE);
     require_once('../_env.php');
     
 
@@ -32,7 +34,20 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
 $sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
 $stmt = $bdd->query($sql);
 $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        
+if(isset($_COOKIE["qteAjout"])){
+    $qteAjout = $_COOKIE["qteAjout"];
+    $req = $bdd->prepare("Update alizon.produit SET qteStock= :qteAjout + qteStock WHERE codeProduit=:code_produit");
+    $res = $req->execute(array(
+    ":qteAjout" => $qteAjout,
+    ":code_produit" => $code_produit
+    ));
+    unset($_COOKIE["qteAjout"]);
+}
 
+
+        
 ?>
 <html lang="fr">
     <head>
@@ -69,7 +84,10 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
             document.getElementById("divReappro").classList.remove("Rea-open");
         }
         function validerReappro(){
+            let qte = document.getElementById("qteAjout").value;
             document.getElementById("divReappro").classList.remove("Rea-open");
+            document.cookie = "qteAjout = " + qte;
+            
         }
     
         </script>
@@ -166,11 +184,12 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                                         echo "<p class=\"stock\">Stock disponible : " . $qtestock["qtestock"] . "</p>";
                                     ?>
                                     <button onclick="ouvrirReappro()" id="ouvrirReappro"> 
-                                       <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <svg width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="22.5" cy="22.5" r="22.5" fill="#FCB66B"/>
                                         <path d="M22.272 7.94113V38.4851" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M7.56873 23.2131H38.1127" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
+                                        Ajouter
                                     </button>
                                  </div>
 
@@ -183,10 +202,10 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <div id="divReappro">
                                     <article>
                                         <h3>Réapprovisionnement</h3>
-                                        <label for="qteStock" class="pObl">Quelle quantité voulez-vous ajouter?</label>
-                                        <input type="number" name="qteStock" min="0" placeholder="Quantité à ajouter" id="qteStock"/> 
-                                        <button onclick="validerReappro()" id="annulerReappro"> Annuler </button>
-                                        <button onclick="annulerReappro()" id="validerReappro"> Valider </button>
+                                        <label for="qteAjout" class="pObl">Quelle quantité voulez-vous ajouter?</label>
+                                        <input type="number" name="qteAjout" min="0" placeholder="Quantité à ajouter" id="qteAjout"/> 
+                                        <button onclick="annulerReappro()" id="annulerReappro"> Annuler </button>
+                                        <button onclick="validerReappro()" id="validerReappro"> Valider </button>
                                     </article>
                                 </div>
 
@@ -486,18 +505,6 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
         <script src="/js/popupAvis.js"></script>
         <script src="../js/overlayCompteVendeur.js"></script>
         <script>src="../js/scripts.js"</script>
-        
-        <?php
-            if(isset($_COOKIE["qteStock"])){
-                $ajoutQte = $_COOKIE["qteStock"];
-                $req = $bdd->prepare("Update alizon.produit SET qteStock= :ajoutQte + qteStock WHERE codeProduit=:code_produit");
-                $req = $bdd->execute(array(
-                ":ajoutQte" => $ajoutQte,
-                ":code_produit" => $code_produit
-                ));
-            }
 
-
-        ?>
     </body>
 </html>
