@@ -1067,7 +1067,7 @@ input[type=file] {
 .btnJaune {
   margin-top: 2em;
   width: 30%;
-  height: 3em;
+  height: 4em;
 }
 @media screen and (max-width : 428px) {
   .btnJaune {

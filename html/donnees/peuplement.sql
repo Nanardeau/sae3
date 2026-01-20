@@ -117,7 +117,7 @@ VALUES ('/img/fromage2.jpg'),
     ('/img/thermos.jpg'),
     ('/img/bottes.jpg'),
     ('/img/tshirtalamer.jpg'),
-    ('/img/tshirtcrabe.jpg'),
+    ('/img/tshirtcrabe.webp'),
     (
         '../img/photosProduit/imgErr.jpg'
     );

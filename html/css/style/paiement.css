@@ -927,15 +927,15 @@ input .btnJaune {
 }
 
 section:nth-child(1) .bouton {
+  height: 4em;
   padding: 10px 20px;
   margin-top: 3em;
   margin-right: 2em;
   width: 15%;
-  height: 4em;
 }
 @media screen and (max-width : 428px) {
   section:nth-child(1) .bouton {
-    width: 35%;
+    width: 95%;
   }
 }
 

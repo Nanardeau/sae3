@@ -2,6 +2,7 @@
 @use '../tools/vFront' as *;
 @use "../tools/mixin/com" as *;
 @use 'sass:color';
+@use 'sass:math';
 
 #mainAdr{
     display:flex;
@@ -167,16 +168,17 @@ input{
 }
 section:nth-child(1){
     .bouton{
-        padding:$pad/2 $pad;
+        height:4em;
+        padding: math.div($pad,2) $pad;
         margin: {
             top:3em;
             right:2em;
         }
         width:15%;
         @media #{$mobile}{
-            width:35%;
+            width:95%;
         }
-        height:4em;
+        
     }
 }
 aside + section{
