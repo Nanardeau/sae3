@@ -98,7 +98,7 @@ $bdd->query('set schema \'alizon\'');
             <h1>Nouveautés</h1>
                 <?php
                 $produits = $bdd->query("
-                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd, noteMoy
+                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd, noteMoy, origine, noteMoy
                     FROM Produit
                     ORDER BY codeProduit DESC
                     LIMIT 7
@@ -113,6 +113,7 @@ $bdd->query('set schema \'alizon\'');
                     $prix = number_format($p['prixttc'], 2, ',', '');
                     $desc = $p['descriptionprod'];
                     $id = $p['codeproduit'];
+                    $madein = $p['origine'];
                     $moyennenote = $p['notemoy'];
                     include 'includes/card.php';
 
@@ -126,7 +127,7 @@ $bdd->query('set schema \'alizon\'');
             
                 <?php
                 $produits = $bdd->query("
-                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd
+                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd, origine, noteMoy
                     FROM Produit
                     ORDER BY codeProduit DESC
                     LIMIT 7
@@ -141,6 +142,8 @@ $bdd->query('set schema \'alizon\'');
                     $prix = number_format($p['prixttc'], 2, ',', '');
                     $desc = $p['descriptionprod'];
                     $id = $p['codeproduit'];
+                    $madein = $p['origine'];
+                    $moyennenote = $p['notemoy'];
                     include 'includes/card.php';
                 } ?>
             </article>
@@ -149,7 +152,7 @@ $bdd->query('set schema \'alizon\'');
         <h1 class="aff_prod">Les produits</h1>
         <article class="catalogue">
         <?php
-        $base= 'SELECT codeProduit, libelleProd, prixTTC, urlPhoto, noteMoy, descriptionProd FROM Produit where Disponible = true LIMIT 30' ;
+        $base= 'SELECT codeProduit, libelleProd, prixTTC, urlPhoto, noteMoy, descriptionProd, origine, noteMoy FROM Produit where Disponible = true LIMIT 30' ;
         $req= $bdd->prepare($base);
         $req->execute();
         $produits= $req->fetchAll(PDO::FETCH_ASSOC);
@@ -159,6 +162,7 @@ $bdd->query('set schema \'alizon\'');
             $prix = number_format($p['prixttc'], 2, ',', '');
             $desc = $p['descriptionprod'];
             $id = $p['codeproduit'];
+            $madein = $p['origine'];
             $moyennenote = $p['notemoy'];
             include 'includes/card.php';
         }        

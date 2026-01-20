@@ -1,10 +1,12 @@
                 <div>
                     
                     <span class="reset">
-                        <a href="Catalogue.php">Tout Réinitialiser</a>
+                        <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">Tout Réinitialiser</a>
                     </span>
-                    <form method="GET" action="Catalogue.php" id="filtreForm">
+                    <form method="GET" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="filtreForm">
                         <input type="hidden" name="nt" id="nt-input" value="<?php echo $nt ?>">
+                        <input type="hidden" name="recherche" id="recherche-input" value="<?php echo $recherche ?>">
+                        <input type="hidden" name="rechercheNom" id="rechercheNom-input" value="<?php echo $nomRecherche ?>">
                         
                         <select name="tri" id="tris" class="tris">
                             <option value="" disabled <?= ($tri === null) ? 'selected' : '' ?>>Trier par :</option> 
@@ -16,10 +18,10 @@
                             <!--<option value="dtCrois" ($tri === 'dtCrois') ? 'selected' : '' >Date publication: ordre croissant</option>
                             <option value="dtDecrois" ($tri === 'dtDecrois') ? 'selected' : '' >Date publication : ordre décroissant</option>-->
                         </select>
-                    
-                    
+                        
+                        
                         <div class="separateur"></div>
-                    
+                        
                         <h1>Filtres</h1>
 
                         <h3>Vendeur </h3>
