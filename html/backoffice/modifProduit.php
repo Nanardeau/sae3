@@ -32,9 +32,18 @@ try {
         
 }
 
-if(!isset($_SESSION["codeCompte"])){
-        header('Location: index.php');
-           
+$estVendeur = false;
+if(isset($_SESSION["codeCompte"])){
+
+    $vendeurs = $bdd->query("SELECT ALL codeCompte FROM alizon.Vendeur")->fetchAll();
+    foreach($vendeurs as $vendeur){
+        if($vendeur["codecompte"] == $_SESSION["codeCompte"]){
+            $estVendeur = true;
+        }
+    }
+}
+if(!$estVendeur || !isset($_SESSION["codeCompte"])){
+    exit(header("location:connexionVendeur.php"));
 }
 $bdd->query('set schema \'alizon\'');
 

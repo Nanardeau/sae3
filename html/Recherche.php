@@ -18,6 +18,16 @@
     } catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
     }
+$estClient = false;
+if(isset($_SESSION["codeCompte"])){
+
+    $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+    foreach($clients as $client){
+        if($client["codecompte"] == $_SESSION["codeCompte"]){
+            $estClient = true;
+        }
+    }
+}
 
 $bdd->query('set schema \'alizon\'');
 
@@ -143,7 +153,7 @@ $bdd->query('set schema \'alizon\'');
 <body>
     <?php
 
-    if(isset( $_SESSION["codeCompte"])){
+    if(isset( $_SESSION["codeCompte"]) && $estClient){
         $idUser =  $_SESSION["codeCompte"];
         include 'includes/headerCon.php' ;
     }else{

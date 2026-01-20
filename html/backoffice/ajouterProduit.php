@@ -1,15 +1,7 @@
 <?php
 session_start();
-if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
-    header('location: connexionVendeur.php');
-    
-}else{
-
-    $codeCompte = $_SESSION["codeCompte"];
-    
-}
 if(isset($_GET["erreur"])){
-        $erreur = $_GET["erreur"];
+    $erreur = $_GET["erreur"];
 }
 else{
         $erreur = NULL;
@@ -40,13 +32,27 @@ try {
 
         header('Location: index.php');
         
-}
-//$_SESSION["codeCompte"] = 5; //ligne temporaire, en attendant d"avoir le système de connexion 
+    }
+    //$_SESSION["codeCompte"] = 5; //ligne temporaire, en attendant d"avoir le système de connexion 
+    
+    $estVendeur = false;
+    if(isset($_SESSION["codeCompte"])){
 
-if(!isset($_SESSION["codeCompte"])){
-       exit(header('Location: connexionVendeur.php'));
+        $vendeurs = $bdd->query("SELECT ALL codeCompte FROM alizon.Vendeur")->fetchAll();
+        foreach($vendeurs as $vendeur){
+            if($vendeur["codecompte"] == $_SESSION["codeCompte"]){
+                $estVendeur = true;
+            }
+        }
+    }
+    if(!$estVendeur || !isset($_SESSION["codeCompte"])){
+        exit(header("location:connexionVendeur.php"));
+    }else{
+    
+        $codeCompte = $_SESSION["codeCompte"];
         
     }
+
 $bdd->query('set schema \'alizon\'');
 
 $sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
@@ -159,20 +165,20 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
     </div>
     
-    <h3> Spécificitées du produit </h3>
+    <h3> Spécificités du produit </h3>
     <div class="taille">
             <div class="labelInput">
-                <label for="spe1">Spécificitée 1</label>
+                <label for="spe1">Spécificité 1</label>
                 <input type="text" name="spe1" placeholder="nomenclature a respecter : NOMDELASPE:Descritption" id="spe1"/>
                 <span class="cache">La spécificité 1 doit être au format NOMDELASPE:Description</span>
             </div>
             <div class="labelInput">
-                <label for="spe2">Spécificitée 2</label>
+                <label for="spe2">Spécificité 2</label>
                 <input type="text" name="spe2" placeholder="nomenclature a respecter : NOMDELASPE:Descritption" id="spe2"/>
                 <span class="cache">La spécificité 2 doit être au format NOMDELASPE:Description</span>
             </div>
             <div class="labelInput">
-                <label for="spe3">Spécificitée 3</label>
+                <label for="spe3">Spécificité 3</label>
                 <input type="text" name="spe3" placeholder="nomenclature a respecter : NOMDELASPE:Descritption  " id="spe3"/>
                 <span class="cache">La spécificité 3 doit être au format NOMDELASPE:Description</span>
             </div>

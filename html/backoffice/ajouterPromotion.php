@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_GET["erreur"])){
         $erreur = $_GET["erreur"];
 }
@@ -31,11 +32,20 @@ try {
 
         
 }
+$estVendeur = false;
+if(isset($_SESSION["codeCompte"])){
 
-if(!isset($_SESSION["codeCompte"])){
-        header('Location: index.php');
-           
+    $vendeurs = $bdd->query("SELECT ALL codeCompte FROM alizon.Vendeur")->fetchAll();
+    foreach($vendeurs as $vendeur){
+        if($vendeur["codecompte"] == $_SESSION["codeCompte"]){
+            $estVendeur = true;
+        }
+    }
 }
+if(!$estVendeur || !isset($_SESSION["codeCompte"])){
+    exit(header("location:connexionVendeur.php"));
+}
+
 $bdd->query('set schema \'alizon\'');
 
 $codeCompte = $_SESSION["codeCompte"];

@@ -24,6 +24,19 @@
         } catch (PDOException $e) {
             echo "Erreur de connexion : " . $e->getMessage();
         }
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
+
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(!$estClient || !isset($_SESSION["codeCompte"])){
+        exit(header("location:index.php"));
+    }
         $nomPrenom = $bdd->query("SELECT nom, prenom FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
         // if(array_key_exists("adrModif", $_SESSION)){
         //     if($_SESSION["adrModif"] == 1){
@@ -248,12 +261,12 @@
                         <div class="ligneInput">
                             <div class="labelInput">
                                 <label for="numRue">Numéro *</label>
-                                <input type="text" name="numRue" id="numRue" value="<?php echo $infosAdresse["num"]?>" required/>
+                                <input type="text" name="numRue" id="numRue" value="<?php echo $infosAdresse ? $infosAdresse["num"] : ""?>" required/>
                             </div>
                         
                             <div class="labelInput">
                                 <label for="nomRue">Rue *</label>
-                                <input type="text" name="nomRue" id="nomRue" value="<?php echo $infosAdresse["nomrue"]?>" required/>
+                                <input type="text" name="nomRue" id="nomRue" value="<?php echo $infosAdresse ? $infosAdresse["nomrue"] : ""?>" required/>
                             </div>
                             
 
@@ -262,22 +275,22 @@
                             <div class="labelInput">
                                 
                                 <label for="codePostal">Code postal *</label>
-                                <input type="text" name="codePostal" id="codePostal" value="<?php echo $infosAdresse["codepostal"]?>" pattern="\d{5}"required/>
+                                <input type="text" name="codePostal" id="codePostal" value="<?php echo $infosAdresse ? $infosAdresse["codepostal"] : ""?>" pattern="\d{5}"required/>
                                 <span>Le code postal est incorrect</span>
                             </div>
                             <div class="labelInput">
                                 <label for="ville">Ville *</label>
-                                <input type="text" name="ville" id="ville" value="<?php echo $infosAdresse["nomville"]?>" required/>
+                                <input type="text" name="ville" id="ville" value="<?php echo $infosAdresse ? $infosAdresse["nomville"] : ""?>" required/>
                             </div>
                         </div>
                         <div class="ligneInput">
                             <div class="labelInput">
                                 <label>N° appartement</label>
-                                <input type="text" name="numApt" id="numApt" value="<?php echo $infosAdresse["numappart"]?>"/> 
+                                <input type="text" name="numApt" id="numApt" value="<?php echo $infosAdresse ? $infosAdresse["numappart"] : ""?>"/> 
                             </div>
                             <div class="labelInput">
                                 <label for="complement">Complément d'adresse</label>
-                                <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse["complementadresse"]?>" />
+                                <input type="text" name="comp" id="comp" value="<?php echo $infosAdresse ? $infosAdresse["complementadresse"] : ""?>" />
                             </div>
                         </div>
                         <input type="submit" class="bouton" id="validerForm" value="Valider"/>

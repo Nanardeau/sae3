@@ -1,6 +1,7 @@
 @use "sass:math";
 @use "./styleCom" as *;
 @use "../tools/vFront" as *;
+@use "../tools/mixin/com" as *;
 @use "../components/fonts" as *;
 @use "../components/carte" as *;
 @use "../tools/mixin/com" as *;

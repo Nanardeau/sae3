@@ -57,6 +57,30 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
             </style>
     </head>
     <body>
+        <script>
+ 
+        document.cookie = "qteAjout = " + 0;
+        
+        const btnReappro = document.getElementById("btnReappro");
+
+        function ouvrirReappro() {
+            document.getElementById("divReappro").classList.add("Rea-open");
+        };
+        function annulerReappro(){
+            document.getElementById("divReappro").classList.remove("Rea-open");
+        }
+        function validerReappro(){
+            let qte = document.getElementById("qteAjout").value;
+            if (isNaN(qte) || qte < 0) {
+                alert("Veuillez entrer une quantité positive");
+            return;
+            }
+            document.getElementById("divReappro").classList.remove("Rea-open");
+            document.cookie = "qteAjout = " + qte;
+            window.location.reload();
+        }
+    
+        </script>
         <?php include '../includes/backoffice/header.php';
         $bdd->query("SET SCHEMA 'alizon'");?>
         <main>
@@ -514,27 +538,6 @@ if(isset($_COOKIE["qteAjout"])){
     
 }
 ?>
-        <script>
- 
-        document.cookie = "qteAjout = " + 0;
         
-        const btnReappro = document.getElementById("btnReappro");
-        //btnReappro.addEventListener("click", ouvrirReappro());
-
-        function ouvrirReappro() {
-            document.getElementById("divReappro").classList.add("Rea-open");
-        };
-        function annulerReappro(){
-            document.getElementById("divReappro").classList.remove("Rea-open");
-        }
-        function validerReappro(){
-            let qte = document.getElementById("qteAjout").value;
-            document.getElementById("divReappro").classList.remove("Rea-open");
-            document.cookie = "qteAjout = " + qte;
-            window.location.reload();
-            
-        }
-    
-        </script>
     </body>
 </html>
