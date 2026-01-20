@@ -291,11 +291,11 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                             <h2>Modifier votre avis</h2>
 
                                             <div class="noter" id="stars">
-                                                <span data-value="1" onclick="selectStar(1)">★</span>
-                                                <span data-value="2" onclick="selectStar(2)">★</span>
-                                                <span data-value="3" onclick="selectStar(3)">★</span>
-                                                <span data-value="4" onclick="selectStar(4)">★</span>
-                                                <span data-value="5" onclick="selectStar(5)">★</span>
+                                                <span data-value="1" onclick="selectStar(1, <?php echo $avis['numavis'] ?>)">★</span>
+                                                <span data-value="2" onclick="selectStar(2, <?php echo $avis['numavis'] ?>)">★</span>
+                                                <span data-value="3" onclick="selectStar(3, <?php echo $avis['numavis'] ?>)">★</span>
+                                                <span data-value="4" onclick="selectStar(4, <?php echo $avis['numavis'] ?>)">★</span>
+                                                <span data-value="5" onclick="selectStar(5, <?php echo $avis['numavis'] ?>)">★</span>
                                             </div>
                                             
                                             <span id="note-value" style="display:none;">0</span>
@@ -313,7 +313,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                             </div>                                        
                                             <!--<input type="hidden" name="commentaire" value="<?php echo $avis['commentaire'] ?>">-->
                                             <!--<input type="hidden" name="codeProduit" value="<?php echo $produit['codeproduit'] ?>">-->
-                                            <input type="hidden" name="noteprod" id="noteprod" value=1>
+                                            <input type="hidden" name="noteprod" id="noteprod<?php echo $avis['numavis'] ?>" value=1>
                                         </form>
                                     </div>
                                     <a href="supprimer_avis.php?codeavis=<?= $avis['numavis'] ?>&codeproduit=<?= $avis['codeproduit'] ?>">Supprimer</a>
@@ -329,7 +329,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
     <script>
         function openOverlayModif(src, numAvis, codeProduit, avisCommentaire) {
             document.getElementById(numAvis).style.display = "flex";
-            document.querySelector("form.avis-section").action = "modifier_avis.php?codeAvis=" + numAvis + "&codeProduit=" + codeProduit;
+            document.querySelector("form.avis-section").action = "modifier_avis.php?codeAvis=" + numAvis + "&codeProduit=" + codeProduit; //'&noteprod=' + document.getElementById('noteprod').value + 
             document.querySelector("form.avis-section textarea").value = document.querySelector(".avis .commentaire").innerText;
             updateStars(src);
         }
@@ -343,14 +343,10 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         function fermerOverlay() {
             document.getElementById("overlay").style.display = "none";
         } 
-        function selectStar(valeur) {
-            console.log(document.getElementById('noteprod').value);
-            console.log(document.getElementsByClassName('noteprod').value);
-            document.getElementById('noteprod').setAttribute('value', valeur);
-
-            const form = document.getElementById('form-modif-avis');
-            const baseUrl = "modifier_avis.php?codeAvis=<?php echo $avis['numavis'] ?>&codeProduit=<?php echo $avis['codeproduit'] ?>";
-            form.action = baseUrl + '&noteprod=' + valeur;
+        function selectStar(valeur, numAvis) {
+            console.log(document.getElementById('noteprod' + numAvis).value);
+            document.getElementById('noteprod' + numAvis).setAttribute('value', valeur);
+            console.log(document.getElementById('noteprod' + numAvis).value);
         }
     </script>
 </body>

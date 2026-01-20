@@ -23,14 +23,12 @@ try {
 $pdo->query("SET SCHEMA 'alizon'");
 
 $commentaire = $_POST['commentaire'];
-$noteProduit = $_GET['noteprod'];
+$noteProduit = $_POST['noteprod'];
 $codeProduit = $_GET['codeProduit'];
 $codeAvis = $_GET['codeAvis'];
 $urlPhotos = "img/" . $_FILES['contact_upload']['full_path'];
 
-echo $_POST['noteProduitAvis'];
-echo $_POST['noteProd'];
-echo $_POST['noteprod'];
+
 
 $update = $pdo->prepare("UPDATE Avis SET commentaire = :commentaire, noteprod = :noteProduit WHERE numavis = :codeAvis");
 $update->execute([
@@ -64,8 +62,8 @@ if ($tmpName){
 //echo $codeAvis;
 //echo $codeProduit;
 //echo $commentaire;
-echo $noteProduit;
-//header("Location: dproduit.php?id=" . urlencode($codeProduit));
+//echo $noteProduit;
+header("Location: dproduit.php?id=" . urlencode($codeProduit));
 
 exit();
 ?>
