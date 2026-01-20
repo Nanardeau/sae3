@@ -39,3 +39,16 @@ function retirerCatalogue(idProd){
         );
     }                       
 }
+function supprimerCatalogue(idProd){
+        if(confirm("Voulez vous retirer cet article du catalogue?")){
+        url = "/backoffice/statut.php?Action=retirer&Produit=" + encodeURIComponent(idProd);
+        url2 = "/backoffice/ficheProduit.php?Produit=" + encodeURIComponent(idProd);
+        sendGet(url,function() { 
+            location.replace(url2); 
+        },
+        function() { 
+            alert('Erreur côté serveur.');
+         }
+        );
+    }                       
+}

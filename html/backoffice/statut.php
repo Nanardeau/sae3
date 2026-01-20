@@ -46,6 +46,18 @@
             ':codeProduit' => $codeProduit
             ]);
             break;
+        case 'supprimer':
+            
+            $stmt = $bdd->prepare("delete from Photo where urlPhoto = (select urlPhoto from Produit where codeProduit = :codeProduit");
+            $stmt->execute([
+            ':codeProduit' => $codeProduit
+            ]);
+            $stmt = $bdd->prepare("delete from Produit where codeProduit = :codeProduit");
+            $stmt->execute([
+            ':codeProduit' => $codeProduit
+            ]);
+
+            break;
     }
 ?>
 
