@@ -2440,7 +2440,8 @@ input[type=file] {
 
 form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   padding: 0;
   width: 100%;
@@ -2452,7 +2453,7 @@ form .labelInput {
   margin: 3% 0;
 }
 form #profResp, form #entreprise {
-  width: 40%;
+  width: 100%;
 }
 form #nomPrenomVendeur, form #numNomRue, form #cpVille {
   display: flex;
@@ -2470,11 +2471,14 @@ form #cpVille .labelInput:nth-child(1) {
 form #cpVille .labelInput:nth-child(2) {
   width: 50%;
 }
+form #nomPrenomVendeur {
+  gap: 1em;
+}
 
 #valider {
-  padding: 2em;
+  padding: 1em;
   border: none;
-  width: 30%;
+  width: 20%;
   max-width: 40em;
   margin-top: 2em;
 }
@@ -2484,14 +2488,14 @@ form #cpVille .labelInput:nth-child(2) {
   width: 70%;
 }
 
-nav {
-  width: 30%;
+.boutonsCompte {
+  width: 50%;
   display: flex;
   justify-content: space-between;
   margin: 2em 0;
 }
-nav button {
-  padding: 2em;
+.boutonsCompte button {
+  padding: 1em;
   width: 40%;
   border: none;
 }
@@ -2503,7 +2507,7 @@ nav button {
 [popover]:popover-open {
   border-radius: 1em;
   border-width: 0.1em;
-  padding: 100px;
+  padding: 20px;
   width: 50%;
 }
 [popover]:popover-open form {
@@ -2533,4 +2537,19 @@ nav button {
   position: fixed;
   top: 1em;
   left: 1em;
+}
+
+details summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary h3 {
+  margin: 0;
+  text-align: left;
+  text-decoration: underline;
 }/*# sourceMappingURL=infosCompteVendeur.css.map */

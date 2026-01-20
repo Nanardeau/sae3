@@ -33,9 +33,21 @@ main {
         }
     }
     .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         border: black 2px solid;
+        background-color: $blanc;
         border-radius: 16px;
         display: flex;
+        padding-bottom: 20px;
+
+        h3{
+            align-self: center;
+            text-decoration: underline;
+        }
+
+  
         section {
             
             padding-left: 40px;
@@ -52,7 +64,7 @@ main {
                 font-family: "Baloo";
             }
             input {
-                background-color: $blanc;
+                background-color: #eaeaea;
                 border-radius: 8px;
                 height: 20px;
                 font-size: 16px;
@@ -120,4 +132,22 @@ main {
         color:black;
         width:200px;
     }
+}
+
+details summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary h3 {
+    margin: 0;
+    text-align: left;
+}
+
+h3{
+    text-align: center;
 }
