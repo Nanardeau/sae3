@@ -23,7 +23,7 @@ try {
 $pdo->query("SET SCHEMA 'alizon'");
 
 $commentaire = $_POST['commentaire'];
-$noteProduit = $_POST['noteprod'];
+$noteProduit = $_GET['noteprod'];
 $codeProduit = $_GET['codeProduit'];
 $codeAvis = $_GET['codeAvis'];
 $urlPhotos = "img/" . $_FILES['contact_upload']['full_path'];
