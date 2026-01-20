@@ -95,8 +95,17 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 <body>
 
     <?php 
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
 
-    if(isset($_SESSION['codeCompte'])){
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(isset($_SESSION['codeCompte']) && $estClient){
         include 'includes/headerCon.php' ;
         $codeCompte = $_SESSION['codeCompte'];
     }else{

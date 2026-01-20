@@ -1,13 +1,6 @@
 <?php
 session_start();
-if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])){
-    header('location: connexionVendeur.php');
-    
-}else{
 
-    $codeCompte = $_SESSION["codeCompte"];
-    
-}
 
     require_once('../_env.php');
     
@@ -29,7 +22,22 @@ if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"])
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 
+    $estVendeur = false;
+    if(isset($_SESSION["codeCompte"])){
 
+        $vendeurs = $bdd->query("SELECT ALL codeCompte FROM alizon.Vendeur")->fetchAll();
+        foreach($vendeurs as $vendeur){
+            if($vendeur["codecompte"] == $_SESSION["codeCompte"]){
+                $estVendeur = true;
+            }
+        }
+    }
+    if(!$estVendeur || !isset($_SESSION["codeCompte"])){
+        exit(header("location:connexionVendeur.php"));
+    }
+    else{
+        $codeCompte = $_SESSION["codeCompte"];
+    }
 $sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
 $stmt = $bdd->query($sql);
 $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);

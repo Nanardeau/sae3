@@ -798,4 +798,7 @@ a {
   .ligneFacture, .groupeFact, table {
     font-size: 14px;
   }
+  a {
+    display: none;
+  }
 }/*# sourceMappingURL=facture.css.map */

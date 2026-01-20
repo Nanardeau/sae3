@@ -22,7 +22,20 @@ try {
     // "✅ Connecté à PostgreSQL ($dbname)";
 } catch (PDOException $e) {
     //"❌ Erreur de connexion : " . $e->getMessage();
-    ?>
+$estClient = false;
+if(isset($_SESSION["codeCompte"])){
+
+    $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+    foreach($clients as $client){
+        if($client["codecompte"] == $_SESSION["codeCompte"]){
+            $estClient = true;
+        }
+    }
+}
+if(!$estClient || !isset($_SESSION["codeCompte"])){
+    exit(header("location:index.php"));
+}   
+?>
     <script>
         alert("Erreur lors du chargement");
     </script>

@@ -1,13 +1,8 @@
 <?php 
     session_start();
-    if(!array_key_exists("codeCompte", $_SESSION)){
-        header("location:index.php");
-    }
-
-    $codeCompte = $_SESSION["codeCompte"];
     if(array_key_exists("erreur", $_GET)){
         $erreur = $_GET["erreur"];
-
+        
     }
     else{
         $erreur = "";
@@ -31,6 +26,23 @@
         echo "Erreur de connexion : " . $e->getMessage();
     }
     //$codeCompte = 1;
+    $estClient = false;
+    if(isset($_SESSION["codeCompte"])){
+
+        $clients = $bdd->query("SELECT ALL codeCompte FROM alizon.Client")->fetchAll();
+        foreach($clients as $client){
+            if($client["codecompte"] == $_SESSION["codeCompte"]){
+                $estClient = true;
+            }
+        }
+    }
+    if(!$estClient || !isset($_SESSION["codeCompte"])){
+        exit(header("location:index.php"));
+    }
+    else{
+        
+        $codeCompte = $_SESSION["codeCompte"];
+    }
     $compte = $bdd->query("SELECT * FROM alizon.Client WHERE codeCompte = '".$codeCompte."'")->fetch();
     
     $adresse = $bdd->query("SELECT * FROM alizon.Adresse adresse INNER JOIN alizon.AdrFactCli fact ON adresse.idAdresse = fact.idAdresse WHERE codeCompte = '".$codeCompte."'")->fetch();
