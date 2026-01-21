@@ -10,13 +10,14 @@ $user = getenv('PGUSER');
 $password = getenv('PGPASSWORD');
 
 try {
-    $ip = 'pgsql:host=' . $host . ';port=' . $port . ';dbname=' . $dbname . ';';
-    $pdo = new PDO($ip, $user, $password, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]);
-    // "✅ Connecté à PostgreSQL ($dbname)";
+    $pdo = new PDO(
+        "pgsql:host=$host;port=$port;dbname=$dbname;",
+        $user,
+        $password,
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
 } catch (PDOException $e) {
-    // "❌ Erreur de connexion : " . $e->getMessage();
+    die("Erreur BDD : " . $e->getMessage());
 }
 
 $pdo->query("SET SCHEMA 'alizon'");
@@ -35,7 +36,7 @@ try {
         ":commentaire" => $commentaire,
         ":noteProd"    => $noteProd,
         ":cli"         => $codeCompteCli,
-        ":prod"        => $codeProduit,
+        ":prod"        => $codeProduit
     ]);
 
     $numAvis = $pdo->lastInsertId();

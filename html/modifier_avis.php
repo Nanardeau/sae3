@@ -22,70 +22,49 @@ try {
 
 $pdo->query("SET SCHEMA 'alizon'");
 
+$commentaire = $_POST['commentaire'];
+$noteProduit = $_POST['noteprod'];
+$codeProduit = $_GET['codeProduit'];
+$codeAvis = $_GET['codeAvis'];
+$urlPhotos = "img/" . $_FILES['contact_upload']['full_path'];
 
-$codeProduit = $_POST['codeProduit'] ?? null;
-$commentaire = $_POST['commentaire'] ?? null;
-$noteProd     = $_POST['noteProd'] ?? null;
-$codeCompteCli = $_SESSION['codeCompte'] ?? null;
-$codeavis = $_GET['num'] ?? null;
 
-$sql = "UPDATE Avis 
-        SET commentaire = :commentaire, noteProd = :noteProd, codeCompteCli = :cli, codeProduit = :prod, datePublication = null 
-        WHERE numAvis = :numAvis";
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute([
-    ":commentaire" => $commentaire,
-    ":noteProd"    => $noteProd,
-    ":cli"         => $codeCompteCli,
-    ":prod"        => $codeProduit,
-    ":numAvis"     => $codeavis
+$update = $pdo->prepare("UPDATE Avis SET commentaire = :commentaire, noteprod = :noteProduit WHERE numavis = :codeAvis");
+$update->execute([
+    ':commentaire' => $commentaire,
+    ':noteProduit' => $noteProduit,
+    ':codeAvis' => $codeAvis
 ]);
+$avis = $update->fetchAll(PDO::FETCH_ASSOC);
 
-$sql = "SELECT * FROM JustifierAvis WHERE numAvis = $codeavis";
-$photo = $pdo->query($sql)->fetch();
-if ($photo==NULL){
-    if (!empty($_FILES['photos']['name'][0])) {
-        foreach ($_FILES['photos']['name'] as $index => $name) {
-            if ($_FILES['photos']['error'][$index] === UPLOAD_ERR_OK) {
-                $tmpName = $_FILES['photos']['tmp_name'][$index];
 
-                $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
-                $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-                if (!in_array($ext, $allowedExtensions)) {
-                    continue; 
-                }
+$tmpName = $_FILES['contact_upload']['tmp_name'];
+$fileName = $_FILES['contact_upload']['name'];
+$folder = __DIR__ . '/uploads/avis/avis_';
 
-                $newName = "avis_" . uniqid() . "." . $ext;
-                $destPath = $uploadDir . $newName;
-
-                if (move_uploaded_file($tmpName, $destPath)) {
-                    $relativePath = "uploads/avis/" . $newName;
-
-                    $stmtPhoto = $pdo->prepare("INSERT INTO Photo (urlPhoto) VALUES (:p) RETURNING urlPhoto");
-                    $stmtPhoto->execute([":p" => $relativePath]);
-                    $urlPhoto = $stmtPhoto->fetchColumn();
-
-                    $stmtJust = $pdo->prepare("INSERT INTO JustifierAvis (numAvis, urlPhoto) VALUES (:a, :p)");
-                    $stmtJust->execute([
-                        ":a" => $numAvis,
-                        ":p" => $urlPhoto
-                    ]);
-                }
-            }
-        }
+$urlPhotos = './uploads/avis/avis_' . $fileName;
+if ($tmpName){
+    if (!file_exists($urlPhotos)){
+        move_uploaded_file($tmpName, $folder . $fileName);
+        $insert = $pdo->prepare("INSERT INTO Photo (urlphoto) VALUES (:urlPhotos)");
+        $insert->execute([
+            ':urlPhotos' => $urlPhotos
+        ]);
     }
-} else {
-    if (!empty($_FILES['photos']['name'][0])) {
-        
 
-
-    }
+    $update = $pdo->prepare("UPDATE JustifierAvis SET urlPhoto = :urlPhotos WHERE numAvis = :codeAvis");
+    $update->execute([
+        ':urlPhotos' => $urlPhotos,
+        ':codeAvis' => $codeAvis
+    ]);
 }
+//echo $codeAvis;
+//echo $codeProduit;
+//echo $commentaire;
+//echo $noteProduit;
+header("Location: dproduit.php?id=" . urlencode($codeProduit));
 
-
-
-
-//header("Location: dproduit.php?id=" . urlencode($codeProduit));
-//exit();
+exit();
 ?>
+
