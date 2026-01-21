@@ -969,6 +969,15 @@ nav div > ul li:hover .souscat-ul {
   align-items: center;
 }
 
+.prixNormalbarre {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.prixReducRed, .remise {
+  color: #FF4444;
+}
+
 .card {
   background-color: #D1ECF8;
   flex: 0 0 auto;
@@ -1063,13 +1072,15 @@ nav div > ul li:hover .souscat-ul {
   grid-area: 3/1/3/1;
   align-content: flex-end;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 15px;
 }
 @media screen and (max-width : 428px) {
   .card .prix {
-    margin-top: 10px;
     grid-area: 2/1/2/1;
   }
+}
+.card .prix .prixNormalbarre, .card .prix .prixReducRed, .card .prix .remise {
+  margin: 0;
 }
 .card div {
   grid-area: 3/2/3/2;

@@ -147,10 +147,14 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                             $hasRemise = $stmt->rowCount() > 0;
                             if ($hasRemise != false) {
                                 //print_r($infoRemise);
+                                echo '<div style="display:flex;flex-direction:row;gap:10px;">';
+                                echo '<p>PrixHT :</p> <p class="prixReducRed">' . round($produit['prixht'] * (1 - $infoRemise[0]['remise'] / 100), 2) . '€ <span class="remise"> - ' . $infoRemise[0]['remise'] . '%</span></p>';
                                 echo '<p class="prixNormalbarre">' . round($produit['prixht'], 2) . '€</p>';
-                                echo '<p class="prixReducRed"> PrixHT : ' . round($produit['prixht'] * (1 - $infoRemise[0]['remise'] / 100), 2) . '€ <span class="remise"> - ' . $infoRemise[0]['remise'] . '%</span></p>';
+                                echo '</div>';
+                                echo '<div style="display:flex;flex-direction:row;gap:10px;">';
+                                echo '<p>PrixTTC : </p><p class="prixReducRed">' . round($produit['prixttc'] * (1 - $infoRemise[0]['remise'] / 100), 2) . '€ <span class="remise"> - ' . $infoRemise[0]['remise'] . '%</span></p>';
                                 echo '<p class="prixNormalbarre">' . round($produit['prixttc'], 2) . '€</p>';
-                                echo '<p class="prixReducRed"> PrixHT : ' . round($produit['prixttc'] * (1 - $infoRemise[0]['remise'] / 100), 2) . '€ <span class="remise"> - ' . $infoRemise[0]['remise'] . '%</span></p>';
+                                echo '</div>';
                             } else {
                                 echo '<p class="prixReduc"> PrixHT : ' . round($produit['prixht'], 2) . '€</p>';
                                 echo '<p>Prix TTC :'. round($produit['prixttc'], 2).'€</p>';
@@ -166,7 +170,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 
                 <div class="panier-section">
 
-                    <p class="price" id="price" data-price="<?= round($produit['prixttc'], 2) ?>"><?= round($produit['prixttc'], 2) ?> €</p>
+                    <p class="price" id="price" data-price="<?= round($produit['prixttc'], 2) ?>"><?php if($hasRemise) { echo round($produit['prixttc'] * (1 - $infoRemise[0]['remise'] / 100), 2);} else{ echo round($produit['prixttc'], 2); } ?> €</p>
                     <div class="quantity">
                         <label for="qte">Quantité :</label>
                         <select id="qte" name="qte">
