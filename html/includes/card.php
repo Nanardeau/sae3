@@ -19,7 +19,27 @@
     }
     echo htmlspecialchars($descSafe, ENT_QUOTES, 'UTF-8');
     ?></p>
-    <p class="prix"><?php echo $prix ?> €TTC</p>
+    <div class="prix">
+        <?php 
+        $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
+        $stmt->execute(['id' => $p['codeproduit'] ]);
+
+        $infoRemise = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $hasRemise = $stmt->rowCount() > 0;
+        if ($hasRemise != false){
+            $stmtRem = $bdd->prepare("SELECT prixTTC from Produit where codeProduit = :codeproduit");
+            $stmtRem->execute(array(
+                "codeproduit"=>$p['codeproduit']));
+            $Remise = $stmtRem->fetch();
+            //print_r($infoRemise);
+            echo '<p class="prixNormalbarre">'.$prix.'€</p>';
+            echo '<p class="prixReducRed">'.round($Remise['prixttc']*(1-$infoRemise[0]['remise']/100),2).'€ <span class="remise"> - '.$infoRemise[0]['remise'].'%</span></p>';
+            //echo '<p class="prixReduc">'.$prixTTC.'€</p>';
+        } else {
+            echo '<p class="prixReduc">'.$prix.'€</p>';
+        }
+        ?>
+    </div>
     <div>
         <button class="mobile-commande" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $article['codeproduit'] ?>&qteProd=1&page=index.php';">
             <svg width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
