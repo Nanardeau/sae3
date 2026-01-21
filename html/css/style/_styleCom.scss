@@ -782,3 +782,10 @@ nav div > ul li:hover .souscat-ul{
         flex-direction: column;
         align-items:center;
     }
+.prixNormalbarre{
+            color: gray;
+            text-decoration:line-through; 
+        }
+.prixReducRed,.remise{
+            color : $inverse;
+        }
