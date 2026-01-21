@@ -69,7 +69,6 @@ foreach ($avisList as &$avis) {
         }
 
         $avis["photos"] = $photos;
-
     } else {
         $avis["photos"] = [];
     }
@@ -77,32 +76,34 @@ foreach ($avisList as &$avis) {
 unset($avis);
 
 
-$cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit = '".$id."'")->fetch())["libellecat"];
+$cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit = '" . $id . "'")->fetch())["libellecat"];
 
 
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alizon</title>
     <link rel="stylesheet" href="css/style/dproduit.css">
 </head>
+
 <body>
 
-    <?php 
+    <?php
 
-    if(isset($_SESSION['codeCompte'])){
-        include 'includes/headerCon.php' ;
+    if (isset($_SESSION['codeCompte'])) {
+        include 'includes/headerCon.php';
         $codeCompte = $_SESSION['codeCompte'];
-    }else{
+    } else {
         include 'includes/header.php';
         include 'includes/menu_cat.php';
     }
     ?>
-    
+
 
 
 
@@ -116,15 +117,18 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
 
 
     <main>
-        <?php 
-            include 'includes/menuCompte.php';
+        <?php
+        include 'includes/menuCompte.php';
         ?>
-    <div class="ariane">
-        <a class="arianeItem" href="index.php">Accueil > </a><a class="arianeItem" href="Catalogue.php">Catalogue > </a><a class="arianeItem" href="Categorie.php?cat=<?php echo $cat?>"><?php echo $cat?></a>
-    </div>
-        <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m14 16-4-4 4-4"/></svg>Retour</label>
+        <div class="ariane">
+            <a class="arianeItem" href="index.php">Accueil > </a><a class="arianeItem" href="Catalogue.php">Catalogue > </a><a class="arianeItem" href="Categorie.php?cat=<?php echo $cat ?>"><?php echo $cat ?></a>
+        </div>
+        <label class="label-retour btn-retour" for="retour"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-chevron-left-icon lucide-square-chevron-left">
+                <rect width="18" height="18" x="3" y="3" rx="2" />
+                <path d="m14 16-4-4 4-4" />
+            </svg>Retour</label>
         <INPUT id="retour" TYPE="button" VALUE="RETOUR" onclick="history.back();">
-        
+
         <section class="prod">
             <div class="detail-produit">
                 <div class="detail-produit-content">
@@ -134,16 +138,34 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <div class="info-produit">
                         <h1><?= $produit['libelleprod'] ?></h1>
                         <p><strong>Description :</strong> <?= $produit['descriptionprod'] ?></p>
-                        <p class="prix">Prix HT:<?= round($produit['prixht'],2)?> €</p>
-                        <p>Prix TTC : <?= round($produit['prixttc'], 2) ?> €</p>
-                    </div>
+                        <div class="prix">
+                            <?php
+                            $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
+                            $stmt->execute(['id' => $produit['codeproduit']]);
+
+                            $infoRemise = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $hasRemise = $stmt->rowCount() > 0;
+                            if ($hasRemise != false) {
+                                //print_r($infoRemise);
+                                echo '<p class="prixNormalbarre">' . round($produit['prixht'], 2) . '€</p>';
+                                echo '<p class="prixReducRed"> PrixHT : ' . round($produit['prixht'] * (1 - $infoRemise[0]['remise'] / 100), 2) . '€ <span class="remise"> - ' . $infoRemise[0]['remise'] . '%</span></p>';
+                                echo '<p class="prixNormalbarre">' . round($produit['prixttc'], 2) . '€</p>';
+                                echo '<p class="prixReducRed"> PrixHT : ' . round($produit['prixttc'] * (1 - $infoRemise[0]['remise'] / 100), 2) . '€ <span class="remise"> - ' . $infoRemise[0]['remise'] . '%</span></p>';
+                            } else {
+                                echo '<p class="prixReduc"> PrixHT : ' . round($produit['prixht'], 2) . '€</p>';
+                                echo '<p>Prix TTC :'. round($produit['prixttc'], 2).'€</p>';
+                            }
+                            ?>
+                        </div>
                         
+                    </div>
+
                 </div>
             </div>
             <div class="partie-droite">
 
                 <div class="panier-section">
-                    
+
                     <p class="price" id="price" data-price="<?= round($produit['prixttc'], 2) ?>"><?= round($produit['prixttc'], 2) ?> €</p>
                     <div class="quantity">
                         <label for="qte">Quantité :</label>
@@ -151,53 +173,54 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                             <?php for ($i = 1; $i <= 100; $i++): ?>
                                 <option value="<?= $i ?>"><?= $i ?></option>
                             <?php endfor; ?>
-                                <option value="1000000">1000000</option>
+                            <option value="1000000">1000000</option>
                         </select>
                     </div>
                     <button class="btnJaune" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $codeProduit ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&page=Catalogue.php';">Ajouter au panier</button>
-                    <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</button>
+                    <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</button>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
 
 
 
                 <?php
-                if (isset($_SESSION["codeCompte"])){
-                    $commande='SELECT * FROM alizon.ProdUnitCommande NATURAL JOIN alizon.Commande WHERE alizon.Commande.codeCompte = '.$_SESSION["codeCompte"].' AND alizon.ProdUnitCommande.codeProduit = '.$produit['codeproduit'].'';
+                if (isset($_SESSION["codeCompte"])) {
+                    $commande = 'SELECT * FROM alizon.ProdUnitCommande NATURAL JOIN alizon.Commande WHERE alizon.Commande.codeCompte = ' . $_SESSION["codeCompte"] . ' AND alizon.ProdUnitCommande.codeProduit = ' . $produit['codeproduit'] . '';
                     $commander = $bdd->query($commande)->fetch();
                 }
                 ?>
-                <?php if(isset($_SESSION["codeCompte"]) and $commander!=NULL):   // && $commander!=NULL Si l'utilisateur a comandé le produit, afficher le formulaire d'avis?>
-                <form class="avis-section" method="POST" action="ajout_avis.php" enctype="multipart/form-data">
+                <?php if (isset($_SESSION["codeCompte"]) and $commander != NULL):   // && $commander!=NULL Si l'utilisateur a comandé le produit, afficher le formulaire d'avis
+                ?>
+                    <form class="avis-section" method="POST" action="ajout_avis.php" enctype="multipart/form-data">
 
-                    <h2>Votre avis</h2>
+                        <h2>Votre avis</h2>
 
-                    <div class="noter" id="stars">
-                        <span data-value="1">★</span>
-                        <span data-value="2">★</span>
-                        <span data-value="3">★</span>
-                        <span data-value="4">★</span>
-                        <span data-value="5">★</span>
-                    </div>
+                        <div class="noter" id="stars">
+                            <span data-value="1">★</span>
+                            <span data-value="2">★</span>
+                            <span data-value="3">★</span>
+                            <span data-value="4">★</span>
+                            <span data-value="5">★</span>
+                        </div>
 
-                    <span id="note-value" style="display:none;">0</span>
+                        <span id="note-value" style="display:none;">0</span>
 
-                    <textarea name="commentaire" maxlength="255" placeholder="Rédiger un commentaire..." required></textarea>
+                        <textarea name="commentaire" maxlength="255" placeholder="Rédiger un commentaire..." required></textarea>
 
-                    
 
-                    <div class="plein-buttons">
-                        <label class="photo" for="photos">Ajouter des photos</label>
-                        <input id="photos" type="file" name="photos[]" multiple accept="image/*">
-                        <button type="reset" class="cancel">Annuler</button>
-                        <button type="submit" class="submit">Publier</button>
-                    </div>
 
-                    <input type="hidden" name="codeProduit" value="<?php echo $produit['codeproduit'] ?>">
-                    <input type="hidden" name="noteProd" id="noteProd" value="1">
+                        <div class="plein-buttons">
+                            <label class="photo" for="photos">Ajouter des photos</label>
+                            <input id="photos" type="file" name="photos[]" multiple accept="image/*">
+                            <button type="reset" class="cancel">Annuler</button>
+                            <button type="submit" class="submit">Publier</button>
+                        </div>
 
-                </form>
-            <?php endif?>
+                        <input type="hidden" name="codeProduit" value="<?php echo $produit['codeproduit'] ?>">
+                        <input type="hidden" name="noteProd" id="noteProd" value="1">
+
+                    </form>
+                <?php endif ?>
 
             </div>
         </section>
@@ -207,7 +230,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                 <?php
                 $totalAvis = count($avisList);
                 $sommeNotes = 0;
-                $noteCounts = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0]; 
+                $noteCounts = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
 
                 foreach ($avisList as $avis) {
                     $note = (int)$avis['noteprod'];
@@ -225,7 +248,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <div class="etoiles">
                         <?php for ($i = 1; $i <= 5; $i++): ?>
                             <span class="etoile <?= $i <= round($moyenneNote) ? 'pleine' : '' ?>">★</span>
-                            
+
                         <?php endfor; ?>
                     </div>
                     <div class="total">
@@ -263,7 +286,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                     echo "$prenom $nom";
                                     ?>
                                 </strong>
-                                
+
                                 <span class="date">
                                     <?php echo htmlspecialchars($avis['datepublication']) ?>
                                 </span>
@@ -280,25 +303,25 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                             <?php if (!empty($avis['photos'])): ?>
                                 <div id="overlay-photos-avis" class="photos-avis">
                                     <?php foreach ($avis['photos'] as $photo): ?>
-                                        <img src="<?= htmlspecialchars($photo) ?>" 
-                                            alt="Photo de l'avis" 
+                                        <img src="<?= htmlspecialchars($photo) ?>"
+                                            alt="Photo de l'avis"
                                             class="photo-avis"
                                             onclick="openOverlay(this.src)">
-                                        <img src="<?= htmlspecialchars($photo) ?>" 
-                                            alt="Photo de l'avis" 
+                                        <img src="<?= htmlspecialchars($photo) ?>"
+                                            alt="Photo de l'avis"
                                             class="photo-avis"
                                             id="overlay"
                                             onclick="fermerOverlay()">
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
-                            <?php 
-                            if ($_SESSION && $_SESSION["codeCompte"]==$avis["codecomptecli"]):
+                            <?php
+                            if ($_SESSION && $_SESSION["codeCompte"] == $avis["codecomptecli"]):
                             ?>
                                 <div class="actions-avis">
                                     <a id="btnModifierAvis" onclick="openOverlayModif(<?php echo $avis['noteprod'] ?>, <?php echo $avis['numavis'] ?>, <?php echo $avis['codeproduit'] ?>, '<?php echo $avis['commentaire'] ?>')">Modifier</a>
                                     <div class="overlaymodifier" id="<?php echo $avis['numavis'] ?>">
-                                        
+
                                         <form class="avis-section" method="POST" action="modifier_avis.php?noteprod=<?php echo $avis['noteprod'] ?>&codeAvis=<?php echo $avis['numavis'] ?>&codeProduit=<?php echo $avis['codeproduit'] ?>" enctype="multipart/form-data">
                                             <h2>Modifier votre avis</h2>
 
@@ -309,23 +332,23 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                                 <span data-value="4" onclick="selectStar(4, <?php echo $avis['numavis'] ?>)">★</span>
                                                 <span data-value="5" onclick="selectStar(5, <?php echo $avis['numavis'] ?>)">★</span>
                                             </div>
-                                            
+
                                             <span id="note-value" style="display:none;">0</span>
 
                                             <textarea name="commentaire" maxlength="255" placeholder="Rédiger un commentaire..." required><?php echo $avis['commentaire'] ?></textarea>
-                                            
+
                                             <div class="plein-buttons">
                                                 <?php if (!empty($avis['photos'])): ?>
                                                     <p>La photo est prise en compte</p>
                                                 <?php endif; ?>
                                                 <label class="photo" for="contact_upload">Ajouter des photos</label>
-                                                <input type="file" name="contact_upload" id="contact_upload" /><?php if(isset($contact_upload)) echo $contact_upload; ?></textarea>
-                                                
+                                                <input type="file" name="contact_upload" id="contact_upload" /><?php if (isset($contact_upload)) echo $contact_upload; ?></textarea>
+
                                                 <button type="reset" class="cancel" onclick="closeOverlayModif(<?php echo $avis['numavis'] ?>)">Annuler</button>
                                                 <button type="submit" class="submit">Modifier</button>
-                                                
-                                                
-                                            </div>                                        
+
+
+                                            </div>
                                             <!--<input type="hidden" name="commentaire" value="<?php echo $avis['commentaire'] ?>">-->
                                             <!--<input type="hidden" name="codeProduit" value="<?php echo $produit['codeproduit'] ?>">-->
                                             <input type="hidden" name="noteprod" id="noteprod<?php echo $avis['numavis'] ?>" value=1>
@@ -352,35 +375,40 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
-        </section>        
+        </section>
     </main>
     <?php include 'includes/footer.php'; ?>
     <script src="js/achat.js"></script>
 
     <script>
-
         function openOverlaySignaler() {
             document.getElementById("overlaysignaler").style.display = "flex";
         }
+
         function closeOverlaySignaler() {
             document.getElementById("overlaysignaler").style.display = "none";
         }
+
         function openOverlayModif(src, numAvis, codeProduit, avisCommentaire) {
             document.getElementById(numAvis).style.display = "flex";
             document.querySelector("form.avis-section").action = "modifier_avis.php?codeAvis=" + numAvis + "&codeProduit=" + codeProduit; //'&noteprod=' + document.getElementById('noteprod').value + 
             document.querySelector("form.avis-section textarea").value = document.querySelector(".avis .commentaire").innerText;
             updateStars(src);
         }
+
         function closeOverlayModif(numAvis) {
             document.getElementById(numAvis).style.display = "none";
         }
+
         function openOverlay(src) {
             document.querySelector("#overlay").src = src;
             document.getElementById("overlay").style.display = "block";
         }
+
         function fermerOverlay() {
             document.getElementById("overlay").style.display = "none";
-        } 
+        }
+
         function selectStar(valeur, numAvis) {
             console.log(document.getElementById('noteprod' + numAvis).value);
             document.getElementById('noteprod' + numAvis).setAttribute('value', valeur);
@@ -388,4 +416,5 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         }
     </script>
 </body>
+
 </html>

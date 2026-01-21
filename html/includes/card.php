@@ -22,14 +22,14 @@
     <div class="prix">
         <?php 
         $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
-        $stmt->execute(['id' => $p['codeproduit'] ]);
+        $stmt->execute(['id' => $article['codeproduit'] ]);
 
         $infoRemise = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $hasRemise = $stmt->rowCount() > 0;
         if ($hasRemise != false){
             $stmtRem = $bdd->prepare("SELECT prixTTC from Produit where codeProduit = :codeproduit");
             $stmtRem->execute(array(
-                "codeproduit"=>$p['codeproduit']));
+                "codeproduit"=>$article['codeproduit']));
             $Remise = $stmtRem->fetch();
             //print_r($infoRemise);
             echo '<p class="prixNormalbarre">'.$prix.'€</p>';
