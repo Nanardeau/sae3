@@ -1024,6 +1024,10 @@ nav div > ul li:hover .souscat-ul {
   src: url("../../fonts/mulish-latin-500-normal.woff") format("woff"), url("../../fonts/mulish-latin-500-normal.woff2") format("woff2");
   font-weight: normal;
 }
+body {
+  margin: 0;
+}
+
 main {
   display: flex;
   flex-direction: column;
