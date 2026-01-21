@@ -93,6 +93,33 @@ $bdd->query('set schema \'alizon\'');
             <h1>Promotions</h1>
             <div class="separateur"></div>
         </section> -->
+        <section id="promotion" class="aff_prod">
+        <div class="separateur"></div>    
+        <h1>Promotions</h1>
+            
+                <?php
+                $produits = $bdd->query("
+                    SELECT produit.codeProduit, libelleProd, prixTTC, produit.urlPhoto, descriptionProd, origine, noteMoy
+                    FROM Produit
+                    INNER JOIN FairePromotion ON Produit.codeProduit = FairePromotion.codeProduit 
+                    ORDER BY codeProduit DESC;
+                ");
+                ?>
+
+            <article class="grid-produits">
+                <?php
+                foreach ($produits as $p) {
+                    $img = $p['urlphoto'];
+                    $libArt = $p['libelleprod'];
+                    $prix = number_format($p['prixttc'], 2, ',', '');
+                    $desc = $p['descriptionprod'];
+                    $id = $p['codeproduit'];
+                    $madein = $p['origine'];
+                    $moyennenote = $p['notemoy'];
+                    include 'includes/card.php';
+                } ?>
+            </article>
+        </section>
         <section id="nouveautes" class="aff_prod">
             <div class="separateur"></div>
             <h1>Nouveautés</h1>
@@ -121,33 +148,7 @@ $bdd->query('set schema \'alizon\'');
             </article>
         </section>
 
-        <section id="promotion" class="aff_prod">
-        <div class="separateur"></div>    
-        <h1>Promotions</h1>
-            
-                <?php
-                $produits = $bdd->query("
-                    SELECT produit.codeProduit, libelleProd, prixTTC, produit.urlPhoto, descriptionProd, origine, noteMoy
-                    FROM Produit
-                    INNER JOIN FairePromotion ON Produit.codeProduit = FairePromotion.codeProduit 
-                    ORDER BY codeProduit DESC;
-                ");
-                ?>
-
-            <article class="grid-produits">
-                <?php
-                foreach ($produits as $p) {
-                    $img = $p['urlphoto'];
-                    $libArt = $p['libelleprod'];
-                    $prix = number_format($p['prixttc'], 2, ',', '');
-                    $desc = $p['descriptionprod'];
-                    $id = $p['codeproduit'];
-                    $madein = $p['origine'];
-                    $moyennenote = $p['notemoy'];
-                    include 'includes/card.php';
-                } ?>
-            </article>
-        </section>
+        
         <div class="separateur"></div>
         <h1 class="aff_prod">Les produits</h1>
         <article class="catalogue">

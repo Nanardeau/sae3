@@ -7,7 +7,7 @@
     </figure>
     <div class="etoiles">
         <?php for ($i = 1; $i <= 5; $i++): ?>
-            <span class="etoile <?= $i <= round($moyenneNote) ? 'pleine' : '' ?>">★</span>
+            <span class="etoile <?= $i <= $moyennenote ? 'pleine' : '' ?>">★</span>
         <?php endfor; ?>
     </div>
     <p class="madein">Made in <?php echo $madein ?></p>
