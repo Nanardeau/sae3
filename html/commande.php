@@ -4,8 +4,7 @@ session_start();
 // if(!array_key_exists("codeCompte", $_SESSION) || !isset($_SESSION["codeCompte"]) || $_GET['numCom'] == null){
 //             header("location:index.php");
 // }
-$socket = fsockopen("10.253.5.102", 8080);
-
+#$socket = fsockopen("10.253.5.102", 8080);
 $codeCompte = $_SESSION["codeCompte"];
 $numCom = $_GET['numCom'];
 
@@ -35,28 +34,35 @@ try {
         alert("Erreur lors du chargement");
     </script>
     <?php
-        header('Location: http://localhost:8888/index.php');
+        exit(header('Location: index.php'));
         exit();
 }
 
 $bdd->query('set schema \'alizon\'');
+
 $data = '';
 $res = $bdd->query("SELECT bordereau FROM alizon.Commande WHERE numCom = ".$numCom)->fetch();
+
 $bordereau = $res["bordereau"];
-fwrite($socket, "CONN test0 mdp0\n");
-while (($data = fread($socket, 24 )) == '\n' ) {
-    $data .= fread($socket, 24 );
-}
+if($bordereau != -1){
+
+    $socket = fsockopen("127.0.0.1", 8080);
+    fwrite($socket, "CONN test0 mdp0\n");
+    //while (($data = fread($socket, 24 )) == '\n' ) {
+      $data .= fread($socket, 24 );
+//}
 
 $data = '';
 fwrite($socket, "SETBDR ".$bordereau);
 
-
 $data = fread($socket, 1024);
-
 $final = fread($socket, 1024);
 //var_dump($etape);
 $etape = substr($final, strlen("Étape "), 1);
+}
+else{
+    $etape = 1;
+}
 
 //fwrite($socket, "GETETAPE\n");
 //$etape = fread($socket, 1024);
