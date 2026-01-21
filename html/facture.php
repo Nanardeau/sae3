@@ -36,6 +36,7 @@
     $adrLiv = $bdd->query("SELECT idAdresse FROM alizon.AdrLiv WHERE numCom = ".$numCom)->fetch();
     $adresse = $bdd->query("SELECT * FROM alizon.Adresse WHERE idAdresse = ". $adrLiv["idadresse"])->fetch();
     $articles = $bdd->query("SELECT * FROM alizon.ProdUnitCommande INNER JOIN alizon.Produit ON alizon.ProdUnitCommande.codeProduit = alizon.Produit.codeProduit WHERE numCom = ".$numCom)->fetchAll();
+
     $prixTotaux = $bdd->query("SELECT SUM(prixhttotal * qteprod) prixtotalht, SUM(prixttctotal * qteprod) prixtotalttc FROM alizon.ProdUnitCommande WHERE numCom = ".$numCom)->fetch();
     $infosCompte = $bdd->query("SELECT nom, prenom, email FROM alizon.Client WHERE codeCompte = ". $codeCompte)->fetch();
 ?>
@@ -74,7 +75,7 @@
             <p><?php echo $adresse["nomville"] . " " . $adresse["codepostal"]?></p> 
 
         </div>
-    </div>
+    </div><br/>
     <table>
         <thead>
             <tr>
@@ -84,13 +85,15 @@
                 <th>Total</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody>    
+        </tr>
             <?php foreach($articles as $article):?>
-            <tr>
+                <tr>
+                
                 <td><?php echo $article["libelleprod"]?></td>
-                <td><?php echo round($article["prixttc"],2)?> €</td>
-                <td><?php echo round($article["qteprod"])?></td>
-                <td><?php echo round($article["prixttc"] * $article["qteprod"], 2)?> €</td>
+                <td><?php echo $article["prixttc"]?> €</td>
+                <td><?php echo $article["qteprod"]?></td>
+                <td><?php echo $article["prixttc"] * $article["qteprod"]?> €</td>
 
             </tr>
             <?php endforeach?>

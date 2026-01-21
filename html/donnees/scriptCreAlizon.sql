@@ -147,7 +147,8 @@ CREATE TABLE Commande(
     dateCom DATE,
     prixTTCtotal NUMERIC DEFAULT 0, 
     prixHTtotal NUMERIC DEFAULT 0,
-    idCarte INTEGER REFERENCES Carte(idCarte)
+    idCarte INTEGER REFERENCES Carte(idCarte),
+	bordereau INTEGER
 );
 CREATE TABLE Livraison(
     idLivraison SERIAL PRIMARY KEY NOT NULL,

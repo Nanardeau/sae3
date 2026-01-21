@@ -973,10 +973,6 @@ a {
   padding: 1em 3em;
 }
 
-.ligneFacture, .groupeFact, hr, table, th, td {
-  display: none;
-}
-
 @media print {
   hr {
     display: block;
@@ -995,13 +991,15 @@ a {
   table {
     width: 90%;
     text-align: left;
+    margin-top: 10%;
     margin-left: 5%;
   }
   th, td {
-    border-bottom: solid;
     height: 3em;
+    border-bottom: solid;
   }
-  .ligneFacture, .groupeFact, table {
+  .ligneFacture, .groupeFact {
+    display: flex;
     font-size: 14px;
   }
   a {
