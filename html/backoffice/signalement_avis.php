@@ -29,7 +29,10 @@ try {
 
 $bdd->query("SET SCHEMA 'alizon'");
 
-$signalements = $bdd->query("SELECT * FROM Signalement")->fetchAll(PDO::FETCH_ASSOC);
+$signalements = $bdd->query("SELECT motif, commentaire, libelleprod, dateSignalement FROM alizon.Signalement
+INNER JOIN alizon.Avis ON Signalement.numAvis = Avis.numAvis 
+INNER JOIN alizon.Produit ON Avis.codeProduit = Produit.codeProduit WHERE Produit.codeCompteVendeur = ".$_SESSION["codeCompte"])->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 <html lang="fr">
@@ -53,14 +56,13 @@ $signalements = $bdd->query("SELECT * FROM Signalement")->fetchAll(PDO::FETCH_AS
             <?php 
             foreach ($signalements as $signalement) { 
                 // Récupérer le nom du produit associé au signalement
-                $produitStmt = $bdd->prepare("SELECT libelleProd FROM Produit WHERE codeProduit = :codeproduit");
-                $produitStmt->execute(['codeproduit' => $signalement['idsignalement']]);
-                $produit = $produitStmt->fetch(PDO::FETCH_ASSOC);
+                
                 $nomProduit = $produit ? $produit['libelleprod'] : 'Produit inconnu';
                 ?>
                 <div class="signalement-item" style="background-color: white; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc;">
-                    <p>Produit: <?= $nomProduit ?></p>
-                    <p>Message: <?= $signalement['motif'] ?></p>
+                    <p>Produit: <?= $signalement["libelleprod"] ?></p>
+                    <p>Motif : <?= $signalement["motif"]?></p>
+                    <p>Message: <?= $signalement['commentaire'] ?></p>
                     <p>Date: <?= $signalement['datesignalement'] ?></p>
                 </div>
             <?php } ?>

@@ -1323,7 +1323,15 @@ where
     Disponible = true
 ORDER BY prixTTC DESC;
 SELECT SUM(prixHTtotal * qteprod) prixtotalht, SUM(prixttctotal * qteprod) prixtotalttc FROM alizon.ProdUnitCommande WHERE numCom = 1;
+INSERT INTO alizon.ProdUnitCommande (codeProduit, numCom, qteProd) VALUES (3,1,2);
+SELECT SUM(Produit.prixHT * PUC.qteprod) FROM alizon.ProdUnitCommande PUC INNER JOIN alizon.Produit ON PUC.codeProduit = Produit.codeProduit;
+SELECT * FROM alizon.Commande WHERE numCom = 12;
+UPDATE alizon.Commande SET bordereau = 20261032 WHERE numCom = 12;
 SELECT * FROM alizon.ProdUnitCommande WHERE numCom = 1;
+
+SELECT motif, commentaire, libelleprod, dateSignalement FROM alizon.Signalement
+INNER JOIN alizon.Avis ON Signalement.numAvis = Avis.numAvis 
+INNER JOIN alizon.Produit ON Avis.codeProduit = Produit.codeProduit;
 --SELECT * FROM Produit WHERE unaccent(libelleProd) ILIKE unaccent('%pat%');
 --SELECT profil.urlphoto, produit.libelleprod, client.pseudo, avis.noteprod, avis.commentaire FROM avis INNER JOIN produit ON (avis.codeproduit = produit.codeproduit) INNER JOIN client ON (avis.codecomptecli = client.codecompte) INNER JOIN profil ON (profil.codeclient = client.codecompte) ORDER BY avis.codeproduit;
 --select SUM(prixttctotal) FROM ProdUnitPanier INTO Panier.prixTTCtotal;
