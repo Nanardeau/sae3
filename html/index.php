@@ -127,10 +127,10 @@ $bdd->query('set schema \'alizon\'');
             
                 <?php
                 $produits = $bdd->query("
-                    SELECT codeProduit, libelleProd, prixTTC, urlPhoto, descriptionProd, origine, noteMoy
+                    SELECT produit.codeProduit, libelleProd, prixTTC, produit.urlPhoto, descriptionProd, origine, noteMoy
                     FROM Produit
-                    ORDER BY codeProduit DESC
-                    LIMIT 7
+                    INNER JOIN FairePromotion ON Produit.codeProduit = FairePromotion.codeProduit 
+                    ORDER BY codeProduit DESC;
                 ");
                 ?>
 
