@@ -325,7 +325,7 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                                 <div class="signalement-avis">
                                     <a id="btnSignalerAvis" onclick="openOverlaySignaler()">Signaler</a>
                                     <div class="overlaysignaler" id="overlaysignaler">
-                                        <form class="avis-section" method="POST" action="signaler_avis.php?codeavis=<?= $avis['numavis'] ?>&codeproduit=<?= $avis['codeproduit'] ?>" enctype="multipart/form-data">
+                                        <form class="avis-section" method="POST" action="signaler_avis.php?codeavis=<?php echo $avis['numavis'] ?>&codeproduit=<?php echo $avis['codeproduit'] ?>" enctype="multipart/form-data">
                                             <h2>Signaler cet avis</h2>
                                             <textarea name="raison" maxlength="255" placeholder="Rédiger la raison du signalement..." required></textarea>
                                             <div class="bouttonSignalement" id="bouttonSignalement">
