@@ -187,16 +187,6 @@ $hasPromo = ($promo !== false);
                 required>
             <span class="cache" id="errorDate">La date de fin doit être postérieure à la date de début.</span>
 
-            <!-- IMAGE ACTUELLE -->
-            <!-- <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
-                <div class="promo-image">
-                    <p>Image actuelle :</p>
-                    <img src="<?= $promo['urlphoto'] ?>" alt="Image promo" width="160">
-                    <input type="hidden"
-                        name="ancienneImage"
-                        value="<?= $promo['urlphoto'] ?>">
-                </div>
-            <?php endif; ?> -->
 
             <!-- NOUVELLE IMAGE -->
             <?php if ($hasPromo && !empty($promo['urlphoto'])): ?>
@@ -251,7 +241,7 @@ $hasPromo = ($promo !== false);
 
             <label for="dateF">Date de fin de la promotion</label>
             <input type="date" name="dateF" placeholder="" id="dateF" required/>
-            <input type="hidden" name="idproduit" value="<?php echo $code_produit; ?>">
+            <input type="hidden" name="idproduit" value="">
 
             <input class="bouton" type="submit" id="creerPromo" value="Créer la promotion"/>
         </form> -->
