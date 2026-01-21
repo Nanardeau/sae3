@@ -355,6 +355,8 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
         </section>        
     </main>
     <?php include 'includes/footer.php'; ?>
+    <script src="js/achat.js"></script>
+
     <script>
 
         function openOverlaySignaler() {

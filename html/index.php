@@ -108,14 +108,14 @@ $bdd->query('set schema \'alizon\'');
 
             <article class="grid-produits">
                 <?php
-                foreach ($produits as $p) {
-                    $img = $p['urlphoto'];
-                    $libArt = $p['libelleprod'];
-                    $prix = number_format($p['prixttc'], 2, ',', '');
-                    $desc = $p['descriptionprod'];
-                    $id = $p['codeproduit'];
-                    $madein = $p['origine'];
-                    $moyennenote = $p['notemoy'];
+                foreach ($produits as $article) {
+                    $img = $article['urlphoto'];
+                    $libArt = $article['libelleprod'];
+                    $prix = number_format($article['prixttc'], 2, ',', '');
+                    $desc = $article['descriptionprod'];
+                    $id = $article['codeproduit'];
+                    $madein = $article['origine'];
+                    $moyennenote = $article['notemoy'];
                     include 'includes/card.php';
                 } ?>
             </article>
@@ -134,14 +134,14 @@ $bdd->query('set schema \'alizon\'');
 
             <article class="grid-produits">
                 <?php
-                foreach ($produits as $p) {
-                    $img = $p['urlphoto'];
-                    $libArt = $p['libelleprod'];
-                    $prix = number_format($p['prixttc'], 2, ',', '');
-                    $desc = $p['descriptionprod'];
-                    $id = $p['codeproduit'];
-                    $madein = $p['origine'];
-                    $moyennenote = $p['notemoy'];
+                foreach ($produits as $article) {
+                    $img = $article['urlphoto'];
+                    $libArt = $article['libelleprod'];
+                    $prix = number_format($article['prixttc'], 2, ',', '');
+                    $desc = $article['descriptionprod'];
+                    $id = $article['codeproduit'];
+                    $madein = $article['origine'];
+                    $moyennenote = $article['notemoy'];
                     include 'includes/card.php';
 
                 } ?>
@@ -157,14 +157,14 @@ $bdd->query('set schema \'alizon\'');
         $req= $bdd->prepare($base);
         $req->execute();
         $produits= $req->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($produits as $p) {
-            $img = $p['urlphoto'];
-            $libArt = $p['libelleprod'];
-            $prix = number_format($p['prixttc'], 2, ',', '');
-            $desc = $p['descriptionprod'];
-            $id = $p['codeproduit'];
-            $madein = $p['origine'];
-            $moyennenote = $p['notemoy'];
+        foreach ($produits as $article) {
+            $img = $article['urlphoto'];
+            $libArt = $article['libelleprod'];
+            $prix = number_format($article['prixttc'], 2, ',', '');
+            $desc = $article['descriptionprod'];
+            $id = $article['codeproduit'];
+            $madein = $article['origine'];
+            $moyennenote = $article['notemoy'];
             include 'includes/card.php';
         }        
         ?>
