@@ -43,11 +43,13 @@ $bdd->query('set schema \'alizon\'');
 $data = '';
 $res = $bdd->query("SELECT bordereau FROM alizon.Commande WHERE numCom = ".$numCom)->fetch();
 $bordereau = $res["bordereau"];
-fwrite($socket, "CONN test0 mdp0\n");
-while (($data = fread($socket, 24 )) == '\n' ) {
-    $data .= fread($socket, 24 );
-}
+if($bordereau != -1){
 
+    fwrite($socket, "CONN test0 mdp0\n");
+    while (($data = fread($socket, 24 )) == '\n' ) {
+        $data .= fread($socket, 24 );
+    }
+    
 $data = '';
 fwrite($socket, "SETBDR ".$bordereau);
 
@@ -57,6 +59,10 @@ $data = fread($socket, 1024);
 $final = fread($socket, 1024);
 //var_dump($etape);
 $etape = substr($final, strlen("Étape "), 1);
+}
+else{
+    $etape = 1;
+}
 
 //fwrite($socket, "GETETAPE\n");
 //$etape = fread($socket, 1024);
