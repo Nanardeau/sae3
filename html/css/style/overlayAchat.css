@@ -969,6 +969,15 @@ nav div > ul li:hover .souscat-ul {
   align-items: center;
 }
 
+.prixNormalbarre {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.prixReducRed, .remise {
+  color: #FF4444;
+}
+
 h4 {
   margin: 0px;
 }
