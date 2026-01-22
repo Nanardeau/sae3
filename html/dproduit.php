@@ -137,7 +137,21 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                     <?php endif; ?>
                     <div class="info-produit">
                         <h1><?= $produit['libelleprod'] ?></h1>
-                        <p><strong>Description :</strong> <?= $produit['descriptionprod'] ?></p>
+                        <p><strong>Description :</strong> <?= $produit['descriptionprod'];?><br>
+                        <?php if(isset($produit['spe1']) && $produit['spe1'] != ''){
+                            $sp1 = explode(":", $produit['spe1']);
+                            echo "<strong>".$sp1[0]." : </strong>".$sp1[1]."<br>";
+                        }
+                        if(isset($produit['spe2']) && $produit['spe2'] != ''){
+                            $sp2 = explode(":", $produit['spe2']);
+                            echo "<strong>".$sp2[0]." : </strong>".$sp2[1]."<br>";
+                        }
+
+                        if(isset($produit['spe3']) && $produit['spe3'] != ''){
+                            $sp3 = explode(":", $produit['spe3']);
+                            echo "<strong>".$sp3[0]." : </strong>".$sp3[1]."</p>";
+                        }
+                        ?>
                         <div class="prix">
                             <?php
                             $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
