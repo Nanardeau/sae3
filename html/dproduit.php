@@ -180,8 +180,8 @@ $cat = ($bdd->query("SELECT libelleCat FROM alizon.Categoriser WHERE codeProduit
                             <option value="1000000">1000000</option>
                         </select>
                     </div>
-                    <button class="btnJaune" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $codeProduit ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&page=Catalogue.php';">Ajouter au panier</button>
-                    <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $codeProduit ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</button>
+                    <button class="btnJaune" onclick="window.location.href = 'AjouterAuPanier.php?codeProd=<?php echo $produit['codeproduit'] ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&page=Catalogue.php'">Ajouter au panier</button>
+                    <button class="btnJaune" onclick="window.location.href ='AjouterAuPanier.php?codeProd=<?php echo $produit['codeproduit'] ?>&qteProd=' + encodeURIComponent(getQuantite()) + '&instant=1'">Acheter</button>
                     <!--<button class="add-to-cart">Ajouter au panier</button>-->
                 </div>
 
