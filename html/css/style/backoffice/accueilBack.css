@@ -448,6 +448,7 @@ body {
 }
 
 .produit {
+  position: relative;
   color: inherit;
   display: flex;
   justify-content: center;
@@ -506,7 +507,7 @@ body {
   text-decoration-thickness: 2px;
   text-align: left;
 }
-.produit div {
+.produit .infoProduit {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -515,14 +516,14 @@ body {
   gap: 0.25em;
   position: relative;
 }
-.produit div .prixReduc {
+.produit .infoProduit .prixReduc {
   font-family: "Mulish", sans-serif;
   font-size: 1.25em;
   margin-right: 0.25em;
   color: black;
   font-weight: bold;
 }
-.produit div .pourcentReduc {
+.produit .infoProduit .pourcentReduc {
   font-family: "Mulish", sans-serif;
   font-size: 1em;
   padding-right: 20px;
@@ -753,4 +754,175 @@ body {
   font-size: 24px;
   font-weight: bold;
   color: red;
+}
+
+.badge-promo {
+  z-index: 2;
+  align-self: flex-start;
+  width: auto !important;
+  background-color: rgb(255, 52, 52);
+  padding: 5px 10px;
+  border-radius: 50px;
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+.badge-promo p {
+  color: white;
+}
+
+.badge-remise {
+  z-index: 2;
+  align-self: flex-start;
+  width: auto !important;
+  background-color: rgb(255, 165, 0);
+  padding: 5px 10px;
+  border-radius: 50px;
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.badge-remise p {
+  color: rgb(0, 0, 0);
+  margin: 0;
+}
+.badge-remise svg {
+  stroke-width: 3px;
+  stroke: black;
+  width: 16px;
+  height: 16px;
+}
+
+.bandeau-badges {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.petit-menu {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: auto !important;
+  background-color: rgb(199, 199, 199);
+  padding: 5px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.petit-menu svg {
+  stroke: rgb(0, 0, 0);
+  width: 20px;
+  height: 20px;
+}
+
+.petit-menu-actions {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 8px;
+  right: 8px;
+  z-index: 20;
+}
+
+.petit-menu-actions {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 120px;
+  height: 120px;
+  transform-origin: bottom right;
+  z-index: 20;
+}
+
+.petit-menu-btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background-color: #c7c7c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.petit-menu-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: black;
+  align-self: center;
+  justify-self: center;
+}
+
+.petit-menu-btn.petit-menu-main {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.petit-menu-btn.action {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0, 0);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.petit-menu-actions:hover .petit-menu-btn.action {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.petit-menu-actions:hover .action-1 {
+  transform: translate(-55px, 10px);
+}
+
+.petit-menu-actions:hover .action-2 {
+  transform: translate(-40px, -40px);
+}
+
+.petit-menu-actions:hover .action-3 {
+  transform: translate(50px, -55px);
+}
+
+.petit-menu-btn.petit-menu-main {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.petit-menu-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  background-color: #c7c7c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-btn-lien {
+  text-decoration: none;
+  color: black;
+  text-align: right;
+  width: auto;
+  padding: 0;
+  padding: 0 10px;
 }/*# sourceMappingURL=accueilBack.css.map */

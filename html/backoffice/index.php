@@ -84,15 +84,42 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                 ?>
                 <div class="produit">
                 <?php
+                $stmt2 = $bdd->prepare("SELECT * FROM alizon.FairePromotion JOIN alizon.Promotion ON alizon.FairePromotion.idPromotion = alizon.Promotion.idPromotion WHERE alizon.FairePromotion.codeProduit = :id");
+                $stmt2->execute(['id' => $code_produit]);
+                $infoPromo = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+                $hasPromo = $stmt2->rowCount() > 0;
+
+                $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
+                $stmt->execute(['id' => $code_produit]);
+                $infoRemise = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $hasRemise = $stmt->rowCount() > 0;
+
+                if($hasPromo || $hasRemise) { ?>
+                    <div class="bandeau-badges">
+                        <?php
+                        if ($hasPromo){ ?>
+                            <div class="badge-promo">
+                                <p>PROMO</p>
+                            </div>
+                        <?php } 
+                        if ($hasRemise){ ?>
+                            <div class="badge-remise">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-percent-icon lucide-percent"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+                                <p>REMISE</p>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+
+                <?php
                 echo '<a href="./ficheProduit.php?Produit='.htmlspecialchars($row['codeproduit']).'">';
                     echo '<img src="../'.htmlspecialchars($row['urlphoto']).'" alt="Photo de '.htmlspecialchars($row['libelleprod']).'"> </a>';
                     echo '<p class="nomArticle">'.htmlspecialchars($row['libelleprod']).'</p>';
                     echo '<div class="infoProduit">';
 
-                        $stmt = $bdd->prepare("SELECT * FROM alizon.FaireReduction JOIN alizon.Reduction ON alizon.FaireReduction.idReduction = alizon.Reduction.idReduction WHERE alizon.FaireReduction.codeProduit = :id");
-                        $stmt->execute(['id' => $code_produit]);
-                        $infoRemise = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        $hasRemise = $stmt->rowCount() > 0;
+                        
+
+                        
 
                         if ($hasRemise != false){
                             echo '<p class="prixNormalbarre">'.$row['prixht'].'€</p>';
@@ -112,6 +139,14 @@ $vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <path d="M21.0498 11.471C21.432 11.0888 21.6468 10.5705 21.6469 10.0299C21.647 9.48937 21.4323 8.97093 21.0501 8.58866C20.6679 8.20638 20.1496 7.99158 19.609 7.99152C19.0685 7.99145 18.5501 8.20612 18.1678 8.58829L8.51832 18.2401C8.35044 18.4074 8.2263 18.6135 8.1568 18.8402L7.20169 21.9868C7.183 22.0494 7.18159 22.1158 7.19761 22.179C7.21362 22.2423 7.24646 22.3001 7.29264 22.3462C7.33883 22.3923 7.39663 22.425 7.45992 22.4409C7.52322 22.4569 7.58963 22.4553 7.65213 22.4366L10.7995 21.4821C11.0259 21.4133 11.2319 21.2899 11.3996 21.1228L21.0498 11.471Z" fill="#6CA6E9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
+                    <div class="petit-menu-actions">
+                        <div class="petit-menu-btn petit-menu-main">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis-icon lucide-ellipsis"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                        </div>
+                        <a href="#" class="petit-menu-btn action action-1 menu-btn-lien">1 du texte</a>
+                        <a href="#" class="petit-menu-btn action action-2 menu-btn-lien">2 du texte</a>
+                        <a href="#" class="petit-menu-btn action action-3 menu-btn-lien">3 du texte</a>
+                    </div>
                 </div>
                 <?php } ?>
                 </a>
