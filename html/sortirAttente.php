@@ -28,7 +28,7 @@ try {
         header('Location: http://localhost:8888/index.php');
         exit();
 }
-$socket = fsockopen("127.0.0.1", 8080);
+$socket = fsockopen("10.253.5.102", 8080);
 fwrite($socket, "CONN test0 mdp0\n");
 $data = fread($socket, 1024);
 fwrite($socket, "VERIFATT\n");
