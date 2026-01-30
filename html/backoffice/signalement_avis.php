@@ -26,14 +26,27 @@ try {
 } catch (PDOException $e) {
     echo "❌ Erreur de connexion : " . $e->getMessage();
 }
-
 $bdd->query("SET SCHEMA 'alizon'");
+$estVendeur = false;
+if(isset($_SESSION["codeCompte"])){
+
+    $vendeurs = $bdd->query("SELECT ALL codeCompte FROM alizon.Vendeur")->fetchAll();
+    foreach($vendeurs as $vendeur){
+        if($vendeur["codecompte"] == $_SESSION["codeCompte"]){
+            $estVendeur = true;
+        }
+    }
+}
+if(!$estVendeur || !isset($_SESSION["codeCompte"])){
+    exit(header("location:connexionVendeur.php"));
+}
+$sql = "SELECT * FROM alizon.Vendeur WHERE codeCompte = '".$codeCompte."'";
+$stmt = $bdd->query($sql);
+$vendeur = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $signalements = $bdd->query("SELECT motif, commentaire, libelleprod, dateSignalement FROM alizon.Signalement
 INNER JOIN alizon.Avis ON Signalement.numAvis = Avis.numAvis 
 INNER JOIN alizon.Produit ON Avis.codeProduit = Produit.codeProduit WHERE Produit.codeCompteVendeur = ".$_SESSION["codeCompte"])->fetchAll(PDO::FETCH_ASSOC);
-
-
 ?>
 <html lang="fr">
 <head>
