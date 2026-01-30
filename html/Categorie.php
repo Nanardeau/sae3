@@ -140,14 +140,14 @@ $cat = strtoupper(substr($cat, 0, 1)) . substr($cat, 1, strlen($cat));
     $res->execute([':cat' => $cat]);
     $res = $res->fetchAll();
     foreach($res as $produit){
-        $p = $bdd->query("SELECT * FROM alizon.Produit WHERE codeProduit = '".$produit["codeproduit"]."'")->fetch();
-        $img = $p['urlphoto'];
-        $libArt = $p['libelleprod'];
-        $prix = number_format($p['prixttc'], 2, ',', '');
-        $desc = $p['descriptionprod'];
-        $id = $p['codeproduit'];
-        $madein = $p['origine'];
-        $moyennenote = $p['notemoy'];
+        $article = $bdd->query("SELECT * FROM alizon.Produit WHERE codeProduit = '".$produit["codeproduit"]."'")->fetch();
+        $img = $article['urlphoto'];
+        $libArt = $article['libelleprod'];
+        $prix = number_format($article['prixttc'], 2, ',', '');
+        $desc = $article['descriptionprod'];
+        $id = $article['codeproduit'];
+        $madein = $article['origine'];
+        $moyennenote = $article['notemoy'];
         include 'includes/card.php';
         ?>
         
